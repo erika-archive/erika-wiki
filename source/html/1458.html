@@ -1,0 +1,44 @@
+<p>This is a set of wiki page where we documented the effort of porting ERIKA Enterprise to a new microcontroller. The idea is that this documentation will be useful to anyone willing to port the ERIKA Enterprise kernel to a new microcontroller.
+</p>
+<h2> <span class="mw-headline" id="How_to">How to</span></h2>
+<p>The work is composed by a set of steps. Each step has a separate wiki page, to document each phase.
+These sample pages refer to the Erika Enterprise porting on a Freescale HCS12X microcontroller 
+using the Cosmic compiler CXS12X.
+</p><p>A set of files to speed up the porting to new microcontrollers has been developed since; you can find some documentation in the page <a href="/wiki/index.php?title=Common_files_for_the_HAL" title="Common files for the HAL">Common files for the HAL</a>.  The files include most of the code required for Monostack, and the resulting architecture of the HAL is simpler than for previously ported architectures.  For an example on how to use them, see the <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a> or the <a href="/wiki/index.php?title=Lattice_Mico32" title="Lattice Mico32">Lattice Mico32</a> porting; use them as a reference for your new porting.
+</p><p>Note that the pathnames of the files cited in the following pages are the ones used to compile the files.
+Some of these files do not have yet an OIL file description. 
+In order to let them compile and work, you will have to change the pathnames 
+in the makefile and in the linker scripts.
+</p>
+<ol><li> Installing the compiler
+</li><li> <a href="/wiki/index.php?title=Porting_ERIKA:_writing_the_makefiles_and_first_compilation" title="Porting ERIKA: writing the makefiles and first compilation">Porting ERIKA: writing the makefiles and first compilation</a>
+</li><li> <a href="/wiki/index.php?title=MONOSTACK_-_writing_the_monostack_part_of_a_CPU_layer" title="MONOSTACK - writing the monostack part of a CPU layer">MONOSTACK - writing the monostack part of a CPU layer</a>
+<ol><li> <a href="/wiki/index.php?title=Writing_a_mono-stack_application_without_interrupts" title="Writing a mono-stack application without interrupts">Writing a mono-stack application without interrupts</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_mono-stack_with_interrupt_not_nested" title="Writing a mono-stack with interrupt not nested">Writing a mono-stack with interrupt not nested</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_mono-stack_with_nested_interrupts" title="Writing a mono-stack with nested interrupts">Writing a mono-stack with nested interrupts</a>
+</li><li> <a href="/wiki/index.php?title=Implementing_TerminateTask" title="Implementing TerminateTask">Implementing TerminateTask</a>
+</li></ol>
+</li><li> <a href="/wiki/index.php?title=MULTISTACK_-_writing_the_multistack_part_of_a_CPU_layer" title="MULTISTACK - writing the multistack part of a CPU layer">MULTISTACK - writing the multistack part of a CPU layer</a>
+<ol><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_a_single_stack" title="Writing a multi-stack application that runs on a single stack">Writing a multi-stack application that runs on a single stack</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks" title="Writing a multi-stack application that runs on multiple stacks">Writing a multi-stack application that runs on multiple stacks</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_interrupt_not_nested" title="Writing a multi-stack application that runs on multiple stacks with interrupt not nested">Writing a multi-stack application that runs on multiple stacks with interrupt not nested</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_nested_interrupts" title="Writing a multi-stack application that runs on multiple stacks with nested interrupts">Writing a multi-stack application that runs on multiple stacks with nested interrupts</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_nested_interrupts_and_separate_interrupt_stacks" title="Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks">Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_semaphores" title="Writing a multi-stack application that runs on multiple stacks with semaphores">Writing a multi-stack application that runs on multiple stacks with semaphores</a>
+</li></ol>
+</li><li> <a href="/wiki/index.php?title=Running_the_MODISTARC_regression_tests" title="Running the MODISTARC regression tests">Running the MODISTARC regression tests</a>
+</li></ol>
+<h2> <span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li> <a href="/wiki/index.php?title=RT-Druid_configuration" title="RT-Druid configuration">RT-Druid configuration</a> - instructions to configure RT-Druid to work with an external repository
+</li><li> <a href="/wiki/index.php?title=Common_files_for_the_HAL" title="Common files for the HAL">Common files for the HAL</a>
+</li><li> <a href="/wiki/index.php?title=Erika_Makefiles" title="Erika Makefiles">Erika Makefiles</a>
+</li><li> Pages in the category <a href="/wiki/index.php?title=Category:ERIKA_internals" title="Category:ERIKA internals">ERIKA internals</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,225 @@
+== Synopsis ==
+
+The picture in the figure below shows the general architecture of AUTOSAR-like Drivers.
+
+[[File: AUTOSAR_Device_Drivers.png ]]
+
+AUTOSAR-like Drivers are meant to be used in the context of a process in which static configuration supported by tools is strongly suggested if not implied.
+
+
+Each driver specification in AUTOSAR-like includes at the very least the following:
+* Dependencies from other drivers
+* A suggested architecture for the driver files, some of them to be defined with the help of automatic configuration tools
+* A set of driver-specific types
+* A set of driver-specific constants
+* An API consisting of a set of functions, callbacks and notification functions
+
+== Configurator RT-Druid Eclipse Plug-in ==
+
+AUTOSAR-like Drivers need to be statically configured via RT-Druid Eclipse plug-in, available for free download at the [http://www.evidence.eu.com/products/eforms.html EFORMS web page]
+
+=== Plug-in Installation ===
+
+In order to install the AUTOSAR-like Drivers Configurator plug-in inside RT-Druid Eclipse, you have to select "Install New Software..." menu voice in "Help" menu.
+
+[[File:Install_New_Software.png]]
+
+In the "Install" dialog window, you have to push "Add..." button.
+
+[[File:Install_Add.png]]
+
+In the "Add Repository" dialog window, you have to push "Archive..." button.
+
+[[File:Add_Repository_Archive.png]]
+
+You have to select the "Repository Archive" containig the Plug-in to install and push "Open" button.
+
+[[File:Repository_Archive.png]]
+
+In the "Add Repository" dialog window, you have to push "OK" button.
+
+[[File:Add_Repository_OK.png]]
+
+In the "Install Details" dialog window, you have to push "Next >" button.
+
+[[File:Install_Details_Next.png]]
+
+In the "Install" dialog window, you have to check "Driver configurator Erika Enterprise" and click on the "Next >" button.
+
+[[File:Install_Next.png]]
+
+In the "Install Review License" dialog window, you have to accept the terms of license agreements and push "Finish" button.
+
+[[File:Install_Finish.png]]
+
+Now you have to wait the installation process to finish.
+
+[[File:Installing_Software_Wait.png]]
+
+In the "Security Warning" dialog window, you have to push "OK" button.
+
+[[File:Security_Warning.png]]
+
+In the "Software Updates" dialog window, you have to push "Yes" button to finalize the installation process and restart RT-Druid Eclipse.
+
+[[File:Software_Updates.png]]
+
+Now you have AUTOSAR-like Drivers Configurator plug-in installed in RT-Druid Eclipse.
+
+=== Plug-in Installation Check ===
+
+In order to check if the AUTOSAR-like Driver Configurator plug-in is installed in RT-Druid Eclipse, you have to select "About Eclipse" menu voice in "Help" menu.
+
+[[File:Help_About.png]]
+
+In the "About Eclipse" dialog window, you have to push the "Evidence" button.
+
+[[File:About_Eclipse_Evidence.png]]
+
+In the "About Eclipse Features" dialog window, you have to check "Driver configurator Erika Enterprise (Core)" and "Evidece EFORMS core" are installed.
+
+[[File:About_Eclipse_Features.png]]
+
+=== Plug-in Installation Removal ===
+
+In order to remove the AUTOSAR-like Driver Configurator plug-in installed in RT-Druid Eclipse, you have to select "About Eclipse" menu voice in "Help" menu.
+
+[[File:Help_About.png]]
+
+In the "About Eclipse" dialog window, you have to push the "Installation Details" button.
+
+[[File:About_Eclipse_Installation_Details.png]]
+
+In the "Eclipse Installation Details" dialog window, you have to select "Driver configurator Erika Enterprise" and "Evidece EFORMS runtime" and then you have to push the "Uninstall..." button.
+
+[[File:Eclipse_Installation_Details_Uninstall.png]]
+
+In the "Uninstall" dialog window, you have to push "Finish" button.
+
+[[File:Eclipse_Uninstall.png]]
+
+Now you have to wait the installation removal process to finish.
+
+[[File:Eclipse_Uninstalling_Software.png]]
+
+
+In the "Software Updates" dialog window, you have to push "Yes" button to finalize the installation removal process and restart RT-Druid Eclipse.
+
+[[File:Software_Updates.png]]
+
+Now you have removed AUTOSAR-like Drivers Configurator plug-in from RT-Druid Eclipse.
+
+== Supported Drivers ==
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_MCU_Driver MCU] ===
+The MCU driver provides services for basic microcontroller initialization, power down functionality, reset and microcontroller specific functions required by other MCAL [Microcontroller  Abstraction  Layer] software modules.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_PORT_Driver PORT] ===
+The PORT driver provide services for initializing the whole PORT structure of the microcontroller.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_DIO_Driver DIO] ===
+The DIO Driver abstracts the access to the microcontroller's hardware pins. Furthermore, it allows the grouping of those pins.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_SCI_Driver SCI] ===
+The SCI Driver provides serial communications services. 
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_GPT_Driver GPT] ===
+The GPT Driver initializes and controls the internal General Purpose Timer(s) of the microcontroller.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_DMA_Driver DMA] ===
+The DMA Driver provides services to offload data transfer tasks from the μC, allowing for more efficient use of the μC and the available bus bandwidth.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_SPI_Driver SPI] ===
+The SPI Driver provides services for reading from and writing to devices connected via SPI busses. It also provides the required mechanism to configure the onchip SPI peripheral.
+
+=== [http://erika.tuxfamily.org/wiki/index.php?title=AUTOSAR-like_WDG_Driver WDG] ===
+The WDG Driver provides services for initialization, changing the operation mode and setting the trigger condition (timeout) of a watchdog device.
+
+== Build ==
+
+To enable AUTOSAR-like Drivers in Erika Enterprise build process, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AUTOSAR_R4_0__";
+
+AUTOSAR-like Drivers need to be statically configured through the configurator described above. The configuration process shall generate configuration header and source C files that shall be added to Erika Enterprise build process.
+
+The configuration C header files inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header files is stored.
+
+<b>Note:</b> Each AUTOSAR-like Driver must be enabled individually.
+
+=== Stand-alone Library ===
+
+To build a stand-alone library (libas.a) containing build-enabled AUTOSAR-like Drivers, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__ADD_LIBS__";
+  LIB = ENABLE {
+    NAME = "AUTOSAR";
+  };
+
+It's possible to include into library the drivers configurations by the following <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__NO_APP__";
+
+== Supported Architectures ==
+
+=== Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain ===
+
+==== Configuration Instatiation ====
+
+In order to configure AUTOSAR-like Drivers for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to create an instance of the drivers configuration inside your RT-Druid Eclipse project.
+
+The first step to do this is to right-click on the project folder in the project explorer.
+
+In the first Context-Menu popped-up, you have to choose the "New" menu voice.
+
+In the next Context-Menu popped-up, you have to select the "Other..." menu voice.
+
+[[File:Project_New_Other.png]]
+
+In the "New" dialog window, you have to expand the "Evidence" folder, select "Erika Driver Configurator" and then push "Next >" button.
+
+[[File:New_Evidence_Driver_Configurator.png]]
+
+In the "Erika Driver Configuration" dialog window, you may change/choose the drivers configuration instance file name and then you have to push "Finish" button.
+
+[[File:Erika_Driver_Configuration_File_Name.png]]
+
+The AUTOSAR-like Drivers configuration instance file is now created and ready to be edited.
+
+[[File:Erika_Driver_Configurator_Main.png]]
+
+==== Configuration Editing ====
+
+The edit process for AUTOSAR-like Drivers configuration file is related to each individual driver.
+
+Please refer to specific driver documentation.
+
+==== Configuration Generation ====
+
+Once you have edited the configuration file for AUTOSAR-like Drivers you wish to use in your application, to generate the configuration header and source C files for all drivers configured, you have to select "Generate Code" menu voice in the "Erika Driver Editor" Menu.
+
+[[File:Erika_Driver_Editor_Generate_Code.png]]
+
+The configured AUTOSAR-like drivers configuration header and source C files will be generated in "src-gen" project folder.
+
+[[File:Erika_Driver_configuration_Generated.png]]
+
+==== Keil uVision Integration ====
+
+To integrate AUTOSAR-like Drivers for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain in a ARM KEIL uVision application project, it nees:<br>
+* To add a previously builded libas.a (containing drivers configurations) to a Target Sources Group of ARM KEIL uVision Project.
+* To add AUTOSAR Drivers include path ([http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/include/ contrib/as/include/]) to ARM KEIL uVision C/C++ compiler include paths.
+* To add AUTOSAR Drivers for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL compiler toolchain [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/include/ contrib/as/arch/stellaris/keil/include/] to Keil uVision C/C++ compiler include paths.
+* To add AUTOSAR Drivers configurations for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain include path to ARM KEIL uVision C/C++ compiler include paths.
+
+==== See also ====
+
+* [[ARM Cortex MX#Building stand-alone libee.a using RT-Druid Eclipse]]
+* [[ARM Cortex MX#Building ERIKA based application using KEIL uVision]]
+* [http://www.autosar.org/ AUTOSAR - Automotive Open System Architecture - Web site]
+* [http://www.ti.com/tool/ek-lm4f232?DCMP=cortexm4f&HQS=ek-lm4f232 Texas Instruments - Stellaris LM4F232 USB+CAN Evaluation Kits - Web site]
+* [http://www.keil.com/ Keil Embedded Development Tools Web site]

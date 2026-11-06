@@ -1,0 +1,444 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Types_Defintions"><span class="tocnumber">3.2</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#struct_Dio_ConfigType"><span class="tocnumber">3.2.1</span> <span class="toctext">struct Dio_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#typedef_uint_Dio_ChannelType"><span class="tocnumber">3.2.2</span> <span class="toctext">typedef uint Dio_ChannelType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#typedef_uint_Dio_PortType"><span class="tocnumber">3.2.3</span> <span class="toctext">typedef uint Dio_PortType</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#struct_Dio_ChannelGroupType"><span class="tocnumber">3.2.4</span> <span class="toctext">struct Dio_ChannelGroupType</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#typedef_uint8_Dio_LevelType"><span class="tocnumber">3.2.5</span> <span class="toctext">typedef uint8 Dio_LevelType</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#typedef_uint8_Dio_PortLevelType"><span class="tocnumber">3.2.6</span> <span class="toctext">typedef uint8 Dio_PortLevelType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Functions_Definitions"><span class="tocnumber">3.3</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Dio_LevelType_Dio_ReadChannel.28Dio_ChannelType_ChannelId.29"><span class="tocnumber">3.3.1</span> <span class="toctext">Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#void_Dio_WriteChannel.28Dio_ChannelType_ChannelId.2C.09Dio_LevelType_Level.29"><span class="tocnumber">3.3.2</span> <span class="toctext">void Dio_WriteChannel(Dio_ChannelType ChannelId,	Dio_LevelType Level)</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Dio_PortLevelType_Dio_ReadPort.28Dio_PortType_PortId.29"><span class="tocnumber">3.3.3</span> <span class="toctext">Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#void_Dio_WritePort.28Dio_PortType_PortId.2C_Dio_PortLevelType_Level.29"><span class="tocnumber">3.3.4</span> <span class="toctext">void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Dio_PortLevelType_Dio_ReadChannelGroup.28const_Dio_ChannelGroupType_.2AChannelGroupIdPtr.29"><span class="tocnumber">3.3.5</span> <span class="toctext">Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr)</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#void_Dio_WriteChannelGroup.28const_Dio_ChannelGroupType_.2AChannelGroupIdPtr.2C_Dio_PortLevelType_Level.29"><span class="tocnumber">3.3.6</span> <span class="toctext">void Dio_WriteChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr, Dio_PortLevelType Level)</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#void_Dio_Init.28const_Dio_ConfigType_.2AConfigPtr.29"><span class="tocnumber">3.3.7</span> <span class="toctext">void Dio_Init(const Dio_ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Dio_LevelType_Dio_FlipChannel.28Dio_ChannelType_ChannelId.29"><span class="tocnumber">3.3.8</span> <span class="toctext">Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#void_Dio_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.3.9</span> <span class="toctext">void Dio_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#Read_a_value_from_a_DIO_Channel"><span class="tocnumber">4.1</span> <span class="toctext">Read a value from a DIO Channel</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Write_a_value_to_a_DIO_Channel"><span class="tocnumber">4.2</span> <span class="toctext">Write a value to a DIO Channel</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="#Build"><span class="tocnumber">5</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="#Supported_Architectures"><span class="tocnumber">6</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-29"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">6.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-30"><a href="#Driver_Configuration"><span class="tocnumber">6.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-4 tocsection-31"><a href="#Configuration_Selection"><span class="tocnumber">6.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-4 tocsection-32"><a href="#API_Selection"><span class="tocnumber">6.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-33"><a href="#Implemetations_Demos"><span class="tocnumber">6.1.2</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The DIO abstracts the access to the microcontroller's hardware pins. Furthermore, it allows the grouping of those pins.
+</p><p>The DIO Driver provides services for reading and writing to/from
+</p>
+<ul><li> DIO Channels (Pins)
+</li><li> DIO Ports
+</li><li> DIO Channel Groups
+</li></ul>
+<p>The behaviour of those services is synchronous.
+</p><p>This module works on pins and ports which are configured by the PORT driver for this purpose. For this reason, there is no configuration and initialization of this port structure in the DIO Driver.
+</p><p>Many ports and port pins are assigned by the PORT Driver Module to various functionalities as for example:
+</p>
+<ul><li> General purpose I/O
+</li><li> ADC
+</li><li> SPI
+</li><li> PWM
+</li><li> etc
+</li></ul>
+<p>The Dio module shall not provide APIs for overall configuration and initialization of the port structure which is used in the Dio module. These actions are done by the PORT Driver Module.
+</p><p>The Dio module shall adapt its configuration and usage to the microcontroller and ECU.
+</p><p>The Dio module’s user shall only use the Dio functions after the Port Driver has been initialized. Otherwise the Dio module will exhibit undefined behavior.
+</p><p>The diagram below identifies the DIO Driver functions, and the structure of the PORT Driver and DIO Driver.
+</p><p><a href="/wiki/index.php?title=File:DIO-PORT.png" class="image"><img alt="DIO-PORT.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/90/DIO-PORT.png" width="672" height="813" /></a>
+</p><p>The Dio module shall not buffer data when providing read and write services.
+</p><p>The Dio module’s read and write services shall ensure for all services, that the data is consistent (Interruptible read-modify-write sequences are not allowed).
+</p><p>Values used by the DIO Driver for the software level of Channels are either <i>STD_HIGH</i> or <i>STD_LOW</i>.
+</p><p>A general-purpose digital IO pin represents a DIO channel.
+</p><p>The Port module shall configure a DIO channel as input or output.
+</p><p>In the DIO Driver, it shall be possible to group several DIO channels by hardware (typically controlled by one hardware register) to represent a DIO port.
+</p><p><b>Note</b>: The single DIO channel levels inside a DIO port represent a bit in the DIO port value, depending on their position inside the port.
+</p><p>A channel group is a formal logical combination of several adjoining DIO channels within a DIO port.
+</p><p><a href="/wiki/index.php?title=File:DIO_Channel_Group.png" class="image"><img alt="DIO Channel Group.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d1/DIO_Channel_Group.png" width="826" height="540" /></a>
+</p><p>The DIO Driver provides the following services:
+</p>
+<ul><li> The Dio driver shall define functions to modify the levels of output channels individually, for a port or for a channel group.
+</li><li> The Dio driver shall define functions to read the level of input and output channels individually, for a port or for a channel group.
+</li></ul>
+<p><a href="/wiki/index.php?title=File:DIO_services.png" class="image"><img alt="DIO services.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1f/DIO_services.png" width="480" height="300" /></a>
+</p><p>All read and write functions of the Dio module shall be re-entrant.
+</p><p><b>Reason</b>: The DIO Driver may be accessed by different upper layer handlers or drivers. These upper layer modules may access the driver concurrently.
+</p><p>The configuration process for Dio module shall provide symbolic names for each configured DIO channel, port and group.
+</p><p>The Dio module shall publish the symbolic names which have been created during the configuration process in the file <i>Dio_Cfg.h</i>.
+</p><p>Initialization of the hardware is done by the PORT Driver.
+</p><p>The Dio module shall not provide an interface for initialization of the hardware. The Port Driver performs this.
+</p><p>The PORT driver shall provide the reconfiguration of the port pin direction during runtime.
+</p><p>The DIO Driver provides services to transfer data to the microcontroller's pins
+</p><p>The Dio module’s write functions shall work on input and output channels.
+</p><p>If a Dio write function is used on an input channel, it shall have no effect on the physical output level.
+</p><p>If supported by hardware, the Dio module shall set/clear the output data latch of an input channel so that the required level is output from the pin when the port driver configures the pin as a DIO output pin.
+</p><p>The Dio module’s read functions shall work on input and output channels.
+</p><p>If the microcontroller supports the direct read-back of a pin value, the Dio module’s read functions shall provide the real pin level, when they are used on a channel which is configured as an output channel.
+</p><p>If the microcontroller does not support the direct read-back of a pin value, the Dio module’s read functions shall provide the value of the output register, when they are used on a channel which is configured as an output channel.
+</p>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:DIO_Driver_File_structure.png" class="image"><img alt="DIO Driver File structure.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/62/DIO_Driver_File_structure.png" width="1006" height="326" /></a>
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Dio_ConfigType"> <i>struct Dio_ConfigType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>DIO Driver Configuration Parameters.
+</p><p>The type <i>Dio_ConfigType</i> is a type for the external data structure containing the initialization data for the DIO Driver.
+</p><p>This structure contains all configurable parameters of the DIO driver. A pointer to this structure is passed to the DIO driver initialization function for configuration.
+</p><p><b>Note</b>: The user shall use the symbolic names defined in the configuration tool.
+</p><p><b>Note</b>: The configuration of each Dio Channel MCU specific. Therefore, it is not possible to include a complete list of different configurations in this specification.
+</p>
+<h4> <span class="mw-headline" id="typedef_uint_Dio_ChannelType"> <i>typedef uint Dio_ChannelType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Data type for the symbolic name of a Dio Channel and shall cover all available DIO channels.
+</p><p>Parameters of type <i>Dio_ChannelType</i> contain the numeric ID of a DIO channel.
+</p><p>The mapping of the ID is implementation specific but not configurable.
+</p><p>For parameter values of type <i>Dio_ChannelType</i>, the Dio’s user shall use the symbolic names provided by the configuration description.
+</p>
+<h4> <span class="mw-headline" id="typedef_uint_Dio_PortType"> <i>typedef uint Dio_PortType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Data type for the symbolic name of a Dio Port and shall cover all available DIO ports.
+</p><p>Parameters of type <i>Dio_PortType</i> contain the numeric ID of a DIO port.
+</p><p>The mapping of ID is implementation specific but not configurable.
+</p><p>For parameter values of type <i>Dio_PortType</i>, the user shall use the symbolic names provided by the configuration description.
+</p>
+<h4> <span class="mw-headline" id="struct_Dio_ChannelGroupType"> <i>struct Dio_ChannelGroupType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Type for the definition of a channel group, which consists of several adjoining channels within a port.
+</p><p>For parameter values of type <i>Dio_ChannelGroupType</i>, the user shall use the symbolic names provided by the configuration description.
+</p><p><b>Field Documentation</b>:
+</p>
+<ul><li> <i>uint32 Dio_ChannelGroupType::mask</i>:
+</li></ul>
+<p>	This element mask which defines the positions of the channel group. 
+</p>
+<ul><li> <i>uint8 Dio_ChannelGroupType::offset</i>:
+</li></ul>
+<p>	This element shall be the position of the Channel Group on the port, counted from the LSB. 
+</p>
+<ul><li> <i>Dio_PortType Dio_ChannelGroupType::port</i>:
+</li></ul>
+<p>	This shall be the port on which the Channel group is defined. 
+</p>
+<h4> <span class="mw-headline" id="typedef_uint8_Dio_LevelType"> <i>typedef uint8 Dio_LevelType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Data type for the for the possible levels that a DIO channel can have (input or output).
+</p><p><b>Range</b>:
+</p>
+<ul><li> <i>STD_LOW</i>: 	 		Physical state 0V
+</li><li> <i>STD_HIGH</i>:			Physical state 5V or 3.3V
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint8_Dio_PortLevelType"> <i>typedef uint8 Dio_PortLevelType</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Data type for the value of a DIO port.
+</p><p><b>Note</b>:	If the μC owns ports of different port widths (e.g. 4, 8,16...Bit) <i>Dio_PortLevelType</i> inherits the size of the largest port.
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="Dio_LevelType_Dio_ReadChannel.28Dio_ChannelType_ChannelId.29"> <i>Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Channel Read.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ChannelId</i>:	ID of DIO Channel 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>STD_HIGH</i>&nbsp;:	The physical level of the corresponding Pin is <i>STD_HIGH</i> 
+</li><li> <i>STD_LOW</i>&nbsp;:	The physical level of the corresponding Pin is <i>STD_LOW</i> 
+</li></ul>
+<p>Returns the value of the specified DIO channel.
+</p><p>Service 0x00
+</p><p>The <i>Dio_ReadChannel()</i> function shall return the value of the specified DIO channel.
+</p>
+<h4> <span class="mw-headline" id="void_Dio_WriteChannel.28Dio_ChannelType_ChannelId.2C.09Dio_LevelType_Level.29"> <i>void Dio_WriteChannel(Dio_ChannelType ChannelId,	Dio_LevelType Level)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Channel Write.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ChannelId</i>:	ID of DIO Channel 
+</li><li> <i>Level</i>:	Value to be written
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Service 0x01
+</p><p>Service to set a level of a channel.
+</p><p>If the specified channel is configured as an output channel, the <i>Dio_WriteChannel()</i> function shall set the specified Level for the specified channel.
+</p><p>If the specified channel is configured as an input channel, the <i>Dio_WriteChannel()</i> function shall have no influence on the physical output.
+</p><p>If the specified channel is configured as an input channel, the <i>Dio_WriteChannel()</i> function shall have no influence on the result of the next Read-Service.
+</p>
+<h4> <span class="mw-headline" id="Dio_PortLevelType_Dio_ReadPort.28Dio_PortType_PortId.29"> <i>Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Port Read.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>PortId</i>:	ID of DIO Port
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Level of all channels of that port.
+</li></ul>
+<p>Returns the level of all channels of that port.
+</p><p>Service 0x02
+</p><p>The <i>Dio_ReadPort()</i> function shall return the level of all channels of that port.
+</p><p>When reading a port which is smaller than the <i>Dio_PortType</i> using the <i>Dio_ReadPort()</i> function, the function shall set the bits corresponding to undefined port pins to <i>0</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Dio_WritePort.28Dio_PortType_PortId.2C_Dio_PortLevelType_Level.29"> <i>void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Port Write.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>PortId</i>:	ID of DIO Port
+</li><li> <i>Level</i>:	Value to be written
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Service 0x03
+</p><p>Service to set a value of a port.
+</p><p>The <i>Dio_WritePort()</i> function shall set the specified value for the specified port.
+</p><p>When the <i>Dio_WritePort()</i> function is called, DIO Channels that are configured as input shall remain unchanged.
+</p><p>When writing a port which is smaller than the Dio_PortType using the <i>Dio_WritePort()</i> function, the function shall ignore the MSB.
+</p><p>The <i>Dio_WritePort()</i> function shall have no effect on channels within this port which are configured as input channels.
+</p>
+<h4> <span class="mw-headline" id="Dio_PortLevelType_Dio_ReadChannelGroup.28const_Dio_ChannelGroupType_.2AChannelGroupIdPtr.29"> <i>Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Channel Group Read.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ChannelGroupIdPtr</i>:	Pointer to Channel Group
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Level of a subset of the adjoining bits of a port (channel group).
+</li></ul>
+<p>This Service reads a subset of the adjoining bits of a port.
+</p><p>Service 0x04
+</p><p>The <i>Dio_ReadChannelGroup()</i> function shall read a subset of the adjoining bits of a port (channel group).
+</p><p>The <i>Dio_ReadChannelGroup()</i> function shall do the masking of the channel group.
+</p><p>The <i>Dio_ReadChannelGroup()</i> function shall do the shifting so that the values read by the function are aligned to the LSB.
+</p>
+<h4> <span class="mw-headline" id="void_Dio_WriteChannelGroup.28const_Dio_ChannelGroupType_.2AChannelGroupIdPtr.2C_Dio_PortLevelType_Level.29"> <i>void Dio_WriteChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr, Dio_PortLevelType Level)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Channel Group Write.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ChannelGroupIdPtr</i>:	Pointer to Channel Group
+</li><li> <i>Level</i>:			Value to be written
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Service 0x05
+</p><p>Service to set a subset of the adjoining bits of a port to a specified level.
+</p><p>The <i>Dio_WriteChannelGroup()</i> function shall set a subset of the adjoining bits of a port (channel group) to a specified level.
+</p><p>The <i>Dio_WriteChannelGroup()</i> shall not change the remaining channels of the port and channels which are configured as input.
+</p><p>The <i>Dio_WriteChannelGroup()</i> function shall do the masking of the channel group.
+</p><p>The function <i>Dio_WriteChannelGroup()</i> shall do the shifting so that the values written by the function are aligned to the LSB.
+</p>
+<h4> <span class="mw-headline" id="void_Dio_Init.28const_Dio_ConfigType_.2AConfigPtr.29"> <i>void Dio_Init(const Dio_ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>DIO Driver Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr</i>:	Pointer to configuration set 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Initializes the DIO Driver module.
+</p><p>Service 0x10
+</p><p>The <i>Dio_Init()</i> function shall initialize all global variables of the DIO module.
+</p>
+<h4> <span class="mw-headline" id="Dio_LevelType_Dio_FlipChannel.28Dio_ChannelType_ChannelId.29"> <i>Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>Channel Flip.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ChannelId</i>:	ID of DIO Channel 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>STD_HIGH</i>:		The physical level of the corresponding Pin is <i>STD_HIGH</i> 
+</li><li> <i>STD_LOW</i>:		The physical level of the corresponding Pin is <i>STD_LOW</i>
+</li></ul>
+<p>Service to flip (change from 1 to 0 or from 0 to 1) the level of a channel and return the level of the channel after flip.
+</p><p>Service 0x11
+</p><p>If the specified channel is configured as an output channel, the <i>Dio_FlipChannel()</i> function shall read level of the channel and invert it, then write the inverted level to the channel. The return value shall be the inverted level of the specified channel.
+</p><p>If the specified channel is configured as an input channel, the <i>Dio_FlipChannel()</i> function shall have no influence on the physical output. The return value shall be the level of the specified channel.
+</p><p>If the specified channel is configured as an input channel, the <i>Dio_FlipChannel()</i> function shall have no influence on the result of the next Read-Service.
+</p>
+<h4> <span class="mw-headline" id="void_Dio_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Dio_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Dio.h"
+</pre>
+<p>DIO Driver version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>:	Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service retrieves the DIO driver version informations.
+</p><p>Service 0x12
+</p><p>The function <i>Dio_GetVersionInfo()</i> shall return the version information of the DIO module.
+</p><p>The version information includes:
+</p>
+<ul><li> Module Id
+</li><li> Vendor Id
+</li><li> Vendor specific version numbers
+</li></ul>
+<p>The function <i>Dio_GetVersionInfo()</i> shall be configurable On/Off by the configuration parameter <i>DioVersionInfoApi</i>.
+</p><p>If source code for caller and callee of the function <i>Dio_GetVersionInfo()</i> is available, the PORT module should realize this function as a macro. The DIO module should define this macro in the module’s header file.
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="Read_a_value_from_a_DIO_Channel"> Read a value from a DIO Channel </span></h3>
+<p><a href="/wiki/index.php?title=File:Dio_Read_1.png" class="image"><img alt="Dio Read 1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c3/Dio_Read_1.png" width="1005" height="402" /></a>
+</p>
+<h3> <span class="mw-headline" id="Write_a_value_to_a_DIO_Channel"> Write a value to a DIO Channel </span></h3>
+<p><a href="/wiki/index.php?title=File:Dio_Write_1.png" class="image"><img alt="Dio Write 1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/42/Dio_Write_1.png" width="1014" height="236" /></a>
+</p>
+<h2> <span class="mw-headline" id="Build"> Build </span></h2>
+<p>To enable AUTOSAR-like DIO Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_DIO_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Dio_Cfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<h4> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h4>
+<p>In order to configure the AUTOSAR-like DIO Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Dio" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=File:Erika_Driver_Configurator_DIO.png" class="image"><img alt="Erika Driver Configurator DIO.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/06/Erika_Driver_Configurator_DIO.png" width="1280" height="984" /></a>
+</p>
+<h5> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h5>
+<p>In this section you can add/edit/delete configurations in DIO Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li><li> Each configuration, inside the configurations set, has a set of Ports.
+<ul><li> Each Port SHALL have a <i>Name</i> which must be unique inside the Ports.
+</li><li> Each Port has a set of Channels and/or Channels Groups.
+<ul><li> Each Channel SHALL have a <i>Name</i> which must be unique inside a Port.
+</li><li> Each Channel Group SHALL have a <i>Name</i> which must be unique inside a Port.
+</li></ul>
+</li></ul>
+</li></ul>
+<h5> <span class="mw-headline" id="API_Selection"> API Selection </span></h5>
+<p>In this section you can select DIO Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Flip Channel Service</i>: <i>Dio_FlipChannel()</i> API
+</li><li> <i>Version Info</i>: <i>Dio_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=File:Erika_Driver_Configurator_DIO_set.png" class="image"><img alt="Erika Driver Configurator DIO set.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c2/Erika_Driver_Configurator_DIO_set.png" width="1280" height="984" /></a>
+</p>
+<h4> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h4>
+<p>Implementation Demos of the AUTOSAR-like DIO Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 130/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,194 @@
+<h1> <span class="mw-headline" id="Amazing_Ball_Control_Application"> Amazing Ball Control Application </span></h1>
+<p><b>AMAZING BALL: An example of PID control and USB-UDP communication with the FLEX Motion Daughter Board</b>
+<br /><br />
+</p>
+<table class="wikitable">
+
+Step 1:
+<ul><li>   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+</li></ul>
+<dl><dd> Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+</dd><dd> Type exec builder.sce to build any application of the pack.
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Scilab.png" class="image"><img alt="Scilab.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/29/Scilab.png" width="966" height="561" /></a>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 1 – Scilab
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 2:
+<ul><li>   Open file “pid_ctrl_codegen_usbudp_tuning_square_circle.cos” (refer Fig. 2) in 
+</li></ul>
+<dl><dd> Scicos.
+</dd><dd> The .cos file contains the schematic for the generation (with SCICOS) of the FLEX 
+</dd><dd> FULL board program.
+</dd><dd> This application is for tuning coefficients of the PID control  for improving 
+</dd><dd> system performance. 
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Flexside_schematic.png" class="image"><img alt="Flexside schematic.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/98/Flexside_schematic.png" width="471" height="430" /></a>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 2 – Control system schematic
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 3:
+<ul><li>   Click menu CodeGen and select FlexCodeGen.
+</li></ul>
+<dl><dd> Click on the super-block, the Embedded Code Generator's block property settings 
+</dd><dd> window will appear (refer Fig. 3)
+</dd><dd> Provide path name and then press OK for code generation (refer Fig. 4)
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Generator_window.png" class="image"><img alt="Generator window.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/70/Generator_window.png" width="357" height="184" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 3 – Embedded Code Generator window
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Generator_results.png" class="image"><img alt="Generator results.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d6/Generator_results.png" width="665" height="742" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 4 – Code Generator results
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 4:
+<ul><li> Open MPLAB IDE and import “pic30.cof” file created by the code generator in Step 3.
+</li></ul>
+<dl><dd> Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+</dd><dd>(refer Fig. 5). The board is programmed and set in reset mode.
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Cof_ide1.png" class="image"><img alt="Cof ide1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/90/Cof_ide1.png" width="1280" height="744" /></a> 
+<a href="/wiki/index.php?title=File:Cof_ide2.png" class="image"><img alt="Cof ide2.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/18/Cof_ide2.png" width="1280" height="744" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 5 - MPLAB IDE: COF file importing and target programming
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 5:
+<ul><li> Check the USB device recognition in the peripherals window (refer Fig. 6) and 
+</li></ul>
+<dl><dd> execute the program app_flex_scicos.exe (refer Fig. 7)
+</dd><dd> Note1: The program needs CygWin Win32 usb library and is compiled using make 
+</dd><dd> command.
+</dd><dd> Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+</dd><dd> <a href="/wiki/index.php?title=FLEX_usb_data_communication_using_Scilab_and_Scicos" title="FLEX usb data communication using Scilab and Scicos">FLEX usb data communication using Scilab and Scicos</a> 
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Usb_recognition.png" class="image"><img alt="Usb recognition.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/15/Usb_recognition.png" width="640" height="451" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 6 – Check the USB device recognition
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Compilation_gateway.png" class="image"><img alt="Compilation gateway.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/53/Compilation_gateway.png" width="668" height="611" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 7 – Compilation and start of the program
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 6:
+<ul><li> Open the PC-side file “pc_pid_tuning.cos” in Scicos;
+</li></ul>
+<dl><dd> The .cos file contains the schematic for the PC-side (refer Fig. 8). 
+</dd><dd> The almost-real-time simulation runs in SCICOS environment. The application 
+</dd><dd> shows the received USB data on the multiple scope and sends other data to the 
+</dd><dd> FLEX FULL board (refer Fig. 9). 
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Pcside_schematic.png" class="image"><img alt="Pcside schematic.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a9/Pcside_schematic.png" width="751" height="729" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 8 – PC-side schematic
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Pc_side_tuner.png" class="image"><img alt="Pc side tuner.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9c/Pc_side_tuner.png" width="1280" height="742" /></a> 
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 9 – PC-side application (PID tuner)
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+Step 7:
+<ul><li> Release the reset to run the demo (refer Fig.10);
+</li></ul>
+<dl><dd> Initially the application calibrates the touch screen (refer Fig. 11), followed 
+</dd><dd> by rest of the demo (refer Fig.12). 
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Released_reset.png" class="image"><img alt="Released reset.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/13/Released_reset.png" width="1280" height="744" /></a>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 10 - MPLAB IDE: Target released from reset
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Scicoslab10.png" class="image"><img alt="Scicoslab10.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7c/Scicoslab10.png" width="696" height="521" /></a>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 11 – Touch panel calibration
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<a href="/wiki/index.php?title=File:Scicoslab11.png" class="image"><img alt="Scicoslab11.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/58/Scicoslab11.png" width="438" height="330" /></a>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 12 – Control result
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<tr><td></td></tr>
+</table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 4/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

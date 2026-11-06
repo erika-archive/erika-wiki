@@ -1,0 +1,17 @@
+If you want to quickly try SMCube in simulation mode, you can do as follows, using the  Digital Clock example. To do that, follow these steps:
+
+* open Scicoslab
+* give the command
+*: <pre> cd "C:\Evidence\scicoslab-4.4.1\contrib\scicos_ee\examples\scicos_flex\SMCube\DigitalClock" </pre>
+*: (please put the correct directory)
+* then the command
+*: <pre>scicos();</pre>
+* open <tt>DigitalClock.cos</tt>
+* open the superblock
+* double click on the block names "SMCube mode_selector.xml"
+* choose "Properties", and set "Mode" to 1 (to say interactive simulation), press ok
+* close the superblock window
+* Menu Simulate, Run
+* two windows will appear: the Demo board simulator and the SMCube simulation window.
+* Press the play button on the SMCube simulation window to start the SMCube simulation
+* Then, press the first button on the left of the simulated Demo board. The selector state machine which is graphically simulated will change its status.

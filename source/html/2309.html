@@ -1,0 +1,88 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Benchmark_Purpose"><span class="tocnumber">1</span> <span class="toctext">Benchmark Purpose</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Benchmark_Location"><span class="tocnumber">2</span> <span class="toctext">Benchmark Location</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#How_to_Run_the_Benchmark"><span class="tocnumber">3</span> <span class="toctext">How to Run the Benchmark</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Bechmark_Results_Table"><span class="tocnumber">4</span> <span class="toctext">Bechmark Results Table</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Benchmark_Purpose"> Benchmark Purpose </span></h1>
+<p>The purpose of this benchmark is to provide a measure of the performance of Erika Enterprise
+with the following kernel mechanisms:
+</p>
+<ul><li> ISR1 latency: the time elapsed from the activation of an Interrupt Service Routine of type 1 (ISR1), to the first ISR instruction. 
+</li><li> ISR1 exit: the time elapsed from the last instruction of an ISR1 to the subsequent instruction of the interrupted task.
+</li><li> ISR2 latency: the time elapsed from the activation of an Interrupt Service Routine of type 2 (ISR2), to the first ISR2 instruction. 
+</li><li> ISR2 exit: the time elapsed from the last instruction of an ISR2  to the subsequent instruction of the interrupted task.
+</li><li> New task from an ISR2: the time elapsed from the last instruction of an ISR2 to the first instruction of the new task.
+</li><li> New task with preemption: the time elapsed from the first instruction necessary to active a new task to the first instruction of the new task.
+</li><li> New task without preemption: the time elapsed from the first instruction necessary to active a new task to the last instruction necessary to active the new task.
+</li><li> Terminate task (not activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+</li><li> Terminate task (activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+</li></ul>
+<h1> <span class="mw-headline" id="Benchmark_Location"> Benchmark Location </span></h1>
+<p>The benchmark project is located in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/benchmark/" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/benchmark/</a> folder.
+</p><p>The benchmark project folder is organized as follows:
+root directory contains "readme.txt", with all the information you can find in this page, plus the "makefile" and the following subfolders;
+</p>
+<ul><li> <b>benchmark</b>: it contains the source files;
+</li><li> <b>output</b>: it will contain, after the compilation process, all the files of the project.
+</li><li> <b>Keil_Debug_BM_Project</b>: it contains the configuration files for the Keil IDE.
+</li><li> <b>results</b>: it contains the file with the benchmark results (the result of test is alredy commited on repository)
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_Run_the_Benchmark"> How to Run the Benchmark </span></h1>
+<p>Follow the instruction below to compile and run the benchmark:
+</p>
+<ol><li>Open the cygwin shell and go in the benchmark directory.
+</li><li>If you want to compile and run the benchmark with the target board, type the following two commands:
+</li></ol>
+<pre>export Debugger=ICDI
+make
+</pre>
+<p>If you want to compile and execute the benchmark with the simulator provided with the Keil IDE, just type the make command.
+</p><p>After the execution of the benchmark, the obtained results are stored in the file 
+BM_TI_Stellaris_LM4F232H5QD.log. This file can be found in the results folder.
+</p>
+<h1> <span class="mw-headline" id="Bechmark_Results_Table"> Bechmark Results Table  </span></h1>
+<p>The result are obtained working with the LM4F232H5QD internal oscillator (clock frequency of 16 MHz). The result are obtained with <b>SVN revision number 2366</b> corresponding
+to the tag <b>osek_ti_kslm4f232</b>.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th align="center"> Test Name </th><th align="center"> Samples </th><th align="center"> Mean </th><th align="center"> Minimun </th><th align="center"> Maximum
+</th></tr>
+<tr>
+<td> ISR1 Latency </td><td align="center"> 50 </td><td> 59 ticks (3.687 usec) </td><td> 59 ticks (3.687 usec) </td><td> 59 ticks (3.687 usec)
+</td></tr>
+<tr>
+<td> ISR1 exit </td><td align="center"> 50 </td><td> 48 ticks (3.000 usec) </td><td> 48 ticks (3.000 usec) </td><td> 48 ticks (3.000 usec)
+</td></tr>
+<tr>
+<td> ISR2 Latency </td><td align="center"> 50 </td><td> 104 ticks (6.500 usec) </td><td> 104 ticks (6.500 usec) </td><td> 104 ticks (6.500 usec)
+</td></tr>
+<tr>
+<td> ISR2 Exit </td><td align="center"> 50 </td><td> 138 ticks (8.625 usec) </td><td> 138 ticks (8.625 usec) </td><td> 138 ticks (8.625 usec)
+</td></tr>
+<tr>
+<td> New task from ISR </td><td align="center"> 50 </td><td> 345 ticks (21.562 usec) </td><td> 345 ticks (21.562 usec) </td><td> 345 ticks (21.562 usec)
+</td></tr>
+<tr>
+<td> New task with preemption </td><td align="center"> 50 </td><td> 314 ticks (19.625 usec) </td><td> 314 ticks (19.625 usec) </td><td> 314 ticks (19.625 usec)
+</td></tr>
+<tr>
+<td> New task without preemption </td><td align="center"> 50 </td><td> 164 ticks (10.250 usec) </td><td> 164 ticks (10.250 usec) </td><td> 164 ticks (10.250 usec)
+</td></tr>
+<tr>
+<td> Task (not activated from IRQ) exit </td><td align="center"> 50 </td><td> 275 ticks (17.187 usec) </td><td> 275 ticks (17.187 usec) </td><td> 275 ticks (17.187 usec)
+</td></tr>
+<tr>
+<td> Task (activated from IRQ) exit </td><td align="center"> 50 </td><td> 689 ticks (43.062 usec) </td><td> 689 ticks (43.062 usec) </td><td> 689 ticks (43.062 usec)
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 14/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

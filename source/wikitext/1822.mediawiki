@@ -1,0 +1,1 @@
+#REDIRECT [[Tutorial: Installing scicoslab and generating code from a Scicos diagram]]

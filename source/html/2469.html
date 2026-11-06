@@ -1,0 +1,132 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#RT-Druid_and_Erika_Enterprise_tutorial_for_AVR8"><span class="tocnumber">1</span> <span class="toctext">RT-Druid and Erika Enterprise tutorial for AVR8</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Installing_Erika_Enterprise_and_RT-Druid_on_Microsoft_Windows"><span class="tocnumber">2</span> <span class="toctext">Installing Erika Enterprise and RT-Druid on Microsoft Windows</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#First_RT-Druid_startup_and_configuration"><span class="tocnumber">3</span> <span class="toctext">First RT-Druid startup and configuration</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Compiling_your_first_Erika_Enterprise_demo_for_AVR8"><span class="tocnumber">4</span> <span class="toctext">Compiling your first Erika Enterprise demo for AVR8</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="RT-Druid_and_Erika_Enterprise_tutorial_for_AVR8"> RT-Druid and Erika Enterprise tutorial for AVR8 </span></h1>
+<p>This small tutorial describes a set of steps needed to compile a simple application that shows the main features of ERIKA Enterprise and RT-Druid for the AVR8 platform.
+</p><p>This tutorial has been tested on a STK50X board produced by Atmel and on a Crossbow Mib520 board.
+</p>
+<h1> <span class="mw-headline" id="Installing_Erika_Enterprise_and_RT-Druid_on_Microsoft_Windows"> Installing Erika Enterprise and RT-Druid on Microsoft Windows </span></h1>
+<p>This chapter will guide the developer to the installation procedure of ERIKA Enterprise and RT-Druid for the AVR8 platform.
+</p>
+<pre>
+Warning:
+The Cygwin install pathname, the ERIKA Enterprise install pathname, and the pathname of RT-Druid workspaces
+where the user projects reside, MUST NOT contain any blank space, otherwise Erika Enterprise may not work properly.
+
+E.g., C:\MyApplications\Evidence\ and C:\MyApplications\Cygwin\ are acceptable,
+while C:\My Applications\Evidence\ or C:\My Applications\Cygwin\ MUST be avoided.
+
+This is a known issue that will soon be fixed.
+</pre>
+<p>The installation of ERIKA Enterprise and RT-Druid is composed by the following packages:
+</p>
+<ul><li> The Eclipse development environment, which is used by RT-Druid to provide the basic development environment for ERIKA Enterprise applications.
+</li><li> The Eclipse environment is based on the Java platform, so that a working Java Runtime Environment must be present for using RT-Druid.
+</li><li> The RT-Druid plugins, which provide the code generation for ERIKA Enterprise and ERIKA Enterprise for Eclipse.
+</li><li> The ERIKA Enterprise source code.
+</li><li> A subset of the <a href="http://www.cygwin.com" class="external text" rel="nofollow">Cygwin</a> environment, including a set of utilities like make, gawk, and few others, which are used during the compilation process of an ERIKA Enterprise application.
+</li><li> A set of examples for the AVR8 Platform, which can be used to compile a first set of running examples for the Atmel STK50X board, the Crossbow MIB5X0 board. These applications are organized in “templates”, available at project creation.
+</li></ul>
+<p>To install the software, execute the following steps:
+</p>
+<ul><li> Install your favourite Java Runtime Environment, which is needed to run RT-Druid; in fact, RT-Druid is a plugin of the Eclipse editor, which requires Java to be executed.
+</li><li> Install the AVR8GCC Compiler, available as WinAVR sourceforge.net project at the website <a href="http://sourceforge.net/projects/winavr/" class="external free" rel="nofollow">http://sourceforge.net/projects/winavr/</a> or as Windows project on Atmel <a href="http://www.atmel.com/tools/ATMELAVRTOOLCHAINFORWINDOWS.aspx" class="external free" rel="nofollow">http://www.atmel.com/tools/ATMELAVRTOOLCHAINFORWINDOWS.aspx</a>. Even in this case, you can use the default install directory. When it is asked to change the default environment, please do accept.
+</li><li> Run the ERIKA Enterprise and RT-Druid installer.
+</li><li> The installer will prompt a list of packages which can be installed. Select all the packages you wish to install and continue the installation procedure (see Figure 2.1).
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_installer_options.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c4/Avr5tut_installer_options.png" width="200" height="157" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_installer_options.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 2.1: This screenshot shows the dialog box with the available install packages.</div></div></div></div>
+<ul><li> At this point, please check the first line of the file evidencedir\bin\mymake_cygwin.bat (where evidencedir is the directory you chose during the installation). For example, if Cygwin is installed inside C:\cygwin, then the first line of the file should look like the following one:
+</li></ul>
+<dl><dd><dl><dd>@set EE_BASH_PATH=C:\ cygwin \ bin\ bash
+</dd><dd>...that is, the line contains the correct path to the bash.exe file in your Cygwin installation. If you accepted the default settings, the correct pathname should be C:\cygwin\bin\bash as specified in the example before.
+</dd></dl>
+</dd></dl>
+<pre>
+Note:
+We ask to perform this check because it seems that on some Windows machines the Cygwin installer
+does not correctly set the registry keys used by the Erika Enterprise installer.
+</pre>
+<ul><li> If you are going to use the Atmel stk50x or the Crossbow Mib5x0 boards, you can use the UISP programmer to program the AVR microcontroller. To Install the UISP software, which is an AVR In-system Programmer using the USB connection provided by the boards cited above, please follow the instructions below:
+</li></ul>
+<dl><dd><ul><li> If not installed, run the Cygwin setup from <a href="http://www.cygwin.com" class="external free" rel="nofollow">http://www.cygwin.com</a> to install the following Cygwin packages: gcc.
+</li><li> Install the UISP - AVR in-System Programmer, available at the website <a href="http://www.nongnu.org/uisp/" class="external free" rel="nofollow">http://www.nongnu.org/uisp/</a>.
+</li></ul>
+</dd></dl>
+<p>The rest of this tutorial supposes that the AVR-Gcc Compiler and binutils is installed within the C:\WinAVR-20071221\bin directory. Please note that these values may be different from the settings you have chosen on your machine.
+</p>
+<h1> <span class="mw-headline" id="First_RT-Druid_startup_and_configuration"> First RT-Druid startup and configuration </span></h1>
+<p>After all the required packages have been installed, you are ready to start RT-Druid for the first time. Please follow the next steps:
+</p>
+<ul><li> As the first step, run the Eclipse IDE from the Evidence menu inside the Start menu of your Windows machine, choosing Start/Programs/Evidence/RT-Druid.
+</li><li> A dialog box will appear, asking to choose the right workspace (see Figure 3.1). Leave the default workpackage directory as it is, and proceed by pressing “OK”.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_select_workspace.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/69/Avr5tut_select_workspace.png" width="200" height="111" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_select_workspace.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.1: This screenshot shows the dialog box for the choice of the current workspace directory.</div></div></div></div>
+<pre>
+Warning:
+The workspace pathname MUST NOT contain any blank space, otherwise ERIKA Enterprise and RT-Druid may not work properly.
+</pre>
+<ul><li> The Eclipse Welcome screen appears, like in Figure 3.2.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_welcome.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a1/Avr5tut_welcome.png" width="200" height="116" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_welcome.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.2: The Eclipse Welcome screen.</div></div></div></div>
+<ul><li> Before being able to correctly build your application, you should set the path to the AVR8GCC compiler. For doing so, please go to the “Preference” menu, as shown in Figure 3.3, and find the “RT-Druid/Oil/Avr5 Configurator” form as depicted in Figure 3.4. The first textbox, labeled Gcc path, refers to the installation directory of the AVR-Gcc compiler. The second and third textboxes are useful if you are using a development environment based on the Crossbow Mib5x0 board. In particular, the second textbox, labeled Uisp path, refers to the installation directory of the uisp programmer for Crossbow Mib5x0 board, and the third textbox, labeled Serial port device, refers to the COM serial port where the board is attached.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_preferences_menu.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/96/Avr5tut_preferences_menu.png" width="200" height="132" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_preferences_menu.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.3: Go to the “Preference” menu.</div></div></div></div>
+<pre>
+Warning:
+The install directories specified for the AVR8GCC Compiler in the textboxes of Figure 3.4 does not include the bin directory!
+That is, c:\WinAVR-20071221 is correct, wheras c:\WinAVR-20071221\bin is not.
+</pre>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_preferences.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f2/Avr5tut_preferences.png" width="200" height="181" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_preferences.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.4: Select paths for compiler and assembler.</div></div></div></div>
+<ul><li> Before creating and building your application, please deselect the “Build Automatically” flag inside the “Project” menu, as shown in Figure 3.5.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_build_automatically.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a9/Avr5tut_build_automatically.png" width="200" height="133" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_build_automatically.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.5: Deselect the “Build Automatically” flag in the “Project” menu.</div></div></div></div>
+<h1> <span class="mw-headline" id="Compiling_your_first_Erika_Enterprise_demo_for_AVR8"> Compiling your first Erika Enterprise demo for AVR8 </span></h1>
+<p>You are now ready to compile your first ERIKA Enterprise demo. Please execute the following steps:
+</p>
+<ul><li> Please select “New Project”, then “RT-Druid Oil and c/c++ Project” from the “File menu”, as in Figure 4.1.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_newproject.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5a/Avr5tut_newproject.png" width="200" height="133" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_newproject.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.1: Select “New project” from the “File” menu.</div></div></div></div>
+<ul><li> A Dialog box appear. Please select a template for the new project, as in Figure 4.2.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_newproject2.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/91/Avr5tut_newproject2.png" width="200" height="204" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_newproject2.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.2: Select a template for your project.</div></div></div></div>
+<ul><li> Press “Next”.
+</li><li> Insert the name of the new project. Please type myProject (you can choose other names of course). Please see Figure 4.3. Press the “Finish” button.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_project_name.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/55/Avr5tut_project_name.png" width="200" height="131" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_project_name.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.3: Type a name for the new project</div></div></div></div>
+<ul><li> We are now ready to build the demo. Right click on the project name in the Eclipse navigation bar, and choose “Build Project” (see Figure 4.4).
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_build_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/62/Avr5tut_build_project.png" width="200" height="175" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_build_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.4: We are now able to build the project.</div></div></div></div>
+<pre>
+Note:
+“Build Project” only appears if the “Build Automatically” flag is not selected in the “Project” menu.
+</pre>
+<ul><li> Then, the compilation process starts as depicted in Figure 4.5. Please note the message that appears when the compilation is successfull.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_compiling.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d3/Avr5tut_compiling.png" width="200" height="175" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_compiling.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.5: The compilation process.</div></div></div></div>
+<pre>
+Note:
+If the error depicted in Figure 4.6 appears (meaning that mymake_cygwin.bat is unable to find a file),
+then please follow the instructions at the last point of Chapter 2.
+</pre>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_mymake_cygwin_error.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6f/Avr5tut_mymake_cygwin_error.png" width="200" height="83" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_mymake_cygwin_error.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.6: An error that shows up on some Windows machines. Please check the mymake_cygwin.bat file as explained in the last point of Chapter 2.</div></div></div></div>
+<ul><li> At the end of the compiling process you will be able to find a file named avr.elf and a file named avr.srec inside the Debug directory inside the project, as shown in Figure 4.7 and in the figure 4.8.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_elf_file.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/31/Avr5tut_elf_file.png" width="200" height="175" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_elf_file.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.7: The output file is ready to be programmed on the target board.</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_srec_file.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f0/Avr5tut_srec_file.png" width="200" height="175" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_srec_file.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.8: The output file is ready to be programmed on the target board.</div></div></div></div>
+<ul><li> You can now program the device using avr5 programmer as shown in Figure 4.9 and in Figure 4.10. Please remember that you have to connect ISP6PIN plug of the STK500 with the SPROG plug of the STK501 through 6-wires cable.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_program_device1.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/14/Avr5tut_program_device1.png" width="200" height="197" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_program_device1.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.9: Program the Flash memory of the device.</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5tut_program_device2.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b4/Avr5tut_program_device2.png" width="200" height="196" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5tut_program_device2.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.10: Program the Flash memory process.</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 56/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

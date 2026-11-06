@@ -1,0 +1,257 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:KEEApp asm.png</title>
+    <id>2293</id>
+    <revision>
+      <id>4618</id>
+      <timestamp>2012-02-01T14:30:40Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp build.png</title>
+    <id>2288</id>
+    <revision>
+      <id>4611</id>
+      <timestamp>2012-02-01T14:04:52Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp compiler inludes.png</title>
+    <id>2292</id>
+    <revision>
+      <id>4616</id>
+      <timestamp>2012-02-01T14:21:57Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp debug.png</title>
+    <id>2289</id>
+    <revision>
+      <id>4612</id>
+      <timestamp>2012-02-01T14:05:23Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp ee startup keil s.png</title>
+    <id>2286</id>
+    <revision>
+      <id>4609</id>
+      <timestamp>2012-02-01T14:03:06Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp libee a library.png</title>
+    <id>2285</id>
+    <revision>
+      <id>4606</id>
+      <timestamp>2012-02-01T13:44:42Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp link.png</title>
+    <id>2294</id>
+    <revision>
+      <id>4619</id>
+      <timestamp>2012-02-01T14:31:43Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp main.png</title>
+    <id>2287</id>
+    <revision>
+      <id>4610</id>
+      <timestamp>2012-02-01T14:04:05Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Keil.png</title>
+    <id>2277</id>
+    <revision>
+      <id>4589</id>
+      <timestamp>2012-02-01T12:52:25Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Keil New project.png</title>
+    <id>2278</id>
+    <revision>
+      <id>4592</id>
+      <timestamp>2012-02-01T13:03:20Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:LatticeMicoSystem import button.png</title>
+    <id>2097</id>
+    <revision>
+      <id>3540</id>
+      <timestamp>2011-09-30T11:09:42Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:LatticeMicoSystem import evidence camera component.png</title>
+    <id>2098</id>
+    <revision>
+      <id>3542</id>
+      <timestamp>2011-09-30T11:13:43Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3543</id>
+      <timestamp>2011-09-30T11:15:41Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:LatticeMicoSystem import evidence camera component.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:LatticeMicoSystem import result.png</title>
+    <id>2099</id>
+    <revision>
+      <id>3545</id>
+      <timestamp>2011-09-30T11:57:33Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Led.png</title>
+    <id>1807</id>
+    <revision>
+      <id>2736</id>
+      <timestamp>2011-02-24T11:22:29Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Leds.png</title>
+    <id>1773</id>
+    <revision>
+      <id>2563</id>
+      <timestamp>2011-02-15T09:10:25Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>System Actor Leds structure</comment>
+      <text xml:space="preserve">System Actor Leds structure</text>
+    </revision>
+    <revision>
+      <id>2707</id>
+      <timestamp>2011-02-21T14:41:19Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Leds.png]]&quot;</comment>
+      <text xml:space="preserve">System Actor Leds structure</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Lib fpg eye mico32 build.png</title>
+    <id>2182</id>
+    <revision>
+      <id>4107</id>
+      <timestamp>2011-11-08T10:07:03Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

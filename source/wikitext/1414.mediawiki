@@ -1,0 +1,13 @@
+For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on FLEX board and its complements.
+
+'''Projects:'''
+* [http://www.evidence.eu.com/content/view/305/266/ Real-time control of an Inverted Pendulum using FLEX + ERIKA]
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]

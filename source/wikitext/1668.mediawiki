@@ -1,0 +1,1 @@
+* Demo Abstract: Implementation of Self-triggered Controllers In Demo Session of 15th IEEE Real-Time and Embedded Technology and Applications Symposium (RTAS09), San Francisco, CA, USA, April 2009. Authors: Antonio Camacho, Pau Martí, Manel Velasco and Enrico Bini.

@@ -1,0 +1,33 @@
+== Introduction ==
+
+In this tutorial we will explain all the solutions adopted to integrate the CAL language and the ACTORS source code inside Erika Enterprise. 
+First of all we will give a quick overview of the directories where all the source code related to the CAL language can be found along with demos specifically created for a Lattice Mico32 platform. 
+In the following we will explain the choices we made to integrate the ACTORS code in Erika and what has been done to compile projects in Erika Enterprise.
+A preliminary knowledge of the ACTORS project and the CAL language, even if not mandatory, could be useful to the reader so it is suggested to have a look at [[Brief introduction to the CAL language]].
+
+== Directories created in the ERIKA's repository to support the CAL language ==
+The source code for the CAL language can be found inside the ERIKA's repository in the <tt>cal</tt> directory, under: <tt>ee/contrib</tt>. 
+The files have been stored using the following criteria:
+* <tt>cfg</tt>: here you will find the <tt>cfg.mk</tt> file, needed by the ERIKA's Enterprise toolchain to compile CAL projects along with makefiles coming from the ACTORS project and opportunely modified to integrate them in ERIKA.
+* <tt>inc</tt>:  here we placed the library prototypes coming from the ACTORS project and <tt>cal_redefinitions.h</tt> where we redefined some methods and types not usable in ERIKA's Enterprise.
+* <tt>src</tt>: here we stored the modified version of ACTORS' library <tt>actors-rts.c</tt> along with source code (in C and CAL languages) for system actors <tt>art_led</tt> and <tt>art_switch</tt>.
+
+In addition we've created two CAL project demos for our FPG-EYE using both CAL actors and system actors. All the related code can be found in <tt>cal_demo</tt> and <tt>cal_demo_cal_actors</tt> directories under <tt>ee/examples/mico32/demo/sw_projects/</tt>.
+
+== Integration of the CAL language in ERIKA ==
+From the <tt>actorsproject</tt> directory in the OpenDF's repository we've extrapolated libraries and makefiles needed for our integration. Our main goal was to realize working CAL projects into a specific environment, the ERIKA Enterprise, so that some adjustments to the ACTORS' libraries were to be undertaken. 
+All the code that can't be employed in ERIKA, as you can see for instance in <tt>actors-rts.c</tt> library, has been placed under <tt>#ifndef __ERIKA__</tt> so that the library results untouched if the build process is taken outside the ERIKA'S Enterprise.
+In addition we'we created the file <tt>cal_redefinitions.h</tt> where we've redefined all the methods and types present in the ACTORS' libraries which can't be used into ERIKA Enterprise.
+
+Our main efforts were focused on adjusting the ACTORS' makefiles so that it is possible, as you can see in [[Tutorial: Compiling a CAL application with ERIKA Enterprise]], to smoothly build a CAL project inside ERIKA. This has been accomplished by integrating in the makefiles chain:
+* <tt>cfg.mk</tt>: this file is included by ERIKA Enterprise when building CAL projects. Here are listed the source code libraries to include when building projects (mainly <tt>actors-rts.c</tt>). In addition you find a variable, called <tt>SYS_ACTORS</tt> where all the system actors (in C language) we've created are listed. These actors will be used to create at build time the library <tt>libactors.a</tt>. Notice that if you want to add a newly created system actor it has to be placed in the same directory where the others already reside (so in <tt>cal/src</tt>) and append its source name to the <tt>SYS_ACTORS</tt> variable in order to build your project.
+* <tt>actors.mk</tt>: this file was called <tt>makefile</tt> in the ACTORS' repository. This is the starting point for the elaboration of CAL and netlist files into C files. 
+* <tt>makemodel.mk</tt>: this is the main ACTORS makefile where the elaboration of the actors is accomplished in order to create C source code. 
+* <tt>definitions.mk</tt>: here you can basically find the definition of all the paths where the ACTORS' tools can be found.
+
+== Creation of a CAL project in ERIKA ==
+In order to better understand the basics about projects in ERIKA please have a look at [[Tutorial: RT-Druid and OIL basics]].
+ 
+One of the main points we had to face in our job was how to integrate the CAL main application into ERIKA. The ACTORS makefiles create as a default a <tt>main</tt> method in the C file elaborated from the netlist. As an example, if you have a netlist file called <tt>switchled.nl</tt> the ACTORS makefiles will create the <tt>switchled.c</tt> with a <tt>main</tt> method defined inside. This is not desired in ERIKA since the <tt>main</tt> method is defined elsewhere, in <tt>main.c</tt> for example (which is one of the mandatory files to create projects in ERIKA Enterprise). To overcome this problem we edit at compile time the <tt>switchled.c</tt> file in order to have a <tt>main_cal</tt> method which is then encapsulated into an ERIKA's task. This task is defined in <tt>main.c</tt>, it's named <tt>calTask</tt> in our examples as you can see at [[Tutorial: Compiling a CAL application with ERIKA Enterprise]] and calls the <tt>main_cal</tt> function using the most suited <tt>argv</tt> variable to launch the CAL runtime process. Please notice that there is a check on the definition of <tt>CAL_STATISTICS</tt> which is one of of the ERIKA Enterprise options that has been added to the <tt>conf.oil</tt> file. 
+
+In the <tt>main</tt> function there are moreover the calls at <tt>EE_cal_init</tt> and <tt>EE_cal_start</tt> methods that are declared and defined in <tt>cal/inc/ee_cal.h</tt> and <tt>cal/src/ee_cal.c</tt> and whose tasks are to initialize some FPG-EYE components and activate the calTask.

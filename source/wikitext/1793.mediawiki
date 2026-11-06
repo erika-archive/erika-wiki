@@ -1,0 +1,1 @@
+This screenshot shows how to build the mico32 library project

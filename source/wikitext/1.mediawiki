@@ -1,0 +1,191 @@
+= ERIKA Enterprise and RT-Druid =
+
+[[ERIKA Enterprise and RT-Druid Design Flow]]
+
+[[:Category:ERIKA internals|ERIKA internals category]]
+
+[[RT-Druid configuration]]
+
+[[People]] - a (probably incomplete) list of people who contributed to the project, in alphabetical order
+
+[[TODO List]]
+
+== Download and SVN ==
+* [[ERIKA Enterprise and RT-Druid SVN Access]]
+* [[Known Issues]]
+
+== Supported Devices ==
+
+
+[[:Category:Supported Devices|ERIKA Enterprise supported device list]]
+
+== Internals ==
+
+Internal details:
+* [[:Category:ERIKA internals|ERIKA internals]]
+* [[Porting ERIKA Enterprise and RT-Druid to a new microcontroller]]
+
+Support for Hitachi H8, C167/ST10 has been moved in the "old" session since there has been not much work on them and we cannot guarantee they still compile. If interested in them just write us an e-mail!
+
+== AUTOSAR ==
+
+ERIKA Enterprise is not an AUTOSAR RTOS. Neverthless, we are trying as much as possible to make an implementation similar to the AUTOSAR OS requirements. These pages describe the current development status.
+
+* [[Erika AUTOSAR OS]] 
+* [[ERIKA & Autosar OS Requirements]]
+* [[AUTOSAR-like Drivers]] for ERIKA Enterprise
+
+== Tutorials and Online Documentation ==
+The following links contain links to specific themes, which in the past were separate PDF manuals.
+
+* [[Tutorial: PIC30 - Installing ERIKA and RT-Druid, and compile your first application]] on Windows hosts
+* [[Tutorial: S12XS - First installation and application compilation on Windows]]
+* [[Tutorial: Avr5 - First installation and application compilation on Windows]]
+* [[Tutorial: STM32 - Integrated Debugging in Eclipse using GNU toolchain]]
+* [[Tutorial: Installing ERIKA and RT-Druid on a Linux host]]
+* [[Tutorial: Update ERIKA and RT-Druid]]
+* [[Erika_path_in_RT-Druid| Set Erika path and show Erika sources in RT-Druid]]
+* [[Tutorial: Develop RT-Druid plugins]]
+* [[Tutorial: RT-Druid and OIL basics]]
+* [[Tutorial: RT-Druid and OIL code generation using XML and XSLT transformations]]
+* [[Tutorial: RT-Druid Command Line]]
+* [[Tutorial: Use a customized makefile]]
+* [[Tutorial: Installing scicoslab and generating code from a Scicos diagram]]
+* Tutorial: [[Amazing Ball Introduction]]
+
+Videos
+* [[YouTube videos]]
+
+Slides
+* ERIKA slides were part of the documentation of the [[ScicosLab Course October 2010 - Florence]]
+* [http://erika.tuxfamily.org/download/20130717_aglw_webinar/AGLW_Evidence_v1.6.pdf ERIKA Enterprise AGLW Webinar slides, July 17th 2013]
+
+== Standards and Certifications ==
+
+* [[Misra compliance]]
+* [[OSEK VDX certifications]]
+
+== Regression Tests ==
+
+* [[Regression tests on Examples]] - regression tests on the examples
+* [[Black Box Regression tests]] - regression tests automatically compiled and tested, including MODISTARC
+* [[Regression tests on ScicoLab]] - regression tests on the ScicosLab blocks
+
+== Benchmarks ==
+The following pages contain a list of public benchmarks for ERIKA Enterprise:
+
+[[:Category:Benchmarks]]
+
+== Supported hardware details ==
+
+This lists some additional information of ERIKA-supported Hardware boards
+
+=== FLEX Boards ===
+
+* [[FLEX Demo Daughter Board]] Description of the board
+* [[FLEX Demo2 pack for motion control]] Description of the pack
+* [[FLEX Multibus Daughter Board]] Description of the board
+* [[FLEX Peripheral usage list]] This is an index of some peripherals and board connections used in the FLEX boards, to avoid making device drivers with conflicts on the dsPIC/PIC18 peripherals
+* [[FLEX University projects]] An '''incomplete list''' of university projects made using FLEX boards
+* [[RS485 on FLEX]] Which pins you should use to connect RS485 hardware to the FLEX boards
+* [[How to connect Flex Boards with a Zigbee Transceiver]]
+
+=== Easylab Board ===
+
+* [[Easylab board: Description & MPLAB IDE Library]] 
+* [[Easylab board and new dsPIC ERIKA Enterprise Driver API]]
+* [[Tutorial: Installing scicoslab and generating code from a Scicos diagram|Using Easylab board with ScicosLab]].
+
+=== FPG-EYE ===
+* [[FPG-EYE hardware and software]]
+* [[Installation of Mico32/FPG-EYE development environment]]
+* [[Tutorial: Building a Mico32 platform for FPG-EYE]]
+* [[Tutorial: Running ERIKA on Mico32 and FPG-EYE]]
+* [[CAL support on FPG-EYE]]
+
+= Related Projects =
+
+== QP Framework ==
+ERIKA supports the execution of code generated with the QP Framework!
+* [[QP framework]] - Description of the support for the QP Framework for ERIKA Enterprise (Thanks to Gianluca Franchino)
+
+== Open CCP Protocol ==
+* [[Open-source CAN Calibration Protocol (CCP) implementation]]
+
+== Scicoslab ==
+
+* [[Tutorial: Installing scicoslab and generating code from a Scicos diagram]]
+* [[Tutorial: Generating code from a Scicos diagram targeting Easylab Board]]
+* [[Tutorial: Simulate and then generating code from a Scicos diagram]]
+* [[Scicos Blocks]]
+* Customizations
+** [[How to add a new Scicos block to ERIKA Enterprise]]
+** [[How to use Scicos-FLEX on non-FLEX boards]]
+* [[USB communication using FLEX FULL Demo Board and the Scilab/Scicos code generator]]
+* [[Amazing Ball Introduction]]
+* Links to courses and material on how to use Scicos for Embedded code design:
+** http://www.dii.unisi.it/~giannibi/teaching (look at the pages of "Progetto dei Sistemi di Controllo" and "Controllo Digitale" (in Italian)
+* [http://www.stargate-tr.com/?page_id=799 ScicosPowerLab] - could be interesting to link it to Scicos-FLEX!
+* Course material
+** [[ScicosLab Course October 2010 - Florence]]
+** [[ScicosLab Course November 2010 - Malaysia]] (updated material on 2011-01-28!)
+
+* Links to material on how to use FLEX and Erika Enterprise to control application design
+** [[Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]
+** [[Attaching a Servo motor to the EasyLab]]
+
+== SMCube ==
+
+Common installation problems:
+* [[Environment problem when running SMCube]]
+
+[http://erika.tuxfamily.org/smcube-state-machine-simulator.html SMCube is a tool for modeling, simulation, and code generation of discrete time finite state machines (FSM).]
+
+[https://software.evidence.eu.com/trac/smcube Bug Tracking website for SMCube]
+
+[[Tutorial: ScicosLab and SMCube. Simulate the DigitalClock example.]]
+
+Free resources and examples:
+(If you would like to add your example, please create a proper wiki page below!)
+
+* [[SMCube - simple saturation example]]
+
+
+== CAL Language ==
+
+* [[Brief introduction to the CAL language]]
+* [[CAL support on ERIKA Enterprise]] - how the CAL Language is integrated together with ERIKA
+* [[CAL support on FPG-EYE]] - how to integrate the CAL to Verilog toolchain on the FPG-EYE board
+
+=== Tutorials ===
+* [[Tutorial: Installing CAL with ERIKA Enterprise]]
+* [[Tutorial: Compiling a CAL application with ERIKA Enterprise]]
+
+=== Interesting links ===
+* [http://www.actors-project.eu ACTORS Project]
+* [http://www.actors-project.eu/index.php?page=public-deliverables ACTORS Deliverables]
+* [http://embedded.eecs.berkeley.edu/caltrop/ CALTrop]
+* [http://sourceforge.net/projects/opendf/ OpenDF]
+
+== EICASLAB ==
+
+This wiki part is dedicated to material about the EICASLab Code Generator for ERIKA Enterprise
+
+* [[YouTube videos]] - This lists the EICASLab webinars
+
+= List of publications =
+
+* [[Journal publications related to ERIKA and RT-Druid]]
+* [[Conference publications related to ERIKA and RT-Druid]]
+* [[Demo publications related to ERIKA and RT-Druid]]
+
+= Wikimedia Useful Links =
+
+* [http://meta.wikipedia.org/wiki/MediaWiki_User%27s_Guide User's Guide]
+* [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki FAQ]
+
+= Thanks = 
+
+ErikaWiki is hosted by TuxFamily.org
+
+[http://www.tuxfamily.org [[Image:Powered_tf1.png]]]

@@ -1,0 +1,33 @@
+=== Description ===
+
+MODISTARC regression tests: Objectives and results 
+
+The main goal of the MODISTARC project is to support the effort of the European car industry towards the development and standardisation of networking architectures. Through the OSEK/VDX consortium activities, the European industry has issued three new standards defining respectively the OSEK/VDX Operating System, Communication and Network Management. These specifications describe the applicable services and protocols and define the associated APIs. They intend to fulfil the two major goals of the OSEK/VDX initiative: 
+
+* enable portability of applications to ECUs coming from different suppliers
+* enable interoperability of interconnected ECUs in a distributed automotive system
+* enable interoperability of interconnected ECUs in a distributed automotive system
+
+The MODISTARC project aims to help the European car industry to keep its leading position in the network based car architectures by providing the relevant test methods and tools to assess the conformance of OSEK/VDX implementations. 
+
+For other info go to web site: [http://portal.osek-vdx.org/index.php?option=com_content&task=view&id=14&Itemid=17 OSEK portal]
+
+* The following steps explain how to test the compilation procedure and kernel performances using the MODISTARC regression tests.
+
+
+=== How to set up the MODISTARC regression procedure ===
+
+* Create in the path <tt>testcase</tt> a script to set the following environment variables: 
+** <tt>RTDRUID_ECLIPSE_HOME</tt> (the path of the eclipse directory: e.g. <tt>C:/Evidence/Evidence/eclipse</tt>)
+** <tt>CLASSPATH</tt>    (the class path: e.g. <tt>"$CLASSPATH;$ECLIPSE_HOME\\plugins\\$LAUNCHER_JAR"</tt>; this is for '''Nios II''' only)
+
+* Create in the path <tt>testcase\common</tt> a folder for the desired architecture. The folder should contain: 
+** Files necessary to compile each test. 
+** Files for configuring the debugger. 
+** The file <tt>test.mk</tt> containing the main rules of the makefiles chain. 
+** The main script for the debugger to run the regression tests; 
+
+* Within each test folder to modify the following files: 
+** <tt>code.c</tt>, the application file. 
+** <tt>conf.in</tt>, the file containing the list of architectures supported by the test. 
+** <tt>appl.oil</tt>, the OIL configuration file of the test (this file includes header files from the folder <tt>testcase\common\rtdruid_common</tt>, you have to create a new header file for the desired architecture).

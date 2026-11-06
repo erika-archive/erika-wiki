@@ -1,0 +1,114 @@
+==Lattice Mico32 support==
+[http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm Lattice Mico32] is the soft processor developed by Lattice for their FPGAs.  ERIKA Enterprise supports Lattice Mico32.  The support for RT-Druid is now available using the nightly build.  Instructions on how to get nightly builds can be found on the
+[http://erika.tuxfamily.org/erika-for-multiple-devices.html Erika web site]
+
+The Lattice Mico32 support includes:
+# support for lm32-elf-gcc compiler.
+# support for single and multi stack configurations.
+# ISR interrupt supported.
+# support for Lattice Debugger.
+
+* Supported compiler
+** lm32-elf-gcc cross compiler and ELF module generation for debugging.  The compiler can be downloaded together with the Lattice Mico32 from the [http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm Lattice Web site].
+  We notice that the objdump of debug symbols may fail with a segmentation fault if
+  the binary file was produced using ''NOLOAD'' keyword in the linker-script.
+  [[Tutorial: Running ERIKA on Mico32 and FPG-EYE|The webserver camera demo]] is an example of this problem.
+
+* Mode of operation
+** Mono-stack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+** Multistack HAL: Every thread can have its private stack, or it can share it with other threads.
+
+==Configuration==
+
+ERIKA Enterprise for Lattice Mico32 can be configured with the usual [[Tutorial: RT-Druid and OIL basics | OIL file and RT-Druid workflow]].  Here the items specific for the Lattice Mico32 support are described.
+
+===EEOPTs===
+;__SPACE__
+: Optimize for space
+;__USE_CUSTOM_LINKER_SCRIPT__
+: Don't use the dafault linker script.  Users can direct the linker to use their own linker script by setting the <code>LDFLAGS</code> variable. Example:
+ OS EE {
+    EE_OPT = "__USE_CUSTOM_LINKER_SCRIPT__";
+    LDFLAGS = "-T my_linker_script.ld";
+ };
+;__USE_CUSTOM_CRT0__
+: Don't use Erika default crt0.  Users can provide their own crt0 by adding source files in the usual way (APP_SRC in the OIL file).
+;__LM32_NOISY_HANDLERS__
+: On the FPG-EYE board, exception handlers make the LEDs blink with an error code
+;__LM32_VERBOSE_HANDLERS__
+: On the FPG-EYE board, exception handlers make the LEDs blink with an error code and print the values of all CPU registers to the serial port (115200, 8N1) when a key is pressed
+;__LM32_STANDARD_HANDLERS__
+: On the FPG-EYE board, use the standard exception handlers (which call the debugger)
+
+===CPU===
+* The CPU currently supported is the following:
+** Lattice Mico32; The LatticeMico32™ is a configurable 32-bit soft processor core for Lattice Field Programmable Gate Array (FPGA) devices. By combining a 32-bit wide instruction set with 32 general-purpose registers, the LatticeMico32 provides the performance and flexibility suitable for a wide variety of markets. Some of the key features of this 32-bit processor include: RISC architecture, 32-bit data path, 32-bit instructions, 32 general-purpose registers, Up to 32 external interrupts, Optional instruction cache, Optional data cache, Dual WISHBONE memory interfaces (instruction and data).
+
+===MCU===
+* Timer support is enabled with the <tt>TIMER</tt> option:
+*: DEVICE = TIMER {
+*::  NAME = "freetimer";
+*: };
+*: // Also, interrupts are supported:
+*: DEVICE = TIMER {
+*::  NAME = "timer";
+*::  OPTIONS = TIMER_IRQ_SUPPORT;
+*: };
+* Uart support is enabled with the <tt>UART</tt> option:
+*: DEVICE = UART {
+*::  NAME = "myuart";
+*: };
+*: // Also, interrupts are supported:
+*: DEVICE = UART {
+*::  NAME = "myuart";
+*::  OPTIONS = UART_IRQ_SUPPORT;
+*: };
+* SPI support is enabled with the <tt>SPI</tt> option:
+*: DEVICE = SPI {
+*::  NAME = "myspi";
+*: };
+* I2C support is enabled with the <tt>SPI</tt> option:
+*: DEVICE = I2C {
+*::  NAME = "myi2c";
+*: };
+* GPIO support is enabled with the <tt>GPIO</tt> option:
+*: DEVICE = GPIO {
+*::  NAME = "mygpio";
+*: };
+*: // Also, interrupts are supported:
+*: DEVICE = GPIO {
+*::  NAME = "mygpio";
+*::  OPTIONS = GPIO_IRQ_SUPPORT;
+*: };
+
+===Boards===
+====FPG-EYE board====
+Item <tt>BOARD_DATA = XP2_CAMERA_BOARD</tt> of <tt>EE</tt> in <tt>conf.oil</tt>.
+Supported devices:
+* Real-time clock.  Option <tt>RTCLOCK</tt>.
+* Leds.  Option <tt>LEDS</tt>.
+* Power transistors.  Option <tt>TRANSISTORS</tt>.
+* Switches and user button.  Option <tt>SWITCHES</tt>.
+* RS232 serial interface.  Option <tt>RS232</tt>.  IRQ for RS232 can be enabled with <tt>RS232_IRQ_SUPPORT</tt>.
+* HV7131GP Camera.  Option <tt>CAMERA</tt>.  IRQ for the camera can be enabled with <tt>CAMERA_IRQ_SUPPORT</tt>.
+* Real-time clock.  Option <tt>RTCLOCK</tt>.  IRQ for the real time clock can be enabled with <tt>RTCLOCK_IRQ_SUPPORT</tt>.
+* External SPI master interfaces.  Option <tt>EXTSPI</tt>.  IRQ for the external SPIs can be enabled with <tt>EXTSPI_IRQ_SUPPORT</tt>.
+* IEEE 802.15.4 (ZigBee) module.  Option <tt>ZIGBEE</tt>.  IRQ for the ZigBee module can be enabled with <tt>ZIGBEE_IRQ_SUPPORT</tt>.  Please note that ZigBee and Ethernet are mutually exclusive.
+* ENC28J60 Ethernet interface.  Option <tt>ETHERNET</tt>.  IRQ for the Ethernet can be enabled with <tt>ETHERNET_IRQ_SUPPORT</tt>.  Please note that ZigBee and Ethernet are mutually exclusive.
+* Everything, included the ZigBee (Ethernet is excluded).  Option <tt>ALL_ZIGBEE</tt>.
+* Everything, included the Ethernet (ZigBee is excluded).  Option <tt>ALL_ETHERNET</tt>.
+
+====Lattice Standard XP2 Evaluation board====
+* Leds.  Option <tt>LEDS</tt>.
+* RS232 serial interface.  Option <tt>RS232</tt>.  IRQ for RS232 can be enabled with <tt>RS232_IRQ_SUPPORT</tt>.
+* HV7131GP Camera.  Option <tt>CAMERA</tt>.  IRQ for the camera can be enabled with <tt>CAMERA_IRQ_SUPPORT</tt>.
+
+===Lattice Mico32 OIL example===
+See the example [[OIL file for Lattice Mico32]]
+
+==See also==
+* [[Tutorial: Installing ERIKA and RT-Druid, and compile your first application]]
+* [[Tutorial: RT-Druid and OIL basics]]
+* [http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm Lattice Mico32 page on the Lattice Semiconductor Web site]
+
+[[Category:Supported Devices]]

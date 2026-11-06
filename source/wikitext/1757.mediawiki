@@ -1,0 +1,84 @@
+== Introduction ==
+
+This small tutorial describes the steps to follow in order to create and compile two demo applications with CAL actors in Erika Enterprise using a Lattice Mico32 platform.
+
+For a brief introduction to CAL language and CAL actors please refer to [[Brief introduction to the CAL language]]
+
+== Prerequisites ==
+
+Make sure you have correctly installed both LatticeMico32 System and ispVM System on your Linux machine and exported all the environment variables needed for compiling a project. For any help please have a look at [[Tutorial: Installing CAL with ERIKA Enterprise]].
+	
+In order to compile a project it is essential to create a library for the Lattice Mico32 platform as explained in [[Tutorial: Mico32 library for ERIKA]].
+
+== Create your first project: cal_demo ==
+
+We are now ready to create our first project and compile it. This first demo, called cal_demo, is composed of two system actors, a switch actor and a led actor called <tt>art_switch.c</tt> and <tt>art_led.c</tt>. These files are created in C language and can be found, along with the appropriate CAL files, into Erika's repository in: <tt>~/Evidence/Erika/ee/contrib/cal/src</tt>. 
+The two system actors are combined in a netlist file named <tt>switchled.nl</tt> that you can find into cal_demo's directory.
+The purpose of this demo is to read the state of the switches and button residing on the FPG-EYE and produce it switching on/off the appropriate leds on the board itself.
+
+
+Open the Lattice Mico32 System and press the C/C++ button on the status bar:
+[[File:eclipse_empty_screen.png|center|thumb|200px|This screenshot shows the C/C++ button that must be pressed]]
+
+Let's create a standard C project:
+[[File:eclipse-standard-make-project.png|center|thumb|200px|This screenshot shows the button which must be pressed to create a standard C project]]
+
+Give the project a name you like (i.e. cal_demo) and beware not to use the default location suggested by the program but the directory where resides the cal_demo into the Erika's trunk:
+[[File:cal-demo-project-settings.png|center|thumb|200px|This screenshot shows how to properly edit the project settings for the cal_demo project]]
+Press the Finish button and your project will be added to the list of C/C++ projects.
+
+Here's how your newly created project appears:
+[[File:cal_demo_project_created.png|center|thumb|200px|This screenshot shows the files you will find once created a new cal_demo project]]
+The files present at this stage of the project are:
+* main.c: main file project needed to initialize components of the FPG-EYE that will be used in the project. The user can place here it's own code.
+* switchled.nl: the netlist file listing the actors present in our CAL project; it's because of netlist files that actors will be automatically included in the building process.  To better understand where the system actors were injected into ERIKA's repository and where newly created CAL actors have to be saved have a look [[CAL support on ERIKA Enterprise | here]]
+* conf.oil: configuration file, part of the OSEK/VDX standard, that is used for OS and application configuration. You will find here, as application sources, both main.c and switchled.nl files. For further explanation about oil files please have a look at [[Tutorial: RT-Druid and OIL basics]]
+* makefile: makefile of our project
+* crt0ram.S: file that implements boot-code and exception handlers
+
+To build the project right click on the cal_demo project and press the Build Project button:
+[[File:cal_demo_build_project.png|center|thumb|200px|This screenshot shows how to build the cal_demo project]]
+
+The result of the compilation is shown in the next screenshot:
+[[File:cal_demo_compilation_successful.png|center|thumb|200px|This screenshot shows the results of a correct building process]]
+As you can see in the previous screenshot there's a newly created folder named <tt>output/folder</tt> where object and dependency files are placed. Here you can find:
+* <tt>switchled.depend</tt> and <tt>switchled.xdf</tt>: these files are automatically created by the ACTORS makefiles in the process of creating the <tt>switchled.c</tt> from the netlist file present in our project
+* out.elf: the executable file
+
+To clean the project right click on the cal_demo project and press the Clean Project button:
+[[File:cal_demo_clean_project.png|center|thumb|200px|This screenshot shows how to clean a project]]
+
+== Create your second project: cal_demo_cal_actors == 
+	
+The main point of this second demo is that we used a CAL actor named <tt>gen.cal</tt>, a counter, instead of the previously used <tt>art_switch.c</tt> system actor; our counter is combined with the <tt>art_led.c</tt> system actor by the <tt>genled.nl</tt>. Both the netlist and the CAL actor files are placed in the project's directory. 
+The purpose of this demo is to visualize the number produced by the counter switching on/off appropriately the leds placed into the FPG-EYE board
+	
+In order to create the project follow the steps described in the previous example, paying attention to the settings of the project:
+
+[[File:cal_demo_cal_actors_project_settings.png|center|thumb|200px|This screenshot shows how to properly edit the project settings for the cal_demo_cal_actors project]]
+
+
+Here's how your newly created project appears:
+[[File:cal_demo_cal_actors_project_created.png|center|thumb|200px|This screenshot shows the files you will find once created a new cal_demo_cal_actors project]]
+
+Looking at the files present at this stage and comparing them with the previous cal_demo example the main differences you will note are:
+* gen.cal: this is the CAL actor
+* genled.nl: this is the new netlist file. Please note the different nomenclature it to be used to address a system actor or a CAL one. To fully understand the meaning of the this nomenclature please refer to [[CAL support on ERIKA Enterprise]]
+* conf.oil: the application sources now present are main.c and genled.nl.
+
+The result of a successful compilation (to be undertaken as explained in the previous example) is shown in the next screenshot:
+[[File:cal_demo_cal_actors_compilation_successful.png|center|thumb|200px|This screenshot shows the results of a correct building process of the cal_demo_cal_actors project]]
+
+Looking at the newly created files you will notice some differences comparing with the previous example:
+* <tt>output/obj</tt>: there is now <tt>gen_0.c</tt> which is the C file created from the <tt>gen.cal</tt> CAL actor. In the process of obtaing <tt>gen_0.c</tt> and <tt>genled.c</tt> files the ACTORS makefiles created also <tt>gen_0.xlim</tt>, <tt>gen_0.par</tt> and <tt>art_led_0.par</tt> files that are stored into the project's directory.
+
+== Create and compile a CAL project from scratch ==
+You have now the basic knowledge to create your own CAL project from scratch. In the following you will find the steps to follow and the main points to be aware of:
+* create a directory for your project and copy into it the <tt>crt0ram.S</tt>, <tt>makefile</tt> <tt>conf.oil</tt> files. The latter will be opportunely modified in a secon moment.
+* create in the project's directory your <tt>main.c</tt> file and insert here your code
+* create CAL actors and/or system actors and a netlist file combining all the actors together. Please note that:
+** CAL actors are created in CAL language and have to be placed in the project's directory.
+** system actors have to be written in C language and placed in <tt>contrib/cal/src</tt> directory as explained in [[CAL support on ERIKA Enterprise]].
+* edit the <tt>conf.oil</tt> file in order to add as applications sources your main C file and your netlist. Moreover pay attention to link correctly your platform library according to where it is placed on your system. For further explanation about oil files please have a look at [[Tutorial: RT-Druid and OIL basics]]
+
+Now build your CAL application following the previous examples.

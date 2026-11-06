@@ -1,0 +1,1 @@
+RT-Druid 1.6.0 beta: results of a correct building process.

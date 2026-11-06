@@ -1,0 +1,240 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Install New Software.png</title>
+    <id>2355</id>
+    <revision>
+      <id>5154</id>
+      <timestamp>2013-07-16T09:11:35Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Plug-in Installation</comment>
+      <text xml:space="preserve">Plug-in Installation</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Install Next.png</title>
+    <id>2360</id>
+    <revision>
+      <id>5160</id>
+      <timestamp>2013-07-16T09:35:08Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Install Next</comment>
+      <text xml:space="preserve">Install Next</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Install new sw.PNG</title>
+    <id>2201</id>
+    <revision>
+      <id>4196</id>
+      <timestamp>2011-12-12T16:23:55Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Installing Software Wait.png</title>
+    <id>2362</id>
+    <revision>
+      <id>5163</id>
+      <timestamp>2013-07-16T09:49:38Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Installing Software Wait</comment>
+      <text xml:space="preserve">Installing Software Wait</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Isp lever.png</title>
+    <id>1783</id>
+    <revision>
+      <id>2608</id>
+      <timestamp>2011-02-15T14:45:10Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>ispLever</comment>
+      <text xml:space="preserve">ispLever</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Isp lever compile fpg eye mico32.png</title>
+    <id>2170</id>
+    <revision>
+      <id>4073</id>
+      <timestamp>2011-11-07T14:36:12Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Isp lever mem file.png</title>
+    <id>2169</id>
+    <revision>
+      <id>4063</id>
+      <timestamp>2011-11-07T14:17:51Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Jtag con.jpg</title>
+    <id>1794</id>
+    <revision>
+      <id>2693</id>
+      <timestamp>2011-02-21T08:54:32Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp.png</title>
+    <id>2279</id>
+    <revision>
+      <id>4594</id>
+      <timestamp>2012-02-01T13:07:41Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Add Files Group EE.png</title>
+    <id>2283</id>
+    <revision>
+      <id>4600</id>
+      <timestamp>2012-02-01T13:37:41Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp LM4F232H5QD.png</title>
+    <id>2280</id>
+    <revision>
+      <id>4596</id>
+      <timestamp>2012-02-01T13:12:12Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Option No FPU.png</title>
+    <id>2290</id>
+    <revision>
+      <id>4614</id>
+      <timestamp>2012-02-01T14:20:24Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Options C tab.png</title>
+    <id>2291</id>
+    <revision>
+      <id>4615</id>
+      <timestamp>2012-02-01T14:21:17Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Options for File libee a.png</title>
+    <id>2284</id>
+    <revision>
+      <id>4604</id>
+      <timestamp>2012-02-01T13:41:41Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Renamed.png</title>
+    <id>2282</id>
+    <revision>
+      <id>4599</id>
+      <timestamp>2012-02-01T13:37:20Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:KEEApp Startup s.png</title>
+    <id>2281</id>
+    <revision>
+      <id>4598</id>
+      <timestamp>2012-02-01T13:36:51Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

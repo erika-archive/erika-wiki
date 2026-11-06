@@ -1,0 +1,235 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Freescale_S12_support"><span class="tocnumber">1</span> <span class="toctext">Freescale S12 support</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#CPUs"><span class="tocnumber">2</span> <span class="toctext">CPUs</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#MCUs"><span class="tocnumber">3</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Boards"><span class="tocnumber">4</span> <span class="toctext">Boards</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Examples"><span class="tocnumber">5</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Download_and_install"><span class="tocnumber">6</span> <span class="toctext">Download and install</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#How_to_build_a_project_in_RT-DRUID"><span class="tocnumber">7</span> <span class="toctext">How to build a project in RT-DRUID</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#How_to_run_MODISTARC_regression_tests"><span class="tocnumber">8</span> <span class="toctext">How to run MODISTARC regression tests</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Freescale_S12_support"> Freescale S12 support </span></h1>
+<p>ERIKA Enterprise supports Freescale HCS12 microcontrollers. 
+The support for RT-Druid is now available .<br />
+The HCS12 support includes: 
+</p>
+<ol><li> support for <b>COSMIC</b> compiler (only for HCS12XS, since Erika release 1.5.0) 
+</li><li> support for <b>CODEWARRIOR CWS12v5.1</b> compiler (since Erika release 1.6.0).
+</li><li> support for single and multi stack configurations.
+</li><li> ISR interrupt supported.
+</li><li> support for Freescale HIWAVE Debugger.
+</li></ol>
+<ul><li> <b>Supported compiler</b>
+<ul><li> COSMIC C cross compiler and ELF module generation for debugging information.
+</li><li> CODEWARRIOR CWS12v5.1 compiler and ELF module generation for debugging information (Note: For some MCU is recommended to install the compiler updates available on the Freescale website).
+</li></ul>
+</li></ul>
+<dl><dd><dl><dd><ul><li> CODEWARRIOR compiler is enabled adding this option in the conf.oil file:
+</li></ul>
+</dd></dl>
+</dd></dl>
+<pre> EE_OPT = "__CODEWARRIOR__";
+</pre>
+<dl><dd><dl><dd><ul><li> If the compiler evaluation license is expired, you may have to add also this option to avoid syntax errors during the compilation:
+</li></ul>
+</dd></dl>
+</dd></dl>
+<pre> EE_OPT = "CW_EVAL_VERSION"; 
+</pre>
+<ul><li> <b>Mode of operation</b>
+<ul><li> <i>Mono-stack</i>: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> <i>Multi-stack</i>: Every thread can have its private stack, or it can share it with other threads. 
+</li></ul>
+</li></ul>
+<ul><li> <b>Handling of paging registers</b>
+</li></ul>
+<dl><dd>The compiler supports bank switching for code and data, using the internal window mechanism provided by the HCS12 processor.
+</dd><dd>Bank switching mechanism delivers 32-bit performance with all the advantages and efficiencies of a 16-bit MCU.
+</dd><dd>Bank switching is supported via:
+</dd><dd>- @far type qualifier to describe a function relocated in a different bank. Calling such a function implies a special calling 
+</dd><dd>sequence, and a special return sequence. Such a function has to be defined @far and referenced as @far in all the files using 
+</dd><dd>it. The COSMIC compiler also provides a specific option +modf to automatically consider all the functions to be @far. The @far type 
+</dd><dd>modifier is also used to declared variables allocated in a data bank.
+</dd><dd>- Linker options are required to ensure proper physical and logical addresses computations. The linker is also able to 
+</dd><dd>automatically fill banks without any need to take care of the page boundaries.
+</dd></dl>
+<h1> <span class="mw-headline" id="CPUs"> CPUs </span></h1>
+<ul><li> <b>S12 Hardware Abstraction Layer</b> (since Erika revision 1531): S12 HAL now integrates the Erika HAL common files (see <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/" class="external text" rel="nofollow">'pkg/cpu/common'</a> folder and <a href="http://erika.tuxfamily.org/wiki/index.php?title=Common_files_for_the_HAL" class="external text" rel="nofollow">Common_files_for_the_HAL</a> for further info). This feature simplifies future extensions for other S12 devices and ensures greater code stability against changes to the kernel code.
+</li><li> <b>Nesting of interrupts</b>:
+<ul><li> <i>MC9s12XS128</i>: The IPL bits allow the nesting of interrupts, blocking interrupts of an equal or lower priority. The current IPL is automatically pushed to the stack by the standard interrupt stacking procedure. The new IPL is copied to the CCR from the Priority Level of the highest priority active interrupt request channel. The copying takes place when the interrupt vector is fetched. The previous IPL is automatically restored by executing the RTI instruction.
+</li><li> <i>MC9S12G128</i>: <pre style="color:red">WARNING: MC9S12G128 doesn't support IPL mechanism.</pre> To enable the nesting of interrupts in the code, the user should clear I bit (in the CCR register) inside the interrupt service routine and after the peripheral interrupt flag has been cleared. If the I bit is cleared before the peripheral interrupt flag has been cleared the CPU restarts the interrupt creating an infinite loop. For this reason I-bit cannot be cleared inside Erika HAL files and this task is left to the user. To enable the compilation of the code for the nesting of interrupts the symbol
+</li></ul>
+</li></ul>
+<pre> __ALLOW_NESTED_IRQ__
+</pre>
+<p>must be defined.
+Note: If the kernel type is FP the nesting of the interrupts can be enabled in this way:
+</p>
+<pre> KERNEL_TYPE = FP{
+   NESTED_IRQ = TRUE;
+ }; 
+</pre>
+<p>otherwise the default case is FALSE and the nesting of the interrupts is disabled.
+</p>
+<h1> <span class="mw-headline" id="MCUs"> MCUs </span></h1>
+<ul><li> The MCUs currently supported are the following:
+<ul><li> <i>Freescale</i> <b>MC9S12XS128</b>
+</li><li> <i>Freescale</i> <b>MC9S12G128</b>
+</li><li> <i>Freescale</i> <b>MC9S12G48</b>
+</li><li> <i>Freescale</i> <b>MC9S12GN16</b>
+</li><li> <i>Freescale</i> <b>MC9S12GN32</b>
+</li><li> <i>Freescale</i> <b>MC9S12GN48</b>
+</li></ul>
+</li></ul>
+<ul><li> List of functions:
+<ul><li> <i>Periodic interrupt timer</i>
+<ul><li> void EE_pit0_init( unsigned char pitmtld0, unsigned char pitld0, unsigned char prio ); // To init PIT0
+</li><li> void EE_pit0_close( void ); // To close PIT0
+</li><li> void EE_pit0_clear_ISRflag( void ); // To clean PIT0 ISR flag 
+</li></ul>
+</li><li> <i>Serial communication interface</i>
+<ul><li> void EE_sci_open(unsigned char sci_num, unsigned long int baudrate); // Open the serial interface. Requires: EE_set_peripheral_frequency_mhz(f_mhz) 
+</li><li> void EE_sci_close(unsigned char sci_num); // To close the serial interface
+</li><li> Bool EE_sci_send_byte(unsigned char sci_num, unsigned char buffer); // To send a byte
+</li><li> Bool EE_sci_send_string(unsigned char sci_num, const char* s, unsigned int num); // to send a string
+</li><li> Bool EE_sci_send_bytes(unsigned char sci_num, char* v, unsigned int num); // To send a vector of bytes
+</li><li> Bool EE_sci_get_byte(unsigned char sci_num, unsigned char *buffer); // to get a byte
+</li><li> Bool EE_sci_getcheck(unsigned char sci_num); // to check the serial reception of a byte
+</li></ul>
+</li><li> <i>Timer</i>
+<ul><li> int EE_timer_init_us(EE_UINT16 tim_id, EE_UINT32 period_us, EE_UINT8 isr_mode) // init timer. Requires: EE_set_peripheral_frequency_mhz(f_mhz)
+</li><li> int EE_timer_init_ms(EE_UINT16 tim_id, EE_UINT16 period_ms, EE_UINT8 isr_mode) // init timer. Requires: EE_set_peripheral_frequency_mhz(f_mhz)
+</li><li> void EE_timer_start() // start timer
+</li><li> void EE_timer_stop()  // stop timer
+</li><li> void EE_timer_reset() // reset timer
+</li><li> void EE_timer_clear_ISRflag(EE_UINT16 tim_id) // clear interrrupt flag
+</li><li> EE_UINT16 EE_timer_get_counter() // get counter
+</li><li> void EE_timer_enable_ISR(EE_UINT16 tim_id, EE_UINT8 isr_mode) // enable IRQ
+</li></ul>
+</li><li> void EE_timer_disable_ISR(EE_UINT16 tim_id) // disable IRQ
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Boards"> Boards </span></h1>
+<ul><li> The boards currently supported are the following:
+<ul><li> <i>SofTec Microsystems</i> <b>DEMO9S12XSFAME</b> demo board.
+</li><li> <i>Freescale Axiom</i> <b>TWRS12G128</b> evaluation board.
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<ul><li> <b>DEMO9S12XSFAME</b> List of functions (refer to <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/hs12xs_demo9s12xsfame/" class="external text" rel="nofollow">demo9s12xsfame</a>)
+<ul><li> void EE_demo9s12xsfame_leds_init(void); // To configure the leds port  
+</li><li> void  EE_demo9s12xsfame_leds( EE_UINT8 data ); // To set the led port vaules   
+</li><li> void  EE_demo9s12xsfame_led_0_on(void); // To turn on LED0
+</li><li> void  EE_demo9s12xsfame_led_0_off(void); // To turn off LED0
+</li><li> void  EE_demo9s12xsfame_led_1_on(void); // To turn on LED1
+</li><li> void  EE_demo9s12xsfame_led_1_off(void); // To turn off LED1
+</li><li> void  EE_demo9s12xsfame_led_2_on(void); // To turn on LED2
+</li><li> void  EE_demo9s12xsfame_led_2_off(void); // To turn off LED2
+</li><li> void  EE_demo9s12xsfame_led_3_on(void); // To turn on LED3
+</li><li> void  EE_demo9s12xsfame_led_3_off(void); // To turn off LED3
+</li><li> void  EE_demo9s12xsfame_leds_on(void); // To turn on all the leds
+</li><li> void  EE_demo9s12xsfame_leds_off(void); // To turn off all the leds
+</li><li> void EE_demo9s12xsfame_buttons_init( EE_UINT8 bx, EE_UINT8 prio ); // To init the buttons port
+</li><li> void EE_demo9s12xsfame_buttons_close( void ); // To reset the buttons port
+</li><li> void EE_demo9s12xsfame_buttons_disable_interrupts( EE_UINT8 bx ); // To disable interrupt related to the buttons
+</li><li> void EE_demo9s12xsfame_buttons_enable_interrupts( EE_UINT8 bx ); // To enable interrupt related to the buttons
+</li><li> void EE_demo9s12xsfame_buttons_clear_ISRflag( EE_UINT8 bx ); // To clear button ISR flag
+</li><li> EE_UINT8 EE_demo9s12xsfame_button_get_B0( void ); // To get the BUTTON0 value
+</li><li> EE_UINT8 EE_demo9s12xsfame_button_get_B1( void ); // To get the BUTTON1 value
+</li><li> void EE_demo9s12xsfame_adc_init( unsigned char res, unsigned char numconvseq ); // To init ADC
+</li><li> void EE_demo9s12xsfame_adc_convert( void ); // To start conversion
+</li><li> unsigned int EE_demo9s12xsfame_adc_getvalue( unsigned int adcch ); // To get a value
+</li><li> void EE_demo9s12xsfame_adc_close( void ); // To close ADC
+</li><li> EE_UINT16 EE_demo9s12xsfame_analog_get_light( void ); // To get light sensor value
+</li><li> EE_UINT16 EE_demo9s12xsfame_analog_get_pot( void ); // To get potentiometer value
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<ul><li> <b>TWRS12G128</b> List of functions (refer to <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/twrs12g128/" class="external text" rel="nofollow">twrs12g128</a>)
+<ul><li> void EE_leds_init() or EE_twrs12g128_leds_init()
+</li><li> void EE_leds(EE_UINT8 data) or EE_twrs12g128_leds(EE_UINT8 data)
+</li><li> void EE_led_1_on() or EE_twrs12g128_led_1_on()  
+</li><li> void EE_led_1_off() or EE_twrs12g128_led_1_off() 
+</li><li> void EE_led_2_on() or EE_twrs12g128_led_2_on()  
+</li><li> void EE_led_2_off() or EE_twrs12g128_led_2_off() 
+</li><li> void EE_led_3_on() or EE_twrs12g128_led_3_on()  
+</li><li> void EE_led_3_off() or EE_twrs12g128_led_3_off()  
+</li><li> void EE_led_4_on() or EE_twrs12g128_led_4_on()   
+</li><li> void EE_led_4_off() or EE_twrs12g128_led_4_off()
+</li><li> void EE_led_1_toggle() or EE_twrs12g128_led_1_toggle()
+</li><li> void EE_led_2_toggle() or EE_twrs12g128_led_2_toggle()
+</li><li> void EE_led_3_toggle() or EE_twrs12g128_led_3_toggle()
+</li><li> void EE_led_4_toggle() or EE_twrs12g128_led_4_toggle()
+</li><li> void EE_leds_on() or EE_twrs12g128_leds_on()   
+</li><li> void EE_leds_off() or EE_twrs12g128_leds_off()  
+</li><li> void EE_buttons_init(EE_UINT8 bx) or EE_twrs12g128_buttons_init(EE_UINT8 bx)
+</li><li> void EE_buttons_close or EE_twrs12g128_buttons_close()
+</li><li> EE_UINT8 EE_button_get_B1() or EE_twrs12g128_button_get_B1()
+</li><li> EE_UINT8 EE_button_get_B2() or EE_twrs12g128_button_get_B2()
+</li><li> EE_UINT8 EE_button_get_B3() or EE_twrs12g128_button_get_B3()
+</li><li> EE_UINT8 EE_button_get_B4() or EE_twrs12g128_button_get_B4()
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Examples"> Examples </span></h1>
+<ul><li> The examples and tests are available in this folders:
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/s12xs/" class="external text" rel="nofollow">S12XS examples</a>
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/s12g/" class="external text" rel="nofollow">S12G examples</a>
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Download_and_install"> Download and install </span></h1>
+<p>RT-Druid and Erika Enterprise RTOS (version 1.6.0), for Microsoft Windows, can be freely downloaded from the following web address:
+</p>
+<ul><li> <a href="http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Win.zip" class="external text" rel="nofollow">EE_160_Win.zip</a>
+</li></ul>
+<p>Once downloaded, extract all the files contained in it and copy the folder named <i>eclipse</i> in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+Now, launch the program by double-clicking on the executable <i>eclipse.exe</i>inside the <i>C:\Evidence\eclipse</i> folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+</p><p><br />
+If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+</p>
+<pre> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> -r number_of_revision
+</pre>
+<p>Note: 
+Cygwin can be downloaded from this web site: <a href="http://www.cygwin.com/" class="external free" rel="nofollow">http://www.cygwin.com/</a> 
+To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+</p><p><br />
+To update your RT-DRUID version:
+</p>
+<ul><li> Open the “Help” menu item and selecting “Install New Software” (see image below).
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Install_new_sw.PNG" class="image"><img alt="Install new sw.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9b/Install_new_sw.PNG" width="100" height="58" /></a></div></div>
+<ul><li> Then add, for example, the following path: <a href="http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/" class="external autonumber" rel="nofollow">[1]</a>
+</li><li> To add a new web address, clicking on “Add” and write the desired address in the filed “Location” (see image below).
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Add_web_address.PNG" class="image"><img alt="Add web address.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/ce/Add_web_address.PNG" width="100" height="58" /></a></div></div>
+<ul><li> Select all the plugins and click on the “Next” button. Then click again on “Next”, read the conditions and <i>in case</i> accept them by clicking on the “Finish” button.
+</li><li> Wait for the completion of the update and restart before using the software.
+</li></ul>
+<p><br />
+<b>Warnings and recommendations</b> 
+</p>
+<ul><li> For a fast installation deselect <i>Contact all update sites during install to find required software</i>.
+</li><li> The revision <b>1543</b> of <b>RT-Druid</b> and <b>Erika</b>  has been tested on the MODISTARC testcase, so this version is recommended.
+</li><li> However, the new Erika HCS12 package can work also with the previous versions of RT-Druid.
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_build_a_project_in_RT-DRUID"> How to build a project in RT-DRUID </span></h1>
+<ul><li> <a href="/wiki/index.php?title=A_quick_tutorial_on_how_to_create,_compile_and_debug_an_application_for_Freescale_S12XS" title="A quick tutorial on how to create, compile and debug an application for Freescale S12XS">A quick tutorial on how to create, compile and debug an application for Freescale S12XS</a>
+</li><li> <a href="/wiki/index.php?title=A_quick_tutorial_on_how_to_create,_compile_and_debug_an_application_for_Freescale_S12G" title="A quick tutorial on how to create, compile and debug an application for Freescale S12G">A quick tutorial on how to create, compile and debug an application for Freescale S12G</a>
+</li><li> <a href="/wiki/index.php?title=Tutorial:_S12XS_-_First_installation_and_application_compilation_on_Windows" title="Tutorial: S12XS - First installation and application compilation on Windows">Tutorial: S12XS - First installation and application compilation on Windows</a>
+</li><li> <a href="/wiki/index.php?title=OIL_example_for_Freescale_S12" title="OIL example for Freescale S12">OIL example for Freescale S12</a>
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_run_MODISTARC_regression_tests"> How to run MODISTARC regression tests </span></h1>
+<ul><li> <a href="/wiki/index.php?title=A_brief_description_on_how_to_run_MODISTARC_regression_tests_for_Freescale_S12XS" title="A brief description on how to run MODISTARC regression tests for Freescale S12XS">A brief description on how to run MODISTARC regression tests for Freescale S12XS</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 39/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

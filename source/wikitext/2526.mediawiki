@@ -1,0 +1,57 @@
+In order to use the iSystem iC5000 hardware emulator follow these steps.
+
+The first time you launch the winIDEA program, you will be requested to create a new Workspace:
+
+[[File:NewWorkspace.png|thumb|upright=2.0|center|Add a name, select a Location and press the OK button]]
+
+
+As first thing configure the communication to the iSystem device (for our purpose, we've connected the device through TCP/IP connection). Go under Hardware -> Hardware menu and set the following options:
+
+
+{| style="border-spacing: 2px; border: 1px solid darkgray; margin: 1em auto 1em auto;"
+|-
+| style="border: 1px solid darkgray;" |
+[[Image:HardwareType.png]]
+| style="border: 1px solid darkgray;" |
+[[Image:SystemConfiguration.png]]
+| style="border: 1px solid darkgray;" |
+[[Image:Communication.png]]
+|- style="text-align: center;"
+|Select iC5000, iTAG2k and press the System Configuration button || Insert the IP address, the subnet mask and leave the default TCP port.<br />Finally press Apply Changes button || Select the TCP/IP type of connection, insert the right IP address <br />and leave the default port as 5313
+|}
+
+
+
+You can now test the communication by pressing the Test button under Hardware -> Hardware, Communication tab. The expected result should be something like:
+
+[[File:iSystemTestCommunication.png|thumb|upright=2.0|center|Communication Ok displayed in the Status text box]]
+
+
+We can now set the type of board we want to use in Hardware -> Emulation Options. Please make sure to select the right board in CPU tab:
+
+
+{| style="border-spacing: 2px; border: 1px solid darkgray; margin: 1em auto 1em auto;"
+|-
+| style="border: 1px solid darkgray;" |
+[[Image:iSystemCPU.png]]
+| style="border: 1px solid darkgray;" |
+[[Image:iSystemCpuSetupLockStepMode.png]]
+|- style="text-align: center;"
+|Select the CPU corresponding to the Leopard board and press CPU Setup button || Under SoC tab make sure to select the Lock Step mode as CPU mode
+|}
+
+Leave all the other settings under Hardware -> Emulation Options and Hardware -> CPU Setup as default.
+
+As last thing go under Flash -> Setup and make sure that Auto program FLASH is set to never in the Target tab as shown below:
+
+[[File:iSystemTarget.png|thumb|upright=2.0|center|Set auto program FLASH to never]]
+
+
+In order to flash the device, go under Debug -> Files for Download and select the application to flash:
+
+[[File:iSystemFilesForDownload.png|thumb|upright=2.0|center|Select an application, remove it or add a brand new one by pressing the New button. Default options for the selected elf will suit.]]
+
+Finally flash the new application by pressing Debug -> Download
+
+----
+[[Category:Debugging Tool iSYSTEM winIDEA]]

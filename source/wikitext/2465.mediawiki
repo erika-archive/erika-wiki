@@ -1,0 +1,1 @@
+This screenshot shows the Eclipse integrated debugger in action.

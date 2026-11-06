@@ -1,0 +1,164 @@
+= temporary page as a skeleton for x86 support =
+
+= x86 support =
+
+ERIKA Enterprise supports the x86 platforms. 
+The support for RT-Druid is not yet available.<br>
+
+The x86 support includes: 
+# support for gcc and llvm/clang (>= v3.3) compiler toolchains;
+# support for single and multi stack configurations;
+# ISR Type 1 and Type 2 supported;
+# support for gdb Debuggers via qemu debug stub.
+# currently tested on emulated execution environment (qem-system-i386)
+
+* Supported IDEs:
+** RT-Druid IDE
+
+* Mode of operation:
+** ''Mono-stack'': The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+** ''Multi-stack'': Every task can have its private stack, or it can share it with other tasks.
+
+= Download and install =
+
+RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+* http://erika.tuxfamily.org/drupal/download.html
+
+Once downloaded, extract all the files contained in it and copy the folder named ''eclipse'' in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+Now, launch the program by double-clicking on the executable ''eclipse.exe''inside the ''C:\Evidence\eclipse'' folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+
+If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+  svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee -r number_of_revision
+
+Note: 
+Cygwin can be downloaded from this web site: http://www.cygwin.com/. To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+
+* The procedure to update Erika and RT-Druid plugins is described at [[Tutorial: Update ERIKA and RT-Druid]].
+
+= How to run a simple demo on the Virtual Machine =
+Just enter an arbitrary EEtest0x folder in <code>examples/x86/porting_examples/{monostack,multistack}></code>, and type <code>make run</code> to build and run the test case.
+
+= Target Configuration and Programming =
+
+== Compiler Path ==
+
+It is possible to choose the path of the compiler in three different ways:
+
+* environment var:
+** XXX
+* configuration file:
+** see [[RT-Druid configuration#Compiler paths]]
+* gui:
+** inside eclipse preferences, it is possible to set the paths of above compilers.
+
+
+== CPU ==
+
+<code>CPU_DATA</code> must be set to <code>X86</code>.<br>
+The exact model is specified with the <code>MODEL</code> item.<br>
+The compiler is specified with the <code>COMPILER_TYPE</code> item (TBD! supported values will  be <code>gcc</code> and <code>clang</code>).<br>
+Example of a CPU_DATA section:
+
+  CPU_DATA = X86 {
+    APP_SRC = "code.c";
+    COMPILER_TYPE = GCC;
+    MULTI_STACK = TRUE {
+      IRQ_STACK = TRUE {
+        SYS_SIZE=512;
+      };
+    };
+  };
+
+=== Interrupt Handling ===
+To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+
+  ISR <SYMBOL> {
+    CATEGORY = <ISR_TYPE>;
+    ENTRY = "<ENTRY>";
+  };
+
+Where <code><ISR_TYPE></code> is the type of the ISR (1 or 2), <code><SYMBOL></code> is the symbol that must be the parameter of <code>ISR<ISR_TYPE>()</code> ISR signature, and <code><ENTRY></code> is the fixed Interrupt Vector Table Entry identifier.
+
+== Boards ==
+The port is currently tested to to run in the qemu emulator (qemu-system-i386).<br>
+
+The toolchain builds an ELF file including a multiboot header.
+The resulting image can be booted from any multiboot compliant boot loader (e.g., <code>grub2</code>).
+The toolchain further generates a bootable CDROM image (using <code>grub-mkrescue</code>). <br>
+
+The resulting images can be run in qemu either from the cdrom image:<br>
+<code>qemu-system-i386 -cdrom erika.iso -no-reboot -machine pc,accel=tcg -nographic</code><br>
+
+Or by direclty loading the elf image (using <code>-kernel</code>):<br>
+<code>qemu-system-i386 -kernel Debug/Debug/out.elf -no-reboot -machine pc,accel=tcg -nographic</code><br>
+
+Please, don't forget the <code>-machine pc,accel=tcg</code> parameter, which disables the KVM based accelerations.
+
+= OSEK/VDX Extensions =
+
+This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex MX support. All of these features are not yet implemented in Cortex M0 (NXP LPCXpresso LPC12xx MCU) porting of ERIKA Enterprise.
+
+== Resource Managament at ISR level ==
+
+This feauture is automatically enabled by RT-Druid during the configuration generation step. To specify that a Resource is used by both a Task and a ISR you need to add that respource to the corrisponding ISR object as follows:
+
+  TASK Task1 {
+    ...
+    RESOURCE = "ResourceA";
+  };
+  
+  ISR <SYMBOL> {
+    PRIORITY = <PRIORITY_LEVEL>;
+    CATEGORY = <ISR_TYPE>;
+    ENTRY = "<ENTRY>";
+    RESOURCE = "ResourceA";
+  };
+  
+  RESOURCE ResourceA { RESOURCEPROPERTY = STANDARD; };
+
+== System Timer ==
+The port uses the PIT timer for periodic interrupts.
+At the moment, the timer unit must initialised manually (<code>EE_pit_init()</code>), which sets up a default period of 1000 Hz.<br>
+The rate can be changed using <code>EE_pit_set_periodic(EE_UINT16 rate_in_Hz)</code>.
+Please note: Due to hardware limitations, the minimal PIT rate is around 20 Hz.<br>
+
+A user-defined interrupt handler can then be realised, by providing a <code>EE_pit_handler(void)</code> function, which replaces an empty weakly linked default handler. See also the porting examples for more details.
+
+'''The following configuration options not implemented yet:'''<br>
+The OSEK/VDX standard provides support for a '''System Counter''' (a counter that is automatically linked to hardware timers). The System Timer is used to give a coherent timing reference across the entire application.
+
+In ERIKA Enterprise, this special counter has been named '''System Timer'''. To use it, you need to set a specific attribute in a Counter definition. Please note that only one counter can be the System Timer.
+
+A Counter which is not a System Counter must be incremented manually using the primitive IncrementCounter.
+
+The following is an example OIL definition for a System Counter:
+  
+   COUNTER SystemTimer {
+    MINCYCLE = 1;
+    MAXALLOWEDVALUE = 2147483647;
+    TICKSPERBASE = 1;
+    TYPE = HARDWARE {
+      DEVICE = "PIT";
+      SYSTEM_TIMER = TRUE;
+    };
+    SECONDSPERTICK = 0.001;
+  };
+
+The meaning of the various attributes is as follows:
+* COUNTER/TYPE must be set to "HARDWARE", and SYSTEM_TIMER must be set to true.
+* COUNTER/TYPE/DEVICE must be a valid device that can be used for a system timer. Currently, for X86 only "PIT" is a valid device for system timer. 
+* SECONDSPERTICK is used to declare the wanted time duration of one hardware tick in seconds.
+
+The System Timer can be attached to ALARMs as usual, as in the following example:
+
+  ALARM AlarmExample {
+    COUNTER = SystemTimer;
+    ACTION  = ACTIVATETASK{
+       TASK = TaskExample;
+    };
+  };
+
+= Acknowledgements =
+This port was provided by [https://www4.cs.fau.de/~hoffmann Martin Hoffmann] from the [https://www4.cs.fau.de Department of Computer Science 4] (System Software Group) at FAU Erlangen.
+[[Category:Supported Devices]]

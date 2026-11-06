@@ -1,0 +1,48 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Background"><span class="tocnumber">1</span> <span class="toctext">Background</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Freescale_MPC5554_build_example"><span class="tocnumber">2</span> <span class="toctext">Freescale MPC5554 build example</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Compiler_Switches"><span class="tocnumber">3</span> <span class="toctext">Compiler Switches</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Linker_Switches"><span class="tocnumber">4</span> <span class="toctext">Linker Switches</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Background"> Background </span></h1>
+<p>In the freeware software distribution there is no GNU compiler toolchain that natively supports PPC e200zx cores. However, it is possible to generate compatible code for PPC e200zx cores acting on compiler and linker switches of any GNU Compiler Toolchian for PPC.
+</p><p>NOTE: All freeware GNU compiler toolchains generate PPC code in FLE mode ONLY!!!
+</p><p>The choose of <a href="http://www.macraigor.com/full_gnu.htm" class="external text" rel="nofollow">Macraigor System GNU Tools</a> PowerPC GNU Toolkit V:4.7.0-0 as GNU Toolchain for PPC was made basing on suggestion of <a href="http://www.lauterbach.com/frames.html?home.html" class="external text" rel="nofollow">Lauterbach</a> support team.
+</p><p>The integration was based on <a href="http://download.ronetix.info/toolchains/powerpc/ppc_cross_development_guide.pdf" class="external text" rel="nofollow">PowerPC cross development with GNU Toolchain and Eclipse</a> guide released by <a href="http://www.ronetix.at/" class="external text" rel="nofollow">Ronetix</a>.
+</p>
+<h1> <span class="mw-headline" id="Freescale_MPC5554_build_example"> Freescale MPC5554 build example </span></h1>
+<p>The PowerPC cross development with GNU Toolchain and Eclipse guide released by Ronetix provides a <a href="http://download.ronetix.info/examples/mpc5554_example.tar.gz" class="external text" rel="nofollow">build example</a> for <a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MPC5554" class="external text" rel="nofollow">Freescale MPC5554</a> MCU.
+</p><p>Inside the build example package there is a Makefile with the followings compiler/linker build configuration switches:
+</p>
+<pre> PROJECT = mpc_ram
+ LDSCRIPT= ./prj/MPC5554_SRAM.ld
+ OPT = -O0
+ MCU = 8540
+ MCFLAGS = -mcpu=$(MCU)
+ ASFLAGS = $(MCFLAGS)  -g -mno-eabi -mregnames -Wa,-mregnames -Wa,-mbooke32 -Wa,-me500 -misel=yes -mspe=yes -mfloat-gprs=no -msoft-float -mno-string -msdata=none -Wa,-I./inc -gdwarf-2
+ CPFLAGS = $(MCFLAGS) $(OPT) -g -mno-eabi -mregnames -Wa,-mregnames -Wa,-mbooke32 -Wa,-me500 -misel=yes -mspe=yes -mfloat-gprs=no -msoft-float -mno-string -msdata=none -gdwarf-2
+ LDFLAGS = $(MCFLAGS) -Wl,-g -Wl,-T$(LDSCRIPT) -Wl,-Map=$(PROJECT).map,--cref,--no-warn-mismatch $(LIBDIR)
+</pre>
+<h1> <span class="mw-headline" id="Compiler_Switches"> Compiler Switches </span></h1>
+<ul><li> -mcpu=8540: Use features of and schedule code for given CPU (8540)
+</li><li> -me500: Generate code for Motorola e500 core complex
+</li><li> -mbooke32: Generate code for 32-bit PowerPC BookE
+</li><li> -no-eabi: Don't use EABI.
+</li></ul>
+<p>With these switches the compiler generates PPC machine code in FLE mode compatible with PPC e200zx cores.
+</p>
+<h1> <span class="mw-headline" id="Linker_Switches"> Linker Switches </span></h1>
+<ul><li> -nostdlib: Only use library directories specified on the command line.
+</li><li> -nostartfiles: Do not use the standard system startup files when linking. The standard system libraries are used normally, unless -nostdlib or -nodefaultlibs is used. 
+</li></ul>
+<p>With these switches the linker DO NOT includes startup-code and standard libraries.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 14/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

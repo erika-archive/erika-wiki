@@ -1,0 +1,129 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Erika_Enterprise_Paths"><span class="tocnumber">1</span> <span class="toctext">Erika Enterprise Paths</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Define_the_path_in_RT-Druid"><span class="tocnumber">2</span> <span class="toctext">Define the path in RT-Druid</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#variable_paths"><span class="tocnumber">2.1</span> <span class="toctext">variable paths</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#erika_enterprise_location_keyword"><span class="tocnumber">2.2</span> <span class="toctext">erika_enterprise_location keyword</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Workspace_properties"><span class="tocnumber">2.3</span> <span class="toctext">Workspace properties</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Project_properties"><span class="tocnumber">2.4</span> <span class="toctext">Project properties</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Show_Erika_files_in_the_workspace"><span class="tocnumber">3</span> <span class="toctext">Show Erika files in the workspace</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Erika_Enterprise_Paths"> Erika Enterprise Paths </span></h2>
+<p>Erika Enterprise uses two variables to store source path:
+</p>
+<ul><li> <b>ERIKA_FILES</b>  contains the path in the format used by the host machine. This variable is intended to <b>not</b> be used inside makefiles. For example, on Windows it will be something like <i>C:\Evidence\ee</i> while on Linux it can be <i>/opt/Evidence/ee</i>. 
+</li></ul>
+<ul><li> <b>EEBASE</b>  contains the path in the format used by makefile and it should be used <b>only</b> inside makefiles. For example, if you are using a Cygwin toolchain it will be something like <i>/cygdrive/c/Evidence/ee</i>, while in a Linux makefile it can be <i>/opt/Evidence/ee</i>.
+</li></ul>
+<h2> <span class="mw-headline" id="Define_the_path_in_RT-Druid"> Define the path in RT-Druid </span></h2>
+<p>RT-Druid allows the user to define the Erika Enterprise path for the workspace and for each project. This is done using workspace and project preferences.
+</p><p>The path can come from different sources (in this order):
+</p>
+<ul><li> a value specified by the user (available using the eclipse GUI)
+</li><li> ERIKA_FILES environment variable
+</li><li> erika_enterprise_location keyword specified in the configuration file of RT-Druid (see common_oil.pref inside eclipse/configuration folder) (see also <a href="/wiki/index.php?title=Common_oil.pref_example" title="Common oil.pref example">Common_oil.pref_example</a>)
+</li><li> plugin settings (i.e. the Erika Enterprise sources embedded inside a plugin)
+</li></ul>
+<p><br />
+</p>
+<table border="1">
+<tr>
+<th> Source </th><th> GUI </th><th> Batch </th><th> where </th><th> when
+</th></tr>
+<tr>
+<td> User Value </td><td> X </td><td> </td><td> Workspace and project property </td><td> hard-coded in the project, the always valid
+</td></tr>
+<tr>
+<td> ERIKA_FILES </td><td> X </td><td> X </td><td> Environment </td><td> related to a specific run of RT-Druid
+</td></tr>
+<tr>
+<td> erika_enterprise_location keyword </td><td> X </td><td> X </td><td> RT-Druid configuration file </td><td> related to a specific installation of RT-Druid
+</td></tr>
+<tr>
+<td> plugins </td><td> X </td><td> X </td><td> hard-coded inside Erika source plugin </td><td> a RT-Druid distribution feature
+</td></tr></table>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="variable_paths"> variable paths </span></h3>
+<p>Both <i>User Value</i> and <i>erika_enterprise_location</i> support eclipse <i>variable</i> syntax. This means that you can specify a path that is computed at runtime. Note that this feature is intended to be used with variables that does not change their value during the execution of eclipse, otherwise you should refresh manually the workspace.
+</p><p>As example, if you have Erika Enterprise sources directory located inside the same place where is the eclipse directory, you can write:
+</p>
+<pre> ${eclipse_home}/../erika_enterprise
+</pre>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="erika_enterprise_location_keyword"> erika_enterprise_location keyword </span></h3>
+<p>Current version of RT-Druid support a configuration file that, as default, is located at <i>eclipse/configurations/common_oil.pref</i>. This file is wrote using the <i>java properties</i> standard, i.e. a text file where each line is in the form 
+</p>
+<pre> keyword=value 
+</pre>
+<p>You can add comments using the character <i>#</i> at the beginning of the line. 
+</p><p><br />
+Example:
+</p>
+<pre> # Set the folder with the Erika Enterprise sources
+ erika_enterprise_location=d:\Evidence\Erika_Enterprise_svn
+</pre>
+<p>(see also <a href="/wiki/index.php?title=Common_oil.pref_example" title="Common oil.pref example">Common_oil.pref_example</a>)
+</p>
+<h3> <span class="mw-headline" id="Workspace_properties"> Workspace properties </span></h3>
+<p>Opening eclipse preferences, there is a tab dedicated to the location in your file system of Erika Enterprise files.
+Here you can see available options: setting <i>Auto</i> RT-Druid will choose the most specific for the running instance, otherwise 
+select other options (<i>ERIKA_FILES variable</i>, <i>Common_oil.pref</i> and <i>Plugins</i>) to ask RT-Druid to base the choice only on that source.
+</p><p>Through the <i>Manual</i> option, you can force RT-Druid to use a generic directory in you filesystem.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Preferences_menu.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f4/Preferences_menu.png" width="200" height="219" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Preferences_menu.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Preference command in the eclipse menu.</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Workspace_ee_path.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/26/Workspace_ee_path.png" width="400" height="282" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Workspace_ee_path.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Workspace preference of Erika Enterprise source files location.</div></div></div></div>
+<p>After you change the Workspace setting of Erika Enterprise location, all RT-Druid projects that use this property are automatically updated. Depending on the <i>auto build</i> setting, this update may trigger the build process.
+</p>
+<h3> <span class="mw-headline" id="Project_properties"> Project properties </span></h3>
+<p>Opening project properties (right click on the project and then <i>properties</i> in the popup menu), there is a tab dedicated to the location in your file system of Erika Enterprise files.
+The default choice is to use the one specified in the Workspace preferences, but you are free to use a different value:
+to enable a project's specific value check the checkbox <i>Enable project settings</i>.
+Then you can choose among the same options available in workspace preferences: <i>Auto</i>, <i>Manual</i>, <i>ERIKA_FILES variable</i>, <i>Common_oil.pref</i> and <i>Plugins</i>.
+</p><p>In the screen-shot, the manual path contains a path directory sibling to eclipse's one.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Project_ee_path.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bd/Project_ee_path.png" width="400" height="277" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Project_ee_path.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Project preference of Erika Enterprise source files location.</div></div></div></div>
+<p>After you change the Project setting of Erika Enterprise location, that project is automatically updated. Depending on the <i>auto build</i> setting, this update may trigger the build process.
+</p>
+<h2> <span class="mw-headline" id="Show_Erika_files_in_the_workspace"> Show Erika files in the workspace </span></h2>
+<p>Using project properties, you can ask RT-Druid to link Erika Enterprise source files in your project.
+There are three choices:
+</p>
+<ul><li> do not link anything
+</li><li> link includes (.h files)
+</li><li> link both includes and sources
+</li></ul>
+<p>In this screen-shot only the option <i>Link Erika Enterprise Includes</i> is enabled
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Project_ee_path.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bd/Project_ee_path.png" width="400" height="277" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Project_ee_path.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Project preference of Erika Enterprise source files location.</div></div></div></div>
+<p>The result of enabling the link to Erika Includes it that is now possible to navigate .h files inside eclipse.
+cdt's indexer can parse those .h files to resolve function and type definitions, however this is possible only after RT-Druid produces eecfg.h file. Indeed erika's .h file are full of ifdef statements and they depends on the defines provided by eecfg.h
+</p><p>Using other words, if you want content assist and resolve types and functions, you should enable <i>link to include</i> and do a build after changing the oil configuration file.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Project_link_ee_include.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/ff/Project_link_ee_include.png" width="400" height="300" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Project_link_ee_include.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Project with link to Erika Enterprise Include files.</div></div></div></div>
+<p>Usually is enough to run the RT-Druid builder to produce the eecfg.h file (RT-Druid will also ask the indexer to update with the new set of defines), but some architectures, like Microchip pics, use .h file produced during the complete build process. In this case you need to ask manually the indexer to updare: right click in the project, then <i>Index</i> -&gt; <i>rebuild</i>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Project_rebuild_index.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b8/Project_rebuild_index.png" width="400" height="299" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Project_rebuild_index.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Project with link to Erika Enterprise Include files.</div></div></div></div>
+<p><br />
+If you enable the link to Erika source files, you will have more functionalities available:
+</p>
+<ul><li> with Navigate-&gt; open a resource (default short-cut <b>control+shift+R</b>) you will able to find a specific file (using some characters of the name as expression for the search)
+</li><li> with Search (short-cut <b>control+H</b>) you will able to find some text inside Erika Source files
+</li><li> if there is an compilation error, clicking on the <i>problem</i> tab it will open the file that contains the error (even if it is an Erika source file)
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:Project_link_ee_sources.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/45/Project_link_ee_sources.png" width="400" height="299" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Project_link_ee_sources.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Project with link to Erika Enterprise Include files.</div></div></div></div>
+<p><br />
+Note that the <i>rebuild index</i> operation is a log time operation that run in background. If you have a middle size project with the link to Erika Include files, it will take few seconds, while a big size project, with all Erika source files may take form 30 to few minutes, depending on the speed of the working machine.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 26/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

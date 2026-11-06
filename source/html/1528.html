@@ -1,0 +1,87 @@
+<p>This is is a list of things to doin the short term:
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Misc"><span class="tocnumber">1</span> <span class="toctext">Misc</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#CPU"><span class="tocnumber">2</span> <span class="toctext">CPU</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#PIC30"><span class="tocnumber">2.1</span> <span class="toctext">PIC30</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#S12XS"><span class="tocnumber">2.2</span> <span class="toctext">S12XS</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#e200zX"><span class="tocnumber">2.3</span> <span class="toctext">e200zX</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Examples"><span class="tocnumber">3</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#DIST"><span class="tocnumber">4</span> <span class="toctext">DIST</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Scilab_and_FLEX"><span class="tocnumber">5</span> <span class="toctext">Scilab and FLEX</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Regression_tests"><span class="tocnumber">6</span> <span class="toctext">Regression tests</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Misc"> Misc </span></h2>
+<ul><li> remove things that are currently not updated since a longtime and put them into an "old" directory. In particular, COM, hard_alarms
+</li></ul>
+<h2> <span class="mw-headline" id="CPU"> CPU </span></h2>
+<ul><li> remove the support for a user-defined types.h
+</li><li> Separate EE_ADDR in EE_ADDR and EE_FADDR (pointers to data and to code in some architectures have different sizes).  This is being superseded by further development for MISRA compliance, as EE_ADDR remains a generic data pointer and pointers to functions are being replaced with ad-hoc new types.
+</li><li> Insertion of function in the HAL to disable/enable IRQs by saving and restoring previous states. To be used in the next point.
+</li><li> Turning on and off IRQs associated to type-2 ISRs, needed to support OSEK <code>SuspendOSInterrupts()</code>.  A possible solution:
+<ol><li> ISR sections in OIL list the associated IRQ
+</li><li> A suitable data structure is filled in eecfg.c (a bitmap should be enough on many architectures)
+</li><li> New APIs (e.g., <code>EE_hal_enableIRQ2()</code>, <code>EE_hal_disableIRQ2()</code>) should be added to HAL to disable and restore the state of IRQs associated to type-2 ISR.  Existing <code>EE_hal_enableIRQ()</code>, <code>EE_hal_disableIRQ()</code> could be used as a fall-back (though they don't provide a way to restore the previous state).
+<ol><li> we could use the functions at the previous point to save/restore the previous state while disabling the IRQs
+</li></ol>
+</li></ol>
+</li></ul>
+<h3> <span class="mw-headline" id="PIC30"> PIC30 </span></h3>
+<ul><li> use <tt>extern inline</tt> for PIC inline functions to avoid code bloating when the student license ends
+</li><li> support for large model
+</li><li> commit fix to the bug of DISI when nested interrupts
+</li><li> add a traps file to the dsPIC using an OIL option or using an EEOPT variable
+</li></ul>
+<h3> <span class="mw-headline" id="S12XS"> S12XS </span></h3>
+<ul><li> allow the possibility to mask only a specific priority when in kernel mode (that is, using CCR instead of SEI/CLI)
+</li><li> implement a stack test at the task or interrupt end (to be done in the endcycle_stacked or endcycle_ready; in this way the kernel is not modified)
+</li><li> how to implement timers which are resistant to a timer overrun? Should we use hard_alarms?
+</li></ul>
+<h3> <span class="mw-headline" id="e200zX"> e200zX </span></h3>
+<ul><li> Add an EEOPT to remove <tt>stmw</tt> and <tt>lmw</tt> (store/load multiple word) instructions.  These instructions are good for performance, but they seem to fill Nexus FIFOs, which is bad if you want a full data trace (e.g., using <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)#Lauterbach_Trace32_and_ORTI_support" title="Freescale PPC e200 (MPC 56xx)">Lauterbach Trace32</a>).  Such an EEOPT should be used to change the compiler options (there should be a switch to inhibit generation of <tt>stmw</tt> and <tt>lmw</tt>), and enable alternative code (using a sequence of store or load) in assembly files.
+</li></ul>
+<h2> <span class="mw-headline" id="Examples"> Examples </span></h2>
+<ul><li> provide a compilation script to compile all exampes in bulk to always ensure that they always all compile fine
+</li><li> Modify main() inside OO examples (which call <code>StartOS()</code>).  <code>StartOS()</code> could not return, and should not according to Autosar.  Also, its behavior has been recently changed to also enable interrupts.  The body of <code>main()</code> in OO examples should be changed accordingly into something like the following (which does not depend on <code>StartOS()</code> returning).  Please note that tasks can be started by <code>StartOS()</code> if they have the <code>AUTOSTART</code> property set in the OIL file.
+</li></ul>
+<pre>
+int main(void)
+{
+	/* HW initialization goes here */
+	/* Do anything, but do not enable interrupts */
+
+	/* Call StartOS, but don't expect it to return */
+	StartOS(OSDEFAULTAPPMODE);
+	while (1) {
+		/* Wait forever */
+	}
+}
+</pre>
+<h2> <span class="mw-headline" id="DIST"> DIST </span></h2>
+<ul><li> rethink the DIST scripts for the creation of the distribution
+</li></ul>
+<h2> <span class="mw-headline" id="Scilab_and_FLEX"> Scilab and FLEX </span></h2>
+<ul><li> remove the code and the block for the OLD LCD driver (there are no boards currently working with that code).
+</li><li> Add scicos blocks for the Mini Flex
+</li><li> <a href="http://erika.tuxfamily.org/forum/viewtopic.php?f=3&amp;t=777#p1165" class="external text" rel="nofollow">look at this post on the forum</a>:
+<ol><li> the "success" message should not be there
+</li><li> the error on the "find" command "No such file or directory" is not masked 8if it is an error the compilation should stop there...)
+</li><li> we should probably  check that all the folders used for the compilation are at their correct place (if not, link to a FAQ).
+</li></ol>
+</li></ul>
+<h2> <span class="mw-headline" id="Regression_tests"> Regression tests </span></h2>
+<ul><li> launch them twice to check wethere there are problems with dependencies (dependencies are created at the first compilation round)
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 44/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

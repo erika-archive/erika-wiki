@@ -1,0 +1,42 @@
+<h3> <span class="mw-headline" id="Description"> Description </span></h3>
+<p>MODISTARC regression tests: Objectives and results 
+</p><p>The main goal of the MODISTARC project is to support the effort of the European car industry towards the development and standardisation of networking architectures. Through the OSEK/VDX consortium activities, the European industry has issued three new standards defining respectively the OSEK/VDX Operating System, Communication and Network Management. These specifications describe the applicable services and protocols and define the associated APIs. They intend to fulfil the two major goals of the OSEK/VDX initiative: 
+</p>
+<ul><li> enable portability of applications to ECUs coming from different suppliers
+</li><li> enable interoperability of interconnected ECUs in a distributed automotive system
+</li><li> enable interoperability of interconnected ECUs in a distributed automotive system
+</li></ul>
+<p>The MODISTARC project aims to help the European car industry to keep its leading position in the network based car architectures by providing the relevant test methods and tools to assess the conformance of OSEK/VDX implementations. 
+</p><p>For other info go to web site: <a href="http://portal.osek-vdx.org/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=17" class="external text" rel="nofollow">OSEK portal</a>
+</p>
+<ul><li> The following steps explain how to test the compilation procedure and kernel performances using the MODISTARC regression tests.
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="How_to_set_up_the_MODISTARC_regression_procedure"> How to set up the MODISTARC regression procedure </span></h3>
+<ul><li> Create in the path <tt>testcase</tt> a script to set the following environment variables: 
+<ul><li> <tt>RTDRUID_ECLIPSE_HOME</tt> (the path of the eclipse directory: e.g. <tt>C:/Evidence/Evidence/eclipse</tt>)
+</li><li> <tt>CLASSPATH</tt>    (the class path: e.g. <tt>"$CLASSPATH;$ECLIPSE_HOME\\plugins\\$LAUNCHER_JAR"</tt>; this is for <b>Nios II</b> only)
+</li></ul>
+</li></ul>
+<ul><li> Create in the path <tt>testcase\common</tt> a folder for the desired architecture. The folder should contain: 
+<ul><li> Files necessary to compile each test. 
+</li><li> Files for configuring the debugger. 
+</li><li> The file <tt>test.mk</tt> containing the main rules of the makefiles chain. 
+</li><li> The main script for the debugger to run the regression tests; 
+</li></ul>
+</li></ul>
+<ul><li> Within each test folder to modify the following files: 
+<ul><li> <tt>code.c</tt>, the application file. 
+</li><li> <tt>conf.in</tt>, the file containing the list of architectures supported by the test. 
+</li><li> <tt>appl.oil</tt>, the OIL configuration file of the test (this file includes header files from the folder <tt>testcase\common\rtdruid_common</tt>, you have to create a new header file for the desired architecture).
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 6/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,131 @@
+<p>OIL (OSEK Implementation Language) is a part of the OSEK/VDX standard, that isused for OS and application configuration. 
+The specification of the OIL file structure and syntax is provided in the OSEK/VDX web site at <a href="http://www.osek-vdx.org" class="external free" rel="nofollow">http://www.osek-vdx.org</a>. 
+In the RT-Druid and in the Erika Enterprise RTOS the configuration of the system is defined inside an OIL file. 
+In this web page we only provide a quick introduction of the OIL Language (for a complete description see the documentation 
+at <a href="http://erika.tuxfamily.org/documentation.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/documentation.html</a>), together with a specification of the specific OIL attributes implemented by RT-Druid.
+In Erika Enterprise all the RTOS objects like tasks, alarms, resources, are static and predefined at application compile time. 
+To specify which objects exists in a particular application, Erika Enterprise uses the OIL Language, which is a simple text description language.
+Here is an example of the OIL File for the dsPIC (R) DSC device:<br />
+</p><p>CPU mySystem {<br />
+</p>
+<dl><dd>OS myOs {<br />
+<dl><dd>EE_OPT = " DEBUG ";<br />
+</dd><dd>CPU_DATA = PIC30 {<br />
+<dl><dd>APP_SRC = " code1.c";<br />
+</dd><dd>APP_SRC = " code2.c";<br />
+</dd><dd>MULTI_STACK = FALSE&nbsp;;<br />
+</dd><dd>ICD2 = TRUE;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>MCU_DATA = PIC30 {<br />
+<dl><dd>MODEL = 33 FFJ256GP710;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>BOARD_DATA = EE_FLEX {<br />
+<dl><dd>USELEDS = TRUE;<br />
+</dd></dl>
+</dd><dd>}<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>TASK myTask {<br />
+<dl><dd>PRIORITY = 1;<br />
+</dd><dd>STACK = SHARED&nbsp;;<br />
+</dd><dd>SCHEDULE = FULL;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>TASK myTask {<br />
+<dl><dd>PRIORITY = 1;<br />
+</dd><dd>STACK = SHARED&nbsp;;<br />
+</dd><dd>SCHEDULE = FULL;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd></dl>
+<p>};<br />
+</p><p>The example contains a single object called CPU, which contains all the specifications and the values used by the system. 
+Inside the CPU, are described the objects which are present in the application: 
+an OS, which specifies the global attributes for the system, and, in the example, two TASKs.
+</p><p>The OIL File is parsed by the RT-Druid code generator and, as a result, part of the RTOS source code is generated and compiled 
+together with the application. An OIL file consists of two parts: a set of definitions and a set of declarations. 
+Definitions are used to define data types, constants and kernel objects that need to be provided in the declaration part for 
+configuring a specific kernel. In other words, the definition part tells the configurator that there exists different objects 
+like tasks, resources, and so on, describing their attributes and types, like in a C struct declaration. Then, the declaration part 
+is used to specify which objects are really present in a particular application.
+In RT-Druid, the definition part of the OIL file is fixed and is contained inside the RT-Druid Eclipse Plugins. 
+The user has only to provide the declaration part, specifying for a particular application the objects to be created.
+</p><p>The OIL file basically contains the description of a set of objects. A CPU is a container of these objects. 
+Other objects include the following:
+</p>
+<ul><li> OS is the Operating System which runs on the CPU. This object contains all the global settings which influence the compilation 
+</li></ul>
+<p>process and the customization of the Erika Enterprise RTOS.
+</p>
+<ul><li> APPMODE defines the different application mode. These modes are then used to control the autostart feature for tasks and alarms in the OIL file.
+</li><li> TASK is an application task handled by the OS.
+</li><li> RESOURCE is a resource (basically a binary mutex) used for mutual exclusion.
+</li><li> EVENT is a synchronization flag used by extended tasks.
+</li><li> COUNTER is a software source for periodic / one shot alarms.
+</li><li> ALARM is a notification mechanism attached to a counter which can be used to activate a task, set an event, or call a function.
+</li></ul>
+<p>All the attributes in the OIL file can be:
+</p>
+<ul><li> numbers, i.e. the PRIORITY attribute;
+</li><li> strings, i.e. the APP_SRC attribute;
+</li><li> enumerations, i.e. the KERNEL_TYPE attribute.
+</li></ul>
+<p>The OIL file includes a set of fields for controlling the command line parameters which are passed to the compiler tools. 
+The meaning of those elements is the following:
+</p>
+<ul><li> EE_OPT contains a list of additional compilation flags passed to the Erika Enterprise makefile. 
+</li></ul>
+<p>In practice, the EE_OPT makefile variable controls which files has to be compiled and with which options. 
+The EE_OPT attributes are translated in #defines in the C code.
+</p>
+<ul><li> CFLAGS contains the list of additional C compiler options.
+</li><li> ASFLAGS contains the list of additional assembly options.
+</li><li> LDFLAGS Contains the list of additional linker parameters.
+</li><li> LDDEPS Contains the list of additional library dependencies which have to be added to the makefile rules.
+</li><li> LIBS Contains the list of additional libraries that needs to be linked.
+</li></ul>
+<p>Example of declaration:
+</p><p>CPU mySystem {<br />
+</p>
+<dl><dd>OS myOs {<br />
+<dl><dd>EEOPT = " MYFLAG1 ";<br />
+</dd><dd>EEOPT = " MYFLAG2 ";<br />
+</dd><dd>CFLAGS = "-G0 ";<br />
+</dd><dd>CFLAGS = "-O0 -g";<br />
+</dd><dd>CFLAGS = "- Wall -Wl ,-Map -Wl , project .map ";<br />
+</dd><dd>ASFLAGS = "-g";<br />
+</dd><dd>LIBS = "-lm ";<br />
+</dd><dd>...<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd></dl>
+<p>...<br />
+}<br />
+</p><p>The CPU_DATA section of the OS object is used to specify the configuration of a core in a single or in a multiple core device.
+The MCU_DATA section of the OS object is used to specify the configuration of peripherals which are present in a specific microcontroller.
+The BOARD_DATA section of the OS object is used to specify the configuration of the board where the microcontroller is placed. 
+For example, the board configuration includes the configuration of the external devices like leds, buttons, displays, and other peripherals.
+The OIL file can specify a set of libraries which are distributed with or are supported by Erika Enterprise and that have to be linked 
+together with the application. The specification is done by using the LIB attribute.
+The list of supported libraries depends on the target and can be found in the Erika Enterprise Manual for the specific target. 
+Libraries which are not directly supported by Erika Enterprise can be added directly by specifying the appropriate linker parameters in
+the LDFLAGS attribute of the OS object.
+</p>
+<h2> <span class="mw-headline" id="Examples"> Examples </span></h2>
+<ul><li> <a href="/wiki/index.php?title=OIL_file_for_Lattice_Mico32" title="OIL file for Lattice Mico32">OIL file for Lattice Mico32</a>
+</li><li> <a href="http://erika.tuxfamily.org/wiki/index.php?title=OIL_example_for_Freescale_S12" class="external text" rel="nofollow">OIL file for Freescale S12</a>
+</li></ul>
+<h2> <span class="mw-headline" id="See_also"> See also </span></h2>
+<ul><li> <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>
+</li><li> <a href="/wiki/index.php?title=EEOPT" title="EEOPT">EEOPT</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

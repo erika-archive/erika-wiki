@@ -1,0 +1,247 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Wdg Trigger Seq Dia.png</title>
+    <id>2455</id>
+    <revision>
+      <id>5340</id>
+      <timestamp>2013-07-18T10:47:58Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Webserver camera demo application.png</title>
+    <id>2127</id>
+    <revision>
+      <id>3758</id>
+      <timestamp>2011-10-10T08:44:42Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Workspace.png</title>
+    <id>2248</id>
+    <revision>
+      <id>4435</id>
+      <timestamp>2012-01-26T15:46:12Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Workspace Launcher.png</title>
+    <id>2271</id>
+    <revision>
+      <id>4577</id>
+      <timestamp>2012-02-01T12:02:52Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Workspace ee path.png</title>
+    <id>2143</id>
+    <revision>
+      <id>3910</id>
+      <timestamp>2011-10-18T11:20:26Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Xen app ring.png</title>
+    <id>2502</id>
+    <revision>
+      <id>5965</id>
+      <timestamp>2015-01-29T14:16:59Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Generic scheme of the usage of the ring buffer inside the Xen ARM PV protocol</comment>
+      <text xml:space="preserve">Generic scheme of the usage of the ring buffer inside the Xen ARM PV protocol</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xen erika app.png</title>
+    <id>2501</id>
+    <revision>
+      <id>5963</id>
+      <timestamp>2015-01-29T13:06:13Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Xen components implemented in the example app on ERIKA Enterprise</comment>
+      <text xml:space="preserve">Xen components implemented in the example app on ERIKA Enterprise</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xen erika example.png</title>
+    <id>2505</id>
+    <revision>
+      <id>5971</id>
+      <timestamp>2015-01-30T11:53:54Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Screenshot of RTDruid on the ERIKA Enterprise VM, highligting the Xen example in the list of templates</comment>
+      <text xml:space="preserve">Screenshot of RTDruid on the ERIKA Enterprise VM, highligting the Xen example in the list of templates</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial availeble xslt files.png</title>
+    <id>1688</id>
+    <revision>
+      <id>2100</id>
+      <timestamp>2010-10-27T14:23:36Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Available XSLT transformations for code generation</comment>
+      <text xml:space="preserve">Available XSLT transformations for code generation</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial availeble xslt files add.png</title>
+    <id>1689</id>
+    <revision>
+      <id>2101</id>
+      <timestamp>2010-10-27T14:26:44Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Adding a new XSLT transformation file</comment>
+      <text xml:space="preserve">Adding a new XSLT transformation file</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial enabled writers.png</title>
+    <id>1687</id>
+    <revision>
+      <id>2099</id>
+      <timestamp>2010-10-27T14:19:19Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>The list of enabled writers</comment>
+      <text xml:space="preserve">The list of enabled writers</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial menu1.png</title>
+    <id>1685</id>
+    <revision>
+      <id>2097</id>
+      <timestamp>2010-10-27T14:15:12Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>The &quot;Windows/ Show views / Other...&quot; menu</comment>
+      <text xml:space="preserve">The &quot;Windows/ Show views / Other...&quot; menu</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial menu2.png</title>
+    <id>1686</id>
+    <revision>
+      <id>2098</id>
+      <timestamp>2010-10-27T14:16:20Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Available RT-Druid views</comment>
+      <text xml:space="preserve">Available RT-Druid views</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial xslt chain.png</title>
+    <id>1690</id>
+    <revision>
+      <id>2103</id>
+      <timestamp>2010-10-27T14:41:35Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>View used to configure XSLT transformation chains</comment>
+      <text xml:space="preserve">View used to configure XSLT transformation chains</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial xslt chain output.png</title>
+    <id>1691</id>
+    <revision>
+      <id>2104</id>
+      <timestamp>2010-10-27T14:42:03Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Output of the XSLT writer obtained clicking on the writer root</comment>
+      <text xml:space="preserve">Output of the XSLT writer obtained clicking on the writer root</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Xslttutorial xslt chain step.png</title>
+    <id>1692</id>
+    <revision>
+      <id>2105</id>
+      <timestamp>2010-10-27T14:42:19Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Input and output at a specific step of the transformation</comment>
+      <text xml:space="preserve">Input and output at a specific step of the transformation</text>
+    </revision>
+  </page>
+</mediawiki>

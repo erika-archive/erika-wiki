@@ -1,0 +1,3 @@
+Some mambowiki specific stuffs remained around.
+
+* an anonymous user receive this message "You have to [[[Template:MAMBOLOGIN]] login_TOP] to edit pages. " when trying to edit a page.

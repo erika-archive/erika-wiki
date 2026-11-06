@@ -1,0 +1,24 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/EEtest1</tt>
+
+=== Description ===
+* The goal of this test is to activate a task to test the internal function ready2stacked. To configure the task set we change the files eecfg.h and eecfg.c located inside the Debug folder (the basic structure is inspired to the Microchip PIC30 port). At the end of the porting the task set configuration will be deducted from the .oil file.
+
+* Finally, we created inside the <tt>EEtest1</tt> a C file with a main() function. That function explicitly calls ActivateTask finishing with a <tt>for(;;)</tt>. Please note that this small application can be executed to test the behavior of the kernel during a task activation. The function must be linked and used without problems resulting in an executable fully linked.
+
+*Note1: At this point we have to write two functions: <tt>EE_hal_begin_nested_primitive</tt> and <tt>EE_hal_end_nested_primitive</tt> in the header file "ee_internal.h" at the path <tt>ee\pkg\cpu\cosmic_hs12xs\inc</tt>.
+** the two functions are used to:
+*** begin: save the current status of the interrupt and disable them
+*** end: restore the status saved before with the begin function
+
+*Note2: Another header file to change is <tt>ee_cpu.h</tt> that contains some useful macros and the types definitions.
+
+*Note3: The TerminateTask () primitive is not part of this test and will be tested apart with a specific test.
+ 
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

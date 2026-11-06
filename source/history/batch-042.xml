@@ -1,0 +1,243 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Minicom download picture.png</title>
+    <id>2237</id>
+    <revision>
+      <id>4370</id>
+      <timestamp>2012-01-20T10:19:47Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom o options.png</title>
+    <id>2235</id>
+    <revision>
+      <id>4363</id>
+      <timestamp>2012-01-20T08:27:05Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom serial port setup.png</title>
+    <id>2236</id>
+    <revision>
+      <id>4366</id>
+      <timestamp>2012-01-20T08:36:21Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab easylab build.png</title>
+    <id>2266</id>
+    <revision>
+      <id>4531</id>
+      <timestamp>2012-01-31T09:53:33Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab easylab open project.png</title>
+    <id>2263</id>
+    <revision>
+      <id>4525</id>
+      <timestamp>2012-01-31T09:12:51Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab easylab select micro.png</title>
+    <id>2264</id>
+    <revision>
+      <id>4527</id>
+      <timestamp>2012-01-31T09:19:41Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab ide.png</title>
+    <id>2262</id>
+    <revision>
+      <id>4519</id>
+      <timestamp>2012-01-30T17:04:05Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab start kit.png</title>
+    <id>2267</id>
+    <revision>
+      <id>4533</id>
+      <timestamp>2012-01-31T09:59:19Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplab toolsuite.png</title>
+    <id>2265</id>
+    <revision>
+      <id>4529</id>
+      <timestamp>2012-01-31T09:30:18Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.01.png</title>
+    <id>1739</id>
+    <revision>
+      <id>2281</id>
+      <timestamp>2011-02-03T08:44:38Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>MPLAB X IDE: opening a new project.</comment>
+      <text xml:space="preserve">MPLAB X IDE: opening a new project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.02.png</title>
+    <id>1741</id>
+    <revision>
+      <id>2283</id>
+      <timestamp>2011-02-03T08:52:32Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: how to chose the project.</comment>
+      <text xml:space="preserve">Mplabx.beta4: how to chose the project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.03.png</title>
+    <id>1742</id>
+    <revision>
+      <id>2284</id>
+      <timestamp>2011-02-03T08:56:35Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: select the image file to be imported.</comment>
+      <text xml:space="preserve">Mplabx.beta4: select the image file to be imported.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.04.png</title>
+    <id>1743</id>
+    <revision>
+      <id>2285</id>
+      <timestamp>2011-02-03T09:02:53Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: select the Family and Device to be programmed.</comment>
+      <text xml:space="preserve">Mplabx.beta4: select the Family and Device to be programmed.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.05.png</title>
+    <id>1745</id>
+    <revision>
+      <id>2287</id>
+      <timestamp>2011-02-03T09:31:09Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: How to select the programmer.</comment>
+      <text xml:space="preserve">Mplabx.beta4: How to select the programmer.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.06.png</title>
+    <id>1748</id>
+    <revision>
+      <id>2291</id>
+      <timestamp>2011-02-03T09:51:35Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: how to use a copy of the loadable image file.</comment>
+      <text xml:space="preserve">Mplabx.beta4: how to use a copy of the loadable image file.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.07.png</title>
+    <id>1746</id>
+    <revision>
+      <id>2288</id>
+      <timestamp>2011-02-03T09:39:15Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: How to select the project name and folder.</comment>
+      <text xml:space="preserve">Mplabx.beta4: How to select the project name and folder.</text>
+    </revision>
+  </page>
+</mediawiki>

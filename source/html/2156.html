@@ -1,0 +1,62 @@
+<p>This page documents about the Black Box regression tests implemented for ERIKA Enterprise.
+</p>
+<h1> <span class="mw-headline" id="Main_idea"> Main idea </span></h1>
+<p>The main idea is expressed by the following points:
+</p>
+<ul><li> the system allows the specification of a set of tests
+<ul><li> each test is a black box test
+<ul><li> each test contains a set of assertions
+</li><li> each assertion checks both the execution order as well as return values of functions
+</li><li> the test is successful when the test executed in the proper order
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li> the tests are compiled for a target platform
+<ul><li> for each test is possible to specify for which architecture it works (variable <tt>worksfor</tt> in <tt>conf.in</tt>)
+</li><li> for each test it is possible to specify a set of values for the testing
+<ul><li> typical example: a test must work for BCC1, BCC2, ECC1, ECC2, both standard and extended error checking
+</li><li> the system will test all the possible combination of all the variables (in the case above, they will be 8 combinations)
+</li><li> please refer the variable <tt>conf</tt> in <tt>conf.in</tt>
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li> the test generates a debugger configuration (e.g. for Lauterbach)
+<ul><li> the debugger configuration is responsible to run all tests
+</li><li> each run does the following:
+<ul><li> loads the application
+</li><li> sets a breakpoint in a specific position (typically <tt>EE_assert_last</tt>
+</li><li> runs the application
+</li><li> if the application does not stop, then it is a failure&nbsp;:-)
+</li><li> if the application stops, then a variable is tested. If it is ok, it means that all the execution of all the assertions are correct
+</li></ul>
+</li><li> all the debugger output is returned and stored in a log file.
+</li></ul>
+</li></ul>
+<ul><li> the tests currently implement the <a href="http://portal.osek-vdx.org/index.php?option=com_content&amp;task=view&amp;id=13&amp;Itemid=16" class="external text" rel="nofollow">MODISTARC tests</a>, plus some other tests to check the behavior of the main context change and interrupt functions.
+</li></ul>
+<h1> <span class="mw-headline" id="Important_files"> Important files </span></h1>
+<ul><li> all files are stored inside the <tt>testcase</tt> directory
+</li><li> the <tt>testcase/makefile</tt> if run without parameters gives an idea of the possible commands
+</li><li> each test is stored in a separate directory
+<ul><li> conf.in which contains the settings that explains how to run the test
+<ul><li> note that the conf.in settings are handled as #defines in the OIL and.c file
+</li></ul>
+</li><li> code.c is the test source code
+</li><li> appl.oil is the OIL configuration file
+</li></ul>
+</li><li> common
+<ul><li> contains all the scritps
+</li><li> important things to look at are the subdirectories, one for each architecture, and in particular the test.mk which contains information of the commands run at each phase.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="More_info"> More info </span></h1>
+<p>Some more information can be found at <a href="/wiki/index.php?title=Running_the_MODISTARC_regression_tests" title="Running the MODISTARC regression tests">Running the MODISTARC regression tests</a>.
+</p><p>For MPC5674F please refere to <tt> <a href="http://erika.tuxfamily.org/wiki/index.php?title=How_to_run_the_MODISTARC_regression_tests_for_Freescale_MPC5674F" class="external free" rel="nofollow">http://erika.tuxfamily.org/wiki/index.php?title=How_to_run_the_MODISTARC_regression_tests_for_Freescale_MPC5674F</a> </tt>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

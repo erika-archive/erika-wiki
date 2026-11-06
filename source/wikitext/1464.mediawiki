@@ -1,0 +1,86 @@
+==Anonymous, readonly access==
+
+* ERIKA Enterprise
+** SVN anonymous access: svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee web access to the SVN repository]
+
+* RT-Druid
+** SVN anonymous access: svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/rtdruid/trunk/rtdruid
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/rtdruid/trunk/rtdruid/ web access to the SVN repository]
+
+* Scicos-FLEX
+** SVN anonymous access: svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/scilab_codegen/trunk/
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/scilab_codegen/trunk/ web access to the SVN repository]
+
+* Latex Manuals
+** SVN anonymous access: svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/manuals/trunk/manuals
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/manuals/trunk/manuals web access to the SVN repository]
+
+----
+----
+
+(for manuals and other erika related code see the URLs in "Authenticated access" below (just removing '+ssh' and the 'username@'))
+
+==Authenticated, readwrite access==
+
+===Gaining access===
+
+Two steps are needed to have a TUXFAMILY_USERNAME usable to edit the files in the Erika:
+
+* [https://panel.tuxfamily.org/subscribe.pl Subscribe] to Tuxfamily.
+
+* Mail to the administrator (pj _AT_ evidence.eu.com at the moment) asking to have the new username added in the erika project.
+
+===URLs===
+
+ERIKA Enterprise source code 
+
+* svn+ssh://TUXFAMILY_USERNAME@svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee
+
+RT-Druid source code 
+
+* svn+ssh://TUXFAMILY_USERNAME@svn.tuxfamily.org/svnroot/erika/erikae/repos/rtdruid/trunk/rtdruid
+
+ERIKA and RT-Druid manuals source code
+
+* svn+ssh://TUXFAMILY_USERNAME@svn.tuxfamily.org/svnroot/erika/erikae/repos/manuals/trunk/manuals
+
+Scicos-FLEX code generation
+
+* svn+ssh://TUXFAMILY_USERNAME@svn.tuxfamily.org/svnroot/erika/erikae/repos/scilab_codegen/trunk/
+
+Project root 
+* svn+ssh://svn.tuxfamily.org/svnroot/erika/erikae
+
+==post-commit hook==
+It is possible to receive an email everytime that a commit is done on the ERIKA SVN repository.
+
+===How to subscribe/unsubscribe===
+From the [http://faq.tuxfamily.org/MailingLists/En#How_to_use tuxfamily MailingList faq], declined with the erika post-commit hook mailing list:
+<blockquote>
+To subscribe to the erika post-commit hook mailinglist, just 
+* send an email to <tt>erika-request_AT_lists.tuxfamily.org</tt>
+* with subject: "subscribe"
+</blockquote>
+(yes, you read correctly, the -request is for administrative management). An email is sent back to confirm the request. To unsubscribe, it's the same thing but with the subject being "unsubscribe". And to annoy the user till the end, confirmation is needed too.
+
+====subscription alternatives [now unsupported]====
+The [http://faq.tuxfamily.org/MailingLists/Fr#Inscription_.C3.A0_une_liste_via_un_formulaire french mailinglist faq] describes a webpage alternative to the "send email to subscribe" protocol.
+
+===Contained information===
+
+
+These mails contain:
+* Revision number
+* Author
+* Date
+* Commit message
+* Modified paths
+* Diff (in attachment)
+
+The subject of the mails is in this form: 
+ [erika] [Revision#] First-commit-msg-line
+(Note: this is not correct.  <tt>First-commit-msg-line</tt> is the first line, or the content of the first line until the first dot if there is any)
+
+
+[[Category:RT-Druid]]

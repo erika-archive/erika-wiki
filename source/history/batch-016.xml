@@ -1,0 +1,246 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Amazing ball system.png</title>
+    <id>1570</id>
+    <revision>
+      <id>1844</id>
+      <timestamp>2010-01-11T08:54:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing button.png</title>
+    <id>1568</id>
+    <revision>
+      <id>1840</id>
+      <timestamp>2010-01-07T14:58:33Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing led.png</title>
+    <id>2080</id>
+    <revision>
+      <id>3444</id>
+      <timestamp>2011-09-28T11:04:11Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing pid.png</title>
+    <id>1569</id>
+    <revision>
+      <id>1841</id>
+      <timestamp>2010-01-07T14:59:00Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing pwm.png</title>
+    <id>1566</id>
+    <revision>
+      <id>1838</id>
+      <timestamp>2010-01-07T14:57:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing reset.png</title>
+    <id>1563</id>
+    <revision>
+      <id>1835</id>
+      <timestamp>2010-01-07T14:56:04Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing switch.png</title>
+    <id>1565</id>
+    <revision>
+      <id>1837</id>
+      <timestamp>2010-01-07T14:56:36Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing touch.png</title>
+    <id>1567</id>
+    <revision>
+      <id>1839</id>
+      <timestamp>2010-01-07T14:58:09Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing tuner.png</title>
+    <id>1564</id>
+    <revision>
+      <id>1836</id>
+      <timestamp>2010-01-07T14:56:18Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:App compilation.png</title>
+    <id>1583</id>
+    <revision>
+      <id>1859</id>
+      <timestamp>2010-01-11T10:06:10Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1860</id>
+      <timestamp>2010-01-11T10:08:27Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:App compilation.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Arduino uno.jpg</title>
+    <id>2468</id>
+    <revision>
+      <id>5508</id>
+      <timestamp>2014-03-18T16:45:56Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Atmel stk600.jpg</title>
+    <id>2467</id>
+    <revision>
+      <id>5506</id>
+      <timestamp>2014-03-18T16:00:40Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5 atmel zig.jpg</title>
+    <id>2317</id>
+    <revision>
+      <id>4815</id>
+      <timestamp>2012-07-18T06:22:48Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5 eclipse workspace.png</title>
+    <id>2318</id>
+    <revision>
+      <id>4816</id>
+      <timestamp>2012-07-18T06:23:30Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5 mibmicaz.jpg</title>
+    <id>2319</id>
+    <revision>
+      <id>4817</id>
+      <timestamp>2012-07-18T06:23:48Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5 preferences.png</title>
+    <id>2320</id>
+    <revision>
+      <id>4818</id>
+      <timestamp>2012-07-18T06:24:16Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

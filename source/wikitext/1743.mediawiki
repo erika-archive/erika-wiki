@@ -1,0 +1,1 @@
+Mplabx.beta4: select the Family and Device to be programmed.

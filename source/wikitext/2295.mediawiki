@@ -1,0 +1,9 @@
+Author: Giuseppe Arturi
+
+* This example shows a simple saturation example.
+* The idea is that the state machine will just saturate its input. The input is currently a sinus, which is clamped at the top and at the bottom.
+* Running the example:
+** The simulation is set to be interactive. Once the simulation is started please remember to press the "play" button on the SMCube simulation window.
+
+Download the example:
+* [http://download.tuxfamily.org/erika/webdownload/smcube_examples/smcube_saturation_example.zip smcube_saturation_example.zip]

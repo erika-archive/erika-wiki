@@ -1,0 +1,1 @@
+This screenshot shows how to properly edit the project settings for the cal_demo project

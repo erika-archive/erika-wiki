@@ -1,0 +1,19 @@
+<p>Currently the PWM Block for the EasyLab board has a limited support in frequencies, making it impossible to have the 50Hz PWM needed to control a servo.
+</p><p>As a workaround, it is possible to do the following (hint provided by Chin Luh from Tritytech):
+</p>
+<ol><li> hardcode the 50 in easylab_pwm.c
+</li><li> change P1TCONbits.PTCKPS = 0b11;  and EE_UINT16 ptper = EE_get_peripheral_clock() / pwm_freq / 64; in ee_pwm.c.
+</li><li> resulting input vs. degree:
+<ol><li> 0.025  &nbsp;: 0 degree
+</li><li> 0.0725&nbsp;: 90 degree
+</li><li> 0.12     &nbsp;: 180 degree
+</li></ol>
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

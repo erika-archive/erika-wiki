@@ -1,0 +1,65 @@
+<p>ERIKA Enterprise Manual for Arduino Uno board
+</p>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>The Arduino board (see Figure 1.1) is supported by the <a href="/wiki/index.php?title=Atmel_AVR8" title="Atmel AVR8">Atmel AVR8</a> porting of ERIKA Enterprise.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Arduino_uno.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/15/Arduino_uno.jpg" width="200" height="141" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Arduino_uno.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 1.1: The Arduino Uno board running ERIKA Enterprise</div></div></div></div>
+<p>The Arduino Uno is a low cost, open-source board produced by <a href="http://www.arduino.cc/" class="external text" rel="nofollow">Arduino</a> with Atmel ATmega328p microcontroller, interfaces to USB, and many I/O to connect whatever device you need. To configure the usage of the Arduino Uno board, the user has to specify an appropriate BOARD_DATA in the OIL file, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+...
+}
+...
+</pre>
+<p>The Arduino Uno board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+</p><p>The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATmega328p MCU.
+</p><p>The following subsections will describe the functions available to control the Arduino Uno Board:
+</p>
+<ul><li> <i>void EE_board_init(void);</i>
+<dl><dd> Description: The function initializes the board.
+</dd></dl>
+</li></ul>
+<h4> <span class="mw-headline" id="LEDs"> LEDs </span></h4>
+<p>The Arduino Uno Board has a 1 LED. To use the LED on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+  USELEDS = TRUE;
+...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Arduino Uno LED:
+</p>
+<ul><li> <i>void EE_led_on(void);</i>
+<dl><dd> Description: The function turns on the LED.
+</dd></dl>
+</li><li> <i>void EE_led_off(void);</i>
+<dl><dd> Description: The function turns off the LED.
+</dd></dl>
+</li><li> <i>void EE_led_toggle(void);</i>
+<dl><dd> Description: The function toggles the LED.
+</dd></dl>
+</li></ul>
+<h4> <span class="mw-headline" id="Requirements"> Requirements </span></h4>
+<p>ERIKA Enterprise supports Atmel AVR ATmega328p.
+</p>
+<ul><li> Atmel Studio
+</li><li> WinAVR
+</li></ul>
+<p>Useful links
+</p>
+<ul><li> <a href="http://www.atmel.com/tools/ATMELSTUDIO.aspx" class="external text" rel="nofollow">Atmel Studio download link</a>
+</li><li> <a href="http://winavr.sourceforge.net/" class="external text" rel="nofollow">WinAVR download link</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 29/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

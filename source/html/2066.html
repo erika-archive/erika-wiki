@@ -1,0 +1,163 @@
+<p>ERIKA can run on multiple cores with static assignment of tasks and shared memory.  One copy of the operating system runs on each core, with independent schedulers.  It is possible to activate tasks and notify events remotely on a different core.  Also mechanisms to share resources and variables are present.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Overview"><span class="tocnumber">1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Supported_architectures"><span class="tocnumber">2</span> <span class="toctext">Supported architectures</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Using_a_multicore_system"><span class="tocnumber">3</span> <span class="toctext">Using a multicore system</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#OIL_configuration"><span class="tocnumber">3.1</span> <span class="toctext">OIL configuration</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Known_bugs"><span class="tocnumber">3.1.1</span> <span class="toctext">Known bugs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Application_programming"><span class="tocnumber">3.2</span> <span class="toctext">Application programming</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Generated_files"><span class="tocnumber">3.3</span> <span class="toctext">Generated files</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#History"><span class="tocnumber">4</span> <span class="toctext">History</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Overview">Overview</span></h2>
+<p>Today's embedded systems are continuously being extended to support
+additional and more complex functionality. In many domains
+(automotive, telecommunications, home automation), availability of powerful
+hardware at low prices and cost/time market pressure are pushing for
+integration of functionality on system-on-chip devices capable of
+processing large amount of data in a short time.
+</p><p>Multicore systems are being considered as an economically viable
+alternative to support this increasing computational demand. In this
+context, Evidence proposes OS-level solutions and tools for embedded
+multicore-on-a-chip.
+</p><p>The RT-Druid/ERIKA pair has been designed to handle multicore
+development and programming by hiding the use of multicore
+synchronization primitives. With multicore hiding, it is
+possible to seamlessly migrate application code from a single
+processor to a multicore system without changing a single line of the
+source code.
+</p><p>ERIKA hides the multiple processor structure by providing an automatic
+mapping of the RTOS API calls to the single processor or the multiple
+processor implementation, according to the target of the call. This
+mapping is obtained by exploiting an enhanced remote notification
+mechanism based on multicore interrupts. Remote notification is
+used to provide an implementation to kernel primitives acting on tasks
+(resources) allocated to remote processors. Moreover, the notification
+mechanism is hidden inside the implementation of the ERIKA primitives,
+maintaining the same interface to the developer both for single and
+for multicore systems.
+</p><p>The additional overhead caused by the remote execution of calls is
+mainly due to the "send" of the remote notification from one side, and
+to the interprocessor interrupt that is raised on the receiving
+side.  However, this overhead does
+not have a great impact on typical applications where remote
+activations are not as frequent as local activations.  
+</p>
+<h2> <span class="mw-headline" id="Supported_architectures">Supported architectures</span></h2>
+<p>Multicore architectures currently supported are:
+</p>
+<ul><li> <a href="/wiki/index.php?title=Altera_Nios_II" title="Altera Nios II">Altera Nios II</a>
+</li><li> <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a>
+</li></ul>
+<h2> <span class="mw-headline" id="Using_a_multicore_system">Using a multicore system</span></h2>
+<p>Software written for a multicore ERIKA system differs very little from a single-core ERIKA application.  The configuration specifies that the system is multicore and how code and OS objects are allocated to cores.  The code uses the same APIs in the same manner as on single-core system.  Only shared variable should be declared in a different way, and initialization code inside <code>main()</code> may differ.  The ERIKA build system produces one executable image per core, each one containing an instance of the OS; shared data are present only in the first image.
+</p>
+<h3> <span class="mw-headline" id="OIL_configuration">OIL configuration</span></h3>
+<p>A multicore system is specified in an OIL file by declaring more than one instance of <tt>CPU_DATA</tt> inside the OS section (only on supported architectures).  Each <tt>CPU_DATA</tt> section must specify a different <tt>ID</tt> value, and the <i>master</i> core must be declared with the <tt>MASTER_CPU</tt>.  The <i>master</i> core is the one hosting shared variables, and may have other features depending on the architecture.  Core <tt>ID</tt>s can be any string.  For example (for <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a>):
+</p>
+<pre>MASTER_CPU = "master";
+CPU_DATA = PPCE200ZX {
+	MODEL = E200Z6;
+	ID = "master";
+	APP_SRC = "master.c";
+};
+CPU_DATA = PPCE200ZX {
+	MODEL = E200Z0;
+	ID = "slave";
+	APP_SRC = "slave.c";
+};
+</pre>
+<p>The <tt>ID</tt> value must be used to allocate tasks, ISRs, counters, alarms to cores.  For example:
+</p>
+<pre>TASK MainTask {
+	CPU_ID = "master";
+	PRIORITY = 1;
+	AUTOSTART = FALSE;
+	STACK = SHARED;
+	ACTIVATION = 1;
+	SCHEDULE = FULL;
+};
+TASK OtherTask {
+	CPU_ID = "slave";
+	PRIORITY = 3;
+	AUTOSTART = FALSE;
+	STACK = SHARED;
+	ACTIVATION = 1;
+	SCHEDULE = FULL;
+};
+</pre>
+<p>A few options in the <tt>OS</tt> section are used to limit the scope of the communication between cores (and limit resource usage).
+</p>
+<dl><dt>USEREMOTETASK
+</dt><dd> List of the tasks that can be acted upon remotely (via <code>ActivateTask()</code>, <code>SetEvent()</code>...).  It can assume the value <tt>ALWAYS</tt> to enable remote support for all tasks.  If this option is not present, all tasks are local.
+</dd><dt>USEREMOTEEVENT
+</dt><dd> When set to <tt>ALWAYS</tt>, it enables the support for remote <code>SetEvent()</code>.  If this option is not present, no event can be set remotely.
+</dd></dl>
+<h4> <span class="mw-headline" id="Known_bugs">Known bugs</span></h4>
+<p>Due to a limitation in the code of the current version of RT-Druid, only one <code>OS</code> section should be present in an OIL file.  If an <code>OS</code> section does not contains any CPU_DATA elements, RT-Druid may create an additional CPU named "default_cpu", and ultimately the project building will fail.  This example is not currently supported:
+</p>
+<pre>OS EE {
+       MASTER_CPU = "master";
+       CPU_DATA = E200ZX {
+               ID = "master";
+               ...
+       };
+       CPU_DATA = E200ZX {
+               ID = "secondary";
+               ...
+       };
+       ...
+};
+...
+OS EE {
+       /* PROBLEM: an implicit "default_cpu" CPU_DATA section is created */
+       KERNEL_TYPE = ECC1;
+};
+</pre>
+<h3> <span class="mw-headline" id="Application_programming">Application programming</span></h3>
+<p>Depending on the architecture, specific multi-core features may be supported.  Standard APIs are not changed in syntax nor in semantics, except for a few details reported here.  When <code>ActivateTask()</code> is called with a remote task, no error is returned if the maximum number of activations has been reached (this is different from what Autosar specifies, but it is more efficient).  <code>StartOS()</code> is synchronized with a barrier shared among cores; the operating system starts when <code>StartOS()</code> has been called on all cores.
+</p><p>Variables to be shared must be declared and defined by using appropriate macros.  For <a href="/wiki/index.php?title=Altera_Nios_II" title="Altera Nios II">Altera Nios II</a> there is a specific set of macros.  Here only the more recent macros (used since the <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a> multicore support) are described.  This is an example of the definition of three variables:
+</p>
+<pre>int EE_SHARED_UDATA x[10];
+volatile int EE_SHARED_IDATA y = 3;
+const char EE_SHARED_CDATA msg[5] = "Ciao";
+</pre>
+<p>and this is an example of the declaration of the same variables (usually found inside a header file):
+</p>
+<pre>extern int EE_SHARED_UDATA x[10];
+extern volatile int EE_SHARED_IDATA y;
+extern const char EE_SHARED_CDATA msg[5];
+</pre>
+<p>The macro EE_SHARED_UDATA is used for uninitialized data (BSS), EE_SHARED_IDATA for initialized data, and EE_SHARED_CDATA for constant data.  Additional modifiers, such as <tt>volatile</tt>, can be added.
+</p><p>Shared variables must be defined inside the code for the <i>master</i> core.  The build system extracts the addresses of shared variables from the executable file of the first core, and generates reference symbols for the linker scripts of the other cores.
+</p>
+<h3> <span class="mw-headline" id="Generated_files">Generated files</span></h3>
+<p>For each core, RT-Druid creates one directory inside the output directory (normally called <tt>Debug</tt> or <tt>output</tt>).  Each core directory contains the usual set of files (<tt>makefile</tt>, <tt>eecfg.h</tt>, and <tt>eecfg.c</tt>) plus possibly others. Two make files are generated in the output directory: <tt>makefile</tt>, which invokes the core-specific make files and contains also the rules to link everything together, and <tt>common.mk</tt>, which contains the options (<tt>EEOPT</tt>s and other variables) common to all cores.  Also, a file <tt>common.c</tt> is produced that contains the shared OS variables and is compiled on the <i>master</i> core.
+</p>
+<h2> <span class="mw-headline" id="History">History</span></h2>
+<p>Multicore support for ERIKA Enterprise started in year 2001, with a prototype dual-core ARM7 developed by Parades, Magneti Marelli and ST Microelectronics, named <i>Janus</i>. This version was completed in september 2002, but has never been available to the public (the chip never went in production).
+</p><p>In 2005, the multicore support has been ported to the <a href="/wiki/index.php?title=Altera_Nios_II" title="Altera Nios II">Altera Nios II</a> softcore. The basic features of Janus were retained, plus a set of other features such as:
+</p>
+<ul><li> RT-Druid support for code generation through OIL
+</li><li> support for up to 32 cores
+</li><li> cache disabling
+</li><li> customized multicore interrupts and queuing spin-locks
+</li></ul>
+<p>In 2011, the multicore support has been ported to the <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">PPC e200</a> microcontroller family, namely the MPC5668 Fado.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 31/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

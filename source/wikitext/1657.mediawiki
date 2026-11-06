@@ -1,0 +1,1 @@
+Selecting the PIC18 MCU mounted on the FLEX Full boards.

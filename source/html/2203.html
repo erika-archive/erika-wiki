@@ -1,0 +1,56 @@
+<p>Requirements: 
+</p>
+<ul><li> Install the Freescale CodeWarrior IDE and the compiler <b>CWS12v5.1</b>
+<ul><li> The Windows version of the IDE (that ocntains the compiler) can be downloaded from the following site (please note that the site requires registration): <a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=CW-SUITE-SPECIAL&amp;fpsp=1&amp;tab=Design_Tools_Tab" class="external text" rel="nofollow">HCS12_CODEWARRIOR_V5.1</a>
+</li><li> Install the software in your desired location (every path without blank spaces is a recommended path, for example: <i>C:\Programmi\Freescale\CWS12v5.1</i>).
+</li></ul>
+</li><li> Create a project for RT-Druid. 
+<ul><li> First enter the compiler path in RT-Druid. In the menu at the top, under <i>Windows - Preferences - RT-Druid - Oil - Freescale S12</i>, enter the path where you installed the compiler as shown in the figure.
+</li></ul>
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Compiler_preferences.PNG" class="image"><img alt="Compiler preferences.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/91/Compiler_preferences.PNG" width="300" height="176" /></a></div></div>
+<ul><li> Then, select <i>File - New - RT_Druid ILO and C / C + + project</i> to create a new project.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:New_s12g_project.PNG" class="image"><img alt="New s12g project.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ed/New_s12g_project.PNG" width="300" height="175" /></a></div></div>
+<ul><li> Enter the name of the project (for example: <i>s12_cw_task_demo</i>) and click on <i>Next</i> to specify a template.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Project_name.PNG" class="image"><img alt="Project name.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/18/Project_name.PNG" width="300" height="282" /></a></div></div>
+<ul><li> Choose the <i>Monostack TASK demo</i> as shown in the figure and click on the <i>Finish</i> button.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Task_demo.PNG" class="image"><img alt="Task demo.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/19/Task_demo.PNG" width="300" height="282" /></a></div></div>
+<ul><li> To use a selected revision of the kernel for project building, right-click on the project name and open the <i>Properties</i> window. Then select <i>Erika files location</i> and click to <i>Configure workspace Settings</i> to set the EE kernel location path for the IDE or choose another option.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Ee_path.PNG" class="image"><img alt="Ee path.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5c/Ee_path.PNG" width="300" height="175" /></a></div></div>
+<ul><li> Now you can compile all the files of the project. To do this, simply right-click on the project name and select <i>Build Project</i>.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Build_s12g.PNG" class="image"><img alt="Build s12g.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d7/Build_s12g.PNG" width="300" height="175" /></a></div></div>
+<ul><li> If the compilation has been successfully completed the executable file, named “s12.elf”, should be present inside the Debug folder in the project tree.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Build_success.PNG" class="image"><img alt="Build success.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/23/Build_success.PNG" width="300" height="175" /></a></div></div>
+<ul><li> Execute the application on the S12G micro-controller. The USB drivers for the <b>TWRS12G128</b> board should be already installed, otherwise follow the installation procedure described in the user manual of the board. Move the power jumpers in the right position and connect the board with the USB cable (for more info see the manual of the board). Then connect the board and your PC using a serial communication cable (please note that you may need a USB-serial converter if your PC hasn't a DB9 connector).
+<ul><li> Copy the project path from the project properties as shown in the figure (the project path is needed to upload the executable file <i>s12.elf</i> in the debugger).
+</li></ul>
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Project_path.PNG" class="image"><img alt="Project path.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b1/Project_path.PNG" width="300" height="188" /></a></div></div>
+<ul><li> Open the Freescale debugger named HIWAVE, launching the executable “hiwave.exe” located in the “Prog” folder under the installation directory of the compiler (for example: C:\Programmi\Freescale\CWS12v5.1\Prog).
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Hiwave.PNG" class="image"><img alt="Hiwave.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3f/Hiwave.PNG" width="300" height="175" /></a></div></div>
+<ul><li> Board selection. Under the menu “Component” select <i>Set Connection</i>. In the menu choose <i>HC12</i>, <i>P&amp;E Multilink/Cyclone Pro</i> in the combo boxes and click OK.
+</li></ul>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Pe.PNG" class="image"><img alt="Pe.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0a/Pe.PNG" width="300" height="234" /></a></div></div>
+<ul><li> From the HC12MultilinkCyclonePro menu, choose <i>Load ...</i> and upload the executable file <i>s12.elf</i> located in the  Debug folder inside the project. 
+</li></ul>
+<p>Check the box <i>Automatically erase and program into FLASH and EEPROM</i> and click <i>Open</i> (see image below).
+</p>
+<div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Hiwave_s12_elf.PNG" class="image"><img alt="Hiwave s12 elf.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/be/Hiwave_s12_elf.PNG" width="300" height="175" /></a></div></div>
+<ul><li> A message of warning will appear, don't worry and click OK. If the source files are not displayed correctly open the configuration file (<i>PE_Multilink_CyclonePro.ini</i>) before loading the file s12.elf. Push Run (or press F5 on the keyboard) to start the application.
+</li></ul>
+<p>Note: If your version of HIWAVE does not recognize the board is likely that the problem is related to the version of the dll <i>peosbdmv1.dll", in the folder 	</i>C:\Programmi\Freescale\CWS12v5.1\Prog<i>. Please, update the dll installing the service pack named </i>CW12_V5_1_HCS12_G240_SP.exe<i> or replacing the old dll with the new one provided by the latest P&amp;E drivers.</i>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

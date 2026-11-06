@@ -1,0 +1,1 @@
+This screenshot shows the button which must be pressed to create a standard C project

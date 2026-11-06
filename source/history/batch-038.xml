@@ -1,0 +1,236 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Mchp16 logic int32.png</title>
+    <id>1364</id>
+    <revision>
+      <id>1379</id>
+      <timestamp>2008-08-13T12:55:12Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic int8.png</title>
+    <id>1362</id>
+    <revision>
+      <id>1377</id>
+      <timestamp>2008-08-13T12:54:55Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic intmul.png</title>
+    <id>1365</id>
+    <revision>
+      <id>1380</id>
+      <timestamp>2008-08-13T12:55:23Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic jkflipflop.png</title>
+    <id>1366</id>
+    <revision>
+      <id>1381</id>
+      <timestamp>2008-08-13T12:55:33Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic setbit.png</title>
+    <id>1367</id>
+    <revision>
+      <id>1382</id>
+      <timestamp>2008-08-13T12:55:41Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic shift.png</title>
+    <id>1368</id>
+    <revision>
+      <id>1383</id>
+      <timestamp>2008-08-13T12:55:49Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic srflipflop.png</title>
+    <id>1369</id>
+    <revision>
+      <id>1384</id>
+      <timestamp>2008-08-13T12:55:57Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic truetable.png</title>
+    <id>1370</id>
+    <revision>
+      <id>1385</id>
+      <timestamp>2008-08-13T12:56:06Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic upperhalf.png</title>
+    <id>1371</id>
+    <revision>
+      <id>1386</id>
+      <timestamp>2008-08-13T12:56:18Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear abs.png</title>
+    <id>1372</id>
+    <revision>
+      <id>1387</id>
+      <timestamp>2008-08-13T12:56:34Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear backlash.png</title>
+    <id>1373</id>
+    <revision>
+      <id>1388</id>
+      <timestamp>2008-08-13T12:56:43Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear deadband.png</title>
+    <id>1374</id>
+    <revision>
+      <id>1389</id>
+      <timestamp>2008-08-13T12:56:51Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear division.png</title>
+    <id>1375</id>
+    <revision>
+      <id>1390</id>
+      <timestamp>2008-08-13T12:57:00Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear exponential.png</title>
+    <id>1376</id>
+    <revision>
+      <id>1391</id>
+      <timestamp>2008-08-13T12:57:11Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear hysteresis.png</title>
+    <id>1377</id>
+    <revision>
+      <id>1392</id>
+      <timestamp>2008-08-13T12:57:20Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 nonlinear inverse.png</title>
+    <id>1378</id>
+    <revision>
+      <id>1393</id>
+      <timestamp>2008-08-13T12:57:29Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

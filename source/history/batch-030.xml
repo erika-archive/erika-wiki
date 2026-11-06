@@ -1,0 +1,259 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:GPT Driver one shot.png</title>
+    <id>2420</id>
+    <revision>
+      <id>5283</id>
+      <timestamp>2013-07-17T12:01:32Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>GPT Driver One-Shot.</comment>
+      <text xml:space="preserve">GPT Driver One-Shot.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT Notification Dia.png</title>
+    <id>2426</id>
+    <revision>
+      <id>5296</id>
+      <timestamp>2013-07-17T12:10:08Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT One Continuous Dia.png</title>
+    <id>2425</id>
+    <revision>
+      <id>5295</id>
+      <timestamp>2013-07-17T12:09:43Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT One Shot Seq Dia.png</title>
+    <id>2424</id>
+    <revision>
+      <id>5294</id>
+      <timestamp>2013-07-17T12:09:16Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT State.png</title>
+    <id>2418</id>
+    <revision>
+      <id>5281</id>
+      <timestamp>2013-07-17T12:00:14Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DPT Driver State Diagram.</comment>
+      <text xml:space="preserve">DPT Driver State Diagram.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Generate data file jedec from diamond.png</title>
+    <id>2177</id>
+    <revision>
+      <id>4092</id>
+      <timestamp>2011-11-07T15:47:32Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Generate data file jedec from isplever.png</title>
+    <id>2112</id>
+    <revision>
+      <id>3648</id>
+      <timestamp>2011-10-05T08:47:13Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Generator folder.png</title>
+    <id>1574</id>
+    <revision>
+      <id>1850</id>
+      <timestamp>2010-01-11T09:27:21Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Generator result.png</title>
+    <id>1575</id>
+    <revision>
+      <id>1851</id>
+      <timestamp>2010-01-11T09:28:43Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Generator results.png</title>
+    <id>1588</id>
+    <revision>
+      <id>1875</id>
+      <timestamp>2010-01-11T10:43:01Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Generator window.png</title>
+    <id>1587</id>
+    <revision>
+      <id>1874</id>
+      <timestamp>2010-01-11T10:42:06Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Graphic.png</title>
+    <id>1821</id>
+    <revision>
+      <id>2750</id>
+      <timestamp>2011-02-24T11:24:20Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:HardwareType.png</title>
+    <id>2514</id>
+    <revision>
+      <id>5999</id>
+      <timestamp>2015-11-06T10:25:01Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6002</id>
+      <timestamp>2015-11-06T11:11:16Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:HardwareType.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Help About.png</title>
+    <id>2366</id>
+    <revision>
+      <id>5170</id>
+      <timestamp>2013-07-16T10:15:22Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Help About</comment>
+      <text xml:space="preserve">Help About</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Hiwave.PNG</title>
+    <id>1502</id>
+    <revision>
+      <id>1731</id>
+      <timestamp>2009-12-02T16:44:41Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3205</id>
+      <timestamp>2011-08-24T14:21:58Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Hiwave.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hiwave s12 elf.PNG</title>
+    <id>2213</id>
+    <revision>
+      <id>4217</id>
+      <timestamp>2011-12-12T17:30:58Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

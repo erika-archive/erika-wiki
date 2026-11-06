@@ -1,0 +1,248 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:DMA Memory Scatter Gather.png</title>
+    <id>2428</id>
+    <revision>
+      <id>5302</id>
+      <timestamp>2013-07-17T15:11:59Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Modes Transition.png</title>
+    <id>2432</id>
+    <revision>
+      <id>5306</id>
+      <timestamp>2013-07-17T15:13:46Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Pheriperal Scatter Gather.png</title>
+    <id>2429</id>
+    <revision>
+      <id>5303</id>
+      <timestamp>2013-07-17T15:12:25Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Ping Pong.png</title>
+    <id>2427</id>
+    <revision>
+      <id>5301</id>
+      <timestamp>2013-07-17T15:11:26Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Scatter Gather.png</title>
+    <id>2435</id>
+    <revision>
+      <id>5309</id>
+      <timestamp>2013-07-17T15:15:36Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Scatter Gather int.png</title>
+    <id>2436</id>
+    <revision>
+      <id>5310</id>
+      <timestamp>2013-07-17T15:16:03Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Db9 1.png</title>
+    <id>1605</id>
+    <revision>
+      <id>1943</id>
+      <timestamp>2010-05-03T08:58:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Db9 2.png</title>
+    <id>1606</id>
+    <revision>
+      <id>1944</id>
+      <timestamp>2010-05-03T08:58:52Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Db9 3.png</title>
+    <id>1607</id>
+    <revision>
+      <id>1945</id>
+      <timestamp>2010-05-03T08:59:11Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Device.png</title>
+    <id>1562</id>
+    <revision>
+      <id>1834</id>
+      <timestamp>2010-01-07T14:55:35Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Diamond.png</title>
+    <id>2195</id>
+    <revision>
+      <id>4145</id>
+      <timestamp>2011-11-14T15:17:57Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4146</id>
+      <timestamp>2011-11-14T15:19:14Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Diamond.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Diamond compile fpg eye mico32.png</title>
+    <id>2176</id>
+    <revision>
+      <id>4090</id>
+      <timestamp>2011-11-07T15:26:51Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Diamond mem file.png</title>
+    <id>2175</id>
+    <revision>
+      <id>4087</id>
+      <timestamp>2011-11-07T15:22:16Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Diamond programmer.png</title>
+    <id>2225</id>
+    <revision>
+      <id>4289</id>
+      <timestamp>2012-01-12T13:58:17Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Dio Read 1.png</title>
+    <id>2394</id>
+    <revision>
+      <id>5230</id>
+      <timestamp>2013-07-16T17:44:36Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO Read Channel Seuence Diagram.</comment>
+      <text xml:space="preserve">DIO Read Channel Seuence Diagram.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Dio Write 1.png</title>
+    <id>2395</id>
+    <revision>
+      <id>5231</id>
+      <timestamp>2013-07-16T17:45:14Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO_WriteChannel() Sequence Diagram.</comment>
+      <text xml:space="preserve">DIO_WriteChannel() Sequence Diagram.</text>
+    </revision>
+  </page>
+</mediawiki>

@@ -1,0 +1,14 @@
+In the Multistack HAL every thread can have its private stack, or it can share it with other threads. 
+This allows the Kernel Layer to use scheduling algorithms that could block threads in synchronization 
+primitives (as for example, a fixed priority scheduler with semaphores) or for arbitrary reasons 
+(as, for example, a classical round robin scheduler).
+
+Some code required for Multistack is already available in among the [[Common files for the HAL]].  This is used for example in the [[Freescale PPC e200 (MPC 56xx)]] or the [[Lattice Mico32]] porting.  Those architectures feature a HAL that is easier to write than older ports, so you are encouraged to take those ports as a reference to develop your new port.
+
+The following steps explain how to write the MULTISTACK part of a CPU layer.
+# [[Writing a multi-stack application that runs on a single stack]]
+# [[Writing a multi-stack application that runs on multiple stacks]]
+# [[Writing a multi-stack application that runs on multiple stacks with interrupt not nested]]
+# [[Writing a multi-stack application that runs on multiple stacks with nested interrupts]]
+# [[Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks]]
+# [[Writing a multi-stack application that runs on multiple stacks with semaphores]]

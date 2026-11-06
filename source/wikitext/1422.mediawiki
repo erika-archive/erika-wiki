@@ -1,0 +1,39 @@
+'''Project:''' Scilab/Scicos Development for FLEX boards
+
+'''Details: '''
+* Development of a FLEX specific Scicos code generator with Roberto Bucher (SUPSI-Lugano) as project leader.
+* Development of FLEX specific Scicos blocks for simulation and code generation.
+* Integration with ERIKA Enterprise (Paolo Gai, Evidence srl).
+* Scicos Hardware In the Loop functions with FLEX board using USB link.
+* Hardware and software testing.
+* Realization of simple demos (DC motor closed loop position control using encoder, ball and beam experiment, etc.)
+
+'''Contact:''' [mailto:simone.mannori@inria.fr Simone Mannori]
+
+'''Web-site: ''' -
+
+
+
+
+'''Project:''' Ball and beam experiment with Scilab/Scicos
+
+'''Details: '''
+<center>
+[[image:Bb_setup.png]]
+
+Experimental setup
+
+
+[[image:Bb_scicos.png]]
+
+Scicos
+
+
+[[image:Bb_sensor.png]]
+
+Ball position sensor
+</center>
+
+'''Contact:''' [mailto:simone.mannori@inria.fr Simone Mannori]
+
+'''Web-site: ''' -

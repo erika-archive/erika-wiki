@@ -1,0 +1,249 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Lib fpg eye mico32 name.png</title>
+    <id>2181</id>
+    <revision>
+      <id>4105</id>
+      <timestamp>2011-11-08T09:36:25Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Lib fpg eye mico32 path.png</title>
+    <id>2180</id>
+    <revision>
+      <id>4101</id>
+      <timestamp>2011-11-08T09:29:25Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Lib vhdl.png</title>
+    <id>1785</id>
+    <revision>
+      <id>2615</id>
+      <timestamp>2011-02-15T15:11:44Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Import lattice_cal.vhdl</comment>
+      <text xml:space="preserve">Import lattice_cal.vhdl</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Library name.png</title>
+    <id>1786</id>
+    <revision>
+      <id>2624</id>
+      <timestamp>2011-02-15T15:51:23Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Library Name</comment>
+      <text xml:space="preserve">Library Name</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Link.png</title>
+    <id>1809</id>
+    <revision>
+      <id>2738</id>
+      <timestamp>2011-02-24T11:22:45Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Links.png</title>
+    <id>1635</id>
+    <revision>
+      <id>2011</id>
+      <timestamp>2010-06-22T08:52:59Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Load.PNG</title>
+    <id>1505</id>
+    <revision>
+      <id>1734</id>
+      <timestamp>2009-12-02T16:45:52Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3207</id>
+      <timestamp>2011-08-24T14:24:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Load.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Load exe.PNG</title>
+    <id>1506</id>
+    <revision>
+      <id>1735</id>
+      <timestamp>2009-12-02T16:46:12Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Local.png</title>
+    <id>2251</id>
+    <revision>
+      <id>4444</id>
+      <timestamp>2012-01-26T15:58:10Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Lock step ok button.png</title>
+    <id>2495</id>
+    <revision>
+      <id>5898</id>
+      <timestamp>2014-11-10T13:42:36Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Lock step ok message.png</title>
+    <id>2496</id>
+    <revision>
+      <id>5899</id>
+      <timestamp>2014-11-10T13:42:53Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:MCU Driver File structure.png</title>
+    <id>2353</id>
+    <revision>
+      <id>5134</id>
+      <timestamp>2013-07-15T17:12:43Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>AUTOSAR-like MCU Driver File Structure</comment>
+      <text xml:space="preserve">AUTOSAR-like MCU Driver File Structure</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 branching control.png</title>
+    <id>1327</id>
+    <revision>
+      <id>1342</id>
+      <timestamp>2008-08-13T12:49:10Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 branching demux.png</title>
+    <id>1328</id>
+    <revision>
+      <id>1343</id>
+      <timestamp>2008-08-13T12:49:20Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 branching extractor.png</title>
+    <id>1329</id>
+    <revision>
+      <id>1344</id>
+      <timestamp>2008-08-13T12:49:29Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 branching from.png</title>
+    <id>1330</id>
+    <revision>
+      <id>1345</id>
+      <timestamp>2008-08-13T12:49:38Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

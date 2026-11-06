@@ -1,0 +1,23 @@
+<p>The typical design flow of an embedded application based on ERIKA Enterprise is done inside RT-Druid, which is an analysis and  configuration environment, based on Eclipse. Eclipse is an open framework initially developed by IBM, which allows the possibility of integrating various development tools in a common environment.
+</p><p>The sytem is mainly composed of the following parts:
+</p>
+<ol><li> The Eclipse IDE
+</li><li> The RT-Druid Eclipse plugins, including the OIL compiler, the schedulability analyzer, and others
+</li><li> The ERIKA Enterprise source code, packaged as a set of Eclipse plugins (to ease online update)
+</li><li> (on Windows only) A minimal Cygwin installation 
+</li><li> A set of compiler and debuggers for the specific architecture, typically downloaded from the silicon vendor website
+</li></ol>
+<p>When developing an application for Erika Enterprise, the user is supposed to write the source code inside the RT-Druid IDE.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Erikatutorial_cof_image.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b2/Erikatutorial_cof_image.png" width="200" height="158" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Erikatutorial_cof_image.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>The Eclipse workspace and the RT-Druid plugins for dsPIC (R) DSC.</div></div></div></div>
+<p>Application compilation is also done inside the Eclipse Framework. In fact, the RTDruid code generator is able to generate the Erika Enterprise configuration files together with a set of configuration files (typically, a makefile plus a set of .c files) which are
+then used to compile the source code. After that, compilation is started automatically by pressing on the “Build Project” menu item inside the “Project” menu, which automatically calls the underlying make application (on Windows provided by the Cygwin environment). As an alternative, the “Build Project” command is also available by right clicking on the project name.
+</p><p>On Windows, the choice of the Cygwin environment has been done to simplify the building process of an application: in fact, Cygwin provides a set of traditional Unix tools like make, awk, sed, which are really useful to implement a command line application building framework. Moreover, these tools are typically available for free on GNU/Linux platform, easing in this way the porting of the application to a free development environment such as GNU/Linux.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

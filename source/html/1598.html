@@ -1,0 +1,80 @@
+<p>This page describes the procedure to run a regression test on the examples which are shipped as templates together with ERIKA Enterprise.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#what_is_tested"><span class="tocnumber">1</span> <span class="toctext">what is tested</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#how_to_run_the_regression_test"><span class="tocnumber">2</span> <span class="toctext">how to run the regression test</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#special_commands"><span class="tocnumber">3</span> <span class="toctext">special commands</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#integration_with_Hudson"><span class="tocnumber">4</span> <span class="toctext">integration with Hudson</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="what_is_tested"> what is tested </span></h2>
+<p>We need to make sure that all tests <b>installed in the RT-Druid plugins</b>:
+</p>
+<ul><li> are visible to RT-Druid
+</li><li> can be instantiated with the template generator
+</li><li> have a working OIL file 
+</li><li> compile ok
+</li><li> the test to compile are taken from the current SVN tree, but the templates are taken from the installed plugins
+</li></ul>
+<p>Note that the makefile described below takes all the information from the current SVN tree.
+</p><p>This means that <b>the list</b> of the tests will be taken from the SVN. The <b>tests really compiled</b> are those installed in the plugins.
+</p>
+<h2> <span class="mw-headline" id="how_to_run_the_regression_test"> how to run the regression test </span></h2>
+<ul><li> do a checkout from SVN
+</li><li> go into <tt>ee/trunk/ee/examples</tt>
+</li><li> run <tt>make</tt>
+</li></ul>
+<p>The result of the makefile is an help screen with the major commands to run.
+</p><p>The idea is the following:
+</p>
+<ul><li> a <tt>regression</tt> directory is created
+</li><li> the directory contains one dir for each template ID
+</li><li> the makefile runs with "-j", meaning that you can run multiple compilations in parallel
+</li><li> each test has its own report file under <tt>regression/testid/output.log</tt>
+</li><li> if a test finished without errors, it will not be remade, helping to concentrate on tests which fail
+</li></ul>
+<p>Finally, to run a specific template, use
+</p>
+<pre>make -j 4 all TEMPLATE_LIST=templatename
+</pre>
+<p>To run all templates in an architecture, use
+</p>
+<pre>make -j 4 all ARCH=PIC30
+</pre>
+<h2> <span class="mw-headline" id="special_commands"> special commands </span></h2>
+<ul><li> list all available templates
+</li></ul>
+<pre>make list
+</pre>
+<ul><li> list all templates not tested during this session
+</li></ul>
+<pre>make listmissing
+</pre>
+<ul><li> list all templates with errors during the current session
+</li></ul>
+<pre>make witherrors
+</pre>
+<h2> <span class="mw-headline" id="integration_with_Hudson"> integration with Hudson </span></h2>
+<p>The regression tests are able to create a <a href="http://hudson-ci.org/" class="external text" rel="nofollow">Hudson</a> compatible XML for managing automatic builds.
+</p><p>Usage:
+</p>
+<pre> make xml ARCH=PIC30
+</pre>
+<p>This target makes the Hudson XML file for the tests for a specific architecture.
+</p><p>The resulting XML classifies all the examples in the following way:
+</p>
+<ul><li> tests for the selected architecture which compiled ok - marked as "ok"
+</li><li> tests for the selected architecture which does not compile ok - marked as "not ok"
+</li><li> tests for other architectures listed in the makefile - marked as "ignored"
+</li><li> other tests present in the repository but not listed in the makefile - marked as "not ok". This last target should make sure that new tests will be integrated in the regression tests as soon as the first regression build will be generated.
+</li></ul>
+<p>Please note that all tests must be listed in the makefile as either to be compiled or to be ignored. A valid test for the regression tests is a test that contains a template.xml file.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

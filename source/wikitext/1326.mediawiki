@@ -1,0 +1,24 @@
+The '''MCHP16 Sinks''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_sinks_scope.png]]
+| This is a scope block, which can be used to display signals during simulation.
+|-
+| [[image:Mchp16_sinks_mscope.png]]
+| This is a multiple scope block, which can be used to display signals during simulation.
+|-
+| [[image:Mchp16_sinks_scope2.png]]
+| This is a scope block, which can be used to display signals during simulation.
+|-
+| [[image:Mchp16_sinks_scope3.png]]
+| This is a scope block, which can be used to display signals during simulation.
+|-
+| [[image:Mchp16_sinks_black.png]]
+| This is an output block, which takes the Port number as internal parameter.
+|-
+|}

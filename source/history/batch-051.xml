@@ -1,0 +1,294 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Scicoslab2010 08 roby.jpg</title>
+    <id>1677</id>
+    <revision>
+      <id>2083</id>
+      <timestamp>2010-10-21T15:00:12Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Roby showing the SUPSI CAN bus board...</comment>
+      <text xml:space="preserve">Roby showing the SUPSI CAN bus board...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 09 matteo.jpg</title>
+    <id>1678</id>
+    <revision>
+      <id>2084</id>
+      <timestamp>2010-10-21T15:00:41Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Matteo making a mimic of a robot...</comment>
+      <text xml:space="preserve">Matteo making a mimic of a robot...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 10 roby.jpg</title>
+    <id>1679</id>
+    <revision>
+      <id>2085</id>
+      <timestamp>2010-10-21T15:01:14Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Roby showing the CANOpen message exchange...</comment>
+      <text xml:space="preserve">Roby showing the CANOpen message exchange...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 11 daniele.jpg</title>
+    <id>1680</id>
+    <revision>
+      <id>2086</id>
+      <timestamp>2010-10-21T15:01:41Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Daniele explaining switching mode power supply...</comment>
+      <text xml:space="preserve">Daniele explaining switching mode power supply...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 12 daniele.jpg</title>
+    <id>1681</id>
+    <revision>
+      <id>2087</id>
+      <timestamp>2010-10-21T15:02:16Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Daniele really happy about his first ScicoLab show...</comment>
+      <text xml:space="preserve">Daniele really happy about his first ScicoLab show...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 13 organizers.jpg</title>
+    <id>1682</id>
+    <revision>
+      <id>2089</id>
+      <timestamp>2010-10-21T15:06:00Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>The organizers...</comment>
+      <text xml:space="preserve">The organizers...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 14 finalpicture.jpg</title>
+    <id>1683</id>
+    <revision>
+      <id>2090</id>
+      <timestamp>2010-10-21T15:06:27Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>and last but not least... the final picture!</comment>
+      <text xml:space="preserve">and last but not least... the final picture!</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab3.png</title>
+    <id>1616</id>
+    <revision>
+      <id>1966</id>
+      <timestamp>2010-05-17T08:34:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab4.png</title>
+    <id>1617</id>
+    <revision>
+      <id>1967</id>
+      <timestamp>2010-05-17T08:34:32Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1968</id>
+      <timestamp>2010-05-17T08:35:25Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Scicoslab4.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab6.png</title>
+    <id>1618</id>
+    <revision>
+      <id>1969</id>
+      <timestamp>2010-05-17T08:37:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab7.png</title>
+    <id>1619</id>
+    <revision>
+      <id>1970</id>
+      <timestamp>2010-05-17T08:37:34Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab8.png</title>
+    <id>1620</id>
+    <revision>
+      <id>1971</id>
+      <timestamp>2010-05-17T08:37:48Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scilab.png</title>
+    <id>1571</id>
+    <revision>
+      <id>1847</id>
+      <timestamp>2010-01-11T09:25:01Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1863</id>
+      <timestamp>2010-01-11T10:10:29Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Scilab.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3248</id>
+      <timestamp>2011-09-19T13:39:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Scilab.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3249</id>
+      <timestamp>2011-09-19T13:40:09Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Scilab.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scilab splash.png</title>
+    <id>1802</id>
+    <revision>
+      <id>2731</id>
+      <timestamp>2011-02-24T11:20:58Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Security Warning.png</title>
+    <id>2363</id>
+    <revision>
+      <id>5164</id>
+      <timestamp>2013-07-16T09:50:05Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Security Warning</comment>
+      <text xml:space="preserve">Security Warning</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Select camera 50 msb from msb ide.png</title>
+    <id>2103</id>
+    <revision>
+      <id>3597</id>
+      <timestamp>2011-10-04T09:30:12Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4034</id>
+      <timestamp>2011-11-07T11:19:43Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Select camera 50 msb from msb ide.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

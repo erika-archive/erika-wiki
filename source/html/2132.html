@@ -1,0 +1,67 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Description"><span class="tocnumber">1</span> <span class="toctext">Description</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#EasyLab_Connecting_the_Hardware"><span class="tocnumber">2</span> <span class="toctext">EasyLab Connecting the Hardware</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Easylab_simple_Library"><span class="tocnumber">3</span> <span class="toctext">Easylab simple Library</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Easylab_Library_in_a_MPLAB.27s_example"><span class="tocnumber">4</span> <span class="toctext">Easylab Library in a MPLAB's example</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Description"> Description </span></h1>
+<p><a href="http://www.evidence.eu.com/products/easy-lab.html" class="external text" rel="nofollow">Easylab board</a> is prototyping board developed by <a href="http://www.evidence.eu.com/" class="external text" rel="nofollow">Evidence Srl</a>. It's essentially an expansion board of the <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en548414" class="external text" rel="nofollow">Microchip Microstick dsPIC33F and PIC24H Development Board</a>.<br />
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Easylab_diagram_block.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ed/Easylab_diagram_block.png" width="300" height="263" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Easylab_diagram_block.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>EasyLab simple diagram block</div></div></div></div>
+<p>Key Features:
+</p>
+<ul><li> RS232 to USB Interface to PC for board control.
+</li><li> Power supply 5V DC from USB cable.
+</li><li> miniUSB In-System Programming (ISP) for Microstick module.
+</li><li> 8 Pin I/O, configurable as input or output, for general use.
+</li><li> 8 LEDS on each I/O pin.
+</li><li> 2 Configurable Output PWM to drive dc-motor in motion control.
+</li><li> 2 Low Pass Filter on each PWM to obtain a programmable dc voltage.
+</li><li> All I/O ports easily accessible through pin header connectors.
+</li></ul>
+<p><br />
+</p>
+<h1> <span class="mw-headline" id="EasyLab_Connecting_the_Hardware"> EasyLab Connecting the Hardware  </span></h1>
+<p>The EasyLab needs to run two USB cables. The first cable is a miniUSB (<i>A</i> in the follow picture) is for programming/debugging and
+power supply of the Microchip MicroStick. The second cable, a normal USB, is for pc to board communication and power supply of the expansion board.<br />
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Easylab_supply.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e2/Easylab_supply.png" width="300" height="253" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Easylab_supply.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>EasyLab needs two USB cable to run</div></div></div></div> 
+<h1> <span class="mw-headline" id="Easylab_simple_Library"> Easylab simple Library  </span></h1>
+<p>There is a very simple library in the <a href="http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip" class="external text" rel="nofollow">Easylab Software Packet</a>. The library consists in a C file (easylab.c) and the relative header file (easylab.h). These files have written to be compiled by <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en010065&amp;part=SW006012" class="external text" rel="nofollow">Microchip C30 compiler</a>. In the EasyLab library use some Microchip C30's API , so is necessary to install a Microchip C30 compiler for dsPIC (we tested with version 3.25) for try them. 
+</p><p>API Software description:
+</p>
+<ul><li> Configure dspic pins in realation with board layout
+</li><li> Set/Get actual clock frequency (with internal FRC with PLL)
+</li><li> Turn on/off &amp; toggle leds
+</li><li> Read/Write DIO pins
+</li><li> Configure up to 2 General Purpose Timers
+</li><li> Start and stop a buzzer with a given forcing frequency
+</li><li> Configure one of 4 ADC channels and sample that synchronously
+</li><li> Configure 2 couple of PWM pins in any combination of PWM/override, with given frequency and duty cycle
+</li><li> Serial comunication with UART serial over USB
+</li></ul>
+<p>The library has been coded with dsPIC33FJ64MC802 as only test target, even though <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en548414" class="external text" rel="nofollow">Microstick</a> package come with a PIC24FJ64GP too.
+</p>
+<h1> <span class="mw-headline" id="Easylab_Library_in_a_MPLAB.27s_example"> Easylab Library in a MPLAB's example </span></h1>
+<p>Easylab Library comes with a complete example that shows the usage of some features of the board like PWM, ADC, Buzzer, USB/Serial and leds.
+The library and the <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en019469&amp;part=SW007002" class="external text" rel="nofollow">MPLAB's</a>. project are placed in the <a href="http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip" class="external text" rel="nofollow">Easylab Software Packet</a>.<br />
+In the <a href="/wiki/index.php?title=How_Compile_and_Run_a_MPLAB%27s_project" title="How Compile and Run a MPLAB's project">How Compile and Run a MPLAB's project</a> are placed all the instruction to do it.<br />
+At the beginning the test configure the PWM and the ADC channels. Then, using a simple cable, the user can connect the analogic output (AOx for PWM channel x) to the AD converter (ANx for ADC channel x). The value measured by the AD converter is then transmitted to the PC. You can interact with the application with any serial console (e.g Putty.exe, HyperTerminal, HTerm etc...).
+</p><p>So application steps are:
+</p>
+<ol><li> Select the PWM channel.
+</li><li> Select the ADC channel.
+</li><li> Set the desired voltage value.
+</li><li> Connect the cable and measure the output voltage.
+</li></ol>
+<p>You can send 'ESC' char to restart the demo.<br />
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 14/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

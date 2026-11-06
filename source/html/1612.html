@@ -1,0 +1,483 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Freescale_PPC_e200_.28MPC_56xx.29_support"><span class="tocnumber">1</span> <span class="toctext">Freescale PPC e200 (MPC 56xx) support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Host_Configuration"><span class="tocnumber">1.1</span> <span class="toctext">Host Configuration</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Wind_River_Diab"><span class="tocnumber">1.1.1</span> <span class="toctext">Wind River Diab</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="#Freescale_CodeWarrior"><span class="tocnumber">1.1.2</span> <span class="toctext">Freescale CodeWarrior</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#GNU"><span class="tocnumber">1.1.3</span> <span class="toctext">GNU</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#HighTec"><span class="tocnumber">1.1.4</span> <span class="toctext">HighTec</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Target_configuration_and_programming"><span class="tocnumber">1.2</span> <span class="toctext">Target configuration and programming</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#MCUs"><span class="tocnumber">1.2.1</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#OIL_file_configuration"><span class="tocnumber">1.2.2</span> <span class="toctext">OIL file configuration</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#APIs"><span class="tocnumber">1.2.3</span> <span class="toctext">APIs</span></a>
+<ul>
+<li class="toclevel-4 tocsection-11"><a href="#Interrupts"><span class="tocnumber">1.2.3.1</span> <span class="toctext">Interrupts</span></a></li>
+<li class="toclevel-4 tocsection-12"><a href="#Multicore_support_.28MPC5668_and_MPC5643L.29"><span class="tocnumber">1.2.3.2</span> <span class="toctext">Multicore support (MPC5668 and MPC5643L)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-13"><a href="#Boards"><span class="tocnumber">1.2.4</span> <span class="toctext">Boards</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Multicore_support"><span class="tocnumber">1.3</span> <span class="toctext">Multicore support</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Lauterbach_Trace32_and_ORTI_support"><span class="tocnumber">1.4</span> <span class="toctext">Lauterbach Trace32 and ORTI support</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Internals"><span class="tocnumber">1.5</span> <span class="toctext">Internals</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#Interrupts_2"><span class="tocnumber">1.5.1</span> <span class="toctext">Interrupts</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Use_of_non_volatile_registers_in_Erika_PowerPC"><span class="tocnumber">1.5.2</span> <span class="toctext">Use of non volatile registers in Erika PowerPC</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Download_and_install_of_Eclipse.2C_RT-Druid.2C_and_ERIKA_source"><span class="tocnumber">1.6</span> <span class="toctext">Download and install of Eclipse, RT-Druid, and ERIKA source</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#ERIKA_source_code"><span class="tocnumber">1.6.1</span> <span class="toctext">ERIKA source code</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Eclipse_and_RT-Druid_in_one_piece"><span class="tocnumber">1.6.2</span> <span class="toctext">Eclipse and RT-Druid in one piece</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Eclipse_and_RT-Druid_piece_by_piece"><span class="tocnumber">1.6.3</span> <span class="toctext">Eclipse and RT-Druid piece by piece</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Additional_software"><span class="tocnumber">1.6.4</span> <span class="toctext">Additional software</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-24"><a href="#HOWTOs"><span class="tocnumber">1.7</span> <span class="toctext">HOWTOs</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Freescale_PPC_e200_.28MPC_56xx.29_support"> Freescale PPC e200 (MPC 56xx) support </span></h1>
+<p>ERIKA Enterprise supports the PPC e200 family microcontrollers.
+The support for RT-Druid is available starting from release 1.5.0.
+The support includes: 
+</p>
+<ol><li> Support MPC5674F (e200z7).  MPC5668G (e200z6) is supported in version 1.6.0; version 1.6.1 will support both cores (z6 and z0) of the MPC5668G (already available on the <a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access" title="ERIKA Enterprise and RT-Druid SVN Access">Subversion repository</a>). Support for MPC5643L (e200z4), SPC574K (2 e200z4 + e200z2), MPC5777C (2 e200z7). Due to customer restrictions, this porting of SPC574K and MPC5777C is not yet public. If you want to get more information about SPC574K and MPC5777C porting, please contact <a href="mailto:info@evidence.eu.com" class="external text" rel="nofollow">info@evidence.eu.com</a>.
+</li><li> Support for the WindRiver DIAB and Freescale CodeWarrior compilers.
+</li><li> Support for single- and multi-stack configurations.
+</li><li> ISR Type 1 and Type 2.
+</li><li> ORTI support.
+</li><li> Full Lauterbach support.
+</li></ol>
+<ul><li> Supported compilers
+<ul><li> WindRiver DIAB C Compiler 5.5.1 and 5.8.0.
+</li><li> Freescale CodeWarrior:
+<ul><li> Windows: CodeWarrior Development Studio for MPC55xx/56xx 2.7
+</li><li> Linux: CodeWarrior Development Studio for MCU 10.2
+</li></ul>
+</li><li> GNU:
+<ul><li> Linux: <a href="http://www.macraigor.com/full_gnu.htm" class="external text" rel="nofollow">Macraigor System GNU Tools</a> PowerPC GNU Toolkit V:4.7.0-0. This toolchain is installed and configured for evaluation in <a href="http://www.erika-enterprise.com" class="external text" rel="nofollow">ERIKA Enterprise Virtual Machines</a>.
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li> Mode of operation
+<ul><li> Monostack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> Multistack: Every thread can have its private stack, or it can share it with other threads. 
+</li><li> Multicore: Currently limited to the MPC5668G and MPC5643L, it follows the same philosophy used by <a href="/wiki/index.php?title=ERIKA_multicore_support" title="ERIKA multicore support">ERIKA on other multicore systems</a> and specified by <a href="http://www.autosar.org/" class="external text" rel="nofollow">Autosar</a>: two instances of the operating systems run on the two cores, and communication between cores is performed with a few APIs and shared memory.
+</li></ul>
+</li></ul>
+<ul><li> MMU Handling
+<ul><li> Static global mappings to let all the application see all the memory/peripherals in the system; no memory protection is implemented and all the code is executed in supervisor mode.
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Host_Configuration"> Host Configuration </span></h2>
+<ul><li> RT-Druid requires Java 1.6.
+</li><li> It is possible to use a version of ERIKA more recent than the one provided with RT-Druid; just download the ERIKA tree  from the repository (see <a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access" title="ERIKA Enterprise and RT-Druid SVN Access">ERIKA Enterprise and RT-Druid SVN Access</a>) and point the <b>ERIKA_FILES</b> environment variable to its location; see <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application#Bleeding_edge" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application#Bleeding edge</a> for some caveats.
+</li></ul>
+<h3> <span class="mw-headline" id="Wind_River_Diab"> Wind River Diab </span></h3>
+<ul><li> Compiler: The compiler commands (dcc, das, dld, and dar) are assumed to be reachable from the $PATH.  If a specific version of them has to be used it must be specified in pkg/cfg/arch/cc_z7diab.mk
+</li><li> Operating system: The PPC e200 port has been developed under Debian testing/unstable as of May 2010; the only known requirement is Java 1.6 to run RT-Druid.
+</li><li> In the reference environment, the Diab toolchain was located in /opt/case/diabdata/&lt;version&gt; and Eclipse in /opt/eclipse.  No hard requirement is made by the build system, as specified above. 
+</li></ul>
+<h3> <span class="mw-headline" id="Freescale_CodeWarrior"> Freescale CodeWarrior </span></h3>
+<ul><li>Compiler: The compiler directory can be specified using the environment variable <b>PPC_CW_BASEDIR</b>; this directory must contain the directories <i>PA_Support</i>, and <i>PA_Tools</i> or <i>PowerPC_EABI_Tools</i>.  ERIKA makefiles find all the files they need with relatives paths from there.  Please notice that makefiles require that the variable <b>PPC_CW_BASEDIR</b> do not contain any space.  An evaluation or a limited version of the compiler can be downloaded from the <a href="http://www.freescale.com/webapp/sps/site/overview.jsp?code=CW_DOWNLOADS" class="external text" rel="nofollow">Freescale Web site</a>.
+</li><li>Operating system: both Linux and Windows are supported.  CodeWarrior support has been developed under Debian Linux and Windows XP, but other (and more recent) versions should work.  On Windows, <i>Special Edition: CodeWarrior for Microcontrollers 10.5</i> is currently used, and on Linux <i>CodeWarrior Development Studio for MCU</i> version 10.2.  On Windows the Cygwin environment is used for ERIKA makefiles, so the <b>PPC_CW_BASEDIR</b> variable must use forward slashes '/' and must not contain spaces; you can always convert the path with the <i>cygpath</i> command.  For example, in this case the value to use is <code>/cygdrive/c/PROGRA~1/FREESC~1/CWFORM~1.7</code>:
+</li></ul>
+<pre> $  cygpath.exe `cygpath.exe -ms "/c/Program Files/Freescale/CW for MPC55xx and MPC56xx 2.7"`
+ /cygdrive/c/PROGRA~1/FREESC~1/CWFORM~1.7
+</pre>
+<ul><li>OIL file: Currently, the <code>COMPILER_TYPE = CODEWARRIOR;</code> item must be specified inside the <code>CPU_DATA</code> object. See <a href="#OIL_file_configuration">#OIL file configuration</a> for more details.
+</li></ul>
+<pre> CPU_DATA = PPCE200ZX {
+   ...
+   COMPILER_TYPE = CODEWARRIOW;
+   ...
+ };
+</pre>
+<h3> <span class="mw-headline" id="GNU"> GNU </span></h3>
+<ul><li>Compiler: The compiler directory can be specified using the environment variable <b>PPC_GNU_BASEDIR</b>.  ERIKA makefiles find all the files they need with relatives paths from there.  Please notice that makefiles require that the variable <b>PPC_GNU_BASEDIR</b> do not contain any space.  A freeware version of the compiler can be downloaded from the <a href="http://www.macraigor.com/full_gnu.htm" class="external text" rel="nofollow">Macraigor System GNU tools</a> Web site.
+</li><li>Operating system: only Linux is supported (for now).  GNU support has been developed under Ubuntu Linux.
+</li><li>OIL file: Currently, the <code>COMPILER_TYPE = GNU;</code> item must be specified inside the <code>CPU_DATA</code> object. See <a href="#OIL_file_configuration">#OIL file configuration</a> for more details.
+</li></ul>
+<pre> CPU_DATA = PPCE200ZX {
+   ...
+   COMPILER_TYPE = GNU;
+   ...
+ };
+</pre>
+<ul><li> NOTE: Currently, GNU compiler supports Single-Core configuration and FLE mode only. It was tested on Freescale MPC5674F (Mamba) only.
+</li><li> See Also: <a href="/wiki/index.php?title=PPC_GNU_Toolchain_Integration" title="PPC GNU Toolchain Integration">PPC GNU Toolchain Integration</a>
+</li></ul>
+<h3> <span class="mw-headline" id="HighTec"> HighTec </span></h3>
+<ul><li>Compiler: The compiler directory can be specified using the environment variable <b>PPC_GNU_BASEDIR</b>.  ERIKA makefiles find all the files they need with relatives paths from there.  Please notice that makefiles require that the variable <b>PPC_GNU_BASEDIR</b> do not contain any space.  An evaluation version of the compiler can be downloaded from the <a href="https://www.hightec-rt.com/en/downloads/evaluation-version.html" class="external text" rel="nofollow">HighTec</a> Web site.
+</li><li>Operating system: only Linux is supported (for now).  HIGHTEC support has been developed under Ubuntu Linux.
+</li><li>OIL file: Currently, the <code>COMPILER_TYPE = HIGHTEC;</code> item must be specified inside the <code>CPU_DATA</code> object. See <a href="#OIL_file_configuration">#OIL file configuration</a> for more details.
+</li></ul>
+<pre> CPU_DATA = PPCE200ZX {
+   ...
+   COMPILER_TYPE = HIGHTEC;
+   ...
+ };
+</pre>
+<ul><li> NOTE: Currently, HIGHTEC compiler supports VLE mode only. It was tested on ST SPC574K (K2) only. HighTec compiler support is NOT publicly released. If interested please contact us at info@evidence.eu.com
+</li></ul>
+<h2> <span class="mw-headline" id="Target_configuration_and_programming"> Target configuration and programming</span></h2>
+<ul><li> ERIKA is configured through <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics"> RT-Druid and an OIL file</a>
+</li><li> ERIKA supports the Freescale MPC5674F, MPC5668G and MPC5643L MCUs (we have been able to run it on an MPC56XX and others; Freescale MCUs are really very similar).
+</li><li> At system boot the interrupt controller is set up to work in Software Vector Mode, and all the interrupts are associated to default handlers. The kernel does not use any specific device/interrupts, although for testing purposes it is possible to use the decrementer and some gpios as interrupt sources. All the code is executed from flash, all the data sections are loaded into the SRAM at boot time (the MMU is configured to provide 1:1 mappings for code running in system mode for all the sensible regions, like flash, sram and device registers).
+</li><li> The version in the repository supports both FLE and VLE modes.
+</li><li> The scripts generated by the build process are compatible with Lauterbach v200912.  The commands generated to setup the NEXUS port are not compatible with older releases of the Lauterbach software.  In case you hit this problem, remove the NEXUS.* lines from the generated scripts, ad set up the port according to the Lauterbach version you are using.
+</li><li> Target registers are used according the PPC ABI described in the DIAB manual.
+</li><li> The stack fill pattern is configurable at compile time, but is assumed to be 0xa5.
+</li><li> For Osek conformance classes, which support TerminateTask(), each running task requires 96 bytes of stack.  
+</li></ul>
+<p>For multistack configurations, 76 bytes are required on each stack for context switching.  You can add this numbers to the requirements of your application to estimate task usage.
+</p>
+<ul><li> Stack pointer is aligned at 16 byte (fixed in version 1.6)
+</li></ul>
+<h3> <span class="mw-headline" id="MCUs"> MCUs </span></h3>
+<ul><li> The MCUs supported are currently the following:
+<ul><li> MPC5674F (Freescale Mamba)
+</li><li> MPC5668G (Freescale Fado)
+</li><li> MPC5643L (Freescale Leopard)
+<ul><li> <a href="/wiki/index.php?title=ERIKA_Enterprise_Device_Drivers_for_Leopard_MPC5643L" title="ERIKA Enterprise Device Drivers for Leopard MPC5643L">ERIKA Enterprise Device Drivers for Leopard MPC5643L</a>
+</li></ul>
+</li><li> MPC5777C (Freescale Cobra55) Not publicly released. If interested please contact us at <a href="mailto:info@evidence.eu.com" class="external text" rel="nofollow">info@evidence.eu.com</a>
+</li><li> SPC574K (STMicroelectronics K2) Not publicly released. If interested please contact us at <a href="mailto:info@evidence.eu.com" class="external text" rel="nofollow">info@evidence.eu.com</a>
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="OIL_file_configuration">OIL file configuration</span></h3>
+<p>For more information about configuration through OIL file, see <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>.  Here only the e200zX-specific part of OIL is described.
+</p>
+<dl><dt>CPU (CPU_DATA)
+</dt><dd> CPU must be set to E200ZX.  The exact model is specified with the <b>MODEL</b> item (supported values are <b>E200Z0</b>, <b>E200Z6</b> , <b>E200Z7</b> and <b>E200Z4</b>.  Generation of VLE code can be selected by setting <b>VLE</b> to <b>TRUE</b>; please notice that all the application and the OS code must have the same setting, as ERIKA makefiles do not support mixed programs.  Size in byte of the shared stack can be specified with the optional <b>SYS_STACK_SIZE</b> item.
+</dd><dd> Example of a CPU_DATA section:
+</dd></dl>
+<pre>CPU_DATA = PPCE200ZX {
+	ID = "MainCpu";
+	MODEL = E200Z7;
+	APP_SRC = "main.c";
+	MULTI_STACK = FALSE;
+	VLE = FALSE;
+	SYS_STACK_SIZE = 512;
+};
+</pre>
+<dl><dd>On multicore systems, one CPU_DATA instance can exist for each core.  They must have different <b>ID</b>s.  See <a href="/wiki/index.php?title=ERIKA_multicore_support" title="ERIKA multicore support">ERIKA multicore support</a> for more details about multicore systems on Erika.
+</dd><dt>MCU
+</dt><dd> MCU support is present for MPC5674F ,MPC5668G and MPC5643L.  The only item supported is <b>MODEL</b>, which can be either <b>MPC5674F</b>, <b>MPC5668G</b> or <b>MPC5643L</b>.  Most of the differences produced by this setting affect memory map and Lauterbach scripts.
+</dd><dd> Example:
+</dd></dl>
+<pre>MCU_DATA = PPCE200ZX {
+	MODEL = MPC5674F;
+};
+</pre>
+<dl><dt>System Timer
+</dt></dl>
+<p>Erika on PowerPC has a system timer based on PowerPC Decrementer. This feature is available for all supported MCUs: MPC5674F (Mamba), MPC5668G(Fado) and MPC5643L (Leopard). System time also requires CPU_CLOCK field to be set on CPU_DATA, hence CPU_CLOCK value must be added in CPU_DATA configuration to have a system timer configured.
+This is an example to configure Decrementer as System Timer:
+</p>
+<pre> EE_OPT="EE_SYSTEM_TIMER_DEVICE_DECREMENTER";
+ ...
+ ...
+ CPU_DATA = PPCE200ZX {
+           CPU_CLOCK = 120.0; // for a 120 Mhz cpu clock
+           ...
+           ...
+ }
+ ...
+ ...
+ COUNTER system_timer {
+   MINCYCLE = 1;
+   MAXALLOWEDVALUE = 2147483647;
+   TICKSPERBASE = 1;
+   TYPE = HARDWARE {
+       DEVICE = "DECREMENTER";
+       SYSTEM_TIMER = TRUE;
+   };
+   SECONDSPERTICK = 0.001; // 1 msec tick duration
+   CPU_ID = "default_cpu";
+ };
+</pre>
+<p>Furthermore for MPC5643L (Leopard) is available a system timer based on Freescale STM (System Timer Module), that is a device available in several Freescale PowerPC MCUs. In this case the following configuration must be take into account:
+</p>
+<pre> EE_OPT="EE_SYSTEM_TIMER_DEVICE_STM";
+ ...
+ ...
+ CPU_DATA = PPCE200ZX {
+           CPU_CLOCK = 120.0;  // for a 120 Mhz cpu clock
+           ...
+           ...
+ }
+ ...
+ ...
+ COUNTER system_timer {
+   MINCYCLE = 1;
+   MAXALLOWEDVALUE = 2147483647;
+   TICKSPERBASE = 1;
+   TYPE = HARDWARE {
+     DEVICE = "STM";
+     SYSTEM_TIMER = TRUE;
+   };
+   SECONDSPERTICK = 0.001; // 1 msec tick duration
+   CPU_ID = "default_cpu";
+ };
+ ...
+ ...
+</pre>
+<p><br />
+</p>
+<dl><dt>EEOPTs
+</dt><dd> See also <a href="/wiki/index.php?title=EEOPT" title="EEOPT">EEOPT</a> for common EEOPTs.
+</dd><dd> Special options for the PPC e200 ERIKA porting can be specified through <b>EE_OPT</b> items in the <b>OS</b> section (please notice that the value for an <b>EE_OPT</b> is a string, so double quotes (") must be added around the values in this list.
+<dl><dt> EE_SYSTEM_TIMER_DEVICE_DECREMENTER (see system timer section above)
+</dt><dt> EE_SYSTEM_TIMER_DEVICE_STM (available only for MPC5643L, see system timer section above)
+</dt><dt>EE_ISR_DYNAMIC_TABLE
+</dt><dd>Used to enable dynamic ISR table support that let register ISR handlers at runtime calling <code>EE_e200z7_register_ISR</code>.
+</dd><dt>__E200ZX_EXECUTE_FROM_RAM__
+</dt><dd> When specified, a linker script is used that maps both code and data in the RAM space.  Executables produced with this option can be used only together with a debugger that loads the program in memory.  By default, code and constant data are mapped to Flash, data to RAM.
+</dd><dt>__CODEWARRIOR__
+</dt><dd> Invoke Freescale CodeWarrior compiler.  See <a href="#Freescale_CodeWarrior">#Freescale CodeWarrior</a> for information on how to configure the compiler.  The default compiler is Wind River Diab; see <a href="#Wind_River_Diab">#Wind River Diab</a> for configuration.
+</dd><dt>__USE_CUSTOM_LINKER_SCRIPT__
+</dt><dd> Don't use the dafault linker script.  Users can direct the linker to use their own linker script by setting the <code>LDFLAGS</code> variable. Example:
+</dd></dl>
+</dd></dl>
+<pre>OS EE {
+   EE_OPT = "__USE_CUSTOM_LINKER_SCRIPT__";
+   LDFLAGS = "../my_linker_script.ld";
+};
+</pre>
+<dl><dd><dl><dt>__USE_CUSTOM_CRT0__
+</dt><dd> Don't use Erika default crt0.  Users can provide their own crt0 by adding source files in the usual way (APP_SRC in the OIL file).
+</dd><dt>__MINIMAL_CC_OPTIONS__
+</dt><dd> Enable only the compiler flags absolutely needed to compile Erika, so users can easily add their preferences in CFLAGS.
+</dd><dt>__EE_USE_MMU__
+</dt><dd> Enable the MMU support.  The MMU can be configured by calling <code>EE_e200zx_mmu_setup()</code>.  See the MMU section in <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/e200zx/inc/ee_cpu.h?view=markup" class="external text" rel="nofollow">pkg/cpu/e200zx/inc/ee_cpu.h</a></tt> for more details.  An example configuration can be found in <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/demos/mmu_init/" class="external text" rel="nofollow">examples/ppc/demos/mmu_init</a></tt>.
+</dd><dt>__EE_CRT0_INIT_MMU__
+</dt><dd> Initialize the MMU from the crt0.  See <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/demos/mmu_init/" class="external text" rel="nofollow">examples/ppc/demos/mmu_init</a></tt> for an example, and the MMU section in <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/e200zx/inc/ee_cpu.h?view=markup" class="external text" rel="nofollow">pkg/cpu/e200zx/inc/ee_cpu.h</a></tt>.
+</dd><dt>EE_NO_LIBEE
+</dt><dd> To not generete the kernel library <b>libee.a</b> but link all the objects files (kernel + application) directly in an elf file. This option is useful to try Erika with CodeWarrior compiler with an evaluation license, because the archiver is not enabled with this license.
+</dd><dt>DEBUG
+</dt><dd> On this architecture, enabling debug symbols does not inhibit optimization.
+</dd><dt>MPC5643L_STD_SW_MMU_CONFIG"
+</dt><dd> This EE_OPT is valid only for MPC5643L (Leopard) and provides a standard (and in most cases sufficient) MMU configuration. This option is useful expecially running your code from FLASH where Debugger does not initializes the MMU for you.
+</dd><dt>EE_LAUTERBACH_DEMO_SIM
+</dt><dd> This option is available only for Mamba (MPC5674F), for details please take a look at DEMO_ErikaSim in the directory of templates. It causes the generation of Lauterbach scripts to use with Lauterbach simulator.
+</dd></dl>
+</dd></dl>
+<p>There are a few examples in the ERIKA code base that can be used as a starting point for new projects.  Examples include also a makefile, which can be used to compile a project without a need of an IDE.  The makefile runs RT-Druid non-interactively, and requires the environment variable <b>RTDRUID_ECLIPSE_HOME</b> to point to the Eclipse directory where RT-Druid is installed.
+</p><p>Examples can be accessed as templates in RT-Druid (see <a href="/wiki/index.php?title=How_to_create,_compile_and_debug_an_application_for_Freescale_MPC5674F" title="How to create, compile and debug an application for Freescale MPC5674F">How to create, compile and debug an application for Freescale MPC5674F</a>), or directly in the source code: <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/" class="external text" rel="nofollow">examples/ppc/</a>.
+</p><p>In the first version of ERIKA and RT-Druid supporting e200zX, the only e200-specific setting in the OIL configuration file was the CPU_DATA value, which had to be set to <b>MPC5674F</b> instead of <b>PPCE200ZX</b>.  This not supported any more.
+</p>
+<h3> <span class="mw-headline" id="APIs"> APIs </span></h3>
+<ul><li> List of functions (see <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/e200zx/inc/ee_cpu.h?view=markup" class="external text" rel="nofollow">pkg/cpu/e200zx/inc/ee_cpu.h</a></tt> and <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/e200zx/inc/ee_irq.h?view=markup" class="external text" rel="nofollow">pkg/cpu/e200zx/inc/ee_irq.h</a></tt> for prototypes and other details):
+<ul><li> EE_e200z7_register_ISR(level, handler, priority): Associate <tt>handler</tt> to the IRQ <tt>level</tt>, with the given <tt>priority</tt> (available only if <b>EE_OPT=EE_ISR_DYNAMIC_TABLE</b> is set).
+</li><li> EE_e200z7_setup_decrementer(delay): Configure the decrementer to raise an interrupt every <tt>delay</tt> cycles.
+</li><li> EE_e200z7_setup_decrementer_oneshot(delay): Configure the decrementer to raise an interrupt <tt>delay</tt> cycles after invocation.
+</li><li> EE_e200z7_stop_decrementer(): Stop the decrementer from generating interrupts.
+</li><li> EE_e200zx_setup_fixed_intv(bitpos): Enable the fixed-interval interrupt.
+</li><li> EE_e200zx_stop_fixed_intv(): Disable the fixed-interval interrupt.
+</li><li> EE_e200zx_mmu_setup(entries, count): MMU initialization.
+</li></ul>
+</li></ul>
+<p>Note: notice that the *_e200z7_* is slightly misleading since it seem to refer only to e200z7 family, it is a legacy name convention when the only supported architecture by Erika was Z7. Currently even Z0, Z4 and Z6 are supported hence these functions can be used for such architectures, although it refers to *_e200z7_*.
+</p>
+<h4> <span class="mw-headline" id="Interrupts">Interrupts</span></h4>
+<p>There are two way to configure ISR. The standard way is the static way with OIL configuration (example):
+</p>
+<pre> ISR DecrIsr {
+   CATEGORY = 2;
+   ENTRY = "DECREMENTER";
+ };
+ 
+ ISR FixedIntvIsr {
+     CATEGORY = 2;
+     ENTRY = "FIXED_INTV";
+     HANDLER = "fixed_intv_handler";
+ };
+ 
+ ISR IsrLow {
+   CATEGORY = 2;
+   PRIORITY = 1;
+   ENTRY = "0";
+ };
+   ISR IsrMedium {
+   CATEGORY = 2;
+   PRIORITY = 2;
+   ENTRY = "1";
+ };
+ 
+ ISR IsrHigh {
+   CATEGORY =&nbsp;;
+   PRIORITY = 3;
+   ENTRY = "2";
+   HANDLER = "isr_high_handler";
+ };
+</pre>
+<p>In static ISR table handling mode there's full support for both ISR1 and ISR2 for <b>external interrupt</b>. To register an handler you should use the suitable macro (<b>ISR1</b> or <b>ISR2</b>) passing the value of <b>HANDLER</b> field or the <b>ISR name</b>, in case the former is missing. The configuration field <b>ENTRY</b> declare the position of the handler inside the vector table (the example show three handlers that get the first three positions in vector, corrisponding to the first three software interrupt request). Priority field corripsond to interrupt priority value set to corrisponding Interrupt Controller Priority select registers (<b>INTC.PSR[(ENTRY)] = PRIORITY</b>), the values have to be inside [0..15] range.
+</p><p>There is direct support for two cpu <b>internal exceptions</b>, those generated by the time base facilities: decrementer and fixed interval timer (<b>ENTRY = "DECREMENTER"</b> and <b>ENTRY = "FIXED_INTV"'</b> respectively.). Support for Watch-Dog timer will be added. To register an handler for internal interrupt you have to use <b>ISR1_INT</b> or <b>ISR2_INT</b> (two different couple of macros are needed to issue EOI, End Of Interrupt, only for external interrupts). Priority field in configuration have no meaning for internal interrupts.
+</p><p>You can register handler by code dinamically with with the <code>EE_e200z7_register_ISR()</code> described above. To enable dynamic ISR table support you must declare <b>EE_OPT=EE_ISR_DYNAMIC_TABLE</b> configuration OIL file. The <b>first 16 level</b> of dynamic table are reserved for <b>internal exceptions</b> handlers, so you have to add this offset to the <b>ENTRY</b> value of the static approach to register an handler to the same interrupt source.
+</p><p>ISRs (Interrupt Service Routines) are just void functions with no arguments. For external interrupts (IVOR4), the EOI (End Of Interrupt) is issued by ERIKA's handler; user ISRs need not bother about that.
+</p>
+<h4> <span class="mw-headline" id="Multicore_support_.28MPC5668_and_MPC5643L.29">Multicore support (MPC5668 and MPC5643L)</span></h4>
+<ul><li> Functions used for multicore support on MPC5668 (see <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/freescale_mpc5668/inc/ee_dual.h?view=markup" class="external text" rel="nofollow">pkg/mcu/freescale_mpc5668/inc/ee_dual.h</a></tt> for prototypes and other details):
+<ul><li> EE_mpc5668_start_z0(f): Enable the z0 CPU.
+</li></ul>
+</li></ul>
+<p>The same paradigm of multicore support available for MPC5668G, is also available for the MPC5643L, (for details see <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/freescale_mpc5643l/inc/ee_dual.h?view=markup" class="external text" rel="nofollow">pkg/mcu/freescale_mpc5643l/inc/ee_dual.h</a></tt>). Likewise MPC5668G, in order to start the slave core, a EE_mpc5643l_start_slave(f) call has to be provided at startup (typically in main function) immediately before the StartOS().
+</p>
+<h3> <span class="mw-headline" id="Boards"> Boards </span></h3>
+<ul><li> ERIKA has been developed on an <b>Axiom MPC5674evbfxmb evaluation board</b>. This evaluation board has the MAMBA microcontroller (Freescale MPC5674F)
+<ul><li> The kernel has no dependency on the board itself, but some of its functionalities can be used for debugging purposes.  Including file "pkg/board/axiom_mpc5674fxmb/inc/ee_board.h" the following functions can be used:
+<ul><li> EE_leds_init(): which sets up the GPIOs associated with the leds.
+</li><li> EE_EE_leds(mask): which turns the i-th led on or off depending on the state of the i-th bit in the mask passed as an argument.
+</li><li> EE_led_&lt;X&gt;_on()/EE_led_&lt;X&gt;_off(): turns led X on or off.
+</li><li> EE_buttons_disable_interrupts(button): disables the interrupt associated to the given button.
+</li><li> EE_buttons_enable_interrupts(button): enables it.
+</li><li> EE_buttons_clear_ISRflag(button): acknowledges the interrupt coming from the given button.
+</li><li> EE_button_get_B&lt;X&gt;(): gets the status of button X.
+</li><li> EE_buttons_init(): initializes the GPIOs associated to buttons.
+</li></ul>
+</li><li> The functions above are available if, respectively, __USE_LEDS__ and __USE_BUTTONS__ are defined upon inclusion of ee_board.h
+</li><li> The connections are assumed to be the following:
+<ul><li> GPIO 147-150: connected to LED0-3.  Looking at the pins on the EVB:
+<ul><li> ETPUB1 -&gt; USER_LED1
+</li><li> ETPUB2 -&gt; USER_LED2
+</li><li> ETPUB3 -&gt; USER_LED3
+</li></ul>
+</li><li> GPIO 450: connected to BUTTON0 (ETPUC9 -&gt; USER_DEV1)
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li> Erika is available for the <b>Freescale MPC5668EVB Evaluation Board</b>. This evaluation board has the FADO microcontroller (Freescale MPC5668G)
+<ul><li> for this board the are no available support for leds or buttons.
+</li></ul>
+</li></ul>
+<ul><li> Erika is available for <b>Freescale MPC564xLEVB Evaluation Board</b>. This evaluation board has the LEOPARD microcontroller (Freescale MPC5643L)
+<ul><li> for this board there is the same set of primitives defined for "Axiom MPC5674evbfxmb" board, hence a basic support for leds and button is available.
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Multicore_support"> Multicore support </span></h2>
+<p>In the ERIKA multicore support for PPC e200 there are a few aspects specific to the PPC e200 architecture, and they are described here.  Please refer to <a href="/wiki/index.php?title=ERIKA_multicore_support" title="ERIKA multicore support">ERIKA multicore support</a> for general information on ERIKA multicore systems.
+</p><p>The PPC evaluation board supported by Erika Multicore is the Freescale MPC5668G/E Evaluation kit, the details can be found at <a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MPC5668GKIT" class="external free" rel="nofollow">http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MPC5668GKIT</a>. The multicore support is also provided for MPC5643L with the Freescale evaluation board MPC564xL EVB, the details can be found at <a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=XKT564L" class="external free" rel="nofollow">http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=XKT564L</a>.
+</p><p>In multicore configuration, is it possible running both instances of the operating system both in RAM and Flash. For instance  on MPC5668G, the internal SRAM is partitioned statically in two: memory from 0x40000000 to 0x4001FFFF is reserved to the first core and shared variables, while memory from 0x40020000 to 0x4003FFFF is reserved to the second core.  0x40020000 is used as the starting address of the second core. A similar approach is available for MPC5643L. In order to customize such memory assignments please refer to memory0.ld and memory1.ld files in "erika/pkg/mcu/freescale_mpc56XX/cfg/multicore" (where XX=43l for Leopard and XX=68 for Fado).
+</p><p>Shared variable data is allocated in a single section (<tt>.mcglobald</tt>).  Access to this section must be performed without cache, or the OS may malfunction.  ERIKA crt0 does not enable cache; if you want to enable it, you should also make sure that the <tt>.mcglobald</tt> section is allocated on a page on its own by the linker script, and that the MMU is configured to mark such page as non-cached.  
+</p><p>The OS uses two software interrupts (6 and 7) and two hardware semaphores (0 and 1) of the MPC5668G to handle inter-core communication.  They are initialised inside <code>StartOS()</code>.  While all the other software interrupts and semaphores are available for user applications, those used by the OS should not be meddled with by user code.  It is okay to briefly mask the interrupts with higher-priority interrupts or by disabling interrupts. In case of MPC5643L, as the microcontroller has two different interrupt controllers (one for each core), SW interrupt number 7 is used for both cores. Even if the MPC5643L has two SEMA4 modules, only the first module (the one associated to the master core) is used for this mechanism, this means that semaphores 0 and 1 of the first SEMA4 module are used for synchronisation (as in MPC5668G), while the remaining semaphores of the first SEMA4 module and all semaphores belonging to the second SEMA4 module are available for user applications.
+</p><p>Examples of multicore applications are in <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/dual_examples/" class="external text" rel="nofollow">examples/ppc/dual_examples</a></tt>.  In particular, <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/dual_examples/mono_activate01/" class="external text" rel="nofollow">examples/ppc/dual_examples/mono_activate01</a></tt> and <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/ppc/dual_examples/multi_event01/" class="external text" rel="nofollow">examples/ppc/dual_examples/multi_event01</a></tt> are complete applications, nearer to real-world usage.
+</p><p>Erika multicore for PowerPC supports AUTOSAR OS-like functionalities. For details please see the following page (but take into account that these features have not been published yet):
+<a href="/wiki/index.php?title=Erika_AUTOSAR_OS" title="Erika AUTOSAR OS">Erika AUTOSAR OS</a>
+</p>
+<h2> <span class="mw-headline" id="Lauterbach_Trace32_and_ORTI_support"> Lauterbach Trace32 and ORTI support </span></h2>
+<p>The ERIKA build system for PPC e200 produces a Lauterbach Trace32 configuration file (<tt>t32.cmm</tt>) and a ORTI description file (<tt>system.orti</tt>) inside the output directory.  The ORTI file is produced only if ORTI support is enabled in the OIL configuration file.  To launch the Trace32 debugger, please issue <code>t32mppc</code> from the output directory.  The ERIKA build system honors the <tt>T32SYS</tt> environment variable, if set.
+</p><p>For multicore projects, the files mentioned above are produced inside the core directories for each core, and a startup script (named <tt>start.sh</tt>) is produced in the output directory.  To run the debugger, please issue <code>start.sh</code> from the output directory.  The script creates two instances of the debugger, one for each core. For instace when MPC5668G is turned on, only the first (Z6) core is enabled.  In order to simulate the real setup, the debugger connected to the second (Z0) core does not enable its core, but it is responsibility of the code running on the Z6 core to enable the Z0 core (this is different from the example script for MPC5668G distributed with the Lauterbach Trace32 software).  Nonetheless, the startup script loads all the code and the debug symbols for both core and both debugger instances.  In a typical debugging session, you start the execution of the code on the Z6 core from its debugger, and then, when the Z0 core has become active, start also the code on the Z0 core from the Z0 debugger.  The barrier inside <code>StartOS()</code> comes handy to synchronize the code running on the two cores. The <tt>start.sh</tt> script runs only on Linux; currently the ERIKA build system does not support Windows to run Trace32 for e200 multicore systems. A similar approach has been adopted for MPC5643L.
+</p>
+<h2> <span class="mw-headline" id="Internals">Internals</span></h2>
+<h3> <span class="mw-headline" id="Interrupts_2">Interrupts</span></h3>
+<p>Interrupt handling in PPC e200 ERIKA uses software vector mode and a single entry point for all interrupts and exceptions, which is <code>EE_e200z7_irq()</code>.  This function calls the user ISR and issues the end-of-interrupt for external interrupts; when the served interrupt is not nested, i.e., it interrupted a task directly, <code>EE_e200z7_irq()</code> also calls the scheduler before returning.
+</p><p>This scheme of IRQ handling can be changed by rewriting the crt0 and changing the IVOR setup.  In this way it is possible, for example, to use hardware vector mode.  Please note that it is important that the end-of-interrupt be issued before calling the scheduler, as the scheduler may not return when a new task is to be scheduled.
+</p>
+<h3> <span class="mw-headline" id="Use_of_non_volatile_registers_in_Erika_PowerPC">Use of non volatile registers in Erika PowerPC</span></h3>
+<p>Some Erika RTOS assembly modules in PowerPC use non volatile registers for their internal purposes (r14-r31). Such modules are:
+</p>
+<ul><li> ee_e200zx_contex.S - This module is in charge of managing context switch for multistack on e200zx. In this module r14-r31 are saved and restored in a prologue and epilogue;
+</li><li> ee_oo.S	- This module is in charge of saving and restoring registers for Osek TerminateTask() on e200zx. In this module r14-r31 are saved and restored in a  prologue and epilogue;
+</li><li> ee_entry.S - This module handles exception entry points and hardware setup for the e200zx. In this module the istruction stmw uses r28-r30 to initialize SRAM. This code is stripped if a custom ISR table is used (see EE_ISR_EXTERNAL_TABLE for details);
+</li><li> ee_boot.S - This module represents boot sequence for PowerPC MCUs. The erika boot sequence accesses non volatile registers in init phase. This code can be removed from build process (see __USE_CUSTOM_CRT0__ for details).
+</li></ul>
+<p>The use of r14-r31 registers is limited, just few lines of code. But this information is relevant in case advanced features of some compilers are used, (e.g.: to define additional non-standard SDAs, Small Data Area). For instance Windriver Diab compiler has the REGISTER directive in the linker script to fullfill this requirement. If this non-standard approach is not required this information can be neglected. It is provided in order to give the position of such code whenever the use of non volatile registers (r14-r31) is necessary for non-standard purposes. For details please refere to your compiler documentation.
+</p><p><b>Assumption for future development:</b> additional SDA base addresses will be stored starting from register r14
+</p>
+<h2> <span class="mw-headline" id="Download_and_install_of_Eclipse.2C_RT-Druid.2C_and_ERIKA_source"> Download and install of Eclipse, RT-Druid, and ERIKA source </span></h2>
+<p>To build an ERIKA application you need:
+</p>
+<ul><li> ERIKA source code
+</li><li> RT-Druid and a hosting Eclipse
+</li><li> Some command-line tools
+</li></ul>
+<h3> <span class="mw-headline" id="ERIKA_source_code"> ERIKA source code </span></h3>
+<p>ERIKA source code is bundled with RT-Druid.  ERIKA for PPC e200 honors the definition of <b>ERIKA_FILES</b>, so you can use the latest version of ERIKA as explained in <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application#Bleeding_edge" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application#Bleeding edge</a>.
+</p>
+<h3> <span class="mw-headline" id="Eclipse_and_RT-Druid_in_one_piece"> Eclipse and RT-Druid in one piece </span></h3>
+<p>A complete version of an Eclipse installation together with the RT-Druid plugin can be downloaded from this page:
+<a href="http://erika.tuxfamily.org/erika-for-multiple-devices.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/erika-for-multiple-devices.html</a>.  Please make sure to use a version not older than 1.6.0 beta.  See also <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>.
+</p>
+<h3> <span class="mw-headline" id="Eclipse_and_RT-Druid_piece_by_piece"> Eclipse and RT-Druid piece by piece </span></h3>
+<p>Alternatively, if you already have a copy of Eclipse or you want to use a version of Eclipse different from the one provided by the page above, you can follow this procedure.
+</p>
+<ul><li> To download the e200 plug-in for Eclipse refer the following site: <a href="http://download.tuxfamily.org/erika/webdownload/rtdruid_beta" class="external text" rel="nofollow">Plug-in download site</a>.
+</li></ul>
+<p>Procedure for installation:
+</p>
+<ul><li> Step 0:
+</li></ul>
+<dl><dd> Get <i>Eclipse</i> and required plug-ins;
+</dd><dd> Where possible, the suggestion is to download the <i>all in one update site</i> and use the eclipse update manager or to use the eclipse update manager directly on a web site;
+<ul><li> Eclipse
+</li></ul>
+<dl><dd> If you don't have any eclipse installations, you can download eclipse with cdt already installed from <a href="http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/heliossr1" class="external text" rel="nofollow">Eclipse IDE for C/C++</a>.
+</dd><dd> It is also possible use an already installed distribution of eclipse or to download one (for example from <a href="http://www.eclipse.org/downloads" class="external text" rel="nofollow">Eclipse Downloads</a>) and then add all missing plug-ins.
+</dd></dl>
+<ul><li> EMF
+</li></ul>
+<dl><dd> The main page to download EMF is <a href="http://www.eclipse.org/modeling/emf/downloads/?project=emf" class="external text" rel="nofollow">Eclipse Modeling Framework</a>.
+</dd><dd> The version to download is related to the eclipse version: eclipse 3.3 -&gt; emf 2.3 , eclipse 3.4 -&gt; emf 2.4, eclipse 3.5 -&gt; emf 2.5, eclipse 3.6 -&gt; emf 2.6. 
+</dd><dd> The list of required plugins is:
+<dl><dd> org.eclipse.emf.common
+</dd><dd> org.eclipse.emf.ecore
+</dd><dd> org.eclipse.emf.edit
+</dd><dd> org.eclipse.emf.common.ui
+</dd><dd> org.eclipse.emf.edit.ui
+</dd></dl>
+</dd><dd> Clearly it is possible to install more plugins, like the whole emf runtime or sdk
+</dd></dl>
+<ul><li> CDT
+</li></ul>
+<dl><dd> The main page to download CDT is <a href="http://www.eclipse.org/cdt/downloads.php" class="external text" rel="nofollow">CDT Downloads</a>.
+</dd><dd> Also here, the version to download is related to eclipse version. 
+</dd><dd> In this case is required only the cdt runtime plugin.
+</dd></dl>
+</dd><dd> <a href="http://erika.tuxfamily.org/forum/viewtopic.php?f=6&amp;t=651&amp;sid=89784e2d97765c3f1c41f6e3c049437a#p727" class="external text" rel="nofollow">Forum Post (in italian) about installing the Eclipse plugins</a>
+</dd></dl>
+<ul><li> Step 1:
+</li></ul>
+<dl><dd> Open <i>Eclipse</i>;
+</dd><dd> From the menu <i>Help</i> select <i>Install New Software...</i>;
+</dd><dd> Add with the button <i>Add...</i> the reference site mentioned above (fill the Location field with this: <a href="http://download.tuxfamily.org/erika/webdownload/rtdruid_beta" class="external free" rel="nofollow">http://download.tuxfamily.org/erika/webdownload/rtdruid_beta</a>);
+</dd><dd> Tick all plug-ins related to RT-Druid core and to Erika Enterprise, then click on the button <i>Next</i> to install them;
+</dd><dd> Restart Eclipse;
+</dd></dl>
+<ul><li> Step 2:
+</li></ul>
+<dl><dd> From the menu <i>File</i> select <i>New</i> and then RT-Druid Oil and C/C++ Project;
+</dd><dd> From the Project menu select one of the available e200 demo tests;
+</dd><dd> Then click on the project name with the right mouse button and build to obtain the elf object module for debugging;
+</dd></dl>
+<h3> <span class="mw-headline" id="Additional_software"> Additional software </span></h3>
+<p>ERIKA uses GNU make and some command-line utilities to build programs.  You need the following tools (please notice that only the less common commands are listed here; very common commands that are present in any Unix/POSIX system like <i>ls</i> are not listed for simplicity):
+</p>
+<ul><li> make (GNU version)
+</li><li> gawk (GNU AWK)
+</li><li> sed
+</li><li> grep
+</li></ul>
+<p>For Linux the above commands are present in virtually every standard installation; but you can always install them from the respective packages of your distributions.
+</p><p>For Windows, <a href="http://www.cygwin.com/" class="external text" rel="nofollow">Cygwin</a> is recommended.  Please make sure to include the above packages (package names are the same as the tool names).
+</p>
+<h2> <span class="mw-headline" id="HOWTOs"> HOWTOs </span></h2>
+<ul><li> <a href="/wiki/index.php?title=How_to_create,_compile_and_debug_an_application_for_Freescale_MPC5674F" title="How to create, compile and debug an application for Freescale MPC5674F">How to create, compile and debug an application for Freescale MPC5674F</a>
+</li><li> <a href="/wiki/index.php?title=How_to_run_the_MODISTARC_regression_tests_for_Freescale_MPC5674F" title="How to run the MODISTARC regression tests for Freescale MPC5674F">How to run the MODISTARC regression tests for Freescale MPC5674F</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 94/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

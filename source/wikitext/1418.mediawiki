@@ -1,0 +1,23 @@
+
+'''On-going work at the [http://robot.unipv.it Robotics Laboratory], University of Pavia'''
+
+In sparse order:
+
+1)<br>
+Ettore Di Palma is working to the interfacing of FLEX boards to current sensors from [http://www.lem.com/ LEM], aiming at the wireless monitoring of electric loads. Sensors currently adopted are the [http://www.lem.com/hq/en/component/option,com_catalog/task,displayserie/serie,AT/output_type,/ AT series] components AT 100 B10 and AT 50 B10.
+The interface to the FLEX is already working. We aim to integrate the monitoring system into a domotic system, probably based on the X10 technology.
+
+2)<br>
+Daniele Caprini is working to the interfacing of FLEX boards to the [http://www.yamar.com/DCB500.html Yamar DCB500] powerline transceiver for automotive applications, which is a potential alternative to the standard CAN and LIN buses.
+We are testing the communication system on an ignition system for racing cars.
+
+3)<br>
+Marco Ghibaudi is working on a wireless audio broadcasting application, using FLEX boards together with the [http://www.rfsolutions.co.uk/acatalog/EasyBee_Zigbee_Module.html EasyBee] ZigBee radio module. The application is based on FFT transforms, [http://en.wikipedia.org/wiki/Wavelet_compression wavelet compression], and optimized coding to use, among the other features, custom fixed point math with the Microchip dsPIC.
+
+4)<br>
+Marco Della Vedova is working on a multi-robot application where small mobile robots are moving in environments with obstacles. The FLEX board controls each robot, and has to drive an H bridge for controlling the two DC motors, sample encoders, and receive external information from the integrated [http://www.rfsolutions.co.uk/acatalog/EasyBee_Zigbee_Module.html EasyBee] module. Here a [http://www.youtube.com/watch?v=kQYTDYYn3pE demo video] is available.
+
+5)<br>
+Alberto Savioli is developing a 6 DOF [http://en.wikipedia.org/wiki/Inertial_Measurement_Unit Inertial Measurement Unit (IMU)], interfacing the FLEX board with a 3-axis accelerometer, 2 2-axis gyroscopes, a GPS receiver, a magnetometer and a temperature sensor. The sensor data fusion is done using a [http://en.wikipedia.org/wiki/Kalman_filter Kalman filter] running on the Microchip dsPIC controller.
+
+For more information, please contact head researcher [http://robot.unipv.it/toolleeo Tullio Facchinetti].

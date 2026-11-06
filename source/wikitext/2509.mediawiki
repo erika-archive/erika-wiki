@@ -1,0 +1,1 @@
+Schematic of the components of a Xen-compatible ERIKA Enterprise application.

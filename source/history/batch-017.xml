@@ -1,0 +1,236 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Avr5 preferences menu.png</title>
+    <id>2321</id>
+    <revision>
+      <id>4819</id>
+      <timestamp>2012-07-18T06:24:39Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut build automatically.png</title>
+    <id>2328</id>
+    <revision>
+      <id>4854</id>
+      <timestamp>2012-07-20T09:01:42Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut build project.png</title>
+    <id>2332</id>
+    <revision>
+      <id>4859</id>
+      <timestamp>2012-07-20T09:07:23Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut compiling.png</title>
+    <id>2333</id>
+    <revision>
+      <id>4860</id>
+      <timestamp>2012-07-20T09:09:18Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut elf file.png</title>
+    <id>2335</id>
+    <revision>
+      <id>4862</id>
+      <timestamp>2012-07-20T09:13:52Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut installer options.png</title>
+    <id>2323</id>
+    <revision>
+      <id>4848</id>
+      <timestamp>2012-07-20T08:37:05Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut mymake cygwin error.png</title>
+    <id>2334</id>
+    <revision>
+      <id>4861</id>
+      <timestamp>2012-07-20T09:11:44Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut newproject.png</title>
+    <id>2329</id>
+    <revision>
+      <id>4856</id>
+      <timestamp>2012-07-20T09:04:15Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut newproject2.png</title>
+    <id>2330</id>
+    <revision>
+      <id>4857</id>
+      <timestamp>2012-07-20T09:04:30Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut preferences.png</title>
+    <id>2327</id>
+    <revision>
+      <id>4853</id>
+      <timestamp>2012-07-20T09:00:50Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut preferences menu.png</title>
+    <id>2326</id>
+    <revision>
+      <id>4852</id>
+      <timestamp>2012-07-20T08:58:53Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut program device1.png</title>
+    <id>2337</id>
+    <revision>
+      <id>4864</id>
+      <timestamp>2012-07-20T09:15:45Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut program device2.png</title>
+    <id>2338</id>
+    <revision>
+      <id>4865</id>
+      <timestamp>2012-07-20T09:16:02Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut project name.png</title>
+    <id>2331</id>
+    <revision>
+      <id>4858</id>
+      <timestamp>2012-07-20T09:06:58Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut select workspace.png</title>
+    <id>2324</id>
+    <revision>
+      <id>4850</id>
+      <timestamp>2012-07-20T08:48:16Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Avr5tut srec file.png</title>
+    <id>2336</id>
+    <revision>
+      <id>4863</id>
+      <timestamp>2012-07-20T09:14:06Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

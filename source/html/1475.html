@@ -1,0 +1,591 @@
+<p>ERIKA Enterprise Manual for Atmel AVR5 targets
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Erika_Enterprise_and_RT-Druid_for_AVR"><span class="tocnumber">1.1</span> <span class="toctext">Erika Enterprise and RT-Druid for AVR</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Integration_with_other_tools_for_AVR"><span class="tocnumber">1.2</span> <span class="toctext">Integration with other tools for AVR</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Content_of_this_document"><span class="tocnumber">1.3</span> <span class="toctext">Content of this document</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Erika_Enterprise_for_AVRdevices"><span class="tocnumber">2</span> <span class="toctext">Erika Enterprise for AVRdevices</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#The_RT-Druid_and_Erika_Enterprise_design_flow"><span class="tocnumber">2.1</span> <span class="toctext">The RT-Druid and Erika Enterprise design flow</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Building_an_application_from_command_line"><span class="tocnumber">2.1.1</span> <span class="toctext">Building an application from command line</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Setting_up_the_compiling_environment_for_AVR"><span class="tocnumber">2.2</span> <span class="toctext">Setting up the compiling environment for AVR</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Writing_software_for_AVR_using_Erika_Enterprise"><span class="tocnumber">2.3</span> <span class="toctext">Writing software for AVR using Erika Enterprise</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Avoid_the_generation_of_dependency_files"><span class="tocnumber">2.3.1</span> <span class="toctext">Avoid the generation of dependency files</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Avoid_the_generation_of_.src_files_from_C_files"><span class="tocnumber">2.3.2</span> <span class="toctext">Avoid the generation of .src files from C files</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Printing_the_commands_executed_.28verbose_mode.29"><span class="tocnumber">2.3.3</span> <span class="toctext">Printing the commands executed (verbose mode)</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Source_files_composing_an_application"><span class="tocnumber">2.3.4</span> <span class="toctext">Source files composing an application</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Stack_handling"><span class="tocnumber">2.3.5</span> <span class="toctext">Stack handling</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Interrupt_handling"><span class="tocnumber">2.3.6</span> <span class="toctext">Interrupt handling</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#EE_IC_enable_external_IRQ"><span class="tocnumber">2.3.7</span> <span class="toctext">EE_IC_enable_external_IRQ</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#EE_IC_clear_pending_IRQ"><span class="tocnumber">2.3.8</span> <span class="toctext">EE_IC_clear_pending_IRQ</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#AVRtimers"><span class="tocnumber">2.3.9</span> <span class="toctext">AVRtimers</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Configuring_a_particular_AVR_microcontroller"><span class="tocnumber">2.3.10</span> <span class="toctext">Configuring a particular AVR microcontroller</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#Configuring_the_EDF_scheduler"><span class="tocnumber">2.4</span> <span class="toctext">Configuring the EDF scheduler</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#UISP"><span class="tocnumber">3</span> <span class="toctext">UISP</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Boards"><span class="tocnumber">4</span> <span class="toctext">Boards</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Crossbow_MIB5X0_Board"><span class="tocnumber">4.1</span> <span class="toctext">Crossbow MIB5X0 Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-24"><a href="#Introduction_2"><span class="tocnumber">4.1.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#LEDs"><span class="tocnumber">4.1.2</span> <span class="toctext">LEDs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#Atmel_STK500.2F1_Board"><span class="tocnumber">4.2</span> <span class="toctext">Atmel STK500/1 Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-27"><a href="#Introduction_3"><span class="tocnumber">4.2.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#LEDs_2"><span class="tocnumber">4.2.2</span> <span class="toctext">LEDs</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#Requirements"><span class="tocnumber">4.2.3</span> <span class="toctext">Requirements</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>Embedded microcontroller units are spreading in thousands of applications, ranging from single to distributed systems, control applications, multimedia, communication, medical applications and many others. Modern microcontrollers, which are growing in computational power, speed and interfacing capabilities, are more and more feeling the need of tools to make the development of complex scalable applications easier.
+</p><p>This manual describes the porting details of the Erika Enterprise kernel(s) for the AVR family of microcontrollers. The AVR family produced by Atmel represents a widely used 8-bit RISC microcontroller, with a full range of interfaces available.
+</p><p>AVR5 is now the OLD porting of the Erika Enterprise kernel for the AVR family of microcontrollers. The current porting of the Erika Enterprise kernel(s) for the Atmel families of microcontrollers which supports 8/16-bit RISC AVR cores is now AVR8, whose manual page can be found <a href="http://erika.tuxfamily.org/wiki/index.php?title=Atmel_AVR8" class="external text" rel="nofollow">here</a>.
+</p>
+<h2> <span class="mw-headline" id="Erika_Enterprise_and_RT-Druid_for_AVR"> Erika Enterprise and RT-Druid for AVR </span></h2>
+<p>Embedded applications often require tight control on the temporal behavior of each single activity in the system. Real-time complex system systems such as Wireless Sensor Networks are nowadays deployed in academic and industrial environments. The very limited set of resources available in the popular hardware platforms, and the diversified domains of WSN applications, require the adoption of an Operating System responding to the following pre-requisites:
+</p>
+<ul><li> minimum footprint to fit the limited RAM capacity (of the order of few KB); 
+</li><li> tunable scheduling algorithm to handle the execution of the tasks;
+</li><li> an application interface acting on the kernel layer and well decoupled from OS service implementation.
+</li></ul>
+<p>Many WSNs are deployed making use of AVR 5-based sensor boards like those commercialized by CrossBow Inc.
+</p><p>Erika Enterprise and RT-Druid represent the answer of Evidence Srl for the development of scalable real-time applications for the AVR family.
+</p><p><br />
+Erika Enterprise provides AVR developers the following features:
+</p><p><br />
+Traditional RTOS features:
+</p>
+<ul><li> Support for four conformance classes to match different application requirements;
+</li><li> Support for preemptive and non-preemptive multitasking;
+</li><li> Support for fixed priority scheduling;
+</li><li> Support for stack sharing techniques, and one-shot task model to reduce the overall stack usage;
+</li><li> Support for shared resources;
+</li><li> Support for periodic activations using Alarms;
+</li><li> Support for centralized Error Handling;
+</li><li> Support for hook functions before and after each context switch.
+</li></ul>
+<p><br />
+RT-Druid development environment
+</p>
+<ul><li> Development environment based on the Eclipse IDE;
+</li><li> Support for the OIL language for the specification of the RTOS configuration;
+</li><li> Graphical configuration plugin to easily generate the OIL configuration file and to easily configure the RTOS parameters;
+</li><li> Full integration with the Cygwin development environment to provide a Unix-style scripting environment;
+</li><li> Apache ANT scripting support for code generation.
+</li></ul>
+<p><br />
+AVR integration features
+</p>
+<ul><li> Installation setup which integrates the AVR gcc compiler and AVRStudio together with Evidence Erika Enterprise and RT-Druid;
+</li><li> Support for the Atmel JTAG ICE MKII debugger;
+</li><li> Full support for AVR microcontroller series AVR5 - ATmega128 and ATmega103 (in compatibility mode);
+</li><li> Full support for the development boards Atmel STK50X boards;
+</li><li> Full support of the RF230 RF solution from Atmel, with usage of the IEEE 802.15.4 MAC (ZigBee);
+</li><li> Full support for the Atmel STK500/501 development board;
+</li><li> Full support for Crossbow MIB5X0 boards used to program Mica motes.
+</li></ul>
+<h2> <span class="mw-headline" id="Integration_with_other_tools_for_AVR"> Integration with other tools for AVR </span></h2>
+<p>Erika Enterprise and RT-Druid aims to the best integration with the existing tools for development available from the AVR microcontrollers.
+RT-Druid will be used to quickly configure the application, setting temporal parameters of real-time tasks, memory requirements, stack allocation and many other parameters. Moreover, RT-Druid generates the application template, and leaves the developer the task to implement the logic of each single task.
+While programming the application, the developer can exploit the power and flexibility offered by the primitives of the Erika Enterprise real-time kernel.
+Erika Enterprise also supports the compiling environments provided by Atmel, providing also direct support for the programming and JTAG solutions of Atmel.
+</p>
+<h2> <span class="mw-headline" id="Content_of_this_document"> Content of this document </span></h2>
+<p>The purpose of this document is to describe all the information needed to create, develop and modify an Erika Enterprise application for the AVR family of microcontrollers.
+</p><p>In particular, the document describes:
+</p>
+<ul><li> The design flow which should be used to generate an Erika Enterprise application;
+</li><li> The configuration of the development environment;
+</li><li> The options which are available to configure the system.
+</li></ul>
+<p>As a final note, all the settings which are explained in this document apply both to Erika Enterprise if not otherwise stated.
+</p><p><a href="/wiki/index.php?title=Tutorial:_Avr5_-_First_installation_and_application_compilation_on_Windows" title="Tutorial: Avr5 - First installation and application compilation on Windows">Tutorial: Avr5 - First installation and application compilation on Windows</a> - this is a step-by-step / quick guide tutorial on how to use Erika Enterprise and RT-Druid with AVR.
+</p>
+<h1> <span class="mw-headline" id="Erika_Enterprise_for_AVRdevices"> Erika Enterprise for AVRdevices </span></h1>
+<h2> <span class="mw-headline" id="The_RT-Druid_and_Erika_Enterprise_design_flow"> The RT-Druid and Erika Enterprise design flow </span></h2>
+<p>The typical development environment provided by Atmel for the software development for the AVR microcontrollers is composed by the Atmel AVR Studio. Atmel AVR Studio is a development environment for Microsoft Windows which integrates a source code editor, an instruction set simulator and a debugger.
+</p><p>In addition to the traditional development flow, Evidence Srl provides a design and configuration environment named RT-Druid, based on <a href="http://www.eclipse.org" class="external text" rel="nofollow">Eclipse</a>. Eclipse is an open framework initially developed by IBM, which allows the possibility of integrating various development tools in a common environment.
+</p><p>For that reason, when developing an application for Erika Enterprise the user is supposed to write the source code inside the RT-Druid IDE (see Figure 2.1).
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5_eclipse_workspace.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/63/Avr5_eclipse_workspace.png" width="200" height="137" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5_eclipse_workspace.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 2.1: The Eclipse workspace and the RT-Druid plugins for AVR</div></div></div></div>
+<p>Application compilation is also done inside the Eclipse Framework. In fact, the RTDruid code generator is able to generate the Erika Enterprise configuration files together with a set of configuration files (typically, a makefile plus a set of .c files) which are then used to compile the source code.
+</p><p>After that, compilation is started automatically by pressing on the “Build Project” menu item inside the “Project” menu, which automatically calls the underlying make application provided by the Cygwin environment. As an alternative, the “Build Project” command is also available by right clicking on the project name.
+</p><p>The choice of the Cygwin environment has been done to simplify the building process of an application: in fact, Cygwin provides a set of traditional Unix tools like make, awk, sed, which are really useful to implement a command line application building framework. Moreover, these tools are typically available for free on the Linux platform, easing in this way the porting of the application to a free development environment such as Linux.
+</p>
+<h3> <span class="mw-headline" id="Building_an_application_from_command_line"> Building an application from command line </span></h3>
+<p>The RT-Druid plugins provide three ways to develop an application:
+</p>
+<ol><li> A graphical interface to simplify the development of an application, based on Eclipse.
+</li><li> A scripting interface based on <a href="http://ant.apache.org" class="external text" rel="nofollow">Apache ANT</a>, which is the default scripting environment used in the Eclipse Framework.
+</li><li> A standalone code generator, that does not use Eclipse.
+</li></ol>
+<p>Using ANT or the standalone version, the developer can automatically generate from scripts the configuration data and the makefiles which are then used to compile the application. This removes the need of opening the graphical environment to compile an application, providing a way to implement automatic compilation scripts and regression tests.
+</p><p>Please refer to the RT-Druid reference manual for information about ANT scripting.
+</p>
+<h2> <span class="mw-headline" id="Setting_up_the_compiling_environment_for_AVR"> Setting up the compiling environment for AVR </span></h2>
+<p>Erika Enterprise has been designed to be compiled using the GNU gcc toolchain. The AVR porting of Erika Enterprise in particular can be compiled using the GNU tools for AVR. The porting provides both the binutils package and the gcc package, plus a set of libraries which can be used to control the various peripherals provided by the AVR microcontrollers.
+</p><p>The following list describes the various packages which contains the various parts of the compilation toolchain:
+</p><p><b>The GNU assembler and binutils.</b> This package is distributed inside the AVRGCC package.
+</p><p><b>The GNU AVR-GCC.</b> The GNU assembler, binutils and compiler are available as a part of the WinAVR suite AVRGCC Compiler, which is available as project on surceforge <a href="http://winavr.sourceforge.net/" class="external free" rel="nofollow">http://winavr.sourceforge.net/</a>.
+</p><p><b>C Libraries.</b> A set of libraries which can be used to control the peripherals implemented on the particular avr5 chip in use. These libraries are packaged together with the AVR-libc.
+</p><p>To compile an Erika Enterprise application, the development environment needs to be configured to correctly recognize the AVR-Gcc compiler. For doing so, please go to the “Preference” menu, as shown in Figure 2.2,
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5_preferences_menu.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e1/Avr5_preferences_menu.png" width="200" height="166" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5_preferences_menu.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 2.2: Go to the “Preference” menu</div></div></div></div>
+<p>and find the “RT-Druid/Oil/Avr5 Configurator” form as depicted in Figure 2.3. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5_preferences.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/48/Avr5_preferences.png" width="200" height="181" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5_preferences.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 2.3: Select paths for compiler and assembler</div></div></div></div>
+<p>The first textbox, labeled Gcc path, refers to the installation directory of the AVR-Gcc compiler. The second and third textboxes are useful if you are using a development environment based on the Crossbow Mib5x0 board. In particular, the second textbox, labeled Uisp path, refers to the installation directory of the uisp programmer for Crossbow Mib5x0 board, and the third textbox, labeled Serial port device, refers to the COM serial port where the board is attached.
+</p>
+<pre>
+Warning: The install directories specified in the two textboxes of Figure 2.3 does not include the bin directory!
+That is, c:\WinAVR-20071221 is correct, wheras c:\Programmi\WinAVR-20071221\bin is not.
+</pre>
+<h2> <span class="mw-headline" id="Writing_software_for_AVR_using_Erika_Enterprise"> Writing software for AVR using Erika Enterprise </span></h2>
+<pre>
+Note: Writing an application for AVR using Erika Enterprise is very simple.
+Please refer to the Erika EnterpriseTutorial for the AVR architecture for a step-by-step guide
+with screenshots on how to create, compile and debug a AVR application written with Erika Enterprise.
+</pre>
+<p>This section describes the details about the various configuration options which are available to create and compile an Erika Enterprise application for a AVR microcontroller.
+</p>
+<pre>
+Note: For a complete description of all the OIL parameters, please refer to the RT-Druid reference manual.
+</pre>
+<h3> <span class="mw-headline" id="Avoid_the_generation_of_dependency_files"> Avoid the generation of dependency files </span></h3>
+<p>The typical compilation process of an Erika Enterprise application involves the computation of a dependency file which is used to understand which are the files which needs to be compiled or updated.
+</p><p>To avoid the computation of these dependencies (useful when you are sure you basically have to compile everything), you can put the following line in the OIL file:
+</p>
+<pre>
+CPU mySystem {
+OS myOs {
+EE_OPT = &quot; NODEPS &quot;;
+...
+};
+...
+};
+</pre>
+<h3> <span class="mw-headline" id="Avoid_the_generation_of_.src_files_from_C_files"> Avoid the generation of .src files from C files </span></h3>
+<p>The typical compilation process of an Erika Enterprise application produces various files which can be used to better analyze the code generated by the Avr-Gcc compiler. In particular, from each .C file, a .SRC file is produced containing the corresponding assembler listing, which is then compiled by the Avr-Gcc compiler to produce the .o.
+</p><p>It is possible to avoid the intermediate step which leads to the production of the .SRC file. In that case, the compiler will be responsible of producing the .O file directly from the .C file. This in general also speeds up the compilation process a little bit.
+</p><p>To obtain that feature, you can put the following lines in the OIL file:
+</p>
+<pre>
+CPU mySystem {
+OS myOs {
+EE_OPT = &quot; NOSRC &quot;;
+...
+};
+...
+};
+</pre>
+<h3> <span class="mw-headline" id="Printing_the_commands_executed_.28verbose_mode.29"> Printing the commands executed (verbose mode) </span></h3>
+<p>The default compilation process typically prints only a compact output for each compilation step. That is in general not useful whenever a file is not compiled properly and the user wants to know the exact command which is executed in the compilation process.
+</p><p>To obtain a printing of the complete list of commands issued by the Erika Enterprise makefile, you can add the following line to the OIL file:
+</p>
+<pre>
+CPU mySystem {
+OS myOs {
+EE_OPT = &quot; VERBOSE &quot;;
+...
+};
+...
+};
+</pre>
+<h3> <span class="mw-headline" id="Source_files_composing_an_application"> Source files composing an application </span></h3>
+<p>The source files which can be put in an RT-Druid project are composed by C-language files (with extension .c) and Assembler files (with extension .S). Assembler files are always preprocessed by the C preprocessor. All the application files which has to be included in the final application needs to be listed inside the OIL file, as in the following OIL example:
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+APP_SRC = &quot; file_1 .c&quot;;
+APP_SRC = &quot; file_2 .c&quot;;
+};
+...
+</pre>
+<h3> <span class="mw-headline" id="Stack_handling"> Stack handling </span></h3>
+<p>Erika Enterprise can be configured as monostack or multistack.
+</p><p>In a monostack configuration, only a single stack exists in the system. No blocking primitives are supported, and all the tasks and interrupts execute on the same stack. In this case, the one and only stack starts from the top of the application allocated memory, growing towards higher addresses. The monostack configuration can not be used if the application needs to call RTOS primitives such as WaitSem and WaitEvent. Moreover, it cannot be used when Erika Enterprise conformance classes ECC1 and ECC2 are used.
+</p><p>To configure a monostack kernel in the OIL file, the user has to write the following
+lines:
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+MULTI_STACK = FALSE;
+};
+...
+</pre>
+<p>In a multistack configuration, the kernel support the existence of different stacks in the same application. Having different stacks allow the application tasks to use blocking primitives like WaitSem and WaitEvent, which basically may block the execution of the running task. In that case, the calling task must have a private stack which is changed upon blocking. The stack will be selected again when the task will be rescheduled. There are different stacks available in a multistack configuration:
+</p>
+<ul><li> A shared stack (used by all the tasks which have a shared stack);
+</li><li> An IRQ stack (used by all the ISR Type 2 routines);
+</li><li> A set of private stacks (one for each task which has selected a private stack).
+</li></ul>
+<p>In the AVR architecture, the shared stack works as in the monostack configuration, that is it is allocated at the end of the SRAM data memory, growing towards lower addresses. The IRQ stack and the private stacks, instead, are allocated in the application data space as arrays. The following example shows an OIL configuration which configures a multistack kernel without a separate IRQ stack (in this case, IRQ handlers execute on the stack of the interrupted task):
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+MULTI_STACK = TRUE {
+IRQ_STACK = FALSE;
+};
+};
+...
+</pre>
+<p>The following example shows an OIL configuration which configures a multistack kernel with a separate IRQ stack (in this case, some registers are saved on the stack of the interrupted task, but the IRQ handler C function is executed on a separate IRQ stack). In this example is showed also the task0 that uses a private stack.
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+MULTI_STACK = TRUE {
+IRQ_STACK = TRUE {
+SYS_SIZE =64;
+};
+};
+};
+...
+TASK Task0 {
+...
+STACK = PRIVATE {
+SYS_SIZE =64;
+};
+...
+};
+...
+</pre>
+<h3> <span class="mw-headline" id="Interrupt_handling"> Interrupt handling </span></h3>
+<p>Erika Enterprise for AVR provide support for fast Interrupt Service Routines (ISR) which do not require any RTOS primitive to be called, as well as regular ISRs, which can call RTOS primitives (e.g., a timer interrupt can call ActivateTask to activate a periodic task). The first kind of ISRs are called ISR Type 1, and always have hardware interrupt priority greater than the second kind of ISRs which are called ISR Type 2.
+</p><p>To declare an ISR of tipe 1 or 2, the user have to specify inside the OIL file a set of parameters: the interrupt source used by the interrupt, the type of ISR, and finally the handler function associated with the interrupt. For example if we want to declare a ISR type 2 associated to the timer1 overflow interrupt we have to type the following code inside the OIL file:
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+APP_SRC = &quot; handler .c&quot;;
+...
+MULTI_STACK = FALSE;
+HANDLER = HANDLER_T1_OVERFLW {
+FUNCTION = &quot; myfunction&quot;;
+TYPE = 2;
+};
+};
+...
+</pre>
+<p>In the previous example the function myfunction__isr2 is a simple C function, that is called everytime the timer1 overflow interrupt are raised. The strings that have to be used in the ATmega128 model of AVR5 family are:
+</p>
+<pre>
+/ * Interrupt Handlers strings * /
+STRING HANDLER_IRQ0; // external interrupt request 0
+STRING HANDLER_IRQ1; // external interrupt request 1
+STRING HANDLER_IRQ2; // external interrupt request 2
+STRING HANDLER_IRQ3; // external interrupt request 3
+STRING HANDLER_IRQ4; // external interrupt request 4
+STRING HANDLER_IRQ5; // external interrupt request 5
+STRING HANDLER_IRQ6; // external interrupt request 6
+STRING HANDLER_IRQ7; // external interrupt request 7
+STRING HANDLER_T0_MATCH; // Timer/ Counter 0 Compare Match
+STRING HANDLER_T0_OVERFLW; // Timer/ Counter 0 Overflow
+STRING HANDLER_T1_EVENT; // Timer/ Counter 1 Capture Event
+STRING HANDLER_T1_MATCH_A; // Timer/ Counter 1 Compare Match A
+STRING HANDLER_T1_MATCH_B; // Timer/ Counter 1 Compare Match B
+STRING HANDLER_T1_MATCH_C; // Timer/ Counter 1 Compare Match C
+STRING HANDLER_T1_OVERFLW; // Timer/ Counter 1 Overflow
+STRING HANDLER_T2_MATCH; // Timer/ Counter 2 Compare Match
+STRING HANDLER_T2_OVERFLW; // Timer/ Counter 2 Overflow
+STRING HANDLER_T3_EVENT; // Timer/ Counter 3 Capture Event
+STRING HANDLER_T3_MATCH_A; // Timer/ Counter 3 Compare Match A
+STRING HANDLER_T3_MATCH_B; // Timer/ Counter 3 Compare Match B
+STRING HANDLER_T3_MATCH_C; // Timer/ Counter 3 Compare Match C
+STRING HANDLER_T3_OVERFLW; // Timer/ Counter 3 Overflow
+STRING HANDLER_SPI; // SPI Serial Transfer Complete
+STRING HANDLER_US0_RX; // USART0 Rx complete
+STRING HANDLER_US0_EMPTY; // USART0 Data Register Empty
+STRING HANDLER_US0_TX; // Usart0 Tx complete
+STRING HANDLER_US1_RX; // USART1 Rx complete
+STRING HANDLER_US1_EMPTY; // USART1 Data Register Empty
+STRING HANDLER_US1_TX; // Usart1 Tx complete
+STRING HANDLER_ADC; // ADC Conversion Complete
+STRING HANDLER_EEPROM; // EEPROM Ready
+STRING HANDLER_ANALOG_COMP; // Analog Comparator
+STRING HANDLER_2WSI; // Two - wire serial Interface
+STRING HANDLER_SPM_READY; // Store program Memory Ready
+</pre>
+<p>Please remember that the AVR family of microcontroller has an interrupt vector table which is stored in the flash memory. The lowest addresses of the interrupt vector table is allocated to the Reset and to the interrupt vectors. Interrupt handlers placed at lower addresses has higher hardware priorities than interrupt handlers placed at higher addresses.
+</p><p>Writing an ISR 2 or ISR 1 with Erika Enterprise implies that&nbsp;:
+</p>
+<ul><li> An assembler stub will be generated for the ISR. The ISR stub will have the name of the ISR (in the example, __isr2_myfunction). The assembler stub will call a C function named myfunction, which is provided by the user inside the application C files. The assembler stub will be attached to the interrupt of the peripheral (in the example, timer 1). Every time an interrupt for the peripheral arrives, the assembler stub will execute, which in turns calls the internal C function whose body has been specified by the user.
+</li><li> The assembler stub saves all the CPU registers on the current stack. After that, if a multistack configuration with private IRQ stack has been selected, the stack is changed to a private IRQ stack. Otherwise, the ISR will execute on the stack of the running task, as in the ISR1 case. At the end of the stub, the Erika Enterprise end IRQ function will be executed to choose which is the next task to run.
+</li></ul>
+<p>To use the external interrupt source the user must setting the external interrupt mask with the following function.
+</p>
+<h3> <span class="mw-headline" id="EE_IC_enable_external_IRQ"> EE_IC_enable_external_IRQ </span></h3>
+<p><b>Synopsis</b>
+</p>
+<pre>
+void EE_IC_enable_external_IRQ(EE_TYPEIRQMASK i);
+</pre>
+<p><b>Description</b>
+</p><p>Enables the external interrupt source that are specified in the 8-bit bitmask. For example, if the third bit in the bitmask is set, the third external interrupt will be enabled.
+</p>
+<h3> <span class="mw-headline" id="EE_IC_clear_pending_IRQ"> EE_IC_clear_pending_IRQ </span></h3>
+<p><b>Synopsis</b>
+</p>
+<pre>
+void EE_IC_clear_pending_IRQ(void);
+</pre>
+<p><b>Description</b>
+</p><p>Clears ALL the pending interrupts.
+</p>
+<h3> <span class="mw-headline" id="AVRtimers"> AVRtimers </span></h3>
+<p>The number of hardware timers in the AVRfamily is highly dependent on the particular chip used. For example, the ATmega128 device has 4 timers (2 8-bit timers and 2 16-bit timers).
+</p><p>The timers used in the application with the corresponding prescalers can be specified in the OIL file (these settings applies to AVR atmega128.
+</p><p>The following example show how to configure a set of timers for an AVR atmega128:
+</p>
+<pre>
+...
+CPU_DATA = AVR5 {
+...
+TIMER0 = DIV32;
+TIMER1 = DIV8;
+TIMER2 = DIV64;
+TIMER3 = DIV1;
+...
+};
+...
+</pre>
+<p>The prescaler factor for timers in ATmega128 model are DIV1, DIV8, DIV64, DIV256, and DIV1024. The timer0 have also the prescaler factor DIV32. The User can use inside the source code of application the following functions to use the timer.
+</p><p>To control the system timers the following functions are available:
+</p>
+<ul><li> <i>void EE_timer_initx(void);</i>
+<dl><dd> Description: Inizialize the timerx (x = 0,1,2,3).
+</dd></dl>
+</li><li> <i>void EE_timer_x_start(void);</i>
+<dl><dd> Description: Start the timerx (x = 0,1,2,3).
+</dd></dl>
+</li><li> <i>void EE_timer_x_stop(void);</i>
+<dl><dd> Description: Stop the timerx (x = 0,1,2,3).
+</dd></dl>
+</li><li> <i>void EE_timer_x_get(void);</i>
+<dl><dd> Description: Return the value of the counter register of the timerx (x = 0,1,2,3).
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Configuring_a_particular_AVR_microcontroller"> Configuring a particular AVR microcontroller </span></h3>
+<p>Atmel produces various versions of the AVR microcontrollers, each one with different peripherals and memory sizes.
+</p><p>The AVR-Gcc specifies the various peripherals and memory areas by passing an appropriate command line parameter which selects the right linker script for the specified device. For that reason, the OIL file allows the specification of the microcontroller used,
+as in the following example:
+</p>
+<pre>
+...
+MCU_DATA = AVR5 {
+MODEL = ATMEGA128;
+};
+...
+</pre>
+<p>Currently, Erika Enterprise supports the following values for the MODEL attribute:
+</p>
+<ul><li> AVR5 devices:
+</li></ul>
+<dl><dd>ATMEGA128,
+</dd></dl>
+<h2> <span class="mw-headline" id="Configuring_the_EDF_scheduler"> Configuring the EDF scheduler </span></h2>
+<p>When configuring the EDF kernel for an Erika Enterprise application, the user has the possibility to specify the tick length in the OIL file to allow the specification of a relative deadline using a temporal value.
+</p><p>In particular, the user can specify a tick value as follows:
+</p>
+<pre>
+KERNEL_TYPE = EDF { TICK_TIME = &quot;125 ns &quot;;};
+and then specify a relative deadline using a timing value as follows:
+TASK myTask1 {
+REL_DEADLINE = &quot;10 ms &quot;;
+};
+</pre>
+<p><br />
+The RT-Druid code generator will handle the the conversion between the relative deadline value in the corresponding timing value automatically.
+The important thing in this process is to correctly specify the TICK_TIME. In general, that value depends on the timing reference which is made available by the AVR. The current timing reference implemented in the EDF kernel for AVR is based on the value of the 16 bit timer Timer1.
+The 16 bit timer is obtained by using the timer1 available on the AVR. The clock used for the timers is the system clock, with a tick time equal to 1 Fc. Fc is the frequency of the oscillator, and depends on the application configuration.
+</p><p>In the case of the Atmel ATmega128, the default frequency is 8 MHz. In that case, the OIL file should contain the following line:
+</p>
+<pre>
+KERNEL_TYPE = EDF { TICK_TIME = &quot;125 ns &quot;;};
+</pre>
+<p>and the main() function should have the following line before using any Erika Enterprise primitive:
+</p>
+<pre>
+EE_timer1_init();
+EE_timer1_start();
+</pre>
+<h1> <span class="mw-headline" id="UISP"> UISP </span></h1>
+<p><a href="http://www.nongnu.org/uisp/download.html" class="external text" rel="nofollow">Download UISP</a>
+</p><p>UISP is a tool for AVR (and AT89S) microcontrollers which can interface to many hardware in-system programmers.
+UISP was written to work in a GNU/Linux environment, but can also run inside Microsoft Windows systems, by using Cygwin.
+</p>
+<h1> <span class="mw-headline" id="Boards"> Boards </span></h1>
+<h2> <span class="mw-headline" id="Crossbow_MIB5X0_Board"> Crossbow MIB5X0 Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_2"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Crossbow MIB5X0 Board. Please note that both boards mib510 and mib520 are supported, enabling the programming of the mica2 and micaz nodes (see Figure 4.1).
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5_mibmicaz.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0c/Avr5_mibmicaz.jpg" width="200" height="143" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5_mibmicaz.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 4.1: Crossbow MIB520 Board and MicaZ</div></div></div></div>
+<p>The Mib520 is a low cost, efficient development board produced by <a href="http://www.xbow.com/" class="external text" rel="nofollow">Crossbow</a> with interfaces to JTAG and USB.
+</p><p>To configure the usage of both MIB510 Board and MIB520 board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = XBOW_MIB5X0 {
+...
+}
+...
+</pre>
+<h3> <span class="mw-headline" id="LEDs"> LEDs </span></h3>
+<p>The MIB5X0 Board has a set of 3 LEDs attached to the PORTA pins of the microcontroller. To use the LEDs on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = XBOW_MIB5X0 {
+USELEDS = TRUE;
+...
+}
+...
+</pre>
+<p><br />
+The following subsections will describe the functions available to control the Crossbow MIB5X0 LEDs:
+</p>
+<ul><li> <i>void EE_led_1_on(void);</i>
+<dl><dd> Description: The function turns on LED 1.
+</dd></dl>
+</li><li> <i>void EE_led_1_off(void);</i>
+<dl><dd> Description: The function turns off LED 1.
+</dd></dl>
+</li><li> <i>void EE_led_2_on(void);</i>
+<dl><dd> Description: The function turns on LED 2.
+</dd></dl>
+</li><li> <i>void EE_led_2_off(void);</i>
+<dl><dd> Description: The function turns off LED 2.
+</dd></dl>
+</li><li> <i>void EE_led_3_on(void);</i>
+<dl><dd> Description: The function turns on LED 3.
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="Atmel_STK500.2F1_Board"> Atmel STK500/1 Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_3"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Atmel STK500/1
+Board (see Figure 3.1).
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Avr5_atmel_zig.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3b/Avr5_atmel_zig.jpg" width="200" height="113" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Avr5_atmel_zig.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Figure 3.1: The Atmel STK500/1 board running Erika Enterprise</div></div></div></div>
+<p>The STK500/1 is a low cost, efficient development board produced by <a href="http://www.atmel.com" class="external text" rel="nofollow">Atmel</a> with
+interfaces to JTAG, SPI, and RS-232. To configure the usage of the STK500/1 Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = ATMEL_STK50X {
+...
+}
+...
+</pre>
+<p>The STK500/1 board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+</p><p>The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATMEGA128. Please remember that you have to connect ISP6PIN plug of the STK500 with the SPROG plug of the STK501 through 6-wires cable.
+</p>
+<h3> <span class="mw-headline" id="LEDs_2"> LEDs </span></h3>
+<p>The Atmel STK500 Board has a set of 8 LEDs attached to the PORTB pins of the microcontroller. To use the LEDs on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = ATMEL_STK50X {
+USELEDS = TRUE;
+...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Atmel STK500 LEDs:
+</p>
+<ul><li> <i>void EE_led_1_on(void);</i>
+<dl><dd> Description: The function turns on LED 1.
+</dd></dl>
+</li><li> <i>void EE_led_1_off(void);</i>
+<dl><dd> Description: The function turns off LED 1.
+</dd></dl>
+</li><li> <i>void EE_led_2_on(void);</i>
+<dl><dd> Description: The function turns on LED 2.
+</dd></dl>
+</li><li> <i>void EE_led_2_off(void);</i>
+<dl><dd> Description: The function turns off LED 2.
+</dd></dl>
+</li><li> <i>void EE_led_3_on(void);</i>
+<dl><dd> Description: The function turns on LED 3.
+</dd></dl>
+</li><li> <i>void EE_led_3_off(void);</i>
+<dl><dd> Description: The function turns off LED 3.
+</dd></dl>
+</li><li> <i>void EE_led_4_on(void);</i>
+<dl><dd> Description: The function turns on LED 4.
+</dd></dl>
+</li><li> <i>void EE_led_4_off(void);</i>
+<dl><dd> Description: The function turns off LED 4.
+</dd></dl>
+</li><li> <i>void EE_led_5_on(void);</i>
+<dl><dd> Description: The function turns on LED 5.
+</dd></dl>
+</li><li> <i>void EE_led_5_off(void);</i>
+<dl><dd> Description: The function turns off LED 5.
+</dd></dl>
+</li><li> <i>void EE_led_6_on(void);</i>
+<dl><dd> Description: The function turns on LED 6.
+</dd></dl>
+</li><li> <i>void EE_led_6_off(void);</i>
+<dl><dd> Description: The function turns off LED 6.
+</dd></dl>
+</li><li> <i>void EE_led_7_on(void);</i>
+<dl><dd> Description: The function turns on LED 7.
+</dd></dl>
+</li><li> <i>void EE_led_7_off(void);</i>
+<dl><dd> Description: The function turns off LED 7.
+</dd></dl>
+</li><li> <i>void EE_led_8_on(void);</i>
+<dl><dd> Description: The function turns on LED 8.
+</dd></dl>
+</li><li> <i>void EE_led_8_off(void);</i>
+<dl><dd> Description: The function turns off LED 8.
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Requirements"> Requirements </span></h3>
+<p>Erika Enterprise supports Atmel AVR5 ATmega128 and ATmega103 (setting the fuse of compatibility mode in ATmega128).
+</p><p>There is no guarantee our software will work if you install a different version from what is listed in the table below.
+</p>
+<ul><li> ERIKA Enterprise version 1.4.2.2 and 1.5.0
+<ul><li> AVR Studio 4.12
+</li><li> WinAVR
+</li></ul>
+</li></ul>
+<p>Useful links
+</p>
+<ul><li> <a href="http://www.atmel.com/dyn/products/tools_card.asp?tool_id==2725" class="external text" rel="nofollow">Atmel AVRstudio download link</a>
+</li><li> <a href="http://winavr.sourceforge.net/" class="external text" rel="nofollow">WinAVR download link</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 322/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

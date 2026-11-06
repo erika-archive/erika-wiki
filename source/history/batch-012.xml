@@ -1,0 +1,2979 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Tutorial: ScicosLab and SMCube. Simulate the DigitalClock example.</title>
+    <id>2340</id>
+    <revision>
+      <id>4880</id>
+      <timestamp>2012-08-21T08:06:24Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Created page with &quot;If you want to quickly try SMCube in simulation mode, you can do as follows, using the  Digital Clock example. To do that, follow these steps:  * open Scicoslab * give the comman...&quot;</comment>
+      <text xml:space="preserve">If you want to quickly try SMCube in simulation mode, you can do as follows, using the  Digital Clock example. To do that, follow these steps:
+
+* open Scicoslab
+* give the command
+*: &lt;pre&gt; cd &quot;C:\Evidence\scicoslab-4.4.1\contrib\scicos_ee\examples\scicos_flex\SMCube\DigitalClock&quot; &lt;/pre&gt;
+*: (please put the correct directory)
+* then the command
+*: &lt;pre&gt;scicos();&lt;/pre&gt;
+* open &lt;tt&gt;DigitalClock.cos&lt;/tt&gt;
+* open the superblock
+* double click on the block names &quot;SMCube mode_selector.xml&quot;
+* choose &quot;Properties&quot;, and set &quot;Mode&quot; to 1 (to say interactive simulation), press ok
+* close the superblock window
+* Menu Simulate, Run
+* two windows will appear: the Demo board simulator and the SMCube simulation window.
+* Press the play button on the SMCube simulation window to start the SMCube simulation
+* Then, press the first button on the left of the simulated Demo board. The selector state machine which is graphically simulated will change its status.</text>
+    </revision>
+  </page>
+  <page>
+    <title>Tutorial: Simulate and then generating code from a Scicos diagram</title>
+    <id>2184</id>
+    <revision>
+      <id>4115</id>
+      <timestamp>2011-11-10T14:52:37Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>Created page with &quot;= Introduction = Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicosl...&quot;</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+Create your diagram using a superblock that contains the diagram of your embedded application. Outside the superblock put your simulation blocks.
+To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. See the images below.
+[[File:sim_main.png|center|thumb|200px|Outer blocks.]]
+[[File:sim_block.png|center|thumb|200px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|200px|To start the simulation.]]
+[[File:sim_results.png|center|thumb|200px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+#:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|200px|Outer blocks.]]
+[[File:cg_block.png|center|thumb|200px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4116</id>
+      <timestamp>2011-11-10T14:53:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|200px|Outer blocks.]]
+[[File:sim_block.png|center|thumb|200px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|200px|To start the simulation.]]
+[[File:sim_results.png|center|thumb|200px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+#:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|200px|Outer blocks.]]
+[[File:cg_block.png|center|thumb|200px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4123</id>
+      <timestamp>2011-11-10T14:55:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]] [[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]] [[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+#:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]] [[File:cg_block.png|center|thumb|300px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4124</id>
+      <timestamp>2011-11-10T14:56:23Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]] : [[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]] : [[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+#:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]] : [[File:cg_block.png|center|thumb|300px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4125</id>
+      <timestamp>2011-11-10T14:56:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+#:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4126</id>
+      <timestamp>2011-11-10T14:57:11Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#:Copy the superblock and create another diagram to be used for code generation.
+##:Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4127</id>
+      <timestamp>2011-11-10T14:57:32Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#Copy the superblock and create another diagram to be used for code generation.
+#Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]</text>
+    </revision>
+    <revision>
+      <id>4128</id>
+      <timestamp>2011-11-10T14:59:15Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#Copy the superblock and create another diagram to be used for code generation.
+#Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]
+
+From the CodeGen menu, by clicking on the superblock, you can launch code generation.</text>
+    </revision>
+    <revision>
+      <id>4129</id>
+      <timestamp>2011-11-10T15:01:01Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* How to simulate and then generating code from a Scicos diagram */</comment>
+      <text xml:space="preserve">= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named &lt;tt&gt;DCmotor_Simulation.cos&lt;/tt&gt; in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use &lt;tt&gt;Goto&lt;/tt&gt; and &lt;tt&gt;From&lt;/tt&gt; blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#Copy the superblock and create another diagram to be used for code generation.
+#Remove &lt;tt&gt;Goto&lt;/tt&gt; blocks and substitute &lt;tt&gt;From&lt;/tt&gt; blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]
+
+From the CodeGen menu, by clicking on the superblock, you can launch code generation.
+[[File:cg_run.png|center|thumb|300px|Outer blocks.]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Tutorial: Update ERIKA and RT-Druid</title>
+    <id>2049</id>
+    <revision>
+      <id>3086</id>
+      <timestamp>2011-05-02T11:04:13Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>Created page with &quot;== Update Eclipse plugins == To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt; [[File:RT-druid.1.6.0-up...&quot;</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+select add and enter a reference name for the file repository (e.g. RT-Druid) and the link&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_beta
+[[File:RT-druid.1.6.0-update.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+by selecting &quot;Ok&quot; you will be prompted with a new screen. You have to select all RT-Druid sources.
+To speedup the update process you can unselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.</text>
+    </revision>
+    <revision>
+      <id>3087</id>
+      <timestamp>2011-05-02T11:05:59Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/
+[[File:RT-druid.1.6.0-update.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+by selecting &quot;Ok&quot; you will be prompted with a new screen. You have to select all RT-Druid sources.
+To speedup the update process you can unselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.</text>
+    </revision>
+    <revision>
+      <id>3088</id>
+      <timestamp>2011-05-02T11:20:28Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/
+[[File:RT-druid.1.6.0-update.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+by selecting &quot;Ok&quot; you will be prompted with a new screen. You have to select all RT-Druid sources.
+To speedup the update process you can unselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.</text>
+    </revision>
+    <revision>
+      <id>3089</id>
+      <timestamp>2011-05-02T11:40:47Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+by selecting &quot;Ok&quot; you will be prompted with a new screen. You have to select all RT-Druid sources.
+To speedup the update process you can unselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.</text>
+    </revision>
+    <revision>
+      <id>3096</id>
+      <timestamp>2011-05-03T08:19:09Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.</text>
+    </revision>
+    <revision>
+      <id>4713</id>
+      <timestamp>2012-03-29T09:31:44Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Upgrading issues */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>4744</id>
+      <timestamp>2012-04-25T12:47:22Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_161_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>4877</id>
+      <timestamp>2012-08-10T18:00:29Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_200_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>5483</id>
+      <timestamp>2013-10-21T10:55:42Z</timestamp>
+      <contributor>
+        <username>Alessandro Biondi</username>
+        <id>494</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://download.tuxfamily.org/erika/webdownload/rtdruid_210_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>5576</id>
+      <timestamp>2014-04-09T21:24:47Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://www.evidence.eu.com/erika-builds/ee_230/rtdruid_230_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>5642</id>
+      <timestamp>2014-07-10T20:53:41Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://www.evidence.eu.com/erika-builds/ee_240/site/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>5643</id>
+      <timestamp>2014-07-10T20:55:09Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://www.evidence.eu.com/erika-builds/ee_240/ rtdruid_240_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+    <revision>
+      <id>5644</id>
+      <timestamp>2014-07-10T20:55:22Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Update Eclipse plugins */</comment>
+      <text xml:space="preserve">== Update Eclipse plugins ==
+The update of RT-Druid and Erika plugins is done through eclipse standards update technologies.
+
+To enable the updates of RT-Druid and its related distribution of Erika Enterprise select &quot;Help -&gt; Install New Software&quot;&lt;br&gt;
+[[File:RT-druid.1.6.0-update.01.png|center|thumb|200px|This screenshot shows how to select the &quot;New Install Software&quot;.]]
+
+In the &quot;Install&quot; window&lt;br&gt;
+[[File:RT-druid.1.6.0-update.02.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window.]]&lt;br&gt;
+The first time you update RT-Druid plugins, you need to select add and enter a reference name for the file repository (e.g. RT-Druid) and the link to the latest version:&lt;br&gt;
+http://www.evidence.eu.com/erika-builds/ee_240/rtdruid_240_nb/ and then select ''OK''.
+[[File:RT-druid.1.6.0-update_nb.03.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Add Repository&quot; window with the correct parameters.]]&lt;br&gt;
+If you have already added the reference to the RT-Druid website, you can select it in the &quot;Work with&quot; box.&lt;br&gt;
+If everything is fine, you will see the list of available plugins and then select all new RT-Druid plugins (or at least what you need).
+To speedup the update process you can deselect the option &quot;Contact all site during install to find required software&quot;.&lt;br&gt;
+[[File:RT-druid.1.6.0-update.04.png|center|thumb|200px|This screenshot shows the Eclipse &quot;Install&quot; window with the correct parameters.]]
+Along the update process you may be prompted for a &quot;Security Warning&quot; simply click on &quot;Ok&quot; to continue with the process.
+Finally please restart Eclipse when asked by the installer.
+
+
+For more links to RT-Druid and Erika websites, check http://erika.tuxfamily.org/erika-for-multiple-devices.html.
+
+== Upgrading issues ==
+RT-Druid 1.5.1 and newer are able to handle all version of eclipse from 3.3, while versions before 1.5.1 works only with eclipse 3.3 and eclipse 3.4.
+Note that project created with eclipse 3.3 and 3.4 may have incompatibilities with the CDT present in the newer versions of eclipse. Moreover versions of RT-Druid older than 1.5 requires 
+&lt;tt&gt;evidencedir\bin\mymake_cygwin.bat&lt;/tt&gt; to run make through cygwin. This means that moving a project from an old installation to a new one &quot;mymake_cygwin.bat&quot; may not exist or be in another position. To reduce this problem, RT-Druid 1.5.1 (and later) generates an equivalent file (called mymake.bat) inside the project itself with the right content for windows and for linux.
+
+The easiest and safest way to update an old project to a new one, is to create a new project, move/copy all files in the new project and, if necessary, update project properties.
+
+
+[[Category:RT-Druid]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Tutorial: Use a customized makefile</title>
+    <id>2051</id>
+    <revision>
+      <id>3093</id>
+      <timestamp>2011-05-03T07:55:59Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>Created page with &quot;Here is some hint about write and use a customized makefile to compile erika.  == Build from command line ==  == Build inside eclipse environment ==  == Makefile examples ==&quot;</comment>
+      <text xml:space="preserve">Here is some hint about write and use a customized makefile to compile erika.
+
+== Build from command line ==
+
+== Build inside eclipse environment ==
+
+== Makefile examples ==</text>
+    </revision>
+    <revision>
+      <id>3100</id>
+      <timestamp>2011-05-03T08:26:45Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Build from command line */</comment>
+      <text xml:space="preserve">Here is some hint about write and use a customized makefile to compile erika.
+
+== Build from command line ==
+
+Building erika from command line is just invoke make on the right makefile:
+&lt;pre&gt;
+make -f path/makefile
+&lt;/pre&gt;
+or just ''make'' if you are in the same directory where the ''makefile'' file is located.
+
+== Build inside eclipse environment ==
+
+== Makefile examples ==</text>
+    </revision>
+    <revision>
+      <id>3101</id>
+      <timestamp>2011-05-03T08:55:27Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Build inside eclipse environment */</comment>
+      <text xml:space="preserve">Here is some hint about write and use a customized makefile to compile erika.
+
+== Build from command line ==
+
+Building erika from command line is just invoke make on the right makefile:
+&lt;pre&gt;
+make -f path/makefile
+&lt;/pre&gt;
+or just ''make'' if you are in the same directory where the ''makefile'' file is located.
+
+== Build inside eclipse environment ==
+
+It is possible to use a customized makefile to build erika inside eclipse; to do that you need
+# write your own makefile file and place it inside the project to build
+# change project properties in order to use that makefile file
+
+
+The first step can be easily achieved creating a new file from eclipse menu and editing it with eclipse editor.
+
+To do the second step, open project properties (right clicking the project name and selecting the item '' properties'') and select the tab &quot;C/C++ Build&quot;. &lt;br&gt;
+Supposing the makefile file is placed in the project root, you should add &quot;-f ${ProjDriPath}/makefile&quot; to &quot;build command&quot; text box. 
+[[File:tutorial_proj_prop_add_custom_makefile.jpg|center|thumb|200px|This screenshot shows where set the customized makefile file path.]]
+&lt;br&gt;
+In this way you ask make_launcher.bat script to use your file. Note that ''{ProjDirPath}'' is a variable replaced by eclipse with the actual absolute path of the project.&lt;br&gt;
+We suggest to do it in this way, because it allow you to move the location of your project and even change OS, without any change but just recompiling it.
+* Note that ''Build command'' position may change a little on old version of eclipse.
+
+
+After this two steps, every time you build your project, your makefile file is used.&lt;br&gt;
+Note that RT-Druid will still try to configure the project, before the execution of make command. It is possible to enable/disable it, [de]selecting the RT-Druid builder in the Builders tab of project properties.
+
+== Makefile examples ==</text>
+    </revision>
+    <revision>
+      <id>3103</id>
+      <timestamp>2011-05-03T08:58:03Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Build inside eclipse environment */</comment>
+      <text xml:space="preserve">Here is some hint about write and use a customized makefile to compile erika.
+
+== Build from command line ==
+
+Building erika from command line is just invoke make on the right makefile:
+&lt;pre&gt;
+make -f path/makefile
+&lt;/pre&gt;
+or just ''make'' if you are in the same directory where the ''makefile'' file is located.
+
+== Build inside eclipse environment ==
+
+It is possible to use a customized makefile to build erika inside eclipse; to do that you need
+# write your own makefile file and place it inside the project to build
+# change project properties in order to use that makefile file
+
+
+The first step can be easily achieved creating a new file from eclipse menu and editing it with eclipse editor.
+
+To do the second step, open project properties (right clicking the project name and selecting the item '' properties'') and select the tab &quot;C/C++ Build&quot;. &lt;br&gt;
+Supposing the makefile file is placed in the project root, you should add &quot;-f ${ProjDriPath}/makefile&quot; to &quot;build command&quot; text box. 
+[[File:tutorial_proj_prop_add_custom_makefile.png|center|thumb|200px|This screenshot shows where set the customized makefile file path.]]
+&lt;br&gt;
+In this way you ask make_launcher.bat script to use your file. Note that ''{ProjDirPath}'' is a variable replaced by eclipse with the actual absolute path of the project.&lt;br&gt;
+We suggest to do it in this way, because it allow you to move the location of your project and even change OS, without any change but just recompiling it.
+* Note that ''Build command'' position may change a little on old version of eclipse.
+
+
+After this two steps, every time you build your project, your makefile file is used.&lt;br&gt;
+Note that RT-Druid will still try to configure the project, before the execution of make command. It is possible to enable/disable it, [de]selecting the RT-Druid builder in the Builders tab of project properties.
+
+== Makefile examples ==</text>
+    </revision>
+    <revision>
+      <id>4719</id>
+      <timestamp>2012-03-29T09:34:15Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>/* Makefile examples */</comment>
+      <text xml:space="preserve">Here is some hint about write and use a customized makefile to compile erika.
+
+== Build from command line ==
+
+Building erika from command line is just invoke make on the right makefile:
+&lt;pre&gt;
+make -f path/makefile
+&lt;/pre&gt;
+or just ''make'' if you are in the same directory where the ''makefile'' file is located.
+
+== Build inside eclipse environment ==
+
+It is possible to use a customized makefile to build erika inside eclipse; to do that you need
+# write your own makefile file and place it inside the project to build
+# change project properties in order to use that makefile file
+
+
+The first step can be easily achieved creating a new file from eclipse menu and editing it with eclipse editor.
+
+To do the second step, open project properties (right clicking the project name and selecting the item '' properties'') and select the tab &quot;C/C++ Build&quot;. &lt;br&gt;
+Supposing the makefile file is placed in the project root, you should add &quot;-f ${ProjDriPath}/makefile&quot; to &quot;build command&quot; text box. 
+[[File:tutorial_proj_prop_add_custom_makefile.png|center|thumb|200px|This screenshot shows where set the customized makefile file path.]]
+&lt;br&gt;
+In this way you ask make_launcher.bat script to use your file. Note that ''{ProjDirPath}'' is a variable replaced by eclipse with the actual absolute path of the project.&lt;br&gt;
+We suggest to do it in this way, because it allow you to move the location of your project and even change OS, without any change but just recompiling it.
+* Note that ''Build command'' position may change a little on old version of eclipse.
+
+
+After this two steps, every time you build your project, your makefile file is used.&lt;br&gt;
+Note that RT-Druid will still try to configure the project, before the execution of make command. It is possible to enable/disable it, [de]selecting the RT-Druid builder in the Builders tab of project properties.
+
+[[Category:RT-Druid]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>USB communication using FLEX FULL Demo Board and the Scilab/Scicos code generator</title>
+    <id>1539</id>
+    <revision>
+      <id>1811</id>
+      <timestamp>2009-12-26T20:13:22Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <comment>Recovery from data loss [all of the changes done between 2009Oct2 and 2009Nov2 are recovered this way and will have incorrect history]</comment>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>1864</id>
+      <timestamp>2010-01-11T10:13:41Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [aa]</text>
+    </revision>
+    <revision>
+      <id>1865</id>
+      <timestamp>2010-01-11T10:16:35Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [[USB-UDP on FLEX109 tutorial.pdf]]</text>
+    </revision>
+    <revision>
+      <id>1866</id>
+      <timestamp>2010-01-11T10:18:10Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [[media:USB-UDP on FLEX109 tutorial.pdf]]</text>
+    </revision>
+    <revision>
+      <id>1867</id>
+      <timestamp>2010-01-11T10:19:31Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [[media:USB-UDP on FLEX109 tutorial.zip]]</text>
+    </revision>
+    <revision>
+      <id>1868</id>
+      <timestamp>2010-01-11T10:21:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [[media:USB_UDP_on_FLEX109_tutorial.zip|USB_UDP_on_FLEX109_tutorial_doc]]</text>
+    </revision>
+    <revision>
+      <id>1869</id>
+      <timestamp>2010-01-11T10:35:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results
+
+Tutorial pdf version: [[media:USB_UDP_tutorial.zip]]</text>
+    </revision>
+    <revision>
+      <id>1870</id>
+      <timestamp>2010-01-11T10:36:25Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: http://www.evidence.eu.com/download/USB_DEMO_wiki.zip   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>1871</id>
+      <timestamp>2010-01-11T10:37:58Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program app_flex_scicos.exe (refer Fig. 13)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]]   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>3247</id>
+      <timestamp>2011-09-19T12:41:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* USB Application */</comment>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program &quot;app_flex_scicos.exe&quot; (refer Fig. 13)
+: Note1: The program &quot;app_flex_scicos.exe&quot; needs CygWin Win32 usb library.
+: Donwload and install &quot;libusb-win32&quot; using the utility &quot;Setup.exe&quot;, download available from the Cygwin site (Cygwin Net Release Setup program).
+: Note2: After the program &quot;app_flex_scicos.exe&quot; is builded (using &quot;make&quot;), copy cygusb0.dll and cygwin1.dll into the program folder 
+: before to launch it.
+: Note3: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]]   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>3250</id>
+      <timestamp>2011-09-19T13:44:45Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* USB Application */</comment>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+
+Prerequisites:
+* ScicosLab 4.4.1
+* ScicosLab Pack v10.0
+* RT-Druid 1.6.0 (only if ScicosLab pack v9.3 or earlier is used)
+* Cygwin (with libusb-win32)
+* PIC18 USB driver for Windows
+
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program &quot;app_flex_scicos.exe&quot; (refer Fig. 13)
+: Note1: The program &quot;app_flex_scicos.exe&quot; needs CygWin Win32 usb library.
+: Donwload and install &quot;libusb-win32&quot; using the utility &quot;Setup.exe&quot;, download available from the Cygwin site (Cygwin Net Release Setup program).
+: Note2: After the program &quot;app_flex_scicos.exe&quot; is builded (using &quot;make&quot;), copy cygusb0.dll and cygwin1.dll into the program folder 
+: before to launch it.
+: Note3: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]]   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>3251</id>
+      <timestamp>2011-09-19T13:46:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* USB Application */</comment>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+
+Prerequisites:
+* ScicosLab v4.4.1
+* ScicosLab Pack v10.0
+* RT-Druid 1.6.0 (only if ScicosLab pack v9.3 or earlier is used)
+* Cygwin (with libusb-win32)
+* PIC18 USB driver for Windows
+
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open ScicosLab v4.4.1, the Scicos-FLEX pack is recognized by ScicosLab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab\scicoslab-4.4.1\contrib\scicos_ee\scicos_flex\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – ScicosLab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program &quot;app_flex_scicos.exe&quot; (refer Fig. 13)
+: Note1: The program &quot;app_flex_scicos.exe&quot; needs CygWin Win32 usb library.
+: Donwload and install &quot;libusb-win32&quot; using the utility &quot;Setup.exe&quot;, download available from the Cygwin site (Cygwin Net Release Setup program).
+: Note2: After the program &quot;app_flex_scicos.exe&quot; is builded (using &quot;make&quot;), copy cygusb0.dll and cygwin1.dll into the program folder 
+: before to launch it.
+: Note3: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]]   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+    <revision>
+      <id>3252</id>
+      <timestamp>2011-09-19T13:54:53Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>/* USB Application */</comment>
+      <text xml:space="preserve">= USB Application =
+
+'''DEMO BOARD: An example of USB-UDP communication with the FLEX Demo Daughter Board'''
+
+Prerequisites:
+* ScicosLab v4.4.1
+* ScicosLab Pack v10.0
+* RT-Druid 1.6.0 (only if ScicosLab pack v9.3 or earlier is used)
+* Cygwin (with libusb-win32)
+* PIC18 USB driver for Windows
+* A FLEX full base board and the DEMO daughter board
+
+Note: To use USB communication you need a daughter board. If you don't have a daughter board, the only way to establish a connection between dsPIC and PIC18, is to make some connections manually as shown [http://erika.tuxfamily.org/wiki/index.php?title=FLEX_Demo_Daughter_Board here].
+
+&lt;br /&gt;&lt;br /&gt;
+
+{| class=&quot;wikitable&quot;
+
+Step 1:
+*   Open ScicosLab v4.4.1, the Scicos-FLEX pack is recognized by ScicosLab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab\scicoslab-4.4.1\contrib\scicos_ee\scicos_flex\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – ScicosLab
+
+Step 2:
+*   Open file “demoboard_example_flexside.cos” (refer Fig. 2) in Scicos.
+: The .cos file is shown in Fig. 3 and contains the schematic for the generation
+: (with SCICOS) of the FLEX FULL board program. 
+*   With this application the FLEX FULL board is able to: 
+*# acquire data from the accelerometer and from the light sensor
+*# send the measures to a PC using the USB interface
+*# receive and display the USB data on the LCD screen
+*# perform elaborations for a pretty LEDs blinking
+
+[[image:flexside_openfile.png]]
+::::::: Figure 2 – Open the demo file
+[[image:flexside_scheme.png]]
+::::::: Figure 3 – Schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen (refer Fig. 3)
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 4)
+: Provide path name and then press OK for code generation (refer Fig. 5)
+
+[[image:generator_folder.png]] 
+::::::: Figure 4 – Embedded Code Generator window
+
+[[image:generator_result.png]] 
+::::::: Figure 5 – Code Generator results
+
+Step 4:
+*   Open MPLAB IDE and import “pic30.cof” file created by the code generator 
+: (refer Fig. 6) in Step 3
+
+[[image:cof_import.png]] 
+::::::: Figure 6 – MPLAB IDE: pic30.cof file importing 
+
+Step 5:
+*   Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+: (refer Fig. 7)
+: Click the release reset icon and execute the embedded program 
+: (refer Fig. 8 and Fig. 9) 
+
+[[image:cof_program.png]] 
+::::::: Figure 7 - MPLAB IDE: target programming
+
+[[image:cof_release.png]] 
+::::::: Figure 8 - MPLAB IDE: release from reset
+
+[[image:board_run1.png]] 
+&lt;br /&gt;
+Figure 9 – Device released from reset
+&lt;br /&gt;
+
+Step 6:
+*   Open the PC-side file “demoboard_example_pcside.cos” in Scicos (refer Fig. 10)
+: The .cos file contains the schematic for the PC-side (refer Fig. 11). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board. 
+
+[[image:pcside_open.png]] 
+::::::: Figure 10 – Open the PC-side demo file
+
+[[image:pc_side_scheme.png]] 
+::::::: Figure 11 – PC-side demo file
+
+Step 7:
+*   Check the USB device recognition in the peripherals window (refer Fig. 12) and 
+: execute the program &quot;app_flex_scicos.exe&quot; (refer Fig. 13)
+: Note1: The program &quot;app_flex_scicos.exe&quot; needs CygWin Win32 usb library.
+: Donwload and install &quot;libusb-win32&quot; using the utility &quot;Setup.exe&quot;, download available from the Cygwin site (Cygwin Net Release Setup program).
+: Note2: After the program &quot;app_flex_scicos.exe&quot; is builded (using &quot;make&quot;), copy cygusb0.dll and cygwin1.dll into the program folder 
+: before to launch it.
+: Note3: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]]   
+
+[[image:usb_recognition.png]]
+::::::: Figure 12 – Check the USB device recognition
+
+[[image:app_compilation.png]]
+::::::: Figure 13 – Compilation and start of the program;
+
+Step 8:
+*   The simulation runs in almost-real-time, and the data received (acceleration on 
+: X, acceleration on Y, acceleration on Y, modified light sensor output) can be 
+: graphically seen in the Scicos Scope window (refer Fig. 14)   
+: The demo results are shown in Fig. 15
+
+[[image:usb_run.png]]
+::::::: Figure 14 – Simulation in running mode
+
+[[image:board_run2.png]]
+::::::: Figure 15 – Demo results</text>
+    </revision>
+  </page>
+  <page>
+    <title>Universitat PolitÃƒÂ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)</title>
+    <id>1414</id>
+    <revision>
+      <id>1528</id>
+      <timestamp>2008-09-26T09:07:36Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on the Flex board and its complements.
+
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]</text>
+    </revision>
+    <revision>
+      <id>1529</id>
+      <timestamp>2008-09-26T09:08:01Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on FLEX board and its complements.
+
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]</text>
+    </revision>
+    <revision>
+      <id>1553</id>
+      <timestamp>2008-10-14T10:40:15Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on FLEX board and its complements.
+
+'''Projects:'''
+* [http://www.evidence.eu.com/content/view/305/266/ Real-time control of an Inverted Pendulum using FLEX + ERIKA]
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)</title>
+    <id>1957</id>
+    <redirect />
+    <revision>
+      <id>2934</id>
+      <timestamp>2011-04-05T09:13:07Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <comment>moved [[Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]] to [[Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]</comment>
+      <text xml:space="preserve">#REDIRECT [[Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department) left as example</title>
+    <id>1457</id>
+    <revision>
+      <id>1603</id>
+      <timestamp>2009-11-05T16:37:39Z</timestamp>
+      <contributor>
+        <username>Roberto</username>
+        <id>2</id>
+      </contributor>
+      <text xml:space="preserve">sorry... unresolved tecnical problem.
+The page you were searching for is at the moment in
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)</title>
+    <id>1451</id>
+    <revision>
+      <id>1589</id>
+      <timestamp>2009-11-04T17:32:57Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve">sorry... unresolved tecnical problem.
+The page you were searching for is at the moment in
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)]]</text>
+    </revision>
+    <revision>
+      <id>1604</id>
+      <timestamp>2009-11-05T16:38:46Z</timestamp>
+      <contributor>
+        <username>Roberto</username>
+        <id>2</id>
+      </contributor>
+      <text xml:space="preserve">For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on FLEX board and its complements.
+
+'''Projects:'''
+* [http://www.evidence.eu.com/content/view/305/266/ Real-time control of an Inverted Pendulum using FLEX + ERIKA]
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]</text>
+    </revision>
+    <revision>
+      <id>2933</id>
+      <timestamp>2011-04-05T09:13:07Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <minor/>
+      <comment>moved [[Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]] to [[Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]</comment>
+      <text xml:space="preserve">For research and teaching activities, FLEX boards are used for implementing adaptive embedded control systems.
+
+We investigate, design and implement distributed control systems, ranging from networked control systems to complex automation systems.
+
+We are currently considering to update our labs of the Industrial Communications and Real-Time Systems courses with practical exercises based on FLEX board and its complements.
+
+'''Projects:'''
+* [http://www.evidence.eu.com/content/view/305/266/ Real-time control of an Inverted Pendulum using FLEX + ERIKA]
+
+
+'''Contact:''' [http://dcs.upc.es Distributed Control Systems team]
+
+'''Web-site:''' [http://dcs.upc.es http://dcs.upc.es]</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Ancona</title>
+    <id>1413</id>
+    <revision>
+      <id>1524</id>
+      <timestamp>2008-09-25T09:43:20Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">FLEX are used as development boards for the embedded real-time course.</text>
+    </revision>
+    <revision>
+      <id>1526</id>
+      <timestamp>2008-09-26T08:51:38Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">FLEX boards are used as development boards for the embedded real-time course.</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Firenze (Applied Mechanics Lab)</title>
+    <id>1415</id>
+    <revision>
+      <id>1530</id>
+      <timestamp>2008-09-26T09:09:03Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">* [http://www.evidence.eu.com/content/view/261/266/ An 18-DOF hexapod robot]</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Kaiserslautern</title>
+    <id>1411</id>
+    <revision>
+      <id>1522</id>
+      <timestamp>2008-09-25T09:37:22Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">FLEX are used in the research lab for doing experiments on embedded systems.</text>
+    </revision>
+    <revision>
+      <id>1527</id>
+      <timestamp>2008-09-26T08:52:14Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">FLEX boards are used in the research lab for doing experiments on embedded systems.</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Pavia (Robotics Lab)</title>
+    <id>1418</id>
+    <revision>
+      <id>1534</id>
+      <timestamp>2008-09-26T10:18:41Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">'''Project:''' Remote wireless control of an inverted pendulum
+
+'''Details:''' Engineering and building the inverted pendulum mounted on a 2-wheeled robot. Has remote wireless control with the implementation of a real-time wireless communication protocol.
+
+'''Contact:''' Stefano Stella
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Inertial Measurement Unit (IMU)
+
+'''Details:''' Sensors (accelerometer, gyroscope, magnetometer, GPS) are integrated and information are acquired and filtered.
+
+'''Contact:''' Alberto Savioli
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Multi-effect Audio Processor
+
+'''Details:''' Audio signal acquisition and generation (interfacing with a DAC). Contains fully customizable real-time audio effects (compression, equalization, filtering, delay, ...)with programming of the effects chain from PC.
+
+'''Contact:''' Simone Conso
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Hardware-in-the-loop flying simulator
+
+'''Details:''' Implementation of a trajectory planning and the robust control for an autonomous helicopter on a FLEX board. Physical system is simulated using a second board or a PC.;
+
+'''Contact:''' Luigi Ventriglia
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Force sensor acquisition for controlling a robot manipulator
+
+'''Details:''' Analog signal is acquired from a ATI-MIO-16E-1 force sensor. All the 6 signals need to be sampled and combined, and the Comau SMART3-S2 robot manipulator will be driven by the force sensor.
+
+'''Contact:''' Davide Cuppone
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Autonomous Vehicles Platooning
+
+'''Details:''' Engineering and building of 3-4 small autonomous 2-wheeled robots with DC motors, encoders and other sensors. Implementing a robust platooning control to guarantee the mutual distance during the coordinated motion.
+
+'''Contact:''' Marco Della Vedova
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Ball plate using an array of foto-sensors
+
+'''Details:''' Engineering and building the ball plate and designing a daughter board with MUXes to access each single sensor (up to 60 sensor are used). Interfacing the set-up with a PC application.
+
+'''Contact:''' Stefano Stella
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Domotic Device
+
+'''Details:''' Engineering and building of a domotic device to monitor the power consumed by an electrical load. Interfacing it with domitic buses like Konnex and X10 (for future development) and Implementation for real-time scheduling of electrical loads (final target).
+
+'''Contact:''' Marco Della Vedova
+
+'''Web-site:''' -
+
+
+
+
+'''Project:''' Wireless broadcasting of audio signals
+
+'''Details:''' Data acquiring from an analog/digital audio source. Compression and coding the same for wireless broadcasting. Data receiving and converting the same to analog/digital audio output.
+
+'''Contact:''' Marco Ghibaudi
+
+'''Web-site:''' -</text>
+    </revision>
+    <revision>
+      <id>1569</id>
+      <timestamp>2009-01-29T13:10:44Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>2</id>
+      </contributor>
+      <text xml:space="preserve">
+'''On-going work at the [http://robot.unipv.it Robotics Laboratory], University of Pavia'''
+
+In sparse order:
+
+1)&lt;br&gt;
+Ettore Di Palma is working to the interfacing of FLEX boards to current sensors from [http://www.lem.com/ LEM], aiming at the wireless monitoring of electric loads. Sensors currently adopted are the [http://www.lem.com/hq/en/component/option,com_catalog/task,displayserie/serie,AT/output_type,/ AT series] components AT 100 B10 and AT 50 B10.
+The interface to the FLEX is already working. We aim to integrate the monitoring system into a domotic system, probably based on the X10 technology.
+
+2)&lt;br&gt;
+Daniele Caprini is working to the interfacing of FLEX boards to the [http://www.yamar.com/DCB500.html Yamar DCB500] powerline transceiver for automotive applications, which is a potential alternative to the standard CAN and LIN buses.
+We are testing the communication system on an ignition system for racing cars.
+
+3)&lt;br&gt;
+Marco Ghibaudi is working on a wireless audio broadcasting application, using FLEX boards together with the [http://www.rfsolutions.co.uk/acatalog/EasyBee_Zigbee_Module.html EasyBee] ZigBee radio module. The application is based on FFT transforms, [http://en.wikipedia.org/wiki/Wavelet_compression wavelet compression], and optimized coding to use, among the other features, custom fixed point math with the Microchip dsPIC.
+
+4)&lt;br&gt;
+Marco Della Vedova is working on a multi-robot application where small mobile robots are moving in environments with obstacles. The FLEX board controls each robot, and has to drive an H bridge for controlling the two DC motors, sample encoders, and receive external information from the integrated [http://www.rfsolutions.co.uk/acatalog/EasyBee_Zigbee_Module.html EasyBee] module. Here a [http://www.youtube.com/watch?v=kQYTDYYn3pE demo video] is available.
+
+5)&lt;br&gt;
+Alberto Savioli is developing a 6 DOF [http://en.wikipedia.org/wiki/Inertial_Measurement_Unit Inertial Measurement Unit (IMU)], interfacing the FLEX board with a 3-axis accelerometer, 2 2-axis gyroscopes, a GPS receiver, a magnetometer and a temperature sensor. The sensor data fusion is done using a [http://en.wikipedia.org/wiki/Kalman_filter Kalman filter] running on the Microchip dsPIC controller.
+
+For more information, please contact head researcher [http://robot.unipv.it/toolleeo Tullio Facchinetti].</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Porto (IPP-Hurray)</title>
+    <id>1412</id>
+    <revision>
+      <id>1523</id>
+      <timestamp>2008-09-25T09:40:54Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">Ongoing work in collaboration with Scuola Superiore Sant'Anna, Pisa-Italy on the [http://www.open-zb.net/ OpenZB protocol]</text>
+    </revision>
+  </page>
+  <page>
+    <title>University of Trento</title>
+    <id>1416</id>
+    <revision>
+      <id>1531</id>
+      <timestamp>2008-09-26T09:33:36Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve">'''Project:''' Model based development of automotive applications based on Open Source Tools and Technologies.
+
+'''Details:''' The objective is to set up a rigorous development cycle leveraging cheap technologies.
+
+The architecture consists of three FLEX cards connected through a CAN bus.
+
+The major issues are:
+* Modeling of the complex hybrid dynamics of the mechanical and electrical engine using SCICOS
+* Modeling and simulation of the control algorithms using SCICOS
+* Modeling of architectural aspects of the FLEX/Erika platform using a specialized SCICOS blockset
+* Automatic code generation from SCICOS blocks and configuration of the RTOS
+
+'''Contact:''' Department of Information Science and Engineering
+
+'''Web-site:''' -</text>
+    </revision>
+  </page>
+  <page>
+    <title>Unpacking the Amazing ball package</title>
+    <id>1540</id>
+    <revision>
+      <id>1812</id>
+      <timestamp>2009-12-26T20:14:45Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <comment>Created page with 'This page shows the steps needed to unpack and mount the Amazing Ball.  You should have received the following package containing the Amazing Ball mechanical parts and hardware. …'</comment>
+      <text xml:space="preserve">This page shows the steps needed to unpack and mount the Amazing Ball.
+
+You should have received the following package containing the Amazing Ball mechanical parts and hardware.
+
+[[Image:Amazing_1.JPG]]
+
+Please open it as shown below.
+
+[[Image:Amazing_2.JPG]]
+
+... then open the lateral side to let the mechanical part and the electrobix be removed easily as shown below.
+
+[[Image:Amazing_3.JPG]]
+
+Inside the box, you will find a carton package similar to the typical Flex box, but with an &quot;Amazing Ball&quot; sticker on it.
+
+[[Image:Amazing_4.JPG]]
+
+...Open it, and you will find the electronic (already mounted), plus the iron ball.
+
+[[Image:Amazing_5.JPG]]
+
+Once opened, you should unscrew the four white plastic screws on the right of the picture below, and then fix the electronic on the holes on the bottom metal plate. The holes are of a size the fits either the FLEX Light or the FLEX Full.
+
+[[Image:Amazing_6.JPG]]
+
+Once the electronic is fixed to the metal plate, you should fix the connectors of the servo motors and of the touchscreen. Please note the numbers on each connector, as well as the colors of the cables in the picture below
+
+[[Image:Amazing_7.JPG]]
+
+Once done that, you should have the Amazing Ball mounted in a way similar to the following picture. (Please note that the power connector is not included in the package)
+
+[[Image:Amazing_8.JPG]]</text>
+    </revision>
+    <revision>
+      <id>4381</id>
+      <timestamp>2012-01-24T15:10:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve">This page shows the steps needed to unpack and mount the Amazing Ball.
+
+You should have received the package containing the Amazing Ball mechanical parts and hardware.
+Please open the lateral side to let the mechanical part and the electrobix be removed easily as shown below
+
+[[Image:Amazing_2.JPG]]
+
+Remove the coverage from the touch panel to simplify the extraction of the parts.
+ 
+[[Image:Amazing_3.JPG]]
+
+Inside the box, you will find a carton package similar to the typical Flex box, but with an &quot;Amazing Ball&quot; sticker on it.
+
+[[Image:Amazing_4.JPG]]
+
+...Open it, and you will find the electronic (already mounted), plus the iron ball.
+
+[[Image:Amazing_5.JPG]]
+
+Once opened, you should unscrew the four white plastic screws on the right of the picture below, and then fix the electronic on the holes on the bottom metal plate. The holes are of a size the fits either the FLEX Light or the FLEX Full.
+
+[[Image:Amazing_6.JPG]]
+
+Once the electronic is fixed to the metal plate, you should fix the connectors of the servo motors and of the touchscreen. Please note the numbers on each connector, as well as the colors of the cables in the picture below
+
+[[Image:Amazing_7.JPG]]
+
+Once done that, you should have the Amazing Ball mounted in a way similar to the following picture. (Please note that the power connector is not included in the package)
+
+[[Image:Amazing_8.JPG]]</text>
+    </revision>
+  </page>
+</mediawiki>

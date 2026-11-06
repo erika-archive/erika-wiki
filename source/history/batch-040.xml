@@ -1,0 +1,239 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Mchp16 sources counterbidi.png</title>
+    <id>1312</id>
+    <revision>
+      <id>1327</id>
+      <timestamp>2008-08-13T12:31:59Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources countermodulo.png</title>
+    <id>1313</id>
+    <revision>
+      <id>1328</id>
+      <timestamp>2008-08-13T12:32:08Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources random.png</title>
+    <id>1314</id>
+    <revision>
+      <id>1329</id>
+      <timestamp>2008-08-13T12:32:19Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources redarrow.png</title>
+    <id>1315</id>
+    <revision>
+      <id>1330</id>
+      <timestamp>2008-08-13T12:32:29Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources sine.png</title>
+    <id>1316</id>
+    <revision>
+      <id>1331</id>
+      <timestamp>2008-08-13T12:32:38Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources square.png</title>
+    <id>1317</id>
+    <revision>
+      <id>1332</id>
+      <timestamp>2008-08-13T12:32:47Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 sources step.png</title>
+    <id>1318</id>
+    <revision>
+      <id>1333</id>
+      <timestamp>2008-08-13T12:32:55Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion doubletoint16.png</title>
+    <id>1387</id>
+    <revision>
+      <id>1402</id>
+      <timestamp>2008-08-13T12:58:51Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion doubletoint32.png</title>
+    <id>1388</id>
+    <revision>
+      <id>1403</id>
+      <timestamp>2008-08-13T12:58:59Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion doubletoint8.png</title>
+    <id>1386</id>
+    <revision>
+      <id>1401</id>
+      <timestamp>2008-08-13T12:58:43Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion int16todouble.png</title>
+    <id>1390</id>
+    <revision>
+      <id>1405</id>
+      <timestamp>2008-08-13T12:59:13Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion int32todouble.png</title>
+    <id>1391</id>
+    <revision>
+      <id>1406</id>
+      <timestamp>2008-08-13T12:59:26Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 typeconversion int8todouble.png</title>
+    <id>1389</id>
+    <revision>
+      <id>1404</id>
+      <timestamp>2008-08-13T12:59:06Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mcu GetRawResetValue Seq Diag.png</title>
+    <id>2376</id>
+    <revision>
+      <id>5191</id>
+      <timestamp>2013-07-16T13:00:56Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Mcu_GetRawResetValue() Sequence Diagram.</comment>
+      <text xml:space="preserve">Mcu_GetRawResetValue() Sequence Diagram.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mcu GetResetReason Seq Dia.png</title>
+    <id>2375</id>
+    <revision>
+      <id>5189</id>
+      <timestamp>2013-07-16T12:59:32Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Mcu_GetResetReason() Sequence Diagram.</comment>
+      <text xml:space="preserve">Mcu_GetResetReason() Sequence Diagram.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mcu Init Examples.png</title>
+    <id>2354</id>
+    <revision>
+      <id>5147</id>
+      <timestamp>2013-07-16T08:45:03Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>MCU Initialization</comment>
+      <text xml:space="preserve">MCU Initialization</text>
+    </revision>
+  </page>
+</mediawiki>

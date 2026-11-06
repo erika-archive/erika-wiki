@@ -1,0 +1,24 @@
+<h3> <span class="mw-headline" id="Reference_test"> Reference test </span></h3>
+<p><tt>examples/s12xs/porting_examples/multistack/EEtest3</tt>
+</p>
+<h3> <span class="mw-headline" id="Description"> Description </span></h3>
+<ul><li> The goal of this test is to activate two tasks that runs on multiple stacks with nested interrupts.
+</li></ul>
+<ul><li> We changed inside the <tt>EEtest3</tt> the C file with the main() function. The program configures two periodic timers to enable the corresponding interrupt. The ISRs functions explicitly calls ActivateTask for the two tasks. Please note that this small application can be executed to test the behavior of the kernel internal function ready2stacked, the ISRs nesting mechanism in the MULTISTACK case. The kernel functions must be linked and used without problems resulting in an fully linked executable file.
+</li></ul>
+<h3> <span class="mw-headline" id="Expected_output"> Expected output </span></h3>
+<p>When everything is done in the right way, with the following commands we can have the executable file:
+</p>
+<ul><li> open a Cygwin shell
+</li><li> <tt>cd</tt> into the <tt>Debug</tt> directory
+</li><li> the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+</li></ul>
+<p>To simulate the application we can use directly the hardware or a "good" software debugger.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

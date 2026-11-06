@@ -1,0 +1,60 @@
+This is is a list of things to doin the short term:
+
+== Misc ==
+* remove things that are currently not updated since a longtime and put them into an "old" directory. In particular, COM, hard_alarms
+
+== CPU ==
+
+* remove the support for a user-defined types.h
+* Separate EE_ADDR in EE_ADDR and EE_FADDR (pointers to data and to code in some architectures have different sizes).  This is being superseded by further development for MISRA compliance, as EE_ADDR remains a generic data pointer and pointers to functions are being replaced with ad-hoc new types.
+* Insertion of function in the HAL to disable/enable IRQs by saving and restoring previous states. To be used in the next point.
+* Turning on and off IRQs associated to type-2 ISRs, needed to support OSEK <code>SuspendOSInterrupts()</code>.  A possible solution:
+*# ISR sections in OIL list the associated IRQ
+*# A suitable data structure is filled in eecfg.c (a bitmap should be enough on many architectures)
+*# New APIs (e.g., <code>EE_hal_enableIRQ2()</code>, <code>EE_hal_disableIRQ2()</code>) should be added to HAL to disable and restore the state of IRQs associated to type-2 ISR.  Existing <code>EE_hal_enableIRQ()</code>, <code>EE_hal_disableIRQ()</code> could be used as a fall-back (though they don't provide a way to restore the previous state).
+*## we could use the functions at the previous point to save/restore the previous state while disabling the IRQs
+
+=== PIC30 ===
+* use <tt>extern inline</tt> for PIC inline functions to avoid code bloating when the student license ends
+* support for large model
+* commit fix to the bug of DISI when nested interrupts
+* add a traps file to the dsPIC using an OIL option or using an EEOPT variable
+
+=== S12XS ===
+* allow the possibility to mask only a specific priority when in kernel mode (that is, using CCR instead of SEI/CLI)
+* implement a stack test at the task or interrupt end (to be done in the endcycle_stacked or endcycle_ready; in this way the kernel is not modified)
+* how to implement timers which are resistant to a timer overrun? Should we use hard_alarms?
+
+=== e200zX ===
+* Add an EEOPT to remove <tt>stmw</tt> and <tt>lmw</tt> (store/load multiple word) instructions.  These instructions are good for performance, but they seem to fill Nexus FIFOs, which is bad if you want a full data trace (e.g., using [[Freescale_PPC_e200_(MPC_56xx)#Lauterbach_Trace32_and_ORTI_support|Lauterbach Trace32]]).  Such an EEOPT should be used to change the compiler options (there should be a switch to inhibit generation of <tt>stmw</tt> and <tt>lmw</tt>), and enable alternative code (using a sequence of store or load) in assembly files.
+
+== Examples ==
+* provide a compilation script to compile all exampes in bulk to always ensure that they always all compile fine
+* Modify main() inside OO examples (which call <code>StartOS()</code>).  <code>StartOS()</code> could not return, and should not according to Autosar.  Also, its behavior has been recently changed to also enable interrupts.  The body of <code>main()</code> in OO examples should be changed accordingly into something like the following (which does not depend on <code>StartOS()</code> returning).  Please note that tasks can be started by <code>StartOS()</code> if they have the <code>AUTOSTART</code> property set in the OIL file.
+<pre>
+int main(void)
+{
+	/* HW initialization goes here */
+	/* Do anything, but do not enable interrupts */
+
+	/* Call StartOS, but don't expect it to return */
+	StartOS(OSDEFAULTAPPMODE);
+	while (1) {
+		/* Wait forever */
+	}
+}
+</pre>
+
+== DIST ==
+* rethink the DIST scripts for the creation of the distribution
+
+== Scilab and FLEX ==
+* remove the code and the block for the OLD LCD driver (there are no boards currently working with that code).
+* Add scicos blocks for the Mini Flex
+* [http://erika.tuxfamily.org/forum/viewtopic.php?f=3&t=777#p1165 look at this post on the forum]:
+*# the "success" message should not be there
+*# the error on the "find" command "No such file or directory" is not masked 8if it is an error the compilation should stop there...)
+*# we should probably  check that all the folders used for the compilation are at their correct place (if not, link to a FAQ).
+
+== Regression tests ==
+* launch them twice to check wethere there are problems with dependencies (dependencies are created at the first compilation round)

@@ -1,0 +1,36 @@
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>Before execute this simple tutorial follow installation procedure described in <a href="/wiki/index.php?title=Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure" title="Tutorial: Installing scicoslab and generating code from a Scicos diagram"> installig scicoslab tutorial</a>
+</p>
+<h1> <span class="mw-headline" id="How_to_simulate_and_then_generating_code_from_a_Scicos_diagram"> How to simulate and then generating code from a Scicos diagram </span></h1>
+<p>Note: The images showed below refer to the example for FLEX named <tt>DCmotor_Simulation.cos</tt> in the 'DCMotor' folder.
+</p><p>To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+</p>
+<ul><li>Create your diagram using a superblock that contains the diagram of your embedded application. 
+</li><li>Outside the superblock put your simulation blocks.
+</li><li>To link the outer blocks with the inner blocks you can use <tt>Goto</tt> and <tt>From</tt> blocks. 
+</li></ul>
+<p>See the images below.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Sim_main.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cc/Sim_main.png" width="300" height="146" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Sim_main.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Outer blocks.</div></div></div></div><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Sim_block.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6f/Sim_block.png" width="300" height="179" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Sim_block.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Inner blocks.</div></div></div></div>
+<p>By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Sim_run.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/47/Sim_run.png" width="300" height="147" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Sim_run.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>To start the simulation.</div></div></div></div><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Sim_results.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/65/Sim_results.png" width="300" height="260" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Sim_results.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Results of the simulation.</div></div></div></div>
+<p>To generate code there are two ways:
+</p>
+<ol><li>Copy the superblock and create another diagram to be used for code generation.
+</li><li>Remove <tt>Goto</tt> blocks and substitute <tt>From</tt> blocks with zero-constants source blocks.
+</li></ol>
+<p>The second approach is showed in the images below.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Cg_main.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/28/Cg_main.png" width="300" height="153" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cg_main.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Outer blocks.</div></div></div></div><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Cg_block.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9e/Cg_block.png" width="300" height="162" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cg_block.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Inner blocks.</div></div></div></div>
+<p>From the CodeGen menu, by clicking on the superblock, you can launch code generation.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Cg_run.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/44/Cg_run.png" width="300" height="153" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cg_run.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Outer blocks.</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 6/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

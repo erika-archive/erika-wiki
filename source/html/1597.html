@@ -1,0 +1,63 @@
+<h1> <span class="mw-headline" id="How_to_run_MODISTARC_regression_tests_for_Freescale_S12_Family"> How to run MODISTARC regression tests for Freescale S12 Family </span></h1>
+<p>Requirements: The "procmail" package should be installed in Cygwin using the Cygwin 'Setup.exe' (the setup program is downloadable form this site: <a href="http://www.cygwin.com/" class="external free" rel="nofollow">http://www.cygwin.com/</a>).
+</p><p>The makefiles chain will compile all the projects through the following steps:
+</p>
+<ul><li> Directories creation;
+</li><li> OIL elaboration by RT_DRUID;
+</li><li> Compilation to generate the .elf file;
+</li><li> Debugger script creation to run the regression tests on the processor;
+</li></ul>
+<p>The procedure to run MODISTARC regression tests is the following:
+</p>
+<h1> <span class="mw-headline" id="Earliest_version_.28before_Erika_revision_1531.29"> Earliest version (before Erika revision 1531) </span></h1>
+<ol><li> Perfom a repository checkout to work with the last version of the testcases. Note that you can use Subversion only in anonymous mode without logging in. Hence, you won't be allowed to write on the repository (adding, editing or removing files). 
+<ul><li> To perform a checkout, type: <tt> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> </tt>
+</li><li> To perform an update type: <tt> svn update </tt>
+</li></ul>
+</li><li> Change the working directory in: <tt> repos\ee\trunk\ee\testcase </tt> and type: <tt> . ./s12xs_startup_scripts </tt> to configure the environment.
+</li><li> Start the compilation typing: <tt> make ARCH=s12xs </tt> The makefiles chain will compile all the projects through the following steps:
+<ol><li> Directories creation;
+</li><li> OIL elaboration by RT_DRUID;
+</li><li> Compilation to generate the .elf file;
+</li><li> Debugger script creation to run the regression tests on the processor;
+</li></ol>
+</li></ol>
+<p>NOTE1: To compile only one test type: <tt> make ARCH=s12xs DIRS="modistarc_task_1" </tt> 
+NOTE2: To compile the tests you can use the batch file located in common/s12xs. To run the batch file type:
+</p>
+<ul><li> <tt> common\s12xs\modistarc_regression_test.bat </tt>  to compile all the tests or
+</li><li> <tt> common\s12xs\modistarc_regression_test.bat modistarc_task_1 </tt> to compile only one test;
+<ul><li> In these cases the batch file will call the HIWAVE debugger at the end of the compilation to load the executables files on the processor using the generated script file.
+</li></ul>
+</li><li> <tt> common\s12xs\modistarc_regression_test.bat clean </tt>  to clean all the tests;
+</li><li> <tt> common\s12xs\modistarc_regression_test.bat hiwave </tt>  to call HIWAVE debugger directly.
+</li></ul>
+<h1> <span class="mw-headline" id="Latest_version:_.28since_Erika_revision_1531.29"> Latest version: (since Erika revision 1531) </span></h1>
+<ol><li> Perfom a repository checkout to work with the last version of the testcases. Note that you can use Subversion only in anonymous mode without logging in. Hence, you won't be allowed to write on the repository (adding, editing or removing files). 
+<ul><li> To perform a checkout, type: <tt> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> </tt>
+</li><li> To perform an update type: <tt> svn update </tt>
+</li></ul>
+</li><li> Change the working directory in: <tt> repos\ee\trunk\ee\testcase </tt> Then edit and execute: <tt> . ./s12_startup_scripts </tt> to configure the environment. The environment variables to be set are: ERIKA_FILES pointing to the Erika main folder (the folder downloaded with the svn checkout, it contains the testcase folder).
+</li><li> Start the compilation with: 
+<ul><li><tt> make ARCH=s12xs_cosmic </tt> if you are working with MC9S12XS128 and the Cosmic Compiler. 
+</li><li><tt> make ARCH=s12g_cw </tt> if you are working with MC9S12G128 and the CodeWarrior Compiler. 
+</li></ul>
+</li></ol>
+<p>NOTE1: To compile only one test type: <tt> make ARCH=s12xs_cosmic DIRS="modistarc_task_1" </tt> 
+NOTE2: To compile the tests you can use the batch file located in common/s12. To run the batch file type:
+</p>
+<ul><li> <tt> common\s12\s12xs_cosmic\modistarc_regression_test.bat </tt>  to compile all the tests or
+</li><li> <tt> common\s12\s12xs_cosmic\modistarc_regression_test.bat modistarc_task_1 </tt> to compile only one test;
+<ul><li> In these cases the batch file will call the HIWAVE debugger at the end of the compilation to load the executables files on the processor using the generated script file.
+</li></ul>
+</li><li> <tt> common\s12xs\s12xs_cosmic\modistarc_regression_test.bat clean </tt>  to clean all the tests;
+</li><li> <tt> common\s12xs\s12xs_cosmic\modistarc_regression_test.bat hiwave </tt>  to call HIWAVE debugger directly.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

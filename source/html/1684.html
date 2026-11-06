@@ -1,0 +1,269 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Acknowledgements"><span class="tocnumber">1</span> <span class="toctext">Acknowledgements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Rationale"><span class="tocnumber">2</span> <span class="toctext">Rationale</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Current_status"><span class="tocnumber">3</span> <span class="toctext">Current status</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#The_code_generation_process_using_XSLT"><span class="tocnumber">4</span> <span class="toctext">The code generation process using XSLT</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#RT-druid_views_specific_for_XSLT"><span class="tocnumber">5</span> <span class="toctext">RT-druid views specific for XSLT</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#How_to_run_an_example_XSLT_transformation"><span class="tocnumber">6</span> <span class="toctext">How to run an example XSLT transformation</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#How_to_write_your_own_XSLT_transformation"><span class="tocnumber">7</span> <span class="toctext">How to write your own XSLT transformation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#copying_from_an_existing_plugin"><span class="tocnumber">7.1</span> <span class="toctext">copying from an existing plugin</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#enhancing_the_OIL_implementation"><span class="tocnumber">7.2</span> <span class="toctext">enhancing the OIL implementation</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#parsing_the_modified_OIL_implementation_using_XSLT"><span class="tocnumber">7.3</span> <span class="toctext">parsing the modified OIL implementation using XSLT</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#change_the_plugin.xml"><span class="tocnumber">7.4</span> <span class="toctext">change the plugin.xml</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#change_the_Manifest"><span class="tocnumber">7.5</span> <span class="toctext">change the Manifest</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#add_some_examples..."><span class="tocnumber">7.6</span> <span class="toctext">add some examples...</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#How_to_put_an_XSLT_writer_in_production"><span class="tocnumber">8</span> <span class="toctext">How to put an XSLT writer in production</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Acknowledgements"> Acknowledgements </span></h1>
+<p>The XSLT transformation engine was done by Nicola Serreli and Christian Nastasi in a few nights. PJ did the first version of this wiki page.
+</p>
+<h1> <span class="mw-headline" id="Rationale"> Rationale </span></h1>
+<p>The rationale behind the idea of using XSLT transformation to generate source code from OIL is the following:
+</p>
+<ul><li> Many features related to the OIL code generation boils down to simple generated code.
+<ul><li> as an example: many settings are just mapped to <tt>#defines</tt>.
+</li></ul>
+</li><li> It may be difficult to write a JAVA plugin for generating code, because often one needs to know all the RT-Druid internals to do the job.
+</li></ul>
+<p>hence, the idea to:
+</p>
+<ul><li> take the OIL file, parse it and put it into the RT-Druid internal data structure
+</li><li> export the OIL internal data structure in XML form
+</li><li> run a set of XSLT transformations on the XML until the system reaches the form of generated code
+</li><li> old Java code generators plugin will remain available, so that one can add just XSLT transformations for the new modules which will be inserted from now on.
+</li></ul>
+<h1> <span class="mw-headline" id="Current_status"> Current status </span></h1>
+<ul><li> There is some basic support in RT-Druid which enables the possibility to test the system
+</li><li> The system is currently read-only, in the sense that the system does not save the XSLT transformation the user writes (to avoid damaging the current distribution)
+</li></ul>
+<p>Missing things:
+</p>
+<ul><li> Save of the current settings: we leave this as the last thing to avoid that users change a working  configuration ruining the code generation process.
+<ul><li> Currently the settings are maintained until Eclipse is closed. At every start of Eclipse we start again from the same configuration saved in the plugins
+</li></ul>
+</li><li> give the possibility to remove user XSLT transformation
+<ul><li> not useful until the previous point is implemented
+</li></ul>
+</li><li> make a better output view
+<ul><li> adding search, copy, ...
+</li></ul>
+</li><li> make a better error checking, putting the errors in the output
+</li><li> make possible to transform a sequence of XSLT transformation in a plugin which can be sent to Nicola to be added to the RT-Druid distribution
+</li><li> the OIl file which form the OIL implementation are currently scattered ine ach plugin. We  should make them somehow selectable
+</li><li> give the possibility to the user to directly change the OIL implementation definition by adding additional items
+</li><li> give warnings when there is no writer enabled to handle specific Hwrdwares, kernels, ...
+</li><li> we should add descriptions and tags to the writers to identify what they do
+<ul><li> useful for the xslt composition views
+</li><li> useful for testing of the correctness (e.g., the scheduler section has not been generated....)
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="The_code_generation_process_using_XSLT"> The code generation process using XSLT </span></h1>
+<p>We name <b>writer</b> a piece of code that is used to parse the OIL file and generate code.
+</p><p>We name <b>writer XSLT</b>, or <b>XSLT writer</b> a sequence of XSLT transformation which have to be run in sequence to take the OIL and produce code.
+</p><p>The process used to run an XSLT writer is the following:
+</p>
+<ol><li> The OIL file is transformed by RT-Druid in an XML document
+</li><li> The XML file pass through a list of XSLT transformation until we obtain a simple XML file with the generated code, divided by CPU (in case of a multicore environment) and by file
+</li><li> The resulting XML is parsed by the system, and the content for each file is appended to the other files generated by all other writers.
+<ul><li> Note that more than one writer (written in Java or using XSLT) may be active at the same time!
+</li></ul>
+</li></ol>
+<p>The result is that the user does not feel the difference between the code generators written in java or using XSLT.
+</p>
+<h1> <span class="mw-headline" id="RT-druid_views_specific_for_XSLT"> RT-druid views specific for XSLT </span></h1>
+<p>The system currently provides a set of Eclipse views which are able to work with the XSLT transformations.
+</p><p>To enable them, remember that <b>you need to update the plugins to the Nightly builds</b>.
+</p><p>The various views allows to:
+</p>
+<ul><li> Enable and disable the various writers which are present in the current build (both java and XSLT)
+</li><li> Show the current OIL IMPLEMENTATION which is used by the system to parse the OIL file.
+</li><li> Add new XSLT transformations (which can be stored in the workspace or in a generic place in the filesystem) to the list of available transformations. All these files will be used to "compose" the XSLT writer.
+</li><li> Add new XSLT writers as an ordered sequence (which can be also hyerarchical) of XSLT transformations added with the view listed at the previous bullet.
+</li><li> Try an XSLT writer on a file on the workspace, being able to show:
+<ul><li> the final result
+</li><li> the input and output at each step in the transformation
+</li><li> the error raised at each transformation (this feature is not yet available)
+</li></ul>
+<dl><dd> it is possible to copy and paste the text for further manual processing.
+</dd></dl>
+</li></ul>
+<p>Please note that nothing will change from the user point of view. in particular, the user will continue to use the "Build Project" commands to generate and compile the code.
+</p><p>As the first thing, all the views are available under "Windows/ Show views / Other..."
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_menu1.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/22/Xslttutorial_menu1.png" width="200" height="131" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_menu1.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>The "Windows/ Show views / Other..." menu</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_menu2.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/29/Xslttutorial_menu2.png" width="200" height="282" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_menu2.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Available RT-Druid views</div></div></div></div>
+<p>Then, the following figure shows the writers which are enabled. Checked lines means that the writer is enabled
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_enabled_writers.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/20/Xslttutorial_enabled_writers.png" width="200" height="131" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_enabled_writers.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>The list of enabled writers</div></div></div></div>
+<p>The following figure shows the list of current XSLT files in the system. On one side, there is the file list identified by a unique ID, whereas on the other side the file content is shown (Note that the view layout may be horizontal or vertical). There is an "add" button which can be used to add a new file to the list.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_availeble_xslt_files.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b8/Xslttutorial_availeble_xslt_files.png" width="200" height="146" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_availeble_xslt_files.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Available XSLT transformations for code generation</div></div></div></div>
+<p>the Add file wizard asks for the file ID and for the file itself (which can stay either in the file system or in the workspace). <b>Please note that this view needs to be redone to make it more user friendly</b>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_availeble_xslt_files_add.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bb/Xslttutorial_availeble_xslt_files_add.png" width="200" height="164" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_availeble_xslt_files_add.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Adding a new XSLT transformation file</div></div></div></div>
+<p>Then, using the views of the XSLT writer configurator (shown in the next pictures) it is possible to show the XSLT writers and their structure. On the left side, it is possible to add new writers, which can be added using the "add" button.
+</p><p>On the right side, the structure of the XSLT transformation is shown. the structure is as follows:
+</p>
+<ol><li> Writer root is used as a placeholder to mean that that is the end result of ll the transformation. <b>This will be changed in the next versions</b>
+</li><li> then there is a tree of transformations.
+<ul><li> Each transformation tasks an input and produces an output.
+</li><li> The output is passed to the childs. All childs receive as input the output produced by the father.
+</li></ul>
+</li><li> Double clicking on an XSLT transformation open a view showing the specific file.
+</li></ol>
+<p>Moreover, on the right side the input and output part of each transformation is shown. Please note that the input and output shown depend on the transformation which is selected.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d1/Xslttutorial_xslt_chain.png" width="200" height="77" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>View used to configure XSLT transformation chains</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain_output.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/66/Xslttutorial_xslt_chain_output.png" width="200" height="90" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain_output.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Output of the XSLT writer obtained clicking on the writer root</div></div></div></div>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain_step.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ad/Xslttutorial_xslt_chain_step.png" width="200" height="90" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Xslttutorial_xslt_chain_step.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Input and output at a specific step of the transformation</div></div></div></div>
+<h1> <span class="mw-headline" id="How_to_run_an_example_XSLT_transformation"> How to run an example XSLT transformation </span></h1>
+<p>As today (October 27th) the current distribution in the nightly builds contains two example writers, named:
+</p>
+<ul><li> test_ee_xslt_writer
+<ul><li> Please look at this one.
+</li></ul>
+</li><li> test_ee_xslt_writer__2
+<ul><li> This is just a test to test the nesting of the XSLT transformation, and will be removed soon.
+</li></ul>
+</li></ul>
+<p>The steps to run a test transformation are:
+</p>
+<ul><li> Please use the test named test_ee_xslt_writer to do the test.
+</li><li> Click on the writer on the left
+</li><li> Open the "transformation test" part
+</li><li> Add an OIL file clicking on the "browse" button.
+<ul><li> I tried with the conf OIL of the template application named "pic30/Flex Demo Board/OO examples/Task demo"
+</li></ul>
+</li><li> Click on the "Run" button
+</li><li> The transformation is generated.
+</li><li> Click on the com.eu.evidence.rtdruid.oil.ee_xslt_steps.pre_parsing entry in the structure
+<ul><li> the input part is the OIL file translated in XML which is given as input to the XSLT transformation.
+</li><li> this transformation is used to translate the input which comes from the RT-Druid internal data structure into a more human-readable form (this is why it is called <b>pre-"parsing</b>
+</li><li> the output part is a more human-readable form of the OIL file.
+</li></ul>
+</li><li> Click on the com.eu.evidence.rtdruid.oil.ee_xslt_steps.parsing entry in the structure (it is a child of the one at the previous bullet!)
+<ul><li> this transformation takes as input the output of its father (the "pre-parsing" transformation) and generates an output XML which is the result of the transformation
+</li></ul>
+</li><li> Finally, the "Writer root" part takes the final output of each <b>LEAF</b> transformation. The output specifies some content for each file. If there are more than one leaf, then the result is CONCATENATED.
+</li></ul>
+<p>How to activate an XSLT writer:
+</p>
+<ul><li> you have to select it into the list of generators shown before.
+</li></ul>
+<p>IMPORTANT NOTE: Please note that the "test_ee_xslt_writer" XSLT writer is almost a replacement for all other Java writers. This means that, <b>if you enable that writer without disabling the other writers, then you will get double content in the generated files!!!</b>.
+</p>
+<h1> <span class="mw-headline" id="How_to_write_your_own_XSLT_transformation"> How to write your own XSLT transformation </span></h1>
+<p>The following steps describe shortly how you can test your XSLT transformation to add a new OIL extension to the system. The process is divided in a set of parts described below.
+</p>
+<h2> <span class="mw-headline" id="copying_from_an_existing_plugin"> copying from an existing plugin </span></h2>
+<p>Starting from release 1.6.0 of RT-Druid, there are a few architectures supporting OIL extensions using XSLT transformations.
+</p><p>We suggest to start from one of those. For that reason, as the first step:
+</p>
+<ol><li> go into the <tt>plugins</tt> directory
+</li><li> find one of the plugins using XSLT transformations. 
+<ul><li> Note: the <b>com.eu.evidence.rtdruid.oil.esirisc.core_VERSION.DATE</b> plugin uses XSLT. You can use that one as a starting point. In the following of this document we will suppose that you are starting from the esirisc plugin.
+</li></ul>
+</li><li> copy the plugin into the <b>dropins</b> directory (at the same level of the <b>plugins</b> directory)
+<ul><li> the dropins directory can be used to store plugins created by the user which are not part of the default installation
+</li></ul>
+</li><li> after copying the plugin, <b>change the name of the directory</b> to avoid conflicts
+</li></ol>
+<h2> <span class="mw-headline" id="enhancing_the_OIL_implementation"> enhancing the OIL implementation </span></h2>
+<p>To support new OIL configurations, you need to specify them using the OIL specification for the implementation definition.
+</p><p>You do not need to list all the settings which already exist, but only the additional OIL variables that you are specifying.
+</p><p>For example, you should add your specific CPUs/MCU/BOARD sections for the relevant chip or evaluation board.
+</p><p>This will allow you to load your additional custom OIL specification in the system.
+</p><p>Finally, please rename the file with a meaningful name.
+</p>
+<h2> <span class="mw-headline" id="parsing_the_modified_OIL_implementation_using_XSLT"> parsing the modified OIL implementation using XSLT </span></h2>
+<p>Once you have modified your OIL implementation, you can parse it using the XSLT transformations.
+</p><p>The esi-risc has an existing XSLT file that you can use as a basis, which is contained into the <tt>xsltTransformations</tt> folder of the esi-risc plugin.
+</p><p>Please modify it as you need.
+</p><p>To test it rapidly, you can also use the following steps
+</p>
+<ul><li> create an empty file for your XSLT transformation
+<ul><li> create an empty project in the workspace
+</li><li> create an empty xslt file in the workspace (for example "my.xslt").
+</li><li> open the my.xslt file
+</li></ul>
+</li><li> add the file in the workspace to the list of available XSLT tranformations. To do that:
+<ul><li> go to the view "Available XSLT transformations for code generation"
+</li><li> click the "add" button
+</li><li> click on "browse ws" to select the "my.xslt" file just created
+</li><li> give an unique id to the transformation. For example: "mytransformation"
+</li></ul>
+</li><li> add a new writer
+<ul><li> go in the view named "Available xslt writers for code generation"
+</li><li> click on the "add" button on the left panel (the one listing the writers)
+</li><li> give a unique id, example "mywriter"
+</li><li> as a result, a new writers appears on the list. If you click on it, only the "Writer root" element is on the list on the right.
+</li></ul>
+</li><li> add the XSLT transformations to the writer
+<ul><li> click "add" on the "Structure" tab
+</li><li> select "com.eu.evidence.rtdruid.oil.ee.xslt_steps.pre_parsing", and click "Finish"
+</li><li> now we need to add the new XSLT transformation on the workspace as a sub-transformation of the one just inserted.
+<ul><li> This because the pre_parsing transformation is used as an initial "preprocessor" to make the XML coming out from RT-Druid more readable
+</li></ul>
+</li><li> to do this, select the pre_parsing transformation you just added
+</li><li> click the "add" button again
+</li><li> select the "mytransformation" ID that you created at the previous step
+</li><li> click on "Finish"
+</li><li> note that the "mytransformation" XSLT transformation is now a child of the pre_parsing transformation
+</li></ul>
+</li><li> Run the writer
+<ul><li> At this point, you do have your transformation ready, and you can try running it using the "Run" button available in the tool to test the transformation you have done!
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="change_the_plugin.xml"> change the plugin.xml </span></h2>
+<p>You need to edit and change the <tt>plugin.xml</tt> file into the root of the plugin directory.
+</p><p>In particular, you need to change the various files (.oil, .xslt) referenced in the xml file with the ones you just changed above.
+</p><p>Using the plugin.xml it is possible to set the phase where the writer is called. Here is the sequence:
+</p>
+<pre> INIT -&gt; CPU -&gt; KERNEL -&gt; BOARD -&gt; HW -&gt; OTHERS -&gt; MAKEFILE -&gt; END
+</pre>
+<p>Inside each phase, all writers have a priority value to sort them. Lower values are executed before greater values.
+</p><p>Here is an extract of <tt>plugin.xml</tt> with both phase and priority set.
+</p>
+<pre> &lt;extension
+        point="com.eu.evidence.rtdruid.oil.ee.core.eeXsltSectionWriter"&gt;
+     &lt;xsltWriter
+           enabled="true"
+           id="xslt_writer_it"
+           priority="50000000"
+           type="MAKEFIE"&gt;
+        &lt;xsltStep
+              xsltWriterStepId="first_step"&gt;
+        &lt;/xsltStep&gt;
+     &lt;/xsltWriter&gt;
+  &lt;/extension&gt;
+</pre>
+<p>If not specified, the priority is 1000.
+RT-Druid standard makefile writers have the priority set to 10000000 
+</p>
+<pre>Note: at this moment, it is possible to place the generated code only before or after the code produced by another writer.
+</pre>
+<h2> <span class="mw-headline" id="change_the_Manifest"> change the Manifest </span></h2>
+<p>You need to change the <tt>META-INF/MANIFEST.MF</tt> file with the information about the new plugin.
+</p>
+<h2> <span class="mw-headline" id="add_some_examples..."> add some examples... </span></h2>
+<p>If you want to add examples about the extensions, you can use the <tt>examples</tt> folder. If you do not have examples, please remove all contents of the examples directory, and leave the directory empty.
+</p>
+<h1> <span class="mw-headline" id="How_to_put_an_XSLT_writer_in_production"> How to put an XSLT writer in production </span></h1>
+<p>Once done, please send: the modified plugins you now have in the <tt>dropins</tt> directory to Nicola Serreli (nicola "at" evidence "dot" eu "dot" com)
+</p><p>Enjoy!
+</p><p>Nicola, Christian, PJ
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 54/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

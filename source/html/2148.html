@@ -1,0 +1,110 @@
+We are going to see how program the <i>serialpar_io</i> component. The <i>serialpar_io</i> component drives shift register in output and input. On the <i>FPG-EYE</i> board there is a <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:74hc165.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/62/74hc165.png" width="400" height="251" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:74hc165.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Switches connected on 74hc165 parallel to serial converter</div></div></div></div> as input shift register and a <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:74hc595.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ac/74hc595.png" width="400" height="195" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:74hc595.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>LEDs connected on 74hc595 serial to parallel converter</div></div></div></div> as output shift register. the serialpar_io can be used together In this session the code reads the switches status from <i>SW1</i> component and every time this value is changed the code increment the the LEDs value: <i>DL1</i>, <i>DL2</i>, <i>DL5</i>, <i>DL6</i>, <i>DL7</i>, <i>DL8</i>, <i>DL9</i> and <i>DL10</i>.
+<h2> <span class="mw-headline" id="Read_switches_value_by_serialpar_io"> Read switches value by serialpar_io </span></h2>
+<p>In the figure shown a portion of the circuit of the FPG-EYE. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:74hc165.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/62/74hc165.png" width="400" height="251" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:74hc165.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Switches connected on 74hc165 parallel to serial converter</div></div></div></div>
+<p>The input shift register <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT165.pdf" class="external text" rel="nofollow">74hc165</a> is drived by <i>serialpar_io</i> component in serial mode. The serial data is latched   
+</p>
+<h2> <span class="mw-headline" id="Write_a_switches_value_by_serialpar_io"> Write a switches value by serialpar_io </span></h2>
+<p>In the figure is shown a portion of the circuit of the FPG-EYE. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:402px;"><a href="/wiki/index.php?title=File:74hc595.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ac/74hc595.png" width="400" height="195" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:74hc595.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>LEDs connected on 74hc595 serial to parallel converter</div></div></div></div>
+<p>The component <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf" class="external text" rel="nofollow">74hc595</a> is connected on <i>serialpar_io</i> component.
+</p>
+<h2> <span class="mw-headline" id="Example_code"> Example code </span></h2>
+<p>Everytime we change the state on the switches the LEDs value is incremented:
+</p>
+<pre>#define EE_LED_COUNT 10
+#define EE_SERIO_ALL_LEDS ((1 &lt;&lt; EE_SERIO_LED_COUNT) - 1)
+#define EE_SERIO_SWITCH_MASK(n) (1 &lt;&lt; (n))
+
+/* register structure of the serialpar_io component */
+typedef struct
+{
+   /* Register to read state of switches and button (RO) */
+   volatile unsigned long data_in;
+   /* Register to control leds &amp; transistors (R/W) */
+   volatile unsigned long data_out;
+   /* Status register (R/W) */
+   volatile unsigned long status;
+} serialpar_io_t;
+
+/* SERIAL_BASE_ADDRESS is from system_conf.h */
+static serialpar_io_t * const serpario = (SerParIO_t *)SERPARIO_BASE_ADDRESS;
+
+/*
+   This function reads the status of switches and button.
+   return: the status of switches and button (data_in register).	
+*/
+unsigned long serio_read(void)
+{
+   return serpario-&gt;data_in;
+}
+
+/*
+   This function reads a particular switch of the XP2-CAMERA board.
+   param n: the number of the switch to read			
+   return: the status of the switches
+*/
+unsigned long serio_switch_read(unsigned int n)
+{
+   return (serio_read() &amp; EE_SERIO_SWITCH_MASK(n))&nbsp;!= 0;
+}
+
+/*
+   This function reads data_out, the register to control leds &amp; transistors.
+   return: the status of leds &amp; transistors (data_out register).
+*/
+unsigned long serio_get_data_out(void)
+{
+   return serpario-&gt;data_out;
+}
+
+/*
+   This function writes data_out, the register to control leds.
+*/
+void serio_write(unsigned long data)
+{
+   serpario-&gt;data_out = data;
+}
+
+/*
+   This function sets the state of the leds of the XP2-CAMERA board.
+   state: Bitmap of the new led state
+*/
+void led_set_all(unsigned long state)
+{
+   unsigned long old = serio_get_data_out();
+   serio_write((old &amp; ~EE_SERIO_ALL_LEDS) | (state &amp; EE_SERIO_ALL_LEDS));
+}
+
+int main(void) {
+   
+   unsigned long state_old, state;
+   unsigned long value;
+
+   /* All LEDs off */
+   led_set_all(0);
+
+   state_old = state;
+
+   while(1) {
+
+       state = serio_read();
+       if (state_old&nbsp;!= state) {
+
+           state_old = state;
+           led_set_all(++value);
+       }
+   }
+
+   return 0;
+}
+</pre>
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

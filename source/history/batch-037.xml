@@ -1,0 +1,236 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Mchp16 linear intsh.png</title>
+    <id>1347</id>
+    <revision>
+      <id>1362</id>
+      <timestamp>2008-08-13T12:52:28Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear intsubtract.png</title>
+    <id>1348</id>
+    <revision>
+      <id>1363</id>
+      <timestamp>2008-08-13T12:52:36Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear intz.png</title>
+    <id>1349</id>
+    <revision>
+      <id>1364</id>
+      <timestamp>2008-08-13T12:52:47Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear matrixs.png</title>
+    <id>1350</id>
+    <revision>
+      <id>1365</id>
+      <timestamp>2008-08-13T12:52:55Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear matrixz.png</title>
+    <id>1351</id>
+    <revision>
+      <id>1366</id>
+      <timestamp>2008-08-13T12:53:03Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear multip.png</title>
+    <id>1352</id>
+    <revision>
+      <id>1367</id>
+      <timestamp>2008-08-13T12:53:12Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear pid.png</title>
+    <id>1353</id>
+    <revision>
+      <id>1368</id>
+      <timestamp>2008-08-13T12:53:20Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear sh.png</title>
+    <id>1354</id>
+    <revision>
+      <id>1369</id>
+      <timestamp>2008-08-13T12:53:29Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear shift.png</title>
+    <id>1355</id>
+    <revision>
+      <id>1370</id>
+      <timestamp>2008-08-13T12:53:38Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear subtract.png</title>
+    <id>1356</id>
+    <revision>
+      <id>1371</id>
+      <timestamp>2008-08-13T12:53:49Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear vardelay.png</title>
+    <id>1357</id>
+    <revision>
+      <id>1372</id>
+      <timestamp>2008-08-13T12:53:59Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 linear z.png</title>
+    <id>1358</id>
+    <revision>
+      <id>1373</id>
+      <timestamp>2008-08-13T12:54:07Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic clearbit.png</title>
+    <id>1359</id>
+    <revision>
+      <id>1374</id>
+      <timestamp>2008-08-13T12:54:26Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic dflipflop.png</title>
+    <id>1360</id>
+    <revision>
+      <id>1375</id>
+      <timestamp>2008-08-13T12:54:34Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic dlatch.png</title>
+    <id>1361</id>
+    <revision>
+      <id>1376</id>
+      <timestamp>2008-08-13T12:54:45Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mchp16 logic int16.png</title>
+    <id>1363</id>
+    <revision>
+      <id>1378</id>
+      <timestamp>2008-08-13T12:55:04Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

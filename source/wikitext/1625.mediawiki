@@ -1,0 +1,15 @@
+# Checkout the svn repository to work with the last version of the test cases. Note that you can use subversion in anonymous mode without logging in (in this case you won't be allowed to write on the repository for adding, editing or removing files). 
+#* To checkout the source, type: <tt> svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee </tt>
+#* To update the sources type: <tt> svn update </tt>
+# Change the working directory to: <tt> repos/ee/trunk/ee/testcase </tt>
+# Start the compilation by typing <tt>make ARCH=e200zx</tt> (see below for other targets) and by specifying MCU target, e.g: make ARCH=e200zx_diab_5_5_1_vle MCU_TARGET=mamba where mamba represents MPC5674F. The build system will compile all the projects through the following steps:
+## Creating all the temporary directories;
+## Processing the OIL configuration files using RT_DRUID;
+## Compiling the sources to generate the .elf files;
+## Creating the Lauterbach scripts to run the regression tests on the processor.DIRS="modistarc_task_1" </tt> 
+# Launch the tests: <tt>cd tmp; t32mppc</tt>
+# After the test, open the file <tt>tmp/report.log</tt>.  You should find a line saying <tt>Test OK</tt> for every test; if a test is marked with <tt>Test Failed</tt> then you have found something broken.
+
+The <tt>e200zx</tt> target uses the Diab compiler and the FLE instruction set.  It is possible to choose the CodeWarrior compiler and/or the VLE instruction set using one of these other targets: <tt>e200zx_diab_vle</tt>, <tt>e200zx_codewarrior_vle</tt>, or <tt>e200zx_codewarrior_fle</tt>.
+
+See also: [[Freescale PPC e200 (MPC 56xx)]]

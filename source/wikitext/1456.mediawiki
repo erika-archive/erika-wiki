@@ -1,0 +1,5 @@
+= General stuffs on the Erika wiki =
+
+== TMP / Problems with the wiki ==
+* [[ErikaWiki::Problems::Charset]]
+* [[ErikaWiki::Problems::Stale_mambowiki_stuffs]]

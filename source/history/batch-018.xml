@@ -1,0 +1,251 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Avr5tut welcome.png</title>
+    <id>2325</id>
+    <revision>
+      <id>4851</id>
+      <timestamp>2012-07-20T08:55:37Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>22</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Bb scicos.png</title>
+    <id>1420</id>
+    <revision>
+      <id>1536</id>
+      <timestamp>2008-09-26T10:49:12Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Bb sensor.png</title>
+    <id>1421</id>
+    <revision>
+      <id>1537</id>
+      <timestamp>2008-09-26T10:49:28Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Bb setup.png</title>
+    <id>1419</id>
+    <revision>
+      <id>1535</id>
+      <timestamp>2008-09-26T10:48:33Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Board.png</title>
+    <id>2492</id>
+    <revision>
+      <id>5895</id>
+      <timestamp>2014-11-10T13:40:16Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Board run1.png</title>
+    <id>1579</id>
+    <revision>
+      <id>1855</id>
+      <timestamp>2010-01-11T09:42:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Board run2.png</title>
+    <id>1585</id>
+    <revision>
+      <id>1862</id>
+      <timestamp>2010-01-11T10:09:57Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Build.PNG</title>
+    <id>1499</id>
+    <revision>
+      <id>1728</id>
+      <timestamp>2009-12-02T16:43:23Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3202</id>
+      <timestamp>2011-08-24T14:19:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Build.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Build s12g.PNG</title>
+    <id>2209</id>
+    <revision>
+      <id>4213</id>
+      <timestamp>2011-12-12T17:29:37Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Build success.PNG</title>
+    <id>2210</id>
+    <revision>
+      <id>4214</id>
+      <timestamp>2011-12-12T17:29:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:C Project.png</title>
+    <id>2273</id>
+    <revision>
+      <id>4581</id>
+      <timestamp>2012-02-01T12:10:20Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal-demo-project-settings.png</title>
+    <id>1761</id>
+    <revision>
+      <id>2386</id>
+      <timestamp>2011-02-08T13:48:51Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to properly edit the project settings for the cal_demo project</comment>
+      <text xml:space="preserve">This screenshot shows how to properly edit the project settings for the cal_demo project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo build project.png</title>
+    <id>1760</id>
+    <revision>
+      <id>2385</id>
+      <timestamp>2011-02-08T13:45:16Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to build the cal_demo project</comment>
+      <text xml:space="preserve">This screenshot shows how to build the cal_demo project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo cal actors compilation successful.png</title>
+    <id>1771</id>
+    <revision>
+      <id>2527</id>
+      <timestamp>2011-02-14T11:15:20Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the results of a correct building process of the cal_demo_cal_actors project</comment>
+      <text xml:space="preserve">This screenshot shows the results of a correct building process of the cal_demo_cal_actors project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo cal actors project created.png</title>
+    <id>1770</id>
+    <revision>
+      <id>2524</id>
+      <timestamp>2011-02-14T10:27:23Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the files you will find once created a new cal_demo_cal_actors project</comment>
+      <text xml:space="preserve">This screenshot shows the files you will find once created a new cal_demo_cal_actors project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo cal actors project settings.png</title>
+    <id>1764</id>
+    <revision>
+      <id>2400</id>
+      <timestamp>2011-02-08T14:51:18Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to properly edit the project settings for the cal_demo_cal_actors project</comment>
+      <text xml:space="preserve">This screenshot shows how to properly edit the project settings for the cal_demo_cal_actors project</text>
+    </revision>
+  </page>
+</mediawiki>

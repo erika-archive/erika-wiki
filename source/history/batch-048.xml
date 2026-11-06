@@ -1,0 +1,278 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Region2sb.png</title>
+    <id>1814</id>
+    <revision>
+      <id>2743</id>
+      <timestamp>2011-02-24T11:23:20Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Released reset.png</title>
+    <id>1594</id>
+    <revision>
+      <id>1883</id>
+      <timestamp>2010-01-11T10:53:45Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Repository Archive.png</title>
+    <id>2358</id>
+    <revision>
+      <id>5158</id>
+      <timestamp>2013-07-16T09:33:48Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Repository Archive</comment>
+      <text xml:space="preserve">Repository Archive</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Restart.png</title>
+    <id>2256</id>
+    <revision>
+      <id>4458</id>
+      <timestamp>2012-01-26T16:36:40Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Roller gui.png</title>
+    <id>2075</id>
+    <revision>
+      <id>3432</id>
+      <timestamp>2011-09-28T10:28:42Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rs232 multibus.PNG</title>
+    <id>1624</id>
+    <revision>
+      <id>1981</id>
+      <timestamp>2010-05-19T10:51:33Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1982</id>
+      <timestamp>2010-05-19T10:54:30Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Rs232 multibus.PNG]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1983</id>
+      <timestamp>2010-05-19T10:54:53Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Rs232 multibus.PNG]]&quot;:&amp;#32;Reverted to version as of 10:51, 19 May 2010</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1984</id>
+      <timestamp>2010-05-19T10:55:12Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Rs232 multibus.PNG]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rs485 uart2 demo.png</title>
+    <id>2055</id>
+    <revision>
+      <id>3143</id>
+      <timestamp>2011-06-23T14:34:43Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3145</id>
+      <timestamp>2011-07-01T11:33:25Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Rs485 uart2 demo.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd ant home.png</title>
+    <id>2060</id>
+    <revision>
+      <id>3160</id>
+      <timestamp>2011-07-19T23:55:53Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd import 01.png</title>
+    <id>2062</id>
+    <revision>
+      <id>3163</id>
+      <timestamp>2011-07-19T23:57:29Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd import 02.png</title>
+    <id>2063</id>
+    <revision>
+      <id>3164</id>
+      <timestamp>2011-07-19T23:57:43Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd import 03.png</title>
+    <id>2064</id>
+    <revision>
+      <id>3165</id>
+      <timestamp>2011-07-19T23:58:00Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd import 04.png</title>
+    <id>2065</id>
+    <revision>
+      <id>3166</id>
+      <timestamp>2011-07-19T23:58:14Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd mem output.png</title>
+    <id>2061</id>
+    <revision>
+      <id>3162</id>
+      <timestamp>2011-07-19T23:57:12Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Rtd prefs.png</title>
+    <id>2059</id>
+    <revision>
+      <id>3159</id>
+      <timestamp>2011-07-19T23:55:33Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Run generator from msb ide.png</title>
+    <id>2105</id>
+    <revision>
+      <id>3601</id>
+      <timestamp>2011-10-04T09:44:10Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:SCI Architecture.png</title>
+    <id>2407</id>
+    <revision>
+      <id>5251</id>
+      <timestamp>2013-07-16T20:49:58Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>SCI Architecture.</comment>
+      <text xml:space="preserve">SCI Architecture.</text>
+    </revision>
+  </page>
+</mediawiki>

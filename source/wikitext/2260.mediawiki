@@ -1,0 +1,54 @@
+= Introduction =
+
+To compile and run the example you should download the [http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en019469&part=SW007002 MPLAB IDE] v8.66 or later. Then please download the [http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en010065&part=SW006012 compiler C30] (a C version compiler for dsPic). For install MPLAB IDE and C30 Compiler please follow the instructions present on the Microchip web site.
+    
+= EasyLab Project Packet =
+
+We take as example the [http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip Easylab Software Packet]. It contains the follow files:
+
+* '''easy-lab-demo-project.mcp:''' is the MPLAB's project file.
+* '''easylab.c:''' is demo library C file.
+* '''easylab.h:''' is demo library header file.
+* '''main.c:''' is the project main file where is called the library API.
+* '''cof:''' is a directory where is placed an programmable ''cof'' file ready to be programmed (without compile the project).
+
+Put these files in a your working project directory.
+
+= MPLAB IDE =
+
+Now please launch the Microchip Mplab ide from your 'Start Program'.
+
+[[File:mplab_ide.png|center|thumb|700px| Microchip Mplab ide]]
+ 
+Now click on ''Open Project'' and select the project where it was decompressed. 
+
+[[File:mplab_easylab_open_project.png|center|thumb|700px| Open the ''EasyLab demo project'']]
+
+In '''Menu -> Configure -> Select Device''' please select the device '''dsPIC33FJ64MC802'''.
+
+[[File:mplab_easylab_select_micro.png|center|thumb|700px| Open the ''EasyLab demo project'']]
+
+Now in the '''Menu -> Project -> Select Language Toolsuite''' select the '''Microchip C30 toolsuite''' and its location in the your file system.
+
+[[File:mplab_toolsuite.png|center|thumb|700px| Select '''Language Toolsuite''']]
+
+Now click on '''Menu -> Project -> Build All''' and the project should be compiled.
+
+[[File:mplab_easylab_build.png|center|thumb|700px| Build the demo project]] 
+
+Now connect your Easylab with miniUSB supply programming cable and USB communication cable at your Pc.
+Select '''Starter Kits programmer''' in '''Menu -> Programmer -> Select Programmer -> Starter Kits'''.
+
+[[File:mplab_start_kit.png|center|thumb|700px| Select '''Starter Kit''']] 
+
+For the Pc communications please open a Serial Terminal (e.g. Putty.exe, HTerm.exe). Configure the port, baud rate (115200),data bits(8 bit), stop bits (1 bit) and parity bits (none). DON'T enable CTS. Connet to the channel.
+
+[[File:hyperterminal.png|center|thumb|700px| Serial communication with EasyLab]] 
+
+Program your board clicking on '''Program''' button (It should have been appeared after you selected the programmer)
+Enjoy the kitting effect and a nice stadium choir. :)
+Look at your serial terminal, you should get the example instruction on the console.
+
+[[File:easylab_menu.png|center|thumb|700px| EasyLab Menu]] 
+
+Have fun with it. :D

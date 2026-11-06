@@ -1,0 +1,12 @@
+The ERIKA build system for Infineon AURIX produces a Lauterbach Trace32 configuration file ('''t32.cmm''') and a ORTI description file ('''system.orti''') inside the output directory. The ORTI file is produced only if ORTI support is enabled in the OIL configuration file. To launch the Trace32 debugger for singlecore projects, please issue '''t32mtc''' from the output directory. The ERIKA build system honors the '''T32SYS''' environment variable, if set (default ''T32SYS ?= C:/T32'')
+
+=== Muticore Projects ===
+
+For multicore projects, the files mentioned above are produced inside the core directories for each core, and a startup script (named '''tc27x_mc_start.sh''' under cygwin and linux or '''tc27x_mc_start.bat''' for Windows cmd) is produced in the output directory. If the build targeted AURIX Flash (the default behaviour), before executing debug you need to flash multicore images.
+To do that simply execute '''tc27x_mc_flash.sh''' (under Linux or Cygwin environment) or '''tc27x_mc_flash.bat''' (in Windows environment) scripts.
+
+To run the debugger, please issue ''tc27x_mc_start.[sh,bat]'' from the output directory. The script creates up to three instances of the debugger, one for each core. Slave cores cannot be started until master core (Core 0) enable them, thing that is made early in start-up code. Nonetheless, the startup script loads all the code and the debug symbols for each core and each debugger instances. The barrier inside '''StartOS()''' comes handy to synchronize the code running on the different cores.
+
+'''N.B.''' To let know the build system for wich Trace32 architecture (windows, windows64, pc_linux ecc.) it have to generate script for, set '''T32ARCH''' environment variable/pass it as make parameter with the right value (default ''T32ARCH ?= windows64'').
+
+[[Category:Debugging Tool Lauterbach TRACE32]]

@@ -1,0 +1,83 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Acknowledgements"><span class="tocnumber">1</span> <span class="toctext">Acknowledgements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Requirements"><span class="tocnumber">2</span> <span class="toctext">Requirements</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Supported_devices"><span class="tocnumber">3</span> <span class="toctext">Supported devices</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Supported_evaluation_boards"><span class="tocnumber">4</span> <span class="toctext">Supported evaluation boards</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#How_to_compile_and_run_an_application"><span class="tocnumber">5</span> <span class="toctext">How to compile and run an application</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Examples"><span class="tocnumber">6</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Notes_on_the_internal_implementation"><span class="tocnumber">7</span> <span class="toctext">Notes on the internal implementation</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Acknowledgements"> Acknowledgements </span></h1>
+<p>The porting of ERIKA Enterprise for the Infineon Tricore is a contribution developed in the context of the <a href="http://www.predator-project.eu/" class="external text" rel="nofollow">PREDATOR FP7</a>  project, and it has been done by Jan C. Kleinsorge from TU Dortmund.
+</p>
+<h1> <span class="mw-headline" id="Requirements"> Requirements </span></h1>
+<p>ERIKA for TriCore currently supports the GCC toolchain provided by HighTec GmbH. 
+Currently, GCC 3.4.6 as the cross-compiler is tested, which is binary packaged with the PXROS (free of charge for educational purposes). A source distribution exists for GCC 3.3.7. Note however that this compiler version might not compile with GCC 4 or higher and has possible incompatibilities with recent GNU autotools. If possible, obtain 3.4.6.
+</p><p>The compiled binaries can either be run on the simulator tsim which is to be found with the aforementioned binary package, or on a supported evaluation board (see below). 
+</p>
+<h1> <span class="mw-headline" id="Supported_devices"> Supported devices </span></h1>
+<p>The current port specifically supports Tricore1, core tc1.3, MCU tc1796b. It encompasses a boilerplate implementation to meet ERIKAs requirements (monostack and multistack).
+</p>
+<ul><li> Core 
+<ul><li> Support for ISR1-, ISR2- and Trap-handling
+</li><li> Direct CSA manipulation
+</li></ul>
+</li></ul>
+<ul><li> MCU
+<ul><li> WDT (locking)
+</li><li> PLL (initialization of system clocks and frequency selection)
+</li><li> STM (basic timer interrupt support and timing information)
+</li></ul>
+</li></ul>
+<p>This subset makes the code-base self-contained and allows to apply most configurations. For full support of these and other devices, it is advised to use the device definitions provided by the compiler toolchain. The definitions from HighTec feature the entire range of TriCore1 CPUs and their respective on-chip devices. 
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Supported_evaluation_boards"> Supported evaluation boards </span></h1>
+<p>The tested targets are
+</p>
+<ul><li> TriBoard tc1796b v4.1
+</li><li> Infineon tsim simulator. 
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_compile_and_run_an_application"> How to compile and run an application </span></h1>
+<ul><li> To compile the demos, prefix the gcc and binutils binaries with 'tricore-' and place the path into the PATH variable. Calling 'make' in the demo folders will build the binaries instantly. Alternatively, 
+</li></ul>
+<p>enter the correct path in the variable TRICORE1_GCCDIR within the demo's makefiles. Note that there is currently no RTDruid support, the demos are hand-crafted.
+</p>
+<ul><li> To run a demo in the simulator, make sure the flag __TSIM__ is enabled in the demo makefiles. This changes the set of start-up files and prevents the initialization of the system clock circuitry which is not supported (tested on tsim V0.03).
+</li></ul>
+<p>Otherwise, the binary can directly loaded and run. 
+</p>
+<ul><li>Useful links:
+<ul><li> <a href="http://www.hightec-rt.com/" class="external text" rel="nofollow">http://www.hightec-rt.com</a>
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Examples"> Examples </span></h1>
+<p>At its current state, the port comes with a few example applications
+</p>
+<ul><li> <b>demo_hello</b> consists of a single (background) task which outputs "Hello, world!" through the debug interface and enters an idle loop.
+</li></ul>
+<ul><li> <b>demo_mono</b> demonstrates the monostack implementation. It makes use of the OSEK function TerminateTask to demonstrate how tasks can be aborted at aribtrary call depths.
+</li></ul>
+<ul><li> <b>demo_multi</b>demonstrates the multistack implementation with synchronization primitives. Activation and preemption is performed through Tasks and an ISR. 
+</li></ul>
+<ul><li> <b>demo_isr</b> shows the interrupt-handling capabilities by using OSEK ISR1, ISR2 and trap handlers. 
+</li></ul>
+<ul><li> <b>demo_led</b> implements a simple control of the on-board LEDs on the TriBoard tc1769 4.1 with multiple tasks and a timer ISR. 
+</li></ul>
+<h1> <span class="mw-headline" id="Notes_on_the_internal_implementation"> Notes on the internal implementation </span></h1>
+<ul><li> Although the MCU folder is labelled tc179x, there is specifically only support for tc1796b. It should not be too hard to provide other ports with minor changes.
+</li></ul>
+<ul><li> EE_MAX_ISR allows to define the maximum size of the interrupt vector table. Arbitration cycles are minimized upon initialization depending on this value. This can be used to reduce the memory footprint.
+</li></ul>
+<ul><li> A new type 'EE_STACK' was introduced due to TriCore's stack alignment requirements (double word).
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 26/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

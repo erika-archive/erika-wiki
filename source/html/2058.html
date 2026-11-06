@@ -1,0 +1,95 @@
+<p>First of all, you need the RT-Druid code. To get it, please <a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access" title="ERIKA Enterprise and RT-Druid SVN Access"> check it out from the Svn repository</a>.
+Then you need an editor. There are two options:
+</p>
+<ul><li> use your preferred one
+</li><li> use Eclipse
+</li></ul>
+<p>This page contains a few hints in case you are going to use Eclipse.
+</p>
+<pre>Note that you need some Eclipse <tt>plugins</tt> to compile RT-Druid even if you compile it by hand,
+i.e. not using Eclipse build environment.
+<br />We strongly suggest to use Eclipse environment to build and debug RT-Druid <tt>plugins</tt>.
+</pre>
+<p><br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Code_structure"><span class="tocnumber">1</span> <span class="toctext">Code structure</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Setting_up_Eclipse"><span class="tocnumber">2</span> <span class="toctext">Setting up Eclipse</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Setting_Ant_and_output_paths"><span class="tocnumber">3</span> <span class="toctext">Setting Ant and output paths</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Importing_projects"><span class="tocnumber">4</span> <span class="toctext">Importing projects</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Code_structure"> Code structure </span></h2>
+<p>RT-Druid source code is organized in several <tt>Eclipse projects</tt>; most of them correspond to a <tt>feature</tt> or a <tt>plugin</tt>.
+These projects are organized in the repository in few categories:
+</p>
+<ul><li> <b>Products</b>: contains <tt>Eclipse projects</tt> related to the packaging of the RT-Druid distributions
+</li><li> <b>Source</b>: the source code of RT-Druid
+<ul><li> <b>Core</b>: the main part
+</li><li> <b>Analysis</b>: <tt>plugins</tt> related to the schedulability analysis of a system
+</li><li> <b>Oil</b>: OIL language support
+</li></ul>
+</li><li> <b>Testing</b>: all <tt>plugins</tt> related to the test of RT-Druid code
+</li></ul>
+<p><br />
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Setting_up_Eclipse"> Setting up Eclipse </span></h2>
+<p>What you need to develop RT-Druid plugins is:
+</p>
+<ul><li> <b>java sdk</b>: i.e., the compiler. We suggest to use the Oracle jdk 1.6 (<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" class="external text" rel="nofollow">here is the Java SE download page</a>)
+</li><li> <b>Eclipse sdk</b>: if you do not have preferences or something already installed, take the <a href="http://www.eclipse.org/downloads/packages/eclipse-classic-37/indigor" class="external text" rel="nofollow">"classic" package of Eclipse</a>. Then you need to add few <tt>plugins</tt>, if you do not already have them:
+<ul><li> <b>Emf</b>: emf <tt>update site</tt> is <a href="http://download.eclipse.org/modeling/emf/updates/releases/" class="external free" rel="nofollow">http://download.eclipse.org/modeling/emf/updates/releases/</a>. Suggested selection is Emf.sdk (it contains the code and more than what you need, but it is the fastest way)
+</li><li> <b>Gef</b>: gef <tt>update site</tt> is <a href="http://download.eclipse.org/tools/gef/updates/releases/" class="external free" rel="nofollow">http://download.eclipse.org/tools/gef/updates/releases/</a>. Again we suggest the SDK pack: gef.sdk
+</li><li> <b>CDT</b>: cdt <tt>update site</tt> is <a href="http://download.eclipse.org/tools/cdt/releases/indigo/" class="external free" rel="nofollow">http://download.eclipse.org/tools/cdt/releases/indigo/</a>. Also here we suggest the SDK pack.
+</li></ul>
+</li></ul>
+<p>Even if they are not required, you can install also <tt>plugins</tt> for versioning like <a href="http://www.eclipse.org/subversive/downloads.php" class="external text" rel="nofollow">subversive</a>, or for bug reporting like <a href="http://www.eclipse.org/mylyn/downloads/" class="external text" rel="nofollow">mylyn</a>.
+</p>
+<pre><b>Note</b>: <a href="http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.user/tasks/tasks-34.htm" class="external text" rel="nofollow">here you can find</a> some instruction about how install the plugins using the <tt>Eclipse Update Manager</tt>.
+</pre>
+<pre><b>Note</b>: We suggest to use Eclipse 3.7 (<tt>Indigo</tt>). Today RT-Druid works with all versions of Eclipse since 3.4,
+but future development may break this compatibility.
+</pre>
+<h2> <span class="mw-headline" id="Setting_Ant_and_output_paths"> Setting Ant and output paths </span></h2>
+<p>In order to easily move RT-Druid <tt>plugins</tt> through various versions and installations of Eclipse, we use two <tt>variables</tt> ANT_HOME and MEM_OUTPUT_LOCATION.
+We can set both using the Eclipse preference window, opened through the <b>Preferences</b> command in the <b>Window</b> menu
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Rtd_prefs.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/8d/Rtd_prefs.png" width="200" height="202" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_prefs.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Preferences location in the Eclipse menu</div></div></div></div>
+<ul><li> <b>ANT_HOME</b> points to the Ant <tt>plugin</tt> in the current installation of Eclipse
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Rtd_ant_home.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c1/Rtd_ant_home.png" width="300" height="176" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_ant_home.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>An example of ANT_HOME variable</div></div></div></div>
+<ul><li> <b>MEM_OUTPUT_LOCATION</b> is the place where store binary files generated during the Eclipse build. (Note that this path is not used during the building of the <tt>update site</tt> and other <tt>RT-Druid products</tt>). This allows to separate the source from the binary, with some useful effects like:
+<ul><li> it is possible to put the output files in a ram-disk (to speed up compilation...)
+</li><li> you can compile the same code files with more than one version/instance of Eclipse at the same time
+</li><li> the source code directories are kept clean 
+</li></ul>
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Rtd_mem_output.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b2/Rtd_mem_output.png" width="300" height="176" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_mem_output.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>An example of MEM_OUTPUT_LOCATION variable</div></div></div></div>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Importing_projects"> Importing projects </span></h2>
+<p>To import RT-Druid <tt>projects</tt> into your Eclipse workspace, you have to select <b>Import...</b> from <b>File menu</b>
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Rtd_import_01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fc/Rtd_import_01.png" width="200" height="296" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_import_01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import command</div></div></div></div>
+<p>Then select "Existing projects into workspace"
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Rtd_import_02.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/ce/Rtd_import_02.png" width="300" height="315" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_import_02.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select import Existing projects</div></div></div></div>
+<p>The window requires the path on your filesystem containing RT-Druid source <tt>projects</tt> (in this example, the path is <b>E:\work\RT-Druid</b>). If the path is correct you should see the list of the available RT-Druid <tt>projects</tt>, and you can select the ones to import in your <tt>workspace</tt>.
+The <b>Copy project</b> flag allows you to copy all the files in your <tt>workspace</tt>, otherwise Eclipse will read and write directly in the path you specified.
+<tt>Working set</tt> is useful to quickly select a group of <tt>projects</tt>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Rtd_import_03.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4a/Rtd_import_03.png" width="300" height="349" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_import_03.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import Existing projects wizard</div></div></div></div>
+<p>If you set "ant" and "output" paths, and if you have <tt>autobuild</tt> enabled (true by default), you should see Eclipse starting to compile all RT-Druid <tt>projects</tt> you just imported.
+</p><p><br />	
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:302px;"><a href="/wiki/index.php?title=File:Rtd_import_04.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ef/Rtd_import_04.png" width="300" height="181" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Rtd_import_04.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import result</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

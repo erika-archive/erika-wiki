@@ -1,0 +1,877 @@
+== Synopsis ==
+
+The DMA driver is part of the microcontroller abstraction layer (MCAL).
+
+It provides services to offload data transfer tasks from the μC, allowing for more efficient use of the μC and the available bus bandwidth.
+
+The DMA driver can perform transfers between memory and peripherals. It supports dedicated channels for each supported on-chip module and can be programmed to automatically perform transfers between peripherals and memory as the peripheral is ready to transfer more data. It also provides the required mechanism to configure the on-chip DMA peripheral.
+
+The DMA driver supports memory-to-memory, memory-to-peripheral, and peripheral-to-memory in multiple transfer modes:
+* '''Basic''' for simple transfer scenarios
+* '''Ping-Pong''' for continuous data flow
+* '''Scatter-Gather''' for a programmable list of arbitrary transfers initiated from a single request
+
+The DMA driver supports highly flexible and configurable channel operation:
+* Independently configured and operated channels
+* Dedicated channels for supported on-chip modules
+* Flexible channel assignments
+* One channel each for receive and transmit path for bidirectional modules
+* Dedicated channel for software-initiated transfers
+* Per-channel configurable priority scheme
+* Optional software-initiated requests for any channel
+* Data sizes of 8, 16, and 32 bits
+* Transfer size is programmable.
+* Source and destination address increment size of byte, half-word, word, or no increment
+* Maskable peripheral requests
+* Interrupt on transfer completion, with a separate interrupt per channel
+
+=== Transfer Modes ===
+
+The DMA driver supports several transfer modes. Two of the modes support simple one-time transfers. Several complex modes support a continuous flow of data.
+
+The DMA driver transfer mode shall always be statically configurable, i.e. configured at pre-compile time to allow the best source code optimisation.
+
+To improve the scalability, each transfer has optional features which are configurable (ON/OFF) or selectable.
+
+==== Basic Mode ====
+
+In Basic mode, the DMA driver performs transfers as long as there are more items to transfer, and a transfer request is present.
+
+This mode is used with peripherals that assert a DMA request signal whenever the peripheral is ready for a data transfer.
+
+Basic mode should not be used in any situation where the request is momentary even though the entire transfer should be completed.
+
+==== Auto Mode ====
+
+Auto mode is similar to Basic mode, except that once a transfer request is received, the transfer runs to completion, even if the DMA request is removed.
+
+This mode is suitable for software-transfers. Generally, Auto mode is not used with a peripheral.
+
+==== Ping-Pong Mode ====
+
+Ping-Pong mode is used to support a continuous data flow to or from a peripheral.
+
+To use Ping-Pong mode, the DMA driver user needs to provide two separate data buffers (primary and alternate). Both data buffers are set up by user for data transfer between memory and a peripheral.
+
+The transfer is started using primary data buffer.
+
+When the transfer using primary data buffer is complete, the DMA driver uses alternate data buffer for that channel to continue the transfer.
+
+Each time this happens, an interrupt is generated, and the processor can reload the data buffer for the just-completed transfer.
+
+Data flow can continue indefinitely this way, using primary and alternate data buffers to switch back and forth between buffers as the data flows to or from the peripheral.
+
+[[File:DMA_Ping_Pong.png]]
+
+==== Memory Scatter-Gather Mode ====
+
+Memory Scatter-Gather mode is a complex mode used when data must be transferred to or from varied locations in memory instead of a set of contiguous locations in a memory buffer.
+
+For example, a gather DMA operation could be used to selectively read the payload of several stored packets of a communication protocol and store them together in sequence in a memory buffer.
+
+In Memory Scatter-Gather mode, the DMA driver needs a Scatter-Gather table in memory. The table is set up by the user software and contains a Task List of Scatter-Gather Entries, each containing the source and destination pointers, and the items number for a specific transfer.
+
+The end of the list is marked so once the last transfer is performed, the DMA driver controller stops. A completion interrupt is generated only after the last transfer.
+
+By using the DMA driver in this mode, a set of arbitrary transfers can be performed based on a single DMA request.
+
+[[File:DMA_Memory_Scatter_Gather.png]]
+
+==== Peripheral Scatter-Gather Mode ====
+
+Peripheral Scatter-Gather transfer mode is very similar to Memory Scatter-Gather, except that the transfers are controlled by a peripheral making a DMA request.
+
+Upon detecting a request from the peripheral, the DMA driver uses the table containing the Task List of Scatter-Gather Entries to performs the transfers.
+
+At the end of one transfer, the next transfer is started only if the peripheral again asserts a DMA request.
+
+The DMA driver continues to perform transfers from the list only when the peripheral is making a request, until the last transfer is complete.
+
+A completion interrupt is generated only after the last transfer.
+
+By using this method, the DMA driver can transfer data to or from a peripheral from a set of arbitrary locations whenever the peripheral is ready to transfer data.
+
+[[File:DMA_Pheriperal_Scatter_Gather.png]]
+
+== File Structure ==
+
+[[File:DMA_Driver_File_structure.png]]
+
+== API Specification ==
+
+=== Imported Types ===
+
+==== ''typedef uint8 Std_ReturnType'' ====
+
+  #include "Std_Types.h"
+
+Standard Return Type.
+
+This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+
+The ''Std_ReturnType'' shall normally be used with value ''E_OK'' or ''E_NOT_OK''.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+
+==== ''struct Std_VersionInfoType'' ====
+
+  #include "Std_Types.h"
+
+Standard Version Informations Type.
+
+This type shall be used to request the version of a AUTOSAR-like module using the ''<Module Name>_GetVersionInfo()'' function.
+
+'''Field Documentation:'''
+
+  ''uint16 Std_VersionInfoType::moduleID''
+	Module Identifier. 
+
+  ''uint8 Std_VersionInfoType::sw_major_version''
+	Software Version Major Number. 
+
+  ''uint8 Std_VersionInfoType::sw_minor_version''
+	Software Version Minor Number. 
+
+  ''uint8 Std_VersionInfoType::sw_patch_version''
+	Software Version Patch Number. 
+
+  ''uint16 Std_VersionInfoType::vendorID''
+	Vendor Identifier.
+
+=== Types Defintions ===
+
+==== ''struct Dma_ConfigType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Configuration Parameters.
+
+The description of the type ''Dma_ConfigType'' is implementation specific and it shall be provided for external use.
+
+The type ''Dma_ConfigType'' is an external data structure and shall contain the initialization data for the DMA Driver.
+
+It shall contain:
+* MCU dependent properties for DMA HW units
+* Definition of Channels
+
+For the type Dma_ConfigType, the definition for each Channel shall contain:
+* Channel Identifier
+* Channel Peripheral Assignment
+* Channel Source Address Boudaries
+* Channel Destination Address Boudaries
+* Channel Notifications Call-Backs
+* Channel Harware Specific Configuration
+
+For the type ''Dma_ConfigType'', the configuration will map the Channels to the different DMA hardware units and the devices.
+
+==== ''enum Dma_StatusType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Status Type.
+
+The type ''Dma_StatusType'' defines a range of specific status for DMA Driver. It informs about the DMA Driver status or specified DMA Hardware microcontroller peripheral.
+
+The type ''Dma_StatusType'' can be obtained calling the API service ''Dma_GetStatus()''.
+
+After reset, the type ''Dma_StatusType'' shall have the default value ''DMA_UNINIT'' with the numeric value '0'.
+
+API service ''Dma_GetStatus()'' shall return ''DMA_UNINIT'' when the DMA Driver is not initialized or not usable.
+
+API service ''Dma_GetStatus()'' shall return ''DMA_IDLE'' when The DMA Driver is not currently performing any transfer.
+
+API service ''Dma_GetStatus()'' shall return ''DMA_BUSY'' when The DMA Driver is performing a DMA transfer.
+
+'''Enumerator''': 
+* ''DMA_UNINIT'':	The DMA Driver is not initialized or not usable.
+* ''DMA_IDLE'':		The DMA Driver is not currently performing any transfer.
+* ''DMA_BUSY'':		The DMA Driver is performing a DMA transfer.
+
+==== ''enum Dma_ChannelResultType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Channel Result Type.
+
+The type ''Dma_ChannelResultType'' defines a range of specific Channels status for DMA Driver.
+
+The type ''Dma_ChannelResultType'' it informs about a DMA Driver Channel status and can be obtained calling the API service ''Dma_GetChannelResult()'' with the Channel ID.
+
+After reset, the type ''Dma_ChannelResultType'' shall have the default value ''DMA_CHANNEL_OK with'' the numeric value ''0''.
+
+The function ''Dma_GetChannelResult()'' shall return ''DMA_CHANNEL_OK'' when the last transfer on the Channel has been finished successfully.
+
+'''Enumerator''':
+* ''DMA_CHANNEL_OK'':		The last transfer on the Channel has been finished successfully.
+* ''DMA_CHANNEL_PENDING'':	The DMA Driver is performing a transfer on the DMA Channel. The meaning of this status is equal	to ''DMA_BUSY''.
+* ''DMA_CHANNEL_FAILED'':	The last transfer on the DMA Channel has failed.
+* ''DMA_CHANNEL_CANCELED'':	The last transfer on the DMA Channel has been canceled by user.
+
+==== ''typedef uint Dma_DataType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Data Type.
+
+Dma_DataType defines the type of application data buffer elements.
+
+Type is ''uint8'', ''uint16'', ''uint32'' and Range is 8 to 32 bit. it shall be provided for external use.
+
+This is implementation specific but not all values may be valid within the type.
+
+This type shall be chosen in order to have the most efficient implementation on a specific microcontroller platform.
+
+The type Dma_DataType refers to application data buffer elements.
+
+==== ''typedef uint16 Dma_NumberOfElementsType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Number of Elements Type.
+
+The type ''Dma_NumberOfElementsType'' is used for defining the number of data elements of the type Dma_DataType to transfer on a DMA Channel.
+
+Type is ''uint8'', ''uint16'', ''uint32'' and Range is 8 to 32 bit.
+
+It shall be provided for external use.
+
+This is implementation specific but not all values may be valid within the type.
+
+This type shall be chosen in order to have the most efficient implementation on a specific microcontroller platform.
+
+==== ''typedef uint Dma_ChannelType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Channel Type.
+
+The type ''Dma_ChannelType'' specifies the identification (ID) for a Channel.
+
+Type is ''uint8'', ''uint16'', ''uint32'' and Range is 8 to 32 bit.
+
+It shall be provided for external use.
+
+This is implementation specific but not all values may be valid within the type.
+
+This type shall be chosen in order to have the most efficient implementation on a specific microcontroller platform.
+
+==== ''typedef struct Dma_EntryType'' ====
+
+  #include "Dma.h"
+
+DMA Driver Entry Type.
+
+The type ''Dma_EntryType'' defines the type for a specific DMA Channel transfer entry when the Channel is configurable for multiple transfers.
+
+Type is struct.
+
+It shall be provided for external use.
+
+This is implementation specific.
+
+This type shall be chosen in order to have the most efficient implementation on a specific microcontroller platform.
+
+==== ''typedef void (*Dma_SoftwareTransferEndNotification)(void)'' ====
+
+  #include "Dma.h"
+
+Call-back routine provided by the user to notify the caller that a software-transfer on a DMA Channel has been finished.
+
+The call-back ''Dma_SoftwareTransferEndNotification()'' shall be Re-entrant.
+
+The call-back notifications ''Dma_SoftwareTransferEndNotification()'' shall have no parameters and no return value.
+
+For implement the call back function other modules are required to provide the routines in the expected manner as function pointers defined within the initialization data structure.
+
+If the ''Dma_SoftwareTransferEndNotification()'' is configured (i.e. not a null pointer), the DMA Driver shall call the configured call-back notification at the end of a DMA Channel software-transfer.
+
+''Note'':	This routine might be called on interrupt level, depending on the calling function.
+
+If a callback notification is configured as null pointer, no callback shall be executed.
+
+==== ''typedef void (*Dma_TransferErrorNotification)(void)'' ====
+
+  #include "Dma.h"
+
+Call-back routine provided by the user to notify the caller that a transfer on a DMA Channel has not been finished due to a transfer error.
+
+The call-back ''Dma_TransferErrorNotification()'' shall be Re-entrant.
+
+The call-back notifications ''Dma_TransferErrorNotification()'' shall have no parameters and no return value.
+
+For implement the call-back function other modules are required to provide the routines in the expected manner as function pointers defined within the initialization data structure.
+
+If the ''Dma_TransferErrorNotification()'' is configured (i.e. not a null pointer), the DMA Driver shall call the configured call-back notification when an error occurs during a transfer on DMA Channel.
+
+''Note'': This routine might be called on interrupt level, depending on the calling function.
+
+If a callback notification is configured as null pointer, no callback shall be executed.
+
+=== Functions Definitions ===
+
+==== ''void Dma_Init(const Dma_ConfigType *ConfigPtr)'' ====
+
+  #include "Dma.h"
+
+DMA Driver Initialization.
+
+'''Parameters''':
+* ''ConfigPtr'':	Pointer to configuration set. 
+
+'''Returns''':
+* ''None''.
+
+This service initializes the DMA Driver.
+
+Service 0x00
+
+The function ''Dma_Init()'' shall be Non Re-entrant.
+
+The function ''Dma_Init()'' provides the service for DMA initialization.
+
+The function ''Dma_Init()'' shall initialize all DMA relevant registers with the values of the structure referenced by the parameter ''ConfigPtr''.
+
+The function ''Dma_Init()'' shall define default values for required parameters of the structure referenced by the ConfigPtr. 
+
+After the module initialization using the function ''Dma_Init()'', the DMA Driver shall set its state to ''DMA_IDLE'' and all the Channels result to ''DMA_CHANNEL_OK''.
+
+A re-initialization of a DMA Driver by executing the ''Dma_Init()'' function requires a de-initialization before by executing a ''Dma_DeInit()''.
+
+The calling of the routine ''DMA_Init()'' while the DMA Driver is already initialized will cause the desired functionality shall be left without any action.
+
+==== ''Std_ReturnType Dma_DeInit(void)'' ====
+
+  #include "Dma.h"
+
+DMA Driver De-Initialization.
+
+'''Parameters''':
+* ''None''.
+
+'''Returns''':
+* ''E_OK'':	De-initialization command has been accepted.
+* ''E_NOT_OK'':	De-initialization command has not been accepted.
+
+This service de-initializes the DMA Driver.
+
+Service 0x01
+
+The function ''Dma_DeInit()'' shall be Non Re-entrant.
+
+When the API ''Dma_DeInit()'' has been accepted the return value of this function shall be ''E_OK''.
+
+When the API ''Dma_DeInit()'' has not been accepted the return value of this function shall be ''E_NOT_OK''.
+
+The function ''Dma_DeInit()'' provides the service for DMA de-initialization.
+
+The function ''Dma_DeInit()'' shall de-initialize DMA Driver.
+
+In case of the DMA Driver state is not ''DMA_BUSY'', the deInitialization function shall put all already initialized microcontroller DMA peripherals into the same state such as Power On Reset.
+
+The function call ''Dma_DeInit()'' shall be rejected if the status of DMA Driver is ''DMA_BUSY''.
+
+After the module de-initialization using the function ''Dma_DeInit()'', the DMA Driver shall set its state to ''DMA_UNINIT''.
+
+The DMA Driver shall have been initialized before the function ''Dma_DeInit()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The function ''Dma_DeInit()'' shall be configurable ON / OFF by configuration parameter ''DMA_DE_INIT_API''.
+
+==== ''Std_ReturnType Dma_ChannelEnable(Dma_ChannelType	Channel)'' ====
+
+  #include "Dma.h"
+
+DMA Channel Enabling.
+
+'''Parameters''':
+* ''Channel'':	Channel ID.
+
+'''Returns''':
+* ''E_OK'':	Enabling command has been accepted
+* ''E_NOT_OK'':	Enabling command has not been accepted
+
+The service instructs the driver to enable DMA transfers on the addressed DMA channel.
+
+Service 0x02
+
+The function ''Dma_EnableChannel()'' shall be Re-entrant.
+
+When the API ''Dma_EnableChannel()'' command has been accepted the function returns the value ''E_OK''.
+
+When the API ''Dma_EnableChannel()'' command has not been accepted the function returns the value ''E_NOT_OK''.
+
+The function ''Dma_EnableChannel()'' provides the service to enable DMA transfers on the addressed DMA channel.
+
+The function ''Dma_EnableChannel()'' shall enable DMA transfers on the addressed DMA channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_EnableChannel()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+==== ''Std_ReturnType Dma_DisableChannel(Dma_ChannelType Channel)'' ====
+
+  #include "Dma.h"
+
+DMA Channel Disabling.
+
+'''Parameters''':
+* ''Sequence'': Sequence ID
+
+'''Returns''':
+* ''E_OK'':	Disabling command has been accepted
+* ''E_NOT_OK'':	Disabling command has not been accepted
+
+The service instructs the driver to disable DMA transfers on the addressed DMA channel.
+
+Service 0x03
+
+The function ''Dma_DisableChannel()'' shall be Re-entrant.
+
+When the API ''Dma_DisableChannel()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_DisableChannel()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_DisableChannel()'' provides service to disable DMA transfers on the addressed DMA channel.
+
+The function ''Dma_DisableChannel()'' shall disable DMA transfers on the addressed DMA channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_DisableChannel()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+The function ''Dma_DisableChannel()'' shall terminate ongoing transfers of prior transfer requests, even if the transfer is unsuccessfully completed.
+
+The function ''Dma_DisableChannel()'' shall be configurable ON / OFF by configuration parameter ''DMA_DISABLE_CHANNEL_API''.
+
+==== ''Dma_StatusType Dma_GetStatus(void)'' ====
+
+  #include "Dma.h"
+
+DMA Driver Status Retrieval.
+
+'''Parameters''':
+* ''None''.
+
+'''Returns''':
+* DMA Driver software module status.
+
+This service returns the DMA Driver software module status.
+
+Service 0x04
+
+The function ''Dma_GetStatus()'' shall be Re-entrant.
+
+The function ''Dma_GetStatus()'' provides the service to return the DMA Driver software module status.
+
+The function ''Dma_GetStatus()'' shall return the DMA Driver software module status.
+
+The function ''Dma_GetStatus()'' shall be configurable ON / OFF by configuration parameter ''DMA_STATUS_API''.
+
+==== ''Dma_ChannelResultType Dma_GetChannelResult(Dma_ChannelType Channel)'' ====
+
+  #include "Dma.h"
+
+DMA Channel Result Retrieval.
+
+'''Parameters''':
+* ''Channel'':	Channel ID.
+
+'''Returns''':
+* Last DMA transfer result on the specified Channel.
+
+This service returns the last DMA transfer result on the addressed DMA Channel.
+
+Service 0x05
+
+The function ''Dma_GetChannelResult()'' shall be Re-entrant.
+
+The function ''Dma_GetChannelResult()'' provides the service to returns the last DMA transfer result on the addressed DMA Channel.
+
+The function ''Dma_GetChannelResult()'' shall returns the last DMA transfer result on the addressed DMA Channel.
+
+The DMA Driver's environment shall call the function ''Dma_GetChannelResult()'' to inquire whether the Channel transfer has succeeded (''DMA_CHANNEL_OK'') or failed (''DMA_CHANNEL_FAILED'').
+
+Every new channel transfer that has been accepted by the DMA Driver overwrites the previous channel result with ''DMA_CHANNEL_PENDING''.
+
+If the DMA Driver has not been initialized before the function ''Dma_GetChannelResult()'' is called or the channel parameter is invalid or not configured, the return value MUST BE ''DMA_CHANNEL_FAILED''.
+
+The function ''Dma_GetChannelResult()'' shall be configurable ON / OFF by configuration parameter ''DMA_CHANNEL_RESULT_API''.
+
+==== ''Std_ReturnType Dma_TransferRequest(Dma_ChannelType Channel)'' ====
+
+  #include "Dma.h"
+
+DMA Channel Transfer Request.
+
+'''Parameters''':
+* ''Channel'':	Channel ID.
+
+'''Returns''':
+* ''E_OK'':	Transfer Request command has been accepted
+* ''E_NOT_OK'':	Transfer Request command has not been accepted
+
+Service to "trigger" a Transfer Request on the addressed DMA Channel.
+
+Service 0x06
+
+The function ''Dma_TransferRequest()'' shall be Re-entrant.
+
+When the API ''Dma_TransferRequest()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_TransferRequest()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_TransferRequest()'' provides service to "trigger" a Tranfer Request on the addressed DMA Channel.
+
+The function ''Dma_TransferRequest()'' shall take over the given parameter, trigger a transfer request on a DMA Channel, set the DMA Driver status to ''DMA_BUSY'', set the channel result to ''DMA_CHANNEL_PENDING'' and return.
+
+When the function ''Dma_TransferRequest()'' is called, the DMA Driver shall handle the DMA Channel results. Result shall be ''DMA_CHANNEL_PENDING'' when the transfer on the DMA Channel is started.
+
+When the function ''Dma_TransferRequest()'' is called, the DMA Driver shall handle the DMA Channel results. Result shall be ''DMA_CHANNEL_OK'' when the transfer on the DMA Channel is success.
+
+When the function ''Dma_TransferRequest()'' is called, the DMA Driver shall handle the DMA Channel results. Result shall be ''DMA_CHANNEL_FAILED'' when the transfer on the DMA Channel is failed.
+
+At the end of a transfer initiated by the function ''Dma_TransferRequest()'' and if configured, the DMA Driver shall invoke the transfer end notification call-back function after the transfer on DMA Channel ends if this one is also configured.
+
+The DMA Driver shall have been initialized before the function ''Dma_TransferRequest()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_TransferRequest()'' is called and the requested DMA Channel is disabled, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_TransferRequest()'' is called and and the requested DMA Channel is already in state ''DMA_CHANNEL_PENDING'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+The function ''Dma_TransferRequest()'' is pre-compile time selectable by the configuration parameter ''DMA_TRANSFER_REQUEST_API''.
+
+==== ''Std_ReturnType Dma_TransferSetup(Dma_ChannelType Channel, const Dma_DataType * SrcAddrPtr, const Dma_DataType * DstAddrPtr, Dma_NumberOfElementsType TransferSize)'' ====
+
+  #include "Dma.h"
+
+DMA Transfer Setup.
+
+'''Parameters''':
+* ''Channel'':		Channel ID.
+* ''SrcAddrPtr'':	Source Address Pointer.
+* ''DstAddrPtr'':	Destination Address Pointer.
+* ''TransferSize'':	Number of Elements to transfer.
+
+'''Returns''':
+* ''E_OK'':		Transfer Setup command has been accepted
+* ''E_NOT_OK'':		Transfer Setup command has not been accepted
+
+Service to set-up Basic or Auto DMA Transfer on the addressed DMA Channel.
+
+Service 0x07
+
+The function ''Dma_TransferSetup()'' shall be Re-entrant.
+
+When the API ''Dma_TransferSetup()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_TransferSetup()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_TransferSetup()'' provides service to set-up Basic or Auto DMA transfer on addressed DMA Channel.
+
+The function ''Dma_TransferSetup()'' shall set-up Basic or Auto DMA transfer on addressed DMA Channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_TransferSetup()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_TransferSetup()'' is called and the requested DMA Channel is enabled, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_TransferSetup()'' is called and the Number of Elements to transfer is equal to 0 or greater than the addressed channel transfer capability, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_TransferSetup()'' is called and the Address Pointers are ''NULL_PTR'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_TransferSetup()'' is called and the Address Pointers are out of DMA Channal address boundaries,, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+==== ''Std_ReturnType Dma_PingPongTransferSetup(Dma_ChannelType Channel, const Dma_DataType * PingSrcAddrPtr, const Dma_DataType * PingDstAddrPtr, Dma_NumberOfElementsType PingTransferSize, const Dma_DataType * PongSrcAddrPtr, const Dma_DataType * PongDstAddrPtr, Dma_NumberOfElementsType PongTransferSize)'' ====
+
+  #include "Dma.h"
+
+DMA Ping-Pong Transfer Setup.
+
+'''Parameters''':
+* ''Channel'':		Channel ID.
+* ''PingSrcAddrPtr'':	Ping Source Address Pointer.
+* ''PingDstAddrPtr'':	Ping Destination Address Pointer.
+* ''PingTransferSize'':	Ping Number of Elements to transfer.
+* ''PongSrcAddrPtr'':	Pong Source Address Pointer.
+* ''PongDstAddrPtr'':	Pong Destination Address Pointer.
+* ''PongTransferSize'':	Pong Number of Elements to transfer.
+
+'''Returns''':
+* ''E_OK'':		Transfer Setup command has been accepted
+* ''E_NOT_OK'':		Transfer Setup command has not been accepted
+
+Service to set-up Ping-Pong DMA Transfer on the addressed DMA Channel.
+
+Service 0x08
+
+The function ''Dma_PingPongTransferSetup()'' shall be Re-entrant.
+
+When the API ''Dma_PingPongTransferSetup()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_PingPongTransferSetup()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_PingPongTransferSetup()'' provides service to set-up Ping-Pong DMA transfer on addressed DMA Channel.
+
+The function ''Dma_PingPongTransferSetup()'' shall set-up Ping-Pong DMA transfer on addressed DMA Channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_PingPongTransferSetup()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_PingPongTransferSetup()'' is called and the requested DMA Channel is enabled, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransferSetup()'' is called and the Number of Elements to transfer is equal to ''0'' or greater than the addressed channel transfer capability, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransferSetup()'' is called and the Address Pointers are ''NULL_PTR'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransferSetup()'' is called and the Address Pointers are out of DMA Channal address boundaries,, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+The function ''Dma_PingPongTransferSetup()'' is pre-compile time selectable by the configuration parameter ''DMA_PING_PONG_API''.
+
+==== ''Std_ReturnType Dma_PingPongTransferUpdate(Dma_ChannelType Channel, const Dma_DataType * SrcAddrPtr, const Dma_DataType * DstAddrPtr, Dma_NumberOfElementsType TransferSize)'' ====
+
+  #include "Dma.h"
+
+DMA Ping-Pong Transfer Update.
+
+'''Parameters''':
+* ''Channel'':		Channel ID
+* ''SrcAddrPtr'':	Source Address Pointer.
+* ''DstAddrPtr'':	Destination Address Pointer.
+* ''TransferSize'':	Number of Elements to transfer.
+
+'''Returns''':
+* ''E_OK'':		Transfer Update command has been accepted
+* ''E_NOT_OK'':		Transfer Update command has not been accepted
+
+Service to Update Ping-Pong DMA Transfer on the addressed DMA Channel.
+
+Service 0x09
+
+The function ''Dma_PingPongTransferUpdate()'' shall be Re-entrant.
+
+When the API ''Dma_PingPongTransferUpdate()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_PingPongTransferUpdate()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_PingPongTransfeUpdate()'' provides service to update Ping-Pong DMA transfer on addressed DMA Channel.
+
+The function ''Dma_PingPongTransferUpdate()'' shall update Ping-Pong DMA transfer on addressed DMA Channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_PingPongTransferUpdate()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_PingPongTransferUpdate()'' is called and the requested DMA Channel is disabled, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransferUpdate()'' is called and the Number of Elements to transfer is equal to ''0'' or greater than the addressed channel transfer capability, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransfeUpdate()'' is called and the Address Pointers are ''NULL_PTR'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_PingPongTransferUpdate()'' is called and the Address Pointers are out of DMA Channal address boundaries,, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+The function ''Dma_PingPongTransferUpdate()'' is pre-compile time selectable by the configuration parameter ''DMA_PING_PONG_API''.
+
+==== ''Std_ReturnType Dma_ScatterGatherEntrySetup(Dma_ChannelType Channel, Dma_EntryType * EntryPtr, const Dma_DataType * SrcAddrPtr, const Dma_DataType * DstAddrPtr, Dma_NumberOfElementsType TransferSize,	boolean LastEntry)'' ====
+
+  #include "Dma.h"
+
+DMA Scatter-Gather Entry Set-up.
+
+'''Parameters''':
+* ''Channel'':		Channel ID
+* ''EntryPtr'':		Pointer of Scatter-Gather Entry to be Setup
+* ''SrcAddrPtr'':	Source Address Pointer
+* ''DstAddrPtr'':	Destination Address Pointer
+* ''TransferSize'':	Number of Elements to transfer
+* ''LastEntry'':
+** ''TRUE'':		Scatter-Gather Last Entry
+** ''FALSE'':		Scatter-Gather Intermediate Entry
+
+'''Returns''':
+* ''E_OK'':		Setup command has been accepted
+* ''E_NOT_OK'':		Setup command has not been accepted
+
+Service to set-up a Scatter-Gather Transfer Entry on the addressed DMA Channel.
+
+Service 0x0A
+
+The function ''Dma_ScatterGatherEntrySetup()'' shall be Re-entrant.
+
+When the API ''Dma_ScatterGatherEntrySetup()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_ScatterGatherEntrySetup()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_ScatterGatherEntrySetup()'' provides service to set-up a Scatter-Gather Transfer Entry on addressed DMA Channel.
+
+The function ''Dma_ScatterGatherEntrySetup()'' shall set-up a Scatter-Gather Transfer Entry on addressed DMA Channel.
+
+The DMA Driver shall have been initialized before the function Dma_ScatterGatherEntrySetup() is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_ScatterGatherEntrySetup()'' is called and the Number of Elements to transfer is equal to 0 or greater than the addressed channel transfer capability, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_ScatterGatherEntrySetup()'' is called and the Entry or Address Pointers are ''NULL_PTR'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_ScatterGatherEntrySetup()'' is called and the Address Pointers are out of DMA Channal address boundaries,, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+The function ''Dma_ScatterGatherEntrySetup()'' is pre-compile time selectable by the configuration parameter ''DMA_SCATTER_GATHER_API''.
+
+==== ''Std_ReturnType Dma_ScatterGatherTransferSetup(Dma_ChannelType Channel, const Dma_EntryType * TablePtr, Dma_NumberOfElementsType TableSize)'' ====
+
+#include "Dma.h"
+
+DMA Scatter-Gather Transfer Setup.
+
+'''Parameters''':
+* ''Channel'':		Channel ID.
+* ''TablePtr'':		Pointer of Scatter-Gather Transfer Entries Table.
+* ''TableSize'':	Number of Entry Elements of Scatter-Gather Transfer Table.
+
+'''Returns''':
+* ''E_OK'':		Transfer Setup command has been accepted
+* ''E_NOT_OK'':		Transfer Setup command has not been accepted
+
+Service to set-up Scatter-Gather DMA Transfer on the addressed DMA Channel.
+
+Service 0x0B
+
+The function ''Dma_ScatterGatherTransferSetup()'' shall be Re-entrant.
+
+When the API ''Dma_ScatterGatherTransferSetup()'' command has been accepted the function shall return the value ''E_OK''.
+
+When the API ''Dma_ScatterGatherTransferSetup()'' command has not been accepted the function shall return the value ''E_NOT_OK''.
+
+The function ''Dma_ScatterGatherTransferSetup()'' provides service to set-up Scatter-Gather Transfer Entry on addressed DMA Channel.
+
+The function ''Dma_ScatterGatherTransferSetup()'' shall set-up Scatter-Gather Transfer on addressed DMA Channel.
+
+The DMA Driver shall have been initialized before the function ''Dma_ScatterGatherTransferSetup()'' is called, otherwise ''E_NOT_OK'' shall be returned.
+
+The API parameters Channel shall have values within the specified range of values of configured DMA Channels otherwise the return value shall be ''E_NOT_OK''.
+
+When the function ''Dma_ScatterGatherTransferSetup()'' is called and the requested DMA Channel is enabled, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_ScatterGatherTransferSetup()'' is called and the Number of Entry Elements of Scatter-Gather Transfer Table is equal to ''0'' or greater than the addressed channel transfer capability, the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+When the function ''Dma_ScatterGatherTransferSetup()'' is called and the Pointer of Scatter-Gather Transfer Entries Table is ''NULL_PTR'', the DMA Driver shall not take in account this new request and this function shall return with value ''E_NOT_OK'', in this case.
+
+The function ''Dma_ScatterGatherTransferSetup()'' is pre-compile time selectable by the configuration parameter ''DMA_SCATTER_GATHER_API''.
+
+==== ''void Dma_GetVersionInfo(Std_VersionInfoType * versioninfo)'' ====
+
+  #include "Dma.h"
+
+Version Informations Retrieval.
+
+'''Parameters''':
+* ''versioninfo'':	Pointer to where to store the version information of this module
+
+'''Returns''':
+* ''None''.
+
+This service returns the version information of this module.
+
+Service 0x0C
+
+The function ''Dma_GetVersionInfo()'' is Re-entrant.
+
+The function ''Dma_GetVersionInfo()'' provides service to return the version information of this module.
+
+The function ''Dma_GetVersionInfo()'' shall return the version information of this module according to the definition of ''Std_VersionInfoType''.
+
+If source code for caller and callee of ''Dma_GetVersionInfo()'' is available, the DMA Driver should realize ''Dma_GetVersionInfo()'' as a macro, defined in the module's header file.
+
+The function ''Dma_GetVersionInfo()'' is pre-compile time configurable by the configuration parameter ''DMA_VERSION_INFO_API''.
+
+== Usage Examples ==
+
+=== DMA Initialization ===
+
+[[File:DMA_Initialization.png]]
+
+=== DMA Modes Transitions ===
+
+[[File:DMA_Modes_Transition.png]]
+
+=== DMA Auto Transfer Mode (polling) ===
+
+[[File:DMA_Auto.png]]
+
+=== DMA Auto Transfer Mode (interrupt) ===
+
+[[File:DMA_Auto_Int.png]]
+
+=== DMA Scatter-Gather Transfer Mode (polling) ===
+
+[[File:DMA_Scatter_Gather.png]]
+
+=== DMA Scatter-Gather Transfer Mode (interrupt) ===
+
+[[File:DMA_Scatter_Gather_int.png]]
+
+== Build ==
+
+To enable AUTOSAR DMA Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_DMA_DRIVER__";
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Dma_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+== Supported Architectures ==
+
+=== TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain ===
+
+==== Driver Configuration ====
+
+In order to configure the AUTOSAR-like DMA Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "DMA" tab-sheet on driver configuration instance file.
+
+[[File:Erika_Driver_Configurator_DMA.png]]
+
+===== Configuration Selection =====
+
+In this section you can add/edit/delete configurations in DMA Driver configuration set:
+* Each configuration SHALL have an ''Identifier'' which must be unique inside the configurations set.
+* Each configuration, inside the configurations set, has a set of Channels.
+** Each Channel SHALL have a ''Name'' which must be unique inside the Channels.
+
+===== API Selection =====
+
+In this section you can select DMA Driver APIs and features will be included in build process:
+* ''Version Info'': ''Dma_GetVersionInfo()'' API
+
+[[File:Erika_Driver_Configurator_DMA_set.png]]
+
+==== Interrupts ====
+
+On order to use the DMA driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for Software DMA Channel Transfer End and another ISR must be added to OSEK/VDX configuration for DMA Transfer Error:
+
+  ISR Dma_SoftwareTransferEnd_ISR {
+    CATEGORY = 2;
+    ENTRY = "UDMA_SOFT_TRANSF";
+    PRIORITY = <ISR Priority>;
+  }
+
+  ISR Dma_TransferError_ISR {
+    CATEGORY = 2;
+    ENTRY = "UDMA_ERR";
+    PRIORITY = <ISR Priority>;
+  };
+
+Where <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+==== Implemetations Demos ====
+
+Implementation Demos of the AUTOSAR-like DMA Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]

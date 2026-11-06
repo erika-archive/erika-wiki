@@ -1,0 +1,1 @@
+Choose ''Import...'' from the ''File'' menu to import the coff file produced in Eclipse.

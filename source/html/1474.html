@@ -1,0 +1,1644 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Erika_Enterprise_and_RT-Druid_for_Microchip_dsPIC_.28R.29_DSC"><span class="tocnumber">1.1</span> <span class="toctext">Erika Enterprise and RT-Druid for Microchip dsPIC (R) DSC</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Integration_with_Microchip_Inc._products"><span class="tocnumber">1.2</span> <span class="toctext">Integration with Microchip Inc. products</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Requirements"><span class="tocnumber">1.3</span> <span class="toctext">Requirements</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Erika_Enterprise_for_PIC_devices"><span class="tocnumber">2</span> <span class="toctext">Erika Enterprise for PIC devices</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#ERIKA_Enterprise_and_RT-Druid_Design_Flow"><span class="tocnumber">2.1</span> <span class="toctext">ERIKA Enterprise and RT-Druid Design Flow</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Setting_up_the_compiling_environment_for_the_PIC30_architecture"><span class="tocnumber">2.2</span> <span class="toctext">Setting up the compiling environment for the PIC30 architecture</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Writing_software_for_dsPIC_using_Erika_Enterprise"><span class="tocnumber">2.3</span> <span class="toctext">Writing software for dsPIC using Erika Enterprise</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Avoid_the_generation_of_dependency_files"><span class="tocnumber">2.3.1</span> <span class="toctext">Avoid the generation of dependency files</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Avoid_the_generation_of_.src_files_from_C_files"><span class="tocnumber">2.3.2</span> <span class="toctext">Avoid the generation of .src files from C files</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Printing_the_commands_executed_.28verbose_mode.29"><span class="tocnumber">2.3.3</span> <span class="toctext">Printing the commands executed (verbose mode)</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Source_files_composing_an_application"><span class="tocnumber">2.3.4</span> <span class="toctext">Source files composing an application</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Stack_handling"><span class="tocnumber">2.3.5</span> <span class="toctext">Stack handling</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Runtime_stack_checking_exceptions"><span class="tocnumber">2.3.6</span> <span class="toctext">Runtime stack checking exceptions</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Interrupt_handling"><span class="tocnumber">2.3.7</span> <span class="toctext">Interrupt handling</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Configuring_the_usage_of_Microchip_ICD2"><span class="tocnumber">2.3.8</span> <span class="toctext">Configuring the usage of Microchip ICD2</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Configuring_a_particular_dsPIC_.28R.29_DSC_microcontroller"><span class="tocnumber">2.3.9</span> <span class="toctext">Configuring a particular dsPIC (R) DSC microcontroller</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Configuring_the_EDF_scheduler"><span class="tocnumber">2.4</span> <span class="toctext">Configuring the EDF scheduler</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#Primary_oscillator_without_PLL"><span class="tocnumber">2.4.1</span> <span class="toctext">Primary oscillator without PLL</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Primary_oscillator_with_PLL"><span class="tocnumber">2.4.2</span> <span class="toctext">Primary oscillator with PLL</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#EE_time_init"><span class="tocnumber">2.4.3</span> <span class="toctext">EE time init</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Boards"><span class="tocnumber">3</span> <span class="toctext">Boards</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Flex_Board"><span class="tocnumber">3.1</span> <span class="toctext">Flex Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-24"><a href="#Introduction_2"><span class="tocnumber">3.1.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#System_LED"><span class="tocnumber">3.1.2</span> <span class="toctext">System LED</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#Flex_Demo_Daughter_Board"><span class="tocnumber">3.2</span> <span class="toctext">Flex Demo Daughter Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-27"><a href="#Introduction_3"><span class="tocnumber">3.2.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#LEDS"><span class="tocnumber">3.2.2</span> <span class="toctext">LEDS</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#Buttons"><span class="tocnumber">3.2.3</span> <span class="toctext">Buttons</span></a></li>
+<li class="toclevel-3 tocsection-30"><a href="#LCD"><span class="tocnumber">3.2.4</span> <span class="toctext">LCD</span></a></li>
+<li class="toclevel-3 tocsection-31"><a href="#Analog_sensors"><span class="tocnumber">3.2.5</span> <span class="toctext">Analog sensors</span></a></li>
+<li class="toclevel-3 tocsection-32"><a href="#Buzzer"><span class="tocnumber">3.2.6</span> <span class="toctext">Buzzer</span></a></li>
+<li class="toclevel-3 tocsection-33"><a href="#PWM_Output"><span class="tocnumber">3.2.7</span> <span class="toctext">PWM Output</span></a></li>
+<li class="toclevel-3 tocsection-34"><a href="#DAC_Output"><span class="tocnumber">3.2.8</span> <span class="toctext">DAC Output</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-35"><a href="#Explorer16_Board"><span class="tocnumber">3.3</span> <span class="toctext">Explorer16 Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-36"><a href="#Introduction_4"><span class="tocnumber">3.3.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-37"><a href="#Buttons_2"><span class="tocnumber">3.3.2</span> <span class="toctext">Buttons</span></a></li>
+<li class="toclevel-3 tocsection-38"><a href="#LEDs_2"><span class="tocnumber">3.3.3</span> <span class="toctext">LEDs</span></a></li>
+<li class="toclevel-3 tocsection-39"><a href="#LCD_2"><span class="tocnumber">3.3.4</span> <span class="toctext">LCD</span></a></li>
+<li class="toclevel-3 tocsection-40"><a href="#Analog_sensors_2"><span class="tocnumber">3.3.5</span> <span class="toctext">Analog sensors</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-41"><a href="#dsPICDEM_1.1_Plus_Board"><span class="tocnumber">3.4</span> <span class="toctext">dsPICDEM 1.1 Plus Board</span></a>
+<ul>
+<li class="toclevel-3 tocsection-42"><a href="#Introduction_5"><span class="tocnumber">3.4.1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-3 tocsection-43"><a href="#Buttons_3"><span class="tocnumber">3.4.2</span> <span class="toctext">Buttons</span></a></li>
+<li class="toclevel-3 tocsection-44"><a href="#LEDs_3"><span class="tocnumber">3.4.3</span> <span class="toctext">LEDs</span></a></li>
+<li class="toclevel-3 tocsection-45"><a href="#LCD_3"><span class="tocnumber">3.4.4</span> <span class="toctext">LCD</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>Embedded microcontroller units are spreading in thousands of applications, ranging from single to distributed systems, control applications, multimedia, communication, medical applications and many others. Modern microcontrollers, which are growing in computational power, speed and interfacing capabilities, are more and more feeling the need of tools to make the development of complex scalable applications easier.
+</p><p>The dsPIC (R) DSC family represents the latest product of Microchip Technology Inc., the world leading company in the field of microcontroller units. With a speed of up to 40 MHz, the dsPIC (R) DSC family seamlessly integrates a DSP core for high performance computation with a full range of interfaces to several buses like CAN, I2C, SPI, serial lines, ecc.
+</p>
+<h2> <span class="mw-headline" id="Erika_Enterprise_and_RT-Druid_for_Microchip_dsPIC_.28R.29_DSC"> Erika Enterprise and RT-Druid for Microchip dsPIC (R) DSC </span></h2>
+<p>Embedded applications often require tight control on the temporal behavior of each single activity in the system. The research in the field of real-time systems brought the team of Evidence Srl to design a small, efficient, modular real-time kernel that can be used to easily guarantee real-time constraints in every embedded applications.
+</p><p>Erika Enterprise and RT-Druid represent the answer of Evidence Srl for the development of scalable real-time applications for the Microchip dsPIC (R) DSC family.
+</p><p>The main features of ERIKA Enterprise and RT-Druid which are specific for Microchip dsPIC (R) DSC are the following:
+</p>
+<ul><li> Installation setup which integrates Microchip software together with fully configured Evidence Erika Enterprise + RT-Druid;
+</li><li> Full support for the Microchip devices libraries;
+</li><li> Full support for the Microchip C30 compiler;
+</li><li> Full support of the MPLAB IDE debugging environment;
+</li><li> Full support for the Microchip ICD2 debugger;
+</li><li> Full support for dsPIC (R) DSC series 30 and 33, and PIC24
+</li><li> Support for the 802.15.4 (ZigBee) wireless communication protocol (using Maxstream XBee, Microchip ZigBee coming soon);
+</li><li> Support for I/O to Multimedia Card (MMC) / Secure Digital with FAT filesystem (coming soon);
+</li><li> Development of many specific hardware drivers for dsPIC (R) DSC, like multiple servomotor driving, bus EIB support (domotic), and many other (coming soon);
+</li><li> Support for the FLEX development board (see here for details);
+</li></ul>
+<h2> <span class="mw-headline" id="Integration_with_Microchip_Inc._products"> Integration with Microchip Inc. products </span></h2>
+<p>Erika Enterpise and RT-Druid aims to the best integration with the existing tools for development available from Microchip Inc.
+</p><p>RT-Druid will be used to quickly configure the application, setting temporal parameters of real-time tasks, memory requirements, stack allocation and many other parameters. RT-Druid generates the application template, and leaves the developer the task to implement the logic of each single task.
+</p><p>While programming the application, the developer can exploit the power and flexibility offered by  the primitives of the Erika Enterprise real-time kernel.
+</p><p>The application can be imported into MPLAB IDE to be written into the dsPIC (R) DSC EPROM flash memory. Moreover, the application can be debugged from within the MPLAB IDE.
+</p>
+<h2> <span class="mw-headline" id="Requirements"> Requirements </span></h2>
+<p>Erika Enterprise supports Microchip dsPIC (R) DSC families 30 and 33, and PIC24.
+</p><p>Additional software is provided to compile the USB support for the FLEX Full using the Microchip C18 compiler.
+</p><p>The following table lists the requirements upon external programs provided by companies other than Evidence.
+</p><p><b>There is no guarantee our software will work if you install a different version from what is listed in the table below.</b>
+</p><p><b>Note the list is basically the sw versions we tried ourselves. if it does not work on your version, just send us a message on the forum...</b>
+</p>
+<ul><li> ERIKA Enterprise 1.4.3
+<ul><li> Microchip MPLAB 8.01 to 8.14
+</li><li> Microchip C30 Compiler 2.0.5, 3.0.2, 3.10b, 3.11(by adding the patch below)
+</li><li> Microchip C18 3.20
+</li></ul>
+</li><li> ERIKA Enterprise 1.5.0 	
+<ul><li> Microchip MPLAB 8.01 to 8.36
+</li><li> Microchip C30 Compiler 3.0.2 to 3.20
+</li><li> Microchip C18 3.20
+</li></ul>
+</li><li> ERIKA Enterprise 1.5.1
+<ul><li> Microchip MPLAB 8.01 to 8.66
+</li><li> Microchip C30 Compiler 3.0.2 to 3.23
+</li><li> Microchip C18 3.20
+</li></ul>
+</li><li> ERIKA Enterprise 1.6.0
+<ul><li> Microchip MPLAB 8.66
+</li><li> Microchip C30 Compiler 3.0.2 to 3.25
+</li><li> Microchip C18 3.20
+</li></ul>
+</li></ul>
+<p><br />
+Useful links
+</p>
+<ul><li> <a href="http://www.microchip.com/mplabide" class="external text" rel="nofollow">Microchip MPLAB download link</a>
+</li><li> <a href="http://www.microchip.com/c30" class="external text" rel="nofollow">Microchip C30 Compiler download link</a> (please note there is a free Student edition available!)
+</li></ul>
+<p><b>PLEASE TRY TO USE THE MICROCHIP TOOL VERSIONS LISTED ABOVE. OTHER VERSIONS MAY NOT WORK.</b> (unfortunately Microchip changes the location of the compiler almost at each new version!)
+</p>
+<h1> <span class="mw-headline" id="Erika_Enterprise_for_PIC_devices"> Erika Enterprise for PIC devices </span></h1>
+<h2> <span class="mw-headline" id="ERIKA_Enterprise_and_RT-Druid_Design_Flow"> ERIKA Enterprise and RT-Druid Design Flow</span></h2>
+<p><a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_Design_Flow" title="ERIKA Enterprise and RT-Druid Design Flow">ERIKA Enterprise and RT-Druid Design Flow</a>
+</p>
+<h2> <span class="mw-headline" id="Setting_up_the_compiling_environment_for_the_PIC30_architecture"> Setting up the compiling environment for the PIC30 architecture </span></h2>
+<p>Erika Enterprise has been designed to be compiled using the GNU gcc toolchain. The dsPIC porting of Erika Enterprise in particular can be compiled using the GNU tools for dsPIC provided by Microchip. The porting provides both the binutils package and the gcc package, plus a set of proprietary libraries from Microchip which can be used to control the various peripherals provided by the dsPIC microcontrollers.
+</p><p>The following list describes the various packages which contains the various parts of the compilation toolchain:
+</p>
+<ul><li> The GNU assembler and binutils. This package is distributed inside the MPLAB IDE from Microchip. ERIKA does <b>not</b> use this package
+</li><li> The GNU GCC from Microchip, named Microchip C30 Compiler. The compiler is packaged in a separate product, called The Microchip C30 Compiler, which is available as a product under the Microchip website. A free version is also available for students and universities. The source code of the compiler is also available under the GPL license on the Microchip web site.
+</li><li> C Libraries. A set of libraries which can be used to control the peripherals implemented on the particular Microchip chip in use. These libraries are packaged together with the Microchip C30 Compiler.
+</li></ul>
+<p>To compile an Erika Enterprise application, the development environment needs to be configured to correctly recognize the Microchip C30 compiler and the MPLAB ASM30 assembler programs. For doing so, please go to the “Preference” menu, as shown in Figure
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Erikatutorial_preferences_menu.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/80/Erikatutorial_preferences_menu.png" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Erikatutorial_preferences_menu.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Go to the “Preference” menu inside Eclipse.</div></div></div></div>
+<p>and find the “RT-Druid/Oil/PIC30 Configurator” form as depicted in Figure
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Erikatutorial_preferences_pic30.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/78/Erikatutorial_preferences_pic30.png" width="200" height="149" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Erikatutorial_preferences_pic30.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>dsPIC paths for compiler and assembler.</div></div></div></div>
+<p>The first textbox, labeled Gcc path, refers to the installation directory of the Microchip C30 compiler. The second textbox, labeled Asm path, refers to the installation directory of the ASM30 assembler provided with the MPLAB IDE. The two checkbox are provided for legacy support.
+</p><p><b>Warning</b>: The install directories specified in the two textboxes in the figure above does not include the bin directory!
+That is, 
+</p>
+<pre>c:\Programmi\Microchip\MPLAB C30 
+</pre>
+<p>is correct, wheras
+</p>
+<pre>c:\Programmi\Microchip\MPLAB C30\bin 
+</pre>
+<p>is not.
+</p><p><b>Warning</b>: The install directory of the assembler refers to the assembler provided with MPLAB IDE and not the assembler provided with the C30 compiler. 
+</p>
+<h2> <span class="mw-headline" id="Writing_software_for_dsPIC_using_Erika_Enterprise"> Writing software for dsPIC using Erika Enterprise </span></h2>
+<p><b>Note</b>: Please refer to <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a> for a step-by-step guide with screenshots on how to create, compile and debug a dsPIC application written with Erika Enterprise.
+</p><p>This section describes the details about the various configuration options which are available to create and compile an Erika Enterprise application for a dsPIC microcontroller.
+</p>
+<h3> <span class="mw-headline" id="Avoid_the_generation_of_dependency_files"> Avoid the generation of dependency files </span></h3>
+<p>The typical compilation process of an Erika Enterprise application involves the computation of a dependency file which is used to understand which are the files which needs to be compiled or updated.
+</p><p>To avoid the computation of these dependencies (useful when you are sure you basically have to compile everything), you can put the following line in the OIL file:
+</p>
+<pre>
+CPU mySystem {
+  OS myOs {
+    EE_OPT = &quot; NODEPS &quot;;
+    ...
+  };
+  ...
+};
+</pre>
+<h3> <span class="mw-headline" id="Avoid_the_generation_of_.src_files_from_C_files"> Avoid the generation of .src files from C files </span></h3>
+<p>The typical compilation process of an Erika Enterprise application produces various files which can be used to better analyze the code generated by the C30 compiler. In particular, from each .C file, a .SRC file is produced containing the corresponding assembler listing, which is then compiled by the MPLAB ASM30 compiler to produce the .o.
+</p><p>It is possible to avoid the intermediate step which leads to the production of the .SRC file. In that case, the compiler will be responsible of producing the .O file directly from the .C file. This in general also speeds up the compilation process a little bit. To obtain that feature, you can put the following lines in the OIL file.
+</p>
+<pre>
+CPU mySystem {
+  OS myOs {
+    EE_OPT = &quot; NOSRC &quot;;
+    ...
+  };
+  ...
+};
+</pre>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Printing_the_commands_executed_.28verbose_mode.29"> Printing the commands executed (verbose mode) </span></h3>
+<p>The default compilation process typically prints only a compact output for each compilation step. That is in general not useful whenever a file is not compiled properly and the user wants to know the exact command which is executed in the compilation process.
+</p><p>To obtain a printing of the complete list of commands issued by the Erika Enterprise makefile, you can add the following line to the OIL file:
+</p>
+<pre>
+CPU mySystem {
+  OS myOs {
+    EE_OPT = &quot; VERBOSE &quot;;
+    ...
+  };
+  ...
+};
+</pre>
+<h3> <span class="mw-headline" id="Source_files_composing_an_application"> Source files composing an application </span></h3>
+<p>The source files which can be put in an RT-Druid project are composed by C-language files (with extension .c) and Assembler files (with extension .S). Assembler files are always preprocessed by the C preprocessor. All the application files which has to be included in the final application needs to be listed inside the OIL file, as in the following OIL example:
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  APP_SRC = &quot;file_1.c&quot;;
+  APP_SRC = &quot;file_2.c&quot;;
+};
+...
+</pre>
+<h3> <span class="mw-headline" id="Stack_handling"> Stack handling </span></h3>
+<p>Erika Enterprise can be configured as monostack or multistack.
+</p><p>In a monostack configuration, only a single stack exists in the system. No blocking primitives are supported, and all the tasks and interrupts execute on the same stack. In this case, the one and only stack starts from the top of the application allocated memory, growing towards higher addresses. The monostack configuration can not be used if the application needs to call RTOS primitives such as WaitSem and WaitEvent. Moreover, it cannot be used when Erika Enterprise conformance classes ECC1 and ECC2 are used. To configure a monostack kernel in the OIL file, the user has to write the following lines:
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  MULTI_STACK = FALSE;
+};
+...
+</pre>
+<p>In a multistack configuration, the kernel support the existence of different stacks in the same application. Having different stacks allow the application tasks to use blocking primitives like WaitSem and WaitEvent, which basically may block the execution of the running task. In that case, the calling task must have a private stack which is changed upon blocking. The stack will be selected again when the task will be rescheduled. There are different stacks available in a multistack configuration:
+</p>
+<ul><li> A shared stack (used by all the tasks which have a shared stack);
+</li><li> An IRQ stack (used by all the ISR Type 2 routines);
+</li><li> A set of private stacks (one for each task which has selected a private stack).
+</li></ul>
+<p>In the dsPIC architecture, the shared stack works as in the monostack configuration, that is it is allocated at the end of the application data section, growing towards higher addresses. The IRQ stack and the private stacks, instead, are allocated in the
+application data space as arrays.
+</p><p>The following example shows an OIL configuration which configures a multistack kernel without a separate IRQ stack (in this case, IRQ handlers execute on the stack of the interrupted task):
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  MULTI_STACK = TRUE {
+    IRQ_STACK = FALSE;
+  };
+};
+...
+</pre>
+<p>The following example shows an OIL configuration which configures a multistack kernel with a separate IRQ stack (in this case, some registers are saved on the stack of the interrupted task, but the IRQ handler C function is executed on a separate IRQ stack).
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  MULTI_STACK = TRUE {
+    IRQ_STACK = TRUE {
+      SYS_SIZE =64;
+    };
+  };
+};
+...
+</pre>
+<h3> <span class="mw-headline" id="Runtime_stack_checking_exceptions"> Runtime stack checking exceptions </span></h3>
+<p>When multistack configurations are used, it is very useful to be informed when a particular stack becomes full. For this reason, the dsPIC (R) DSC core allows the user to specify a stack limit over which an exception should be raised. The stack limit is contained
+inside the internal register SPLIM.
+</p><p>Erika Enterprise is able to automatically handle the SPLIM register, setting it at runtime to the top of the current stack when a multistack configuration. The SPLIM feature is by default disabled, because it adds some (little) overhead at each stack change. To enable it, you must include the following lines inside the OIL configuration file:
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  ENABLE_SPLIM = TRUE;
+  };
+...
+</pre>
+<p>Please note that Erika Enterprise does not provide a default handler for the stack overflow exception generated by the SPLIM register. The exception should be specified by the developer as the behavior to implement is often application dependent.
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="Interrupt_handling"> Interrupt handling </span></h3>
+<p>Erika Enterprise for dsPIC (R) DSC provide support for fast Interrupt Service Routines (ISR) which do not require any RTOS primitive to be called, as well as regular ISRs, which can call RTOS primitives (e.g., a timer interrupt can call ActivateTask to activate a periodic task). The first kind of ISRs are called ISR Type 1, and always have hardware interrupt priority greater than the second kind of ISRs which are called ISR Type 2.
+</p><p>At the implementation level, Erika Enterprise uses the dsPIC DISI assembler instruction to implement interrupt disabling. The DISI instruction only disables the first 6 priority levels out of the 7 available in the 16-bit dsPIC (R) DSC core. For this reason, ISR Type 2 must always have an interrupt priority between 1 and 6.
+</p><p>ISR Type 1 must always have a priority greater or equal than ISR Type 2. As a matter of fact, interrupt priority 7 is reserved for ISR Type 1 only.
+</p><p>ISR names follow the Microchip convention. Basically the ISR names are listed inside the linker script for the particular target which are provided together with the ASM30 assembler packaged together with Microchip MPLAB IDE under the directory <i>MPLAB_install_directory</i>/MPLAB ASM30 Suite/Support/gld.
+</p><p>To define an ISR Type 1 the developer has to write an interrupt handler as it is written in typical dsPIC applications which does not use Erika Enterprise. Here is an example of the definition of an ISR Type 1 for the timer 3 Interrupt of a pic30F2010 device:
+</p>
+<pre>
+void __attribute__(( __interrupt__)) _T3Interrupt( void)
+{
+...
+}
+</pre>
+<p>Writing an ISR 1 in this way implies that:
+</p>
+<ul><li> The C function will be attached to the interrupt of the peripheral (in the example, timer 3). Every time an interrupt for the peripheral arrives, then the C function will be executed.
+</li><li> The compiler will generate a proper function prologue and epilogue which saves the register used before starting executing the statements inside the function. The registers will be saved inside the stack of the interrupted task. For that reason, when using a multistack configuration, the user should reserve a proper space able to contain all the nested ISR Type 1 for each stack in the system.
+</li></ul>
+<p>To define an ISR Type 2 the developer has to write a C function in the following way:
+</p>
+<pre>
+# include &quot; cpu/ pic30/ inc/ ee_irqstub.h&quot;
+...
+ISR2( _T3Interrupt)
+{
+...
+}
+</pre>
+<p>Writing an ISR 2 in this way implies that:
+</p>
+<ul><li> An assembler stub will generated for the ISR. The ISR stub will have the name of the ISR (in the example, <pre>_T3Interrupt</pre>). The assembler stub will call a C function named ISR2_functionname which content is specified as the content of the function (in the example, the function is called ISR2__T3Interrupt). The assembler function will be attached to the interrupt of the peripheral (in the example, timer 3). Every time an interrupt for the peripheral arrives, the assembler stub will execute, which in turns calls the internal C function whose body has been specified by the developer.
+</li></ul>
+<ul><li> The assembler stub saves all the CPU registers on the current stack. After that, if a multistack configuration with private IRQ stack has been selected, the stack is changed to a private IRQ stack. Otherwise, the ISR will execute on the stack of the running task, as in the ISR1 case. At the end of the stub, the Erika Enterprise end IRQ function will be executed to choose which is the next task to run.
+</li></ul>
+<h3> <span class="mw-headline" id="Configuring_the_usage_of_Microchip_ICD2"> Configuring the usage of Microchip ICD2 </span></h3>
+<p>dsPIC (R) DSC devices can be debugged using the Microchip product called Microchip ICD2, which is basically an In-Circuit debugger which directly connects to the microcontroller core. When connected, the ICD2 requires the usage of a set of memory locations, which must be left free by the application.
+</p><p>For this reason, when compiling an application which will be debugged using the Microchip ICD2, the user has to specify the following line inside the OIL file:
+</p>
+<pre>
+...
+CPU_DATA = PIC30 {
+  ...
+  ICD2 = TRUE;
+};
+...
+</pre>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Configuring_a_particular_dsPIC_.28R.29_DSC_microcontroller"> Configuring a particular dsPIC (R) DSC microcontroller </span></h3>
+<p>Microchip produces various versions of the Microchip microcontrollers, each one with different peripherals and memory sizes. To support the heterogeneity of these devices, Microchip offers, through the C30 Compiler toolchain, a set of files which can be used
+to configure the compiling process.
+</p><p>In particular, for each device, there are four files:
+</p>
+<ul><li> A linker script, available under the directory Support/gld of the Microchip ASM30 Assembler, which contains the linking information such as the memory sizes, and the available interrupt handlers;
+</li><li> An Assembler include file, available under the directory Support/inc of the Microchip ASM30 Assembler, which contains the declaration of the device’s register addresses to be used inside assembler programs;
+</li><li> A C include file, available under the directory support/h of the Microchip C30Compiler, which contains the declaration of the device’s addresses to be used inside C programs;
+</li><li> A library, available under the directory lib of the Microchip C30 compiler, which contains a set of libraries for the usage of the microcontroller peripherals.
+</li></ul>
+<p>Every Erika Enterprise application which has to be compiled together with the Microchip C30 compiler needs the specification of these four files. To set which files have to be used for the particular device, the user can specify the following lines inside the OIL file.
+</p><p>If the device number is known, and the files to be used are the default files provided by Microchip, then the developer can directly specify the device name in the OIL file, as in the following example:
+</p>
+<pre>
+...
+MCU_DATA = PIC30 {
+  MODEL = PIC33FJ256GP710;
+};
+...
+</pre>
+<p>Currently, Erika Enterprise supports the following values for the MODEL attribute:
+</p>
+<ul><li> PIC24 devices: PIC24FJ128GA006, PIC24FJ128GA008, PIC24FJ128GA010, PIC24FJ32GA002, PIC24FJ32GA004, PIC24FJ64GA002, PIC24FJ64GA004, PIC24FJ64GA006, PIC24FJ64GA008, PIC24FJ64GA010, PIC24FJ96GA006, PIC24FJ96GA008, PIC24FJ96GA010, PIC24HJ128GP206, PIC24HJ128GP210, PIC24HJ128GP306, PIC24HJ128GP310, PIC24HJ128GP506, PIC24HJ128GP510, PIC24HJ256GP206, PIC24HJ256GP210, PIC24HJ256GP610, PIC24HJ64GP206, PIC24HJ64GP210, PIC24HJ64GP506, PIC24HJ64GP510.
+</li><li> PIC30 devices: PIC30F1010, PIC30F2010, PIC30F2011, PIC30F2012, PIC30F2020, PIC30F2021, PIC30F2022, PIC30F2023, PIC30F3010, PIC30F3011, PIC30F3012, PIC30F3013, PIC30F3014, PIC30F4011, PIC30F4012, PIC30F4013, PIC30F5011, PIC30F5013, PIC30F5015, PIC30F5016, PIC30F6010, PIC30F6010A, PIC30F6011, PIC30F6011A, PIC30F6012, PIC30F6012A, PIC30F6013, PIC30F6013A, PIC30F6014, PIC30F6014A, PIC30F6015.
+</li><li> PIC33 devices: PIC33FJ128GP206, PIC33FJ128GP306, PIC33FJ128GP310, PIC33FJ128GP706, PIC33FJ128GP708, PIC33FJ128GP710, PIC33FJ128MC506, PIC33FJ128MC510, PIC33FJ128MC706, PIC33FJ128MC708, PIC33FJ128MC710, PIC33FJ256GP506,PIC33FJ256GP510, PIC33FJ256GP710, PIC33FJ256MC510, PIC33FJ256MC710, PIC33FJ64GP206, PIC33FJ64GP306, PIC33FJ64GP310, PIC33FJ64GP706, PIC33FJ64GP708, PIC33FJ64GP710, PIC33FJ64MC506, PIC33FJ64MC508, PIC33FJ64MC510, PIC33FJ64MC706, PIC33FJ64MC710, PIC33FJ64MC802.
+</li></ul>
+<p>Please note that we did not have the possibility to directly test all the possible devices produced by Microchip. In general this is not a problem, because the various devices are directly mapped to appropriate compiler flags. The following is the list of devices
+we tested directly: PIC30F2010, PIC30F6014A, PIC33FJ256GP710, PIC24FJ128GA010, which basically are the devices mounted on the Microchip Evaluation boards supported by Erika Enterprise.
+</p><p>If the device is not supported by the particular version of RT-Druid or if the developer needs to use a custom file, then the four files can be specified separately as in the following example:
+</p>
+<pre>
+...
+MCU_DATA = PIC30 {
+  MODEL = CUSTOM {
+    MODEL = &quot;33FJ256GP710&quot;;
+    LINKERSCRIPT = &quot;p33FJ256GP710.gld &quot;;
+    DEV_LIB = &quot;libp33FJ256GP710-elf.a&quot;;
+    INCLUDE_C = &quot; p33FJ256GP710.h&quot;;
+    INCLUDE_S = &quot; p33FJ256GP710.inc &quot;;
+  };
+};
+...
+</pre>
+<p>As a result of this specification, the correct include files, libraries and linker scripts will be used when compiling an Erika Enterprise application.
+</p>
+<h2> <span class="mw-headline" id="Configuring_the_EDF_scheduler"> Configuring the EDF scheduler </span></h2>
+<p>When configuring the EDF kernel for an Erika Enterprise application, the user has the possibility to specify the tick length in the OIL file to allow the specification of a relative deadline using a temporal value.
+</p><p>In particular, the user can specify a tick value as follows:
+</p>
+<pre>KERNEL_TYPE = EDF { TICK_TIME = "25 ns ";};
+</pre>
+<p>and then specify a relative deadline using a timing value as follows:
+</p>
+<pre>
+TASK myTask1 {
+  REL_DEADLINE = &quot;10 ms &quot;;
+};
+</pre>
+<p>The RT-Druid code generator will handle the the conversion between the relative deadline value in the corresponding timing value automatically.
+The important thing in this process is to correctly specify the TICK_TIME. In general, that value depends on the timing reference which is made available by the dsPIC. The current timing reference implemented in the EDF kernel is based on the value of a 32 bit timer.
+</p><p>Having a 32 bit timing reference helps implementing a long lifetime for the circular timer, allowing the support of relatively long relative deadlines. The 32 bit timer is obtained by concatenating the two 16 bit timers TMR8 and TMR9 available on the dsPIC (R) DSC. The clock used for the timers is the system clock, with a tick time equal to 1/Fcy, where Fcy = Fosc/2 . Fosc, the frequency of the oscillator, depends on its configuration which is typically done in the application by using appropriate macros shown below.
+</p><p>The following paragraphs describe two typical oscillator values which can be used, and the correspondent parameters which has to be put in the OIL file. The same settings are available in two template applications distributed with Erika Enterprise which work on the FLEX boards featuring a dsPIC (R) DSC model PIC33FJ256MC710.
+</p><p>Finally, always remember that the EE_time_init function has to be called inside the main function before using any primitive of the EDF kernel.
+</p>
+<h3> <span class="mw-headline" id="Primary_oscillator_without_PLL"> Primary oscillator without PLL </span></h3>
+<p>In this configuration, a primary oscillator at 4 MHz is used without any moltiplication. In this case, the tick duration is 500 ns, and the dsPIC (R) DSC is running at 2 MIPS. To configure the system in this way, the C language has to contain the following compiler directive:
+</p>
+<pre>_FOSCSEL ( FNOSC_PRI);
+</pre>
+<p>The OIL file will contain the following line:
+</p>
+<pre>KERNEL_TYPE = EDF { TICK_TIME = "500 ns ";};
+</pre>
+<p>The maximum relative deadline which can be expressed in the OIL file is 500ns*2^31, which is slightly more than 1073 secs.
+</p><p>A template application which initializes an EDF periodic task for this case is available under the RT-Druid templates.
+</p>
+<h3> <span class="mw-headline" id="Primary_oscillator_with_PLL"> Primary oscillator with PLL </span></h3>
+<p>In this configuration, the dsPIC (R) DSC is configured to provide its maximum computational power. To do that, the internal PLL is used to push the internal frequency Fosc to 80 MHz. As a consequence, Fcy become 40 MHz, which is the nominal maximum computational power of 40 MIPS declared by Microchip. In this case, the tick duration is 25 ns.
+</p><p>To configure the system in this way, the C language has to contain the following compiler directive:
+</p>
+<pre>_FOSCSEL ( FNOSC_PRIPLL);
+</pre>
+<p>Moreover, at the beginning of the main function, the PLL multiplier registers needs to be set with the following code:
+</p>
+<pre>
+/* Clock setup for 40 MIPS */
+CLKDIVbits. DOZEN = 0;
+CLKDIVbits. PLLPRE = 0;
+CLKDIVbits. PLLPOST = 0;
+PLLFBDbits. PLLDIV = 78;
+/* Wait for PLL to lock */
+while( OSCCONbits. LOCK&nbsp;!=1);
+</pre>
+<p>Finally, the OIL file will contain the following line:
+</p>
+<pre>KERNEL_TYPE = EDF { TICK_TIME = "25 ns ";};
+</pre>
+<p>The maximum relative deadline which can be expressed in the OIL file is 25ns*2^31, which is slightly more than 53 secs.
+</p>
+<h3> <span class="mw-headline" id="EE_time_init"> EE time init </span></h3>
+<ul><li> <i>void EE_time_init(void);</i>
+<dl><dd> Description: The function programs TMR8 and TMR9 as a 32 bit timer which is then used by the EDF Kernel to take the timing reference. The function must be called before calling any Erika Enterprise primitive.
+</dd><dd> If dsPIC have less than 9 hardware timers, <i>EE_time_init</i> may also programs TMR2 and TMR3 or TMR4 and TMR5 instead of TMR8 and TMR9. To enable that you have to put <i>EE_OPT="__DSPIC_EDF_TMR23__";</i> or <i>EE_OPT="__DSPIC_EDF_TMR45__";</i> in conf.oil file.
+</dd></dl>
+</li></ul>
+<h1> <span class="mw-headline" id="Boards"> Boards </span></h1>
+<h2> <span class="mw-headline" id="Flex_Board"> Flex Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_2"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Evidence/Embedded solutions Flex Board.
+</p><p>Flex is an embedded board which can be used by all the developers who want to fully exploit the potential of the latest Microchip micro-controllers: the dsPIC (R) DSC family.
+</p><p>Flex is born as a development board where to easily develop and test real-time applications for the dsPIC (R) DSC micro-controller. The main features of Flex are:
+</p>
+<ul><li> robust electronic design;
+</li><li> modular architecture;
+</li><li> availability of a growing number of application notes;
+</li><li> the full support of Erika Enterprise.
+</li></ul>
+<p>To configure the usage of the Flex Board, the user has to specify an appropriate
+BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+...
+}
+...
+</pre>
+<p>The Flex board supports a set of devices which are directly mounted on it, plus a set of additional devices mounted on specific add-on boards. These devices can be configured by adding attributes inside the BOARD_DATA section.
+</p><p>The supported devices and the API functions needed to use them are described in the following sections.
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="System_LED"> System LED </span></h3>
+<p>The Flex Board has a system LED attached to a GPIO pin of the microcontroller. To use the system LED on the Flex Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  USELEDS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following paragraphs will describe the functions available to control the Flex System LED.
+</p>
+<ul><li> <i>void EE_leds_init(void);</i>
+<dl><dd> Description: The function configures the GPIO pin. The LED starts turned off.
+</dd></dl>
+</li><li> <i>void EE_led_sys_on(void);</i>
+<dl><dd> Description: The function turns on the LED.
+</dd></dl>
+</li><li> <i>void EE_led_sys_off(void);</i>
+<dl><dd> Description: The function turns off the LED.
+</dd></dl>
+</li><li> <i>void EE_led_on(void);</i>
+<dl><dd> Description: The function turns on the LED.
+</dd></dl>
+</li><li> <i>void EE_led_off(void);</i>
+<dl><dd> Description: The function turns off the LED.
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="Flex_Demo_Daughter_Board"> Flex Demo Daughter Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_3"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Evidence/Embedded solutions Flex Demo Daughter Board.
+The Demo Daughter board is a small board that plugs on the Flex Light / Flex Full connectors and which provides a set of devices useful to implement small demos and demonstrators of control algorithms.
+</p><p>The main features of the Flex Demo Daughter board are:
+</p>
+<ul><li> 8 leds;
+</li><li> 4 buttons;
+</li><li> 1 accelerometer;
+</li><li> 8 Analog Inputs;
+</li><li> 1 buzzer;
+</li><li> 1 DAC;
+</li><li> direct availability of the MCU encoder pins
+</li><li> Infrared receiver;
+</li><li> 16x2 characters LCD;
+</li><li> PWM outputs;
+</li><li> Temperature sensor;
+</li><li> Light sensor;
+</li><li> Trimmer;
+</li><li> Connections to implement the USB communication on the FLEX Full
+</li><li> Zigbee connector for Microchip or Easybee modules.
+</li></ul>
+<p>To configure the usage of the Flex Demo Daughter Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO {
+    ...
+  };
+  ...
+}
+...
+</pre>
+<p>The supported devices and the API functions needed to use them are described in the following sections.
+</p>
+<h3> <span class="mw-headline" id="LEDS"> LEDS </span></h3>
+<p>The Flex Demo Daughter board hosts 8 LEDs which are attached to GPIO pins. To use the LEDs on the Flex Demo Daughter Board, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO { OPTIONS = LEDS; };
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Flex Demo Daughter Board LEDs.
+</p>
+<ul><li> <i>void EE_demoboard_leds_init(void);</i>
+<dl><dd> Description: The function configures the LEDs, which starts turned off.
+</dd></dl>
+</li><li> <i>void EE_leds(EE_UINT8 data);</i>
+<dl><dd> Description: The function sets the led values using the data parameter.
+</dd></dl>
+</li><li> <i>void EE_leds_on(void);</i>
+<dl><dd> Description: The function turns all the LEDs on.
+</dd></dl>
+</li><li> <i>void EE_leds_off(void);</i>
+<dl><dd> Description: The function turns all the LEDs off.
+</dd></dl>
+</li><li> <i>void EE_led_0_on(void);</i>
+<dl><dd> Description: The function turns LED 0 on.
+</dd></dl>
+</li><li> <i>void EE_led_0_off(void);</i>
+<dl><dd> Description: The function turns LED 0 off.
+</dd></dl>
+</li><li> <i>void EE_led_1_on(void);</i>
+<dl><dd> Description: The function turns LED 1 on.
+</dd></dl>
+</li><li> <i>void EE_led_1_off(void);</i>
+<dl><dd> Description: The function turns LED 1 off.
+</dd></dl>
+</li><li> <i>void EE_led_2_on(void);</i>
+<dl><dd> Description: The function turns LED 2 on.
+</dd></dl>
+</li><li> <i>void EE_led_2_off(void);</i>
+<dl><dd> Description: The function turns LED 2 off.
+</dd></dl>
+</li><li> <i>void EE_led_3_on(void);</i>
+<dl><dd> Description: The function turns LED 3 on.
+</dd></dl>
+</li><li> <i>void EE_led_3_off(void);</i>
+<dl><dd> Description: The function turns LED 3 off.
+</dd></dl>
+</li><li> <i>void EE_led_4_on(void);</i>
+<dl><dd> Description: The function turns LED 4 on.
+</dd></dl>
+</li><li> <i>void EE_led_4_off(void);</i>
+<dl><dd> Description: The function turns LED 4 off.
+</dd></dl>
+</li><li> <i>void EE_led_5_on(void);</i>
+<dl><dd> Description: The function turns LED 5 on.
+</dd></dl>
+</li><li> <i>void EE_led_5_off(void);</i>
+<dl><dd> Description: The function turns LED 5 off.
+</dd></dl>
+</li><li> <i>void EE_led_6_on(void);</i>
+<dl><dd> Description: The function turns LED 6 on.
+</dd></dl>
+</li><li> <i>void EE_led_6_off(void);</i>
+<dl><dd> Description: The function turns LED 6 off.
+</dd></dl>
+</li><li> <i>void EE_led_7_on(void);</i>
+<dl><dd> Description: The function turns LED 7 on.
+</dd></dl>
+</li><li> <i>void EE_led_7_off(void);</i>
+<dl><dd> Description: The function turns LED 7 off.
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Buttons"> Buttons </span></h3>
+<p>The Flex Demo Daughter Board has a set of four buttons attached to GPIO pins of the microcontroller. To use the buttons, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO { OPTIONS = BUTTONS&nbsp;; };
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Flex Demo Daughter Board buttons.
+</p>
+<ul><li> <i>void EE_buttons_init( void (*isr_callback)(void), EE_UINT8 mask );</i>
+<dl><dd> Description: The function configures the GPIO pins used by the buttons. Buttons can be configured to be controlled only by using polling functions (no isr_callback is specified), or can be configured to raise an interrupt (if isr_callback is specified). When the isr_callback is specified, the mask parameter is used to control for which buttons the interrupt will be generated.
+</dd><dd> Parameters: 
+<ul><li> <i>isr_callback</i>
+<dl><dd> The function is called inside an ISR2 upon a button press.
+</dd></dl>
+</li><li> <i>mask</i>
+<dl><dd> If isr_callback is specified, then this parameter controls which buttons will generate an interrupt request. In particular, bit 0x01 is used for button S1, bit 0x02 is used for button S2, bit 0x04 is used for button S3, bit 0x08 is used for button S4.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S1(void);</i>
+<dl><dd> Description: The function returns the status of the button number S1.
+</dd><dd> Return Values:
+<ul><li> unsigned char 
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S2(void);</i>
+<dl><dd> Description: The function returns the status of the button number S2.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S3(void);</i>
+<dl><dd> Description: The function returns the status of the button number S3.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S4(void);</i>
+<dl><dd> Description: The function returns the status of the button number S4.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="LCD"> LCD </span></h3>
+<p>The Flex Demo Daughter Board has an alpha-numeric 16 x 2 LCD display mounted on the board attached to the GPIO pins of the microcontroller. To use the LCD on the board, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO { OPTIONS = LCD; };
+  ...
+}
+...
+</pre>
+<p>The functions available can be used to print character and strings to the LCD Display, and to select the current cursor position (which is the position where the next character will be printed).
+To specify a character position in the LCD, the functions provided uses an integer.
+Numbers from 0 to 15 represents the first line, whereas numbers from 15 to 31 represents the second line.
+The following subsections will describe the functions available to control the LCD.
+</p>
+<ul><li> <i>void EE_lcd_init(void);</i>
+<dl><dd> Description: The function initializes the LCD display.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_command(EE_UINT8 cmd);</i>
+<dl><dd> Description: The function sends a command to the LCD. Most of the LCD functions described in this chapters basically remap to this function. The developer can use this function to implement features which are currently not supported by the LCD API.
+</dd><dd> Parameters:
+<ul><li> cmd
+<dl><dd> The LCD command.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_putc(EE_INT8 data);</i>
+<dl><dd> Description: The function puts a character on the LCD display, at the current cursor position.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_puts(EE_INT8 *buf);</i>
+<dl><dd> Description: The function prints a string to the display.
+</dd><dd> Parameters:
+<ul><li> buf
+<dl><dd> The string to display. It must be a valid C-language string.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>unsigned char EE_lcd_busy(void);</i>
+<dl><dd> Description: The function returns 1 if the display is busy, 0 otherwise. This function can be used to check if the application can send a new command to the LCD, or if the command can not be sent because the LCD is still busy processing the previous command.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 if the display is busy, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_clear(void);</i>
+<dl><dd> Description: The function clears the LCD.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_home(void);</i>
+<dl><dd> Description: The function sets the current cursor position to the top left display character.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_line2(void);</i>
+<dl><dd> Description: The function sets the current cursor position to the bottom left display character.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_curs_right(void);</i>
+<dl><dd> Description: The function sets the current cursor position on the next character on the right.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_curs_left(void);</i>
+<dl><dd> Description: The function sets the current cursor position on the next character on the left.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_shift(void);</i>
+<dl><dd> Description: The function can be used to enable the shift mode of the LCD. When in shift mode, each character sent provoke the shifting of all the characters of the LCD.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_goto(EE_UINT8 posx, EE_UINT8 posy);</i>
+<dl><dd> Description: The function sets the current cursor position to (posx, posy).
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd>The LCD column, from 0 to 15.
+</dd></dl>
+</li><li> posy
+<dl><dd> The LCD row, 0 or 1.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Analog_sensors"> Analog sensors </span></h3>
+<p>The Flex Demo Daughter Board has a set of analog channels available, in particular (in parenthesis the pin assignments):
+</p>
+<ul><li> Temperature sensor (AN12/RB12);
+</li><li> Light sensor (AN13/RB13);
+</li><li> Trimmer (AN15/RB15);
+</li><li> Accelerometer X axis (AN16/RC1);
+</li><li> Accelerometer Y axis (AN17/RC2);
+</li><li> Accelerometer Z axis (AN18/RC3);
+</li><li> ADC Aux (AN19/RC4).
+</li></ul>
+<p>To use these inputs, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO {
+    OPTIONS = ADC_IN&nbsp;; // for the analog inputs
+    OPTIONS = ACCELEROMETER; // for the accelerometer
+    OPTIONS = SENSORS&nbsp;; // for the sensors
+    OPTIONS = TRIMMER&nbsp;; // for the potentiometer
+  };
+};
+...
+</pre>
+<p>The functions available can be used to start and stop the A/D converter, and to read the values from the various sensors.
+</p>
+<ul><li> <i>void EE_analog_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. The ADC is initialized in polling mode.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_analog_close(void);</i>
+<dl><dd> Description: The function turns off the A/D converter.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_adcin_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. It has the same functionality as EE_analog_init.
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_adcin_get_volt(void);</i>
+<dl><dd> Description: The function reads the ADC Aux channel and returns its value. The A/D converter should have been already initialized using EE_adcin_init.
+</dd><dd> Return Values
+<ul><li> EE_UINT16
+<dl><dd> The voltage read from the ADC Aux channel, in millivolt.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_trimmer_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. It has the same functionality as EE_analog_init.
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_trimmer_get_volt(void);</i>
+<dl><dd> Description: The function reads the Trimmer channel and returns its value. The A/D converter should have been already initialized using EE_adcin_init.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16 The voltage read from the Trimmer channel, in millivolt.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_analogsensors_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. It has the same functionality as EE_analog_init.
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_nalog_get_temperature(void);</i>
+<dl><dd> Description: The function reads the temperature sensor and returns its value. The A/D converter should have been already initialized using EE_adcin_init.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16
+<dl><dd> The voltage read from the temperature sensor, in millivolt.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_analog_get_light(void);</i>
+<dl><dd> Description: The function reads the Light sensor and returns its value. The A/D converter should have been already initialized using EE_adcin_init.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16
+<dl><dd> The voltage read from the Light sensor, in millivolt.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_accelerometer_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. It has the same functionality as EE_analog_init, plus some initialization specific for the 3-axis accelerometer..
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_accelerometer_getglevel(void);</i>
+</li><li> <i>void EE_accelerometer_setglevel(EE_UINT8 level);</i>
+</li><li> <i>void EE_accelerometer_sleep(void);</i>
+</li><li> <i>void EE_accelerometer_wakeup(void);</i>
+</li><li> <i>float EE_accelerometer_getx(void);</i>
+</li><li> <i>float EE_accelerometer_gety(void);</i>
+</li><li> <i>float EE_accelerometer_getz(void);</i>
+</li></ul>
+<h3> <span class="mw-headline" id="Buzzer"> Buzzer </span></h3>
+<p>The Flex Demo Daughter Board has a buzzer which can be used to produce simple sounds.
+To use the buzzer, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO {
+    OPTIONS = BUZZER&nbsp;; // for the analog inputs
+  };
+};
+...
+</pre>
+<p>The functions available can be used to setup the buzzer, and to play notes. 
+<b>Warning:</b> The buzzer driver uses timer T3.
+</p>
+<ul><li> <i>void EE_buzzer_init(void);</i>
+<dl><dd> Description: The function initializes the buzzer.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_buzzer_set_freq(EE_UINT16 new_freq);</i>
+<dl><dd> Description: The function sets an output frequency for the buzzer. Frequencies should be higher than 10 Hz. No action is taken if the new frequency differs from the previous one by less than 10 Hz.
+</dd><dd> Parameters:
+<ul><li> new_freq The new buzzer frequency, in Hz.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_buzzer_get_freq(void);</i>
+<dl><dd> Description: The function returns the current buzer frequency.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16
+<dl><dd>The current buzzer frequency.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_buzzer_mute(void);</i>
+<dl><dd> Description: The function mutes the buzzer.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_buzzer_unmute(void);</i>
+</li><li> Description: The function unmutes the buzzer.
+</li></ul>
+<ul><li> <i>void EE_buzzer_close(void);</i>
+<dl><dd> Description: The function resets the buzzer.
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="PWM_Output"> PWM Output </span></h3>
+<p>The Flex Demo Daughter Board has a PWM output which is attached to the Output Compare 3 of the Timer 2.
+To use the PWM, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO {
+    OPTIONS = PWM_OUT&nbsp;;
+  };
+};
+...
+</pre>
+<p>The functions available can be used to start, stop and set the duty cycle of the PWM.
+</p>
+<ul><li> <i>void EE_pwm_init(EE_UINT16 Period);</i>
+<dl><dd> Description: The function initializes the PWM, setting also its period.
+</dd><dd> Parameters:
+<ul><li> Period
+<dl><dd> The PWM period.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_pwm_set_duty(float duty);</i>
+<dl><dd> Description: The function sets the duty cycle of the PWM.
+</dd><dd> Parameters:
+<ul><li> duty
+<dl><dd> The PWM duty cycle.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_pwm_close(void);</i>
+<dl><dd> Description: The function shuts down the PWM.
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="DAC_Output"> DAC Output </span></h3>
+<p>The Flex Demo Daughter Board has a DAC output connected to the Microcontroller I2C port which can be used to convert digital signals to analog values.
+To use the DAC, the developer should include the following fragment in the application OIL file:
+</p>
+<pre>
+...
+BOARD_DATA = EE_FLEX {
+  TYPE = DEMO {
+    OPTIONS = DAC;
+  };
+};
+...
+</pre>
+<p>The functions available can be used to start, stop and set the duty cycle of the PWM.
+</p>
+<ul><li> <i>EE_INT8 EE_dac_general_call(EE_UINT8 second);</i>
+</li><li> <i>EE_INT8 EE_dac_fast_write(EE_UINT16 data, EE_UINT8 port, EE_UINT8 power);</i>
+</li><li> <i>EE_INT8 EE_dac_write(EE_UINT16 data, EE_UINT8 port, EE_UINT8 power, EE_UINT8 save);</i>
+</li><li> <i>void EE_dac_init(void);</i>
+</li></ul>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Explorer16_Board"> Explorer16 Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_4"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Microchip Explorer16 Board.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Erikatutorial_explorer16running.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7c/Erikatutorial_explorer16running.jpg" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Erikatutorial_explorer16running.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Microchip Explorer 16 board running ERIKA Enterprise.</div></div></div></div>
+<p>The Explorer 16 is a low cost, efficient development board produced by Microchip hosting an alpha-numeric 16 x 2 LCD display, with interfaces to MPLAB ICD 2, USB, and RS-232. To configure the usage of the Explorer 16 Board, the user has to specify an appropriate
+BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_EXPLORER16 {
+  ...
+}
+...
+</pre>
+<p>The Explorer 16 board supports a set of devices which are directly mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section. The supported devices and the API functions needed to use them are described in the
+following sections. The current version of the board support for Flex supports both the dsPIC model 33FJ256GP710 and the PIC24 model 24FJ128GA010.
+</p>
+<h3> <span class="mw-headline" id="Buttons_2"> Buttons </span></h3>
+<p>The Explorer 16 Board has a set of four buttons attached to GPIO pins of the microcontroller. To use the buttons on the Explorer 16 Board, the developer should specify the USEBUTTONS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_EXPLORER16 {
+  USEBUTTONS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Explorer 16 buttons.
+</p>
+<ul><li> <i>void EE_buttons_init( void (*isr_callback)(void), EE_UINT8 mask );</i>
+<dl><dd> Description: The function configures the GPIO pins used by the buttons. Buttons can be configured to be controlled only by using polling functions (no isr_callback is specified), or can be configured to raise an interrupt (if isr_callback is specified). When the isr_callback is specified, the mask parameter is used to control for which buttons the interrupt will be generated.
+</dd><dd> Parameters:
+<ul><li> isr_callback
+<dl><dd> The function is called inside an ISR2 upon a button press.
+</dd></dl>
+</li><li> mask
+<dl><dd> If isr_callback is specified, then this parameter controls which buttons will generate an interrupt request. In particular, bit 0x01 is used for button S3, bit 0x02 is used for button S4, bit 0x04 is used for button S5, bit 0x08 is used for button S6.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S3(void);</i>
+<dl><dd> Description: The function returns the status of the button number S3.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S4(void);</i>
+<dl><dd> Description: The function returns the status of the button number S4.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S5(void);</i>
+<dl><dd> Description: The function returns the status of the button number S5.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S6(void);</i>
+<dl><dd> Description: The function returns the status of the button number S6.
+</dd><dd> Return Values:
+<ul><li> unsigned char
+<dl><dd> 1 of the button is pressed, 0 otherwise.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="LEDs_2"> LEDs </span></h3>
+<p>The Explorer 16 Board has a set of 8 LEDs attached to the GPIO pins of the microcontroller. To use the LEDs on the Explorer 16 Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_EXPLORER16 {
+  USELEDS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the Explorer 16 LEDs.
+</p>
+<ul><li> <i>void EE_leds_init(void);</i>
+<dl><dd> Description: The function configures the GPIO pins. The LEDs start turned off.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_leds_on(void);</i>
+<dl><dd> Description: The function turns on all the LEDs.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_leds_off(void);</i>
+<dl><dd> Description: The function turns off all the LEDs.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_on(void);</i>
+</li><li> Description: The function turns on LED 3 (which is the first led on the board).
+</li></ul>
+<ul><li> <i>void EE_led_off(void);</i>
+</li><li> Description: The function turns off LED 3 (which is the first led on the board).
+</li></ul>
+<ul><li> <i>void EE_led_3_on(void);</i>
+<dl><dd> Description: The function turns on LED 3.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_3_off(void);</i>
+<dl><dd> Description: The function turns off LED 3.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_4_on(void);</i>
+<dl><dd> Description: The function turns on LED 4.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_4_off(void);</i>
+<dl><dd> Description: The function turns off LED 4.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_5_on(void);</i>
+<dl><dd> Description: The function turns on LED 5.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_5_off(void);</i>
+<dl><dd> Description: The function turns off LED 5.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_6_on(void);</i>
+</li><li> Description: The function turns on LED 6.
+</li></ul>
+<ul><li> <i>void EE_led_6_off(void);</i>
+</li><li> Description: The function turns off LED 6.
+</li></ul>
+<ul><li> <i>void EE_led_7_on(void);</i>
+<dl><dd> Description: The function turns on LED 7.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_7_off(void);</i>
+<dl><dd> Description: The function turns off LED 7.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_8_on(void);</i>
+<dl><dd> Description: The function turns on LED 8.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_8_off(void);</i>
+<dl><dd> Description: The function turns off LED 8.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_9_on(void);</i>
+<dl><dd> Description: The function turns on LED 9.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_9_off(void);</i>
+<dl><dd> Description: The function turns off LED 9.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_10_on(void);</i>
+<dl><dd> Description: The function turns on LED 10.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_10_off(void);</i>
+<dl><dd> Description: The function turns off LED 10.
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="LCD_2"> LCD </span></h3>
+<p>The Explorer 16 Board has an alpha-numeric 16 x 2 LCD display mounted on the board attached to the GPIO pins of the microcontroller. To use the LCD on the Explorer 16 Board, the developer should specify the USELCD attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_EXPLORER16 {
+  USELCD = TRUE;
+  ...
+}
+...
+</pre>
+<p>The functions available can be used to print character and strings to the LCD Display, and to select the current cursor position (which is the position where the next character will be printed).
+To specify a character position in the LCD, the functions provided uses an integer.
+Numbers from 0 to 15 represents the first line, whereas numbers from 15 to 31 represents the second line.
+The following subsections will describe the functions available to control the Explorer 16 LCD.
+</p>
+<ul><li> <i>void EE_lcd_init(void);</i>
+<dl><dd> Description: The function initializes the LCD display.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_command(EE_UINT8 cmd);</i>
+<dl><dd> Description: The function sends a command to the LCD. Most of the LCD functions described in this chapters basically remap to this function. The developer can use this function to implement features which are currently not supported by the LCD API.
+</dd><dd> Parameters: 
+<ul><li> cmd
+<dl><dd> The LCD command.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_putc(EE_INT8 data);</i>
+</li><li> Description: The function puts a character on the LCD display, at the current cursor position.
+</li></ul>
+<ul><li> <i>EE_INT8 EE_lcd_getc(void);</i>
+<dl><dd> Description: The function returns the character which is present at the current cursor position.
+</dd><dd> Return Values: 
+<ul><li> char
+<dl><dd> The character which is displayed at the current cursor position.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_puts(EE_INT8 *buf);</i>
+<dl><dd> Description: The function prints a string to the display.
+</dd><dd> Parameters:
+<ul><li> buf 
+<dl><dd> The string to display. It must be a valid C-language string.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>unsigned char EE_lcd_busy(void);</i>
+<dl><dd> Description: The function returns 1 if the display is busy, 0 otherwise. This function can be used to check if the application can send a new command to the LCD, or if the command can not be sent because the LCD is still busy processing the previous command.
+</dd><dd> Return Values: 
+<ul><li> unsigned char 1 if the display is busy, 0 otherwise.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_clear(void);</i>
+<dl><dd> Description: The function clears the LCD.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_home(void);</i>
+<dl><dd> Description: The function sets the current cursor position to the top left display character.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_line2(void);</i>
+<dl><dd> Description: The function sets the current cursor position to the bottom left display character.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_curs_right(void);</i>
+<dl><dd> Description: The function sets the current cursor position on the next character on the right.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_curs_left(void);</i>
+<dl><dd> Description: The function sets the current cursor position on the next character on the left.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_shift(void);</i>
+<dl><dd> Description: The function can be used to enable the shift mode of the LCD. When in shift mode, each character sent provoke the shifting of all the characters of the LCD.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_goto(EE_UINT8 posx, EE_UINT8 posy);</i>
+<dl><dd> Description: The function sets the current cursor position to (posx, posy).
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The LCD column, from 0 to 15.
+</dd></dl>
+</li><li> posy
+<dl><dd> The LCD row, 0 or 1.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Analog_sensors_2"> Analog sensors </span></h3>
+<p>The Explorer 16 Board has two analog inputs which are connected to the board. The first is a temperature sensor, whereas the second is a potentiometer. To use these two analog inputs on the Explorer 16 Board, the developer should specify the USEANALOG attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_EXPLORER16 {
+  USEANALOG = TRUE;
+  ...
+}
+...
+</pre>
+<p>The functions available can be used to start and stop the A/D converter, and to read the values from the two sensors.
+The following subsections will describe the functions available to control the Explorer 16 on-board sensors.
+</p>
+<ul><li> <i>void EE_analog_init(void);</i>
+<dl><dd> Description: The function initializes the A/D converter. As a result, a periodic interrupt is raised. An interrupt handler is also internally provided by the A/D handler to read the sensor values and make them available to the user using the functions EE_analog_get_volt and EE_analog_get_temp.
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_analog_get_volt(void);</i>
+<dl><dd> Description: The function returns the last voltage read from the potentiometer installed on the Explorer 16 board. The A/D converter should have been already initialized using EE_analog_init.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16 The voltage read from the potentiometer installed on the Explorer 16 board, in millivolt.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT16 EE_analog_get_temp(void);</i>
+<dl><dd> Description: The function returns the last temperature read from the temperature sensor installed on the Explorer 16 board. The A/D converter should have been already initialized using EE_analog_init.
+</dd><dd> Return Values:
+<ul><li> EE_UINT16 The temperature read from the sensor, in Celsius degrees.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_analog_start(void);</i>
+<dl><dd> Description: The function turns on A/D conversion. Please note that the A/D conversion is automatically started when EE_analog_init is called.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_analog_stop(void);</i>
+</li><li> Description: The function turns off A/D conversion. To turn on again the A/D conversion, the developer can call EE_analog_start.
+</li></ul>
+<h2> <span class="mw-headline" id="dsPICDEM_1.1_Plus_Board"> dsPICDEM 1.1 Plus Board </span></h2>
+<h3> <span class="mw-headline" id="Introduction_5"> Introduction </span></h3>
+<p>This chapter describes the support done in Erika Enterprise for the Microchip dsPICDEM 1.1 Plus Board.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Dspicdemrunning.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c6/Dspicdemrunning.jpg" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Dspicdemrunning.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>The Microchip dsPICDEM 1.1 Plus board running Erika Enterprise.</div></div></div></div>
+<p>The dsPICDEM 1.1 Plus is a low cost, efficient development board produced by Microchip hosting a graphic display, with interfaces to MPLAB ICD 2, and RS-232. To configure the usage of the dsPICDEM 1.1 Plus Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_DSPICDEM11PLUS {
+  ...
+}
+...
+</pre>
+<p>The dsPICDEM 1.1 Plus board supports a set of devices which are directly mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section. The supported devices and the API functions needed to use them are described in the
+following sections.
+</p>
+<h3> <span class="mw-headline" id="Buttons_3"> Buttons </span></h3>
+<p>The dsPICDEM 1.1 Plus Board has a set of four buttons attached to GPIO pins of the microcontroller. To use the buttons on the board, the developer should specify the USEBUTTONS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_DSPICDEM11PLUS {
+  USEBUTTONS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the buttons.
+</p>
+<ul><li> <i>void EE_buttons_init( void (*isr_callback)(void), EE_UINT8 mask );</i>
+<dl><dd> Description: The function configures the GPIO pins used by the buttons. Buttons can be configured to be controlled only by using polling functions (no isr_callback is specified), or can be configured to raise an interrupt (if isr_callback is specified). When the isr_callback is specified, the mask parameter is used to control for which buttons the interrupt will be generated.
+</dd><dd> Parameters: 
+<ul><li> isr_callback The function is called inside an ISR2 upon a button press.
+</li><li> mask If isr_callback is specified, then this parameter controls which buttons will generate an interrupt request. In particular, bit 0x01 is used for button S1, bit 0x02 is used for button S2, bit 0x04 is used for button S3, bit 0x08 is used for button S4.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S1(void);</i>
+<dl><dd> Description: The function returns the status of the button number S1.
+</dd><dd> Return Values:
+<ul><li> unsigned char 1 of the button is pressed, 0 otherwise.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S2(void);</i>
+<dl><dd> Description: The function returns the status of the button number S2.
+</dd><dd> Return Values: 
+<ul><li> unsigned char 1 of the button is pressed, 0 otherwise.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S3(void);</i>
+<dl><dd> Description: The function returns the status of the button number S3.
+</dd><dd> Return Values:
+<ul><li> unsigned char 1 of the button is pressed, 0 otherwise.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>EE_UINT8 EE_button_get_S4(void);</i>
+<dl><dd> Description: The function returns the status of the button number S4.
+</dd><dd> Return Values: 
+<ul><li> unsigned char 1 of the button is pressed, 0 otherwise.
+</li></ul>
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="LEDs_3"> LEDs </span></h3>
+<p>The dsPICDEM 1.1 Plus Board has a set of 4 LEDs attached to the GPIO pins of the microcontroller. To use the LEDs on the board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_DSPICDEM11PLUS {
+  USELEDS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following subsections will describe the functions available to control the LEDs.
+</p>
+<ul><li> <i>void EE_leds_init(void);</i>
+<dl><dd> Description: The function configures the GPIO pins. The LEDs start turned off.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_leds_on(void);</i>
+<dl><dd> Description: The function turns on all the LEDs.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_leds_off(void);</i>
+<dl><dd> Description: The function turns off all the LEDs.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_on(void);</i>
+<dl><dd> Description: The function turns on LED 1.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_off(void);</i>
+<dl><dd> Description: The function turns off LED 1.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_1_on(void);</i>
+<dl><dd> Description: The function turns on LED 1.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_1_off(void);</i>
+<dl><dd> Description: The function turns off LED 1.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_2_on(void);</i>
+<dl><dd> Description: The function turns on LED 2.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_2_off(void);</i>
+<dl><dd> Description: The function turns off LED 2.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_3_on(void);</i>
+<dl><dd> Description: The function turns on LED 3.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_3_off(void);</i>
+<dl><dd> Description: The function turns off LED 3.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_4_on(void);</i>
+<dl><dd> Description: The function turns on LED 4.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_led_4_off(void);</i>
+</li><li> Description: The function turns off LED 4.
+</li></ul>
+<h3> <span class="mw-headline" id="LCD_3"> LCD </span></h3>
+<p>The dsPICDEM 1.1 Plus Board has a 132x32 graphical LCD display mounted on the board attached to the GPIO pins of the microcontroller. To use the LCD, the developer should specify the USELCD attribute as TRUE, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = MICROCHIP_DSPICDEM11PLUS {
+  USELCD = TRUE;
+  ...
+}
+...
+</pre>
+<p>The functions available in Erika Enterprise are a direct implementation of the LCD commands described in the “LCD Controller specification” of the “dsPICDEM 1.1 development Board User’s Guide”. Please refer to that document to have a complete description of the LCD hardware. The LCD has three data types, each based on its own independent coordinate systems. The data types are characters, pixels and columns. Associated with each coordinate system is a current position of which each is independent of the other. The following subsections will describe the functions available to control the LCD.
+</p>
+<ul><li> <i>void EE_lcd_init(void);</i>
+<dl><dd> Description: The function initializes the LCD display.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_command(EE_UINT8 cmd);</i>
+<dl><dd> Description: The function sends a command to the LCD. Most of the LCD functions described in this chapter are similar to this function. The developer can use this function to implement features which are currently not supported by the LCD API.
+</dd><dd> Parameters:
+<ul><li> cmd The LCD command.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_Reset( void );</i>
+<dl><dd> Description: The function resets the LCD to its initial power-up state.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_Home( void );</i>
+<dl><dd> Description: The function sets all coordinate variables to their home values and leaves the display
+</dd></dl>
+</li></ul>
+<p>unchanged.
+</p>
+<ul><li> <i>void EE_lcd_HomeClear( void );</i>
+<dl><dd> Description: The function clears the entire display and then sets all coordinate variables to their home values.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_Scroll( EE_UINT8 lines );</i>
+<dl><dd> Description: The function rolls the display in the vertical axis by the amount lines. The LCD data array consists of 32 lines of 122 pixels each. If scrolling, value lines is set to zero and the top row of the data array is displayed on the top row of the display.
+</dd><dd> Parameters:
+<ul><li> lines The number of display lines to scroll.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrPos( EE_UINT8 col, EE_UINT8 row );</i>
+<dl><dd> Description: The function sets the character position to col, row. This command has no effect on the display except for moving character cursor if it is turned on.
+</dd><dd> Parameters:
+<ul><li> col
+<dl><dd> The new column position of the cursor.
+</dd></dl>
+</li><li> row
+<dl><dd> The new row position of the cursor.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrPosInc( void );</i>
+<dl><dd> Description: The function increments the character position. This command has no effect on the display except for moving the character cursor if it is turned on.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtChr( EE_UINT8 chr, EE_UINT8 col, EE_UINT8 row );</i>
+<dl><dd> Description: The function sets the character position to (col,row), then writes the ASCII character chr.
+</dd><dd> Parameters:
+<ul><li> chr
+<dl><dd> The character to bet printed on the display.
+</dd></dl>
+</li><li> col
+<dl><dd> The new column position of the cursor.
+</dd></dl>
+</li><li> row
+<dl><dd> The new row position of the cursor.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtChrInc( EE_UINT8 chr, EE_UINT8 col, EE_UINT8 row );</i>
+<dl><dd> Description: The function sets the character position to (col,row), writes the ASCII character chr, and then increments the character position.
+</dd><dd> Parameters:
+<ul><li> chr
+<dl><dd> The character to be printed on the display.
+</dd></dl>
+</li><li> col
+<dl><dd> The column position of the cursor.
+</dd></dl>
+</li><li> row
+<dl><dd> The row position of the cursor.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtChrNext( EE_UINT8 chr );</i>
+<dl><dd> Description: The function command writes the ASCII character chr to the current character position, then increments it.
+</dd><dd> Parameters:
+<ul><li> chr
+<dl><dd> The character to be printed on the display.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li><i>void EE_lcd_ChrClearRow( EE_UINT8 row );</i>
+<dl><dd> Description: The function clears the entire row and leaves the current character column position = 0.
+</dd><dd> Parameters:
+<ul><li> row
+<dl><dd> The row to be cleared.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrClearEOL( void );</i>
+<dl><dd> Description: The function clears the current row from the current location to the end of the line and leaves the character position unchanged.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrCursorOff( void );</i>
+<dl><dd> Description: The function command turns off the character cursor.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrCursorOn( void );</i>
+<dl><dd> Description: The function turns on the character cursor at the current character position.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ChrCursorBlink( EE_UINT8 tick );</i>
+<dl><dd> Description: The function controls cursor blinking. If the time is set to zero, the cursor will not blink, else the cursor blinks with equal on and off times, with the on time being given by the blink time.
+</dd><dd> Parameters:
+<ul><li> tick
+<dl><dd> From 0 to 7, controls the blinking time which is equal to tick * 0.125sec.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_PixPos( EE_UINT8 posx, EE_UINT8 posy );</i>
+<dl><dd> Description: The function sets the current pixel position to (posx,posy) and leaves the display unchanged. This command is intended to be used in conjunction with the function EE_lcd_PixLine.
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The x pixel position.
+</dd></dl>
+</li><li> posy
+<dl><dd> The y pixel position.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_PixOn( EE_UINT8 posx, EE_UINT8 posy );</i>
+<dl><dd> Description: The function sets the pixel position to (posx,posy) and turns on the pixel at that location. This command does not increment the pixel position.
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The x pixel position.
+</dd></dl>
+</li><li> posy
+<dl><dd> The y pixel position.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_PixOff( EE_UINT8 posx, EE_UINT8 posy );</i>
+<dl><dd> Description: The function sets the pixel position to (posx,posy) and turns off the pixel at that location. This command does not increment the current pixel position.
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The x position of the pixel to be turned off.
+</dd></dl>
+</li><li> posy
+<dl><dd> The y position of the pixel to be turned off.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_PixLine( EE_UINT8 posx, EE_UINT8 posy );</i>
+<dl><dd> Description: The function draws a straight line from the current pixel position to the specified location and leaves the pixel position set to the new location.
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The x position of the end of the line.
+</dd></dl>
+</li><li> posy
+<dl><dd> The y position of the end of the line.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_ColPos( EE_UINT8 col, EE_UINT8 row );</i>
+<dl><dd> Description: The function sets the column position to (col,row).
+</dd><dd> Parameters:
+<ul><li> col
+<dl><dd> The column position of the column.
+</dd></dl>
+</li><li> row
+<dl><dd> The row position of the column.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtColNext( EE_UINT8 data );</i>
+<dl><dd> Description: The function writes column data to the current column position and then increments the column position.
+</dd><dd> Parameters:
+<ul><li> data
+<dl><dd> The data to be displayed.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtColNextOR( EE_UINT8 data );</i>
+<dl><dd> Description: The function ORs column data with existing data and writes the result to the current column position, then increments it.
+</dd><dd> Parameters:
+<ul><li> data
+<dl><dd> The data to be displayed.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtColNextAND( EE_UINT8 data );</i>
+<dl><dd> Description: The function ANDs column data with existing data and writes the result to the current column position, then increments it.
+</dd><dd> Parameters:
+<ul><li> data
+<dl><dd> The data to be displayed.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_WrtColNextXOR( EE_UINT8 data );</i>
+<dl><dd> Description: The function XORs column data with existing data and writes the result to the current column position, then increments it.
+</dd><dd> Parameters:
+<ul><li> data The data to be displayed.
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_putc(EE_INT8 data);</i>
+<dl><dd> Description: The function puts a character on the LCD display, at the current cursor position. The function remaps to EE_lcd_WrtChrNext.
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_home(void);</i>
+</li><li> Description: The function sets the current cursor position to the top left display character. The function remaps to EE_lcd_Home.
+</li></ul>
+<ul><li> <i>void EE_lcd_goto(EE_UINT8 posx, EE_UINT8 posy);</i>
+<dl><dd> Description: The function sets the current cursor position to (posx, posy). The function remaps to EE_lcd_ChrPos.
+</dd><dd> Parameters:
+<ul><li> posx
+<dl><dd> The LCD column, from 0 to 15.
+</dd></dl>
+</li><li> posy
+<dl><dd> The LCD row, 0 or 1.
+</dd></dl>
+</li></ul>
+</dd></dl>
+</li></ul>
+<ul><li> <i>void EE_lcd_clear(void);</i>
+<dl><dd> Description: The function clears the LCD. The function remaps to EE_lcd_HomeClear.
+</dd></dl>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 487/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

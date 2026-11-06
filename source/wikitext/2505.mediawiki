@@ -1,0 +1,1 @@
+Screenshot of RTDruid on the ERIKA Enterprise VM, highligting the Xen example in the list of templates

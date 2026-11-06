@@ -1,0 +1,568 @@
+= Introduction =
+This page describes the current support of ERIKA Enterprise for the Xen Hypervisor.
+
+In particular, ERIKA can be run as a guest operating system inside a Xen domU.
+
+= Quick Guide =
+
+The following is a list of commands and actions that you can take on the [http://www.erika-enterprise.com#VM free Virtual Machine] we made to simplify the testing of the Xen support.
+
+Warning: We tried to make the following list rather complete... but there could be still some notes missing.
+
+From inside the VM, you can recompile U-Boot:
+
+<pre>
+cd ~/xen_linux_erika/u-boot-psci
+make CROSS_COMPILE=arm-linux-gnueabihf- Cubieboard2_config 
+make CROSS_COMPILE=arm-linux-gnueabihf-
+</pre>
+
+Supposing the microSD mounted on <tt>/dev/mmcblock0</tt>, you can rewrite the U-Boot in the SDCard using
+
+<pre>
+dd if=spl/sunxi­spl.bin of=/dev/mmcblk0 bs=1024 seek=8 
+dd if=u-boot.img of=/dev/mmcblk0 bs=1024 seek=40 
+</pre>
+
+You can recompile the Linux Kernel using:
+
+<pre>
+cd ~/xen_linux_erika/linux-sunxi
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- cubie2_xen_defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage dtbs -j4
+</pre>
+
+As a result of the compilation you'll have two files:
+* zImage on <tt>arch/arm/boot/zImage</tt>
+* dtb on <tt>arch/arm/boot/dts/sun7i-a20-cubieboard2.dtb</tt>
+
+Copy these two files in the root of the microSD.
+
+* Also see [[#Creating the root file system]]
+* Also see [[#Preparing the boot scripts]]
+
+You can generate an ERIKA Enterprise executable named <tt>A20.bin</tt> from the RT-Druid machine pre-installed inside the VM. You need to create a new project, and select the template you can see in the figure below.
+
+[[image:xen_erika_example.png]]
+
+The <tt>A20.bin</tt> executable will be as usual inside the <tt>Debug</tt> directory
+
+Then recompile the xen-tools:
+<pre>
+cd ~/xen_linux_erika/xen
+make XEN_TARGET_ARCH=arm32 CROSS_COMPILE=arm-linux-gnueabihf- CONFIG_EARLY_PRINTK=sun7i dist-xen
+</pre>
+
+Copy the file <tt>xen/xen/xen</tt> in the root (<tt>/</tt>) of the uSD.
+
+Then, power-on the board.
+
+Check that the erika.cfg stored in the root of the SD card contains the following:
+
+<pre>
+kernel = "A20.bin"
+memory = 512
+name = "ERIKA_Enterprise"
+vcpus = 1
+on_crash = 'destroy'
+iomem = ["1c20,2"]
+</pre>
+
+On the target, start the xen environment:
+
+<pre>
+/etc/init.d/xencommons start
+</pre>
+
+Start ERIKA inside Xen as a domU
+<pre>
+xenstore-chmod /local b
+xl create ./erika.cfg
+</pre>
+
+To list the Xen domains:
+<pre>
+xl list
+</pre>
+
+The A20.bin application compiled before includes a minimal Linux driver for the communication of the two domains.
+
+The following:
+<pre>
+echo 1 > /proc/sys/erika-xen/pin_state 
+</pre>
+sends a message to ERIKA that will raise a GPIO pin.
+
+You can read the pin status using:
+<pre>
+cat /proc/sys/erika-xen/pin_state 
+</pre>
+
+The following:
+<pre>
+echo 0 > /proc/sys/erika-xen/pin_state
+</pre>
+
+sets the pin back to 0.
+
+= Requirements for the working environment =
+
+The AllwinnerA20 CPU available in the cubieboard2 is directly supported by Xen; The [http://wiki.xenproject.org/wiki/Xen_ARMv7_with_Virtualization_Extensions/Allwinner Xen Wiki] contains most of the documentation needed for building the software components.
+
+This section summarizes the basic requirements of the development environment needed to start ERIKA Enterprise as a [http://wiki.xenproject.org/wiki/Xen_ARM_with_Virtualization_Extensions#Requirements domU over a Linux dom0].
+
+== Firmware Requirements ==
+The Hypervisor boot must happen in [http://wiki.xenproject.org/wiki/Xen_ARM_with_Virtualization_Extensions_whitepaper#Xen_on_ARM:_virtualization_extensions Hypervisor mode (EL2)] (non secure).
+
+Dupport for the EL2 boot mode is in the official repository since January 2014.
+
+Moreover, to correctly init both cores of an SMP Platform, the bootloader  needs to correctly handle the Power State Coordination Interface ([http://lxr.free-electrons.com/source/Documentation/devicetree/bindings/arm/psci.txt PSCI]); This support is not currently available in the official U-Boot repository, but a first working version is available [https://git.kernel.org/cgit/linux/kernel/git/maz/uboot.git/log/?h=wip/psci in the development branch wip/psci of this repository].
+
+== dom0 requirements ==
+=== Device tree. ===
+All the platform features must be enumerated in a device tree, which must be compiled in the device tree binary format (also called device tree blob). 
+
+Starting with kernel 3.14, it is no more needed the creation of a dedicated device tree for the Linux boot on top of an hypervisor: it is in fact sufficient to [http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/sun7ia20cubieboard2.
+dts use the device tree provided together with Linux]
+
+In other words, the bootloader must provide to Xen a dtb for the dom0 kernel, plus an optional one for initramfs (in case the kernel needs it). The  bootloader also needs to load the kernel and initramfs in memory, and also to note their location in the device tree blob; That information is included into a new node of the device tree, named '''chosen''', that contains:
+* the image location and a classification per compatibility 
+* additional parameters to be passed to the hypervisor or to the dom0 during boot. 
+
+The '''chosen''' node must be defined in the following way ([http://xenbits.xen.org/gitweb/?p=xen.git;a=blob;f=docs/misc/arm/device-tree/booting.txt;h=8da1e0b8fcf9c98888ed63cd45bd11f1a880288b;hb=HEAD as specified in docs/misc/arm/devicetree/booting.txt]:
+<pre>
+chosen {
+  bootargs = "$xen_cmdline";
+  modules {
+    module@0 { /* dom0 kernel */
+      bootargs = "$dom0_cmdline";
+      compatible = "xen,linuxzimage", "xen,multibootmodule";
+      reg = <$kernel_addr $kernel_size>
+    };
+    module@1 { /* initramfs */
+      compatible = "xen,linuxinitrd", "xen,multibootmodule";
+      reg = <$initramfs_addr $initramfs_size>;
+    };
+  };
+};
+</pre>
+
+The '''chosen''' node can be manually added to the device tree (e.g., by changing the sources and recompiling), or can be created dynamically at boot time using the U-Boot command <tt>fdt</tt>.
+
+== domU requirements ==
+=== domU executable format. ===
+Xen uses the zImage format to load a ARM kernel. However, the image [http://xenbits.xen.org/gitweb/?p=xen.git;a=blob;f=docs/misc/arm/booting.txt;h=9802e5e20fd8c7da94eaa7b639b7530b951760eb;hb=HEAD should not be compressed]; the only needed operation is the [http://www.simtec.co.uk/products/SWLINUX/files/booting_article.html#d0e309 compilation of the kernel source code with a zImage header].
+
+That header must have an offset <tt>0x24</tt> inside the zImage and must contain:
+# a magic number (<tt>0x016f2818</tt>) that identifies the file as zImage;
+# the starting address of the zImage;
+# The end address of the zImage.
+
+The following is an header example:
+<pre>
+_start:
+  @ zImage header
+.rept 8
+  mov r0, r0
+.endr
+  b _start_cubieboard2
+  .word 0x016f2818 @ Magic numbers to help the loader
+  .word _start_0 @ absolute load/run zImage address
+  .word _end _
+  start @ zImage size
+  @ end of zImage header
+_start_cubieboard2:
+</pre>
+
+Please remember the zImage should not be compressed. To obtain the executable in the required format you can use the command <tt>objcopy</tt> as done during the compilation of a normal application for Cortex Ax (the hypothesys is that the objcopy path is for the ARMv7 toolchain is in the environment variable <tt>EE_OBJCOPY</tt>):
+<pre>
+$(EE_OBJCOPY) -O binary myProject_master.elf myProject_master.bin
+</pre>
+
+=== base address for the executable image of the domU ===
+Th base address for the adress space reserved to a domU is <tt>0x80000000</tt>.
+The [xen/include/public/archarm.h:372 linker script] used for the compilation of the ERIKA source code must be adapted to that value.
+
+=== Privileged Instructions ===
+A non-privileged domain cannot access to the System Control Register to enable the memory management unit (by setting bit M); If done, a domU exception is raised.
+
+Moreover, the hypervisor protects register <tt>CP15 c15</tt> to non privileged guest domains. This because [http://lists.xenproject.org/archives/html/xenchangelog/201405/msg00004.html on some ARM architectures using that register is possible to have a dump of caches L1/L2]: having free access to that register would then bring memory isolation problems.
+
+=== IMPORTANT: Commit to be reverted ===
+If you compile a Xen Repository including commit <tt>878ff4fe1816d7f808f11254b555b9e9c2f121fa</tt>, this will provoke a critical shutdown of the ERIKA Enterprise domU at boot time. We did not yet understand why this happens. the only solution is currently to revert the commit.
+
+= Creating a working system =
+The following steps will guide through the creation of a working system including a Linux dom0 and an ERIKA Enterprise domU that will be executed under the Xen hypervisor.
+
+The hypothesis is that a armv7a (hardfloat) toolchain is installed in the system. That toolchain must include at least a <tt>gcc</tt> compiler, the <tt>ld</tt> linker as well as the <tt>objcopy</tt> tool. The hypothesis is that the executables will have a name starting with <tt>armv7a-hardfloat-linux-gnueabi-</tt> (Please note that this prefix is typical for the Gentoo distributions. Debian packages typically have the prefix <tt>arm-linux-gnueabihf-</tt>.).
+
+The following sections describe how the environment can be installed into an SD card. Installing it over a USB flash drive is similar. This page does not contain instructions on using <tt>tftp</tt> or <tt>netboot</tt>.
+
+== Preparing the toolchain ==
+Debian distributions as well as other distributions typically provide pre-compiled toolchains (on Ubuntu the package name is <tt>gcc-arm-linux-gnueabi</tt>).
+
+However, the suggested procedure in our case is to use the <tt>crossdev</tt> application to generate a toolchain for the specific architecture:
+
+<pre>
+crossdev -t armv7a-hardfloat-linux-gnueabi
+</pre>
+
+== Compiling and installing the bootloader ==
+Use the following command to download and compile the [http://linuxsunxi.org/Bootable_SD_card#Bootloader U-Boot repository] with support for PSCI:
+
+<pre>
+# git clone https://git.kernel.org/pub/scm/linux/kernel/git/maz/uboot.git u-boot-psci
+# cd u-boot-psci
+# git checkout origin/wip/psci
+# make CROSS_COMPILE=armv7a-hardfloat-linux-gnueabi- Cubieboard2_config
+# make CROSS_COMPILE=armv7a-hardfloat-linux-gnueabi-
+</pre>
+
+The bootloader should be stored at an offset of 40KB, whereas the symbol table at an offset of 8KB.
+
+Supposing we are using a Linux host, and that the SD card can be accessed using the device file <tt>/dev/mmcblk0</tt>, you can use the following commands:
+
+<pre>
+# dd if=spl/sunxispl.bin of=/dev/mmcblk0 bs=1024 seek=8
+# dd if=uboot.img of=/dev/mmcblk0 bs=1024 seek=40
+</pre>
+
+== Creating the root file system ==
+This section covers the creation of a single partition which will be formatted with an ext4 file system.
+
+After that, an [http://archlinuxarm.org/platforms/armv7/allwinner/cubieboard2 Arch Linux file system] will be used for the partition (on a Debian host [http://linux-sunxi.org/Bootable_SD_card#Rootfs you can use <tt>debootstrap</tt> as an alternative to the download of a preconfigured root file system]). 
+
+<pre>
+# fdisk /dev/mmcblk0
+</pre>
+
+Then, you need to create a Linux partition. Please note that the first sector of the first partition in the SD card must be in a position after an offset of 40 KB (for the U-Boot installation) plus the size of the U-Boot image.
+
+<pre>
+# mkfs.ext4 /dev/mmcblk0p1
+# mount /dev/mmcblk0p1 /mnt
+# wget http://archlinuxarm.org/os/ArchLinuxARM-sun7i-latest.tar.gz
+# tar -xf ArchLinuxARM-sun7i-latest.tar.gz -C mnt
+# umount /mnt
+</pre>
+
+== Compiling and installing of the dom0 kernel ==
+Download the sunxi-devel branch from the official sunxi repository. That branch contains the drivers for the SD, USB ed ethernet.
+
+<pre>
+# mkdir sunxi-devel
+# cd sunxi-devel
+# git init
+# git remote add -t sunxi-devel -f origin https://github.com/linux-sunxi/linux-sunxi.git
+# git checkout sunxi-devel
+</pre>
+
+After that, please go on with teh kernel compilation. In the default configuration for the architecture and platform you need to enable the Xen options, as well as the peripherals and drivers that we want to use.
+
+A complete list of the needed configuration options is available on the [http://openmirage.org/wiki/xenoncubieboard2 Mirage OS wiki].
+
+Since ours is a minimal configuration, we disabled the support for dynamic loading modules.
+<pre>
+# make ARCH=arm multi_v7_defconfig
+# make ARCH=arm menuconfig
+# make ARCH=arm CROSS_COMPILE=armv7a-hardfloat-linux-gnueabi- zImage dtbs -j4
+</pre>
+
+The <tt>dtbs</tt> target is needed to compile the device tree in the binary format used during boot. Once the compilation is terminated, the Linux zImage can be found as <tt>arch/arm/boot/zImage</tt>, whereas the binary device tree to be used is <tt>arch/arm/boot/dts/sun7i-a20-cubieboard2.dtb</tt>.
+
+You need to copy both the zImage and the binary device tree  in the root of the file system you created on the SD card containing the environment we are creating.
+
+== Validating the setup with only the Linux Kernel ==
+To validate that everything works correctly, at this point it is already possible to boot the dom0 kernel, using a serial connection between the host and the target board. Once obtained the U-Boot prompt, please use the following commands to boot Linux:
+
+<pre>
+# setenv bootcmd "ext4load mmc 0 45000000 zImage; bootm 45000000"
+# boot
+</pre>
+
+== Compiling and installing the hypervisor ==
+You need to download the latest Xen version using teh development repository, on the <tt>master</tt> branch.
+
+<pre>
+# git clone git://xenbits.xen.org/xen.git
+# cd xen
+# git clean -xfd
+</pre>
+
+You need to enable the diagnostic messages by modifying the <tt>Config.mk</tt> file, setting the option <tt>debug ?= y</tt>.
+
+<pre>
+# make clean XEN_TARGET_ARCH=arm32 CROSS_COMPILE=armv7a-hardfloat-linux-gnueabi- CONFIG_EARLY_PRINTK=sun7i
+# make dist-xen XEN_TARGET_ARCH=arm32 CROSS_COMPILE=armv7a-hardfloat-linux-gnueabi- CONFIG_EARLY_PRINTK=sun7i
+</pre>
+
+If you want to run the ERIKA Enterprise domU with the GPIO driver, you need to apply the patchset that adds che hypercall <tt>XEN_DOMCTL_memory_mapping</tt> for the ARM architecture;
+That hypercall provides the complete access to an I/O memory region to a non-privileged domain.
+
+Currently the patchset is not included in the Xen development repository, but is available in the mailing list archives ([http://markmail.org/thread/wtevxxizyxjhvmg2 currently it is at it eighth version]).
+
+At the end of the compilation, the executable is the file <tt>xen/xen/xen</tt>.
+
+You need to copy that file in the root of the SD card filesystem.
+
+== Preparing the boot scripts ==
+
+To correctly boot the dom0 on top of the Xen Hypervisor, we need to tell U-Boot the right locations where the hypervisor and the dom0 should be stored.
+
+Moreover, we need to add the chosen node needed for the hypervisor to the device tree, either statically at compile time or (easier) dynamically at boot time.
+
+With the hyphotesis of a Linux configuration without modules and without initramfs, on an ext4 filesystem, the boot script is the following one (taken from [http://openmirage.org/wiki/xenoncubieboard2 this page], section "UBoot configuration", with some modifications).
+
+<pre>
+# SUNXI Xen Boot Script
+# Addresses suitable for 1GB system, adjust as appropriate for a 2GB system.
+# Top of RAM: 0x80000000
+# Xen relocate addr   0x7fe00000
+setenv kernel_addr_r  0x7f600000 # 8M
+setenv ramdisk_addr_r 0x7ee00000 # 8M
+setenv fdt_addr       0x7ec00000 # 2M
+setenv xen_addr_r     0x7ea00000 # 2M
+
+setenv fdt_high       0xffffffff # Load fdt in place instead of relocating
+
+# Load xen to ${xen_addr_r}.
+ext4load mmc 0 ${xen_addr_r} /xen
+setenv bootargs "console=dtuart dtuart=/soc@01c00000/serial@01c28000 dom0_mem=256M"
+
+# Load appropriate .dtb file to ${fdt_addr}
+ext4load mmc 0 ${fdt_addr} /sun7i-a20-cubieboard2.dtb
+fdt addr ${fdt_addr} 0x40000
+fdt resize
+fdt chosen
+fdt set /chosen \#address-cells <1>
+fdt set /chosen \#size-cells <1>
+
+# Load Linux zImage to ${kernel_addr_r}
+ext4load mmc 0 ${kernel_addr_r} /zImage
+fdt mknod /chosen module@0
+fdt set /chosen/module@0 compatible "xen,linuxzimage" "xen,multiboot-module"
+fdt set /chosen/module@0 reg <${kernel_addr_r} 0x${filesize} >
+fdt set /chosen/module@0 bootargs "console=hvc0,115200n8 debug ignore_loglevel rw root=/dev/mmcblk0p1 rootwait earlyprintk=xen clk_ignore_unused"
+
+bootz ${xen_addr_r} ${fdt_addr}
+</pre>
+
+Given the boot script named <tt>boot.cmd</tt>, the compilation is run using the following command:
+
+<pre>
+# mkimage -C none - A arm -T script -d boot.cmd boot.scr
+</pre>
+
+The resulting file (<tt>boot.scr</tt>) must be put in the root of the file system storing the OS environment on the SD card.
+
+=== How to exclusively assign a core to the dom0 ===
+
+Xen allows to assign one or more corse exclusively to the dom0 (CPU pinning).
+
+The configuration option needed (from [http://wiki.xen.org/wiki/XenCommonProblems#Can_I_dedicate_a_cpu_core_.28or_cores.29_only_for_dom0.3F Xen Common problems]) must be added to the command line used  by U-Boot to boot Xen.
+<pre>
+# Load xen to ${xen_addr_r}.
+ext4load mmc 0 ${xen_addr_r} /xen
+setenv bootargs "console=dtuart dtuart=/soc@01c00000/serial@01c28000 dom0_mem=256M dom0_max_vcpus=X dom0_vcpus_pin"
+</pre>
+
+== Validating the setup of Xen + Linux dom0 ==
+
+To validate the work done so far, you can connect to the serial line of the target board.
+
+the boot script will automatically start Xen and Linux. once you reach the login prompt of the Linux dom0, press three times "Ctrl + A" to switch from the Linux console to the Xen console, thus verifying that Linux is really working under Xen. Just repeat the three chars to go back to the Linux console.
+
+
+
+== Compiling the toolstack ==
+
+The following is the set of command needed to compile the toolstack directly on the target board. this is convenient when the environment is not Debian-based, without a debootstrap or other simple mechanisms to emulate an ARM system.
+
+We suggest to use an external USB memory or a SATA hard disk to avoid burning the SD card due to the heavy disk load during the compilation process.
+
+<pre>
+# git clone git://xenbits.xen.org/xen.git
+# cd xen
+# git clean -xfd
+# make uninstall
+# make clean
+# ./configure
+# make dist-tools
+# make install-tools
+</pre>
+
+Please note that the version of the toolstack must be the same of the hypervisor. Using different version may make the system unstable.
+
+== Validating the toolstack==
+
+To verify that the toolstack works correctly, just reboot the target board.
+
+Once logged in, start the system daemons needed for Xen interfacing with the following command:
+
+<pre>
+# /etc/init.d/xencommons start
+</pre>
+
+Note that any message due to the absence of QEMU is correct, since the Xen toolstack for ARM is not based on QEMU emulation.
+
+Finally use the xl command to list the domains which are currently active:
+
+<pre>
+# xl list
+</pre>
+
+The only active domain should be the Linux "Domain 0".
+
+== Creating the configuration file for the ERIKA Enterprise domU ==
+
+The following is  aminimal configuration needed to correctly boot an ERIKA Enterprise domU without GPIO drivers and without XenBus driver.
+
+The file myProject.bin, output of the ERIKA Enterprise compilation phase, must be put into the same directory of the configuration files.
+
+<pre>
+kernel = "myProject_master.bin"
+memory = 512
+name = "ERIKA_Enterprise"
+vcpus = 1
+on_crash = 'destroy'
+</pre>
+
+You can use the following command to boot the guest operating system, described by a configuration file named "erika.cfg":
+<pre>
+# xl create erika.cfg
+</pre>
+
+Once back to the prompt, using the command "xl list" you should be able to see "ERIKA_Enterprise" among the running domains.
+
+Use the following command to stop the ERIKA Enterprise domU:
+
+<pre>
+# xl destroy ERIKA_Enterprise
+</pre>
+
+=== Changes to the configuration for GPIO and XenBus drivers ===
+
+If you compiled ERIKA Enterprise with the GPIO drivers, you need to add to the configuration the possibility for the domain to access the GPIO controller register area.
+
+The following line gives to the domU the access to two memory pages starting from page frame number 0x1c20 (Corresponding to address 0x01c20800 which is the start of the I/O memory as specified by sunxi in [http://dl.linuxsunxi.org/A20/ this documentation].)
+<pre>
+iomem = ["1c20,2"]
+</pre>
+
+Finally, if ERIKA Enterprise has been compiled with the XenBus driver, you need to assign the right read/write permissions to the space of the names in the XenStore hierarchy:
+
+<pre>
+# xenstorechmod -r "/local" b
+</pre>
+
+This command makes all the namespace available in R/W to every domain.
+
+=== Statically assigning a core to the domU ===
+Xen allows to assign one or more core also to a domU (see [http://oldlistarchives.xenproject.org/xenusers/200807/msg00233.html this link]).
+
+To to that you need to add a line saying which core will be assigned to the domU:
+<pre>
+cpus = "1"
+</pre>
+
+In the case you need to assign more than one core, you can do the following:
+
+<pre>
+vcpus = 2
+cpus = ["1", "2"]
+</pre>
+
+to say that the domain has two virtual CPUs assigned to it, and that the cores statically assigned to it are core 1 and 2.
+
+To verify the correct assignments of teh cores you can use the following command once ERIKA Enterprise has booted:
+<pre>
+# xl vcpu-list
+</pre>
+
+= An example ERIKA application =
+
+The ERIKA Enterprise port as a domU Xen-on-ARM also includes a set of subsystems which can be used to interact with the hypervisor.
+
+These subsystems are compiled together with the application (in general ERIKA does not need modifications to ruin on Xen other than those in the previous paragraphs).
+
+The reference for this section is the [https://github.com/KarimAllah/xen/tree/miniosarmport MiniOS ARM port], which has recently been completed and is a key component in disaggregated system designs.
+
+The figure below depicts the architecture of the application with the relationship with the other modules.
+
+[[image:ERIKA-system-components.png|700px|x700px]]
+
+== GPIO Driver ==
+
+We started from the simplest peripheral, which is in this case the GPIO.
+
+The driver is basically a port of the main functionalities of the [http://linuxsunxi.org/GPIO Linux port driver implemented by sunxi in Linux].
+
+== Handling the Generic Interrupt Controller and the event channels ==
+
+The Xen implementation on ARM handles in an unified way both interrupts (virtual timers, interprocessor and physical) and the Xen notification distribution mechanism (aka the [http://wiki.xen.org/wiki/Event_Channel_Internals event channels]) .
+
+The event channel is also a unified mechanism which implements communication between domains and also exports Xen services (for example, every interaction with the XenStore is implemented through event channels).
+
+For that reason we implemented a modified GIC driver to handle in a better way the interrupt distribution as well as some other important Xen functionality.
+
+The current implementation of the GIC includes:
+* the enabling of the interrupt line used by Xen to signal events (PPI 31), as well as the interrupt line for the virtual timer (PPI 27).
+* masking and binding of the event channels ([http://openmirage.org/wiki/xenevents see this link]).
+
+The functionalities currently supported include the mapping in the domain address space of the shared info page, which is a page shared between the domain and Xen. That page contains two bitmaps storing the state of each event channel. The bitmap <tt>evtchn_pending</tt> has a bit with value 1 when Xen delivered an event to the domain, and the event is not yet handled; the bitmap <tt>evtchn_mask</tt>, is a mask of which event channel are available to receive events.
+
+Finally, the ERIKA Enterprise drive includes functions to hansle an interrupt handler and to mask/unmask the event channels used by the application.
+
+== Communication with the XenBus ==
+
+The event channel mask driver allows an interaction with the XenBus, which is the communication mechanism to the hierarchical namespace stored in the XenStore. Basically, given a set of keys, it is possible to access to their values; this access is done using the shared page between the domain and the hypervisor (using a hypercall), which contains a data structure equivalent to a ring buffer. 
+
+Basically the domain synchronously inserts a request in the queue of the hypervisor. The hypervisor will process the request, and when done will notify it using the event channel (using a known id (1)).
+
+The following is a generic scheme of the usage of the ringbuffer in the PV protocol.
+
+[[image:Prod-cons-ringbuffer.png|700px|x700px]]
+
+== Shared Memory Handling ==
+
+One of the requirements of the porting of ERIKA as a domU was the possibility to share some memory between the Linux dom0 domain and the ERIKA domU domain.
+
+The idea is then that on the Linux side there will be a device driver being able to access this shared memory, making the shared data available though the sysfs.
+
+To implement this, the Linux and ERIKA driver need to perform the following operations:
+
+* The first step is that ERIKA Enterprise needs to map the memory in its own grant table; the grant table is a a Xen data structure available for every domain storing which are the shared pages and which are the read/write permissions to them. In this way a non-privileged domain can export pages of its own address space to other domains in a safe way.
+
+* The shared page is now exported in the ERIKA grant table. The Linux dom0 will access the grant table of the domU using an hypercall. In this way the hypervisor grants access to the page mapping it into the dom0 address space (this happens only if the requesting domain is listed in the domains allowed to access that page). Every subsequent access to the shared memory is done without hypervisor intervention.
+
+
+
+== Synchronization between domains ==
+
+The Xen hypervisor does not provide any mechanism to synchronize the access to the sahared memory area between two domains.
+
+For that reason, we implemented a synchronous notification mechanism that allows mutual exclusion in the access to the shared memory.
+
+In our case, the mechanism works when Linux needs to ask some action to the ERIKA domain. The protocol implemented is similar to the one used for the access to the XenStore and for the communication between frontend e backend in the paravirtualized driver model used by Xen  ([http://wiki.xen.org/wiki/PV_Protocol protocol PV]):
+
+# The Linux dom0 writes in the Erika domU shared memory the action to be performed
+# The dom0 sends a notification to the domU through an event channel, signaling the command insertion in the queue.
+# The domU handles the interrupt, and executes the command.
+## It process the command signalling in the shared memory about errors happened during the execution.
+## the domU notifies the dom0 the execution of the command through an event channel (it can be the same event channel since the inter_domain event channels are bidirectional).
+# The dom0 handles the interrupt and gets the response (or the error) due to the execution of the command.
+
+The protocol can be paired with a mutual exclusion mechanism based on shared spin locks. However, the usage of spin locks is not suggested due to the fact that a domain holding a spin lock could be forced to halt before unlocking the spinlock, making the system halt on a spinlock that will never be released.
+
+= Publications @ CloudCon =
+
+[http://lccoelce14.sched.org/event/050c1a83ded7822e39e6ef0c644f0438 Arianna Avanzini, Integrating Linux and the Real-Time ERIKA OS Through the Xen Hypervisor - Arianna Avanzini, CloudCon 2014]
+
+
+= Acknowledgements =
+
+This work has been done thanks to Arianna Avanzini as part of her Master Thesis done under the supervision of Prof. Paolo Valente of the University Modena Reggio Emilia. This page is mainly a translation of instructions coming from Arianna.
+
+Special Thanks also to Bruno Morelli who provided the initial iMX6 support, as well as the integration of the complete package inside the ERIKA Enterprise virtual machine.
+
+[[Category:Supported Devices]]

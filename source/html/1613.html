@@ -1,0 +1,181 @@
+<p>Step 1:
+</p>
+<ul><li>   Open ScicosLab 4.4b7, the Scicos-FLEX pack is recognized by the program (refer Fig. 1).
+</li></ul>
+<dl><dd> Change the working directory to “C:\Programmi\scilab\scicoslab_44b7\contrib\dspic”.
+</dd><dd> Type exec builder.sce to build any application of the pack.
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab1.png" class="image"><img alt="Scicoslab1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ee/Scicoslab1.png" width="1281" height="741" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 1 – ScicosLab
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 2:
+</p>
+<ul><li>   Open file “pid_ctrl_codegen_udp_tuning_square_circle.cos” (refer Fig. 2) in Scicos.
+</li></ul>
+<dl><dd> The .cos file contains the schematic for the FLEX embedded code generation (with SCICOS).
+</dd><dd> This application is for tuning coefficients of the PID control for improving system
+</dd><dd> performance.
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab2.png" class="image"><img alt="Scicoslab2.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/75/Scicoslab2.png" width="1281" height="738" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 2 – Control system schematic
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 3:
+</p>
+<ul><li>   Click menu CodeGen and select FlexCodeGen.
+</li></ul>
+<dl><dd> Click on the super-block, the Embedded Code Generator's block property settings 
+</dd><dd> window will appear (refer Fig. 3)
+</dd><dd> Provide path name and then press OK for code generation (refer Fig. 4)
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab3.png" class="image"><img alt="Scicoslab3.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9d/Scicoslab3.png" width="387" height="282" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 3 – Embedded Code Generator window
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab4.png" class="image"><img alt="Scicoslab4.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/57/Scicoslab4.png" width="667" height="724" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 4 – Code Generator results
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 4:
+</p>
+<ul><li> Open MPLAB IDE and import “pic30.cof” file created by the code generator in Step 3.
+</li></ul>
+<dl><dd> Connect the FLEX board (with DEMO2 motion control pack) to ICD for programming the
+</dd></dl>
+<p>dsPic (refer Fig. 5). Program the FLEX board but do not start the application.
+</p><p><a href="/wiki/index.php?title=File:Cof_ide1.png" class="image"><img alt="Cof ide1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/90/Cof_ide1.png" width="1280" height="744" /></a> 
+<a href="/wiki/index.php?title=File:Cof_ide2.png" class="image"><img alt="Cof ide2.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/18/Cof_ide2.png" width="1280" height="744" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 5 - MPLAB IDE: COF file importing and target programming
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 5:
+</p>
+<ul><li> Check TCP/IP settings of the PC ethernet port (refer Fig. 6).
+</li></ul>
+<p><a href="/wiki/index.php?title=File:Scicoslab6.png" class="image"><img alt="Scicoslab6.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3c/Scicoslab6.png" width="405" height="457" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 6 – Check the TCP/IP port settings 
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 6:
+</p>
+<ul><li> Open the PC-side file “PCside_AmazingBall_UDP_PIDtuning.cos” in Scicos;
+</li></ul>
+<dl><dd> The .cos file contains the schematic for the PC-side (refer Fig. 7).
+</dd><dd> Connect the ethernet cable and start the almost-real-time simulation in SCICOS.
+</dd><dd> The application shows the received UDP data on multiple scopes and sends data for PID tuning 
+</dd><dd> to the FLEX board (refer Fig. 8).
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab7.png" class="image"><img alt="Scicoslab7.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6a/Scicoslab7.png" width="783" height="720" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 7 – PC-side schematic
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab8.png" class="image"><img alt="Scicoslab8.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fc/Scicoslab8.png" width="1281" height="741" /></a> 
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 8 – PC-side application (PID tuner)
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p>Step 7:
+</p>
+<ul><li> Release the reset to run the demo on the board(refer Fig.9);
+</li></ul>
+<dl><dd> Initially the application calibrates the touch screen (refer Fig. 11), then the control algorithm starts.
+</dd><dd> The application running on the board must be started after running the SCICOS diagram simulation to allow 
+</dd><dd> proper initialization of the FLEX UDP interface. If the FLEX board does not receive data from the PC for any reason 
+</dd><dd> the control algorithm does not start. (refer Fig.12).
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Released_reset.png" class="image"><img alt="Released reset.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/13/Released_reset.png" width="1280" height="744" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 9 - MPLAB IDE: Target released from reset
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab10.png" class="image"><img alt="Scicoslab10.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7c/Scicoslab10.png" width="696" height="521" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 10 – Touch panel calibration
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab11.png" class="image"><img alt="Scicoslab11.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/58/Scicoslab11.png" width="438" height="330" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 11 – Control result
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+<p><a href="/wiki/index.php?title=File:Scicoslab12.png" class="image"><img alt="Scicoslab12.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/27/Scicoslab12.png" width="1199" height="647" /></a>
+</p>
+<dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd><dl><dd> Figure 12 – Data Plot
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

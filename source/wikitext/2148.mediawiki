@@ -1,0 +1,108 @@
+We are going to see how program the ''serialpar_io'' component. The ''serialpar_io'' component drives shift register in output and input. On the ''FPG-EYE'' board there is a [[File:74hc165.png|center|thumb|400px| Switches connected on 74hc165 parallel to serial converter]] as input shift register and a [[File:74hc595.png|center|thumb|400px| LEDs connected on 74hc595 serial to parallel converter]] as output shift register. the serialpar_io can be used together In this session the code reads the switches status from ''SW1'' component and every time this value is changed the code increment the the LEDs value: ''DL1'', ''DL2'', ''DL5'', ''DL6'', ''DL7'', ''DL8'', ''DL9'' and ''DL10''.
+
+== Read switches value by serialpar_io ==
+
+In the figure shown a portion of the circuit of the FPG-EYE. 
+
+[[File:74hc165.png|center|thumb|400px| Switches connected on 74hc165 parallel to serial converter]]
+
+The input shift register [http://www.nxp.com/documents/data_sheet/74HC_HCT165.pdf 74hc165] is drived by ''serialpar_io'' component in serial mode. The serial data is latched   
+
+== Write a switches value by serialpar_io ==
+
+In the figure is shown a portion of the circuit of the FPG-EYE. 
+
+[[File:74hc595.png|center|thumb|400px| LEDs connected on 74hc595 serial to parallel converter]]
+
+The component [http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf 74hc595] is connected on ''serialpar_io'' component.
+
+== Example code ==
+
+Everytime we change the state on the switches the LEDs value is incremented:
+
+ #define EE_LED_COUNT 10
+ #define EE_SERIO_ALL_LEDS ((1 << EE_SERIO_LED_COUNT) - 1)
+ #define EE_SERIO_SWITCH_MASK(n) (1 << (n))
+ 
+ /* register structure of the serialpar_io component */
+ typedef struct
+ {
+    /* Register to read state of switches and button (RO) */
+    volatile unsigned long data_in;
+    /* Register to control leds & transistors (R/W) */
+    volatile unsigned long data_out;
+    /* Status register (R/W) */
+    volatile unsigned long status;
+ } serialpar_io_t;
+ 
+ /* SERIAL_BASE_ADDRESS is from system_conf.h */
+ static serialpar_io_t * const serpario = (SerParIO_t *)SERPARIO_BASE_ADDRESS;
+ 
+ /*
+    This function reads the status of switches and button.
+    return: the status of switches and button (data_in register).	
+ */
+ unsigned long serio_read(void)
+ {
+    return serpario->data_in;
+ }
+ 
+ /*
+    This function reads a particular switch of the XP2-CAMERA board.
+    param n: the number of the switch to read			
+    return: the status of the switches
+ */
+ unsigned long serio_switch_read(unsigned int n)
+ {
+    return (serio_read() & EE_SERIO_SWITCH_MASK(n)) != 0;
+ }
+ 
+ /*
+    This function reads data_out, the register to control leds & transistors.
+    return: the status of leds & transistors (data_out register).
+ */
+ unsigned long serio_get_data_out(void)
+ {
+    return serpario->data_out;
+ }
+ 
+ /*
+    This function writes data_out, the register to control leds.
+ */
+ void serio_write(unsigned long data)
+ {
+    serpario->data_out = data;
+ }
+ 
+ /*
+    This function sets the state of the leds of the XP2-CAMERA board.
+    state: Bitmap of the new led state
+ */
+ void led_set_all(unsigned long state)
+ {
+    unsigned long old = serio_get_data_out();
+    serio_write((old & ~EE_SERIO_ALL_LEDS) | (state & EE_SERIO_ALL_LEDS));
+ }
+ 
+ int main(void) {
+    
+    unsigned long state_old, state;
+    unsigned long value;
+ 
+    /* All LEDs off */
+    led_set_all(0);
+ 
+    state_old = state;
+ 
+    while(1) {
+ 
+        state = serio_read();
+        if (state_old != state) {
+ 
+            state_old = state;
+            led_set_all(++value);
+        }
+    }
+ 
+    return 0;
+ }

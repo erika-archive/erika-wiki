@@ -1,0 +1,1 @@
+ERIKA Enterprise is a very efficient real-time operating system that supports many configurations.  For this reason, its data structures are often non-obvious.  Here are listed pages containing documentation about the internals of ERIKA.

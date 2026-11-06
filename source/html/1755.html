@@ -1,0 +1,107 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Note_for_Linux_Users"><span class="tocnumber">2</span> <span class="toctext">Note for Linux Users</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Prerequisites"><span class="tocnumber">3</span> <span class="toctext">Prerequisites</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Downloading_the_OpenDF_repository_and_the_ACTORS_project_source_code"><span class="tocnumber">4</span> <span class="toctext">Downloading the OpenDF repository and the ACTORS project source code</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Installing_LatticeMico32_System_and_ispVM_System_on_Linux"><span class="tocnumber">5</span> <span class="toctext">Installing LatticeMico32 System and ispVM System on Linux</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Exporting_environment_variables"><span class="tocnumber">6</span> <span class="toctext">Exporting environment variables</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Launch_LatticeMico32_System_and_compile_a_CAL_application_with_ERIKA_Enterprise"><span class="tocnumber">7</span> <span class="toctext">Launch LatticeMico32 System and compile a CAL application with ERIKA Enterprise</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Introduction"> Introduction </span></h2>
+<p>This tutorial describes all the steps to follow in order to install the tools needed to compile and run projects in CAL language on a <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">Lattice Mico32 platform</a>.
+</p><p>For a brief introduction on the CAL language have a look at <a href="/wiki/index.php?title=Brief_introduction_to_the_CAL_language" title="Brief introduction to the CAL language">Brief introduction to the CAL language</a>
+</p><p>The tutorial has been tested on the FPG-EYE board produced by Evidence in which we've integrated an FPGA using a Mico32 processor. 
+The operating system chosen is an Ubuntu 10.10 maverick running on a virtual machine, anyway the installation process could be adapted to almost all other Linux releases on virtual or physical machines.
+</p>
+<h2> <span class="mw-headline" id="Note_for_Linux_Users"> Note for Linux Users </span></h2>
+<p>Since it has to be used a Linux distribution please look carefully at the following warnings:
+</p>
+<ol><li> The Evidence package installation path should NOT contain directory name with spaces. e.g. use <tt>~/Evidence</tt>.
+</li><li> The <tt>actorsproject</tt> package installation path should NOT contain directory name with spaces: e.g. use <tt>~/opendf/trunk/contrib/actorsproject</tt>.
+</li><li> It is strongly encouraged to adopt real paths instead of using symbolic links and aliases.
+</li><li> Please install all the ACTORS project compilers into their default directory. For instance, given the ACTORS project repository is installed in <tt>~/opendf/trunk/contrib/actorsproject</tt> the compilers will have to be located in  <tt>~/opendf/trunk/contrib/actorsproject/bin</tt>
+</li></ol>
+<h2> <span class="mw-headline" id="Prerequisites"> Prerequisites </span></h2>
+<p>As a first step you have to download the ERIKA's Enterprise repository where you will find, among other things, the CAL language libraries (specifically adapted to work in Erika Enterprise), system actors created in C language and a couple of demos that can be compiled and run.
+Secondly install ERIKA Enterprise and RT-Druid on Linux. Both steps can be accomplished just following <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid_on_a_Linux_host" title="Tutorial: Installing ERIKA and RT-Druid on a Linux host">Tutorial: Installing ERIKA and RT-Druid on a Linux host</a>.
+</p><p>In the follow-up of this tutorial we will assume that you've correctly stored the ERIKA's repository in <tt>~/Evidence/Erika</tt> and installed the <tt>eclipse_3_6_ready_to_use_LINUX_201101111314</tt> version of ERIKA'S Enterprise under the <tt>~/Evidence</tt> folder, in order to find the <tt>eclipse</tt> directory under <tt>~/Evidence/eclipse</tt>
+</p><p>Create then a virtual machine with Ubuntu 10.10 maverick as guest operating system. In our example we've used VMware Player 3.1.3 and installed WMware tools for linux version 8.4.5 version. Anyway all the tests can be smoothly deployed on a Linux physical machine. 
+</p><p>After creating the virtual machine, before proceeding with the installation process, it would be useful to completely update the packages installed in your system to the latest version. To update all the packages open a Terminal window and execute the following commands:
+</p>
+<pre>
+sudo apt-get update
+sudo apt-get upgrade
+</pre>
+<p>Now install all the packages that will be needed to compile our projects. Type:
+</p>
+<pre>
+sudo apt-get install java-common sun-java6-bin sun-java6-jre sun-java6-jdk sun-java6-source
+sudo apt-get install ant subversion csh gawk libxml2-dev libsdl1.2-dev libgtk2.0-dev
+</pre>
+<h2> <span class="mw-headline" id="Downloading_the_OpenDF_repository_and_the_ACTORS_project_source_code"> Downloading the OpenDF repository and the ACTORS project source code </span></h2>
+<p>You are now ready to download the OpenDF repository on your system (i.e. in <tt>~/opendf</tt>):
+</p>
+<pre>
+mkdir opendf
+cd opendf
+svn co https://opendf.svn.sourceforge.net/svnroot/opendf/trunk
+</pre>
+<p>Under the OpenDF's project repository you will find all the ACTORS project source code needed for our purpose in: <tt>~/opendf/trunk/contrib/actorsproject</tt>. Move to this directory and install the tools provided for the compilation of CAL projects by writing in a Terminal window:
+</p>
+<pre>
+make
+make install
+</pre>
+<p>Now you have all the tools needed to convert CAL files into C language (xlim2c compiler and others) under the directory:<tt>~/opendf/trunk/contrib/actorsproject/bin</tt>
+</p>
+<h2> <span class="mw-headline" id="Installing_LatticeMico32_System_and_ispVM_System_on_Linux"> Installing LatticeMico32 System and ispVM System on Linux </span></h2>
+<p>The LatticeMico32 System is used to implement the LatticeMico32 soft microprocessor and attached peripheral components in a Lattice FPGA. It contains integrated tools that combine with ispLEVER software (which includes ispVM System) to coordinate the building of an embedded processor system on an FPGA device and write the software to drive it. All the software we will use can be downloaded from the <a href="http://www.latticesemi.com" class="external text" rel="nofollow">Lattice Semiconductor site</a>; for our tutorial we've chosen the 8.0.00.63 version for Linux of the LatticeMico32 System and the 17.6 version for Linux of the ispVM System.  Lattice Diamond doesn't work (yet) with Erika.
+</p><p>Download the <tt>RL8.0.00.63.43.09_linux_lm32.tar</tt> file and put it on your hard disk, for instance in <tt>~/temp_lattice</tt>. After having created in your home the <tt>~/Lattice</tt> folder follow the steps reported below:
+</p>
+<pre>
+cd ~/temp_lattice
+tar xf RL8.0.00.63.43.09_linux_lm32.tar
+cd ../Lattice/
+../temp_lattice/RL8.0.00.63.43.09_lm32/mico32_install.csh /home/user/temp_lattice/RL8.0.00.63.43.09_lm32
+rm -R ~/temp_lattice
+</pre>
+<p>Accept all the terms and agreements you will be prompted. When asked, tell the setup to install both gtool and Lattice Mico32 System Tools and point out you are not installing neither from a dvd drive, nor from a cd one.
+</p><p>Next install ispVM System on your virtual machine; put the <tt>ispvm_v17_6_linux.tar.gz</tt> file on a newly created <tt>~/temp_ispvm</tt> directory, create the <tt>~/Lattice/ispvm</tt> folder and follow the steps reported below:
+</p>
+<pre>
+cd ~/temp_ispvm
+tar -xvzf ispvm_v17_6_linux.tar.gz 
+mv isptools/ ../Lattice/ispvm/
+cd ~ &amp;&amp; rm -R ~/temp_ispvm
+</pre>
+<h2> <span class="mw-headline" id="Exporting_environment_variables"> Exporting environment variables </span></h2>
+<p>Before launching for the first time the LatticeMico32 System we have to create and export some environment variables needed to compile projects into LatticeMico32 System. 
+Open the <tt>~/.profile</tt> file with a text editor (i.e. Gedit) and append the following lines:
+</p>
+<pre>
+export ISPVM_DIR=/home/user/Lattice/ispvm/isptools/ispvmsystem/
+export RTDRUID_ECLIPSE_HOME=/home/user/Evidence/eclipse
+export ERIKA_FILES=/home/user/Evidence/Erika/ee
+export CAL_BASE=/home/user/opendf/trunk/contrib/actorsproject
+export ACTORS_JAVA=/usr/bin/java
+</pre>
+<p>Open a new Terminal window and export the newly created environment variables by copying the very same lines you've just added. Or, if you prefer, relog into your system.
+</p>
+<h2> <span class="mw-headline" id="Launch_LatticeMico32_System_and_compile_a_CAL_application_with_ERIKA_Enterprise"> Launch LatticeMico32 System and compile a CAL application with ERIKA Enterprise </span></h2>
+<p>Employing the same Terminal window used previously to export the environment variables move to the directory where LatticeMico32 System resides and launch the executable file:
+</p>
+<pre>
+cd ~/Lattice/micosystem
+./LatticeMico32Launcher
+</pre>
+<p>Finally compile and run a CAL application with ERIKA Enterprise following the <a href="/wiki/index.php?title=Tutorial:_Compiling_a_CAL_application_with_ERIKA_Enterprise" title="Tutorial: Compiling a CAL application with ERIKA Enterprise">Tutorial: Compiling a CAL application with ERIKA Enterprise</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 92/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

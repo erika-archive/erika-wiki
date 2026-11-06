@@ -1,0 +1,9 @@
+ERIKA Enterprise Manual for Renesas SuperH targets
+= Introduction =
+This manual describes the porting details of the ERIKA Enterprise kernel(s) for the Renesas families of microcontrollers which supports 32-bit RISC SH-2A cores (aka [https://www.renesas.com/en-us/products/microcontrollers-microprocessors/superh.html SuperH]).
+
+Due to customer restrictions, this porting is not yet public. If you want to get more information about the SuperH porting, please contact [mailto:info@evidence.eu.com info@evidence.eu.com].
+
+More details will be available in the near future.
+
+[[Category:Supported Devices]]

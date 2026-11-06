@@ -1,0 +1,151 @@
+== Introduction ==
+This tutorial explains how to create a [[Brief introduction to the CAL language | CAL]] network for the FPGA on the Evidence's FPG-EYE board using three system actors developed for the FPG-EYE board. Also, it explains how to integrate a hardware CAL network with our system actors.  For more background information, see the [[Brief introduction to the CAL language]].
+
+== Prerequisites ==
+Before to start working with FPG-EYE board, you have to download and install the right developer tools. 
+
+=== Eclipse ===
+Eclipse is designed to build integrated development environments (IDEs). It can be used to create various end-to-end computing solutions for multiple execution environments. You can download it at [http://www.eclipse.org/ http://www.eclipse.org/].
+
+=== OpenForge ===
+OpenForge is a XLIM to HDL compiler. You can download it at [https://openforge.svn.sourceforge.net/svnroot/openforge https://openforge.svn.sourceforge.net/svnroot/openforge].
+
+=== OpenDf ===
+OpenDf is a CAL simulator working as the front end for HDL generation. The OpenDf tools can even produce XLIM code as intermediate format.
+You can download it at [https://opendf.svn.sourceforge.net/svnroot/opendf https://opendf.svn.sourceforge.net/svnroot/opendf]. To install the plug-in in Eclipse you can follow [https://opendf.svn.sourceforge.net/svnroot/opendf/trunk/doc/Eclipse_Plugin_Install.txt these instructions on the OpendDf site].
+
+=== ispLEVER ===
+FPG-EYE board is based on a Lattice FPGA, so Lattice developer tools must be used to compile CAL projects. In this tutorial [http://www.latticesemi.com/products/designsoftware/isplever/index.cfm Lattice ispLEVER] is adopted. ispLEVER is an integrated software development environment able to control all aspects of the development work flow. It should be noticed that the free ispLEVER version cannot be used for this tutorial as it is able to compile project containing only either Verilog or VHDL source files. 
+In order to be able to proceed with this tutorial you need a commercial license for ispLEVER from Lattice Semiconductor.
+
+=== Diamond ===
+Diamond is the next generation replacement for ispLEVER featuring design exploration, ease of use, improved design flow, and numerous other enhancements. A free version is available on [http://www.latticesemi.com/products/designsoftware/diamond/downloads.cfm download Lattice page]. A free license can be requested from the Lattice website previous Lattice site registration. 
+It should be noticed that the free Diamond version cannot be used for this tutorial as it is able to compile project containing only either Verilog or VHDL source files. 
+In order to be able to proceed with this tutorial you need a commercial license for Diamond from Lattice Semiconductor.
+
+== FPG-EYE package ==
+The FPG-EYE package contains the system actors source files in Verilog for three actors (LEDs, Switches, and Camera), some examples their use, and  test bench to simulate each actor. To be used those examples have only to be compiled.
+
+The system actors we have created for the FPG-EYE are:
+* <tt>Leds</tt>.
+* <tt>Switches</tt>.
+* <tt>Camera</tt>.
+
+=== LEDs System Actor ===
+The <tt>LEDs System Actor</tt>, written in Verilog, uses the eight <tt>LEDs</tt> on the boards (see <tt>DL0</tt>,...., <tt>DL7</tt> into <tt>ES-02610_SCH_main.pdf</tt> file) to display the input byte.
+The Actor input interface receives an 8 bit token from another actor in the system, one bit for each LEDs (<tt>data_0 => led0</tt>, <tt>data_1 => led1</tt>, <tt>etc...</tt>). When a <tt>data_bit</tt> is 0 the corresponding <tt>LED</tt> is off, when a <tt>data_bit</tt> is 1 logic, the corresponding <tt>LED</tt> is on.
+The actor <tt>LEDs</tt> consists of the following files:
+* <tt>LEDs.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_led</tt>)
+* <tt>arbiter2.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\arbiter2</tt>)
+* <tt>serial_io.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\serial_io</tt>)
+* <tt>wb_leds.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\examble1</tt>)
+
+[[File:leds.png|center|thumb|200px|System Actors LEDs structure]]
+
+;leds.v
+: The <tt>leds.v</tt> file contains the module <tt>leds</tt> (a state machine written in Verilog) that manages both the <tt>Actors</tt> protocol, and the <tt>WishBone</tt> bus protocol.
+
+;arbiter2.v
+: The <tt>arbiter2.v</tt> file contains the <tt>arbiter</tt> module (written in Verilog), a two-way <tt>WishBone</tt> arbiter with two <tt>masters</tt> and a single <tt>slave</tt>. The actor <tt>LEDs</tt> uses the <tt>master bus 0</tt> (wb0), while the actors <tt>Switches</tt> uses the <tt>master bus 1</tt> (wb1).
+
+;serial_io.v
+: The file <tt>serial_io.v</tt> contains a state machine <tt>serial_io</tt> (written in Verilog) managing the <tt>WishBone</tt> protocol, and a serial/parallel register, interfacing with the <tt>74hc595</tt> chip that drives the LEDs on the board.
+
+;wb_leds.v
+:The file <tt>wb_leds.v</tt> is a wrapper enclosing the component <tt>leds</tt>, <tt>arbiter</tt> and <tt>serial_io</tt> as their connections.
+
+An example of these actors and the related component could be located in <tt>svn-cal\hw\trunk\examples\example1</tt>, where a simple testbench of the <tt>leds</tt> actor is present (<tt>example1\active_hdl</tt>). A project example based on an 8-bit number generator and the <tt>LEDs</tt> actor can be find in the directory <tt>svn-cal\hw\trunk\examples\example3</tt>.
+[[File:example3.png|center|thumb|200px|Example3: LEDs System Actor with eight bits number generator]]
+
+=== Switches System Actor ===
+The <tt>Switches System Actor</tt> is an actor for the FPG-EYE board written in Verilog.
+This actor uses eight Switches on the boards (see <tt>SW0</tt>,...., <tt>SW7</tt> into <tt>ES-02610_SCH_main.pdf</tt> file) to read their state, and produce a token containing such state.
+The actor <tt>Switches</tt> consists of the following files:
+* <tt>switches.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_switches</tt>)
+* <tt>arbiter2.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\arbiter2</tt>)
+* <tt>serial_io.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\serial_io</tt>)
+* <tt>wb_switches.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\examble2</tt>)
+
+[[File:switches.png|center|thumb|200px|Switches System Actors structure]]
+
+; switches.v
+: The <tt>switches.v</tt> file consists of the state machine <tt>switches</tt> (written in Verilog) that manages both the Actors and the WishBone protocols.
+
+; arbiter2.v
+: The <tt>arbiter2.v</tt> file contains the <tt>arbiter</tt> module (written in Verilog), a two-way <tt>WishBone</tt> arbiter with two <tt>masters</tt> and a single <tt>slave</tt>. The actor <tt>LEDs</tt> uses the <tt>master bus 0</tt> (wb0), while the actors <tt>Switches</tt> uses the <tt>master bus 1</tt> (wb1).
+
+; serial_io.v
+: The file <tt>serial_io.v</tt> contains a state machine <tt>serial_io</tt> (written in Verilog) managing the <tt>WishBone</tt> protocol, and a serial/parallel register, interfacing with the <tt>74hc595</tt> and <tt>74hc195</tt> chips that drive the LEDs and poll the switches.
+
+; wb_switches.v
+: The file <tt>wb_switches.v</tt> is a wrapper enclosing the component <tt>switches</tt>, <tt>arbiter</tt> and <tt>serial_io</tt>.
+
+A simple testbench for this actors could be find in the directory <tt>svn-cal\hw\trunk\examples\example2</tt>.
+Moreover, a simulation example where the actor <tt>switches</tt> is used along
+with the actor <tt>LEDs</tt> is contained in the directory
+<tt>svn-cal\hw\trunk\examples\example4</tt>. In this example, when a switch is
+turned off/on the correspondent LED is turned off/on (see fig: Example4).  The related Lattice FPGA implementation can be found in the <tt>svn-cal\hw\trunk\examples\example5</tt> directory.
+
+=== Camera System Actor ===
+The <tt>Camera System Actor</tt> is an actor for the FPG-EYE board written in
+Verilog. The actor require a hardware <tt>camera</tt> module to be mounted on
+the board.
+[[File:camera.png|center|thumb|200px|System Actors camera structure]]
+
+The actor <tt>Camera</tt> consists only of the file <tt>act_camera.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_camera</tt>)
+
+; act_camera.v
+: The <tt>act_camera.v</tt> file consists of the state machine <tt>camera</tt> (written in Verilog) that manages the camera signals and the CAL protocol. The actor <tt>Camera</tt> has two CAL compatible output interfaces (sending tokens to other actors). The first CAL output has a data size of 8 bits and sends token containing the image pixel values, while the second CAL output, with a data size of 1 bit, sends a token whenever a new frame starts.
+
+A simple example for <tt>camera</tt> actor is located in the <tt>svn-cal\hw\trunk\examples\example7</tt> directory. All the three actors are used in this example: the LEDs act as a bar graph, whose length is proportional to the average image luminance.
+[[File:example7.png|center|thumb|200px|example7: Board LEDs are turned on or off proportionally to the average image luminance]]
+
+== How to Interface a CAL Netlist to System Actors ==
+To interface a CAL Netlist with an actor few steps are needed:
+* Create a Netlist in the CAL environment with the needed number of input and output ports
+* Build a wrapper in Verilog (or VHDL) that connects the netlist with the required system actors
+
+== How to Build a CAL Project with ispLEVER or Diamond ==
+First you must to have a Cal project with System Actors for FPG-EYE. See [[Create a Cal project with System Actors]] for instructions on how to do it.
+To build an ispLEVER CAL project we have to:
+* Open ispLEVER and click on new project. [[File:new_project.png|center|thumb|200px| Click on "Open Project"]]
+* In the following window choose the project name and the its destination path. Please remember to select "Mixed Verilog/VHDL" for the option "Design Entry Type". [[File:name_project.png|center|thumb|200px|Add "Name Project"]]
+* In the following window we have to select the device. For the FPG-EYE board we must use:
+** Family: LatticeXP2;
+** Device: LFXP2-17E;
+** Speed grade: 5;
+** Package type: PQFP208;
+** Operating conditions: Commercial;
+** PartName: LFXP2-17E-5QN208C. [[File:select_device.png|center|thumb|200px|"Select Device"]]
+* Finally by clicking the End button [[File:add_source.png|center|thumb|200px|"Add Source"]] the following window will be displayed: [[File:isp_lever.png|center|thumb|200px|ispLEVER]]
+* To import <tt>lattice_cal.vhdl</tt> the library (<tt>svn-cal/hw/trunk/lib_vhdl</tt>) we have to right click on device and select "Import...". [[File:import_file.png|center|thumb|200px|Import file]]
+* In the file window we can now select the file <tt>lattice_cal.vhdl</tt> [[File:lib_vhdl.png|center|thumb|200px|Import the file "lattice_cal.vhdl"]]
+* Now by right clicking the lattice_cal.vhdl we can select "Library Name" [[File:library_name.png|center|thumb|200px|Select "Library Name"]]
+* In the Box "VHDL Library Name" we can insert the namespace <tt>SystemBuilder</tt>[[File:system_builder.png|center|thumb|200px|Write: SystemBuilder]]
+* Each file created by the CAL compiler has an undefined module FD. This module is a D-FF (flip flop) declared in the xilinx library. This is part of a small reset synchronizer circuit. You have to remove this part because the Lattice software does not recognize it.<br/> There is a Perl script <tt>main_modify.pl</tt> that searches these FD instances in Verilog files and replaces them with a reset synchronizer. You can run this Perl script with the top level VHDL file as input. Before executing the Perl script, please check that all generated files are in the same folder. If the top level generated file name is <tt>main_nw.vhd</tt>, we can issue <tt>perl main_modify.pl main_nw</tt>.<br/> The script will produce a *_mod.v file for each parsed Verilog file.
+* After importing the files related to the various actors (LED, camera, and those related to our CAL netlist), a constraint file describing the connection between FPGA pins and logic blocks must be created. An example of these constraints can be found in "svn-cal\hw\trunk\examples\example7\isp_lever\example7.lpf"
+* We can finally compile the project, thus obtaining a binary JED file to program the FPG-EYE board.
+
+== How to Build a CAL Project with Diamond ==
+First you must to have a Cal project with System Actors for FPG-EYE. See [[Create a Cal project with System Actors]] for instructions on how to do it.
+To build a Diamond CAL project we have to:
+* Open Diamond and click on new project. [[File:new_project_diamond.png|center|thumb|200px| Click on "Open Project"]]
+* In the following window choose the project name and the its destination path.[[File:name_project_diamond.png|center|thumb|200px|Add "Name Project"]]
+* In the following window we have to select the device. For the FPG-EYE board we must use:
+** Family: LatticeXP2;
+** Device: LFXP2-17E;
+** Speed grade: 5;
+** Package type: PQFP208;
+** Operating conditions: Commercial;
+** PartName: LFXP2-17E-5QN208C. [[File:select_device_diamond.png|center|thumb|200px|"Select Device"]]
+* Finally by clicking the End button the following window will be displayed: [[File:diamond.png|center|thumb|200px|Diamond]]
+* To import <tt>lattice_cal.vhdl</tt> the library (<tt>svn-cal/hw/trunk/lib_vhdl</tt>) we have to right click on device and select "Add->Existing File". [[File:import_file_diamond.png|center|thumb|200px|Import file]]
+* In the file window we can now select the file <tt>lattice_cal.vhdl</tt> [[File:lib_vhdl.png|center|thumb|200px|Import the file "lattice_cal.vhdl"]]
+* Now by right clicking the lattice_cal.vhdl we can select "Properties" an then in the Box "VHDL Library Name" we can insert the namespace <tt>SystemBuilder</tt>[[File:system_builder_diamond.png|center|thumb|200px|Write: SystemBuilder]]
+* Each file created by the CAL compiler has an undefined module FD. This module is a D-FF (flip flop) declared in the xilinx library. This is part of a small reset synchronizer circuit. You have to remove this part because the Lattice software does not recognize it.<br/> There is a Perl script <tt>main_modify.pl</tt> that searches these FD instances in Verilog files and replaces them with a reset synchronizer. You can run this Perl script with the top level VHDL file as input. Before executing the Perl script, please check that all generated files are in the same folder. If the top level generated file name is <tt>main_nw.vhd</tt>, we can issue <tt>perl main_modify.pl main_nw</tt>.<br/> The script will produce a *_mod.v file for each parsed Verilog file.
+* After importing the files related to the various actors (LED, camera, and those related to our CAL netlist), a constraint file describing the connection between FPGA pins and logic blocks must be created. An example of these constraints can be found in "svn-cal\hw\trunk\examples\example7\diamond\example7.lpf"
+* We can finally compile the project, thus obtaining a binary JED file to program the FPG-EYE board.
+[[File:compile_diamond.png|center|thumb|200px| "Return All" for obtaining a binary JED file]]
+
+== How to Program the FPG-EYE board ==
+See [[Programming the FPG-EYE board]] for instructions on how to download the JED file onto the board

@@ -1,0 +1,53 @@
+The '''FLEX-DemoBoard''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Flex_sources_dmbadcin.png]]
+| This block maps to an analog input pin of the FLEX Demo Daughter Board. The internal parameter specifies the ADC pin (from 1 to 8).
+|-
+| [[image:Flex_sources_dmbdigin.png]]
+| This block maps to an digital input pin of the FLEX Demo Daughter Board. The internal parameter specifies the GPIO pin (from 1 to 8).
+|-
+| [[image:Flex_sources_dmbbutton.png]]
+| This block maps to a button of the FLEX Demo Daughter Board. The internal parameter specifies the Button (from 1 to 4).
+|-
+| [[image:Flex_sources_dmbpot.png]]
+| This block maps to the potentiometer analog input of the FLEX Demo Daughter Board. The internal parameter specifies the Potentiometer (from 1 to 4).
+|-
+| [[image:Flex_sources_dmbencin.png]]
+| This block maps to the encoder input of the FLEX Demo Daughter Board. The internal parameter specifies the encoder (from 1 to 2).
+|-
+| [[image:Flex_sources_dmbacc.png]]
+| This block maps to the accelerometer input of the FLEX Demo Daughter Board. The internal parameter specifies the Channel (1=x, 2=y, 3=z).
+|-
+| [[image:Flex_sources_dmbldr.png]]
+| This block maps to the light sensor of the FLEX Demo Daughter Board.
+|-
+| [[image:Flex_sources_dmbtemp.png]]
+| This block maps to the temperature sensor of the FLEX Demo Daughter Board.
+|-
+| [[image:Flex_sinks_dmbled.png]]
+| This block controls one of the eight LEDs of the Demo Daughter Board. The internal parameter specifies the LED number.
+|-
+| [[image:Flex_sinks_dmbdigout.png]]
+| This block controls one of the eight digit output pins of the Demo Daughter Board. The internal parameter specifies the pin.
+|-
+| [[image:Flex_sinks_dmblcd.png]]
+| This block controls the LCD on the Demo Daughter Board.
+|-
+| [[image:Flex_sinks_dmbdac.png]]
+| This block controls one of the two DAC outputs. The internal parameter specifies the DAC channel number. The input is from 0.0 (0.0 V) to 1.0 (3.0 or 5.0 V depending on the HW configuration)
+|-
+| [[image:Flex_sinks_dmbbuzzer.png]]
+| This block controls the buzzer mounted on the Demo Daughter Board. The input value is the frequency of the buzzer sound, in Hz.
+|-
+| [[image:Flex_PWMpin.png]]
+| This block controls a PWM output of the FLEX Board. The internal parameter specifies the PWM pin (from 1 to 4). 
+|-
+| [[image:Flex_Barrier.png]]
+| This block controls the LED barrier of the FLEX Board. The internal parameter specifies the threshold. 
+|}

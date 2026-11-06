@@ -1,0 +1,473 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#ARM_Cortex_MX_support"><span class="tocnumber">1</span> <span class="toctext">ARM Cortex MX support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#MCUs"><span class="tocnumber">1.1</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Boards"><span class="tocnumber">1.2</span> <span class="toctext">Boards</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Download_and_install"><span class="tocnumber">2</span> <span class="toctext">Download and install</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Target_Configuration_and_Programming"><span class="tocnumber">3</span> <span class="toctext">Target Configuration and Programming</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Compiler_Path"><span class="tocnumber">3.1</span> <span class="toctext">Compiler Path</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Compiler_Legacy"><span class="tocnumber">3.2</span> <span class="toctext">Compiler Legacy</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#CPU"><span class="tocnumber">3.3</span> <span class="toctext">CPU</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#MCU"><span class="tocnumber">3.4</span> <span class="toctext">MCU</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Interrupt_Handling"><span class="tocnumber">3.5</span> <span class="toctext">Interrupt Handling</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#NXP_LPCXpresso_LPC12xx_MCU_.28Cortex_M0.29"><span class="tocnumber">3.5.1</span> <span class="toctext">NXP LPCXpresso LPC12xx MCU (Cortex M0)</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Texas_Instruments_Stellaris_LM4F232xxxx_and_STMicroelectronics_STM32F4xx_MCUs_.28Cortex_M4_.29"><span class="tocnumber">3.5.2</span> <span class="toctext">Texas Instruments Stellaris LM4F232xxxx and STMicroelectronics STM32F4xx MCUs (Cortex M4 )</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#OSEK.2FVDX_Extensions"><span class="tocnumber">4</span> <span class="toctext">OSEK/VDX Extensions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Resource_Managament_at_ISR_level"><span class="tocnumber">4.1</span> <span class="toctext">Resource Managament at ISR level</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#System_Timer"><span class="tocnumber">4.2</span> <span class="toctext">System Timer</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Libraries"><span class="tocnumber">5</span> <span class="toctext">Libraries</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#CMSIS_OIL_file_configuration"><span class="tocnumber">5.1</span> <span class="toctext">CMSIS OIL file configuration</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#SPD_OIL_file_configuration"><span class="tocnumber">5.2</span> <span class="toctext">SPD OIL file configuration</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#StellarisWare_OIL_file_configuration"><span class="tocnumber">5.3</span> <span class="toctext">StellarisWare OIL file configuration</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#AUTOSAR_.22Like.22_Drivers"><span class="tocnumber">6</span> <span class="toctext">AUTOSAR "Like" Drivers</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Examples"><span class="tocnumber">7</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#KEIL_uVision_and_RT-Druid_Eclipse"><span class="tocnumber">8</span> <span class="toctext">KEIL uVision and RT-Druid Eclipse</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#MDK-ARM_Plug-in_Configuration"><span class="tocnumber">8.1</span> <span class="toctext">MDK-ARM Plug-in Configuration</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Building_stand-alone_libee.a_using_RT-Druid_Eclipse"><span class="tocnumber">8.2</span> <span class="toctext">Building stand-alone libee.a using RT-Druid Eclipse</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Building_ERIKA_based_application_using_KEIL_uVision"><span class="tocnumber">8.3</span> <span class="toctext">Building ERIKA based application using KEIL uVision</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-26"><a href="#Benchmarks"><span class="tocnumber">9</span> <span class="toctext">Benchmarks</span></a></li>
+<li class="toclevel-1 tocsection-27"><a href="#See_also"><span class="tocnumber">10</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="ARM_Cortex_MX_support"> ARM Cortex MX support </span></h1>
+<p>ERIKA Enterprise supports ARM Cortex MX microcontrollers. 
+The support for RT-Druid is now available.<br />
+</p><p>The Cortex M0 support includes: 
+</p>
+<ol><li> support for <a href="http://www.iar.com/" class="external text" rel="nofollow">IAR</a> and <a href="http://www.keil.com/" class="external text" rel="nofollow">ARM KEIL</a> compiler toolchains;
+</li><li> support for single and multi stack configurations;
+</li><li> ISR Type 1 and Type 2 supported;
+</li><li> support for <a href="http://www.arm.com/community/partners/display_product/rw/ProductId/2653/" class="external text" rel="nofollow">IAR J-Link</a> and <a href="http://www.keil.com/ulink2/" class="external text" rel="nofollow">ARM KEIL ULINK2</a> Debuggers.
+</li></ol>
+<p>The Cortex M4 support includes:
+</p>
+<ol><li> support for <a href="http://www.ti.com/" class="external text" rel="nofollow">Texas Instruments</a> and <a href="http://www.keil.com/" class="external text" rel="nofollow">ARM KEIL</a> compiler toolchains;
+</li><li> support for single and multi stack configurations;
+</li><li> ISR Type 1 and Type 2 supported;
+</li><li> support for <a href="http://www.ti.com/tool/stellaris_icdi_drivers" class="external text" rel="nofollow">Texas Instruments Stellaris ICDI</a> and <a href="http://www.keil.com/ulink2/" class="external text" rel="nofollow">ARM KEIL ULINK2</a> Debuggers.
+</li></ol>
+<ul><li> Supported IDEs:
+<ul><li> <a href="http://www.iar.com/en/Products/IAR-Embedded-Workbench/" class="external text" rel="nofollow">IAR Embedded Workbench</a> (Cortex M0)
+</li><li> <a href="http://www.ti.com/tool/ccstudio" class="external text" rel="nofollow">Texas Instruments Code Composer Studio</a> (Cortex M4)
+</li><li> <a href="http://www.keil.com/uvision/" class="external text" rel="nofollow">ARM KEIL uVision</a> (Cortex M0 and Cortex M4)
+</li></ul>
+</li></ul>
+<ul><li> Mode of operation:
+<ul><li> <i>Mono-stack</i>: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> <i>Multi-stack</i>: Every task can have its private stack, or it can share it with other tasks.
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="MCUs"> MCUs </span></h3>
+<ul><li> The MCUs currently supported are the following:
+<ul><li> <a href="http://www.nxp.com/products/microcontrollers/cortex_m0/lpc1200/" class="external text" rel="nofollow">NXP LPCXpresso LPC12xx</a> (Cortex M0)
+</li><li> <a href="http://www.ti.com/product/lm4f232h5qd" class="external text" rel="nofollow">Texas Instruments Stellaris LM4F232xxxx</a> (Cortex M4)
+</li><li> <a href="http://www.st.com/internet/mcu/subclass/1521.jsp" class="external text" rel="nofollow">STMicroelectronics STM32F4xx</a> (Cortex M4)
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Boards"> Boards </span></h3>
+<ul><li> The boards currently supported are the following:
+<ul><li> <a href="http://www.nxp.com/demoboard/OM13008.html" class="external text" rel="nofollow">NXP LPCXpresso LPC1227 Demo Board</a> (Cortex M0)
+</li><li> <a href="http://www.ti.com/tool/ek-lm4f232" class="external text" rel="nofollow">Texas Instruments Stellaris LM4F232H5QD Evaluation Board</a> (Cortex M4)
+</li><li> <a href="http://www.st.com/internet/evalboard/product/252419.jsp" class="external text" rel="nofollow">STMicroelectronics STM32F4DISCOVERY Evaluation Board</a> (Cortex M4)
+</li></ul>
+</li></ul>
+<ul><li> List of functions:
+<ul><li> Currently the <a href="http://www.nxp.com/demoboard/OM13008.html" class="external text" rel="nofollow">NXP LPCXpresso LPC1227 Demo Board</a> (Cortex M0) is supported through the CMSIS Library.
+</li><li> Currently the <a href="http://www.ti.com/tool/ek-lm4f232" class="external text" rel="nofollow">Texas Instruments Stellaris LM4F232H5QD Evaluation Board</a> (Cortex M4) is supported through StellarisWare Libraries or AUTOSAR "Like" Drivers Library.
+</li><li> Currently the <a href="http://www.st.com/internet/evalboard/product/252419.jsp" class="external text" rel="nofollow">STMicroelectronics STM32F4DISCOVERY Evaluation Board</a> (Cortex M4) is supported through the SPD Library.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Download_and_install"> Download and install </span></h1>
+<p>RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+</p>
+<ul><li> <a href="http://erika.tuxfamily.org/drupal/download.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/drupal/download.html</a>
+</li></ul>
+<p>Once downloaded, extract all the files contained in it and copy the folder named <i>eclipse</i> in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+Now, launch the program by double-clicking on the executable <i>eclipse.exe</i>inside the <i>C:\Evidence\eclipse</i> folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+</p><p>If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+</p>
+<pre> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> -r number_of_revision
+</pre>
+<p>Note: 
+Cygwin can be downloaded from this web site: <a href="http://www.cygwin.com/" class="external free" rel="nofollow">http://www.cygwin.com/</a>. To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+</p><p>The Cortex MX plug-in for Eclipse is part of the official distribution of RT-Druid.
+</p>
+<ul><li> The procedure to update Erika and RT-Druid plugins is described at <a href="/wiki/index.php?title=Tutorial:_Update_ERIKA_and_RT-Druid" title="Tutorial: Update ERIKA and RT-Druid">Tutorial: Update ERIKA and RT-Druid</a>.
+</li></ul>
+<h1> <span class="mw-headline" id="Target_Configuration_and_Programming"> Target Configuration and Programming </span></h1>
+<p>ERIKA Enterprise is configured through <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics"> RT-Druid and an OIL file</a>
+</p>
+<h2> <span class="mw-headline" id="Compiler_Path"> Compiler Path </span></h2>
+<p>It is possible to choose the path of the compiler in three different ways:
+</p>
+<ul><li> environment var:
+<ul><li> IAR compiler toolchain: the IAR_CCDIR variable is able to override the path compiler set in RT-Druid during the build progress.
+</li><li> Texas Instruments compiler toolchain: CCS_INSTALL_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+</li><li> ARM KEIL compiler toolchain: ARM_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+</li></ul>
+</li><li> configuration file:
+<ul><li> see <a href="/wiki/index.php?title=RT-Druid_configuration#Compiler_paths" title="RT-Druid configuration">RT-Druid configuration#Compiler paths</a>
+</li></ul>
+</li><li> gui:
+<ul><li>inside eclipse preferences, it is possible to set the paths of above compilers.
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Compiler_Legacy"> Compiler Legacy </span></h2>
+<p>Limited to Texas Instruments (Cortex-M4) and ARM KEIL (Cortex-M0 and Cortex-M4) compiler toolchains, it's possible to select the legacy support by followings <code>EE_OPT</code>s in the <code>OS</code> object of the OSEK/VDX configuration OIL file.
+</p>
+<ul><li> Texas Instruments CCSv4 4.2.4.00033 TMS470 Code Composer Tools 4.9.0 and older:
+</li></ul>
+<pre> EE_OPT = "__CCS_4_2_4_00033_OLDER__";
+</pre>
+<ul><li> Texas Instruments CCSv4 4.2.4.00005 TMS470 Code Composer Tools 4.9.3:
+</li></ul>
+<pre> EE_OPT = "__CCS_4_2_5_00005_TMS470_4_9_3__";
+</pre>
+<ul><li> ARM KEIL uVision 4.53.00 and older:
+</li></ul>
+<pre> EE_OPT = "__KEIL_4_54_OLDER__";
+</pre>
+<h2> <span class="mw-headline" id="CPU"> CPU </span></h2>
+<p><code>CPU_DATA</code> must be set to <code>CORTEX_MX</code>.<br />
+The exact model is specified with the <code>MODEL</code> item (supported values are <code>M0</code> for Cortex M0 and <code>M4</code> for Cortex M4).<br />
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (supported values are <code>IAR</code> and <code>KEIL</code> for <code>M0</code> model and <code>CCS</code> and <code>KEIL</code> for <code>M4</code>).<br />
+Example of a CPU_DATA section:
+</p>
+<pre> CPU_DATA = CORTEX_MX {
+   MODEL = M4;
+   APP_SRC = "code.c";
+   COMPILER_TYPE = KEIL;
+   MULTI_STACK = TRUE {
+     IRQ_STACK = TRUE {
+       SYS_SIZE=512;
+     };
+   };
+ };
+</pre>
+<h2> <span class="mw-headline" id="MCU"> MCU </span></h2>
+<p><code>MCU_DATA</code> must be set to <code>LPCXPRESSO</code> for NXP LPCXpresso LPC12xx, to <code>STM32</code> for STMicroelectronics STM32F4xx or to <code>STELLARIS</code> for Texas Instruments Stellaris LM4F232xxxx.<br />
+The only item supported is <code>MODEL</code>, which can be either <code>LPC12xx</code> for <code>LPCXPRESSO</code>, <code>STM32F4xx</code> for <code>STM32</code> or <code>LM4F232xxxx</code> for <code>STELLARIS</code>.<br />
+Example of a MCU_DATA section:
+</p>
+<pre> MCU_DATA = STELLARIS {
+   MODEL = LM4F232xxxx;
+ };
+</pre>
+<h2> <span class="mw-headline" id="Interrupt_Handling"> Interrupt Handling </span></h2>
+<p>Interrupts in ERIKA are handled in different manner between NXP LPCXpresso LPC12xx MCU (Cortex M0) and Texas Instruments Stellaris LM4F232xxxx or STMicroelectronics STM32F4xx MCUs (Cortex M4).
+</p>
+<h3> <span class="mw-headline" id="NXP_LPCXpresso_LPC12xx_MCU_.28Cortex_M0.29"> NXP LPCXpresso LPC12xx MCU (Cortex M0) </span></h3>
+<p>NXP LPC12xx MCU is configured to have a fixed Interrupt Vector Table specified in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/nxp_lpcxpresso_lpc12xx/src/iar/startup_LPC12xx.s" class="external text" rel="nofollow">pkg/mcu/nxp_lpcxpresso_lpc12xx/src/iar/startup_LPC12xx.s</a> assembly file. Each entry has a fixed symbol that must be the parameter of <code>ISR1()</code> or <code>ISR2()</code> ISR signature.
+</p><p>This scheme of ISR handling can be changed by rewriting the startup_LPC12xx.s changing the Interrupt Vector Table.
+</p>
+<h3> <span class="mw-headline" id="Texas_Instruments_Stellaris_LM4F232xxxx_and_STMicroelectronics_STM32F4xx_MCUs_.28Cortex_M4_.29"> Texas Instruments Stellaris LM4F232xxxx and STMicroelectronics STM32F4xx MCUs (Cortex M4 )</span></h3>
+<p>Texas Instruments Stellaris LM4F232xxxx and STMicroelectronics STM32F4xx MCUs (Cortex M4) are configured to have a flexible Interrupt Vector Table specified in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s" class="external text" rel="nofollow">pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s</a> and in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/st_stm32_stm32f4xx/src/startup_stm32f4xx_keil.s" class="external text" rel="nofollow">pkg/mcu/st_stm32_stm32f4xx/src/startup_stm42f4xx_keil.s</a> for ARM KEIL compiler toolchain and in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_vtable_ccs.c" class="external text" rel="nofollow">pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_vtable_ccs.c</a> for Texas Instruments compiler toolchain. Each entry is specified by the following macro:
+</p>
+<pre> EE_&lt;ARCH&gt;_&lt;ENTRY&gt;_ISR
+</pre>
+<p>Where <code>&lt;ARCH&gt;</code> is the architecture depended identifier (E.g. <code>CORTEX_MX</code>), and <code>&lt;ENTRY&gt;</code> is the fixed Interrupt Vector Table Entry identifier (E.g. <code>GPIO_A</code>).
+</p><p>To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+</p>
+<pre> ISR &lt;SYMBOL&gt; {
+   CATEGORY = &lt;ISR_TYPE&gt;;
+   ENTRY = "&lt;ENTRY&gt;";
+ };
+</pre>
+<p>Where <code>&lt;ISR_TYPE&gt;</code> is the type of the ISR (1 or 2), <code>&lt;SYMBOL&gt;</code> is the symbol that must be the parameter of <code>ISR&lt;ISR_TYPE&gt;()</code> ISR signature, and <code>&lt;ENTRY&gt;</code> is the fixed Interrupt Vector Table Entry identifier.
+</p>
+<h1> <span class="mw-headline" id="OSEK.2FVDX_Extensions"> OSEK/VDX Extensions </span></h1>
+<p>This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex MX support. All of these features are not yet implemented in Cortex M0 (NXP LPCXpresso LPC12xx MCU) porting of ERIKA Enterprise.
+</p>
+<h2> <span class="mw-headline" id="Resource_Managament_at_ISR_level"> Resource Managament at ISR level </span></h2>
+<p>This feauture is automatically enabled by RT-Druid during the configuration generation step. To specify that a Resource is used by both a Task and a ISR you need to add that respource to the corrisponding ISR object as follows:
+</p>
+<pre> TASK Task1 {
+   ...
+   RESOURCE = "ResourceA";
+ };
+ 
+ ISR &lt;SYMBOL&gt; {
+   PRIORITY = &lt;PRIORITY_LEVEL&gt;;
+   CATEGORY = &lt;ISR_TYPE&gt;;
+   ENTRY = "&lt;ENTRY&gt;";
+   RESOURCE = "ResourceA";
+ };
+ 
+ RESOURCE ResourceA { RESOURCEPROPERTY = STANDARD; };
+</pre>
+<h2> <span class="mw-headline" id="System_Timer"> System Timer </span></h2>
+<p>The OSEK/VDX standard provides support for a <b>System Counter</b> (a counter that is automatically linked to hardware timers). The System Timer is used to give a coherent timing reference across the entire application.
+</p><p>In ERIKA Enterprise, this special counter has been named <b>System Timer</b>. To use it, you need to set a specific attribute in a Counter definition. Please note that only one counter can be the System Timer.
+</p><p>A Counter which is not a System Counter must be incremented manually using the primitive IncrementCounter.
+</p><p>The following is an example OIL definition for a System Counter:
+</p>
+<pre> CPU_DATA = CORTEX_MX {
+   CPU_CLOCK = 16.0;
+   ...
+ };
+ 
+  COUNTER SystemTimer {
+   MINCYCLE = 1;
+   MAXALLOWEDVALUE = 2147483647;
+   TICKSPERBASE = 1;
+   TYPE = HARDWARE {
+     DEVICE = "SYSTICK";
+     SYSTEM_TIMER = TRUE;
+   };
+   SECONDSPERTICK = 0.001;
+ };
+</pre>
+<p>The meaning of the various attributes is as follows:
+</p>
+<ul><li> CPU_DATA/CPU_CLOCK is used to declare the clock frequency (in MHZ)
+</li><li> COUNTER/TYPE must be set to "HARDWARE", and SYSTEM_TIMER must be set to true.
+</li><li> COUNTER/TYPE/DEVICE must be a valid device that can be used for a system timer. Currently, for Cortex ARM MX only "SYSTICK" is a valid device for system timer. 
+</li><li> SECONDSPERTICK is used to declare the wanted time duration of one hardware tick in seconds.
+</li></ul>
+<p>The System Timer can be attached to ALARMs as usual, as in the following example:
+</p>
+<pre> ALARM AlarmExample {
+   COUNTER = SystemTimer;
+   ACTION  = ACTIVATETASK{
+      TASK = TaskExample;
+   };
+ };
+</pre>
+<h1> <span class="mw-headline" id="Libraries"> Libraries </span></h1>
+<ul><li> The software libraries currently supported are:
+<ul><li> <a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php" class="external text" rel="nofollow">Cortex Microcontroller Software Interface Standard (CMSIS) Version 2.1</a>. NPX LPCXpresso LPC1227 Demo Board (Cortex M0) ONLY
+</li><li> <a href="http://www.ti.com/tool/sw-lm3s" class="external text" rel="nofollow">Texas Instruments StellarisWare Libraries Revision 8028</a>. Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) ONLY
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/st/STM32F4xx_StdPeriph_Driver/Release_Notes.html" class="external text" rel="nofollow">STM32F4xx Standard Peripherals Library Drivers (SPD) Version 1.0.0</a>. STMicroelectronics STM32F4DISCOVERY Evaluation Board (Cortex M4) ONLY
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="CMSIS_OIL_file_configuration"> CMSIS OIL file configuration </span></h2>
+<p>To enable CMSIS Library for NPX LPCXpresso LPC1227 demo board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__ADD_LIBS__";
+ LIB = ENABLE { NAME = "CMSIS"; };
+ EE_OPT = "__USE_LPC12XX_CMSIS_V2__";
+</pre>
+<p>It's possible to include all library functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_CMSIS_ALL__";
+</pre>
+<p>It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_CMSIS_SYSCTRL__";
+ EE_OPT = "__USE_CMSIS_GPIO__";
+ EE_OPT = "__USE_CMSIS_IOCON__";
+ ...
+</pre>
+<h2> <span class="mw-headline" id="SPD_OIL_file_configuration"> SPD OIL file configuration </span></h2>
+<p>To enable SPD Libraries for STMicroelectronics STM32F4DISCOVERY Evaluation board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__ADD_LIBS__";
+ LIB = ENABLE { NAME = "CMSIS"; };
+ LIB = ENABLE { NAME = "EVAL"; };
+ LIB = ENABLE { NAME = "SPD"; };
+ EE_OPT = "__USE_STM32F4XX_CMSIS__";
+ EE_OPT = "__USE_STM32F4XX_EVAL__";
+ EE_OPT = "__USE_STM32F4XX_SPD__";
+</pre>
+<p>It's possible to include all libraries functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_SPD_ALL__";
+</pre>
+<p>It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_SPD_ADC__";
+ EE_OPT = "__USE_SPD_SPI__";
+ EE_OPT = "__USE_SPD_TIM__";
+ ...
+</pre>
+<h2> <span class="mw-headline" id="StellarisWare_OIL_file_configuration"> StellarisWare OIL file configuration </span></h2>
+<p>To enable StellarisWare Libraries for Texas Instruments Stellaris LM4F232H5QD Evaluation Board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__ADD_LIBS__";
+ LIB = ENABLE { NAME = "STELLARISWARE"; };
+ EE_OPT = "__STELLARISWARE_EK_LM4F232__";
+ EE_OPT = "__STELLARISWARE_DRIVER_LIB__";
+ EE_OPT = "__STELLARISWARE_GRAPHICS_LIB__";
+</pre>
+<p>It's possible to include all libraries functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_STELLARISWARE_ALL__";
+</pre>
+<p>It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__USE_STELLARISWARE_ADC__";
+ EE_OPT = "__USE_STELLARISWARE_SSI__";
+ EE_OPT = "__USE_STELLARISWARE_TIMER__";
+ ...
+</pre>
+<h1> <span class="mw-headline" id="AUTOSAR_.22Like.22_Drivers"> AUTOSAR "Like" Drivers </span></h1>
+<p>Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) is supported through AUTOSAR "Like" Drivers too. Documentation can be found at <a href="/wiki/index.php?title=Stellaris_AUTOSAR_Drivers" title="Stellaris AUTOSAR Drivers">Stellaris AUTOSAR Drivers</a>.
+</p>
+<h1> <span class="mw-headline" id="Examples"> Examples </span></h1>
+<ul><li> The examples and tests are available in this folders:
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lpc12xx" class="external text" rel="nofollow">examples/cortex_mx/lpc12xx</a>: NXP LPCXpresso LPC1227 Demo Board (Cortex M0) examples.
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx</a>: Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) examples.
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/STM32F4xx" class="external text" rel="nofollow">examples/cortex_mx/STM32F4xx</a>: STMicroelectronics STM32F4DISCOVERY Evaluation Board (Cortex M4) examples.
+</li></ul>
+</li></ul>
+<p>Inside lm4f232xxxx examples folder you can find a <a href="/wiki/index.php?title=Erika_Benchmark" title="Erika Benchmark" class="mw-redirect">benchmark project</a> too.
+</p>
+<h1> <span class="mw-headline" id="KEIL_uVision_and_RT-Druid_Eclipse"> KEIL uVision and RT-Druid Eclipse </span></h1>
+<h3> <span class="mw-headline" id="MDK-ARM_Plug-in_Configuration"> MDK-ARM Plug-in Configuration </span></h3>
+<p>KEIL uVision sopport an Eclipse plu-in called MDK-ARM Plug-in.<br />
+The MDK-ARM Plug-in components have the default installation path C:\Keil\Eclipse.<br />
+No additional software is required. However, the MDK-ARM Plug-in must be configured for the Eclipse environment. 
+</p>
+<ul><li> Launch Eclipse and define a workspace (default workspace can be accepted). 
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:643px;"><a href="/wiki/index.php?title=File:Workspace.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c5/Workspace.png" width="641" height="319" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Workspace.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Workspace Selection Dialog.</div></div></div></div>
+<ul><li> Open the menu Help - Install New Software.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1067px;"><a href="/wiki/index.php?title=File:Software.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fd/Software.png" width="1065" height="866" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Software.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse New Software Installation.</div></div></div></div>
+<ul><li> Click Add...
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:735px;"><a href="/wiki/index.php?title=File:Add.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a7/Add.png" width="733" height="761" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Add.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Software Repository Install Dialog.</div></div></div></div>
+<ul><li> Click Local...
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:491px;"><a href="/wiki/index.php?title=File:Local.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9c/Local.png" width="489" height="201" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Local.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Local Software Repository Selection Dialog.</div></div></div></div>
+<ul><li> Select Disco locale (C:) -&gt; Keil -&gt; Eclipse and Click OK.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:633px;"><a href="/wiki/index.php?title=File:Folder.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a4/Folder.png" width="631" height="623" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Folder.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Local Software Repository Folder Selection Dialog.</div></div></div></div>
+<ul><li> Fill "Name:" (Keil MDK-ARM) and Click OK.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:491px;"><a href="/wiki/index.php?title=File:Name.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/86/Name.png" width="489" height="201" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Name.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Local Software Repository Selection Dialog.</div></div></div></div>
+<ul><li> Enable "Keil MDK-ARM", Disable "Contact all update sites during install to find required software" and Click Next.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:735px;"><a href="/wiki/index.php?title=File:Next.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c4/Next.png" width="733" height="761" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Next.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Software Repository Install Dialog.</div></div></div></div>
+<ul><li> On the next screen, Click Finish.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:735px;"><a href="/wiki/index.php?title=File:Finish.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/98/Finish.png" width="733" height="761" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Finish.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Software Installation Details Dialog.</div></div></div></div>
+<ul><li> And finally Click Restart Now.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:524px;"><a href="/wiki/index.php?title=File:Restart.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/97/Restart.png" width="522" height="181" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Restart.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Software Installation Details Dialog.</div></div></div></div>
+<ul><li> On a successful installation, Eclipse displays a menu µVision and µVision icons in the toolbar.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:1067px;"><a href="/wiki/index.php?title=File:Install.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/be/Install.png" width="1065" height="866" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Install.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse New Software Installation.</div></div></div></div>
+<p>To Debug an application see "MDK-ARM Plugin for Eclipse" in Keil uVision Help.
+</p>
+<h3> <span class="mw-headline" id="Building_stand-alone_libee.a_using_RT-Druid_Eclipse"> Building stand-alone libee.a using RT-Druid Eclipse </span></h3>
+<ul><li> Launch Eclipse and define a workspace (default workspace can be accepted).
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:643px;"><a href="/wiki/index.php?title=File:Workspace_Launcher.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f8/Workspace_Launcher.png" width="641" height="319" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Workspace_Launcher.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Eclipse Workspace Selection Dialog.</div></div></div></div>
+<ul><li> Open the menu File - New - RT-Druid Oil and C/C++ Project.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:802px;"><a href="/wiki/index.php?title=File:RT-Druid_Oil_Project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fb/RT-Druid_Oil_Project.png" width="800" height="600" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-Druid_Oil_Project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>RT-Druid Oil and C/C++ Project Menu Selection.</div></div></div></div>
+<ul><li> Fill "Project name:" (EEApp) and Click Finish.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:730px;"><a href="/wiki/index.php?title=File:C_Project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6a/C_Project.png" width="728" height="635" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:C_Project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>C Project Setting-up.</div></div></div></div>
+<ul><li> Write conf.oil file with <code>EE_OPT = "__NO_APP__"</code> attibute in <code>OS</code> object and <b>NO</b> <code>APP_SRC</code> attibutes in <code>CPU_DATA</code> object.
+</li><li> conf.oil file used here can be found in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/EElib0/conf.oil" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/EElib0/conf.oil</a>
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:802px;"><a href="/wiki/index.php?title=File:EEApp_conf_oil.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/70/EEApp_conf_oil.png" width="800" height="600" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:EEApp_conf_oil.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Application Oil file writing.</div></div></div></div>
+<ul><li> Open the menu Project, check that "Build Automatically" is not selected and press "Build Project".
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:802px;"><a href="/wiki/index.php?title=File:EEApp_build_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/59/EEApp_build_project.png" width="800" height="600" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:EEApp_build_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Application Building.</div></div></div></div>
+<ul><li> Finally stand-alone libee.a is built in Debug directory.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:802px;"><a href="/wiki/index.php?title=File:EEApp_build_finished.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b6/EEApp_build_finished.png" width="800" height="620" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:EEApp_build_finished.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Application Build Finished.</div></div></div></div>
+<h3> <span class="mw-headline" id="Building_ERIKA_based_application_using_KEIL_uVision"> Building ERIKA based application using KEIL uVision </span></h3>
+<p>To build an ERIKA based application using KEIL uVision, it needs that a stand-alone libee.a was built previously. See <a href="/wiki/index.php?title=ARM_Cortex_MX#Building_stand-alone_libee.a_using_RT-Druid_Eclipse" title="ARM Cortex MX">ARM Cortex MX#Building stand-alone libee.a using RT-Druid Eclipse</a> above.
+</p>
+<ul><li> Launch Keil uVision.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:Keil.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/2d/Keil.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Keil.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Main Window.</div></div></div></div>
+<ul><li> Open the menu Project - New uVision Project...
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:Keil_New_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ea/Keil_New_project.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Keil_New_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision New Project Selection.</div></div></div></div>
+<ul><li> Select project folder, fill "File name:" (KEEApp) then Click Save.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:750px;"><a href="/wiki/index.php?title=File:KEEApp.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e1/KEEApp.png" width="748" height="514" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision New Project Creation.</div></div></div></div>
+<ul><li> Select Device (Texas Instruments LM4F232H5DQ) and Click OK.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_LM4F232H5QD.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d2/KEEApp_LM4F232H5QD.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_LM4F232H5QD.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Device Selection.</div></div></div></div>
+<ul><li> In the next dialog click No because Erika provides its own startup code.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:446px;"><a href="/wiki/index.php?title=File:KEEApp_Startup_s.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e2/KEEApp_Startup_s.png" width="444" height="151" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Startup_s.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Device Selection.</div></div></div></div>
+<ul><li> Rename the target (TI Stellaris LM4F232H5QD) and sources group (EE).
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_Renamed.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/24/KEEApp_Renamed.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Renamed.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Device Selection.</div></div></div></div>
+<ul><li> Right Click on source group EE and select "Add Files to Group 'EE'".
+</li><li> Select libee.a built previously, Click Add and then Close.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:750px;"><a href="/wiki/index.php?title=File:KEEApp_Add_Files_Group_EE.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/46/KEEApp_Add_Files_Group_EE.png" width="748" height="514" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Add_Files_Group_EE.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision "Add Files to Group 'EE'".</div></div></div></div>
+<ul><li> Click on added libee.a.
+</li><li> Open the menu Project - Options for File 'libee.a'...
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_Options_for_File_libee_a.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ec/KEEApp_Options_for_File_libee_a.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Options_for_File_libee_a.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision "Options for File 'libee.a'...".</div></div></div></div>
+<ul><li> Change "File Type:" from "Assembly language file" to "Library file" and Click OK.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_libee_a_library.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/56/KEEApp_libee_a_library.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_libee_a_library.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision "Options for File 'libee.a'...".</div></div></div></div>
+<ul><li> Right Click on "TI Stellaris LM4F232H5QD" target and select "Add Group...".
+</li><li> Rename the added group to "src".
+</li><li> Add in the group 'src' the startup assembly file for TI Stellaris LM4F232H5QD provided with Erika Enterprise <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s" class="external text" rel="nofollow">pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s</a>
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_ee_startup_keil_s.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a7/KEEApp_ee_startup_keil_s.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_ee_startup_keil_s.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Startup File.</div></div></div></div>
+<ul><li> Add in the gourp 'src' the application source file (E.g. main.c).
+</li><li> main.c file used here can be found in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/EElib0/main.c" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/EElib0/main.c</a>
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_main.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0d/KEEApp_main.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_main.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Application Source File.</div></div></div></div>
+<ul><li> Right Click on "TI Stellaris LM4F232H5QD" target and select "Options for Target 'TI Stellaris LM4F232H5QD'..."
+</li><li> In the Target tab change "Floating Point Hardware:" from "Use FPU" to "Not Used".
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_Option_No_FPU.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0d/KEEApp_Option_No_FPU.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Option_No_FPU.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Taget Setup.</div></div></div></div>
+<ul><li> In the C/C++ tab Click "Include Paths" button "...".
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_Options_C_tab.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/20/KEEApp_Options_C_tab.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_Options_C_tab.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision C/C++ Setup.</div></div></div></div>
+<ul><li> Adds Erika Enterprise and eecfg include paths for the application and click OK.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:626px;"><a href="/wiki/index.php?title=File:KEEApp_compiler_inludes.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cf/KEEApp_compiler_inludes.png" width="624" height="374" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_compiler_inludes.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Include Path Folder Setup.</div></div></div></div>
+<ul><li> In the Asm tab adds Erika Enterprise and eecfg include paths for the application (see above) and adds "--cpreproc" in "Misc Controls" input box.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_asm.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/07/KEEApp_asm.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_asm.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Assembly Setup.</div></div></div></div>
+<ul><li> In the Linker tab adds "--entry EE_cortex_mx_default_reset_ISR --first EE_cortex_mx_vtable" in "Misc Controls" input box.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:832px;"><a href="/wiki/index.php?title=File:KEEApp_link.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ab/KEEApp_link.png" width="830" height="562" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_link.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Linker Setup.</div></div></div></div>
+<ul><li> Open the menu Project - Build target
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_build.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/95/KEEApp_build.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_build.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Build Target.</div></div></div></div>
+<ul><li> Open the menu Debug - Start/Stop Debug Session
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:962px;"><a href="/wiki/index.php?title=File:KEEApp_debug.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/63/KEEApp_debug.png" width="960" height="715" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:KEEApp_debug.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Keil uVision Debug Session.</div></div></div></div>
+<h1> <span class="mw-headline" id="Benchmarks"> Benchmarks </span></h1>
+<p>We run a limited set of benchmarks for the kernel, which are available at the page <a href="/wiki/index.php?title=Erika_Enterprise_Benchmark_for_Cortex_M4" title="Erika Enterprise Benchmark for Cortex M4">Erika Enterprise Benchmark for Cortex M4</a>. Other benchmarks are available on the <a href="/wiki/index.php?title=Category:Benchmarks" title="Category:Benchmarks">Category:Benchmarks</a>.
+</p>
+<h1> <span class="mw-headline" id="See_also"> See also </span></h1>
+<ul><li> <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>
+</li><li> <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li><li> <a href="http://ics.nxp.com/lpcxpresso/" class="external text" rel="nofollow">NXP Semiconductor - Microcontrollers (LPCXpresso) - Web site</a>
+</li><li> <a href="http://www.ti.com/tool/ek-lm4f232?DCMP=cortexm4f&amp;HQS=ek-lm4f232" class="external text" rel="nofollow">Texas Instruments - Stellaris LM4F232 USB+CAN Evaluation Kits - Web site</a>
+</li><li> <a href="http://www.iar.com/" class="external text" rel="nofollow">IAR Systems Web site</a>
+</li><li> <a href="http://www.keil.com/" class="external text" rel="nofollow">Keil Embedded Development Tools Web site</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 106/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

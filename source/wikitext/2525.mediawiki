@@ -1,0 +1,21 @@
+The reference debugging solution for MPC5643L is Lauterbach. In the Erika tree (look at pkg/mcu/freescale_mpc5643l/cfg) is collected a set of Lauterbach sripts for single and multicore configurations. Such a scripts also provide support for execution from SRAM and Flash, in VLE and BookE mode. MPC5643L provides the capability to work in lock-step mode, for this reason a script to pass from/to DPM/lock-step mode is provide (set_lsm_dpm.cmm). To launch this script, user have to launch Lauterbach Tracer first (for instance by editing "t32mppc" in Linux prompt, or equivalent command under Window), and then editing "do set_lsm_dpm.cmm" in the Lauterbach command prompt. This script provides several functionalities, but the only functionality addressed by this manual is the one to switch from/to lock-step/DPM mode. Once the user launches this script the following window appears:
+
+
+[[Image:set_lock_step.png]]
+
+
+Red box shows two buttons to select lock-step or DPM mode. For instance, in this case we have a system set as DPM, if we would like to switch to LSM mode, we have to press the LSM button, and then press "PROGRAM". After this action, a confirmation window will be shown, press "YES" to confirm:
+
+
+[[Image:lock_step_ok_button.png]]
+
+
+If the programming task is successfully accomplished, the following window will be shown. Press "OK" to terminate the script.
+
+
+[[Image:lock_step_ok_message.png]]
+
+
+<span style="color:#ff0000"> IMPORTANT NOTE: </span> in order to make the switch-mode effective, a power-cycle has to be done. Therefore power your board off, and then power it on.
+
+[[Category:Debugging Tool Lauterbach TRACE32]]

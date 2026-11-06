@@ -1,0 +1,258 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Easylab_Board_API"><span class="tocnumber">2</span> <span class="toctext">Easylab Board API</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#System_LED"><span class="tocnumber">2.1</span> <span class="toctext">System LED</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Board_LEDs"><span class="tocnumber">2.2</span> <span class="toctext">Board LEDs</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Digital_Pin_I.2FO"><span class="tocnumber">2.3</span> <span class="toctext">Digital Pin I/O</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Buzzer"><span class="tocnumber">2.4</span> <span class="toctext">Buzzer</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#ADC_Channels"><span class="tocnumber">2.5</span> <span class="toctext">ADC Channels</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#PWM_Channels"><span class="tocnumber">2.6</span> <span class="toctext">PWM Channels</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>During the development of Erika support for easylab some new API have created and other ones have been updated.
+Follow an overview of these changes, but to be sure that the information of this page are updated double check the code.
+</p>
+<h1> <span class="mw-headline" id="Easylab_Board_API"> Easylab Board API </span></h1>
+<p>The <a href="http://www.evidence.eu.com/products/easy-lab.html" class="external text" rel="nofollow">EasyLab board</a> is fully supported by <a href="http://erika.tuxfamily.org/" class="external text" rel="nofollow">Erika Rtos</a>.
+This chapter describes the API support done in Erika Enterprise for the Evidence EasyLab Board.
+To configure the usage of the EasyLab Board, the user has to specify an appropriate <b>BOARD_DATA</b> in <i>OIL</i> file , as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+...
+}
+...
+</pre>
+<p>this <i>OIL</i> element enable the inclusion of <i>pkg/board/ee_easylab/inc/ee_board.h</i> as board header.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="System_LED"> <b>System LED</b> </span></h2>
+<p>The <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en548414" class="external text" rel="nofollow">Microstic</a> Guest board has a system LED attached to a GPIO pin of the microcontroller. To use the system LED, the developer should specify the <b>USELEDS</b> attribute as <b>TRUE</b>, as in the following example:
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USELEDS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The following paragraphs will describe the functions available to control the easyLab System LED.
+</p>
+<ul><li> <i>void EE_sys_led_init(void);</i>
+<dl><dd> Description: Initialize the system LED (the one on microstick). The LED starts turned off.
+</dd></dl>
+</li><li> <i>void EE_sys_led_on(void);</i>
+<dl><dd> Description: The function turns on the system LED (the one on microstick).
+</dd></dl>
+</li><li> <i>void EE_led_sys_off(void);</i>
+<dl><dd> Description: The function turns off the system LED (the one on microstick).
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="Board_LEDs"> <b>Board LEDs</b> </span></h2>
+<p>The EasyLab includes 8 red LEDs. To use the board LEDs the developer have to specify the <b>USELEDS</b> attribute as <b>TRUE</b>, as in the following example (same <i>OIL</i> configuration of the <b>System LED</b>):
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USELEDS = TRUE;
+  ...
+}
+...
+</pre>
+<p>The <i>API</i> for board LEDS control are the follow:
+</p>
+<ul><li> <i>void EE_leds_init(void);</i>
+<dl><dd> Description: Initialize all LEDS present on the board. The LEDs starts turned off.
+</dd></dl>
+</li><li> <i>void EE_leds_enable(void);</i>
+<dl><dd> Description: Turn on all the LEDs present on the board (system LED too).
+</dd></dl>
+</li><li> <i>void EE_leds_disable(void);</i>
+<dl><dd> Description: Turn off all the LEDs present on the board (system LED too).
+</dd></dl>
+</li><li> <i>void EE_ledx_init(void); (x=1,...,8)</i>
+<dl><dd> Description: Initialize the LED<b>x</b> present on the board (x=1,...,8). The LED starts turned off.
+</dd></dl>
+</li><li> <i>void EE_ledx_on(void); (x=1,...,8)</i>
+<dl><dd> Description: Turn on the LED<b>x</b> present on the board (x=1,...,8).
+</dd></dl>
+</li><li> <i>void EE_led1_off(void); (x=1,...,8)</i>
+<dl><dd> Description: Turn off the LED<b>x</b> present on the board (x=1,...,8).
+</dd></dl>
+</li><li> <i>void EE_led1_toggle(void); (x=1,...,8)</i>
+<dl><dd> Description: Toggle the LED<b>x</b> present on the board (x=1,...,8).
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="Digital_Pin_I.2FO"> <b>Digital Pin I/O</b> </span></h2>
+<p>The same pins connected to board LEDS can be used how general <i>Digital Pin I/O</i>. These pins are exported on board connectors.
+</p><p>For their use on the board the developer have to specify the <b>USE_DIO</b> attribute as <b>TRUE</b>, as in the following example (same <i>OIL</i> configuration of the <b>DIO</b>):
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USEDIO = TRUE;
+  ...
+}
+...
+</pre> 
+<p>The <i>API</i> than uses the digital pins I/O (DIO) are the follow:
+</p>
+<ul><li> <i>void EE_diox_configure(EE_BIT in); (x=1,...,8)</i>
+<dl><dd> Description: Initialize the pin<b>x</b> (x=1,...,8). If the <b>in</b> parameter is <b>0</b> (zero) the pin is output while <b>1</b> is input.
+</dd></dl>
+</li><li> <i>void EE_diox_write(EE_BIT bit); (x=1,...,8)</i>
+<dl><dd> Description: If the parameter <b>in=1</b> the output pin is <b>1</b> logic, while if the parameter <b>in=0</b> the output pin is <b>0</b> logic.
+</dd></dl>
+</li><li> <i>int EE_BIT EE_diox_read(void); (x=1,...,8)</i>
+<dl><dd> Description: The API return the logic value on pin<b>x</b> when it is configured as input.
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="Buzzer"> <b>Buzzer</b> </span></h2>
+<p>On the EasyLab board is present a simple piezo buzzer. When the users wants use it in a his project, he has to write, in the OIL file, something like this:
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USEBUZZER = TRUE;
+  ...
+}
+...
+</pre> 
+<p>The API are the follow:
+</p>
+<ul><li> <i>void EE_buzzer_start(EE_UINT16 freq);</i>
+<dl><dd> Description: Start on the buzzer. The parameter <b>freq</b> is the frequency value and it's value is from 100 to 48000 Hz.
+</dd></dl>
+</li><li> <i>void EE_buzzer_stop(void);</i>
+<dl><dd> Description: Turn off the buzzer sound.
+</dd></dl>
+</li></ul>
+<h2> <span class="mw-headline" id="ADC_Channels"> <b>ADC Channels</b> </span></h2>
+<p>The EasyLab board has 4 input analog to digital converter (ADCx). If an application uses the ADC functionality in necessary modified the OIL file adding the option USEADC:
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USEADC = TRUE;
+  ...
+}
+...
+</pre> 
+<p>The ADC's API are the follow:
+</p>
+<ul><li>   <i>EE_INT8 EE_easylab_adc_init_ch(EE_AdcChId adc_ch_id, EE_Adc_VoltageRef volt_ref, EE_Adc_BitResolution bit_res);</i>
+<dl><dd>  Description: Initialize an specific ADC channel. The parameter can be used are the follow:
+</dd></dl>
+<ul><li>  <b>adc_ch_id</b>: Is the ADC channel, the value can be: 
+<ul><li> EE_ADC_AN1
+</li><li> EE_ADC_AN2
+</li><li> EE_ADC_AN3
+</li><li> EE_ADC_AN4
+</li></ul>
+</li><li>  <b>volt_ref</b>&nbsp;: Is the Ref for ADC conversion. At this parameter can be assigned the follow value:
+<ul><li> <i>EE_ADC_VDD_VSS</i>
+</li><li> <i>EE_ADC_VREFh_VSS</i>
+</li><li> <i>EE_ADC_VDD_VREFl</i>
+</li><li> <i>EE_ADC_VREFh_VREFl</i>
+</li></ul>
+</li><li>  <b>bit_res</b>&nbsp;: Is the resolution of the ADC. 
+<ul><li> EE_ADC_10_BIT
+</li><li> EE_ADC_12_BIT    
+</li></ul>
+</li><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li><li>   <i>EE_INT8 EE_easylab_adc_get_ch_uint(EE_AdcChId adc_ch_id, EE_UINT16 * value );</i>
+<dl><dd>  Description: Acquire analog value on specific input.
+</dd></dl>
+<ul><li>  <b>adc_ch_id</b>: Channel's ID to acquire.
+<ul><li> EE_ADC_AN1
+</li><li> EE_ADC_AN2
+</li><li> EE_ADC_AN3
+</li><li> EE_ADC_AN4
+</li></ul>
+</li><li>  <b>*value</b>:  return value conversion pointer.
+</li><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li><li>   <i>EE_INT8 EE_INT8 EE_easylab_adc_start(void):</i>
+<dl><dd>  Description: Start ADC sampling.
+</dd></dl>
+<ul><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li><li>   <i>EE_INT8 EE_easylab_adc_stop(void):</i>
+<dl><dd>  Description: Stop ADC sampling.
+</dd></dl>
+<ul><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="PWM_Channels"> <b>PWM Channels</b> </span></h2>
+<p>The EasyLab board has 4 independent and configurable pwm output (<i>PWM1</i>, <i>PWM2</i>, <i>PWM3</i> and <i>PWM4</i>). 
+These outputs can work also how two both pwm configuration (<i>PWM12</i>, <i>PWM1</i> together <i>PWM2</i> and <i>PWM34</i>, <i>PWM3</i> with <i>PWM4</i>).
+In the OIL file need to use the flag <b>USEPWM</b>:
+</p>
+<pre>
+...
+BOARD_DATA = EE_EASYLAB {
+  USEPWM = TRUE;
+  ...
+}
+...
+</pre> 
+<p>The PWM's API are the follow:
+</p>
+<ul><li>   <i>EE_INT16 EE_easylab_pwm_init(EE_UINT8 pwm_pin, EE_UINT32 pwm_freq);</i>
+<dl><dd>  Description: Initialize an specific PWM channel. The parameter can be used are the follow:
+</dd></dl>
+<ul><li>  <b>pwm_pin</b>: Is the PWM channel, its values can be: 
+<ul><li> EE_EASYLAB_PWM1
+</li><li> EE_EASYLAB_PWM2
+</li><li> EE_EASYLAB_PWM3
+</li><li> EE_EASYLAB_PWM4
+</li><li> EE_EASYLAB_PWM12
+</li><li> EE_EASYLAB_PWM34
+</li></ul>
+</li><li>  <b>pwm_freq</b>: pwm frequency
+</li><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li><li>   <i>EE_INT16 EE_easylab_pwm_close(EE_UINT8 pwm_pin);</i>
+<dl><dd>  Description: Close the specific PWM channel passed as parameter.
+</dd></dl>
+<ul><li>  <b>pwm_pin</b>: Is the PWM channel, its values can be: 
+<ul><li> EE_EASYLAB_PWM1
+</li><li> EE_EASYLAB_PWM2
+</li><li> EE_EASYLAB_PWM3
+</li><li> EE_EASYLAB_PWM4
+</li><li> EE_EASYLAB_PWM12
+</li><li> EE_EASYLAB_PWM34
+</li></ul>
+</li><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li><li>   <i>EE_INT16 EE_easylab_pwm_set_duty(EE_UINT8 pwm_pin, EE_UINT16 duty);</i>
+<dl><dd>  Description: Set the duty-cycle at specific PWM channel passed as parameter.
+</dd></dl>
+<ul><li>  <b>pwm_pin</b>: Is the PWM channel, its values can be: 
+<ul><li> EE_EASYLAB_PWM1
+</li><li> EE_EASYLAB_PWM2
+</li><li> EE_EASYLAB_PWM3
+</li><li> EE_EASYLAB_PWM4
+</li><li> EE_EASYLAB_PWM12
+</li><li> EE_EASYLAB_PWM34
+</li></ul>
+</li><li>  <b>duty</b>: duty-cycle
+</li><li>  return value: 0 if no errors happened. Otherwise appropriate error value (negative value).
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 87/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

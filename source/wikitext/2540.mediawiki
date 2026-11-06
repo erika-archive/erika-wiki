@@ -1,0 +1,9 @@
+ERIKA Enterprise Manual for Renesas RH850 targets
+= Introduction =
+This page will contain information about the Renesas RH850 port, which has been contributed by Nils Scharnke, Renesas Europe (see commits r3377-r3379).
+
+The porting currently supports both GHS and IAR compilers for Renesas RH850.
+
+More details will be available in the near future.
+
+[[Category:Supported Devices]]

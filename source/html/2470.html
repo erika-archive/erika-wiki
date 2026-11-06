@@ -1,0 +1,30 @@
+<p>A preliminary test on Freescale MPC5643L (Leopard) under the following conditions:
+</p>
+<ul><li> Single core;
+</li><li> I-Cache disabled;
+</li><li> CPU running at 120 Mhz;
+</li><li> Flash prefetch enabled;
+</li><li> 3 wait state while reading from Flash.
+</li></ul>
+<p>Gave the following result:
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th align="center"> Test Name </th><th align="center"> value (usec)
+</th></tr>
+<tr>
+<td> New task from an ISR2 (Time between the first instruction of the Erika ISR-handler and the Task body defined by the user) </td><td align="center"> 5.700
+</td></tr>
+<tr>
+<td> ISR2 latency (Time between the first instruction of the Erika ISR-handler and the ISR2 body defined by the user) </td><td align="center"> 0.800
+</td></tr>
+</table>
+<p>Note: these results have been collected by using the Lauterbach-Tracer funcionalities. More details available at <a href="http://www.lauterbach.com" class="external free" rel="nofollow">http://www.lauterbach.com</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

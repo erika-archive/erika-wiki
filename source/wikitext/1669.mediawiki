@@ -1,0 +1,53 @@
+This page contains online material, notes and photos about the topics presented in the ScicosLab Training course in Florence.
+
+= Course material =
+
+== Brochure ==
+
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab_Florence_2010_brochure_r4.pdf ScicosLab course october 2010 - Course Brochure]
+
+== ScicosLab ==
+
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D1_r7.pdf ScicosLab - day 1 slides]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day1.zip ScicosLab - day 1 examples]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D2_r6.pdf ScicosLab - day 2 slides]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day2.zip ScicosLab - day 2 examples]
+
+== ERIKA Enterprise ==
+
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_reduced.pdf Real-time systems, OSEK/VDX standard]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_examples.pdf ERIKA Enterprise OSEK/VDX API examples]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/ee.pdf FLEX boards, difference with the various EE kernels]
+
+== RTAI, CANOpen ==
+
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/canOpen.pdf CANOpen implementation on RTAI]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/examples.zip RTAI examples, CANOpen examples on RTAI]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/controller.pdf Furuta pendulum controller]
+
+== RTSS - The Robotics Toolbox for Scicoslab ==
+(link updated on 2010/10/28)
+* [http://rtss.sourceforge.net/docs/index.html#slcourse10 RTSS course slides available here]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss.pdf Slides about the Robotics Toolbox for ScicosLab]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss_videos.zip Videos used in the presentation of the Robotics Toolbox]
+
+== SMPS controller - Switched Mode Power Supply digital controller and simulation ==
+
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/Florence_2010_D3_DM_r3.pdf SMPS slides - simulation and control of SMPS using ScicosLab]
+* [http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/examples.zip SMPS examples - simulation and control of SMPS using ScicosLab] (update 2010/10/27: update of this file now works)
+
+= Photos =
+[[File:scicoslab2010_01_participants.jpg|center|thumb|200px|The participants to the course...]]
+[[File:scicoslab2010_02_simone.jpg|center|thumb|200px|Simone explaining Scicos architecture...]]
+[[File:scicoslab2010_03_pj.jpg|center|thumb|200px|PJ showing the ERIKA Enterprise workflow...]]
+[[File:scicoslab2010_04_simone.jpg|center|thumb|200px|Simone shows how to design a controller on ScicosLab...]]
+[[File:scicoslab2010_05_simone.jpg|center|thumb|200px|Simone shows state space representation for discrete (sampled) systems...]]
+[[File:scicoslab2010_06_pj_daniele.jpg|center|thumb|200px|PJ and Daniele trying an example on the FLEX boards...]]
+[[File:scicoslab2010_07_pj.jpg|center|thumb|200px|PJ and the Amazing Ball...]]
+[[File:scicoslab2010_08_roby.jpg|center|thumb|200px|Roberto "Robi" Bucher showing the SUPSI CAN bus board and the Inverted Pendulum made at SUPSI...]]
+[[File:scicoslab2010_09_matteo.jpg|center|thumb|200px|Matteo making a mimic of a robot...]]
+[[File:scicoslab2010_10_roby.jpg|center|thumb|200px|Roby showing the CANOpen message exchange...]]
+[[File:scicoslab2010_11_daniele.jpg|center|thumb|200px|Daniele explaining switching mode power supply...]]
+[[File:scicoslab2010_12_daniele.jpg|center|thumb|200px|Daniele really happy about his first ScicoLab show...]]
+[[File:scicoslab2010_13_organizers.jpg|center|thumb|200px|The organizers...]]
+[[File:scicoslab2010_14_finalpicture.jpg|center|thumb|200px|and last but not least... the final picture!]]

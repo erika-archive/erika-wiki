@@ -1,0 +1,11 @@
+# In the Eclipse/RT-Druid window, open the ''New Project'' window.
+#; [[image:z7-rtd-new.png|center]]
+# Select a template from the ''e200z7'' menu.
+#; [[image:z7-rtd-templ.png|center]]
+# Give your project a name.
+#; [[image:z7-rtd-name.png|center]]
+#* the folder appears in the ''Project Explorer''; 
+#; [[image:z7-rtd-proj.png|center]]
+# Build the project (click with the right button of the mouse on the project name);
+#; [[image:z7-rtd-build.png|center]]
+# After the compilation ends, the ELF image is available in Debug/ppc.elf.  To start the Lauterbach debugger just cd into Debug and run t32mppc as usual.

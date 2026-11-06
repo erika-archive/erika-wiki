@@ -1,0 +1,7 @@
+This board is supported by the [[Microchip PIC32]] porting of Erika.
+
+The board includes a PIC32 microcontroller, an Ethernet interface, a IEEE 802.15.4 adapter, a USB port, and many I/O to connect whatever device you need.
+
+''This page is only a stub. More info is coming''
+
+[[Category:Supported Devices]]

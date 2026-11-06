@@ -1,0 +1,95 @@
+<p>CPU test_application {<br />
+</p>
+<dl><dd>OS EE {<br />		
+<dl><dd>CFLAGS = "-g2";								//option to produce debugging information<br />
+</dd><dd>ASFLAGS = "";<br />
+</dd><dd>LDFLAGS = "";<br />
+</dd><dd>CPU_DATA = LM32 {<br />
+<dl><dd>APP_SRC = "main.c";<br />
+</dd><dd>MULTI_STACK = FALSE;<br />
+</dd><dd>USESTANDALONEPRINTF = TRUE; // Optional, default is FALSE;<br />
+</dd><dd>USESMALLC = FALSE; // Optional, defautl is FALSE;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>MCU_DATA = LATTICE_PLATFORM {<br />
+<dl><dd>MODEL = LIBRARY {<br />
+<dl><dd>PLATFORM_LIB_PATH = "../test_sram_lib"; 	// library (platform-dependent) path<br />
+</dd><dd>PLATFORM_NAME = "test_base"; 				// platform name (is also the name of the main folder in the library path)<br />
+</dd><dd>PLATFORM_BLD_CFG = "Release"; 				// Optional, default is ""<br />
+</dd></dl>
+</dd><dd>};<br />   			
+</dd><dd>DEVICE = TIMER{<br />
+<dl><dd>NAME = "timer"; // sub-section to use the timer<br />
+</dd><dd>OPTIONS = TIMER_IRQ_SUPPORT; // Timer IRQ code will be compiled<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>DEVICE = UART{<br />
+<dl><dd>NAME = "myuart"; // sub-section to use uart<br />
+</dd><dd>OPTIONS = UART_IRQ_SUPPORT; // Uart IRQ code will be compiled<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>DEVICE = SPI{<br />
+<dl><dd>NAME = "myspi"; // sub-section to use spi<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>DEVICE = I2C{<br />
+<dl><dd>NAME = "myi2c"; // sub-section to use i2c<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>DEVICE = GPIO{<br />
+<dl><dd>NAME = "mygpio"; // sub-section to use gpio<br />
+</dd><dd>OPTIONS = GPIO_IRQ_SUPPORT; // GPIO IRQ code will be compiled<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd></dl>
+</dd><dd>};  	<br />	
+</dd><dd>BOARD_DATA = XP2_CAMERA_BOARD { // section for XP2 camera board<br />
+<dl><dd>OPTIONS = LEDS; // Use leds driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = TRANSISTORS; // Use transistors driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = SWITCHES; // Use switches driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = LIGHTSENSOR; // Use light sensor driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = RS232; // Use uart specific driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = RS232_IRQ_SUPPORT; // Compile UART IRQ code<br />
+</dd><dd>OPTIONS = CAMERA; // Use Camera hv7131gp driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = CAMERA_IRQ_SUPPORT; // Compile Camera IRQ code<br />
+</dd><dd>OPTIONS = RTCLOCK; // Use RT-clcok pcf8583 driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = RTCLOCK_IRQ_SUPPORT; // Compile RT-clock IRQ code<br />
+</dd><dd>OPTIONS = EXTSPI; // Use SPI specific driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = EXTSPI_IRQ_SUPPORT; // Compile SPI IRQ code<br />
+</dd><dd>// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+</dd><dd>OPTIONS = ZIGBEE; // Use Zigbee mrf24j40 driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = ZIGBEE_IRQ_SUPPORT; // Compile Zigbee IRQ code<br />
+</dd><dd>// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+</dd><dd>OPTIONS = ETHERNET; // Use Ethernet enc28j60 driver for XP2_CAMERA_BOARD<br />
+</dd><dd>OPTIONS = ETHERNET_IRQ_SUPPORT; // Compile Ethernet IRQ code<br />
+</dd><dd>// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+</dd><dd>OPTIONS = ALL_ZIGBEE; // Enable all Zigbee options<br />
+</dd><dd>OPTIONS = ALL_ETHERNET; // Enable all ethernet options<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>KERNEL_TYPE = FP; 							// Scheduler choice (i.e. fixed priority scheduler)<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd><dd>ISR Timer { 									// Section for ISR definition <br />
+<dl><dd>CATEGORY = 2; <br />
+</dd><dd>LEVEL = "TIMER_IRQ"; 							// Level is the number specified in the library system_conf.h file <br />
+</dd><dd>HANDLER = "EE_timer_common_handler"; 			// Handler is the name of the driver callback <br />
+</dd></dl>
+</dd><dd>}; <br />	
+</dd><dd>TASK myTask { 									// Standard task definition<br />
+<dl><dd>PRIORITY = 2;<br />
+</dd><dd>STACK = SHARED;<br />
+</dd><dd>SCHEDULE = FULL;<br />
+</dd></dl>
+</dd><dd>};<br />
+</dd></dl>
+<p>};<br />
+</p><p>More information about Mico32-specific features in OIL configuration files can be found in the <a href="/wiki/index.php?title=Lattice_Mico32" title="Lattice Mico32">Lattice Mico32</a> page.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

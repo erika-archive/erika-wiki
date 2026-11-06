@@ -1,0 +1,336 @@
+[[Category:Supported Devices]]
+= Infineon Aurix support =
+
+ERIKA Enterprise supports the Infineon AURIX family microcontrollers.
+
+Currently the TC27x and TC29x AURIX families have been fully ported.
+
+Due to customer restrictions, this porting of TC29x AURIX family is not yet public. If you want to get more information about the TC29x AURIX family porting, please contact [mailto:info@evidence.eu.com info@evidence.eu.com].
+
+The support includes:
+# Support for the HIGHTEC GCC Compiler (form both single and multicore) and TASKING compiler (only for singlecore).
+# Support for single- and multi-stack configurations.
+# ISR Type 1 and Type 2.
+# ORTI support.
+# Full Lauterbach support.
+
+* Supported compilers:
+** HIGHTEC GCC Compiler v4.6.3.1 & 4.9.2.0 (for both Single and Multicore).
+** TASKING VX-toolset for TriCore v4.0r1 (only for Singlecore).
+** WIND RIVER DIAB Compiler Rel. 5.9.2.0 (only for Singlecore). 
+
+* Mode of operation
+** Monostack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+** Multistack: Every thread can have its private stack, or it can share it with other threads. 
+** Multicore: It follows the same philosophy used by [[ERIKA multicore support|ERIKA on other multicore systems]] and specified by [http://www.autosar.org/ Autosar]: two instances of the operating systems run on the two cores, and communication between cores is performed with a few APIs and shared memory.
+
+* '''CYGWIN'''
+** '''Under Cygwin environment you MUST use make command version 4.2.1 or above'''
+
+=== MCU & Board ===
+* The porting have been completly developed on top of:
+** TriBoard TC2x5 v2.0 equiped with a TC275TE MCU
+** TriBoard TC2x5 v2.0 equiped with a TC264DE MCU
+** TriBoard TC2x5 v2.0 equiped with a TC297TA MCU (please contact [mailto:info@evidence.eu.com info@evidence.eu.com])
+
+= Target Configuration and Programming =
+
+ERIKA Enterprise is configured through [[Tutorial: RT-Druid and OIL basics | RT-Druid and an OIL file]]. Here are listed, after the information to set compiler path, the OIL fields customized for Tricore Aurix architecture.
+
+=== Compiler Path ===
+
+It is possible to choose the path of the compiler in three different ways:
+
+* ''PATH enviornment variable'': You can put compilers bin directories in PATH and the environmet can use them from here. 
+* ''Compiler specific environment variables'':
+** '''HIGHTEC GCC toolchain''': You can specify the compiler path for HIGHTEC GCC with the '''TRICORE_GCCDIR'''.
+** '''Altium TASKING toolchain''': You can specify the compiler path for Altium TASKING with the '''TRICORE_TASKINGDIR'''.
+** '''Wind River Diab toolchain''': You can specify the compiler path for Altium TASKING with the '''TRICORE_DIABDIR'''.
+* ''RT-Druid configuration file'' see [[RT-Druid configuration#Compiler paths]]:
+** '''preference_tricore__path_for_gnu_compiler''' set HIGHTEC gcc compiler path for Tricore AURIX
+** '''preference_tricore__path_for_tasking_compiler''' set Altium TASKING compiler path for Tricore AURIX
+** '''preference_tricore__path_for_diab_compiler''' set Wind River Diab compiler path for Tricore AURIX
+
+Here is an [[Common oil.pref example|example of RT-Druid configuration file]].
+
+=== CPU ===
+
+'''CPU_DATA''' must be set to  '''TRICORE'''.
+The compiler is specificed with the '''COMPILER_TYPE''' item, supported values are '''GNU''' (the default value) and '''TASKING'''.
+
+On multicore systems, one '''CPU_DATA''' instance can exist for each core. They must have different '''ID'''s.  See [[ERIKA multicore support]] for more details about multicore systems on Erika. Later in this page you will find a paragraph relative to specific multicore support developed for Tricore Aurix, according to '''Autosar OS 4.0 Rev 3''' specifications.
+
+Tricore AURIX support CPU clock configuration with a simple PLL driver. The target clock value in MHz can be set with the ''CPU_CLOCK''' field.
+We kept the algorithm to avaluate PLL parameters simple, so it implements a best effort approach to set the right value.
+In any case max declared CPU clock value (i.e. 200 Mhz for TC27x & TC26x families), is guaranteed to be perfectly matched.
+
+'''N.B.''' To get the real value set you can use '''EE_tc27x_get_clock()''' API after executing '''StartOS''', PLL configuration is done during OS start-up.
+
+Moreover a new field to declare a custom linker script have been added to CPU_DATA block: '''LINKERSCRIPT = "fake.ld";'''
+
+Example of a CPU_DATA section:
+
+    CPU_DATA = TRICORE {
+      CPU_CLOCK = 200.0;
+      APP_SRC = "code.c";
+      COMPILER_TYPE = GNU;
+      MULTI_STACK = TRUE {
+        IRQ_STACK = TRUE {
+            SYS_SIZE = 128;
+        };
+      };
+    };
+
+=== MCU ===
+
+'''MCU_DATA''' supports the  '''TC27x''', '''TC27xA''', '''TC27xB''', '''TC27xC''' and '''TC26x''' values. Compiler can be specified even in '''MCU_DATA''' block and will inherited by all configured CPUs (useful in multicore project configuration).
+
+Note: due to a currupted register file of GNU compiler ( HighTec GCC Version 4.9.x.x ), the compiling of '''TC27x''' and '''TC27xA''' MCU models is broken.
+
+  MCU_DATA = TRICORE {
+    MODEL = TC27x;
+    COMPILER_TYPE = GNU;
+  };
+
+=== BOARD ===
+
+There is only support form TriBoard TC2x5. This board only provide debug interface and 8 leds, so the support is limited to the LEDs configuration/driving and, because standard ERIKA demos require it, an external button (''external'' means that have to be soldered by the user) mounted on pin P15.8 of (corresponding to pin 71 of PERIPHERALS (Xx02,Xx02) connector). Add the following OIL field to enable this support.
+
+  BOARD_DATA = TRIBOARD_TC2X5;
+
+=== Interrupt Handling ===
+
+Due to the special implementation of the Interrupt Vector in AURIX architecture, each entry of the vector table is simply identified by it's priority value. It must be the application code that configure the service request node (''SRN''') with the right priority, assigning in this way the right handler.
+
+  ISR IsrLow {
+    CATEGORY = 2;
+    PRIORITY = 1;
+    HANDLER = "isr_low"; 
+  };
+
+The mean of the fields are:
+*'''CATEGORY''': the type of ISR as specified by OSEK. 
+*'''PRIORITY''': The ISR priority that represent it's position inside Interrupt Vector so it has to be considered as ISR Identifier. The '''ENTRY''' field, the one usually used to declare Interrupt IDs, is still available but it's superfluous because it has to be equal to PRIORITY and, in any case, priority value take the precedence.
+*'''HANDLER''': Declare the interrupt handler symbol. If it's not declared the the handler symbol is supposed to be equal to ISR block name (IsrLow in the example).
+
+=== Trap Handling ===
+
+With TriCore AURIX, for the first time, we support the options to register handler for TRAP/Exceptions. OSEK OIL do not provide any field for trap handling: it suppose that all the handling is done inside the Kernel. Usually that's what happens, but sometime can be useful have some mechanism to attach an handler for a particular class of TRAPs.
+
+We decide to exetend ISR entry with the field '''TRAP''' that can be set to TRUE to enable TRAP handling. In this case you have to choose the TRAP class with the field LEVEL (or ENTRY). The only valid values for this configuration are:
+
+*'''TRAP_MMU''' (Actually useless because TC27x and TC26x families don't have MMU, just a place holder)
+*'''TRAP_PROT''' (Handler for protection traps)
+*'''TRAP_INST''' (Handler for instructions traps)
+*'''TRAP_CONT''' (Handler for context traps) 
+*'''TRAP_BUS''' (Handler forn bus traps)
+*'''TRAP_ASS''' (Handler for assertion traps) (please don't be silly :))
+*'''TRAP_SYS''' (Handler for system calls)
+*'''TRAP_NMI''' (Handler for NMI trap)
+
+OIL TRAP configuration example:
+
+  ISR trap_context {
+      LEVEL = "TRAP_CONT";
+      HANDLER = "EE_trap_context";   //Trap handler
+      TRAP = TRUE;
+  };
+
+To define the handler in your code, you have to use the following syntax:
+
+  TRAP(EE_CLASS_TRAPCONT, EE_trap_context) {
+    while(1) {
+      ; /* dummy */
+    }
+  }
+
+TRAP class identifiers are the following:
+
+*EE_CLASS_TRAPMMU
+*EE_CLASS_TRAPPROT
+*EE_CLASS_TRAPINST
+*EE_CLASS_TRAPCONT
+*EE_CLASS_TRAPBUS
+*EE_CLASS_TRAPASS
+*EE_CLASS_TRAPSYS
+*EE_CLASS_TRAPNMI
+
+Inside the TRAP handler TIN (Trap Identification Number) value can be accessed with '''EE_tc_get_TIN()''' function or, for HIGHTEC GNUC Compiler, with the local variable '''tin'''. For more information you can check the '''$(ee)/pkg/cpu/tricore/inc/ee_tc_trap.h''' file.
+
+=== EEOPT ===
+
+EEOPT is a way to specify configuration flags to the Erika build environment.
+EEOPTs can be specified as strings in the OS section of the OIL file. Examples:
+
+ EE_OPT = "EE_DEBUG";
+ EE_OPT = "__ASSERT__";
+
+Please notice that spelling inside the OIL file includes an underscore: EE_OPT.
+
+The only supported format for EEOPTs is a single name, which should be a valid C identifier (i.e., only Latin letters, digits, and underscore are allowed; the first character cannot be a digit). And any other format is not supported, and even if it works now, it may break in the future.
+
+The following EEOPTs are specific of AURIX Architecture:
+* '''EE_DEBUG''': Replace the often used DEBUG option (because it conflict with compilers DEBUG define). Enable debug compiler options, basically less optimization and debug symbols generation plus defualt TRAP handlers are implemented as busy loops instead of system reset.
+* '''EE_EXECUTE_FROM_RAM''': When specified, a linker script is used that maps both code and data in the RAM space. Executables produced with this option can be used only together with a debugger that loads the program in memory. By default, code and constant data are mapped to Flash, data to RAM.
+* '''EE_SAVE_TEMP_FILES''': Enable temporary files saving for the compiler, useful to debug build process and to inspect generate assembly code. It's useful only for HIGHTEC GCC compiler because for TASKING compiler is always active. For the GCC compiler it has been added the switch because the size of temporary files is '''huge'''.
+* '''EE_ICACHE_ENABLED''': Enable the instruction cache in start-up code.
+* '''EE_DCACHE_ENABLED''': Enable data cache in start-up code
+
+= OSEK/VDX Extensions =
+
+This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the AURIX support.
+
+=== Resource Managament at ISR level ===
+
+This feauture is automatically enabled by RT-Druid during the configuration generation step. To specify that a Resource is used by both a Task and a ISR you need to add that resource to the corrisponding ISR object as follows:
+
+  TASK Task1 {
+    ...
+    RESOURCE = "ResourceA";
+  };
+  
+  ISR <SYMBOL> {
+    PRIORITY = <PRIORITY_LEVEL>;
+    CATEGORY = <ISR_TYPE>;
+    RESOURCE = "ResourceA";
+  };
+  
+  RESOURCE ResourceA { RESOURCEPROPERTY = STANDARD; };
+
+=== System Timer ===
+
+The OSEK/VDX standard provides support for a '''System Counter''' (a counter that is automatically linked to a hardware timer). The System Timer is used to give a coherent timing reference across the entire application.
+
+In ERIKA Enterprise, this special counter has been named '''System Timer'''. To use it, you need to set a specific attribute in a Counter definition. Please note that only one counter '''for each core''' can be the System Timer.
+
+A Counter which is not a System Counter must be incremented explicitly using the Autosar primitive '''IncrementCounter'''.
+
+The following is an example OIL definition for a System Counter:
+
+  CPU_DATA = TRICORE{
+    CPU_CLOCK = 200.0;
+    ...
+  };
+  
+  COUNTER SystemTimer {
+    MINCYCLE = 1;
+    MAXALLOWEDVALUE = 2147483647;
+    TICKSPERBASE = 1;
+    TYPE = HARDWARE {
+      DEVICE = "STM_SR0";
+      SYSTEM_TIMER = TRUE;
+      PRIORITY = 1;
+    };
+    SECONDSPERTICK = 0.001;
+  };
+
+The meaning of the various attributes is as follows:
+* '''CPU_DATA/CPU_CLOCK''' is used to declare the clock frequency (in MHZ).
+* '''COUNTER/TYPE''' must be set to '''HARDWARE''', and '''SYSTEM_TIMER''' must be set to true.
+* '''COUNTER/TYPE/DEVICE''' must be a valid device that can be used for a system timer. Currently, for TRICORE only '''STM''' (System Timer Module) MCU peripheral is a valid device for system timer. Both Interrupt source of this peripheral can be set to device and allowed values are '''STM_SR0''' and '''STM_SR1'''
+* '''COUNTER/TYPE/PRIORITY''' By default SYSTEM_TIMER is tied to smallest ISR priority (i.e. PRIORITY = 1;), but it can be overritten. Ovveride is necessay in multicore environment because priority 1 is used by the '''Intercore Interrupt Request'''.
+* '''COUNTER/SECONDSPERTICK''' is used to declare the wanted time duration of one hardware tick in seconds.
+
+The System Timer can be attached to ALARMs as usual, as in the following example:
+
+  ALARM AlarmExample {
+    COUNTER = SystemTimer;
+    ACTION  = ACTIVATETASK{
+       TASK = TaskExample;
+    };
+  };
+
+= CPU MCU & BOARD API =
+
+In addition to '''AUTOSAR OS Kernel Interface''', in ERIKA AURIX porting are implemented a bunch of utility functions that will be considered as part of '''ERIKA API'''. As usual they are separated in the three logical layer that compose ERIKA architecture abstraction: '''CPU, MCU & BOARD'''.
+
+=== CPU API ===
+
+CPU layer represent all the behaviour shared between all the families of AURIX MCUs. In this layer are declared the functions to temporary disable '''ENDINIT''' and '''SAFETY_ENDINIT''' register protection (see Infineon AURIX documentation). These functions are a little bit tricky: ''declaration'' belong to CPU layer, because AURIX architecture documentation states that every AURIX implementation has some kind of '''ENDINIT''' and '''SAFETY_ENDINIT''' protection, but delegate implementation details to each AURIX family, so functions ''definitions'' has been done inside MCU files.
+
+* '''void EE_tc_endint_disable( void )''': Temporary disable ENDINT protection.
+* '''void EE_tc_endint_enable( void )''': Re-enable ENDINT protection.
+
+* '''void EE_tc_safety_endinit_disable( void )''': Temporary disable SAFETY_ENDINIT protection.
+* '''void EE_tc_safety_endinit_enable( void )''': Re-enable SAFETY_ENDINIT protection.
+
+=== MCU API ===
+
+MCU layer represent the behaviour tied to an specific AURIX family of MCUs. For now only family TC27x is supported.
+Most part of the utilities belong to this layer:
+
+* '''void EE_tc2Yx_get_clock ( void )''': Return CPU clock frequency in HZ.
+* '''void EE_tc2Yx_configure_clock( EE_UREG fclock )''': Make the best effort to set CPU clock frequency to fclock value. It's the function used by '''StartOS''' when a '''CPU_CLOCK''' is configured in '''CPU_DATA'''.
+* '''void EE_tc2Yx_delay ( EE_UREG usec )''': Implement a busy loop wait of '''usec''' micorseconds.
+* '''void EE_tc2Yx_stm_set_sr0( EE_UINT32 usec, EE_TYPEISR2PRIO intvec )''': Programs '''STM compare register 0''' to trigger an IRQ after '''usec''' microseconds. '''intvec''' is the priority tied to this source, in other words it is the Interrupt Vector Table entry that will handle STM interrupt. With intvec == 0, the correponding service request node is left unprogrammed or resetted.
+* '''void EE_tc2Yx_stm_set_sr0_next_match( EE_UINT32 usec )''': Change '''previous programmed''' STM compare register 0 to trigger next IRQ after usec microseconds. To mantain fixed interrupt interval, it have to been called at the beginning of '''intvec''' handler.
+* '''void EE_tc2Yx_stm_set_sr1( EE_UINT32 usec, EE_TYPEISR2PRIO intvec )''': Programs '''STM compare register 1''' to trigger an IRQ after '''usec''' microseconds. '''intvec''' is the priority tied to this source, in other words it is the Interrupt Vector Table entry that will handle STM interrupt. With intvec == 0, the correponding service request node is left unprogrammed or resetted.
+* '''void EE_tc2Yx_stm_set_sr1_next_match( EE_UINT32 usec )''': Change '''previous programmed''' STM compare register 1 to trigger next IRQ after usec microseconds. To mantain fixed interrupt interval, it have to been called at the beginning of '''intvec''' handler.
+
+'''SR0''' and '''SR1''' API are both available to the user if '''System Timer''' is '''not''' configured. Otherwise only the one not used by system timer will be available.
+
+=== Board API ===
+
+BOARD layer represent the specific board support. There is only aminimal support for TriBoard TC2x5 v2.0 equiped with a TC275TE MCU:
+
+* '''void EE_tc2x5_leds_init( void )''': Initialize the 8 boards leds.
+* '''void EE_tc2x5_leds_on( void )''': Turns all the 8 leds.
+* '''void EE_tc2x5_leds_off( void )''': Turns off all the 8 leds.
+* '''void EE_tc2x5_turn_led(enum EE_tc2x5_led_id led_id, enum EE_tc2x5_led_status onoff)''': Turn the status of the led '''led_id''' (led IDs are collected in an enum in the form: '''EE_TRIBOARD_2X5_LED_{x}''' with {x}=[1..8]) on (onoff == '''EE_TRIBOARD_2X5_LED_ON''') or off (onoff == '''EE_TRIBOARD_2X5_LED_OFF''').
+* '''EE_BIT EE_tc2x5_read_button( void ): read external button value
+* '''void EE_tc2x5_button_irq_init( EE_TYPEISR2PRIO intvec )''': Configure the external button has an interrupt source and tie it to '''intvec''' priority handler.
+* '''void EE_tc2x5_button_irq_clear_request( void )''': Clear external button interrupt request.
+
+External button have to be connected to pin P15.8 on TC275TE corrisponding to pin 71 of PERIPHERALS (Xx02,Xx02) connector of TriBoard TC2x5.
+
+= Debugger support =
+
+* [[Lauterbach TRACE32 Support for Infineon Aurix]]
+* [[iSYSTEM winIDEA Support for Infineon Aurix]]
+
+= Multicore Autosar OS Support =
+
+For details please see the following page: [[Erika AUTOSAR OS]]
+
+=== Build Multicore Application Single ELF with HighTec GCC Compiler ===
+
+The conventional ERIKA multicore build chain generate an ELF file for each core and the real application image is loaded on the device by Lauterbach, trought scripts. This approach is not straightforwardly portable on other programmer tools. Fortunately HighTec GCC Compiler has some peculiar features that have allowed us to change this approach, and for TriCore is possible to compile a Multicore Application contained in a single ELF.
+
+To enable this new build method add the following '''EEOPT=EE_BUILD_SINGLE_ELF''' to the project OIL file.
+
+To export some symbols from a core an '''HighTec GCC export file''' is needed. An HighTec export file looks like this:
+
+  EXPORT FUNCTION _START ;
+  EXPORT FUNCTION ErrorHook ;
+  EXPORT FUNCTION StartupHook ;
+  EXPORT FUNCTION ShutdownHook ;
+  
+  EXPORT OBJECT EE_oo_ErrorHook_ServiceID ;
+  EXPORT OBJECT EE_oo_ErrorHook_data ;
+  
+  ...
+
+To inform the build system to use an export file for a given core change the '''COMPILER_TYPE''' field of '''CPU_DATA''' OIL container, in the following way:
+
+  CPU_DATA = TRICORE {
+    ID = "master";
+    ...
+    COMPILER_TYPE = GNU {
+      EXPORT_FILE = "<relative path to the export file>";
+    };
+    ...
+   };  
+
+If this is done add explicitly '''EEOPT=EE_BUILD_SINGLE_ELF''' is no more needed.
+
+'''N.B:''' When used this approach an export files for the master core have to be provided always. The file can be empty if no symbols have to be exported by master core.
+
+This build approach is showed on following RT-Druid TriCore templates:
+
+''tricore/infineon_TriBoard-TC2X5_V2.0/Multicore automatic tests/Multicore System StartUp test''
+
+''tricore/infineon_TriBoard-TC2X5_V2.0/Multicore automatic tests/Multicore Spinlocks test''
+
+= Additional Notes =
+
+Since ERIKA 2.4.0 full AUTOSAR SC4 OS support for AURIX is publically released: you can find all the information about the implemented features and how to configure them at this page: [[Erika AUTOSAR OS]].

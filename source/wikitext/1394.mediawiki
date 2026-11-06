@@ -1,0 +1,36 @@
+The '''MCHP16 Logic''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_logic_truetable.png]]
+| This block implements a Truth table.
+|-
+| [[image:Mchp16_logic_clearbit.png]]
+| This block can be used to clear a bit in the integer input. The bit to clear is specified using the internal parameter.
+|-
+| [[image:Mchp16_logic_setbit.png]]
+| This block can be used to set a bit in the integer input. The bit to clear is specified using the internal parameter.
+|-
+| [[image:Mchp16_logic_upperhalf.png]]
+| This block can be used to extract a set of bits taken from the upper part of the input.
+|-
+| [[image:Mchp16_logic_shift.png]]
+| This block implements an arithmetic shift operation. The number of bits to shift can be specified as internal parameter.
+|-
+| [[image:Mchp16_logic_intmul.png]]
+| This block implements an integer multiplication. The Data type, and the Behavior in case of an overflow (Nothing, Saturate, Error) are specified as internal parameters.
+|-
+| [[image:Mchp16_logic_int8.png]]
+| This block converts an input type to int8. The Input type is specified as internal parameter.
+|-
+| [[image:Mchp16_logic_int16.png]]
+| This block converts an input type to int16. The Input type is specified as internal parameter.
+|-
+| [[image:Mchp16_logic_int32.png]]
+| This block converts an input type to int32. The Input type is specified as internal parameter.
+|-
+|}

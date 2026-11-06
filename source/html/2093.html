@@ -1,0 +1,108 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Standard_Mico32_components_Patches_.28not_necessary_with_Diamond.29"><span class="tocnumber">2</span> <span class="toctext">Standard Mico32 components Patches (not necessary with Diamond)</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Evidence_custom_Mico32_components"><span class="tocnumber">3</span> <span class="toctext">Evidence custom Mico32 components</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Import_custom_Mico32_components_in_LatticeMico_System_Development_Tools"><span class="tocnumber">3.1</span> <span class="toctext">Import custom Mico32 components in LatticeMico System Development Tools</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#ERIKA_and_RT-Druid"><span class="tocnumber">4</span> <span class="toctext">ERIKA and RT-Druid</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Python_and_pySerial_module"><span class="tocnumber">5</span> <span class="toctext">Python and pySerial module</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Installing_Python_on_Windows"><span class="tocnumber">5.1</span> <span class="toctext">Installing Python on Windows</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Install_pySerial_on_Windows"><span class="tocnumber">5.2</span> <span class="toctext">Install pySerial on Windows</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>This page describes a set of steps needed to compile and deploy a platform on FPG-EYE board.
+</p><p>To begin with, following <a href="http://www.latticesemi.com/licensing/index.cfm" class="external text" rel="nofollow">free license softwares from Lattice</a> must be installed in your environment:
+</p>
+<ul><li><a href="http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&amp;document_type=65&amp;sloc=01-01-07-55-23-01&amp;source=sidebar" class="external text" rel="nofollow">ispLEVER</a> or <a href="http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&amp;document_type=65&amp;sloc=01-01-07-55-23-01&amp;source=sidebar" class="external text" rel="nofollow">Diamond</a>
+</li><li><a href="http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&amp;document_type=65&amp;sloc=01-01-07-30&amp;source=sidebar" class="external text" rel="nofollow">ispVM System</a> or the Diamond programmer
+</li><li><a href="http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&amp;document_type=65&amp;sloc=01-01-07-20&amp;source=sidebar" class="external text" rel="nofollow">LatticeMico System Development Tools (aka MSB)</a>
+</li></ul>
+<p>Note:
+</p>
+<ul><li> Each version of ispLEVER or Diamond requires corresponding version of LatticeMico System Development Tools.
+</li><li> 64 bit OSes are not supported by ispLEVER (even though we were able to install it on a 64 bit Windows Vista/7, it is cumbersome).
+</li><li> The ispVM System must be version 18.0 or superior if you use ispLever.
+</li></ul>
+<p>The entire FPG-EYE software has been developed with ispLEVER 8.0 and correspondant LatticeMico System Development Tools. It is assumed that all the tools are installed in the same base directory <b>%ispTOOLS%</b>. The support for Lattice Diamond is also available.
+</p><p>In addition to lattice software you also need:
+</p>
+<ul><li> <a href="http://erika.tuxfamily.org/erika-for-multiple-devices.html" class="external text" rel="nofollow">Evidence RT-Druid software</a> to run ERIKA Enterprise OS on Mico32 softcore
+</li><li> <a href="http://www.python.org/" class="external text" rel="nofollow">Python</a> installation with <a href="http://pyserial.sourceforge.net/" class="external text" rel="nofollow">pySerial module</a> to deploy your application on the FPG-EYE external flash, with Evidence's bootloader Mico32 application.
+</li></ul>
+<h1> <span class="mw-headline" id="Standard_Mico32_components_Patches_.28not_necessary_with_Diamond.29"> Standard Mico32 components Patches (not necessary with Diamond) </span></h1>
+<p>During FPG-EYE software development a few bugs encountered in standard Mico32 components were corrected. These bugs are not present in the Diamond software, but only with ispLever software. If you are using ispLever, you have to patch the component. Namely small bugs in following components:
+</p>
+<ul><li> SPI Flash Controller (Component directory: spi_flash. Verilog files: spi_flash_intf.v wb_intf.v) with version previous to v.1.1
+</li><li> Async SRAM Controller (Componet directory: asram_top. Verilog files: asram_core.v) with version previous to v.1.1
+</li></ul>
+<p>The above mentioned bugs were of ispLEVER version 8.0 components. We are not sure if the same have been fixed in later versions.
+</p><p>Patched verilog files can be found in <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE Software Packet</a>. To apply these patches, you need to copy these new files in their respective components folders.
+</p><p>The base directory for all the components is: 
+</p>
+<pre>
+%ispTOOLS%\micosystem\components
+</pre>
+<p>Patched verilog files for each component must be placed in:
+</p>
+<pre>
+%ispTOOLS%\micosystem\components\&lt;Component directory&gt;\rtl\verilog
+</pre>
+<p>to fix the known bugs.
+</p>
+<h1> <span class="mw-headline" id="Evidence_custom_Mico32_components"> Evidence custom Mico32 components </span></h1>
+<p>FPG-EYE demo application uses a couple of custom Mico32 components: 
+</p>
+<ul><li> Mico32_camera component (used to acquire frames from the cmos camera)
+</li><li> serial_io (used to access programmable DIP switches, LEDs, and peripherals power-off MOSFET switches) 
+</li></ul>
+<p>These components are available in <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE Software Packet</a>, Mico32_camera as component binary, and serial_io directly as source code. The components works whether you use the Lattice Diamond or Lattice ispLever.
+</p><p>To use these components in your platform, they must be imported inside the LatticeMico System Development Tools.
+</p>
+<h2> <span class="mw-headline" id="Import_custom_Mico32_components_in_LatticeMico_System_Development_Tools"> Import custom Mico32 components in LatticeMico System Development Tools </span></h2>
+<p>Open your LatticeMico System Development Tool and on Available Components view click Import/Create custom Component button 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_button.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/60/LatticeMicoSystem_import_button.png" width="200" height="352" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_button.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Available Components view Import/Create button.</div></div></div></div>
+<p>Select radio button Open component XML and load the xml component description file from the FPG-EYE software packet directory (e.g. <b>FPG-EYE_software_packet\wishbone_components\mico32_camera\mico32_camera.xml</b>)
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_evidence_camera_component.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5d/LatticeMicoSystem_import_evidence_camera_component.png" width="200" height="197" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_evidence_camera_component.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import evidence camera component</div></div></div></div>
+<p>In our version of LatticeMico System Development Tools, sometimes for unknown reason, this procedure needs to be repeated more than once.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_result.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e3/LatticeMicoSystem_import_result.png" width="200" height="120" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:LatticeMicoSystem_import_result.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import Evidence custom components result</div></div></div></div>
+<h1> <span class="mw-headline" id="ERIKA_and_RT-Druid"> ERIKA and RT-Druid </span></h1>
+<p><a href="/wiki/index.php?title=Tutorial:_Running_ERIKA_on_Mico32_and_FPG-EYE" title="Tutorial: Running ERIKA on Mico32 and FPG-EYE"> FPG-EYE demo application</a> is an ERIKA application, and to compile this,  
+<a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect"> ERIKA and RT-Druid</a> softwares are required.
+</p>
+<h1> <span class="mw-headline" id="Python_and_pySerial_module"> Python and pySerial module </span></h1>
+<p>To deploy a Mico32 application on the FPG-EYE external flash, Evidence provides a dedicated bootloader for FPG-EYE XP2. To interact with this bootloader, a python script is available with <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG_EYE Software Packet</a>. This python script has been written and tested on a python 2.x environment.
+</p>
+<h2> <span class="mw-headline" id="Installing_Python_on_Windows"> Installing Python on Windows </span></h2>
+<p>Python can be installed on a windows machine in two different ways:
+</p>
+<ul><li> as native.
+</li><li> under cygwin.
+</li></ul>
+<p>To install the native one just download the correct <a href="http://www.python.org/download/" class="external text" rel="nofollow">installer</a> and run it. If you want the cygwin version, just run the cygwin setup application and select python package.
+</p>
+<h2> <span class="mw-headline" id="Install_pySerial_on_Windows"> Install pySerial on Windows </span></h2>
+<p>If you have installed the native version of python, download the <a href="http://pypi.python.org/pypi/pyserial" class="external text" rel="nofollow">pySerial installer</a> and run it.
+The easy way to install the pySerial module on cygwin is to install <a href="http://pypi.python.org/pypi/setuptools" class="external text" rel="nofollow">python setuptools</a> first by running <a href="http://peak.telecommunity.com/dist/ez_setup.py" class="external text" rel="nofollow">this script</a> in a Cygwin shell, and then, after the installation of the setuptools, just type:
+</p>
+<pre>
+easy_install pyserial
+</pre>
+<p>The setuptools will automatically select the right version of the module for your environment.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 51/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

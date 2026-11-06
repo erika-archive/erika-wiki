@@ -1,0 +1,26 @@
+In the [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE software packet] you can find the ''test_hw.jed'' file. With this file is possible test all hardware device present on the FPG-EYE board. 
+
+* leds
+* boot flash
+* sram
+* sdram
+* rtc
+* light sensor
+* ethernet
+* camera
+
+== Programming ''test_hw'' in the FPG-EYE ==
+
+Once the file is extracted from [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE software packet] you have to program the ''test_hw.jed'' in the board. The instructions are on [[Programming the FPG-EYE board]] section.
+
+== FPG-EYE test ==
+
+The result of the tests is written on the RS232 port. So the FPG-EYE must be connected via serial cable to a PC where is running a serial program communication like HyperTerminal, putty, GTerminal etc. The output of the test on working board is something like the follow figure:
+
+[[File:test_working_fpg_eye.png|center|thumb|350px| FPG-EYE test ok]]
+
+In this figure is present a hardware bug (we removed the ethernet module):
+
+[[File:test_no_working_fpg_eye.png|center|thumb|350px| FPG-EYE test ok]]
+
+Whenever the test of board reports an error you can try to turn off and then some minutes turn on the power supply. If the test reports again the bug please contact [http://www.evidence.eu.com/ Evidence S.r.l.].

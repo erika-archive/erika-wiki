@@ -1,0 +1,313 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Cal demo clean project.png</title>
+    <id>1763</id>
+    <revision>
+      <id>2392</id>
+      <timestamp>2011-02-08T14:15:38Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to clean a project</comment>
+      <text xml:space="preserve">This screenshot shows how to clean a project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo compilation successful.png</title>
+    <id>1762</id>
+    <revision>
+      <id>2390</id>
+      <timestamp>2011-02-08T14:12:55Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the results of a correct building process.</comment>
+      <text xml:space="preserve">This screenshot shows the results of a correct building process.</text>
+    </revision>
+    <revision>
+      <id>2518</id>
+      <timestamp>2011-02-14T09:48:23Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Cal demo compilation successful.png]]&quot;:&amp;#32;This screenshot shows the results of a correct building process</comment>
+      <text xml:space="preserve">This screenshot shows the results of a correct building process.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal demo project created.png</title>
+    <id>1769</id>
+    <revision>
+      <id>2515</id>
+      <timestamp>2011-02-14T08:54:37Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the files you will find once created a new cal_demo project</comment>
+      <text xml:space="preserve">This screenshot shows the files you will find once created a new cal_demo project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal project.png</title>
+    <id>1801</id>
+    <revision>
+      <id>2729</id>
+      <timestamp>2011-02-24T10:57:20Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Cal project without FPG-EYE'a System Actors</comment>
+      <text xml:space="preserve">Cal project without FPG-EYE'a System Actors</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal project wrapper.png</title>
+    <id>1823</id>
+    <revision>
+      <id>2756</id>
+      <timestamp>2011-02-24T11:37:15Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Cal Project with wrapper and FPG-EYE System Actors</comment>
+      <text xml:space="preserve">Cal Project with wrapper and FPG-EYE System Actors</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Cal project wrapper pll rst.png</title>
+    <id>1824</id>
+    <revision>
+      <id>2760</id>
+      <timestamp>2011-02-24T13:58:56Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Wrapper with Pll and Reset.</comment>
+      <text xml:space="preserve">Wrapper with Pll and Reset.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Calibration.png</title>
+    <id>1595</id>
+    <revision>
+      <id>1884</id>
+      <timestamp>2010-01-11T10:55:37Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1885</id>
+      <timestamp>2010-01-11T10:56:05Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Calibration.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Camera.png</title>
+    <id>1776</id>
+    <revision>
+      <id>2583</id>
+      <timestamp>2011-02-15T10:41:40Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>System Actor Camera structure</comment>
+      <text xml:space="preserve">System Actor Camera structure</text>
+    </revision>
+    <revision>
+      <id>2703</id>
+      <timestamp>2011-02-21T11:03:49Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Camera.png]]&quot;</comment>
+      <text xml:space="preserve">System Actor Camera structure</text>
+    </revision>
+    <revision>
+      <id>2704</id>
+      <timestamp>2011-02-21T11:04:53Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Camera.png]]&quot;</comment>
+      <text xml:space="preserve">System Actor Camera structure</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Camera 50 from ispLever ide.png</title>
+    <id>2107</id>
+    <revision>
+      <id>3609</id>
+      <timestamp>2011-10-04T10:25:15Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Camera component mod in ispLever directory.png</title>
+    <id>2109</id>
+    <revision>
+      <id>3618</id>
+      <timestamp>2011-10-04T14:50:04Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Camera component ngo in diamond.png</title>
+    <id>2174</id>
+    <revision>
+      <id>4085</id>
+      <timestamp>2011-11-07T15:14:09Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4086</id>
+      <timestamp>2011-11-07T15:16:48Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Camera component ngo in diamond.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Camera component ngo in ispLever.png</title>
+    <id>2167</id>
+    <revision>
+      <id>4058</id>
+      <timestamp>2011-11-07T14:06:16Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Can cfg.png</title>
+    <id>2079</id>
+    <revision>
+      <id>3442</id>
+      <timestamp>2011-09-28T11:00:14Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Can in.png</title>
+    <id>1553</id>
+    <revision>
+      <id>1825</id>
+      <timestamp>2010-01-07T14:40:24Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3434</id>
+      <timestamp>2011-09-28T10:41:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Can in.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Can multibus.PNG</title>
+    <id>2151</id>
+    <revision>
+      <id>3974</id>
+      <timestamp>2011-10-27T11:25:17Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Can out.png</title>
+    <id>1554</id>
+    <revision>
+      <id>1826</id>
+      <timestamp>2010-01-07T14:40:40Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3435</id>
+      <timestamp>2011-09-28T10:42:18Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Can out.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

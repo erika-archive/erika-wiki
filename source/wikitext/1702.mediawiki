@@ -1,0 +1,29 @@
+This page contains online material, notes and photos about the topics presented in the ScicosLab Training course in Malaysia.
+
+The course has been done by [[http://www.tritytech.com/ Trity Technologies]], which is a company making training in malaysia about model based design including ScicosLab, and the ScicosLab-FLEX toolbox
+
+= Course material =
+
+== Course link ==
+
+* [http://www.tritytech.com/emailC/ScilabControl1day.htm ScicosLab Course November 2010 - Malaysia]
+
+== Course Material and examples (original version) ==
+
+Local mirror
+* [http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments.pdf ScicosLab slides - Open loop Motor Position, System Identification for DC Motor Position, Controller Design, Controller implementation and verification]
+* [http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments_Files.zip ScicosLab examples material]
+
+Original version
+* [http://www.tritytech.com/download/FLEX%20Experiments.pdf ScicosLab slides - Open loop Motor Position, System Identification for DC Motor Position, Controller Design, Controller implementation and verification]
+* [http://www.tritytech.com/download/FLEX%20Experiments%20Files.zip ScicosLab examples material]
+
+== Course Material and examples - updated 2011-01-28 ==
+
+Local mirror
+* [http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_v2.pdf ScicosLab slides - Open loop Motor Position, System Identification for DC Motor Position, Controller Design, Controller implementation and verification]
+* [http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_Files_v2.zip ScicosLab examples material]
+
+Original version
+* [http://www.tritytech.com/download/FLEX%20Experiments%20v2.pdf ScicosLab slides - Open loop Motor Position, System Identification for DC Motor Position, Controller Design, Controller implementation and verification, Speed control]
+* [http://www.tritytech.com/download/FLEX%20Experiments%20Files%20v2.zip ScicosLab examples material]

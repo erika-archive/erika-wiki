@@ -1,0 +1,19 @@
+= Compile & Run example under MPLAB IDE =
+
+To compile and run the example you should use [http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en019469&part=SW007002 MPLAB IDE] v8.66 or later and follow these steps:
+    
+# Create a project directory and put all Easylab Library files inside (easylab.h, easylab.c, main.c).
+# Open MPLAB IDE and start a new Project Wizard ([MAIN MENU] Project-> [ITEM] Project Wizard...). Following steps are made inside wizard procedure.
+# Connect your Easylab with supply-communication cable and connect you microstick board with programmer cable to your computer
+# select dsPIC33FJ64MC802 as target device ([Main Menu] Configure -> Select Device...)
+# Choose your Toolsuite (Microchip C30 Toolsuite), eventually give the path to the tools if MPLAB IDE is not able to found them by it self.
+# Create a new Project file browsing for the previously created project directory and giving a name to project file in "Save Project As" dialog.
+# Add all Easylab Library files at your project.
+# After click next until the end of wizard you could uncomment all needed compile defines at begin of easylab.h file or add them to your project build options ([Project CONTEXT MENU] (right click on the project) -> [ITEM] Build Options... -> [TAB] MPLAB C30 ->[GROUP] Preprocessr Macros -> [BUTTON] Add) .
+# Build your project  ([Project CONTEXT MENU] -> [ITEM] Build All).
+# Select Starter Kits programmer ([MAIN MENU] Programmer -> [SUB MENU] Select Programmer -> [ITEM] Starter Kits)
+# Open a Serial Terminal (e.g. Putty.exe, HTerm.exe). Configure the port, baud rate (115200),data bits(8 bit), stop bits (1 bit) and parity bits (none). DON'T enable CTS. Connet to the channel.
+# Program your board ([MAIN TOLLBAR] ->[BUTTON] Program (It should have been appeared after you selected the programmer))
+# Enjoy the kitt effect and a nice stadium choir. :)
+# Look at your serial teminal, you should get the example instruction on the console.
+# Have fun with it. :D

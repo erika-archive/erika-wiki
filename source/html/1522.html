@@ -1,0 +1,36 @@
+<h3> <span class="mw-headline" id="Reference_test"> Reference test </span></h3>
+<p><tt>examples/s12xs/porting_examples/multistack/EEtest0</tt>
+</p>
+<h3> <span class="mw-headline" id="Description"> Description </span></h3>
+<ul><li> The goal of this test is to activate two tasks that share the same stack to test the internal function ready2stacked in MULTISTACK case. To configure the task set we change the files eecfg.h and eecfg.c located inside the Debug folder (the basic structure is inspired to the Microchip PIC30 port) and the makefile. At the end of the porting the task set configuration will be deducted from the .oil file.
+</li></ul>
+<ul><li> Finally, we created inside the <tt>EEtest0</tt> a C file with a main() function. That function explicitly calls ActivateTask inside an infinite cycle. Please note that this small application can be executed to test, in a particualar case, the behavior of the kernel internal function ready2stacked and also the compilation chain. The kernel functions must be linked and used without problems resulting in an fully linked executable file.
+</li></ul>
+<ul><li>Note1: At this point we have to write the internal function: <tt>EE_s12xs_hal_ready2stacked</tt> located in the source file "ee_hal.S" at the path <tt>ee\pkg\cpu\cosmic_hs12xs\src</tt>.
+<ul><li> the function <tt>EE_s12xs_hal_ready2stacked</tt> is used to:
+<ul><li> call the threads and change the stacks properly. 
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li>In the reference test <tt>examples/s12xs/porting_examples/multistack/EEtest6</tt> we'll test the internal function <tt>EE_s12xs_hal_stkchange</tt>. 
+<ul><li> This function can be found in the same file "ee_hal.S" and is used to:
+<ul><li> change the stack to resume a stacked thread.
+</li></ul>
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Expected_output"> Expected output </span></h3>
+<p>When everything is done in the right way, with the following commands we can have the executable file:
+</p>
+<ul><li> open a Cygwin shell
+</li><li> <tt>cd</tt> into the <tt>Debug</tt> directory
+</li><li> the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+</li></ul>
+<p>To simulate the application we can use directly the hardware or a "good" software debugger.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

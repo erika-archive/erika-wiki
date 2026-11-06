@@ -1,0 +1,934 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Registers_of_the_mico32_camera"><span class="tocnumber">2</span> <span class="toctext">Registers of the mico32_camera</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#C_code_example_to_read_a_value_from_register"><span class="tocnumber">2.1</span> <span class="toctext">C code example to read a value from register</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#C_code_example_to_write_a_value_to_register"><span class="tocnumber">2.2</span> <span class="toctext">C code example to write a value to register</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Registers_description"><span class="tocnumber">3</span> <span class="toctext">Registers description</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#ADDR_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00.2C_reset:_0x00000000.29"><span class="tocnumber">3.1</span> <span class="toctext">ADDR register (dim: 32 bits, type: R/W, offset: 0x00, reset: 0x00000000)</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#STATE_register_.28dim:_32_bits.2C_type:_R.2C_offset:_0x04.29"><span class="tocnumber">3.2</span> <span class="toctext">STATE register (dim: 32 bits, type: R, offset: 0x04)</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#FLAG_register_.28dim:_32_bits.2C_type:_R.2C_offset:_0x08.29"><span class="tocnumber">3.3</span> <span class="toctext">FLAG register (dim: 32 bits, type: R, offset: 0x08)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Bit_SIZE_ERR_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000004.2C_reset:_0.29"><span class="tocnumber">3.3.1</span> <span class="toctext">Bit SIZE_ERR (dim: 1 bit, type: R, mask: 0x00000004, reset: 0)</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Bit_ERR_FLAG_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000002.2C_reset:_0.29"><span class="tocnumber">3.3.2</span> <span class="toctext">Bit ERR_FLAG (dim: 1 bit, type: R, mask: 0x00000002, reset: 0)</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Bit_IF_FLAG_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000001.2C_reset:_0.29"><span class="tocnumber">3.3.3</span> <span class="toctext">Bit IF_FLAG (dim: 1 bit, type: R, mask: 0x00000001, reset: 0)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#CNTR1_register_.28dim:_32_bits.2C_type:_W.2C_offset:_0x0000000C.29"><span class="tocnumber">3.4</span> <span class="toctext">CNTR1 register (dim: 32 bits, type: W, offset: 0x0000000C)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Bit_CNTR_START_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000001.2C_reset:_-.29"><span class="tocnumber">3.4.1</span> <span class="toctext">Bit CNTR_START (dim: 1 bit, type: W, mask: 0x00000001, reset: -)</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Bit_IF_RESET_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000002.2C_reset:_-.29"><span class="tocnumber">3.4.2</span> <span class="toctext">Bit IF_RESET (dim: 1 bit, type: W, mask: 0x00000002, reset: -)</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Bit_CNTR_RST_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000004.2C_reset:_-.29"><span class="tocnumber">3.4.3</span> <span class="toctext">Bit CNTR_RST (dim: 1 bit, type: W, mask: 0x00000004, reset: -)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#CNTR2_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000010.29"><span class="tocnumber">3.5</span> <span class="toctext">CNTR2 register (dim: 32 bits, type: R/W, offset: 0x00000010)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#Bit_IE_FLAG_.28dim:_1_bit.2C_type:_R.2FW.2C_mask:_0x00000001.2C_reset:_0.29"><span class="tocnumber">3.5.1</span> <span class="toctext">Bit IE_FLAG (dim: 1 bit, type: R/W, mask: 0x00000001, reset: 0)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#DIV_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000014.29"><span class="tocnumber">3.6</span> <span class="toctext">DIV register (dim: 32 bits, type: R/W, offset: 0x00000014)</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#COUNT_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000018.29"><span class="tocnumber">3.7</span> <span class="toctext">COUNT register (dim: 32 bits, type: R/W, offset: 0x00000018)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#How_the_mico32_camera_works"><span class="tocnumber">4</span> <span class="toctext">How the mico32_camera works</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Simple_C_code_for_manager_mico32_camera"><span class="tocnumber">5</span> <span class="toctext">Simple C code for manager mico32_camera</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Introduction"> Introduction </span></h2>
+<p>This document is for programmers for writes drivers based on <i>mico32_camera</i> wishbone component. In the document examples we will refer camera values like follow figure:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Platform_with_camera.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/86/Platform_with_camera.png" width="200" height="117" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Platform_with_camera.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>mico32_camera</i> values in the platform</div></div></div></div>
+<h2> <span class="mw-headline" id="Registers_of_the_mico32_camera"> Registers of the <i>mico32_camera</i> </span></h2>
+<p>Following registers are visible by the program:
+</p>
+<table class="wikitable">
+
+<tr>
+<th> Register Name
+</th><th> Offset
+</th><th> Num. Bits
+</th><th> Type
+</th></tr>
+<tr>
+<td> ADDR
+</td><td> 0x0
+</td><td> 32
+</td><td> R/W
+</td></tr>
+<tr>
+<td> STATE
+</td><td> 0x04
+</td><td> 32
+</td><td> R
+</td></tr>
+<tr>
+<td> FLAG
+</td><td> 0x08
+</td><td> 32
+</td><td> R
+</td></tr>
+<tr>
+<td> CNTR1
+</td><td> 0x0C
+</td><td> 32
+</td><td> W
+</td></tr>
+<tr>
+<td> CNTR2
+</td><td> 0x10
+</td><td> 32
+</td><td> R/W
+</td></tr>
+<tr>
+<td> DIV
+</td><td> 0x14
+</td><td> 32
+</td><td> R/W
+</td></tr>
+<tr>
+<td> COUNT
+</td><td> 0x18
+</td><td> 32
+</td><td> R/W
+</td></tr></table>
+<p>All register are 32 bits. Some registers are read-only (<i>STATE</i> and <i>FLAG</i>), only one register is write-only (<i>CNTR1</i>), the remaining registers are read-write (<i>ADDR</i>, <i>CNTR2</i>, <i>DIV</i> and <i>COUNT</i>). In our example will use the follow mico32_camera register structure:
+</p>
+<pre>/* Camera controller registers */
+typedef struct st_MicoCamera{
+     void* volatile addr;
+     volatile unsigned int state;
+     volatile unsigned int flag;
+     volatile unsigned int cntr1;
+     volatile unsigned int cntr2;
+     volatile unsigned int div;
+     volatile unsigned int count;
+} MicoCamera_t;
+</pre>
+<h3> <span class="mw-headline" id="C_code_example_to_read_a_value_from_register"> C code example to read a value from register </span></h3>
+<p>To get a register value (<i>ADDR</i>, <i>STATE</i>, <i>FLAG</i>, <i>CNTR2</i>, <i>DIV</i> and <i>COUNT</i>):
+</p>
+<pre>/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF    0x00000000
+#define STATE_OFF   0x00000004
+#define FLAG_OFF    0x00000008
+#define CNTR2_OFF   0x00000010
+#define DIV_OFF     0x00000014
+#define COUNT_OFF   0x00000018
+  
+int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register = (CAMERA_BASE_ADDRESS + COUNT_OFF);
+     unsigned long count_value;
+     ...
+     
+     /* Read count register. */
+     count_value = *register;     
+
+     ...      
+     return 0;
+}
+</pre>
+<h3> <span class="mw-headline" id="C_code_example_to_write_a_value_to_register"> C code example to write a value to register </span></h3>
+<p>To set a register value (<i>ADDR</i>, <i>CNTR1</i>, <i>DIV</i> and <i>COUNT</i>):
+</p>
+<pre>#define ADDR_VALUE  0x00010000
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF    0x00000000
+#define STATE_OFF   0x00000004
+#define FLAG_OFF    0x00000008
+#define CNTR2_OFF   0x00000010
+#define DIV_OFF     0x00000014
+#define COUNT_OFF   0x00000018
+  
+int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register = (CAMERA_BASE_ADDRESS + ADDR_OFF);
+     ...
+
+     /* Write addr register. */
+     *register = ADDR_VALUE;     
+
+     ...
+     return 0;
+}
+</pre>
+<h2> <span class="mw-headline" id="Registers_description"> Registers description </span></h2>
+<p>The mico32_camera has seven registers. The functionality of each register is as described below.
+</p>
+<h3> <span class="mw-headline" id="ADDR_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00.2C_reset:_0x00000000.29"> <i>ADDR</i> register (dim: <i>32 bits</i>, type: <i>R/W</i>, offset: <i>0x00</i>, reset: <i>0x00000000</i>) </span></h3>
+<p>When <i>mico32_camera</i> starts a new image acquisition, it stores the streaming camera data (<i>32 bits</i> at time) in the memory. After every data write in memory, the <i>mico32_camera</i> increments the internal pointer for next data write. The address base where the data writing begins is written in <i>ADDR</i> register. 
+</p>
+<table class="wikitable">
+<caption>ADDR register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> ADDR31
+</td><td> ADDR30
+</td><td> ...
+</td><td> ADDR2
+</td><td> ADDR1
+</td><td> ADDR0
+</td></tr></table>
+<p>Example code:
+</p>
+<pre>  #define ADDR_VALUE  0x00010000
+  /* Offsets mico32_camera resister from address_base */ 
+  #define ADDR_OFF    0x00000000
+  #define STATE_OFF   0x00000004
+  #define FLAG_OFF    0x00000008
+  #define CNTR2_OFF   0x00000010
+  #define DIV_OFF     0x00000014
+  #define COUNT_OFF   0x00000018
+ 
+  int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register = (CAMERA_BASE_ADDRESS + ADDR_OFF);
+     ...
+     /* Write addr register. */
+     *register = ADDR_VALUE;     
+     ...
+     return 0;
+  }
+</pre>
+<h3> <span class="mw-headline" id="STATE_register_.28dim:_32_bits.2C_type:_R.2C_offset:_0x04.29"> <i>STATE</i> register (dim: <i>32 bits</i>, type: <i>R</i>, offset: <i>0x04</i>) </span></h3>
+<p>The <i>STATE</i> register stores <i>mico32_component's</i> internal state information:
+</p>
+<table class="wikitable">
+<caption>STATE register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit3
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> -
+</td><td> -
+</td><td> ...
+</td><td> -
+</td><td> STATE2
+</td><td> STATE1
+</td><td> STATE0
+</td></tr></table>
+<p>Bits <i>STATE2</i>, <i>STATE1</i> and <i>STATE0</i> (<i>STATE_S</i>) (dim: <i>3 bits</i>, type: <i>R</i>, offset: <i>0x00</i>, reset: <i>000</i>). Returns the state of the component.
+</p>
+<dl><dd><ol><li><i>000 =&gt; Reset</i>
+</li><li><i>001 =&gt; Idle</i>
+</li><li><i>010 =&gt; Waiting First</i>
+</li><li><i>011 =&gt; Waiting Next</i>
+</li><li><i>100 =&gt; Copying</i>
+</li><li><i>101 =&gt; Copying Last</i>
+</li></ol>
+</dd></dl>
+<p>Example code:
+</p>
+<pre>/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF    0x00000000
+#define STATE_OFF   0x00000004
+#define FLAG_OFF    0x00000008
+#define CNTR2_OFF   0x00000010
+#define DIV_OFF     0x00000014
+#define COUNT_OFF   0x00000018
+
+/* mico32_camera states */
+#define RESET          0
+#define IDLE           1
+#define WAITING_FIRST  2
+#define WAITING_NEXT   3
+#define COPYING        4
+#define COPYING_LAST   5
+  
+int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register = (CAMERA_BASE_ADDRESS + STATE_OFF);
+     unsigned long state;
+
+     ...
+     /* Waiting IDLE mico32_camera state */
+     do {
+
+          /* Read mico32_component's state */
+          state = *register;
+
+     } while (state&nbsp;!= IDLE);
+     
+     ...
+     return 0;
+
+}
+</pre>
+<h3> <span class="mw-headline" id="FLAG_register_.28dim:_32_bits.2C_type:_R.2C_offset:_0x08.29"> <i>FLAG</i> register (dim: <i>32 bits</i>, type: <i>R</i>, offset: <i>0x08</i>) </span></h3>
+<p>The <i>FLAG</i> register is composed of&nbsp;:
+</p>
+<table class="wikitable">
+<caption>STATE register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> -
+</td><td> -
+</td><td> ...
+</td><td> -
+</td><td> SIZE_ERR
+</td><td> ERR_FLAG
+</td><td> IF_FLAG
+</td></tr></table>
+<h4> <span class="mw-headline" id="Bit_SIZE_ERR_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000004.2C_reset:_0.29"> Bit <i>SIZE_ERR</i> (dim: <i>1 bit</i>, type: <i>R</i>, mask: <i>0x00000004</i>, reset: <i>0</i>) </span></h4>
+<p>If the image's size in bytes is different from the value register count, this bit is set. The control is turned off when the value register count is set to 0 (zero).
+</p><p>Example code:
+</p>
+<pre>#define MASK_SIZE_ERR 0x00000004
+
+/* Size image: 640x480 colors (2 byte).
+#define IMAGE_SIZE    (640*480*2)
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF      0x00000000
+#define STATE_OFF     0x00000004
+#define FLAG_OFF      0x00000008
+#define CNTR2_OFF     0x00000010
+#define DIV_OFF       0x00000014
+#define COUNT_OFF     0x00000018
+  
+int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register_count = (CAMERA_BASE_ADDRESS + COUNT_OFF);
+     unsigned long *register_flag = (CAMERA_BASE_ADDRESS + FLAG_OFF);
+     unsigned long bit_size_err;
+
+     ...
+     /* With a write in count register we enable the image size control. */
+     *register_count = IMAGE_SIZE;
+
+     ...
+     /* Capture an image */
+
+     ...
+     /* Read bit SIZE_ERR */
+     bit_size_err = *register_flag &amp; MASK_SIZE_ERR;
+
+     if (bit_size_err) {
+
+           /* There was a size error */
+           ...
+
+     } else {
+
+           /* There was not size error */
+           ...
+            
+     }
+     
+     ...
+     return 0;
+}
+</pre>
+<h4> <span class="mw-headline" id="Bit_ERR_FLAG_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000002.2C_reset:_0.29"> Bit <i>ERR_FLAG</i> (dim: <i>1 bit</i>, type: <i>R</i>, mask: <i>0x00000002</i>, reset: <i>0</i>) </span></h4>
+<p>If there was a Wishbone error (wire <i>w_err</i> on Wishbone bus) or an overflow in the <i>Master</i> FIFO this Flag is set high. The Flag will be reset when new frame starts.
+</p><p>Example code:
+</p>
+<pre>#define MASK_FLAG_ERR 0x00000002
+
+/* Size image: 640x480 colors (2 byte).
+#define IMAGE_SIZE    (640*480*2)
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF      0x00000000
+#define STATE_OFF     0x00000004
+#define FLAG_OFF      0x00000008
+#define CNTR2_OFF     0x00000010
+#define DIV_OFF       0x00000014
+#define COUNT_OFF     0x00000018
+  
+int main(void) {
+  
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register_flag = (CAMERA_BASE_ADDRESS + FLAG_OFF);
+     unsigned long bit_err_flag;
+
+     ...
+     /* Capture an image */
+     ...
+
+     /* Read bit ERR_FLAG */
+     bit_err_flag = *register_flag &amp; MASK_ERR_FLAG;
+
+     /* Was there an error&nbsp;?
+     if (bit_err_flag) {
+
+           /* There was a error on wishbone and/or overflow data fifo */
+           ...
+ 
+     } else {
+
+           /* There was not error */
+           ...
+     }
+
+     ...
+     return 0;
+}
+</pre>
+<h4> <span class="mw-headline" id="Bit_IF_FLAG_.28dim:_1_bit.2C_type:_R.2C_mask:_0x00000001.2C_reset:_0.29"> Bit <i>IF_FLAG</i> (dim: <i>1 bit</i>, type: <i>R</i>, mask: <i>0x00000001</i>, reset: <i>0</i>) </span></h4>
+<p>It is set at the end of an acquisition. In other words, when a frame has been completely written in the memory the flag change value from 0 logic to 1 logic. The Flag will be reset when new frame starts.
+</p>
+<dl><dd><ol><li><i>from 0 to 1</i> =&gt; The <i>mico32_camera</i> switches from <i>Writing Last</i> state to <i>Idle</i> state or from <i>Writing</i> state to <i>Waiting Next</i> state. If <i>IE_FLAG = 1'b1</i> an interrupt is raised.
+</li><li><i>0</i> =&gt; No frame has been completed.
+</li></ol>
+</dd></dl>
+<p>Example code (we are waiting the end image capture polling on bit <i>IF_FLAG</i>):
+</p>
+<pre>#define MASK_IF_FLAG  0x00000001
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF      0x00000000
+#define STATE_OFF     0x00000004
+#define FLAG_OFF      0x00000008
+#define CNTR2_OFF     0x00000010
+#define DIV_OFF       0x00000014
+#define COUNT_OFF     0x00000018
+  
+int main(void) {
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register_flag = (CAMERA_BASE_ADDRESS + FLAG_OFF);
+     unsigned long bit_if_flag;
+
+     ...
+     /* Start capture image */
+     ...
+
+     /* Read bit IF_FLAG for end capture */
+     do {
+
+           ...
+           bit_if_flag = *register_flag &amp; MASK_IF_FLAG;
+           ...
+
+     } while (!bit_if_flag);
+
+     ...
+     return 0;
+
+}
+</pre>
+<h3> <span class="mw-headline" id="CNTR1_register_.28dim:_32_bits.2C_type:_W.2C_offset:_0x0000000C.29"> <i>CNTR1</i> register (dim: <i>32 bits</i>, type: <i>W</i>, offset: <i>0x0000000C</i>) </span></h3>
+<p>This register has three bits:
+</p>
+<table class="wikitable">
+<caption>CNTR1 register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> -
+</td><td> -
+</td><td> ...
+</td><td> CNTR_RST
+</td><td> IF_RESET
+</td><td> CNTR_S
+</td></tr></table>
+<h4> <span class="mw-headline" id="Bit_CNTR_START_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000001.2C_reset:_-.29"> Bit <i>CNTR_START</i> (dim: <i>1 bit</i>, type: <i>W</i>, mask: <i>0x00000001</i>, reset: <i>-</i>) </span></h4>
+<dl><dd><ol><li>When the programmer writes <i>1 logic</i> in this bit the component starts an new acquisition.
+</li></ol>
+</dd></dl>
+<p>Example code:
+</p>
+<pre>#define MASK_CNTR_START  0x00000001
+  
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+  
+int main(void) {
+     
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+     ...
+     
+     /* Start capture image */
+     *register_cntr1 = MASK_CNTR_START;
+     
+     /* Read bit IF_FLAG for end capture */
+     do {
+       
+           ...
+           /* Polling bit IF_FLAG from FLAg register.
+           bit_if_flag = *register_flag &amp; MASK_IF_FLAG;
+       
+     } while (!bit_if_flag);
+
+     ...
+     return 0;
+  }
+</pre>
+<h4> <span class="mw-headline" id="Bit_IF_RESET_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000002.2C_reset:_-.29"> Bit <i>IF_RESET</i> (dim: <i>1 bit</i>, type: <i>W</i>, mask: <i>0x00000002</i>, reset: <i>-</i>) </span></h4>
+<dl><dd><ol><li>The programmer writes “1” logic for acknowledge interrupt.
+</li></ol>
+</dd></dl>
+<p>Example code:
+</p>
+<pre>#define MASK_CNTR_START  0x00000001
+#define MASK_IF_RESET    0x00000002
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+
+/* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+unsigned long *register_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+
+/* Prototype Interrupt handler end image acquisition */
+void frame_isr(void);
+  
+int main(void) {
+
+     /* Record handler camera interrupt 
+        See: LatticeMico32 Software Developer User Guide, on Lattice Semiconductor Web site
+        Enable Mico32 external interrupt (in this case from mico32_camera). 
+     */
+     MicoEnableInterrupt(mico32_camera_irq);	
+     MicoRegisterISR(mico32_camera_irq, NULL, frame_isr);
+
+     ...
+     /* Start capture image */
+     *register_cntr1 = MASK_CNTR_START;
+
+     ...
+     return 0;
+}
+
+/* Interrupt handler end image acquisition */
+void frame_isr(void) {
+
+     ...
+     /* Acknowledge interrupt */
+     *register_cntr1 = MASK_IF_RESET;
+
+     ...
+    
+}
+</pre>
+<h4> <span class="mw-headline" id="Bit_CNTR_RST_.28dim:_1_bit.2C_type:_W.2C_mask:_0x00000004.2C_reset:_-.29"> Bit <i>CNTR_RST</i> (dim: <i>1 bit</i>, type: <i>W</i>, mask: <i>0x00000004</i>, reset: <i>-</i>) </span></h4>
+<dl><dd><ol><li>If the programmer writes <i>1 logic</i> in this bit, the component switches to <i>Reset</i> state.
+</li></ol>
+</dd></dl>
+<p>Example code:
+</p>
+<pre>#define MASK_CNTR_RST    0x00000004
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+ 
+int main(void) {
+
+     /* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+     unsigned long *register_state = (CAMERA_BASE_ADDRESS + STATE_OFF);
+     unsigned long *register_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+     unsigned lond state;
+  
+     /* Reset mico32_camera */
+     *register_cntr1 = MASK_CNTR_RST;
+
+     /* Waiting IDLE mico32_camera state */
+     do {
+    
+           state = *register_state;
+           ...
+
+     } while (state&nbsp;!= IDLE);  
+
+  ...
+  return 0;
+}
+</pre>
+<h3> <span class="mw-headline" id="CNTR2_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000010.29"> <i>CNTR2</i> register (dim: <i>32 bits</i>, type: <i>R/W</i>, offset: <i>0x00000010</i>) </span></h3>
+<p>This register has one bit:
+</p>
+<table class="wikitable">
+<caption>CNTR2 register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> -
+</td><td> -
+</td><td> ...
+</td><td> -
+</td><td> -
+</td><td> IE_FLAG
+</td></tr></table>
+<h4> <span class="mw-headline" id="Bit_IE_FLAG_.28dim:_1_bit.2C_type:_R.2FW.2C_mask:_0x00000001.2C_reset:_0.29"> Bit <i>IE_FLAG</i> (dim: <i>1 bit</i>, type: <i>R/W</i>, mask: <i>0x00000001</i>, reset: <i>0</i>) </span></h4>
+<dl><dd><ol><li>The programmer writes “1” logic for interrupt camera enable (mico32_camera is enabled to send an interrupt).
+</li></ol>
+</dd></dl>
+<p>Example code:
+</p>
+<pre>#define MASK_IE_FLAG     0x00000001
+#define MASK_CNTR_START  0x00000001
+#define MASK_IF_RESET    0x00000002
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+
+/* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+unsigned long *register_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+unsigned long *register_cntr2 = (CAMERA_BASE_ADDRESS + CNTR2_OFF);
+
+/* Prototype Interrupt handler end image acquisition */
+void frame_isr(void);
+  
+int main(void) {
+
+     /* Record handler camera interrupt 
+        See: LatticeMico32 Software Developer User Guide, on Lattice Semiconductor Web site
+        Enable Mico32 external interrupt (in this case from mico32_camera). 
+     */
+     MicoEnableInterrupt(mico32_camera_irq);	
+     MicoRegisterISR(mico32_camera_irq, NULL, frame_isr);
+
+     /* mico32_camera is enabled to send an interrupt */
+     *register_cntr2 = MASK_IE_FLAG;
+
+     ...
+     /* Start capture image */
+     *register_cntr1 = MASK_CNTR_START;
+
+     ...
+     return 0;
+}
+
+/* Interrupt handler end image acquisition */
+void frame_isr(void) {
+
+     ...
+     /* Acknowledge interrupt */
+     *register_cntr1 = MASK_IF_RESET;
+
+     ...    
+}
+</pre>
+<h3> <span class="mw-headline" id="DIV_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000014.29"> <i>DIV</i> register (dim: <i>32 bits</i>, type: <i>R/W</i>, offset: <i>0x00000014</i>) </span></h3>
+<table class="wikitable">
+<caption>DIV register
+</caption><tr>
+<th> Bit31
+</th><th> Bit30
+</th><th> ...
+</th><th> Bit8
+</th><th> Bit7
+</th><th> Bit6
+</th><th> Bit5
+</th><th> Bit4
+</th><th> Bit3
+</th><th> Bit2
+</th><th> Bit1
+</th><th> Bit0
+</th></tr>
+<tr>
+<td> -
+</td><td> -
+</td><td> ...
+</td><td> -
+</td><td> DIV7
+</td><td> DIV6
+</td><td> DIV5
+</td><td> DIV4
+</td><td> DIV3
+</td><td> DIV2
+</td><td> DIV1
+</td><td> DIV0
+</td></tr></table>
+<p>This register set the period clock to mico32_camera. The clock's mico32_camera will be 2*(platform_freq/(div_value+1)).
+</p><p>Example code:
+</p>
+<pre>/* Platform clock is 50MHz */
+#define PLATFORM_CLK     50000000UL
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+
+/* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+unsigned long *register_div = (CAMERA_BASE_ADDRESS + DIV_OFF);
+
+int main(void) {
+
+     ...
+     /* With div_value = 3 the mico32_camera will be: (2*50)/(3+1) = 25MHz */
+     *register_div = 3;
+
+     ...
+     return 0;
+}
+</pre>
+<h3> <span class="mw-headline" id="COUNT_register_.28dim:_32_bits.2C_type:_R.2FW.2C_offset:_0x00000018.29"> <i>COUNT</i> register (dim: <i>32 bits</i>, type: <i>R/W</i>, offset: <i>0x00000018</i>) </span></h3>
+<p>This register should be set to the value of image size (in bytes). If we don't require the control image, we write 0 (zero) value.
+</p><p>Example code:
+</p>
+<pre>/* The camera is set on resolution: 640x480x2 */
+#define IMAGE_SIZE       (640*480*2)
+
+/* Offsets mico32_camera resister from address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+
+/* Macro CAMERA_BASE_ADDRESS from system_conf.h */
+unsigned long *register_count = (CAMERA_BASE_ADDRESS + COUNT_OFF);
+
+int main(void) {
+
+     ...
+     /* We expect a size of 640 * 480 * 2 */
+     *register_count = IMAGE_SIZE;
+
+     ...
+     return 0;
+}
+</pre>
+<h2> <span class="mw-headline" id="How_the_mico32_camera_works"> How the mico32_camera works </span></h2>
+<p>The <i>mico32_camera</i> has six states. The state scan be read with register STATE. They are:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:502px;"><a href="/wiki/index.php?title=File:State_mico32_camera.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/26/State_mico32_camera.png" width="500" height="153" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:State_mico32_camera.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>States mico32_camera component</div></div></div></div>
+<dl><dd><ol><li><i>Reset</i>: <i>STATE_BITS = 3'b000</i>. In the Reset state the component sends an impulse on the reset signal to the Camera. It resets also all the other components. Then it changes state on the first impulse signal <i>Vsync</i>. 
+</li></ol>
+</dd></dl>
+<dl><dd><ol><li><i>Idle</i>: <i>STATE_BITS = 3'b001</i>. The mico32_camera wait a new start command for a capture frame.
+</li></ol>
+</dd></dl>
+<dl><dd><ol><li><i>Waiting First</i>: <i>STATE_BITS = 3'b010</i>. After a new start command the <i>mico32_camera</i> switches in the <i>Waiting First</i>. So it waits the start of a new frame. When a new frame begins the <i>mico32_camera</i> switches to the <i>Copying Last</i> state. When the mico32_camera is in <i>Waiting First</i> and it receives another start command, the component switches to <i>Waiting Next</i> and the <i>ADDR</i> register is stored in internal buffer; its value will be used for the frame after the next.
+</li></ol>
+</dd></dl>
+<dl><dd><ol><li><i>Waiting Next</i>: <i>STATE_BITS = 3'b011</i>. The component is waiting for the start of a new frame; the frame after the next is scheduled to be written in memory. When a new frame begins the component switches to the <i>Copying</i> state. If the component receives a new start command nothing happens.
+</li></ol>
+</dd></dl>
+<dl><dd><ol><li><i>Copying</i>: <i>STATE_BITS = 3b'100</i>. The component is writing the current frame into the memory; the frame after the current is scheduled to be written in memory. When the writing finishes the component sets <i>FLAG_IF</i> and switches to state <i>Waiting First</i>. If <i>FLAG_IE = 1'b1</i> it generates an interrupt. If the component receives a new start command nothing happens.
+</li></ol>
+</dd></dl>
+<dl><dd><ol><li><i>Copying Last</i>: <i>STATE_BITS = 3'b101</i>. The component is writing a frame into the memory; no other frame is scheduled to be written in memory. When the writing finishes the component sets <i>FLAG_IF</i> and switches to the <i>IDLE</i> state. If <i>FLAG_IE = 1'b1</i> it generates an interrupt. If the component receives a new start command, the component switches to <i>Copying</i> state and the <i>ADDR</i> register is read; the value read will be used for the frame after the current.
+</li></ol>
+</dd></dl>
+<p>If a reset command (CNTR_RST is asserted) is received when component is any state different from Reset, it switches to the Reset state.
+</p>
+<h2> <span class="mw-headline" id="Simple_C_code_for_manager_mico32_camera"> Simple C code for manager mico32_camera  </span></h2>
+<p>In all examples will use the following macros (which can be placed in a header file):
+</p>
+<pre>/* Offsets resister from mico32_camera's address_base */ 
+#define ADDR_OFF         0x00000000
+#define STATE_OFF        0x00000004
+#define FLAG_OFF         0x00000008
+#define CNTR1_OFF        0x0000000C
+#define CNTR2_OFF        0x00000010
+#define DIV_OFF          0x00000014
+#define COUNT_OFF        0x00000018
+  
+/* Mico32_camera states from STATE register */
+#define RESET          0
+#define IDLE           1
+#define WAITING_FIRST  2
+#define WAITING_NEXT   3
+#define COPYING        4
+#define COPYING_LAST   5
+  
+/* Masks bit FLAG register */
+#define MASK_IF_FLAG  0x00000001
+#define MASK_FLAG_ERR 0x00000002
+#define MASK_SIZE_ERR 0x00000004
+  
+/* Masks bit CNTR1 register */
+#define MASK_CNTR_START  0x00000001
+#define MASK_IF_RESET    0x00000002
+#define MASK_CNTR_RST    0x00000004
+  
+/* Mask bit CNTR2 register */
+#define MASK_IE_FLAG     0x00000001
+</pre>
+<p>Now we will use a very simple C code for the acquisition of an image (no control size for now). We will use the technique of polling on the state registers:
+</p>
+<pre>unsigned long *reg_addr  = (CAMERA_BASE_ADDRESS + ADDR_OFF);
+unsigned long *reg_state = (CAMERA_BASE_ADDRESS + STATE_OFF);
+unsigned long *reg_flag  = (CAMERA_BASE_ADDRESS + FLAG_OFF);
+unsigned long *reg_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+unsigned long *reg_cntr2 = (CAMERA_BASE_ADDRESS + CNTR2_OFF);
+unsigned long *reg_div   = (CAMERA_BASE_ADDRESS + DIV_OFF);
+unsigned long *reg_count = (CAMERA_BASE_ADDRESS + COUNT_OFF);
+
+unsigned long state;
+
+int main(void) {
+     
+     /* Reset mico32_camera: Recommended */
+     *register_cntr1 = MASK_CNTR_RST;
+     
+     /* After a software reset the mico32_camera goes in RESET state.
+        Then at first vsync camera signal the mico32_camera switches in IDLE state.
+        No timeout in this code */
+     do {
+        
+           /* Polling mico32_camera state */
+           state = *register_state;
+        
+     } while (state&nbsp;!= IDLE);  
+     
+     /* Set address memory acquisition of the image */
+     *reg_addr = ADDR_VALUE;
+     
+     /* Clock camera is 4 time less than platform clock */
+     *reg_div = 3;
+     
+     /* Start acquisition */
+     *register_cntr1 = MASK_CNTR_START;
+     
+     /* Waiting the end of the acquisition (return mico32_camera in IDLE state) */
+     do {
+     
+           /* Polling mico32_camera state */
+           state = *register_state;
+     
+     } while (state&nbsp;!= IDLE); 
+  
+     /* Now the image is available from the address ADDR_VALUE */
+     ...
+  
+     return 0;
+   }
+</pre>
+<p>Same code with control of image size:
+</p>
+<pre>unsigned long *reg_addr  = (CAMERA_BASE_ADDRESS + ADDR_OFF);
+unsigned long *reg_state = (CAMERA_BASE_ADDRESS + STATE_OFF);
+unsigned long *reg_flag  = (CAMERA_BASE_ADDRESS + FLAG_OFF);
+unsigned long *reg_cntr1 = (CAMERA_BASE_ADDRESS + CNTR1_OFF);
+unsigned long *reg_cntr2 = (CAMERA_BASE_ADDRESS + CNTR2_OFF);
+unsigned long *reg_div   = (CAMERA_BASE_ADDRESS + DIV_OFF);
+unsigned long *reg_count = (CAMERA_BASE_ADDRESS + COUNT_OFF);
+
+unsigned long state;
+
+int main(void) {
+
+     /* Reset mico32_camera: Recommended */
+     *register_cntr1 = MASK_CNTR_RST;
+  
+     /* After a software reset the mico32_camera goes in RESET state.
+        Then at first vsync camera signal the mico32_camera switches in IDLE state.
+        No timeout in this code 
+     */
+     do {
+           
+           /* Read the mico32_camera's state */
+           state = *register_state;
+
+     } while (state&nbsp;!= IDLE);  
+  
+     /* Set address memory acquisition of the image */
+     *reg_addr = ADDR_VALUE;
+  
+     /* Clock camera is 4 time less than platform clock */
+     *reg_div = 3;
+  
+     /* The camera is set @ 320 x 240 x 1 */
+     *reg_count = IMAGE_SIZE;
+  
+     /* Start acquisition */
+     *register_cntr1 = MASK_CNTR_START;
+  
+     /* Waiting the end of the acquisition (return mico32_camera in IDLE state) */
+     do {
+
+           /* Read the mico32_camera's state */
+           state = *register_state;
+
+     } while (state&nbsp;!= IDLE);
+  
+     /* size error? */
+     if (*reg_flag &amp; MASK_SIZE_ERR) {
+
+           /* Something goes wrong, maybe different camera resolution */
+           ...
+
+     } else {
+
+           /* Now the image is available from the address ADDR_VALUE */
+           ...
+     }
+  
+     ...
+  
+     return 0;
+}
+</pre>
+<!-- 
+NewPP limit report
+Preprocessor node count: 82/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

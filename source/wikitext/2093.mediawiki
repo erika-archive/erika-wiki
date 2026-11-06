@@ -1,0 +1,93 @@
+= Introduction =
+
+This page describes a set of steps needed to compile and deploy a platform on FPG-EYE board.
+
+To begin with, following [http://www.latticesemi.com/licensing/index.cfm free license softwares from Lattice] must be installed in your environment:
+
+*[http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&document_type=65&sloc=01-01-07-55-23-01&source=sidebar ispLEVER] or [http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&document_type=65&sloc=01-01-07-55-23-01&source=sidebar Diamond]
+*[http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&document_type=65&sloc=01-01-07-30&source=sidebar ispVM System] or the Diamond programmer
+*[http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&document_type=65&sloc=01-01-07-20&source=sidebar LatticeMico System Development Tools (aka MSB)]
+
+Note:
+* Each version of ispLEVER or Diamond requires corresponding version of LatticeMico System Development Tools.
+* 64 bit OSes are not supported by ispLEVER (even though we were able to install it on a 64 bit Windows Vista/7, it is cumbersome).
+* The ispVM System must be version 18.0 or superior if you use ispLever.
+
+The entire FPG-EYE software has been developed with ispLEVER 8.0 and correspondant LatticeMico System Development Tools. It is assumed that all the tools are installed in the same base directory '''%ispTOOLS%'''. The support for Lattice Diamond is also available.
+
+In addition to lattice software you also need:
+* [http://erika.tuxfamily.org/erika-for-multiple-devices.html Evidence RT-Druid software] to run ERIKA Enterprise OS on Mico32 softcore
+* [http://www.python.org/ Python] installation with [http://pyserial.sourceforge.net/ pySerial module] to deploy your application on the FPG-EYE external flash, with Evidence's bootloader Mico32 application.
+
+= Standard Mico32 components Patches (not necessary with Diamond) =
+
+During FPG-EYE software development a few bugs encountered in standard Mico32 components were corrected. These bugs are not present in the Diamond software, but only with ispLever software. If you are using ispLever, you have to patch the component. Namely small bugs in following components:
+
+* SPI Flash Controller (Component directory: spi_flash. Verilog files: spi_flash_intf.v wb_intf.v) with version previous to v.1.1
+* Async SRAM Controller (Componet directory: asram_top. Verilog files: asram_core.v) with version previous to v.1.1
+
+The above mentioned bugs were of ispLEVER version 8.0 components. We are not sure if the same have been fixed in later versions.
+
+Patched verilog files can be found in [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE Software Packet]. To apply these patches, you need to copy these new files in their respective components folders.
+
+The base directory for all the components is: 
+
+<pre>
+%ispTOOLS%\micosystem\components
+</pre>
+
+Patched verilog files for each component must be placed in:
+
+<pre>
+%ispTOOLS%\micosystem\components\<Component directory>\rtl\verilog
+</pre>
+
+to fix the known bugs.
+
+= Evidence custom Mico32 components =
+
+FPG-EYE demo application uses a couple of custom Mico32 components: 
+
+* Mico32_camera component (used to acquire frames from the cmos camera)
+* serial_io (used to access programmable DIP switches, LEDs, and peripherals power-off MOSFET switches) 
+
+These components are available in [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE Software Packet], Mico32_camera as component binary, and serial_io directly as source code. The components works whether you use the Lattice Diamond or Lattice ispLever.
+
+To use these components in your platform, they must be imported inside the LatticeMico System Development Tools.
+
+== Import custom Mico32 components in LatticeMico System Development Tools ==
+
+Open your LatticeMico System Development Tool and on Available Components view click Import/Create custom Component button 
+[[File:LatticeMicoSystem_import_button.png|center|thumb|200px| Available Components view Import/Create button.]]
+
+Select radio button Open component XML and load the xml component description file from the FPG-EYE software packet directory (e.g. '''FPG-EYE_software_packet\wishbone_components\mico32_camera\mico32_camera.xml''')
+[[File:LatticeMicoSystem_import_evidence_camera_component.png|center|thumb|200px| Import evidence camera component]]
+
+In our version of LatticeMico System Development Tools, sometimes for unknown reason, this procedure needs to be repeated more than once.
+[[File:LatticeMicoSystem_import_result.png|center|thumb|200px| Import Evidence custom components result]]
+
+= ERIKA and RT-Druid =
+
+[[Tutorial: Running ERIKA on Mico32 and FPG-EYE | FPG-EYE demo application]] is an ERIKA application, and to compile this,  
+[[Tutorial: Installing ERIKA and RT-Druid, and compile your first application | ERIKA and RT-Druid]] softwares are required.
+
+= Python and pySerial module =
+
+To deploy a Mico32 application on the FPG-EYE external flash, Evidence provides a dedicated bootloader for FPG-EYE XP2. To interact with this bootloader, a python script is available with [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG_EYE Software Packet]. This python script has been written and tested on a python 2.x environment.
+
+== Installing Python on Windows ==
+
+Python can be installed on a windows machine in two different ways:
+* as native.
+* under cygwin.
+
+To install the native one just download the correct [http://www.python.org/download/ installer] and run it. If you want the cygwin version, just run the cygwin setup application and select python package.
+
+== Install pySerial on Windows ==
+
+If you have installed the native version of python, download the [http://pypi.python.org/pypi/pyserial pySerial installer] and run it.
+The easy way to install the pySerial module on cygwin is to install [http://pypi.python.org/pypi/setuptools python setuptools] first by running [http://peak.telecommunity.com/dist/ez_setup.py this script] in a Cygwin shell, and then, after the installation of the setuptools, just type:
+<pre>
+easy_install pyserial
+</pre>
+The setuptools will automatically select the right version of the module for your environment.

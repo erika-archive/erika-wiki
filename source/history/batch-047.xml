@@ -1,0 +1,271 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:RT-druid.1.6.0-newproject.02.png</title>
+    <id>1733</id>
+    <revision>
+      <id>2261</id>
+      <timestamp>2011-02-02T13:38:21Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to assign the project name.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to assign the project name.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-newproject.03.png</title>
+    <id>1734</id>
+    <revision>
+      <id>2262</id>
+      <timestamp>2011-02-02T13:39:49Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to select a project template.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to select a project template.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-newproject.04.png</title>
+    <id>1736</id>
+    <revision>
+      <id>2266</id>
+      <timestamp>2011-02-02T13:53:17Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta new template based project.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta new template based project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-newproject.05.png</title>
+    <id>1737</id>
+    <revision>
+      <id>2267</id>
+      <timestamp>2011-02-02T13:55:19Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta hot to compile a project.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta hot to compile a project.</text>
+    </revision>
+    <revision>
+      <id>2273</id>
+      <timestamp>2011-02-02T15:17:40Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:RT-druid.1.6.0-newproject.05.png]]&quot;</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta hot to compile a project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-noautobuild.png</title>
+    <id>1728</id>
+    <revision>
+      <id>2252</id>
+      <timestamp>2011-02-02T12:25:48Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to disable the &quot;Build Automatically&quot; option.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to disable the &quot;Build Automatically&quot; option.</text>
+    </revision>
+    <revision>
+      <id>2294</id>
+      <timestamp>2011-02-03T10:53:08Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:RT-druid.1.6.0-noautobuild.png]]&quot;:&amp;#32;RT-Druid 1.6.0 beta how to disable the &quot;Build Automatically&quot; option.
+(cropped)</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to disable the &quot;Build Automatically&quot; option.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-nowelcome.png</title>
+    <id>1727</id>
+    <revision>
+      <id>2250</id>
+      <timestamp>2011-02-02T12:03:37Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta close the &quot;Welcome&quot; window</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta close the &quot;Welcome&quot; window</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-preferences.01.png</title>
+    <id>1729</id>
+    <revision>
+      <id>2253</id>
+      <timestamp>2011-02-02T12:33:08Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to open the &quot;Preferences&quot; window.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to open the &quot;Preferences&quot; window.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-preferences.02.png</title>
+    <id>1730</id>
+    <revision>
+      <id>2254</id>
+      <timestamp>2011-02-02T12:36:19Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to select the PIC24, PIC30 and dsPIC compiler.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to select the PIC24, PIC30 and dsPIC compiler.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-update.01.png</title>
+    <id>1723</id>
+    <revision>
+      <id>2243</id>
+      <timestamp>2011-02-02T11:39:54Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta enabling updates part 1</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta enabling updates part 1</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-update.02.png</title>
+    <id>1724</id>
+    <revision>
+      <id>2244</id>
+      <timestamp>2011-02-02T11:42:57Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta enabling updates install window</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta enabling updates install window</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-update.03.png</title>
+    <id>1725</id>
+    <revision>
+      <id>2245</id>
+      <timestamp>2011-02-02T11:46:00Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta enabling updates install window part 2</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta enabling updates install window part 2</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-update.04.png</title>
+    <id>1726</id>
+    <revision>
+      <id>2246</id>
+      <timestamp>2011-02-02T11:47:39Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta enabling updates repos</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta enabling updates repos</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-update nb.03.png</title>
+    <id>2050</id>
+    <revision>
+      <id>3090</id>
+      <timestamp>2011-05-02T11:41:42Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-workspace.png</title>
+    <id>1735</id>
+    <revision>
+      <id>2264</id>
+      <timestamp>2011-02-02T13:46:37Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta how to select the workspace directory.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta how to select the workspace directory.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0.welcome.png</title>
+    <id>1722</id>
+    <revision>
+      <id>2241</id>
+      <timestamp>2011-02-02T11:29:19Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta Welcome screen</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta Welcome screen</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Redlink.png</title>
+    <id>1811</id>
+    <revision>
+      <id>2740</id>
+      <timestamp>2011-02-24T11:22:56Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

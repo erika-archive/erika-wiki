@@ -1,0 +1,246 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Flex sinks flexgpout.png</title>
+    <id>1304</id>
+    <revision>
+      <id>1317</id>
+      <timestamp>2008-08-13T11:47:38Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sinks flexlcd.png</title>
+    <id>1305</id>
+    <revision>
+      <id>1318</id>
+      <timestamp>2008-08-13T11:47:50Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sinks flexled.png</title>
+    <id>1306</id>
+    <revision>
+      <id>1319</id>
+      <timestamp>2008-08-13T11:47:59Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sinks flexpwm.png</title>
+    <id>1307</id>
+    <revision>
+      <id>1320</id>
+      <timestamp>2008-08-13T11:48:09Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbacc.png</title>
+    <id>1288</id>
+    <revision>
+      <id>1298</id>
+      <timestamp>2008-08-13T11:11:48Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbadcin.png</title>
+    <id>1289</id>
+    <revision>
+      <id>1299</id>
+      <timestamp>2008-08-13T11:12:53Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbbutton.png</title>
+    <id>1290</id>
+    <revision>
+      <id>1300</id>
+      <timestamp>2008-08-13T11:13:15Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbdigin.png</title>
+    <id>1291</id>
+    <revision>
+      <id>1301</id>
+      <timestamp>2008-08-13T11:13:34Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbencin.png</title>
+    <id>1292</id>
+    <revision>
+      <id>1302</id>
+      <timestamp>2008-08-13T11:13:57Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbldr.png</title>
+    <id>1293</id>
+    <revision>
+      <id>1303</id>
+      <timestamp>2008-08-13T11:14:10Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbpot.png</title>
+    <id>1294</id>
+    <revision>
+      <id>1304</id>
+      <timestamp>2008-08-13T11:14:41Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources dmbtemp.png</title>
+    <id>1295</id>
+    <revision>
+      <id>1305</id>
+      <timestamp>2008-08-13T11:14:54Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources flexadc.png</title>
+    <id>1296</id>
+    <revision>
+      <id>1306</id>
+      <timestamp>2008-08-13T11:15:12Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flex sources flexgpin.png</title>
+    <id>1297</id>
+    <revision>
+      <id>1307</id>
+      <timestamp>2008-08-13T11:15:30Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flexside openfile.png</title>
+    <id>1572</id>
+    <revision>
+      <id>1848</id>
+      <timestamp>2010-01-11T09:25:51Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Flexside schematic.png</title>
+    <id>1586</id>
+    <revision>
+      <id>1872</id>
+      <timestamp>2010-01-11T10:39:48Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1873</id>
+      <timestamp>2010-01-11T10:41:10Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Flexside schematic.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

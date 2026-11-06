@@ -1,0 +1,238 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Select device.png</title>
+    <id>1781</id>
+    <revision>
+      <id>2604</id>
+      <timestamp>2011-02-15T14:40:02Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Select device</comment>
+      <text xml:space="preserve">Select device</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Select device diamond.png</title>
+    <id>2194</id>
+    <revision>
+      <id>4143</id>
+      <timestamp>2011-11-14T15:10:50Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Select file ispVM.png</title>
+    <id>1797</id>
+    <revision>
+      <id>2700</id>
+      <timestamp>2011-02-21T10:47:09Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Select fpg eye mico32 msb from msb ide.png</title>
+    <id>2162</id>
+    <revision>
+      <id>4036</id>
+      <timestamp>2011-11-07T11:21:23Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Select msb from msb ide.png</title>
+    <id>2101</id>
+    <revision>
+      <id>3590</id>
+      <timestamp>2011-10-04T09:07:54Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Serial receive.png</title>
+    <id>1556</id>
+    <revision>
+      <id>1828</id>
+      <timestamp>2010-01-07T14:44:23Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Serial send.png</title>
+    <id>1555</id>
+    <revision>
+      <id>1827</id>
+      <timestamp>2010-01-07T14:43:50Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Set lock step.png</title>
+    <id>2494</id>
+    <revision>
+      <id>5897</id>
+      <timestamp>2014-11-10T13:42:14Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sim block.png</title>
+    <id>2186</id>
+    <revision>
+      <id>4118</id>
+      <timestamp>2011-11-10T14:53:57Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sim main.png</title>
+    <id>2185</id>
+    <revision>
+      <id>4117</id>
+      <timestamp>2011-11-10T14:53:37Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sim results.png</title>
+    <id>2188</id>
+    <revision>
+      <id>4120</id>
+      <timestamp>2011-11-10T14:54:36Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sim run.png</title>
+    <id>2187</id>
+    <revision>
+      <id>4119</id>
+      <timestamp>2011-11-10T14:54:22Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sineled.png</title>
+    <id>1808</id>
+    <revision>
+      <id>2737</id>
+      <timestamp>2011-02-24T11:22:38Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sineproperties.png</title>
+    <id>1813</id>
+    <revision>
+      <id>2742</id>
+      <timestamp>2011-02-24T11:23:11Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Software.png</title>
+    <id>2249</id>
+    <revision>
+      <id>4439</id>
+      <timestamp>2012-01-26T15:50:04Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Software Updates.png</title>
+    <id>2364</id>
+    <revision>
+      <id>5165</id>
+      <timestamp>2013-07-16T09:50:29Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Software Updates</comment>
+      <text xml:space="preserve">Software Updates</text>
+    </revision>
+  </page>
+</mediawiki>

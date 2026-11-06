@@ -1,0 +1,3 @@
+# Preserve acquired source/resources byte for byte, including SVG/text uploads.
+* -text
+*.md text eol=lf

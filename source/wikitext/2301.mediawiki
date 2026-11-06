@@ -1,0 +1,98 @@
+== Introduction ==
+
+It is possible to execute few RT-Druid's tasks without using a GUI. These tasks are invoked through ant scripts or using directly RT-Druid scripts.
+
+  Please, note that RT-Druid is based on eclipse framework even in the CLI form. This means that 
+  - ant scripts with RT-Druid tasks should be run using ant embedded in eclipse
+  - direct invocation of RT-Druid scripts result in execution of an eclipse environment
+
+== Packaging ==
+
+RT-Druid is distributed in several packagings:
+* Update site: it contains only RT-Druid and Erika Enterprise plugins and can be used to update an existing installation of RT-Druid, or to add RT-Druid functionalities to a generic (and standard) installation of eclipse
+* GUI: it contains RT-Druid and Erika Enterprise plugins, eclipse framework and c/c++ support. There are several versions, depending on Os (es. Windows, Linux). It contains also RT-Druid scripts.
+* CLI: it contains RT-Druid and Erika Enterprise plugins and the minimum set of eclipse plugins required by RT-Druid. It contains also RT-Druid scripts. There are three versions
+** RT-Druid: contains only RT-Druid and can be invoked only with RT-Druid scripts
+** EE_RT-Druid: contains Erika Enterprise (sources and examples) and RT-Druid. Can be invoked only with RT-Druid scripts
+** EE_RT-Druid_ant: contains Erika Enterprise (sources and examples) and RT-Druid. Can be invoked both with RT-Druid scripts and ant scripts
+
+== Advantages ==
+
+Both GUI and CLI packages can be used without a graphical interface but the CLI ones are smaller, than you can save space:
+* GUI packages requires around 180MByte
+* CLI with Erika Enterprise, RT-Druid and ant support requires around 71MByte
+* CLI with Erika Enterprise, RT-Druid requires around 55MByte
+* CLI with RT-Druid requires around 7MByte
+
+moreover the package with only RT-Druid is the best one if you are using Erika Enterprise from svn and compiling everything in an automated system.
+
+== Disadvantages ==
+
+On the other side, all CLI versions cannot be automatically updated and the only way to "update" them is to download a new one.
+
+== Configuration ==
+
+Usually, it is useful to configure one or more parameter before run RT-Druid from command line, like compiler and Erika Enterprise path. [[http://erika.tuxfamily.org/wiki/index.php?title=RT-Druid_configuration Here]] is some details about how do it.
+
+== Ant Tasks ==
+
+Here is the list of available RT-Druid ant tasks:
+
+{| border="1" style="color: black; background-color: #eeeeee;" width="85%"
+|+
+! style="width: 30%; background-color: #cccccc;"| Task Name 
+! style="width: 70%; background-color: #cccccc;"| Description
+|-
+|  [[RT-Druid_ant_tasks#rtdruid.Convert | rtdruid.Convert]] 
+| If needed, converts and merges one or more input files into a single new RT-Druid file
+|-
+| [[RT-Druid_ant_tasks#rtdruid.Oil.Configurator | rtdruid.Oil.Configurator]]
+| Generates the Erika Enterprise configuration files 
+|-
+| [[RT-Druid_ant_tasks#rtdruid.Oil.Example | rtdruid.Oil.Example]]
+| Instantiates a single example
+|-
+| [[RT-Druid_ant_tasks#rtdruid.Oil.Examples | rtdruid.Oil.Examples]]
+| Instantiates all examples managed by RT-Druid
+|-
+| [[RT-Druid_ant_tasks#rtdruid.templates.path.add | rtdruid.templates.path.add]]
+| Add additional paths where search templates
+|}
+
+[http://ant.apache.org/ Here] you can find info about ant.
+
+== RT-Druid scripts ==
+
+Here is the list of available scripts:
+
+{| border="1" style="color: black; background-color: #cccccc;" width="85%"
+|+
+! Task Name !! Description
+|-
+| style="width: 30%; background-color: #eeeeee;"| [[RT-Druid_scripts#Generate Code | generate_code]] 
+| style="width: 70%; background-color: #eeeeee;"| Generates all configuration files for Erika Enterprise
+|-
+| style="width: 30%; background-color: #eeeeee;"| [[RT-Druid_scripts#Instantiate template | instantiate_template]]
+| style="width: 70%; background-color: #eeeeee;"| Instantiates a template
+|-
+| style="width: 30%; background-color: #eeeeee;"| [[RT-Druid_scripts#Start Ant | start_ant]]
+| style="width: 70%; background-color: #eeeeee;"| Executes an ant script using ant libraries provided with eclipse
+|}
+
+Each script is available in for windows (with .bat suffix) and for cygwin/linux (with .sh suffix).
+  Please note that current version of generate_code.sh requires bash to work
+
+
+== Makefile examples ==
+
+Here there are two examples about how use RT-Druid command line versions. In both makefile, main targets are:
+* download or just update RT-Druid and Erika Enterprise
+* configure the system
+* build
+
+The first [[Makefile:_RT-Druid_CLI_with_EE_svn | makefile]] gets Erika Enterprise directly from svn and the package with RT-Druid only. In this way it easier to read and modify Erika Enterprise files.
+
+The second [[Makefile:_EE_RT-Druid_CLI | makefile]] gets the package with both Erika Enterprise and RT-Druid. The benefit is that this couple passed all tests we do before release RT-Druid packages.
+
+
+[[Category:RT-Druid]]

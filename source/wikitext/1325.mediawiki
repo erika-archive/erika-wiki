@@ -1,0 +1,39 @@
+The '''MCHP16 Sources''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_sources_clock.png]]
+| This is the main system clock. It has two internal parameters, the Period which gives the system periodicity, and an Init time which can be used to specify an initial offset.
+|-
+| [[image:Mchp16_sources_constant.png]]
+| A constant value, specified as an internal parameter.
+|-
+| [[image:Mchp16_sources_blackarrow.png]]
+| Input port. The port number is specified as an internal parameter.
+|-
+| [[image:Mchp16_sources_redarrow.png]]
+| Event input port. The port number is specified as an internal parameter.
+|-
+| [[image:Mchp16_sources_sine.png]]
+| This block generates a sine wave. The input are Amplitude, Frequency, Phase, Bias, and Delay.
+|-
+| [[image:Mchp16_sources_square.png]]
+| A square wave generator. The input parameters are Amplitude, Period, Impulse width, Bias, and Delay.
+|-
+| [[image:Mchp16_sources_step.png]]
+| A step input. The input parameters are Amplitude, and Delay.
+|-
+| [[image:Mchp16_sources_random.png]]
+| A random number generator. The input parameters are Amplitude, and Seed.
+|-
+| [[image:Mchp16_sources_counterbidi.png]]
+| A counter. The input parameters are Minimum value, Maximum value, and Rule (1=Decrement, 2=Decrement).
+|-
+| [[image:Mchp16_sources_countermodulo.png]]
+| A modulo counter. The input parameters are Initial state (greater than zero), and Modulo number.
+|-
+|}

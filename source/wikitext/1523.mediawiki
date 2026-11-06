@@ -1,0 +1,23 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/multistack/EEtest1</tt>
+
+=== Description ===
+* The goal of this test is to activate two tasks that runs on different stacks to test the stack change mechanism implemented in the internal function ready2stacked in MULTISTACK case. To configure the task set we change the files eecfg.h and eecfg.c located inside the Debug folder (the basic structure is inspired to the Microchip PIC30 port) and the makefile. At the end of the porting the task set configuration will be deducted from the .oil file.
+
+* Finally, we created inside the <tt>EEtest1</tt> a C file with a main() function very similar to the previous one. That function explicitly calls ActivateTask inside an infinite cycle. The main differences are in the eecfg.c file. The kernel functions must be linked and used without problems resulting in an fully linked executable file.
+
+*Note1: With this test we can evaluate the behaviour of the internal function: <tt>EE_s12xs_hal_ready2stacked</tt> located in the source file "ee_hal.S" at the path <tt>ee\pkg\cpu\cosmic_hs12xs\src</tt>.
+** the function <tt>EE_s12xs_hal_ready2stacked</tt> is used to:
+*** call the threads and change the stacks properly. 
+
+*In the reference test <tt>examples/s12xs/porting_examples/multistack/EEtest6</tt> we'll test the internal function <tt>EE_s12xs_hal_stkchange</tt>. 
+** This function can be found in the same file "ee_hal.S" and is used to:
+*** change the stack to resume a stacked thread.
+ 
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

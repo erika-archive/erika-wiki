@@ -1,0 +1,51 @@
+The '''MCHP16 Non Linear''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_nonlinear_product.png]]
+| The result of this block is the multiplication or division of its inputs. The Number and the Operation done on each input are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_division.png]]
+| The result of this block is the multiplication or division of its inputs. The Number and the Operation done on each input are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_exponential.png]]
+| If ''u'' is the input, the block returns ''a''<sup>''u''</sup>, where ''a'' is the internal parameter.
+|-
+| [[image:Mchp16_nonlinear_inverse.png]]
+| This block returns the inverse of the input.
+|-
+| [[image:Mchp16_nonlinear_abs.png]]
+| This returns the absolute value of the input. The internal parameter specifies if the zero-crossing option has been selected.
+|-
+| [[image:Mchp16_nonlinear_sign.png]]
+| This returns the sign of the input. The internal parameter specifies if the zero-crossing option has been selected.
+|-
+| [[image:Mchp16_nonlinear_min.png]]
+| This block returns the minimum or maximum value of the input. The Operation (min or max), the Zero-crossing option, and the Number of inputs are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_max.png]]
+| This block returns the minimum or maximum value of the input. The Operation (min or max), the Zero-crossing option, and the Number of inputs are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_saturation.png]]
+| This block implements a saturation. The Upper and Lower limits, and the zero-crossing option are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_deadband.png]]
+| This block specifies a deadband zone, which is specified using the internal parameters. The Zero-crossing option can also be specified as internal parameter.
+|-
+| [[image:Mchp16_nonlinear_hysteresis.png]]
+| This block implements an hysteresis. The start and end of Hysteresis, the two values of the output, and the Zero-crossing option are specified as internal parameters.
+|-
+| [[image:Mchp16_nonlinear_backlash.png]]
+| (empty description)
+|-
+| [[image:Mchp16_nonlinear_ratelimiter.png]]
+| (empty description)
+|-
+| [[image:Mchp16_nonlinear_mathexpr.png]]
+| This block allows the computation of a generic Scilab expression, specified as input parameter.
+|-
+|}

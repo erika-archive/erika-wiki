@@ -1,0 +1,36 @@
+= Introduction =
+
+From http://www.ensilica.com/ip_esi_risc.php
+: "''eSi-RISC is a highly configurable microprocessor architecture for embedded systems, that scales across a wide range of applications. The core has been silicon proven in a number of ASIC and FPGA technologies.''"
+
+= Requirements =
+
+ERIKA for eSi-RISC currently supports the GCC toolchain provided by EnSilica, running under Windows.
+
+The compiled binaries can either be run on the simulator supplied with the toolchain, or on a supported evaluation board (see below). 
+
+= Supported devices =
+
+Both the 16 and 32 bit eSi-RISC cores are supported by this port.
+
+= Supported evaluation boards =
+
+The port has been tested on the following targets:
+
+* Windows target simulator
+* Altera Cyclone III FPGA Starter Kit
+
+= Demo Applications =
+
+Various demo applications are included with RT-Druid.
+
+= Useful links =
+* http://www.ensilica.com/
+
+= Acknowledgements =
+This port was provided by [[user:steve|Steve Langstaff]]
+
+
+
+
+[[Category:Supported Devices]]

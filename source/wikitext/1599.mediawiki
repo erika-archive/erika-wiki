@@ -1,0 +1,65 @@
+= Acknowledgements =
+The porting of ERIKA Enterprise for the Infineon Tricore is a contribution developed in the context of the [http://www.predator-project.eu/ PREDATOR FP7]  project, and it has been done by Jan C. Kleinsorge from TU Dortmund.
+
+= Requirements =
+
+ERIKA for TriCore currently supports the GCC toolchain provided by HighTec GmbH. 
+Currently, GCC 3.4.6 as the cross-compiler is tested, which is binary packaged with the PXROS (free of charge for educational purposes). A source distribution exists for GCC 3.3.7. Note however that this compiler version might not compile with GCC 4 or higher and has possible incompatibilities with recent GNU autotools. If possible, obtain 3.4.6.
+
+The compiled binaries can either be run on the simulator tsim which is to be found with the aforementioned binary package, or on a supported evaluation board (see below). 
+
+= Supported devices =
+
+The current port specifically supports Tricore1, core tc1.3, MCU tc1796b. It encompasses a boilerplate implementation to meet ERIKAs requirements (monostack and multistack).
+* Core 
+** Support for ISR1-, ISR2- and Trap-handling
+** Direct CSA manipulation
+
+* MCU
+** WDT (locking)
+** PLL (initialization of system clocks and frequency selection)
+** STM (basic timer interrupt support and timing information)
+
+This subset makes the code-base self-contained and allows to apply most configurations. For full support of these and other devices, it is advised to use the device definitions provided by the compiler toolchain. The definitions from HighTec feature the entire range of TriCore1 CPUs and their respective on-chip devices. 
+
+
+= Supported evaluation boards =
+
+The tested targets are
+* TriBoard tc1796b v4.1
+* Infineon tsim simulator. 
+
+= How to compile and run an application =
+
+* To compile the demos, prefix the gcc and binutils binaries with 'tricore-' and place the path into the PATH variable. Calling 'make' in the demo folders will build the binaries instantly. Alternatively, 
+enter the correct path in the variable TRICORE1_GCCDIR within the demo's makefiles. Note that there is currently no RTDruid support, the demos are hand-crafted.
+
+* To run a demo in the simulator, make sure the flag __TSIM__ is enabled in the demo makefiles. This changes the set of start-up files and prevents the initialization of the system clock circuitry which is not supported (tested on tsim V0.03).
+Otherwise, the binary can directly loaded and run. 
+
+*Useful links:
+** [http://www.hightec-rt.com/ http://www.hightec-rt.com]
+
+= Examples =
+
+At its current state, the port comes with a few example applications
+
+* '''demo_hello''' consists of a single (background) task which outputs "Hello, world!" through the debug interface and enters an idle loop.
+
+* '''demo_mono''' demonstrates the monostack implementation. It makes use of the OSEK function TerminateTask to demonstrate how tasks can be aborted at aribtrary call depths.
+
+* '''demo_multi'''demonstrates the multistack implementation with synchronization primitives. Activation and preemption is performed through Tasks and an ISR. 
+
+* '''demo_isr''' shows the interrupt-handling capabilities by using OSEK ISR1, ISR2 and trap handlers. 
+
+* '''demo_led''' implements a simple control of the on-board LEDs on the TriBoard tc1769 4.1 with multiple tasks and a timer ISR. 
+
+= Notes on the internal implementation =
+
+* Although the MCU folder is labelled tc179x, there is specifically only support for tc1796b. It should not be too hard to provide other ports with minor changes.
+
+* EE_MAX_ISR allows to define the maximum size of the interrupt vector table. Arbitration cycles are minimized upon initialization depending on this value. This can be used to reduce the memory footprint.
+
+* A new type 'EE_STACK' was introduced due to TriCore's stack alignment requirements (double word).
+
+[[Category:Supported Devices]]

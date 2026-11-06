@@ -1,0 +1,25 @@
+= Introduction =
+Before execute this simple tutorial follow installation procedure described in [[Tutorial:_Installing_scicoslab_and_generating_code_from_a_Scicos_diagram#Scicoslab_4.4.1_and_ScicosLab_Pack_10.0:_code_generator_for_FLEX_-_Installation_procedure | installig scicoslab tutorial]]
+
+= How to simulate and then generating code from a Scicos diagram = 
+
+Note: The images showed below refer to the example for FLEX named <tt>DCmotor_Simulation.cos</tt> in the 'DCMotor' folder.
+
+To simulate a diagram and then use the same diagram to generate code is advisable to proceed in this way.
+*Create your diagram using a superblock that contains the diagram of your embedded application. 
+*Outside the superblock put your simulation blocks.
+*To link the outer blocks with the inner blocks you can use <tt>Goto</tt> and <tt>From</tt> blocks. 
+See the images below.
+[[File:sim_main.png|center|thumb|300px|Outer blocks.]][[File:sim_block.png|center|thumb|300px|Inner blocks.]]
+
+By clicking on Simulate menu and selecting Run you can start the simulation. In this case you obtain the graph showed below.
+[[File:sim_run.png|center|thumb|300px|To start the simulation.]][[File:sim_results.png|center|thumb|300px|Results of the simulation.]]
+
+To generate code there are two ways:
+#Copy the superblock and create another diagram to be used for code generation.
+#Remove <tt>Goto</tt> blocks and substitute <tt>From</tt> blocks with zero-constants source blocks.
+The second approach is showed in the images below.
+[[File:cg_main.png|center|thumb|300px|Outer blocks.]][[File:cg_block.png|center|thumb|300px|Inner blocks.]]
+
+From the CodeGen menu, by clicking on the superblock, you can launch code generation.
+[[File:cg_run.png|center|thumb|300px|Outer blocks.]]

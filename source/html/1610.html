@@ -1,0 +1,76 @@
+<h1> <span class="mw-headline" id="Description"> Description </span></h1>
+<p>The FLEX Multibus Board is a FLEX Daughter Board, targeted specifically for data communication.
+The Multibus Board simplifies the work with the communication peripherals integrated in the Microchip dsPIC (R) DSC. The board, which is fully modular, provides a set of modules that realize the hardware interface with the buses. The Multibus Base Daughter Board is piggybacked on FLEX Full/Light Base Board.
+</p><p>The following slots are available on the Multibus Board:
+</p>
+<ul><li> UART2 slot, for Serial TTL/RS232/RS485/RS422 module
+</li><li> UART1 slot, for Serial TTL/RS232/RS485 module
+</li><li> CAN1 slot, for CAN module
+</li><li> CAN2 slot, for CAN module
+</li><li> I2C slot (channel selectable), for I2C module
+</li><li> SPI slot (channel selectable), for SPI module
+</li><li> Ethernet slot, for 10Mbit Ethernet module
+</li></ul>
+<p>Modules are mounted only if needed. For example, if the application requires the Ethernet interface and the connection to the CAN bus, only the corresponding modules will be mounted on the Multibus Board, leaving the remaining pins free for other use.
+</p><p><a href="http://www.evidence.eu.com/content/view/168/211/" class="external text" rel="nofollow">FLEX Multibus Daughter Board product page</a>
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="FAQ"> FAQ </span></h1>
+<ul><li> <b>Could you please explain how to create a project based on the Microchip UDP (or TCP/IP) stack?</b>
+</li></ul>
+<p>If you use the Demo2 pack for motion control (Motion Daughter Board) you can create a project starting from Scicos.
+With the Multibus daughter board you can implement the Microchip TCP/IP stack in a project in this way.
+</p><p>In RT-DRUID/Eclipse, create a project using the template 'pic30/FLEX Multibus board/UDP demo'. 
+</p><p>This is the link to the example folder in the repository:
+<a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/pic30/pic30_MultibusBoard_udp_demo/" class="external text" rel="nofollow">UDP demo</a>
+</p><p>Description of the files:
+</p>
+<dl><dd>"HardwareProfile.h" contains the HW configuration macros for the Multibus board.
+</dd><dd>"TCPIPConfig.h" contains the IP address used by the net protocols.
+</dd><dd>"flex_udp.c" and "flex_udp.h" contain the functions you can use in your UDP application.
+</dd><dd>"code.c" and "conf.oil" are the application files. 
+</dd></dl>
+<p>The image below shows how to set the jumpers and the Ethernet module on the daughter board.
+</p>
+<dl><dd><a href="/wiki/index.php?title=File:Multibus_eth.PNG" class="image"><img alt="Multibus eth.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/06/Multibus_eth.PNG" width="300" height="222" /></a>
+</dd></dl>
+<dl><dd>
+</dd><dd>
+</dd></dl>
+<ul><li> <b>Could you please explain how to use RS232 module with the FLEX Multibus daugther board?</b>
+</li></ul>
+<p>You just have to mount the RS232 module on the socket and to set up two jumpers as shown in the following
+image.
+</p>
+<dl><dd><a href="/wiki/index.php?title=File:Rs232_multibus.PNG" class="image"><img alt="Rs232 multibus.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a9/Rs232_multibus.PNG" width="300" height="226" /></a>
+</dd></dl>
+<dl><dd>
+</dd><dd>
+</dd></dl>
+<ul><li> <b>Could you please explain how to set up the basic demo-project based on CAN bus?</b>
+</li></ul>
+<p>Prerequisites HW: Multibus and FLEX boards with CAN modules.
+Prerequisites SW: RT-DRUID and Erika Enterprise v1.6.0.
+</p><p>The Erika demo-project based on CAN bus can be found in the RT-Druid C/C++ templates.
+</p><p>Description of the files:
+</p>
+<dl><dd>"conf.oil" is the main configuration file. You can uncomment the line you need, to configure the device as a sender or receiver.
+</dd><dd>"conf_sender.oil" is the CAN sender configuration file.
+</dd><dd>"conf_receiver.oil" is the CAN receiver configuration file.
+</dd><dd>"code_sender.c" and "code_receiver.c" are the application source files
+</dd></dl>
+<p>The image below shows how to connect the boards and set the jumpers on the CAN modules. 
+</p>
+<dl><dd><a href="/wiki/index.php?title=File:Can_multibus.PNG" class="image"><img alt="Can multibus.PNG" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/33/Can_multibus.PNG" width="300" height="225" /></a>
+</dd></dl>
+<dl><dd>
+</dd><dd>
+</dd></dl>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 6/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

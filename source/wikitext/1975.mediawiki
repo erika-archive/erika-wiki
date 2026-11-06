@@ -1,0 +1,1 @@
+Architectures supported by ERIKA Enterprise and RT-Druid

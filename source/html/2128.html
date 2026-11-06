@@ -1,0 +1,34 @@
+<p><a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_Design_Flow" title="ERIKA Enterprise and RT-Druid Design Flow">RT-Druid</a> is the tool used to configure the ERIKA Enterprise OS.
+</p>
+<h2> <span class="mw-headline" id="Files">Files</span></h2>
+<p>RT-Druid produces at least three files in the project output directory (normally called <tt>Debug</tt>):
+</p>
+<dl><dt>makefile
+</dt><dd> The main makefile that defines some <a href="/wiki/index.php?title=EEOPT" title="EEOPT">EEOPTs</a> and starts the compilation process (see also <a href="/wiki/index.php?title=Erika_Makefiles" title="Erika Makefiles">Erika Makefiles</a>)
+</dd><dt>eecfg.h
+</dt><dd> A C header containing the definitions of macros for several constant parameters (such as task IDs, the number of tasks...).  This header is included also in some assembly files, so it must contain only <tt>define</tt>s.
+</dd><dt>eecfg.c
+</dt><dd> A C file containing the definition of all the kernel data structures that depend on the configuration (e.g., an OIL file)
+</dd></dl>
+<p>Other files may be produced, depending on the configuration or the target architecture.
+</p>
+<h2> <span class="mw-headline" id="Upgrading_the_interface">Upgrading the interface</span></h2>
+<p>RT-Druid and ERIKA Enterprise must be kept in sync, because the structures produced inside <tt>eecfg.c</tt> by RT-Druid must reflect those in ERIKA source code.  During the development, sometimes those structures must be changed (though it happens rarely, and care should be taken to minimize such changes).  This may cause problems to developers working on the latest version of ERIKA on the repository, or people living on the <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application#Bleeding_edge" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Bleeding edge</a>.  A mechanism has been introduced to address this problem:
+</p>
+<ol><li> RT-Druid writes the version of its current interface inside the macro <code>RTDRUID_CONFIGURATOR_NUMBER</code>, defined in <tt>eecfg.h</tt>.  A variable with the same name is produced inside the generated <tt>makefile</tt>.
+</li><li> The file <tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/ee_rtdruid_versions.h" class="external text" rel="nofollow">pkg/ee_rtdruid_versions.h</a></tt> contains a set of <tt>define</tt>s that record the values of the interface version when the interface has changed.
+</li><li> When ERIKA needs to be modified in a way not compatible with the current RT-Druid interface, a new <tt>define</tt> is added to <tt>pkg/ee_rtdruid_versions.h</tt>, and the new ERIKA code uses <tt>#if</tt> directives to remain compatible with the old versions of RT-Druid.  Please note that <tt>#if</tt> directives must first check for the definition of <code>RTDRUID_CONFIGURATOR_NUMBER</code>, as old RT-Druid versions do not support such a feature.
+</li><li> When the RT-Druid interface is updated, also its <code>RTDRUID_CONFIGURATOR_NUMBER</code> is updated according to the values in <tt>pkg/ee_rtdruid_versions.h</tt>. If <tt>pkg/ee_rtdruid_versions.h</tt> contains more than one pending modification, the version numbers inside <tt>pkg/ee_rtdruid_versions.h</tt> may be reordered to reflect the true history of RT-Druid.
+</li></ol>
+<p>RT-Druid is distributed with an up-to-date snapshot of ERIKA source files.  A setup composed by an old ERIKA together with a more recent RT-Druid is not supported, as it would be too complicated.
+</p>
+<h2> <span class="mw-headline" id="See_also">See also</span></h2>
+<p><a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access" title="ERIKA Enterprise and RT-Druid SVN Access">ERIKA Enterprise and RT-Druid SVN Access</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

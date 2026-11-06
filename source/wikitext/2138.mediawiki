@@ -1,0 +1,1 @@
+The follow code show how use the component serialpar_io on your platform. The programmer interface is four 32 bits register from wishbone base address where it is installed.

@@ -1,0 +1,30 @@
+The '''MCHP16 Branching''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_branching_mux.png]]
+| This block multiplexes a number of inputs together to form a vector.
+|-
+| [[image:Mchp16_branching_demux.png]]
+| This block demultiplexes the inputs.
+|-
+| [[image:Mchp16_branching_extractor.png]]
+| This block only extracts one entry of the input vector.
+|-
+| [[image:Mchp16_branching_switch.png]]
+| This block implements a switch.
+|-
+| [[image:Mchp16_branching_control.png]]
+| This block implements an M-port switch.
+|-
+| [[image:Mchp16_branching_s2v.png]]
+| This block transforms a scalar value to a vector.
+|-
+| [[image:Mchp16_branching_switch1.png]]
+| This block implements a connected switch.
+|-
+|}

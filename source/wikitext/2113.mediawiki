@@ -1,0 +1,123 @@
+= Introduction = 
+
+This tutorial shows how to compile and program the webserver_camera demo application on the FPG-EYE bord (the one that is pre-loaded on the board).
+
+To begin with this tutorial: [[Installation of Mico32/FPG-EYE development environment | install Mico32/FPG-EYE development environment]], get a [[ERIKA_Enterprise_and_RT-Druid_SVN_Access#Anonymous.2C_readonly_access | local copy of ERIKA Enterprise repository]] and then follow the 
+[[Tutorial: Building a Mico32 platform for FPG-EYE]].
+
+
+Below mentioned paths are all relative paths of the local ERIKA Enterprise repository.
+
+= Create Mico32 Library for ''fpg_eye_mico32'' platform =
+After [[Tutorial:_Building_a_Mico32_platform_for_FPG-EYE#Import_platform_project_in_LatticeMico_System_IDE | importing fpg_eye_mico32 platform]] in [http://www.latticesemi.com/products/designsoftware/micodevelopmenttools/index.cfm ''LatticeMico System'']  software, switch to '''C/C++ Perspective'''. Right click to open the C/C++ Project View and select '''New->Mico32 Library Project''' command:
+[[File:new_mico32_library_C-C++.png|center|thumb|700px| '''C/C++''' New Mico32 Library Project]]
+
+Make sure to select the correct target hardware by selecting '''ee\examples\mico32\demo\platforms\fpg_eye_isplever\msb\soc\fpg_eye_mico32.msb''' if you are using ispLever tools else '''ee\examples\mico32\demo\platforms\fpg_eye_diamond\msb\soc\fpg_eye_mico32.msb''' if are using Diamond tools. 
+To compile the fpg_eye_mico32 demo without making any changes to the project files, select the follow directory as library location '''ee\trunk\ee\examples\mico32\demo\platforms\fpg_eye_isplever\library''' (if you use ispLever tools) while '''ee\trunk\ee\examples\mico32\demo\platforms\fpg_eye_diamond\library''' (if you use Diamond tools)
+[[File:lib_fpg_eye_mico32_path.png|center|thumb|700px| '''C/C++''' Mico32 System Library Project Wizard]]
+and '''fpg_eye_mico32''' as project name:
+[[File:lib_fpg_eye_mico32_name.png|center|thumb|700px| '''C/C++''' Mico32 System Library Project Wizard (Project name wrote)]]
+
+Build the brand new project:
+[[File:lib_fpg_eye_mico32_build.png|center|thumb|700px| Compile the Mico32 library]]
+
+= Create webserver_camera demo project = 
+
+Create a ''Mico32 Standard Make C Project'' in '''ee\examples\mico32\demo\sw_projects\webserver_camera''' directory, and build it.
+[[File:new_mico32_standardmakec_.png|center|thumb|700px| New C/C++ Mico32 Standard Make C Project]]
+[[File:mico32_standardmakec_wizard.png|center|thumb|700px| C/C++ Mico32 Standard Make C Project Wizard]]
+
+  Please note that lm32-elf-objdump may fail with a segmentation fault. You can run ''make output/out.elf''
+  (where output is the output folder) instead of ''make all'' to avoid the execution of the objdump step.
+
+= Program the flash with send_prog.py bootloader script =
+
+Before flashing the application with send_prog.py bootloader client script, you need to connect the FPG-EYE board with a serial cable too you computer. Use serial-to-usb coverter if required:
+[[file:fpg-eye connettore seriale.png|left|thumb|700px| FPG-EYE Board serial connector]]
+[[file:fpg-eye cavo seriale custom.png|center|thumb|700px| FPG-EYE custom serial cable]]
+
+After connecting the board with serial cable, get the send_prog.py script from [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE Software Packet] and copy it in a directory under your cygwin environment path. Open a cygwin shell in webserver_camera project directory output and execute the following command:
+<pre>
+send_prog.py --flash /dev/comX out.elf
+</pre>
+
+Note: Change the comX value to that of your actual com port value.
+
+When the script is launched, it is not synchronized with the bootloader, and it should look like:
+[[file:FPG-EYE bootloader-script synchronization.png|center|thumb|700px| Bootloader-script synchronization]]
+To synchronize the script with the bootloader, hold down Button 1 and push the reset button.
+[[file:FPG_EYE_Buttons.png|center|thumb|700px| FPG-EYE Buttons]] 
+
+
+The application is saved on FPG_EYE external flash as shown below, and the bootloader is ready to read and copy it in XP2 ram.
+
+[[file:FPG-EYE_FlashSuccess.png|center|thumb|700px| FPG-EYE Application Flash Success]]
+
+= Test webserver_camera demo application =
+
+Connect Ethernet cable to the FPG-EYE board. The webserver_camera demo has ethernet address to 192.168.0.2. Change your local net address to the same subnet of the FPG-EYE board.
+[[file:How_change_ethernet_address.png|center|thumb|700px| How Change LAN Address]]
+
+Open a web browser window and type in the address bar '''http://192.168.0.2''':
+[[file:webserver_camera_demo_application.png|center|thumb|700px| web_server camera demo application screenshot]]
+
+= Test demo_camera application =
+
+In the Erika repository you can find a application called ''demo_camera'' more simpler than ''web_camera''. The demo uses the camera and the uart serial port without the ethernet interface. Its location, in the Erika repository, is as follows: ''/ee/examples/mico32/demo/sw_projects/demo_camera''.
+To use this demo you have to follow the same steps described above about ''web_camera'' application. The picture than you can downloading is in 640x480 b/w format. Once the program has been launched via ''bootloader'', open ''HyperTerminal'' connection with 115200 bps, 8N1 (on the right serial port on your pc). Now a communications with the application is now possible. The program asks you if you want download the picture:
+
+[[file:hyper_herminal_download_picture.png|center|thumb|700px| ''Press a key to download the picture'']]
+
+Now click on ''Text acquired...'' in the ''Transfer'' menu voice.
+
+[[file:hyper_herminal_test_acquired.png|center|thumb|700px| Please select ''Text acquired...'']]
+
+Now please select the place, in your file system, where you want storage the camera picture. Important: the file extension must be PMG!!! (something like this: <file_name>.pmg).
+
+[[file:hyper_herminal_file_pmg.png|center|thumb|700px| The file must has the PMG extension]]
+
+After press any key on the keyboard, the picture downloading starts:
+
+[[file:hyper_herminal_downloading.png|center|thumb|700px| Picture downloading]]
+
+At end of the downloading you can close the ''Text acquired...'', and then with a program graphics open the picture (GIMP in this case):
+
+[[file:hyper_herminal_picture.png|center|thumb|700px| Picture]]
+
+If you're using Linux you not have available the program HyperTerminal. In this case you can use another good program called [http://alioth.debian.org/projects/minicom/ ''minicom'']. Minicom is a text-based modem control so, maybe, it's a bit more complicate to use than HyperTerminal. ''Minicom'' starts with the follow shell command (''sudo minicom''):
+
+[[file:starting_minicom.png|center|thumb|700px| ''sudo minicom'' on Desktop]]
+
+After entering the password (evidence), ''minicom'' is ready to accept commands:
+
+[[file:minicom.png|center|thumb|700px| ''minicom'']]
+
+With ''Ctrl-A'' and ''Z'' the ''Minicom'' enters in menu configuration:
+
+[[file:minicom_configure.png|center|thumb|700px| ''menu minicom'']]
+
+Please press the ''O'' key for ''cOnfigure minicom'':
+
+[[file:minicom_o_options.png|center|thumb|700px| ''cOnfigure minicom'']]
+
+Now select the ''serial port setup'':
+
+[[file:minicom_serial_port_setup.png|center|thumb|700px| ''serial port setup'']]
+
+The ''Bps/Par/Bits'' must be value: ''115200 8N1'', ''Hardware Flow Control'' value ''No'' and ''Software Flow Control'' value ''Yes''.  While for the ''Serial Device'' you have to see where your VM has connected to the serial port on your PC.
+
+''Minicon'' is configured and it is now possible to communicate with ''fpg_eye'' application.
+
+[[file:minicom_download_picture.png|center|thumb|700px| ''download picture'']]
+
+To capture in the file the image, follow these steps. With ''Ctrl-A'' and ''Z'' the ''Minicom'' enters in menu configuration, then press the the ''L'' key (voice ''Capture on/off .... L'').
+
+[[file:minicom_capture_on_off.png|center|thumb|700px| ''capture picture'']]
+
+Now please the file name where you want storage the camera picture. Important: the file extension must be PMG!!! (something like this: <file_name>.pmg).
+
+[[file:minicom_capture_which_file.png|center|thumb|700px| ''file name'']]
+
+At end of the downloading you can close the ''minicom'', and then with a program graphics open the picture (GIMP in this case):
+
+[[file:hyper_herminal_picture.png|center|thumb|700px| Picture]]

@@ -1,0 +1,671 @@
+== Synopsis ==
+
+The GPT driver is part of the microcontroller abstraction layer (MCAL).
+
+It initializes and controls the internal General Purpose Timer(s) of the microcontroller.
+
+The GPT driver provides services and configuration parameters for
+* Starting and stopping hardware timers
+* Getting timer values
+* Controlling time triggered interrupt notifications
+
+The tick duration of a timer channel depends on channel specific settings (part of GPT driver) as well as on system clock and settings of the clock tree controlled by the MCU module.
+
+The tick duration is not limited by this specification.
+
+Not all hardware timers must be controlled by the GPT module.
+
+The number of timer channels controlled by the GPT driver depends on hardware, implementation and system configuration.
+
+The GPT depends on the system clock, prescaler(s) and PLL. Thus, changes of the system clock (e.g. PLL on → PLL off) also affect the clock settings of the GPT hardware. Module GPT will not take care of settings which configure the clock, prescaler(s) and PLL in its init function. This has to be done by the MCU module. Hence the conversions between time and ticks shall be part of an upper layer.
+
+The GPT driver only generates time bases, and does not serve as an event counter.
+
+This functionality is provided by another driver module.
+
+Each timer channel is able to trigger an interrupt and therefore there is a dependency on the OS, which configures the interrupt sources.
+
+The GPT driver has a state machine that is shown in the figure below.
+
+[[File:GPT_State.png]]
+
+'''Module State'''
+* ''GPT_UNINIT'': The state ''GPT_UNINIT'' means that the Gpt module has not been initialized yet and cannot be used.
+* ''GPT_INIT'':   The ''GPT_INIT'' state indicates that the GPT driver has been initialized, making each available channel ready for service.
+
+'''Channel State'''
+* ''GPT_CH_OPERATIONAL'': The individual channel has been initialized (using at least one statically configured data set) and is able to communicate.
+* ''GPT_CH_SLEEP'':       The GPT hardware is into a low power mode if such a mode is provided by the hardware.
+
+* ''Reset'' -> ''GPT_UNINIT'': After reset, the Gpt module shall set its state to ''GPT_UNINIT''.
+* ''GPT_UNINIT'' -> ''GPT_INIT'': The Gpt module shall transition from ''GPT_UNINIT'' to ''GPT_INIT'' when the function ''Gpt_Init()'' is called.
+* ''GPT_INIT'' -> ''GPT_UNINIT'': The Gpt module shall transition from ''GPT_INIT'' to ''GPT_UNINIT'' when the function ''Gpt_DeInit()'' is called.
+
+On entering the state ''GPT_INIT'', the Gpt module shall set each channel into state ''GPT_CH_OPERATIONAL''.
+
+* ''GPT_CH_OPERATIONAL'' -> ''GPT_CH_SLEEP'': If a ''Gpt_GoToSleep()'' function is called, the Gpt module enters in the ''GPT_CH_SLEEP'' state.
+* ''GPT_CH_SLEEP'' -> ''GPT_CH_OPERATIONAL'': if a ''Gpt_Wakeup()'' functions is called, the Gpt module go back in the state ''GPT_CH_OPERATIONAL''.
+
+The GPT driver provides services for starting and stopping timer channels (logical timer instances assigned to a timer hardware), individual for each channel by calling of:
+* ''Gpt_StartTimer()''
+* ''Gpt_StopTimer()''
+
+The "target time" is passed as a parameter to ''Gpt_StartTimer()''. So, for each start of a timer channel, the target time can be set individually.
+
+The states and the state transitions of a timer channel are shown in Figure below:
+
+[[File:GPT_Driver_modes.png]]
+
+A timer channel can be configured in "one-shot mode" or in "continuous mode".
+
+A timer channel starts counting at value zero.
+
+If a timer channel is configured in "one-shot mode": If the timer has reached the target time (timer value = target time), the timer shall stop automatically and maintain its timer value unchanged. The channel state shall change from "running" to "expired".
+
+[[File:GPT_Driver_one_shot.png]]
+
+If a timer channel is configured in "continuous mode": If the timer has reached the target time (timer value = target time), the timer shall continue running with the value "0" at next timer tick. So, the time interval of the recurrence is: target time + 1. This interval shall be independently of implementation, e.g. interrupt delays.
+
+[[File:GPT_Driver_continuous.png]]
+
+If a timer channel is configured in "continuous mode": If supported by hardware, it shall be possible to realize a free running timer. This means: A timer which rolls over automatically by hardware, if the target time is set to the maximum value the timer is able to count (max value = 2n -1, n=number of bits).
+
+Both, the relative time elapsed and the time remaining can be queried by calling:
+* ''Gpt_GetTimeElapsed()''
+* ''Gpt_GetTimeRemaining()''
+
+[[File:GPT_Driver_elapsed_remaining.png]]
+
+If supported by hardware, a timer channel shall be able to be configured to call a notification function. If enabled, the function is called when the target time is reached (timer value = target time).
+
+Interrupt notifications can be enabled and disabled at runtime individually for each channel by calling of:
+* ''Gpt_EnableNotification()''
+* ''Gpt_DisableNotification()''
+
+== File Structure ==
+
+[[File:GPT_Driver_file_structure.png]]
+
+== API Specification ==
+
+=== Imported Types ===
+
+==== ''typedef uint8 Std_ReturnType'' ====
+
+  #include "Std_Types.h"
+
+Standard Return Type.
+
+This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+
+The ''Std_ReturnType'' shall normally be used with value ''E_OK'' or ''E_NOT_OK''.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+
+==== ''struct Std_VersionInfoType'' ====
+
+  #include "Std_Types.h"
+
+Standard Version Informations Type.
+
+This type shall be used to request the version of a AUTOSAR-like module using the ''<Module Name>_GetVersionInfo()'' function.
+
+'''Field Documentation:'''
+
+  ''uint16 Std_VersionInfoType::moduleID''
+	Module Identifier. 
+
+  ''uint8 Std_VersionInfoType::sw_major_version''
+	Software Version Major Number. 
+
+  ''uint8 Std_VersionInfoType::sw_minor_version''
+	Software Version Minor Number. 
+
+  ''uint8 Std_VersionInfoType::sw_patch_version''
+	Software Version Patch Number. 
+
+  ''uint16 Std_VersionInfoType::vendorID''
+	Vendor Identifier.
+
+=== Types Defintions ===
+
+==== ''struct Gpt_ConfigType'' ====
+
+  #include "Gpt.h"
+
+GPT Configuration Parameters.
+
+This is the type of the data structure including the configuration set required for initializing the GPT timer unit.
+
+The structure ''Gpt_ConfigType'' is an external data structure (i.e. implementation specific) and shall contain the initialization data for the GPT module.
+
+It shall contain:
+* GPT dependent properties
+* GPT hardware units initialization parameters
+* SFR's [Special Function Register] settings affecting the GPT channels
+
+==== ''typedef uint Gpt_ChannelType'' ====
+
+  #include "Gpt.h"
+
+Channel Type.
+
+Parameters of type ''Gpt_ChannelType'' contain the numeric ID of a GPT channel.
+
+The mapping of the ID is implementation specific but not configurable and not all values may be valid within this type.
+
+For parameter values of type ''Gpt_ChannelType'', the Gpt's user shall use the symbolic names provided by the configuration description.
+
+The type shall be ''uint8'', ''uint16'' or ''uint32'', depending on μC platform.
+
+==== ''typedef uint Gpt_ValueType'' ====
+
+  #include "Gpt.h"
+
+GPT Value Type.
+
+The type ''Gpt_ValueType'' is the type for reading and setting the timer values (in number of ticks).
+
+The range of this type is μC dependent (width of the timer register) and has to be described by the supplier.
+
+==== ''enum Gpt_StatusType'' ====
+
+  #include "Gpt.h"
+
+GPT Status Type.
+
+The type ''Gpt_StatusType'' is the type of the return value of the function ''Gpt_GetStatus()''.
+
+The type of ''Gpt_StatusType'' is an enumeration describing the operation states for a GPT channel.
+
+'''Enumerator''':
+* ''GPT_NOT_OK'':	Development or production error occurred.
+* ''GPT_OPERATIONAL'':	Normal operation mode of the GPT
+* ''GPT_CH_SLEEP'':	Sleep state operation.
+
+==== ''typedef void (*Gpt_Notification)(void)'' ====
+
+  #include "Gpt.h"
+
+GPT Notifications Callback Function Pointer.
+
+The notification prototype ''Gpt_Notification_<channel>()'' is for the notifications callback function and shall be implemented by the user.
+
+The GPT module's environment shall declare a separate notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency.
+
+The notifications callback ''Gpt_Notification_<channel>()'' shall be configurable as pointers to  user defined functions within the configuration structure.
+
+Each channel shall provide its own notifications callback if configured.
+
+When disabled, the GPT Driver will send no notifications.
+
+The GPT Driver shall invoke a notification callback whenever the defined target time of the channel is reached.
+
+The ISR's, providing the GPT events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+
+For all available channels, callback functions have to be declared by the configuration tool.
+
+=== Functions Definitions ===
+
+==== ''void Gpt_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)'' ====
+
+  #include "Gpt.h"
+
+GPT Driver version informations retrieval.
+
+'''Parameters''':
+* ''VersionInfoPtr'':	Pointer to where to store the version information of this module.
+
+'''Returns''':
+* ''None''.
+
+This service retrieves the GPT driver version informations.
+
+Service 0x00
+
+The function ''Gpt_GetVersionInfo()'' shall return the version information of this module according to the definition of ''Std_VersionInfoType''.
+
+If source code for caller and callee of ''Gpt_GetVersionInfo()'' is available, the GPT module should realize ''Gpt_GetVersionInfo()'' as a macro, defined in the module’s header file.
+
+The function ''Gpt_GetVersionInfo()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptVersionInfoApi''.
+
+==== ''void Gpt_Init(const Gpt_ConfigType *ConfigPtr)'' ====
+
+  #include "Gpt.h"
+
+GPT Driver Initialization.
+
+'''Parameters''':
+* ''ConfigPtr'':	Pointer to GPT driver configuration set. 
+
+'''Returns''':
+* ''None''.
+
+This service initializes the GPT driver.
+
+Service 0x01
+
+The function ''Gpt_Init()'' shall initialize the hardware timer module according to a configuration set referenced by ''ConfigPtr''.
+
+The function ''Gpt_Init()'' shall disable all interrupt notifications, controlled by the GPT driver.
+
+The function ''Gpt_Init()'' shall only initialize the configured resources. Resources that are not configured in the configuration file shall not be touched.
+
+The function ''Gpt_Init()'' shall set the operation mode of the GPT driver to "normal mode".
+
+A re-initialization of the GPT driver by executing the ''Gpt_Init()'' function requires a de-initialization before by executing a ''Gpt_DeInit()''.
+
+==== ''void Gpt_DeInit(void)'' ====
+
+  #include "Gpt.h"
+
+Deinitializes all hardware timer channels.
+
+'''Parameters''':
+* ''None''.
+
+'''Returns''':
+* ''None''.
+
+The service deinitializes all hardware timer channels.
+
+Service 0x02
+
+The function ''Gpt_DeInit()'' shall deinitialize the hardware used by the GPT driver (depending on configuration) to the power on reset state. Values of registers which are not writeable are excluded. It’s the responsibility of the hardware design that the state does not lead to undefined activities in the μC.
+
+The function ''Gpt_DeInit()'' shall disable all interrupt notifications controlled by the GPT driver.
+
+The function ''Gpt_DeInit()'' shall influence only the peripherals, which are allocated by the static configuration.
+
+If a postbuild multiple selectable configuration variant was used, the function ''Gpt_DeInit()'' shall further influence only the peripherals, which are allocated by the runtime configuration set passed by the previous call of the function ''Gpt_Init()''.
+
+The function ''Gpt_DeInit()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptDeInitApi''.
+
+The function ''Gpt_DeInit()'' shall set the operation mode of the GPT driver to "uninitialized".
+
+==== ''Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Elapsed Time Retrieval.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel
+
+'''Returns''':
+* Elapsed timer value (in number of ticks)
+
+The service returns the time already elapsed.
+
+Service 0x03
+
+The function ''Gpt_GetTimeElapsed()'' shall return the time already elapsed. When the channel is in mode "one-shot mode", this is the value relative to the point in time, the channel has been started.
+
+When the channel is in mode "continuous mode", the return value of ''Gpt_GetTimeElapsed()'' is the value relative to the last recurrence (target time reached) or to the start of the channel before the first recurrence occurs.
+
+If the function ''Gpt_GetTimeElapsed()'' is called on a timer channel in state "initialized" (channel started never before), the function shall return the value "0".
+
+If the function ''Gpt_GetTimeElapsed()'' is called on a timer channel in state "stopped", the function shall return the time value at the moment of stopping.
+
+If the function ''Gpt_GetTimeElapsed()'' is called on a channel configured for "one-shot mode" in state "expired" (timer has reached the target time), the function shall return the target time.
+
+The function ''Gpt_GetTimeElapsed()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+The function ''Gpt_GetTimeElapsed()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptTimeElapsedApi''.
+
+If the driver is not initialized, the function ''Gpt_GetTimeElapsed()'' shall return the value "0".
+
+If the parameter Channel is invalid (not within the range specified by configuration), the function ''Gpt_GetTimeElapsed()'' shall return the value "0".
+
+==== ''Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Remaining Time Retrieval.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel
+
+'''Returns''':
+* Remaining timer value (in number of ticks)
+
+The service returns the time remaining until the target time is reached.
+
+Service 0x04
+
+The function ''Gpt_GetTimeRemaining()'' shall return the timer value remaining until the target time will be reached next time. The remaining time is the "target time" minus the time already elapsed.
+
+If the function ''Gpt_GetTimeRemaining()'' is called on a timer channel in state "initialized" (channel started never before), the function shall return the value "0".
+
+If the function ''Gpt_GetTimeRemaining()'' is called on a timer channel in state "stopped", the function shall return the remaining time value at the moment of stopping.
+
+If the function ''Gpt_GetTimeRemaining()'' is called on a channel configured for "one-shot mode" in state "expired" (timer has reached the target time), the function shall return the value "0".
+
+The function ''Gpt_GetTimeRemaining()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+The function ''Gpt_GetTimeRemaining()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptTimeRemainingApi''.
+
+If the driver is not initialized, the function ''Gpt_GetTimeRemaining()'' shall return the value "0".
+
+If the parameter Channel is invalid (not within the range specified by configuration), the function ''Gpt_GetTimeRemaining()'' shall return the value "0".
+
+
+==== ''void Gpt_StartTimer(Gpt_ChannelType Channel, Gpt_ValueType Value)'' ====
+
+  #include "Gpt.h"
+
+Timer Start.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel
+* ''Value'':	Target time in number of ticks.
+
+'''Returns''':
+* ''None''.
+
+The service starts a timer channel.
+
+Service 0x05
+
+The function ''Gpt_StartTimer()'' shall start the selected timer channel with a defined target time.
+
+If configured and enabled, an interrupt notification or	a wakeup interrupt occurs, when the target time is reached.
+
+The function ''Gpt_StartTimer()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+The state of the selected timer channel shall be changed to "running" if ''Gpt_StartTimer()'' is called.
+
+==== ''void Gpt_StopTimer(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Timer Stop.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel
+
+'''Returns''':
+* ''None''.
+
+The service stops a timer channel.
+
+Service 0x06
+
+The function ''Gpt_StopTimer()'' shall stop the selected timer channel.
+
+The state of the selected timer channel shall be changed to "stopped" if ''Gpt_StopTimer()'' is called.
+
+If the function ''Gpt_StopTimer()'' is called on a channel in state "initialized", "stopped" or "expired", the function shall leave without any action (no change of the channel state).
+
+The function ''Gpt_StopTimer()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+==== ''void Gpt_EnableNotification(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Channel Notification Enable.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel. 
+
+'''Returns''':
+* ''None''.
+
+The service enables the interrupt notification for a channel relevant in normal mode).
+
+Service 0x07
+
+The function ''Gpt_EnableNotification()'' shall enable the interrupt notification of the referenced channel configured for notification.
+
+'''Note''':	The function shall save an attribute like "notification enabled" of the	channel.
+
+'''Note'''	This attribute affects the interrupt notification always when the driver is in "normal mode". In "sleep mode" the attribute has no influence.
+
+The function ''Gpt_EnableNotification()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+The function ''Gpt_EnableNotification()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptEnableDisableNotificationApi''.
+
+==== ''void Gpt_DisableNotification(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Channel Notification Disable.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel.
+
+'''Returns''':
+* ''None''.
+
+The service disables the interrupt notifications for a channel (relevant in normal mode).
+
+Service 0x08
+
+The function ''Gpt_DisableNotification()'' shall disable the interrupt notification of the referenced channel configured for notification.
+
+Note:	The function shall save an attribute like "notification disabled" of the channel.
+ 
+Note:	This attribute affects the interrupt notification always when the driver is in "normal mode". In "sleep mode" the attribute has no influence.
+
+The function ''Gpt_DisableNotification()'' shall be reentrant, if the timer channels used in concurrent calls are different.
+
+The function ''Gpt_DisableNotification()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptEnableDisableNotificationApi''.
+
+==== ''Std_ReturnType Gpt_GoToSleep(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Channel Go To Sleep.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel.
+
+'''Returns''':
+* ''E_OK'':	command has been accepted 
+* ''E_NOT_OK'':	command has not been accepted 
+
+The service instructs the driver to set the addressed GPT channel in the state ''GPT_CH_SLEEP''.
+
+Service 0x0D
+
+The function ''Gpt_GoToSleep()'' shall set the channel state to ''GPT_CH_SLEEP''.
+
+The function ''Gpt_GoToSleep()'' shall optionally set the GPT hardware unit to reduced power operation mode (if supported by HW).
+
+The function ''Gpt_GoToSleep()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptChannelWakeupFunctionalityApi''.
+
+==== ''Std_ReturnType Gpt_Wakeup(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+Channel Wake-up.
+
+'''Parameters''':
+* ''Channel'':	Numeric identifier of the GPT channel.
+
+'''Returns''':
+* ''E_OK'':	command has been accepted 
+* ''E_NOT_OK'':	command has not been accepted 
+
+The service generates a wake-up pulse on the addressed GPT channel.
+
+Service 0x0E
+
+The function ''Gpt_Wakeup()'' shall generate a wake up pulse on the addressed GPT channel.
+
+The GPT driver's environment shall only call Gpt_Wakeup() when the GPT channel is in state ''GPT_CH_SLEEP''.
+
+The function ''Gpt_Wakeup()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptChannelWakeupFunctionalityApi''.
+
+==== ''Gpt_StatusType Gpt_GetStatus(Gpt_ChannelType Channel)'' ====
+
+  #include "Gpt.h"
+
+GPT Channel Status Retrieval.
+
+'''Parameters''':
+* ''Channel'':		Numeric identifier of the GPT channel.
+
+'''Returns''':
+* ''GPT_NOT_OK'':	Development or production error occurred.
+* ''GPT_OPERATIONAL'':	Normal operation.
+* ''GPT_CH_SLEEP'': 	Sleep state operation.
+
+The service gets the status of the specified GPT channel.
+
+Service 0x0F
+
+The function ''Gpt_GetStatus()'' shall return the current transmission, reception or operation status of the SCI driver.
+
+The function ''Gpt_GetStatus()'' shall be pre compile time configurable On/Off by the configuration parameter: ''GptChannelWakeupFunctionalityApi''.
+
+== Usage Examples ==
+
+=== GPT “one-shot mode” ===
+
+[[File:GPT_One_Shot_Seq_Dia.png]]
+
+=== GPT “continuous mode” ===
+
+[[File:GPT_One_Continuous_Dia.png]]
+
+=== GPT Notifications ===
+
+[[File:GPT_Notification_Dia.png]]
+
+== Build ==
+
+To enable AUTOSAR GPT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_GPT_DRIVER__";
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Gpt_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+== Supported Architectures ==
+
+=== TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain ===
+
+==== Driver Configuration ====
+
+In order to configure the AUTOSAR-like Gpt Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Gpt" tab-sheet on driver configuration instance file.
+
+[[File:Erika_Driver_Configurator_GPT.png]]
+
+===== Configuration Selection =====
+
+In this section you can add/edit/delete configurations in GPT Driver configuration set:
+* Each configuration SHALL have an ''Identifier'' which must be unique inside the configurations set.
+* Each configuration, inside the configurations set, has a set of Channels.
+** Each Channel SHALL have a ''Name'' which must be unique inside the Channels.
+
+===== API Selection =====
+
+In this section you can select GPT Driver APIs and features will be included in build process:
+* ''Version Info'': ''Gpt_GetVersionInfo()'' API
+
+[[File:Erika_Driver_Configurator_GPT_set.png]]
+
+===== Gpt Channels =====
+
+The Stellaris General-Purpose Timer Module (GPTM) contains six 16/32-bit GPTM blocks and six 32/64-bit Wide GPTM blocks.
+
+Each 16/32-bit GPTM block provides two 16-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 8-bit prescaler) or concatenated to operate as one 32-bit timer (without prescaler).
+
+Channel Identifiers for 16/32-bit GPTM blocks operating indipendently are the followings:
+
+  GPT_CHANNEL_0_A /* block 0 timer A */
+  GPT_CHANNEL_0_B /* block 0 timer B */
+  GPT_CHANNEL_1_A /* block 1 timer A */
+  GPT_CHANNEL_1_B /  block 1 timer B */
+  ...
+  GPT_CHANNEL_5_A /* block 5 timer A */
+  GPT_CHANNEL_5_B /* block 5 timer B */
+
+If a timer value can't be translated on 16-bit, the driver enables the 8-bit prescaler extending the timer counter size to 24-bit.
+
+Channel Identifiers for 16/32-bit GPTM blocks concatenated are the followings:
+
+  GPT_CHANNEL_J_0 /* block 0 [timer B]:[timer A] */
+  GPT_CHANNEL_J_1 /* block 1 [timer B]:[timer A] */
+  ...
+  GPT_CHANNEL_J_5 /* block 5 [timer B]:[timer A] */
+
+The timer counter size is fixed to 32-bit.
+
+Each 32/64-bit Wide GPTM block provides two 32-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 16-bit prescaler) or concatenated to operate as one 64-bit timer (without prescaler).
+
+Channel Identifiers for 32/64-bit GPTM blocks operating indipendently are the followings:
+
+  GPT_CHANNEL_W_0_A /* block 0 timer A */
+  GPT_CHANNEL_W_0_B /* block 0 timer B */
+  GPT_CHANNEL_W_1_A /* block 1 timer A */
+  GPT_CHANNEL_W_1_B /  block 1 timer B */
+  ...
+  GPT_CHANNEL_W_5_A /* block 5 timer A */
+  GPT_CHANNEL_W_5_B /* block 5 timer B */
+
+If a timer value can't be represented on 32-bit, the driver enables the 16-bit prescaler extending the timer counter size to 48-bit.
+
+Channel Identifiers for 32/64-bit GPTM blocks concatenated are the followings:
+
+  GPT_CHANNEL_J_W_0 /* block 0 [timer B]:[timer A] */
+  GPT_CHANNEL_J_W_1 /* block 1 [timer B]:[timer A] */
+  ...
+  GPT_CHANNEL_J_W_5 /* block 5 [timer B]:[timer A] */
+
+The timer counter size is fixed to 64-bit.
+
+==== Interrupts ====
+
+To use the GPT driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for every GPT Channel:
+
+  ISR Gpt_Channel_<Channel>_ISR {
+    CATEGORY = 2;
+    ENTRY = "[WIDE_]TIMER_<Channel>";
+    PRIORITY = <ISR Priority>;
+  };
+
+Where <code><Channel></code> is the "channel identifier" part as stated in the GPT Driver Channel Identifier of the channel and <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+===== Examples =====
+
+  /* GPT_CHANNEL_0_B: 16-bit GPTM block 0 timer B */
+  ISR Gpt_Channel_0_B_ISR {
+    CATEGORY = 2;
+    ENTRY = "TIMER_0_B";
+    PRIORITY = 4;
+  };
+  ...
+  /* GPT_CHANNEL_J_1: 32-bit GPTM conactenated GPTM block 1 [timer B]:[timer A] */
+  ISR Gpt_Channel_J_1_ISR {
+    CATEGORY = 2;
+    ENTRY = "TIMER_1_A"; /* Concatenated GPTM blocks ALWAYS refers timer A ENTRY */
+    PRIORITY = 3;
+  };
+  ...
+  /* GPT_CHANNEL_W_4_A: 32-bit WIDE GPTM block 4 timer A */
+  ISR Gpt_Channel_0_B_ISR {
+    CATEGORY = 2;
+    ENTRY = "WIDE_TIMER_4_A"; /* WIDE GPTM block */
+    PRIORITY = 6;
+  };
+  ...
+  /* GPT_CHANNEL_J_W_3: 64-bit conactenated WIDE GPTM block 3 [timer B]:[timer A] */
+  ISR Gpt_Channel_J_W_3_ISR {
+    CATEGORY = 2;
+    ENTRY = "WIDE_TIMER_3_A"; /* Concatenated WIDE GPTM blocks ALWAYS refers timer A ENTRY */
+    PRIORITY = 7;
+  };
+
+==== Implemetations Demos ====
+
+Implementation Demos of the AUTOSAR-like GPT Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]

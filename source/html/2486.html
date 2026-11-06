@@ -1,0 +1,221 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#ARM_Cortex_RX_support"><span class="tocnumber">1</span> <span class="toctext">ARM Cortex RX support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#MCUs"><span class="tocnumber">1.1</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Boards"><span class="tocnumber">1.2</span> <span class="toctext">Boards</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Download_and_install"><span class="tocnumber">2</span> <span class="toctext">Download and install</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#RT-Druid_and_ERIKA_Enterprise_RTOS"><span class="tocnumber">2.1</span> <span class="toctext">RT-Druid and ERIKA Enterprise RTOS</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Toolchain:_Code_Composer_Studio"><span class="tocnumber">2.2</span> <span class="toctext">Toolchain: Code Composer Studio</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Flasher:_TI_Uniflash"><span class="tocnumber">2.3</span> <span class="toctext">Flasher: TI Uniflash</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#HAL_Code_Generator:_HALCoGen"><span class="tocnumber">2.4</span> <span class="toctext">HAL Code Generator: HALCoGen</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Target_Configuration_and_Programming"><span class="tocnumber">3</span> <span class="toctext">Target Configuration and Programming</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#CPU"><span class="tocnumber">3.1</span> <span class="toctext">CPU</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#MCU"><span class="tocnumber">3.2</span> <span class="toctext">MCU</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Interrupt_Handling"><span class="tocnumber">3.3</span> <span class="toctext">Interrupt Handling</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#EEOPT"><span class="tocnumber">3.4</span> <span class="toctext">EEOPT</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#CPU.2C_MCU_.26_BOARD_API"><span class="tocnumber">4</span> <span class="toctext">CPU, MCU &amp; BOARD API</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#MCU_Initialization"><span class="tocnumber">4.1</span> <span class="toctext">MCU Initialization</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#LEDS"><span class="tocnumber">4.2</span> <span class="toctext">LEDS</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Display"><span class="tocnumber">4.3</span> <span class="toctext">Display</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Other_Interfaces"><span class="tocnumber">4.4</span> <span class="toctext">Other Interfaces</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Example"><span class="tocnumber">4.5</span> <span class="toctext">Example</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#OSEK.2FVDX_Extensions"><span class="tocnumber">5</span> <span class="toctext">OSEK/VDX Extensions</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Flashing"><span class="tocnumber">6</span> <span class="toctext">Flashing</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Examples"><span class="tocnumber">7</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#See_also"><span class="tocnumber">8</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="ARM_Cortex_RX_support"> ARM Cortex RX support </span></h1>
+<p>The Cortex R4 support includes:
+</p>
+<ol><li> support for <a href="http://www.ti.com/" class="external text" rel="nofollow">Texas Instruments</a> compiler toolchain
+</li><li> support for single stack configurations
+</li><li> ISR Type 1 and Type 2 supported;
+</li></ol>
+<ul><li> Supported IDEs:
+<ul><li> <a href="http://www.ti.com/tool/ccstudio" class="external text" rel="nofollow">Texas Instruments Code Composer Studio</a> (Cortex R4)
+</li></ul>
+</li></ul>
+<ul><li> Mode of operation:
+<ul><li> <i>Mono-stack</i>: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="MCUs"> MCUs </span></h3>
+<ul><li> The MCUs currently supported are the following:
+<ul><li> <a href="http://www.ti.com/lsds/ti/microcontrollers_16-bit_32-bit/c2000_performance/safety/tms570/overview.page?DCMP=TMS570&amp;HQS=tms570" class="external text" rel="nofollow">Hercules TMS570 MCUs</a> (Cortex R4)
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Boards"> Boards </span></h3>
+<ul><li> The boards currently supported are the following:
+<ul><li> <a href="http://www.keil.com/mcbtms570/" class="external text" rel="nofollow">Keil MCBTMS570</a> (Cortex R4)
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Download_and_install"> Download and install </span></h1>
+<h3> <span class="mw-headline" id="RT-Druid_and_ERIKA_Enterprise_RTOS"> RT-Druid and ERIKA Enterprise RTOS </span></h3>
+<p>RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+</p><p><a href="http://www.erika-enterprise.com/index.php/download/erika-v2.x.html" class="external free" rel="nofollow">http://www.erika-enterprise.com/index.php/download/erika-v2.x.html</a>
+</p>
+<h3> <span class="mw-headline" id="Toolchain:_Code_Composer_Studio"> Toolchain: Code Composer Studio </span></h3>
+<p>The toolchain and Debugger can be downloaded from the following web address:
+</p><p><a href="http://processors.wiki.ti.com/index.php/Download_CCS" class="external free" rel="nofollow">http://processors.wiki.ti.com/index.php/Download_CCS</a>
+</p><p>Note that CCSv6 is recommended.
+To tell ERIKA where to find the compiler, the sysem variable <i>CCS_INSTALL_ROOT</i> 
+has to be set to the compiler path:
+<code>CCS_INSTALL_ROOT = C:\ti\ccsv6</code>
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="Flasher:_TI_Uniflash"> Flasher: TI Uniflash </span></h3>
+<p>The flashing utility can be downloaded from the following page:
+</p><p><a href="http://processors.wiki.ti.com/index.php/Category:CCS_UniFlash" class="external free" rel="nofollow">http://processors.wiki.ti.com/index.php/Category:CCS_UniFlash</a>
+It is recommended to use the same installation path as the toolchain (C:\ti\)
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="HAL_Code_Generator:_HALCoGen"> HAL Code Generator: HALCoGen </span></h3>
+<p>Currently the whole MCU is configured via a GUI from Texas Instruments.
+</p><p>The software can be downloaded from <a href="http://www.ti.com/tool/halcogen" class="external free" rel="nofollow">http://www.ti.com/tool/halcogen</a> .
+</p>
+<h1> <span class="mw-headline" id="Target_Configuration_and_Programming"> Target Configuration and Programming </span></h1>
+<p>ERIKA Enterprise is configured through <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics"> RT-Druid and an OIL file</a>
+</p>
+<h2> <span class="mw-headline" id="CPU"> CPU </span></h2>
+<p><code>CPU_DATA</code> must be set to <code>CORTEX_RX</code>.<br />
+The exact model is specified with the <code>MODEL</code> item ( <code>R4</code> for Cortex R4).<br />
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (supported values are <code>CCS</code> for <code>R4</code>).<br />
+Example of a CPU_DATA section:
+</p>
+<pre> CPU_DATA = CORTEX_RX {
+   MODEL = R4;
+   APP_SRC = "code.c";
+   COMPILER_TYPE = CCS;
+   MULTI_STACK = FALSE;
+ };
+</pre>
+<h2> <span class="mw-headline" id="MCU"> MCU </span></h2>
+<p><code>MCU_DATA</code> must be set to <code>TI</code> for Keil MCBTMS570.<br />
+The only item supported is <code>MODEL</code>, which can be either <code>TMS570</code> for <code>TI</code>.<br />
+Example of a MCU_DATA section:
+</p>
+<pre>   MCU_DATA = TI {
+     MODEL = TMS570;
+   };
+</pre>
+<h2> <span class="mw-headline" id="Interrupt_Handling"> Interrupt Handling </span></h2>
+<p>TODO: Add Support of OIL-File Interrupt Handling.
+Currently the Interrupts are handled via the HALCoGen tool. 
+</p>
+<h2> <span class="mw-headline" id="EEOPT"> EEOPT </span></h2>
+<p>EEOPT is a way to specify configuration flags to the Erika build environment. EEOPTs can be specified as strings in the OS section of the OIL file. Board specific options are: 
+</p>
+<pre>   EE_OPT = "__ALLOW_NESTED_IRQ__";    /* Allow nested interrupts                                 */
+   EE_OPT = "__USE_SYSTICK__";         /* Enables Timer                                           */
+   EE_OPT = "__USE_LEDS__";            /* Enables the use of the 6 Onboard LEDS                   */
+   EE_OPT = "__USE_DISPLAY__";         /* Enables the use of the Onboard Display                  */
+   EE_OPT = "__USE_ADC__";             /* Enables the use of the Analog-Digital Converter         */
+   EE_OPT = "__USE_LIN__";             /* Enables the use of the LIN Driver                       */
+   EE_OPT = "__USE_GIO__";             /* Enables the use of the General I/O Driver               */
+   EE_OPT = "__USE_HET__";             /* Enables the use of the High End Timer                   */
+   EE_OPT = "__USE_SPI__";             /* Enables the use of the Serial Peripheral Interface      */
+   EE_OPT = "__USE_SCI__";             /* Enables the use of the Serial Communication Interface   */
+   EE_OPT = "__USE_CAN__";             /* Enables the use of the CAN Interface                    */
+</pre>
+<h1> <span class="mw-headline" id="CPU.2C_MCU_.26_BOARD_API"> CPU, MCU &amp; BOARD API </span></h1>
+<h3> <span class="mw-headline" id="MCU_Initialization"> MCU Initialization </span></h3>
+<p>To initialise the needed HAL Drivers specified as EE_OPTs, it is necessary to initialize these modules
+by calling: 
+</p>
+<dl><dd><b>void EE_mcu_init(void);</b>
+</dd></dl>
+<h3> <span class="mw-headline" id="LEDS"> LEDS </span></h3>
+<p>Note: EE_OPT = "__USE_LEDS__"; has to be set in the OIL file.
+</p>
+<dl><dd><b>void EE_LED_On(unsigned int num);</b> Turn LED (0...5) on.
+</dd><dd><b>void EE_LED_Off(unsigned int num);</b> Turn LED (0...5) off.
+</dd><dd><b>void EE_LED_Out(unsigned int value);</b> Write out a binary value to the 6 LEDs.
+</dd><dd><b>void EE_LED_Toggle (unsigned int num);</b> Toggle LED (0...5).
+</dd></dl>
+<h3> <span class="mw-headline" id="Display"> Display </span></h3>
+<p>Note: EE_OPT = "__USE_DISPLAY__"; has to be set in the OIL file.
+</p>
+<dl><dd><b>void DISPLAY_Init           (void);</b>
+</dd><dd><b>void DISPLAY_WindowMax      (void);</b>
+</dd><dd><b>void DISPLAY_PutPixel       (unsigned int x, unsigned int y);</b>
+</dd><dd><b>void DISPLAY_SetTextColor   (unsigned short color);</b>
+</dd><dd><b>void DISPLAY_SetBackColor   (unsigned short color);</b>
+</dd><dd><b>void DISPLAY_Clear          (unsigned short color);</b>
+</dd><dd><b>void DISPLAY_DrawChar       (unsigned int x, unsigned int y, unsigned short *c);</b>
+</dd><dd><b>void DISPLAY_DisplayChar    (unsigned int ln, unsigned int col, unsigned char  c);</b>
+</dd><dd><b>void DISPLAY_DisplayString  (unsigned int ln, unsigned int col, char *s);</b>
+</dd><dd><b>void DISPLAY_ClearLn        (unsigned int ln);</b>
+</dd><dd><b>void DISPLAY_Bargraph       (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int val);</b>
+</dd><dd><b>void DISPLAY_Bitmap         (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned char const *bitmap);</b>
+</dd><dd><b>void DISPLAY_Bmp            (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned char const *bmp);</b>
+</dd></dl>
+<h3> <span class="mw-headline" id="Other_Interfaces"> Other Interfaces </span></h3>
+<p>For other Interfaces, like the ADC, GIO, HET, see the files created by the HALCoGen tool.
+</p><p>They can be found in the <code> $(EE_BASE)/contrib/ti_tms570 </code> folder.
+</p>
+<h3> <span class="mw-headline" id="Example"> Example </span></h3>
+<p><code>
+</p>
+<pre> void main()
+ {<br />
+ /* Initialize MCU */
+ EE_mcu_init();<br />
+ /* LCD Display Initialization */
+ DISPLAY_Clear(Black);
+ DISPLAY_SetBackColor(Black);
+ DISPLAY_SetTextColor(White);
+ DISPLAY_DisplayString(0, 0, "Hardware: TI TMS570");
+ DISPLAY_SetTextColor(Blue);
+ DISPLAY_DisplayString(1, 0, "Software: Erika RTOS");<br />
+ /* Turn on first LED */
+ EE_LED_On(0);
+ 
+ ...
+</pre>
+<p></code>
+</p>
+<h1> <span class="mw-headline" id="OSEK.2FVDX_Extensions"> OSEK/VDX Extensions </span></h1>
+<p>This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex RX support.
+</p><p>TODO: Add Resource Management at ISR level
+</p><p>TODO: Add System Timer support
+</p>
+<h1> <span class="mw-headline" id="Flashing"> Flashing </span></h1>
+<p>The build process creates a folder called <b>flasher</b> in the Debug folder. 
+To flash the device via the TI Uniflash, simply execute the <b>flash.bat</b>.
+Currently the path to the Uniflash program is hardcoded to <br />
+<code>C:\ti\uniflashv3\ccs_base\scripting\examples\uniflash\cmdLine\uniflash</code>
+</p><p>TODO: Change flash path according given installation. 
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Examples"> Examples </span></h1>
+<ul><li> The examples and tests are available in this folders:
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_rx/ti_tms570/porting_examples/" class="external text" rel="nofollow">ERIKA SVN: Porting Examples</a>: TI TMS570 Development Board (Cortex R4) examples.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="See_also"> See also </span></h1>
+<ul><li> <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>
+</li><li> <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 90/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,109 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#RS485_on_FLEX"><span class="tocnumber">1</span> <span class="toctext">RS485 on FLEX</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Tests_using_FLEX_DEMO_DAUGHTER_BOARD"><span class="tocnumber">1.1</span> <span class="toctext">Tests using FLEX DEMO DAUGHTER BOARD</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Tests_using_FLEX_MULTIBUS_BOARD"><span class="tocnumber">1.2</span> <span class="toctext">Tests using FLEX MULTIBUS BOARD</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#module_485_in_the_first_UART_slot_of_multibus_.28the_first_from_the_right.29"><span class="tocnumber">1.2.1</span> <span class="toctext">module 485 in the first UART slot of multibus (the first from the right)</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#module_485_in_the_second_UART_slot_of_multibus_.28the_second_from_the_right.29"><span class="tocnumber">1.2.2</span> <span class="toctext">module 485 in the second UART slot of multibus (the second from the right)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="RS485_on_FLEX"> RS485 on FLEX </span></h1>
+<p>This pages reports the experiences on using RS485 devices on the FLEX Multibus boards and demo boards.
+</p><p>A big thanks to <a href="http://www.cesiricerca.it/" class="external text" rel="nofollow">CESI Ricerca SPA, Italy</a>, for providing the base text for this page.
+</p>
+<h2> <span class="mw-headline" id="Tests_using_FLEX_DEMO_DAUGHTER_BOARD"> Tests using FLEX DEMO DAUGHTER BOARD </span></h2>
+<p>HW:
+</p>
+<ul><li> JMP 4, 5, 6 on the daughter board are in position 1-2, 2-3, 2-3
+</li><li> JMP2 and JMP3 of RS485 module in position 1-2
+</li><li> the demo board is connected to UART2
+</li></ul>
+<p>in eeuart.h:
+</p>
+<ul><li> U2MODEbits.UEN=0 (if CTRL_FLOW)
+</li></ul>
+<p>in code.c, test with RF13:
+</p>
+<ul><li> UART2_INIT with CTRL_FLOW
+</li><li> before Send: PORTFbits.RF12=0 and PORTFbits13=1
+</li><li> after  Send: PORTFbits.RF12=0 and PORTFbits13=0
+</li><li> testing pin levels with oscilloscope:
+<ul><li> RF13.PIN39 on the Flex = OK
+</li><li> TXEN in the 485 module (pin 3) = KO
+</li><li> Transmit=OK   Receive=KO
+</li></ul>
+</li></ul>
+<p>in code.c, test with RF12:
+</p>
+<ul><li> UART2_INIT with CTRL_FLOW
+</li><li> before Send: PORTFbits.RF12=1 and PORTFbits13=0
+</li><li> after  Send: PORTFbits.RF12=0 and PORTFbits13=0
+</li><li> testing pin levels with oscilloscope:
+<ul><li> RF12.PIN39 on the Flex = OK
+</li><li> TXEN in the 485 module (pin 3) = KO
+</li><li> Transmit=OK   Receive=KO
+</li></ul>
+</li></ul>
+<p>The pin3 is NOT connected to RF12 when using RS485 on the daughter board,
+so TXEN is not activated. 
+The pin5 is connected to RF13 and is activated when PORTFbits.RF13=1,
+so by soldering a jumper between pin3 and pin 5 on the RS485 module we get
+TRANSMIT=OK and RECEIVE=OK and all works fine!
+</p>
+<h2> <span class="mw-headline" id="Tests_using_FLEX_MULTIBUS_BOARD"> Tests using FLEX MULTIBUS BOARD </span></h2>
+<p>HW:
+</p>
+<ul><li> JMP2 and JMP3 of RS485 module in position 1-2
+</li></ul>
+<h3> <span class="mw-headline" id="module_485_in_the_first_UART_slot_of_multibus_.28the_first_from_the_right.29"> module 485 in the first UART slot of multibus (the first from the right) </span></h3>
+<p>in eeuart.h:
+</p>
+<ul><li> U1MODEbits.UEN=0 (if CTRL_FLOW)
+</li></ul>
+<p>in code.c:
+</p>
+<ul><li> UART1_INIT with CTRL_FLOW
+</li><li> before Send: PORTDbits.RD14=0 and PORTDbits.RD15=1
+</li><li> after  Send: PORTDbits.RD14=0 and PORTDbits.RD15=0
+</li><li> testing pin levels with oscilloscope:
+<ul><li> RD15.PIN48 on the Flex = OK
+</li><li> TXEN in the 485 module (pin 3) = OK
+</li><li> Transmit=OK   Receive=OK
+</li></ul>
+</li></ul>
+<p>if module 485 in the second slot (connected to UART2, second from the right) and using the same SW above (referencing UART1): ALL KO!!
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="module_485_in_the_second_UART_slot_of_multibus_.28the_second_from_the_right.29"> module 485 in the second UART slot of multibus (the second from the right) </span></h3>
+<p>in eeuart.h: 
+</p>
+<ul><li> U2MODEbits.UEN=0 (if CTRL_FLOW)
+</li></ul>
+<p>in code.c:
+</p>
+<ul><li> UART2_INIT with CTRL_FLOW
+</li><li> before Send: PORTFbits.RF12=0 and PORTFbits.RF13=1
+</li><li> after  Send: PORTFbits.RF12=0 and PORTFbits.RF13=0
+</li><li> testing pin levels with oscilloscope:
+<ul><li> RF13.PIN39 on the Flex = OK
+</li><li> TXEN in the 485 module (pin 3) = OK
+</li><li> Transmit=OK   Receive=OK
+</li></ul>
+</li></ul>
+<p>if module 485 in the first slot (connected to UART1, first from the right) and using the same SW above (referencing UART2): ALL KO!!
+</p><p>The image below show how to connect two FLEX multibus-boards for a RS485 based communication. Please, note that the RS485 modules are in the second UART slot of the multibus board.
+</p><p><a href="/wiki/index.php?title=File:Rs485_uart2_demo.png" class="image"><img alt="Rs485 uart2 demo.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1e/Rs485_uart2_demo.png" width="550" height="411" /></a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 18/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

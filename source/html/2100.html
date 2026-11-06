@@ -1,0 +1,116 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Import_platform_project_in_LatticeMico_System_IDE"><span class="tocnumber">2</span> <span class="toctext">Import platform project in LatticeMico System IDE</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Import_hardware_platform_project_in_ispLever_IDE"><span class="tocnumber">3</span> <span class="toctext">Import hardware platform project in ispLever IDE</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Importing_camera_component_mod.ngo_in_the_ispLever"><span class="tocnumber">3.1</span> <span class="toctext">Importing camera_component_mod.ngo in the ispLever</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#meminit_ebr.mem_bootloader_file_in_the_ispLEVER"><span class="tocnumber">3.2</span> <span class="toctext">meminit_ebr.mem bootloader file in the ispLEVER</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Build_the_platform_with_ispLEVER"><span class="tocnumber">3.3</span> <span class="toctext">Build the platform with ispLEVER</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Import_hardware_platform_project_in_Diamond_IDE"><span class="tocnumber">4</span> <span class="toctext">Import hardware platform project in Diamond IDE</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Importing_camera_component_mod.ngo_in_the_Diamond"><span class="tocnumber">4.1</span> <span class="toctext">Importing camera_component_mod.ngo in the Diamond</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#meminit_ebr.mem_bootloader_file_in_the_Diamond"><span class="tocnumber">4.2</span> <span class="toctext">meminit_ebr.mem bootloader file in the Diamond</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Build_the_platform_with_Diamond"><span class="tocnumber">4.3</span> <span class="toctext">Build the platform with Diamond</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Programming_the_platform_on_FPG-EYE_board"><span class="tocnumber">5</span> <span class="toctext">Programming the platform on FPG-EYE board</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>This page explains how to build a configuration file for FPG-EYE's fpga from a source platform with binary camera. 
+Prerequisites:
+</p>
+<ul><li> <a href="/wiki/index.php?title=Installation_of_Mico32/FPG-EYE_development_environment" title="Installation of Mico32/FPG-EYE development environment"> Install Mico32/FPG-EYE development environment</a> 
+</li><li> Get a local copy of Erika repository to have the platform projects.
+</li></ul>
+<p>For further info see this page:<a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access#Anonymous.2C_readonly_access" title="ERIKA Enterprise and RT-Druid SVN Access"> ERIKA Enterprise and RT-Druid SVN Access instructions</a>.
+</p>
+<ul><li> To download the platform JEDEC file, you need a <b>programming cable</b> connected to the JTAG port of the board, follow the instructions on <a href="http://erika.tuxfamily.org/wiki/index.php?title=Programming_the_FPG-EYE_board" class="external text" rel="nofollow">How programming the FPG-EYE board</a>.
+</li></ul>
+<h1> <span class="mw-headline" id="Import_platform_project_in_LatticeMico_System_IDE"> Import platform project in LatticeMico System IDE </span></h1>
+<p>Launch <a href="http://www.latticesemi.com/products/designsoftware/micodevelopmenttools/index.cfm" class="external text" rel="nofollow"><i>LatticeMico System</i></a>  software, and click on <b>MSB Perspective</b> button (as the following figure):
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Select_msb_from_msb_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/57/Select_msb_from_msb_ide.png" width="700" height="310" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Select_msb_from_msb_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>MSB</b> button</div></div></div></div>
+<p>Open the <b>Open Platform form</b> by selecting the <b>File-&gt;Open Platform</b> menu item:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Open_msb_from_msb_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5e/Open_msb_from_msb_ide.png" width="700" height="320" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Open_msb_from_msb_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Open <b>MSB</b> platform</div></div></div></div>
+<p>Now if you are using the software ispLever click the <b>Browse</b> button and load <b>ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_isplever/msb/soc/fpg_eye_mico32.msb</b> while, if you are using the software Diamond click the <b>Browse</b> button and load <b>ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_diamond/msb/soc/fpg_eye_mico32.msb</b> file inside Erika repository local copy.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Select_fpg_eye_mico32_msb_from_msb_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/72/Select_fpg_eye_mico32_msb_from_msb_ide.png" width="700" height="343" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Select_fpg_eye_mico32_msb_from_msb_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select <i>fpg_eye_mico32.msb</i></div></div></div></div>
+<p>The platform's architecture is visible under <b>Sources in Project</b> window:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_msb.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/af/Fpg_eya_mico32_from_msb.png" width="700" height="310" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_msb.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select <i>fpg_eye_mico32.msb</i> platform architecture</div></div></div></div>
+<p>Note: You don't need to make any changes to the platform.
+And finally, generate the platform source by selecting the <b>Run Generator</b> menu item:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_msb_run.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ac/Fpg_eya_mico32_from_msb_run.png" width="700" height="411" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_msb_run.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Clicking on <b>Run Generator</b> we have the platform source</div></div></div></div>
+<p>The <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">mico32</a> platform's Verilog source is generated. To use this platform in FPG-EYE, the source code must be compiled in binary format.
+The next session explains how to compile the <a href="http://www.verilog.com/" class="external text" rel="nofollow">Verilog</a> platform's code with ispLEVER tool.
+</p>
+<h1> <span class="mw-headline" id="Import_hardware_platform_project_in_ispLever_IDE"> Import hardware platform project in ispLever IDE </span></h1>
+<p>Open <a href="http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar" class="external text" rel="nofollow">ispLEVER</a> and select <i>Open Project</i> under <i>File menu</i>:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Open_project_from_ispLever_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6e/Open_project_from_ispLever_ide.png" width="700" height="423" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Open_project_from_ispLever_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>Open project</i> from ispLever</div></div></div></div>
+<p>Load <b>ee/examples/mico32/demo/platforms/fpg_eye_isplever/isplever/fpg_eye_mico32.syn</b> inside Erika repository local copy:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_ispLever.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cd/Fpg_eya_mico32_from_ispLever.png" width="700" height="423" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_ispLever.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Load <i>fpg_eye_mico32.msb</i></div></div></div></div>
+<p>The hardware project structure is visible under <i>Sources in Project</i> window. Ensure that <i>fpg_eye_mico32_wrapper.v</i> is selected and active:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eye_mico32_wrapper_active.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7b/Fpg_eye_mico32_wrapper_active.png" width="700" height="423" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eye_mico32_wrapper_active.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>ispLever</i> project structure</div></div></div></div>
+<p>Before compiling the ispLever project, there are two more steps to perform (refer sections below).
+</p>
+<h2> <span class="mw-headline" id="Importing_camera_component_mod.ngo_in_the_ispLever"> Importing <i>camera_component_mod.ngo</i> in the ispLever </span></h2>
+<p>The component camera installed in the platform <i>fpg_eye_mico32</i> is a binary version. So it is necessary to import in the ispLever the netlist of the camera. To do this, copy the file <i>camera_component_mod.ngo</i>, from the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE Software Packet</a> to the ispLever project directory.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Camera_component_ngo_in_ispLever.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e4/Camera_component_ngo_in_ispLever.png" width="700" height="522" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Camera_component_ngo_in_ispLever.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>camera_component_mod.ngo</i> in ispLever project directory</div></div></div></div>
+<h2> <span class="mw-headline" id="meminit_ebr.mem_bootloader_file_in_the_ispLEVER"> <i>meminit_ebr.mem</i> bootloader file in the ispLEVER </span></h2>
+<p>The file <i>meminit_ebr.mem</i> is the compiled file. It is the program bootloader which will be placed in the XP2 EBR non volatile memory. For the bootloader reference guide, refer section <a href="/wiki/index.php?title=Tutorial:_Running_ERIKA_on_Mico32_and_FPG-EYE" title="Tutorial: Running ERIKA on Mico32 and FPG-EYE">Tutorial: Running ERIKA on Mico32 and FPG-EYE</a>. Be sure that the file is present in the ispLever project directory.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Isp_lever_mem_file.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d6/Isp_lever_mem_file.png" width="700" height="522" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Isp_lever_mem_file.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>meminit_ebr.mem</i> in ispLever project directory</div></div></div></div>
+<h2> <span class="mw-headline" id="Build_the_platform_with_ispLEVER"> Build the platform with ispLEVER </span></h2>
+<p>On <b>Processes of current source</b> click and select <b>Generate Data File (JEDEC)</b> then right click and select <b>Force</b>&nbsp;:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Isp_lever_compile_fpg_eye_mico32.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c8/Isp_lever_compile_fpg_eye_mico32.png" width="700" height="423" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Isp_lever_compile_fpg_eye_mico32.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>Force</b> from <b>Generate Data File (JEDEC)</b> menu</div></div></div></div>
+<p>When the process is complete the file the FPGA configuration file <b>JEDEC</b> is ready to use.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Generate_data_file_jedec_from_isplever.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/59/Generate_data_file_jedec_from_isplever.png" width="700" height="422" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Generate_data_file_jedec_from_isplever.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>Generate Data File (JEDEC)</b></div></div></div></div>
+<h1> <span class="mw-headline" id="Import_hardware_platform_project_in_Diamond_IDE"> Import hardware platform project in Diamond IDE </span></h1>
+<p>Open <a href="http://www.latticesemi.com/products/designsoftware/diamond" class="external text" rel="nofollow">Diamond</a> and select <i>Open Project</i> under <i>File menu</i>:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Open_project_from_diamond_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d1/Open_project_from_diamond_ide.png" width="700" height="513" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Open_project_from_diamond_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>Open project</i> from Diamond</div></div></div></div>
+<p>Load <b>ee/examples/mico32/demo/platforms/fpg_eye_diamond/diamond/fpg_eye_mico32.ldf</b> inside Erika repository local copy:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5e/Fpg_eya_mico32_from_diamond.png" width="700" height="487" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eya_mico32_from_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Load <i>fpg_eye_mico32.msb</i></div></div></div></div>
+<p>The hardware project structure is visible under <i>Sources in Project</i> window. Ensure that <i>fpg_eye_mico32_wrapper.v</i> is selected and active:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Fpg_eye_mico32_wrapper_active_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bc/Fpg_eye_mico32_wrapper_active_diamond.png" width="700" height="492" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Fpg_eye_mico32_wrapper_active_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>Diamond</i> project structure</div></div></div></div>
+<p>Before compiling the Diamond project, there are two more steps to perform (refer sections below).
+</p>
+<h2> <span class="mw-headline" id="Importing_camera_component_mod.ngo_in_the_Diamond"> Importing <i>camera_component_mod.ngo</i> in the Diamond </span></h2>
+<p>The component camera installed in the platform <i>fpg_eye_mico32</i> is a binary version. So it is necessary to import in the Diamond the netlist of the camera. To do this, copy the file <i>camera_component_mod.ngo</i>, from the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE Software Packet</a> to the Diamond project directory.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Camera_component_ngo_in_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/35/Camera_component_ngo_in_diamond.png" width="700" height="521" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Camera_component_ngo_in_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>camera_component_mod.ngo</i> in Diamond project directory</div></div></div></div>
+<h2> <span class="mw-headline" id="meminit_ebr.mem_bootloader_file_in_the_Diamond"> <i>meminit_ebr.mem</i> bootloader file in the Diamond </span></h2>
+<p>The file <i>meminit_ebr.mem</i> is a compiled file. It is the program bootloader which will be placed in the XP2 EBR non volatile memory. For the bootloader reference guide, refer section <a href="/wiki/index.php?title=Tutorial:_Running_ERIKA_on_Mico32_and_FPG-EYE" title="Tutorial: Running ERIKA on Mico32 and FPG-EYE">Tutorial: Running ERIKA on Mico32 and FPG-EYE</a>. Be sure than this file is present in the Diamond project directory.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Diamond_mem_file.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/51/Diamond_mem_file.png" width="700" height="526" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Diamond_mem_file.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><i>meminit_ebr.mem</i> in Diamond project directory</div></div></div></div>
+<h2> <span class="mw-headline" id="Build_the_platform_with_Diamond"> Build the platform with Diamond </span></h2>
+<p>On <b>Processes of current source</b> click and select <b>Generate Data File (JEDEC)</b> then right click and select <b>Return All</b>&nbsp;:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Diamond_compile_fpg_eye_mico32.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cd/Diamond_compile_fpg_eye_mico32.png" width="700" height="502" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Diamond_compile_fpg_eye_mico32.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>Force</b> from <b>Generate Data File (JEDEC)</b> menu</div></div></div></div>
+<p>When the process is complete the file the FPGA configuration file <b>JEDEC</b> is ready to use.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Generate_data_file_jedec_from_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/54/Generate_data_file_jedec_from_diamond.png" width="700" height="508" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Generate_data_file_jedec_from_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><b>Generate Data File (JEDEC)</b></div></div></div></div>
+<h1> <span class="mw-headline" id="Programming_the_platform_on_FPG-EYE_board"> Programming the platform on FPG-EYE board </span></h1>
+<p>The last step is download the <b>JEDEC</b> file into <i>FPG-EYE</i>. Please follow the <a href="/wiki/index.php?title=Programming_the_FPG-EYE_board" title="Programming the FPG-EYE board">Programming the FPG-EYE board</a> istructions.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

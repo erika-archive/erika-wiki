@@ -1,0 +1,51 @@
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>To compile and run the example you should download the <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en019469&amp;part=SW007002" class="external text" rel="nofollow">MPLAB IDE</a> v8.66 or later. Then please download the <a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en010065&amp;part=SW006012" class="external text" rel="nofollow">compiler C30</a> (a C version compiler for dsPic). For install MPLAB IDE and C30 Compiler please follow the instructions present on the Microchip web site.
+</p>
+<h1> <span class="mw-headline" id="EasyLab_Project_Packet"> EasyLab Project Packet </span></h1>
+<p>We take as example the <a href="http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip" class="external text" rel="nofollow">Easylab Software Packet</a>. It contains the follow files:
+</p>
+<ul><li> <b>easy-lab-demo-project.mcp:</b> is the MPLAB's project file.
+</li><li> <b>easylab.c:</b> is demo library C file.
+</li><li> <b>easylab.h:</b> is demo library header file.
+</li><li> <b>main.c:</b> is the project main file where is called the library API.
+</li><li> <b>cof:</b> is a directory where is placed an programmable <i>cof</i> file ready to be programmed (without compile the project).
+</li></ul>
+<p>Put these files in a your working project directory.
+</p>
+<h1> <span class="mw-headline" id="MPLAB_IDE"> MPLAB IDE </span></h1>
+<p>Now please launch the Microchip Mplab ide from your 'Start Program'.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_ide.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/71/Mplab_ide.png" width="700" height="422" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_ide.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Microchip Mplab ide</div></div></div></div>
+<p>Now click on <i>Open Project</i> and select the project where it was decompressed. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_easylab_open_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/45/Mplab_easylab_open_project.png" width="700" height="499" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_easylab_open_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Open the <i>EasyLab demo project</i></div></div></div></div>
+<p>In <b>Menu -&gt; Configure -&gt; Select Device</b> please select the device <b>dsPIC33FJ64MC802</b>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_easylab_select_micro.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/36/Mplab_easylab_select_micro.png" width="700" height="460" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_easylab_select_micro.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Open the <i>EasyLab demo project</i></div></div></div></div>
+<p>Now in the <b>Menu -&gt; Project -&gt; Select Language Toolsuite</b> select the <b>Microchip C30 toolsuite</b> and its location in the your file system.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_toolsuite.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ee/Mplab_toolsuite.png" width="700" height="435" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_toolsuite.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select <b>Language Toolsuite</b></div></div></div></div>
+<p>Now click on <b>Menu -&gt; Project -&gt; Build All</b> and the project should be compiled.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_easylab_build.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/14/Mplab_easylab_build.png" width="700" height="448" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_easylab_build.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Build the demo project</div></div></div></div> 
+<p>Now connect your Easylab with miniUSB supply programming cable and USB communication cable at your Pc.
+Select <b>Starter Kits programmer</b> in <b>Menu -&gt; Programmer -&gt; Select Programmer -&gt; Starter Kits</b>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Mplab_start_kit.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c1/Mplab_start_kit.png" width="700" height="445" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplab_start_kit.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select <b>Starter Kit</b></div></div></div></div> 
+<p>For the Pc communications please open a Serial Terminal (e.g. Putty.exe, HTerm.exe). Configure the port, baud rate (115200),data bits(8 bit), stop bits (1 bit) and parity bits (none). DON'T enable CTS. Connet to the channel.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Hyperterminal.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5f/Hyperterminal.png" width="700" height="479" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Hyperterminal.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Serial communication with EasyLab</div></div></div></div> 
+<p>Program your board clicking on <b>Program</b> button (It should have been appeared after you selected the programmer)
+Enjoy the kitting effect and a nice stadium choir.&nbsp;:)
+Look at your serial terminal, you should get the example instruction on the console.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Easylab_menu.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1c/Easylab_menu.png" width="700" height="474" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Easylab_menu.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>EasyLab Menu</div></div></div></div> 
+<p>Have fun with it.&nbsp;:D
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

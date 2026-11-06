@@ -1,0 +1,25 @@
+<p>It is possible to use Scicos-FLEX with non-FLEX boards.
+These steps should make it possible to compile an EE application based on a custom board.
+</p><p>Here is what you need to do:
+</p>
+<ul><li> You need to write your own blocks. see the following link
+<ul><li> <a href="/wiki/index.php?title=How_to_add_a_new_Scicos_block_to_ERIKA_Enterprise" title="How to add a new Scicos block to ERIKA Enterprise">How to add a new Scicos block to ERIKA Enterprise</a>
+</li></ul>
+</li><li> You need to create a template for your board.
+<ul><li> First, start from an existing template. The reference template is stored into the example eclipse plugin. under my PC, it is currently <tt>C:\Evidence\eclipse\plugins\com.eu.evidence.ee.templates.dspic_1.5.1.201011221106\examples\pic30\pic30_scicos</tt>
+</li><li> Then, copy the template in another directory under the examples directory (for example, ".../examples/pic30/myboard")
+</li><li> change, in the <tt>template.xml</tt>, the board ID from "board_flex" to "myboard"
+</li><li> change the code to reflect your board configuration by editing the 'oil' and the source files. 
+</li></ul>
+</li><li> Now you need to add the template in the Scicos target settings, by editing the file SCI+'/contrib/scicos_ee/scicos_flex/dsPIC/macros /codegen/SetTarget_.sci', changing the templates list as follows: <tt>lab_template = ['board_flex', 'board_easylab', 'myboard'];</tt>
+</li><li> At this point you need to recompile all the files by running "builder.sce". 
+</li></ul>
+<p>Finally, when generating the code, use "myboard" instead of "board_flex" in the Target board parameter in the code generator dialog box.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

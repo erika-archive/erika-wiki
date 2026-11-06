@@ -1,0 +1,30 @@
+This page shows the steps needed to unpack and mount the Amazing Ball.
+
+You should have received the package containing the Amazing Ball mechanical parts and hardware.
+Please open the lateral side to let the mechanical part and the electrobix be removed easily as shown below
+
+[[Image:Amazing_2.JPG]]
+
+Remove the coverage from the touch panel to simplify the extraction of the parts.
+ 
+[[Image:Amazing_3.JPG]]
+
+Inside the box, you will find a carton package similar to the typical Flex box, but with an "Amazing Ball" sticker on it.
+
+[[Image:Amazing_4.JPG]]
+
+...Open it, and you will find the electronic (already mounted), plus the iron ball.
+
+[[Image:Amazing_5.JPG]]
+
+Once opened, you should unscrew the four white plastic screws on the right of the picture below, and then fix the electronic on the holes on the bottom metal plate. The holes are of a size the fits either the FLEX Light or the FLEX Full.
+
+[[Image:Amazing_6.JPG]]
+
+Once the electronic is fixed to the metal plate, you should fix the connectors of the servo motors and of the touchscreen. Please note the numbers on each connector, as well as the colors of the cables in the picture below
+
+[[Image:Amazing_7.JPG]]
+
+Once done that, you should have the Amazing Ball mounted in a way similar to the following picture. (Please note that the power connector is not included in the package)
+
+[[Image:Amazing_8.JPG]]

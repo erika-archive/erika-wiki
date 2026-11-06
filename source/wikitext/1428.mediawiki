@@ -1,0 +1,286 @@
+This is the Wiki page dedicated to the Scicos code generator originally developed by Roberto Bucher from SUPSI Lugano.
+
+The code of the code generator is distributed under GPL2. The project is currently lead by Roberto Bucher, from SUPSI Lugano, and is hosted on the Evidence web site.
+
+
+
+= Scicoslab 4.4.1 and ScicosLab Pack 10.0: code generator for FLEX and EasyLab boards- Installation procedure =
+Steps to set up the Scicoslab code generation for FLEX and EasyLab boards
+# Download and install Cygwin from the [http://www.cygwin.com/ Cygwin site]. Here is a [http://download.tuxfamily.org/erika/webdownload/eeCygwin_1_7_9.zip minimal installation pack]. Cygwin is required to compile the code generated from your Scicos diagram.
+# Download Microsoft Visual C++ 2008 from the [http://www.microsoft.com/it-it/download/details.aspx?id=29 Microsoft Visual C++ site] ([http://www.microsoft.com/express/Downloads/#2008-Visual-CPP or use this link])and install it. It is required from the Evidence Scicoslab pack. 
+# Download ScicosLab 4.4.1 from the [http://erika.tuxfamily.org/scilabscicos.html ScicosLab site] and install it. 
+# Download Microchip MPLAB IDE from the [http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en019469 MPLAB IDE site] and install it. It is required to program the dsPIC microcontroller mounted on the FLEX board or EasyLab board. Then download a C30 compiler, for example from the [http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en010065&part=SW006012 Microchip MPLAB C30 compiler site] and install it. A compiler is required to compile your control application. To program the dsPIC on the Flex board you need a programmer. You can buy a programmer for dsPIC from Microchip site. Programmers suggested are: Microchip MPLAB ICD2 or Microchip MPLAB ICD3. See Microchip for more informations:[http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&nodeId=1406&dDocName=en010046 Microchip programmers site]. While for the EasyLab board the programmer is not required because it is equipped with one on board.
+# Download the latest Scicoslab pack from the [http://erika.tuxfamily.org/scilabscicos.html ScicosLab pack download page]. Unzip the pack and install it. To install the pack execute the installer.sce script file in ScicosLab (File -> Exec...). (If needed, run ScicosLab with administrator privileges). At the end of the installation restart ScicosLab for the changes to take effect.
+#: '''Note for Windows 64 bit users''': On some Windows 64 bit machines, the Scicos Pack fails to load at startup. This is due to the failure to load two DLLs. The issue can be solved temporarily commenting a few lines as expleined below.
+# Create and compile your first Scicos diagram (as shown here: [http://erika.tuxfamily.org/wiki/index.php?title=Amazing_Ball_Control_System:_An_example_of_PID_control_and_UDP_communication An example of code-generation]), flash the microcontroller, test your application and ... enjoy! 
+
+Please note, this version of the ScicosLab pack includes a stand-alone version of RT-Druid and a full version of Erika Enterprise.
+If you have any problem please contact us using the [http://erika.tuxfamily.org/forum/ Erika Forum]
+
+== Note for Windows 64 bit users ==
+Some Windows 64bit machines seems to fail loading the Scicos Pack. The problem is related to the loading of two DLLS (Roller and FLEX Demo Board Simulator).
+
+We propose in this case to disable the loading of these two DLLs by commenting out the following two files:
+
+* In the file: <pre>scicoslab-4.4.1\contrib\scicos_ee\scicos_flex\dspic\Flex-Roller\loader.sce</pre> comment the following two lines as below:
+<pre>
+//folder_path=get_absolute_file_path('loader.sce');</pre>
+//roller_link_num = link(folder_path+'RollerGui.dll',['EvidenceRollers'],'c');
+</pre>
+
+* and in the file: <pre>scicoslab-4.4.1\contrib\scicos_ee\scicos_flex\dspic\Flex-Sim\loader.sce</pre> comment the following lines at the bottom:
+<pre>
+// Link to import the selected modules of the library
+// Flex Demo Board simulation (QT executable)
+//[x_x_x,dmbexe_err] = fileinfo(SCI + '/contrib/scicos_ee/bin/FlexDemoBoard.exe');
+//if dmbexe_err == 0
+//	flexsim_link_num = link(flexsim_path + 'Release\libflexsim.dll', comp_fun, 'c');
+//else
+//	flexsim_link_num = link(flexsim_path + 'Release_fake\libflexsim.dll', comp_fun, 'c');
+//end
+</pre>
+
+These changes will make the startup procedure run, and as a result you will be able to run the UDP demos.
+
+The Roller and the Flex demo board simulator will not work, as their respective DLLs are not loaded, so do not try to use these blocks on a Windows 64 bit machine.
+
+= Your first Scicos application =
+
+This Chapter will guide you to the creation, compilation and execution
+of a first simple Scicos example on a FLEX Demo board (or EasyLab board). The example
+created in this tutorial can be found in the directory
+<tt>scicos_ee/examples/scicos_flex/Led_sin</tt>
+<tt>(scicos_ee/examples/scicos_easylab/Led_sin)</tt>.
+
+inside scicos pack base directory.
+
+If you are looking for a pre-built example, go directly to the next Section.
+
+== Creating the Scicos example files ==
+
+(Note the screenshow may refer to old versions of ScicosLab or Scilab 4.1.2).
+
+# Please start ScicosLab from the Start menu. The ScicosLab window appears.
+# Type <tt>scicos();</tt> as showed below in the Figure, and press Enter.
+#: [[File:scilab_splash.png|center|thumb|200px|The Scilab splash screen. Type <tt>scicos();</tt> to start Scicos.]]
+# The Scicos windows appears, as showed in Figure
+#: [[File:scicos_splash.png|center|thumb|200px|The Scicos splash screen.]]
+# You need to compile the Scicos blocks, if you didn't do it yet, in order to get the system working. To do that type these commands in ScicosLab window:
+#:cd ("%SCICOSLAB_HOME%\contrib\dspic");       // (%SCICOSLAB_HOME% means the installation path of ScicosLab...)
+#:exec ("builder.sce");
+#::'''IMPORTANT NOTE''': please check the correctness of this path. Newer Scicos Packs are installed under <tt>...\scicoslab-4.4.1\contrib\scicos_ee\scicos_flex\dspic</tt> <tt>(...\scicoslab-4.4.1\contrib\scicos_ee\scicos_easylab\dspic)</tt>
+# Select ''Palettes'' from the ''Palette'' menu, as showed in Figure
+#: [[File:palette_menu.png|center|thumb|200px|The Palettes.]]
+# A little list appear in place of the menu. Select ''FLEX'' (''Easylab''), as showed in Figure
+#: [[File:palette_menu2.png|center|thumb|200px|The Palette list.]]
+# A windows appears, with some sink blocks specific for the FLEX boards (EasyLab board)
+#: [[File:palette.png|center|thumb|200px|The dsPIC Palette.]]
+# Single click on the FLEX-LED (EASYLAB-LED) block. The window selection moves to the Scicos window. The mouse now becomes a white rectangle of the  dimension of the LED block. Single click somewhere in the white part of the window. A LED block is dropped in the diagram, like in Figure
+#: [[File:led.png|center|thumb|200px|The LED block is dropped in the design window.]]
+#* '''Note''': If you need to move a block, go over it with the mouse, press ''m'', then move the block and click on the new position!
+#* '''Note''': If you need to delete a block or a line, go over it with the mouse, then press ''d''!
+#* '''Note''': If some garbage appears on the diagram windos, don't panic! Just press ''r''!
+# Open the MCHP16-Sources palette, and repeat the same with the Sine block, placing it on the left of the LED block, as in Figure 
+#: [[File:sineled.png|center|thumb|200px|Place the Sine block to the left of the LED block.]]
+# Link the black triangle of the Sine block to the black triangle of the LED block. To do that, press ''l'', then single click on the triangle of the Sine block (the ''source''), then click again on the triangle of the LED block (the ''sink''). See Figure
+#: [[File:link.png|center|thumb|200px|Sine and LED are now linked.]]
+# From the MCHP16-Sources Palette, which can be found il the palette list, choose the red clock, and put it on the diagram as shown in Figure
+#: [[File:clock.png|center|thumb|200px|Put the Clock block over the Sine and LED blocks.]]
+# Now connect the clock signal to the two blocks. To do that, single click on the red triangle of the <tt>clock</tt> block, then single click below it, then single click over the <tt>Sine</tt> block, then click on the red triangle of the <tt>Sine</tt> block. After that, single click on the line below the <tt>clock</tt> block, hit the key 'L' of keyboard, then over the <tt>LED</tt> block, then on the red triangle of the <tt>LED</tt> block. The result is shown in Figure
+#: [[File:redlink.png|center|thumb|200px|The Clock block is connected to the Sine and LED blocks.]]
+# Single click on the Clock block. Its properties window appears. Leave them untouched, and press OK. You can do the same on the Sine block. The two Figures below show these windows.
+#: [[File:clockproperties.png|center|thumb|200px|The Clock block properties.]]
+#: [[File:sineproperties.png|center|thumb|200px|The Sine block properties.]]
+# The code generator can produce code which only comes from a special block named ''Super Block''. For this reason, we need to create a Super Block enclosing the <tt>Sine</tt> and the <tt>LED</tt> blocks. To do that, select the ''Region to Super Block'' menu item from the ''Diagram'' menu (see Figure below).
+#: [[File:region2sb.png|center|thumb|200px|The Region to Super Block menu item.]]
+# Then, draw a selection which includes the <tt>Sine</tt>, the <tt>LED</tt>, and the red lines in a way that only ''one'' red line exits the selection, as shown in Figure
+#: [[File:sb.png|center|thumb|200px|The selection made to create a Super Block.]]
+# As a result, a Super Block is created (see Figure)
+#: [[File:sb1.png|center|thumb|200px|The Super Block.]]
+#: Which contains the Sine and LED blocks. To see these blocks, just single click on the Super Block, and another window will appear (see Figure). 
+#: [[File:sb2.png|center|thumb|200px|The contents of the Super Block.]]
+# Please note that this window is very similar to the previous one except that the clock object is substituted by a placeholder signed with the number 1.
+#* '''Note''': The Diagram containing the Super Block is disabled when the Super Block diagram is displayed. Only one window can be enabled at a time in Scicos. The limitation will be removed in the next version of Scicos.
+# It is now time to save the two diagrams. From the ''File'' menu, choose ''Save as''. Save the diagram containing the Super Block as <tt>led_sin.cos</tt>.
+
+== Generating dsPIC code from a Scicos Diagram ==
+
+It is now time to generate the code for the example we just created.
+
+'''Note''': A copy of the file created in the previous steps is included inside the <tt>scicos_examples/led_sin</tt> directory. To open it, double click on the <tt>scicos_examples/led_sin/led_sin.cos</tt> file.
+
+# Select ''Set Target'' from the ''CodeGen'' menu (see Figure).
+#: [[File:codegen0.png|center|thumb|200px|The CodeGen menu - Set target.]]
+# A window appear, like the one in Figure
+#: [[File:codegen3.png|center|thumb|200px|The SetTarget dialog box.]]
+# You can specify the target board (board_flex or board_easylab) using the second textbox. Please leave the other options unchanged.
+# Select ''FlexCodeGen'' from the ''CodeGen'' menu (see Figure).
+#: [[File:codegen1.png|center|thumb|200px|The CodeGen menu - Flex code generator.]]
+# A window appear, like the one in Figure
+#: [[File:codegen2.png|center|thumb|200px|The FlexCodeGen dialog box.]]
+# You can specify the block name by modifying the <tt>New block's name</tt> textbox and the directory where all the files will be created by modifying the <tt>Created files Path</tt> textbox. 
+#* '''IMPORTANT NOTE FOR WINDOWS USERS''': Choose a location where you have write permission. If you start 'ScicosLab' with administrator privileges there are no limitations in the choice of the destination folder.
+# Press ''Ok''. As a result, a set of files are generated in the output directory.
+# Then, Scicos automatically opens a console window, running in it the following commands:
+#* the RT-Druid template generator to instantiate the Scicos template application;
+#* the RT-Druid standalone code generator to produce the ERIKA Enterprise configuration files from the generated OIL file;
+#* the ''make'' application to compile the code.
+# The result of the code generation process is depicted in Figure  \ref{fig:console}. 
+#: [[File:console.png|center|thumb|200px|The compilation console.]]
+# The executable file is named <tt>pic30.cof</tt> (older versions of the Scicos-FLEX toolsed had it named <tt>pic30.elf</tt>) and it is located inside the <tt>Debug</tt> directory as usual for all the ERIKA Enterprise applications.
+# You can now program your application on your FLEX board. To do that, you need to open MPLABIDE as you usually do to program other ERIKA Enterprise applications. Please refer to the ERIKA Enterprise tutorial for dsPIC for more information.
+# Running the code on your FLEX board has the following behavior: the system led on the board flashes with a period of 20 seconds, and a duty cycle of around 6 seconds over 20. The explanation is the following: 
+#* The system works like a synchronous control system, with a sampling frequency of 0.1 secs
+#* The ''Sine'' block output is a sinus with a frequency of 0.05, which correspond to a period of 20 s
+#* The LED block is directly linked to the system led, and is programmed to put on the system led when its input is greater than 0.5.
+#* Looking at the Figure below, it is clear that the sinus has a value greater than 0.5 for around a third of its period. Given that, the system led is on for around 6 seconds over 20.
+#: [[File:graphic.png|center|thumb|200px|A graphic of a Sine and of a constant value 0.5.]]
+
+= Internals of the genareted code =
+
+== Templates and customization of the generated application ==
+
+The default application wich is generated by the Scicos embedded code generator for dsPIC generates a basic application which uses ERIKA Enterprise with the FP kernel, a periodic task and an Alarm triggered by a timer interrupt to activate it.
+
+In general, it is likely that advanced users would like to customize the application which is generated by the code generator, to add other activities to be executed concurrently with the code generated from the Scicos design. Examples of this activities could be for example background activities for reporting, supervision, display, debug, and so on.
+
+Implementing such variations is very easy, because the application scheleton used by the code generator is contained inside a RT-Druid template. In particular, the default template is the <tt>pic30_empty_scicos</tt> template stored inside the <tt>examples/pic30/pic30_scicos</tt> directory under the dsPIC examples plugin in the Eclipse installation. The user can add a new template using the following steps:
+
+# Copy the <tt>examples/pic30/pic30_scicos</tt> directory in another location under the <tt>examples</tt> directory;
+# Change the <tt>ID</tt> of the template by modifying the <tt>template.xml</tt> file contained inside the directory. The <tt>ID</tt> is specified in the second line of the XML file as follows: <pre> <evidence_example version="1" ID="pic30_empty_scicos"></pre>
+# Change the files included in the new template. If you need to add a new file, please remember to add it in the corresponding list in the <tt>template.xml</tt> file.
+
+Finally, specify the new template when generating the code in the Template textbox.
+
+== Assumptions of the default template ==
+The code generated by the Scilab/Scicos code generator for FLEX uses the template named <tt>pic30_empty_scicos</tt>, and has the following symplifing assumptions:
+
+# There is a single sampling time T_s in the system;
+# T_s is forced to 1 ms;
+# Every sampling time specified by the user under the Scicos design will be rounded to a multiple of a millisecond;
+# An ERIKA Enterprise counter is linked to the a periodic timer;
+# The periodic timer used in the dsPIC hardware is set to raise an interrupt every 1 ms;
+# An ERIKA Enterprise alarm is attached to the counter, to periodically activate a task;
+# The task body just calls the routines generated by the Scicos code generator. Which executes the functions you specified in the design;
+# The PWM object has a fixed period of 1 ms. This means that if the sampling period is a multiple of T_s, then the PWM will repeat the same duty cycle until the PWN value is changed;
+# The A/D converter always works ''on demand'', meaning it always  executes the following steps:
+#* selects a channel;
+#* starts the conversion;
+#* waits for the end of the conversion (typically max 10 usec)
+#* it converts the result in a value from 0.0 V and 3.3 V
+
+== Installer Key Features ==
+The ScicosPack installer is a ScicosLab script executed by users to install/uninstall the ScicosPack.
+Key features:
+* automatic copy of files (please note, the user has to run ScicosLab with administrator privileges to install the toolbox)
+* automatic check of prerequisites 
+* SMCube compiler configuration
+* License check
+* Microchip compiler support for Erika\RT-Druid project (certified OSEK micro-kernel)
+* automatic build of the ScicosPack sources
+* automatic creation of palettes
+* automatic loading of blocks-specific help pages
+* batch mode supported (for regression test with Jenkins)
+
+== External libraries linkage ==
+ScicosLab supports external DLL/SO linkage. This feature allows the user to link external C functions that are used to model new Scicos blocks for target-specific simulation and code generation.
+ScicosLab supports also DLL/SO creation in Windows and Linux hosts. 
+To do this, ScicosLab automatically configure its environment by adding the required environment variables (MSVC variables in Windows).
+Type <tt>help ilib_for_link</tt> for further info (the function path is <tt>ScicosLab_441\macros\util\ilib_for_link.sci</tt>).
+External libraries linkage is done by the ScicoLab incremental linker by calling the function <tt>link</tt> (type <tt>help link</tt> for further info).
+As decribed in the <tt>link</tt> function's help page, the linkage needs also the C identifiers of the functions to be linked.
+Please note, if you create a DLL/SO library starting from an external C++ project (for example using Qt or MSVC++) the
+functions to be linked should have C names and not C++ names. This can be obtained using a construct like the following:
+At the top of the header file:
+
+<tt>
+  #ifdef __cplusplus
+  extern "C" {
+  #endif
+</tt>
+
+At the bottom of the header file:
+
+<tt>
+  #ifdef __cplusplus
+  }
+  #endif
+</tt>
+
+An example of a block's computational function for simulation is reported below:
+
+<tt>
+  __declspec(dllexport) void block_func(scicos_block *block, int flag) {
+  if (flag == OutputUpdate){
+    /* set output */
+    block_in_out(block);
+  }
+  else if (flag == Ending){
+    /* termination */ 
+    block_end(block);
+  }
+  else if (flag == Initialization){
+    /* initialization */
+    block_init(block);
+  } 
+  }</tt>
+
+For further info about the scicos-block structure look at:
+<tt>ScicosLab_441\routines\scicos\scicos_block4.h</tt>
+
+== Code Generation ==
+The reference folder is the following:
+<tt>trunk\ee_scicoslab\scicos_flex\dspic\macros\codegen</tt>
+The code-generation logic is in the file:
+<tt>trunk\ee_scicoslab\scicos_flex\dspic\macros\codegen\FlexCodeGen_.sci</tt>
+The target selection logic is in the file:
+<tt>trunk\ee_scicoslab\scicos_flex\dspic\macros\codegen\SetTarget_.sci</tt>
+Please note, the two logics save the code-generation user preferences in a specific field of the selected superblock.
+The superblocks provide to fields, named <tt>void2</tt> and <tt>void3</tt>, that can be used for generic purposes.
+New targets and new boards can be added by changing the function <tt>SetTarget_</tt>.
+Code generation for embedded application is implemented in the function <tt>FlexCodeGen_</tt>.
+Also the code-generation logic may require some minor change to support some specific feature of the new board,
+but normally changes are not required.
+Each block, designed for code generation, needs a computational target function in addition to the one used for simulation.
+The target function should have a prototype and a structure very similar to the computational function reported above.
+
+== How to add a new Scicos block ==
+The first step is to write the interfacing function (.sci) of the block.
+The interfacing function is a method that allows to define blocks settings, like the sizes and the types of the
+input/output ports of the block , internal states, feed-through properties as well as the internal parameters.
+The interfacing function defines also the graphics of the block and specifies the name of the block's 
+computational function (the C function called in simulation).
+Then, the second step is to write the computational function and the target function as described above.
+Finally, the last step is to build\link the DLL\SO and to load in Scicos the interfacing function of the block 
+(see commands like: "lib", "genlib", "exec", "getf", ...).
+Refer to this [http://erika.tuxfamily.org/wiki/index.php?title=How_to_add_a_new_Scicos_block_to_ERIKA_Enterprise tutorial] for further information.
+ 
+== ScicosPack toolbox loader ==
+The ScicosPack can be launched as an external toolbox starting form the ScicosLab menu. To do this, the ScicosPack folder
+should contain two scripts:
+* <tt>builder.sce</tt> (used to build the toolbox, not directly callable by the menu)
+* <tt>loader.sce</tt> (called to load the toolbox when it is choosed from the menu)
+
+== Regression test framework ==
+Each block is tested separately with a unit-test to verify no regression was introduced 
+for both simulation and code-generation. This is done with a regression test framework (in batch-mode).
+Testcase SVN repository can be downloaded (read-only) from the following URL:
+<tt>svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/scilab_codegen/trunk/testcase</tt>
+
+To launch testcase follow this procedure:
+* edit the script <tt>run_scicos_test.sh</tt> to change the environment variables SCIBASE, TESTBASE and ZIPBASE in accord with the directories used on your PC. (Please note you can also modify the script to avoid installation of the ScicosPack if already installed or the SVN checkout if the testcase folder has been already downloaded from the server.)
+* run the script to start tests execution
+
+== Linux support ==
+ScicosPack is also available on Linux hosts. 
+ScicosPack for Linux will be committed and released as soon as possible.
+Contact us on the [http://erika.tuxfamily.org/forum/ FORUM] for further info.
+
+== Support for MSVC2010 and MSVC2012 (only for Windows) ==
+ScicosLab 4.4.1 supports Microsoft Visual C\C++ 2010. The presence of the MSVC2010 compiler is automatically recognized and the
+MSVC2010 environment is loaded during the ScicosLab initialization.
+MSVC2010 is requured by the ScicosPack because it has a number of DLLs builded with MSVC2010 to be linked in the launching step. 
+ScicosLab doesn't support MSVC2012 directly. 
+MSVC2012 can be supported writing a new version of the MSVC configuration functions.
+See <tt>ScicosLab_441\macros\util\configure_msvc.sci</tt> and similar for further informations.
+Contact us on the [http://erika.tuxfamily.org/forum/ FORUM] for further info.

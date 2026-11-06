@@ -1,0 +1,1326 @@
+ERIKA Enterprise Manual for Atmel AVR8 targets
+= Introduction =
+Embedded microcontroller units are spreading in thousands of applications, ranging from single to distributed systems, control applications, multimedia, communication, medical applications and many others. Modern microcontrollers, which are growing in computational power, speed and interfacing capabilities, are more and more feeling the need of tools to make the development of complex scalable applications easier.
+
+This manual describes the porting details of the ERIKA Enterprise kernel(s) for the Atmel families of microcontrollers which supports 8/16-bit RISC AVR cores (aka AVR8).
+
+Atmel AVR8 replaces the OLD porting of the ERIKA Enterprise kernel(s) for the Atmel families of microcontrollers which supports 8/16-bit RISC AVR cores (aka AVR5) whose manual page is found [http://erika.tuxfamily.org/wiki/index.php?title=Atmel_AVR5 here].
+
+== ERIKA Enterprise and RT-Druid for AVR8 ==
+Embedded applications often require tight control on the temporal behavior of each single activity in the system. Real-time complex system systems such as Wireless Sensor Networks are nowadays deployed in academic and industrial environments. The very limited set of resources available in the popular hardware platforms, and the diversified domains of WSN applications, require the adoption of an Operating System responding to the following pre-requisites:
+* minimum footprint to fit the limited RAM capacity (of the order of few KB); 
+* tunable scheduling algorithm to handle the execution of the tasks;
+* an application interface acting on the kernel layer and well decoupled from OS service implementation.
+Many WSNs are deployed making use of AVR8-based sensor boards like those commercialized by CrossBow Inc.
+
+ERIKA Enterprise and RT-Druid represent the answer of Evidence Srl for the development of scalable real-time applications for AVR8.
+
+ERIKA Enterprise provides AVR8 developers the following features:
+
+* Traditional RTOS features:
+** Support for four conformance classes to match different application requirements;
+** Support for preemptive and non-preemptive multitasking;
+** Support for fixed priority scheduling;
+** Support for stack sharing techniques, and one-shot task model to reduce the overall stack usage;
+** Support for shared resources;
+** Support for periodic activations using Alarms;
+** Support for centralized Error Handling;
+** Support for hook functions before and after each context switch.
+
+* RT-Druid development environment
+** Development environment based on the Eclipse IDE;
+** Support for the OIL language for the specification of the RTOS configuration;
+** Graphical configuration plugin to easily generate the OIL configuration file and to easily configure the RTOS parameters;
+** Full integration with the Cygwin development environment to provide a Unix-style scripting environment;
+** Apache ANT scripting support for code generation.
+
+* AVR8 integration features
+** Installation setup which integrates the AVR8 GCC compiler and AVRStudio together with ERIKA Enterprise and RT-Druid;
+** Support for the Atmel JTAG ICE MKII debugger;
+** Support for the following families Atmel MCUs:
+*** [http://www.atmel.com/products/microcontrollers/avr/megaAVR.aspx MEGA]
+*** [http://www.atmel.com/products/microcontrollers/avr/AVR_XMEGA.aspx XMEGA]
+*** [http://www.atmel.com/products/microcontrollers/avr/tinyavr.aspx TINY]
+** Support for following boards
+*** [http://www.xbow.com/ Crossbow Mib510 and Mib520 Boards] (ATmega128L)
+*** [http://www.atmel.com/tools/stk500.aspx Atmel STK500/1 Board] (ATmega128L)
+*** [http://www.atmel.com/tools/stk600.aspx Atmel STK600 Board] (ATxmega16D4)
+*** [http://arduino.cc/en/Main/ArduinoBoardUno Arduino Uno Board] (ATmega328p)
+** List of functions:
+*** Full support of the RF230 RF solution from Atmel, with usage of the IEEE 802.15.4 MAC (ZigBee);
+*** Full support for [http://arduino.cc/en/main/software Arduino.cc SDK 1.0.5];
+*** Full support for [http://arduino.cc/en/main/software Arduino.cc SDK 1.6.8];
+*** Full support for [http://www.arduino.org/software Arduino.org SDK 1.7.9];
+
+== Integration with other tools for AVR8 ==
+ERIKA Enterprise and RT-Druid aims to the best integration with the existing tools for development available from the AVR microcontrollers.
+RT-Druid will be used to quickly configure the application, setting temporal parameters of real-time tasks, memory requirements, stack allocation and many other parameters. Moreover, RT-Druid generates the application template, and leaves the developer the task to implement the logic of each single task.
+While programming the application, the developer can exploit the power and flexibility offered by the primitives of the ERIKA Enterprise real-time kernel.
+ERIKA Enterprise also supports the compiling environments provided by Atmel, providing also direct support for the programming and JTAG solutions of Atmel.
+
+== Content of this document ==
+The purpose of this document is to describe all the information needed to create, develop and modify an Erika Enterprise application for the AVR family of microcontrollers.
+
+In particular, the document describes:
+* The design flow which should be used to generate an Erika Enterprise application;
+* The configuration of the development environment;
+* The options which are available to configure the system.
+
+As a final note, all the settings which are explained in this document apply both to Erika Enterprise if not otherwise stated.
+
+<pre>
+Note: If you are looking for a step-by-step / quick guide tutorial on how to use Erika Enterprise and RT-Druid with AVR,
+please read the “Erika Enterprise Tutorial for the AVR microcontrollers”, available for download on the Evidence Web site.
+</pre>
+
+= Erika Enterprise for AVR8 =
+== The RT-Druid and Erika Enterprise design flow ==
+The typical development environment provided by Atmel for the software development for the AVR microcontrollers is composed by the Atmel AVR Studio. Atmel AVR Studio is a development environment for Microsoft Windows which integrates a source code editor, an instruction set simulator and a debugger.
+
+In addition to the traditional development flow, Evidence Srl provides a design and configuration environment named RT-Druid, based on [http://www.eclipse.org Eclipse]. Eclipse is an open framework initially developed by IBM, which allows the possibility of integrating various development tools in a common environment.
+
+For that reason, when developing an application for Erika Enterprise the user is supposed to write the source code inside the RT-Druid IDE (see Figure 2.1).
+[[File:Avr5_eclipse_workspace.png|center|thumb|200px|Figure 2.1: The Eclipse workspace and the RT-Druid plugins for AVR]]
+
+Application compilation is also done inside the Eclipse Framework. In fact, the RTDruid code generator is able to generate the Erika Enterprise configuration files together with a set of configuration files (typically, a makefile plus a set of .c files) which are then used to compile the source code.
+
+After that, compilation is started automatically by pressing on the “Build Project” menu item inside the “Project” menu, which automatically calls the underlying make application provided by the Cygwin environment. As an alternative, the “Build Project” command is also available by right clicking on the project name.
+
+The choice of the Cygwin environment has been done to simplify the building process of an application: in fact, Cygwin provides a set of traditional Unix tools like make, awk, sed, which are really useful to implement a command line application building framework. Moreover, these tools are typically available for free on the Linux platform, easing in this way the porting of the application to a free development environment such as Linux.
+
+=== Building an application from command line ===
+The RT-Druid plugins provide three ways to develop an application:
+# A graphical interface to simplify the development of an application, based on Eclipse.
+# A scripting interface based on [http://ant.apache.org Apache ANT], which is the default scripting environment used in the Eclipse Framework.
+# A standalone code generator, that does not use Eclipse.
+
+Using ANT or the standalone version, the developer can automatically generate from scripts the configuration data and the makefiles which are then used to compile the application. This removes the need of opening the graphical environment to compile an application, providing a way to implement automatic compilation scripts and regression tests.
+
+Please refer to the RT-Druid reference manual for information about ANT scripting.
+
+== Setting up the compiling environment for AVR8 ==
+Erika Enterprise has been designed to be compiled using the GNU gcc (AVR8GCC) toolchain. The AVR8 porting of ERIKA Enterprise in particular can be compiled using the GNU tools for AVR8. The porting provides both the binutils package and the gcc package, plus a set of libraries which can be used to control the various peripherals provided by the AVR8 microcontrollers.
+
+The following list describes the various packages which contains the various parts of the compilation toolchain:
+
+* '''The GNU assembler and binutils.''' This package is distributed inside the AVR8GCC Compiler Suite.
+
+* '''The GNU AVR-GCC.''' The GNU assembler, binutils and compiler are available as a part of the AVRG8CC Compiler Suite.
+
+* '''C Libraries.''' A set of libraries which can be used to control the peripherals implemented on the particular AVR8 chip in use. These libraries are packaged together with the AVR8-libc.
+
+The AVR8GCC is available as:
+* WinAVR project on surceforge http://sourceforge.net/projects/winavr/
+* Linux project on Atmel http://www.atmel.com/tools/ATMELAVRTOOLCHAINFORLINUX.aspx
+* Windows project on Atmel http://www.atmel.com/tools/ATMELAVRTOOLCHAINFORWINDOWS.aspx
+* source code on Atmel http://distribute.atmel.no/tools/opensource/Atmel-AVR-GNU-Toolchain/3.4.3/
+
+=== Compiler Path ===
+It is possible to choose the path of the compiler in three different ways:
+
+* Environment Variable: AVR_TOOLS Environment Variable is able to override the path compiler set in RT-Druid during the build progress.
+* Configuration File: see [[RT-Druid configuration#Compiler paths]]
+* GUI Configuration: inside RT-Druid Eclipse preferences, it is possible to set the paths of above compiler. See below.
+
+==== GUI Configuration ====
+Inside RT-Druid Eclipse, please go to the “Preference” item of “Window” menu, as shown in Figure 2.2,
+[[File:Avr5_preferences_menu.png|center|thumb|200px|Figure 2.2: Go to the “Preference” menu]]
+
+and find the “RT-Druid/Oil/AVR8 Configurator” form as depicted in Figure 2.3. 
+[[File:Avr5_preferences.png|center|thumb|200px|Figure 2.3: Select paths for compiler and assembler]]
+
+The first textbox, labeled Gcc path, refers to the installation directory of the AVR8GCC compiler. The second and third textboxes are useful if you are using a development environment based on the Crossbow Mib5x0 board. In particular, the second textbox, labeled Uisp path, refers to the installation directory of the uisp programmer for Crossbow Mib5x0 board, and the third textbox, labeled Serial port device, refers to the COM serial port where the board is attached.
+
+<pre>
+Warning: The install directory specified as Conpiler Path SHALL NOT include the bin directory!
+That is, c:\WinAVR is correct, wheras c:\Programmi\WinAVR\bin is not.
+</pre>
+
+== Writing software for AVR using Erika Enterprise ==
+
+<pre>
+Note: Writing an application for AVR8 using ERIKA Enterprise is very simple.
+Please refer to the ERIKA Enterprise Tutorial for the AVR8 architecture for a step-by-step guide
+with screenshots on how to create, compile and debug a AVR8 application written with Erika Enterprise.
+</pre>
+
+This section describes the details about the various configuration options which are available to create and compile an ERIKA Enterprise application for a AVR8 microcontroller.
+
+<pre>
+Note: For a complete description of all the OIL parameters, please refer to the RT-Druid reference manual.
+</pre>
+
+=== Internal Types re-definition ===
+ERIKA Enterprise allow the user application to re-define the internal types by following <code>EE_OPT</code> inside OS object in the OIL file:
+
+<pre>
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    EE_OPT = " __HAS_TYPES_H__ ";
+    ...
+  };
+  ...
+};
+</pre>
+
+The ERIKA Enterprise internal types re-definition is done wrinting a C header file named <code>ee_types.h</code>:
+<pre>
+...
+#define EE_TYPETICK EE_INT16
+...
+</pre>
+
+=== Avoid the generation of dependency files ===
+The typical compilation process of an ERIKA Enterprise application involves the computation of a dependency file which is used to understand which are the files which needs to be compiled or updated.
+
+To avoid the computation of these dependencies (useful when you are sure you basically have to compile everything), you can put the following <code>EE_OPT</code> inside OS object in the OIL file:
+<pre>
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    EE_OPT = " NODEPS ";
+    ...
+  };
+  ...
+};
+</pre>
+
+=== Avoid the generation of .src files from C files ===
+The typical compilation process of an Erika Enterprise application produces various files which can be used to better analyze the code generated by the AVR8GCC compiler. In particular, from each .C file, a .SRC file is produced containing the corresponding assembler listing, which is then compiled by the Avr-Gcc compiler to produce the .o.
+
+It is possible to avoid the intermediate step which leads to the production of the .SRC file. In that case, the compiler will be responsible of producing the .O file directly from the .C file. This in general also speeds up the compilation process a little bit.
+
+To obtain that feature, you can put the following <code>EE_OPT</code> inside OS object in the OIL file:
+<pre>
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    EE_OPT = " NOSRC ";
+    ...
+  };
+  ...
+};
+</pre>
+
+=== Printing the commands executed (verbose mode) ===
+The default compilation process typically prints only a compact output for each compilation step. That is in general not useful whenever a file is not compiled properly and the user wants to know the exact command which is executed in the compilation process.
+
+To obtain a printing of the complete list of commands issued by the ERIKA Enterprise makefile, you can add the following line to the OIL file:
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    EE_OPT = " VERBOSE ";
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+== Configuring the AVR8 CPU ==
+<code>CPU_DATA</code> must be set to <code>AVR8</code> in the OIL file.
+
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    CPU_DATA = AVR8 {
+      ...
+    };
+    ...
+  };
+  ...
+};
+</pre>
+
+=== Compiler C standard ===
+The default compiler C standard is ANSI (C89). It's possible to change compiler C standard to C99 enabling <code>C99 = YES</code> attribute inside <code>CPU_DATA</code> object in the OIL file.
+
+<pre>
+...
+CPU_DATA = AVR8 {
+  ...
+  C99 = YES;
+  ...
+};
+...
+</pre>
+
+'''NOTE:''' This feature IS NOT currently implemented in RT-Druid. For now, to enable the feature you must put the follwing <code>EE_OPT</code> inside <code>OS</code> object in the OIL file.
+
+<pre>
+...
+OS myOS {
+  ...
+  EE_OPT = "__AVR8_GCC_C99__";
+  ...
+};
+...
+</pre>
+
+=== Compiler Optimizations ===
+The default compiler set-up does not include optimizations. It's possible to change compiler optimizations to <code>SIZE</code> optimization enabling <code>COPT = SIZE</code> attribute inside <code>CPU_DATA</code> object in the OIL file.
+
+<pre>
+...
+CPU_DATA = AVR8 {
+  ...
+  COPT = SIZE;
+  ...
+};
+...
+</pre>
+
+'''NOTE:''' This feature IS NOT currently implemented in RT-Druid. For now, to enable the feature you must put the follwing <code>EE_OPT</code> inside <code>OS</code> object in the OIL file.
+
+<pre>
+...
+OS myOS {
+  ...
+  EE_OPT = "__AVR8_GCC_OSIZE__";
+  ...
+};
+...
+</pre>
+
+
+=== Source files composing an application ===
+The source files which can be put in an RT-Druid project are composed by C-language files (with extension .c) and Assembler files (with extension .S). Assembler files are always preprocessed by the C preprocessor. All the application files which has to be included in the final application needs to be listed inside the OIL file, as in the following OIL example:
+<pre>
+...
+CPU_DATA = AVR8 {
+  ...
+  APP_SRC = " file_1 .c ";
+  APP_SRC = " file_2 .c ";
+  ...
+};
+...
+</pre>
+
+=== Stack handling ===
+ERIKA Enterprise can be configured as monostack or multistack.
+
+In a monostack configuration, only a single stack exists in the system. No blocking primitives are supported, and all the tasks and interrupts execute on the same stack. In this case, the one and only stack starts from the top of the application allocated memory, growing towards higher addresses. The monostack configuration can not be used if the application needs to call RTOS primitives such as <code>WaitSem()</code> and <code>WaitEvent()</code>. Moreover, it cannot be used when ERIKA Enterprise conformance classes ECC1 and ECC2 are used.
+
+To configure a monostack kernel in the OIL file, the user has to write the following lines:
+
+<pre>
+...
+CPU_DATA = AVR8 {
+  ...
+  MULTI_STACK = FALSE;
+  ...
+};
+...
+</pre>
+
+In a multistack configuration, the kernel support the existence of different stacks in the same application. Having different stacks allow the application tasks to use blocking primitives like <code>WaitSem()</code> and <code>WaitEvent()</code>, which basically may block the execution of the running task. In that case, the calling task must have a private stack which is changed upon blocking. The stack will be selected again when the task will be rescheduled. There are different stacks available in a multistack configuration:
+* A shared stack (used by all the tasks which have a shared stack);
+* An IRQ stack (used by all the ISR Type 2 routines);
+* A set of private stacks (one for each task which has selected a private stack).
+
+In the AVR8 architecture, the shared stack works as in the monostack configuration, that is it is allocated at the end of the SRAM data memory, growing towards lower addresses. The IRQ stack and the private stacks, instead, are allocated in the application data space as arrays. The following example shows an OIL configuration which configures a multistack kernel without a separate IRQ stack (in this case, IRQ handlers execute on the stack of the interrupted task):
+
+<pre>
+...
+CPU_DATA = AVR8 {
+  ...
+  MULTI_STACK = TRUE {
+    IRQ_STACK = FALSE;
+  };
+  ...
+};
+...
+</pre>
+
+The following example shows an OIL configuration which configures a multistack kernel with a separate IRQ stack (in this case, some registers are saved on the stack of the interrupted task, but the IRQ handler C function is executed on a separate IRQ stack). In this example is showed also the task0 that uses a private stack.
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    CPU_DATA = AVR8 {
+      ...
+      MULTI_STACK = TRUE {
+        IRQ_STACK = TRUE {
+          SYS_SIZE = 64;
+        };
+      };
+      ...
+    };
+    ...
+  };
+  ...
+  TASK Task0 {
+    ...
+    STACK = PRIVATE {
+      SYS_SIZE = 64;
+    };
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+== Interrupt Handling ==
+ERIKA Enterprise for AVR8 provide support for fast Interrupt Service Routines (ISR) which do not require any RTOS primitive to be called, as well as regular ISRs, which can call RTOS primitives (e.g., a timer interrupt can call <code>ActivateTask()</code> to activate a periodic task). The first kind of ISRs are called ISR Type 1, and always MUST have hardware interrupt priority greater than the second kind of ISRs which are called ISR Type 2.
+
+To declare an ISR of tipe 1 or 2, the user have to specify inside the OIL file a set of parameters: the interrupt source used by the ISR, the type of ISR, and finally the symbol of the handler function associated with the ISR:
+
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+  };
+  ...
+  ISR <SYMBOL> {
+    CATEGORY = <TYPE>;
+    ENTRY = "<ENTRY>";
+    PRIORITY = <PRIORITY>;
+  };
+  ...
+};
+...
+</pre>
+
+Where:
+* <code><TYPE></code> is the type of the ISR (1 or 2).
+* <code><ENTRY></code> is the Interrupt Vector Table Entry identifier which is microcontroller dependent.
+* <code><PRIORITY></code> is the hardware interrupt priority which is microcontroller dependent.
+* <code><SYMBOL></code> is the symbol of the handler function associated with the ISR. that must be the parameter of ISR<TYPE>() ISR signature, and <ENTRY> is the fixed Interrupt Vector Table Entry identifier. 
+
+The application source C code MUST contain the following <code>ISR<TYPE>(<SYMBOL>)</code> construct to define a Interrupt Service Routines.
+
+<pre>
+...
+ISR<TYPE>(<SYMBOL>)
+{
+  ...
+}
+...
+</pre>
+
+== Configuring a particular AVR8 microcontroller ==
+Atmel produces various families of the AVR8 microcontrollers, each one with different peripherals and memory sizes.
+
+=== MEGA Family ===
+
+The AVR8GCC specifies the various peripherals and memory areas by passing an appropriate command line parameter which selects the right linker script for the specified device. For that reason, the OIL file allows the specification of the microcontroller used, as in the following example:
+
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    CPU_DATA = AVR8 {
+      ...
+    };
+    ...
+    MCU_DATA = MEGA {
+      MODEL = MEGA_328p;
+    };
+    ...
+  }
+  ...
+};
+</pre>
+
+Currently, ERIKA Enterprise supports the following values for the <code>MODEL</code> attribute for MEGA family of AVR8 microcontrollers:
+* <code>MEGA_128</code>: [http://www.atmel.com/devices/ATMEGA128.aspx ATmega128(L)], 8-bit AVR Microcontroller, 128KB Flash, 64-pin.
+* <code>MEGA_1281</code>: [http://www.atmel.com/devices/ATMEGA1281.aspx ATmega1281], 8-bit AVR Microcontroller, 128KB Flash, 64-pin.
+* <code>MEGA_328</code>: [http://www.atmel.com/devices/ATMEGA328.aspx ATmega328], 8-bit AVR Microcontroller, 32KB Flash, 28/32-pin.
+* <code>MEGA_328p</code>: [http://www.atmel.com/devices/ATMEGA328P.aspx ATmega328P], 8-bit picoPower AVR Microcontroller, 32KB Flash, 28/32-pin.
+
+==== Interrupt Vector Table ====
+The MEGA family of AVR8 microcontroller has an interrupt vector table which is stored in the flash memory. The lowest addresses of the interrupt vector table is allocated to the RESET and to the interrupt vectors. Interrupt handlers placed at lower addresses has higher hardware priorities than interrupt handlers placed at higher addresses. The complete list of vectors entries is shown below for every supported microcontroller.
+
+* ATmega128(L)
+** <code>RESET</code>: External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset, and JTAG AVR Reset
+** <code>INT0</code>: External Interrupt Request 0
+** <code>INT1</code>: External Interrupt Request 1
+** <code>INT2</code>: External Interrupt Request 2
+** <code>INT3</code>: External Interrupt Request 3
+** <code>INT4</code>: External Interrupt Request 4
+** <code>INT5</code>: External Interrupt Request 5
+** <code>INT6</code>: External Interrupt Request 6
+** <code>INT7</code>: External Interrupt Request 7
+** <code>TIMER2_COMP</code>: Timer/Counter2 Compare Match
+** <code>TIMER2_OVF</code>: Timer/Counter2 Overflow
+** <code>TIMER1_CAPT</code>: Timer/Counter1 Capture Event
+** <code>TIMER1_COMPA</code>: Timer/Counter1 Compare Match A
+** <code>TIMER1_COMPB</code>: Timer/Counter1 Compare Match B
+** <code>TIMER1_OVF</code>: Timer/Counter1 Overflow
+** <code>TIMER0_COMP</code>: Timer/Counter0 Compare Match
+** <code>TIMER0_OVF</code>: Timer/Counter0 Overflow
+** <code>SPI_STC</code>: SPI Serial Transfer Complete
+** <code>USART0_RX</code>:  USART0 Rx Complete
+** <code>USART0_UDRE</code>: USART0 Data Register Empty
+** <code>USART0_TX</code>: USART0 Tx Complete
+** <code>ADC</code>: ADC Conversion Complete
+** <code>EE_READY</code>: EEPROM Ready
+** <code>ANALOG_COMP</code>: Analog Comparator
+** <code>TIMER1_COMPC</code>: Timer/Counter1 Compare Match C 
+** <code>TIMER3_CAPT</code>: Timer/Counter3 Capture Event
+** <code>TIMER3_COMPA</code>: Timer/Counter3 Compare Match A
+** <code>TIMER3_COMPB</code>: Timer/Counter3 Compare Match B
+** <code>TIMER3_COMPC</code>: Timer/Counter3 Compare Match C
+** <code>TIMER3_OVF</code>: Timer/Counter3 Overflow
+** <code>USART1_RX</code>: USART1 Rx Complete
+** <code>USART1_UDRE</code>: USART1 Data Register Empty
+** <code>USART1_TX</code>: USART1, Tx Complete
+** <code>TWI</code>: Two-wire Serial Interface
+** <code>SPM_READY</code>: Store Program Memory Ready
+
+* ATmega1281
+** <code>RESET</code>: External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset, and JTAG AVR Reset
+** <code>INT0</code>: External Interrupt Request 0
+** <code>INT1</code>: External Interrupt Request 1
+** <code>INT2</code>: External Interrupt Request 2
+** <code>INT3</code>: External Interrupt Request 3
+** <code>INT4</code>: External Interrupt Request 4
+** <code>INT5</code>: External Interrupt Request 5
+** <code>INT6</code>: External Interrupt Request 6
+** <code>INT7</code>: External Interrupt Request 7
+** <code>PCINT0</code>: Pin Change Interrupt Request 0
+** <code>PCINT1</code>: Pin Change Interrupt Request 1
+** <code>PCINT2</code>: Pin Change Interrupt Request 2
+** <code>WDT</code>: Watchdog Time-out Interrupt
+** <code>TIMER2_COMPA</code>: Timer/Counter2 Compare Match A
+** <code>TIMER2_COMPB</code>: Timer/Counter2 Compare Match B
+** <code>TIMER2_OVF</code>: Timer/Counter2 Overflow
+** <code>TIMER1_CAPT</code>: Timer/Counter1 Capture Event
+** <code>TIMER1_COMPA</code>: Timer/Counter1 Compare Match A
+** <code>TIMER1_COMPB</code>: Timer/Counter1 Compare Match B
+** <code>TIMER1_COMPC</code>: Timer/Counter1 Compare Match C
+** <code>TIMER1_OVF</code>: Timer/Counter1 Overflow
+** <code>TIMER0_COMPA</code>: Timer/Counter0 Compare Match A
+** <code>TIMER0_COMPB</code>: Timer/Counter0 Compare match B
+** <code>TIMER0_OVF</code>: Timer/Counter0 Overflow
+** <code>SPI_STC</code>: SPI Serial Transfer Complete
+** <code>USART0_RX</code>: USART0 Rx Complete
+** <code>USART0_UDRE</code>: USART0 Data Register Empty
+** <code>USART0_TX</code>: USART0 Tx Complete
+** <code>ANALOG_COMP</code>: Analog Comparator
+** <code>ADC_ADC</code>: Conversion Complete
+** <code>EE_READY</code>: EEPROM Ready
+** <code>TIMER3_CAPT</code>: Timer/Counter3 Capture Event
+** <code>TIMER3_COMPA</code>: Timer/Counter3 Compare Match A
+** <code>TIMER3_COMPB</code>: Timer/Counter3 Compare Match B
+** <code>TIMER3_COMPC</code>: Timer/Counter3 Compare Match C
+** <code>TIMER3_OVF</code>: Timer/Counter3 Overflow
+** <code>USART1_RX</code>: USART1 Rx Complete
+** <code>USART1_UDRE</code>: USART1 Data Register Empty
+** <code>USART1_TX</code>: USART1 Tx Complete
+** <code>TWI</code>: 2-wire Serial Interface
+** <code>SPM_READY</code>: Store Program Memory Ready
+** <code>TIMER4_CAPT</code>: Timer/Counter4 Capture Event
+** <code>TIMER4_COMPA</code>: Timer/Counter4 Compare Match A
+** <code>TIMER4_COMPB</code>: Timer/Counter4 Compare Match B
+** <code>TIMER4_COMPC</code>: Timer/Counter4 Compare Match C
+** <code>TIMER4_OVF</code>: Timer/Counter4 Overflow
+** <code>TIMER5_CAPT</code>: Timer/Counter5 Capture Event
+** <code>TIMER5_COMPA</code>: Timer/Counter5 Compare Match A
+** <code>TIMER5_COMPB</code>: Timer/Counter5 Compare Match B
+** <code>TIMER5_COMPC</code>: Timer/Counter5 Compare Match C
+** <code>TIMER5_OVF</code>: Timer/Counter5 Overflow
+** <code>USART2_RX</code>: USART2 Rx Complete
+** <code>USART2_UDRE</code>: USART2 Data Register Empty
+** <code>USART2_TX</code>: USART2 Tx Complete
+** <code>USART3_RX</code>: USART3 Rx Complete
+** <code>USART3_UDRE</code>: USART3 Data Register Empty
+** <code>USART3_TX</code>: USART3 Tx Complete
+
+* ATmega328 and ATmega328P
+** <code>RESET</code>: External Pin, Power-on Reset, Brown-out Reset and Watchdog System Reset
+** <code>INT0</code>: External Interrupt Request 0
+** <code>INT1</code>: External Interrupt Request 1
+** <code>PCINT0</code>: Pin Change Interrupt Request 0
+** <code>PCINT1</code>: Pin Change Interrupt Request 1
+** <code>PCINT2</code>: Pin Change Interrupt Request 2
+** <code>WDT</code>: Watchdog Time-out Interrupt
+** <code>TIMER2_COMPA</code>: Timer/Counter2 Compare Match A
+** <code>TIMER2_COMPB</code>: Timer/Counter2 Compare Match B
+** <code>TIMER2_OVF</code>: Timer/Counter2 Overflow
+** <code>TIMER1_CAPT</code>: Timer/Counter1 Capture Event
+** <code>TIMER1_COMPA</code>: Timer/Counter1 Compare Match A
+** <code>TIMER1_COMPB</code>: Timer/Coutner1 Compare Match B
+** <code>TIMER1_OVF</code>: Timer/Counter1 Overflow
+** <code>TIMER0_COMPA</code>: Timer/Counter0 Compare Match A
+** <code>TIMER0_COMPB</code>: Timer/Counter0 Compare Match B
+** <code>TIMER0_OVF</code>: Timer/Counter0 Overflow
+** <code>SPI_STC</code>: SPI Serial Transfer Complete
+** <code>USART_RX</code>: USART Rx Complete
+** <code>USART_UDRE</code>: USART, Data Register Empty
+** <code>USART_TX</code>: USART, Tx Complete
+** <code>ADC_ADC</code>: Conversion Complete
+** <code>EE_READY</code>: EEPROM Ready
+** <code>ANALOG_COMP</code>: Analog Comparator
+** <code>TWI</code>: 2-wire Serial Interface
+** <code>SPM_READY</code>: Store Program Memory Ready
+
+All peripheral Interrupts are prioritized according to their interrupt vector address, where the lowest interrupt vector address has the highest interrupt priority.
+
+The <code>PRIORITY</code> attribute of the <code>ISR</code> object in the OIL is USELESS.
+
+==== External IRQs ====
+External IRQs are enabled by the following code in OIL file:
+
+<pre>
+...
+MCU_DATA = MEGA {
+  ...
+  USEIC = TRUE;
+  ...
+};
+...
+</pre>
+
+The user MUST also configure the ISRs related to external interrupts in the OIL file and write the corresponding <code>ISR<TYPE>()</code> code in application.
+
+===== EE_IC_enable_external_IRQ =====
+To use the external interrupt source the user must set the external interrupt mask with the following function.
+
+'''Synopsis'''
+<pre>
+void EE_IC_enable_external_IRQ(EE_TYPEIRQMASK i);
+</pre>
+'''Description'''
+
+Enables the external interrupt source that are specified in the 8-bit bitmask. For example, if the third bit in the bitmask is set, the third external interrupt will be enabled.
+
+===== EE_IC_clear_pending_IRQ =====
+'''Synopsis'''
+<pre>
+void EE_IC_clear_pending_IRQ(void);
+</pre>
+'''Description'''
+
+Clears ALL the pending interrupts.
+
+==== Timers ====
+The number of hardware timers in the MEGA family is highly dependent on the particular chip used. For example, the ATmega128 device has 4 timers (2 8-bit timers and 2 16-bit timers).
+
+The timers used in the application with the corresponding prescalers can be specified in the OIL file (these settings applies to ATmega128).
+
+The following example show how to configure a set of timers:
+<pre>
+...
+MCU_DATA = MEGA {
+  ...
+  TIMER0 = DIV32;
+  TIMER1 = DIV8;
+  TIMER2 = DIV64;
+  TIMER3 = DIV1;
+  ...
+};
+...
+</pre>
+The prescaler factor for timers are DIV1, DIV8, DIV64, DIV256, and DIV1024. The timer0 have also the prescaler factor DIV32. The User can use inside the source code of application the following functions to use the timer.
+
+To control the system timers the following functions are available:
+* ''void EE_timer_initx(EE_UINT8 max_tick);''
+*: Description: Inizialize the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_start(void);''
+*: Description: Start the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_stop(void);''
+*: Description: Stop the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_get(void);''
+*: Description: Return the value of the counter register of the timerx (x = 0,1,2,3).
+
+==== UART ====
+The number of hardware UART units in the MEGA family is highly dependent on the particular chip used. For example, the ATmega128 device has 2 UART units.
+
+The following example show how to configure the UART driver:
+<pre>
+...
+MCU_DATA = MEGA {
+  ...
+  USEUART = TRUE;
+  ...
+};
+...
+</pre>
+
+==== SPI ====
+The number of hardware SPI units in the MEGA family is highly dependent on the particular chip used. For example, the ATmega128 device has only 1 SPI unit.
+
+The following example show how to configure the SPI driver:
+<pre>
+...
+MCU_DATA = MEGA {
+  ...
+  USESPI = TRUE;
+  ...
+};
+...
+</pre>
+
+=== XMEGA Family ===
+
+The AVR8GCC specifies the various peripherals and memory areas by passing an appropriate command line parameter which selects the right linker script for the specified device. For that reason, the OIL file allows the specification of the microcontroller used, as in the following example:
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    CPU_DATA = AVR8 {
+      ...
+    };
+    ...
+    MCU_DATA = XMEGA {
+      MODEL = MEGA_16d4;
+    };
+    ...
+  }
+  ...
+};
+</pre>
+
+Currently, ERIKA Enterprise supports the following values for the MODEL attribute for XMEGA family of AVR8 microcontrollers:
+* <code>MEGA_16d4</code>: [http://www.atmel.com/devices/ATXMEGA16D4.aspx ATxmega16d4], 8/16-bit AVR XMEGA D4 Microcontroller, 16KB Flash, 44-pin.
+* <code>MEGA_32d4</code>: [http://www.atmel.com/devices/ATXMEGA32D4.aspx ATxmega32d4], 8/16-bit AVR XMEGA D4 Microcontroller, 32KB Flash, 44-pin.
+
+==== Interrupt Vector Table ====
+The XMEGA family of AVR8 microcontroller has an interrupt vector table which is stored in the flash memory. The lowest addresses of the interrupt vector table is allocated to the RESET and to the interrupt vectors. Interrupt handlers placed at lower addresses has higher hardware priorities than interrupt handlers placed at higher addresses. The complete list of vectors entries is shown below for every supported microcontroller.
+
+* ATxmega16d4 and ATxmega32d4
+** <code>RESET</code>
+** <code>OSC_XOSCF</code>: Crystal Oscillator Failure Interrupt vector (NMI)
+** <code>PORTC_INT0</code>: Port C Interrupt0
+** <code>PORTC_INT1</code>: Port C Interrupt1
+** <code>PORTR_INT0</code>: Port R Interrupt0
+** <code>PORTR_INT1</code>: Port R Interrupt1
+** <code>RTC_OVF</code>: Real Time Counter Overflow
+** <code>RTC_COMP</code>: Real Time Counter Overflow
+** <code>TWIC_TWIS</code>: Two-Wire Interface on Port C Slave
+** <code>TWIC_TWIM</code>: Two-Wire Interface on Port C Master
+** <code>TCC0_OVF</code>: Timer/Counter 0 on port C Overflow/Undeflow
+** <code>TCC0_ERR</code>: Timer/Counter 0 on port C Error
+** <code>TCC0_CCA</code>: Timer/Counter 0 on port C compare or capture channel A
+** <code>TCC0_CCB</code>: Timer/Counter 0 on port C compare or capture channel B
+** <code>TCC0_CCC</code>: Timer/Counter 0 on port C compare or capture channel C
+** <code>TCC0_CCD</code>: Timer/Counter 0 on port C compare or capture channel D
+** <code>TCC1_OVF</code>: Timer/Counter 1 on port C Overflow/Undeflow
+** <code>TCC1_ERR</code>: Timer/Counter 1 on port C Error
+** <code>TCC1_CCA</code>: Timer/Counter 1 on port C compare or capture channel A
+** <code>TCC1_CCB</code>: Timer/Counter 1 on port C compare or capture channel B
+** <code>SPIC_INT</code>: SPI on port C
+** <code>USARTC0_RXC</code>: USART 0 on port C receive complete
+** <code>USARTC0_DRE</code>: USART 0 on port C data register empty
+** <code>USARTC0_RXC</code>: USART 0 on port C transmit complete
+** <code>NVM_EE</code>: Non-Volatile Memory EEPROM
+** <code>NVM_SPM</code>: Non-Volatile Memory SPM
+** <code>PORTB_INT0</code>: Port B Interrupt0
+** <code>PORTB_INT1</code>: Port B Interrupt1
+** <code>PORTE_INT0</code>: Port E Interrupt0
+** <code>PORTE_INT1</code>: Port E Interrupt1
+** <code>TWIE_TWIS</code>: Two-Wire Interface on Port E Slave
+** <code>TWIE_TWIM</code>: Two-Wire Interface on Port E Master
+** <code>TCE0_OVF</code>: Timer/Counter 0 on port E Overflow/Undeflow
+** <code>TCE0_ERR</code>: Timer/Counter 0 on port E Error
+** <code>TCE0_CCA</code>: Timer/Counter 0 on port E compare or capture channel A
+** <code>TCE0_CCB</code>: Timer/Counter 0 on port E compare or capture channel B
+** <code>TCE0_CCC</code>: Timer/Counter 0 on port E compare or capture channel C
+** <code>TCE0_CCD</code>: Timer/Counter 0 on port E compare or capture channel D
+** <code>PORTD_INT0</code>: Port D Interrupt0
+** <code>PORTD_INT1</code>: Port D Interrupt1
+** <code>PORTA_INT0</code>: Port A Interrupt0
+** <code>PORTA_INT1</code>: Port A Interrupt1
+** <code>ACA_AC0</code>: Analog Comparator on Port A analog comparator 0
+** <code>ACA_AC1</code>: Analog Comparator on Port A analog comparator 1
+** <code>ACA_ACW</code>: Analog Comparator on Port A analog comparator window
+** <code>ADCA_CH0</code>: Analog to Digital Converter on Port A channel 0
+** <code>TCD0_OVF</code>: Timer/Counter 0 on port D Overflow/Undeflow
+** <code>TCD0_ERR</code>: Timer/Counter 0 on port D Error
+** <code>TCD0_CCA</code>: Timer/Counter 0 on port D compare or capture channel A
+** <code>TCD0_CCB</code>: Timer/Counter 0 on port D compare or capture channel B
+** <code>TCD0_CCC</code>: Timer/Counter 0 on port D compare or capture channel C
+** <code>TCD0_CCD</code>: Timer/Counter 0 on port D compare or capture channel D
+** <code>SPID_INT</code>: SPI on port D
+** <code>USARTD0_RXC</code>: USART 0 on port D receive complete
+** <code>USARTD0_DRE</code>: USART 0 on port D data register empty
+** <code>USARTD0_RXC</code>: USART 0 on port D transmit complete
+
+All peripherals can select between three different priority levels for their interrupts: low, medium, and high. Interrupts are prioritized according to their level and their interrupt vector address. Medium-level interrupts will interrupt low-level interrupt handlers. High-level interrupts will interrupt both medium- and low-level interrupt handlers. Within each level, the interrupt priority is decided from the interrupt vector address, where the lowest interrupt vector address has the highest interrupt priority.
+
+The <code>PRIORITY</code> attribute of the <code>ISR</code> object in the OIL is related priority level: <code>1</code> for level low, <code>2</code> for level medium and <code>3</code> for level high.
+
+==== Program Space Utilities ====
+In order to enable Program Space Utilities usage - for a program to access data stored in program space (flash memory) of the device -  in the XMEGA family drivers the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  AVR_PGMSPACE = YES;
+  ...
+};
+...
+</pre>
+
+==== Timer Counter Type 1 ====
+In order to enable Time Counter Type 1 devices in the XMEGA family drivers the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  USE_TC_HW = YES;
+  ...
+};
+...
+</pre>
+
+==== MCU Driver ====
+The MCU Driver provides MCU services for Clock and RAM initialization and other MCU specific services.
+
+In order to enable the MCU Driver for XMEGA Family of AVR8 microcontroller the user MUST add the follwing code in the OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_MCU_DRIVER = TRUE { 
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+===== Error checking =====
+The MCU Driver offers two levels of error checking, extended status for development phase and standard status for production phase.
+
+The extended status allows for enhanced plausibility checks on calling MCU Driver services. Due to the additional error checking it requires more execution time and memory 
+space than the standard version. However, many errors can be found in a test phase. After all errors have been eliminated, the systemcan be recompiled with the standard version.
+
+In order to enable the extended status for MCU Driver the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_MCU_DRIVER = TRUE { 
+    ...
+    MCU_STATUS = EXTENDED;
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+===== APIs Selection =====
+By default the MCU Driver enables the <code>EE_Mcu_Init()</code> API only. To anable each other API of the MCU Driver the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_MCU_DRIVER = TRUE { 
+    ...
+    MCU_DEINIT_API = TRUE;
+    MCU_INITCLOCK_API = TRUE;
+    MCU_DEINITCLOCK_API = TRUE;
+    MCU_GETCLOCKSTATUS_API = TRUE;
+    MCU_DISTRIBUTECLOCK_API = TRUE;
+    MCU_SETMODE_API = TRUE;
+    MCU_GETRESETREASON_API = TRUE;
+    MCU_PERFORMRESET_API = TRUE;
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+Where:
+* <code>MCU_DEINIT_API</code> enables <code>EE_Mcu_DeInit()</code> API
+* <code>MCU_INITCLOCK_API</code> enables <code>EE_Mcu_InitClock()</code> API
+* <code>MCU_DEINITCLOCK_API</code> enables <code>EE_Mcu_DeInitClock()</code> API
+* <code>MCU_GETCLOCKSTATUS_API</code> enables <code>EE_Mcu_GetClockStatus()</code> API
+* <code>MCU_DISTRIBUTECLOCK_API</code> enables <code>EE_Mcu_DistributeClock()</code> API
+* <code>MCU_SETMODE_API</code> enables <code>EE_Mcu_SetMode()</code> API
+* <code>MCU_GETRESETREASON_API</code> enables <code>EE_Mcu_GetResetReason()</code> API
+* <code>MCU_PERFORMRESET_API</code> enables <code>EE_Mcu_PerformReset()</code> API
+
+===== Power Reduction =====
+The Power Reduction is used to shutdown unused peripherals.
+
+In order to enable the Power Reduction for MCU Driver the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_MCU_POWER_REDUCTION = YES {
+    PULL_UP = FALSE;
+    PORT_OUT = FALSE;
+    JTAG = FALSE;
+  };
+  ...
+};
+...
+</pre>
+
+By default the unused port pins are set as input port pins with a pull-down.
+* The user can change the direction of the port pin from input to output changing the <code>PORT_OUT</code> attribute from <code>FALSE</code< to <code>TRUE</code>.
+* The user can set a pull-up to unused port pins changing the <code>PULL_UP</code> attribute from <code>FALSE</code< to <code>TRUE</code>.
+* The user can disable the JTAG port pins during the sleep mode changing the <code>JTAG</code> attribute from <code>FALSE</code< to <code>TRUE</code>.
+
+==== E2P Driver ====
+The E2P Driver provides E2P (EEPROM) provides services for reading, writing, erasing to/from an EEPROM. It also provides a service for comparing a data block in the EEPROM with a data block in the memory (e.g. RAM). The behaviour of those services can be synchronous or asynchronous.
+
+In order to enable the E2P Driver for XMEGA Family of AVR8 microcontroller the user MUST add the follwing code in the OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_E2P_DRIVER = TRUE { 
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+===== Error checking =====
+The E2P Driver offers two levels of error checking, extended status for development phase and standard status for production phase.
+
+The extended status allows for enhanced plausibility checks on calling E2P Driver services. Due to the additional error checking it requires more execution time and memory 
+space than the standard version. However, many errors can be found in a test phase. After all errors have been eliminated, the systemcan be recompiled with the standard version.
+
+In order to enable the extended status for E2P Driver the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_E2P_DRIVER = TRUE { 
+    ...
+    E2P_STATUS = EXTENDED;
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+===== Synchronous or Aynchronous Behaviour =====
+By default the E2P Driver has an Ansychronous Behaviour. The user can ca
+
+===== APIs Selection =====
+By default the E2P Driver enables the <code>EE_E2p_Init()</code> API only. To anable each other API of the E2P Driver the user MUST add the following code into OIL file:
+
+<pre>
+...
+MCU_DATA = XMEGA {
+  ...
+  ENABLE_EP2_DRIVER = TRUE { 
+    ...
+    E2P_DEINIT_API = TRUE;
+    E2P_INITCLOCK_API = TRUE;
+    E2P_DEINITCLOCK_API = TRUE;
+    E2P_GETCLOCKSTATUS_API = TRUE;
+    E2P_DISTRIBUTECLOCK_API = TRUE;
+    E2P_SETMODE_API = TRUE;
+    E2P_GETRESETREASON_API = TRUE;
+    E2P_PERFORMRESET_API = TRUE;
+    ...
+  };
+  ...
+};
+...
+</pre>
+
+Where:
+* <code>E2P_DEINIT_API</code> enables <code>EE_E2p_DeInit()</code> API
+* <code>E2P_INITCLOCK_API</code> enables <code>EE_E2p_InitClock()</code> API
+* <code>E2P_DEINITCLOCK_API</code> enables <code>EE_E2p_DeInitClock()</code> API
+* <code>E2P_GETCLOCKSTATUS_API</code> enables <code>EE_E2p_GetClockStatus()</code> API
+* <code>E2P_DISTRIBUTECLOCK_API</code> enables <code>EE_E2p_DistributeClock()</code> API
+* <code>E2P_SETMODE_API</code> enables <code>EE_E2p_SetMode()</code> API
+* <code>E2P_GETRESETREASON_API</code> enables <code>EE_E2p_GetResetReason()</code> API
+* <code>E2P_PERFORMRESET_API</code> enables <code>EE_E2p_PerformReset()</code> API
+
+=== TINY Family ===
+
+The AVR8GCC specifies the various peripherals and memory areas by passing an appropriate command line parameter which selects the right linker script for the specified device. For that reason, the OIL file allows the specification of the microcontroller used, as in the following example:
+
+<pre>
+...
+CPU mySystem {
+  ...
+  OS myOs {
+    ...
+    CPU_DATA = AVR8 {
+      ...
+    };
+    ...
+    MCU_DATA = TINY {
+      MODEL = TINY_1634;
+    };
+    ...
+  }
+  ...
+};
+</pre>
+
+Currently, ERIKA Enterprise supports the following values for the <code>MODEL</code> attribute for TINY family of AVR8 microcontrollers:
+* <code>TINY_1634</code>: [http://www.atmel.com/devices/ATtiny1634.aspx ATtiny1634], 8-bit AVR Microcontroller, 16KB Flash, 18-pin.
+
+==== Interrupt Vector Table ====
+The TINY family of AVR8 microcontroller has an interrupt vector table which is stored in the flash memory. The lowest addresses of the interrupt vector table is allocated to the RESET and to the interrupt vectors. Interrupt handlers placed at lower addresses has higher hardware priorities than interrupt handlers placed at higher addresses. The complete list of vectors entries is shown below for every supported microcontroller.
+
+* ATtiny1634
+** <code>RESET</code>: External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset, and JTAG AVR Reset
+** <code>INT0</code>: External Interrupt Request 0
+** <code>PCINT0</code>: Pin Change Interrupt Request 0
+** <code>PCINT1</code>: Pin Change Interrupt Request 1
+** <code>PCINT2</code>: Pin Change Interrupt Request 2
+** <code>TIMER1_CAPT</code>: Timer/Counter1 Capture Event
+** <code>TIMER1_COMPA</code>: Timer/Counter1 Compare Match A
+** <code>TIMER1_COMPB</code>: Timer/Counter1 Compare Match B
+** <code>TIMER1_OVF</code>: Timer/Counter1 Overflow
+** <code>TIMER0_COMPA</code>: Timer/Counter0 Compare Match A
+** <code>TIMER0_COMPB</code>: Timer/Counter0 Compare Match B
+** <code>TIMER0_OVF</code>: Timer/Counter0 Overflow
+** <code>ANA_COMP</code>: Analog Comparator
+** <code>ADC</code>: ADC Conversion Complete
+** <code>USART0_START</code>:  USART0 Rx Start
+** <code>USART0_RX</code>:  USART0 Rx Complete
+** <code>USART0_UDRE</code>: USART0 Data Register Empty
+** <code>USART0_TX</code>: USART0 Tx Complete
+** <code>USART1_START</code>:  USART1 Rx Start
+** <code>USART1_RX</code>:  USART1 Rx Complete
+** <code>USART1_UDRE</code>: USART1 Data Register Empty
+** <code>USART1_TX</code>: USART1 Tx Complete
+** <code>USI_START</code>:  USI Start
+** <code>USI_OVF</code>:  USI Overflow
+** <code>TWI</code>: Two-wire Serial Interface
+** <code>EE_READY</code>: EEPROM Ready
+** <code>QTRIP</code>: QTRIP QTouch
+
+
+All peripheral Interrupts are prioritized according to their interrupt vector address, where the lowest interrupt vector address has the highest interrupt priority.
+
+The <code>PRIORITY</code> attribute of the <code>ISR</code> object in the OIL is USELESS.
+
+==== Timers ====
+The number of hardware timers in the TINY family is highly dependent on the particular chip used. For example, the ATtiny1634 device has 2 timers (1 8-bit timers and 1 16-bit timers).
+
+The timers used in the application with the corresponding prescalers can be specified in the OIL file (these settings applies to ATtiny1634).
+
+The following example show how to configure a set of timers:
+<pre>
+...
+MCU_DATA = TINY {
+  ...
+  TIMER0 = DIV32;
+  TIMER1 = DIV8;
+  ...
+};
+...
+</pre>
+The prescaler factor for timers are DIV1, DIV8, DIV64, DIV256, and DIV1024. The timer0 have also the prescaler factor DIV32. The User can use inside the source code of application the following functions to use the timer.
+
+'''NOTE:''' This feature IS NOT currently implemented in RT-Druid. For now, to enable the feature you must put the follwings <code>EE_OPT</code>s inside <code>OS</code> object in the OIL file.
+
+<pre>
+...
+OS myOS {
+  ...
+  EE_OPT = "__TIMER_USED__";
+  EE_OPT = "__TIMER_0_USED__";
+  EE_OPT = "__TIMER0_CLK_DIV32__";
+  EE_OPT = "__TIMER_1_USED__";
+  EE_OPT = "__TIMER1_CLK_DIV8__";
+  ...
+};
+...
+</pre>
+
+To control the system timers the following functions are available:
+* ''void EE_timer_initx(EE_UINT8 max_tick);''
+*: Description: Inizialize the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_start(void);''
+*: Description: Start the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_stop(void);''
+*: Description: Stop the timerx (x = 0,1,2,3).
+* ''void EE_timer_x_get(void);''
+*: Description: Return the value of the counter register of the timerx (x = 0,1,2,3).
+
+== Configuring the EDF scheduler ==
+When configuring the EDF kernel for an ERIKA Enterprise application, the user has the possibility to specify the tick length in the OIL file to allow the specification of a relative deadline using a temporal value.
+
+In particular, the user can specify a tick value as follows:
+<pre>
+KERNEL_TYPE = EDF {
+  TICK_TIME = "125 ns ";
+};
+</pre>
+and then specify a relative deadline using a timing value as follows:
+<pre>
+TASK myTask1 {
+  REL_DEADLINE = "10 ms ";
+};
+</pre>
+
+
+The RT-Druid code generator will handle the the conversion between the relative deadline value in the corresponding timing value automatically.
+The important thing in this process is to correctly specify the TICK_TIME. In general, that value depends on the timing reference which is made available by the AVR. The current timing reference implemented in the EDF kernel for AVR is based on the value of the 16 bit timer Timer1.
+The 16 bit timer is obtained by using the timer1 available on the AVR. The clock used for the timers is the system clock, with a tick time equal to 1 Fc. Fc is the frequency of the oscillator, and depends on the application configuration.
+
+In the case of the Atmel ATmega128, the default frequency is 8 MHz. In that case, the OIL file should contain the following line:
+<pre>
+KERNEL_TYPE = EDF {
+  TICK_TIME = "125 ns ";
+};
+</pre>
+
+and the main() function should have the following line before using any Erika Enterprise primitive:
+<pre>
+EE_timer1_init();
+EE_timer1_start();
+</pre>
+
+== Boards ==
+=== Crossbow MIB5X0 Board ===
+This chapter describes the support done in ERIKA Enterprise for the Crossbow MIB5X0 Board. Please note that both boards mib510 and mib520 are supported, enabling the programming of the mica2 and micaz nodes (see Figure 3.1).
+
+[[File:Avr5_mibmicaz.jpg|center|thumb|200px|Figure 3.1: Crossbow MIB520 Board and MicaZ]]
+
+The Mib520 is a low cost, efficient development board produced by [http://www.xbow.com/ Crossbow] with interfaces to JTAG and USB.
+
+To configure the usage of both MIB510 Board and MIB520 board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+<pre>
+...
+BOARD_DATA = XBOW_MIB5X0 {
+...
+}
+...
+</pre>
+
+==== LEDs ====
+The MIB5X0 Board has a set of 3 LEDs attached to the PORTA pins of the microcontroller. To use the LEDs on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+<pre>
+...
+BOARD_DATA = XBOW_MIB5X0 {
+  USELEDS = TRUE;
+...
+}
+...
+</pre>
+
+
+The following subsections will describe the functions available to control the Crossbow MIB5X0 LEDs:
+* ''void EE_led_1_on(void);''
+*: Description: The function turns on LED 1.
+* ''void EE_led_1_off(void);''
+*: Description: The function turns off LED 1.
+* ''void EE_led_2_on(void);''
+*: Description: The function turns on LED 2.
+* ''void EE_led_2_off(void);''
+*: Description: The function turns off LED 2.
+* ''void EE_led_3_on(void);''
+*: Description: The function turns on LED 3.
+* ''void EE_led_3_off(void);''
+*: Description: The function turns off LED 3.
+
+=== Atmel STK500/1 Board ===
+This chapter describes the support done in ERIKA Enterprise for the Atmel STK500/1 Board (see Figure 4.1).
+
+[[File:Avr5_atmel_zig.jpg|center|thumb|200px|Figure 4.1: The Atmel STK500/1 board running ERIKA Enterprise]]
+
+The STK500/1 is a low cost, efficient development board produced by [http://www.atmel.com Atmel] with interfaces to JTAG, SPI, and RS-232. To configure the usage of the STK500/1 Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+<pre>
+...
+BOARD_DATA = ATMEL_STK50X {
+...
+}
+...
+</pre>
+
+The STK500/1 board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+
+The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATmega128L MCU. Please remember that you have to connect ISP6PIN plug of the STK500 with the SPROG plug of the STK501 through 6-wires cable.
+
+==== LEDs ====
+The Atmel STK500 Board has a set of 8 LEDs attached to the PORTB pins of the microcontroller. To use the LEDs on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+<pre>
+...
+BOARD_DATA = ATMEL_STK50X {
+  USELEDS = TRUE;
+...
+}
+...
+</pre>
+
+The following subsections will describe the functions available to control the Atmel STK500 LEDs:
+* ''void EE_led_1_on(void);''
+*: Description: The function turns on LED 1.
+* ''void EE_led_1_off(void);''
+*: Description: The function turns off LED 1.
+* ''void EE_led_2_on(void);''
+*: Description: The function turns on LED 2.
+* ''void EE_led_2_off(void);''
+*: Description: The function turns off LED 2.
+* ''void EE_led_3_on(void);''
+*: Description: The function turns on LED 3.
+* ''void EE_led_3_off(void);''
+*: Description: The function turns off LED 3.
+* ''void EE_led_4_on(void);''
+*: Description: The function turns on LED 4.
+* ''void EE_led_4_off(void);''
+*: Description: The function turns off LED 4.
+* ''void EE_led_5_on(void);''
+*: Description: The function turns on LED 5.
+* ''void EE_led_5_off(void);''
+*: Description: The function turns off LED 5.
+* ''void EE_led_6_on(void);''
+*: Description: The function turns on LED 6.
+* ''void EE_led_6_off(void);''
+*: Description: The function turns off LED 6.
+* ''void EE_led_7_on(void);''
+*: Description: The function turns on LED 7.
+* ''void EE_led_7_off(void);''
+*: Description: The function turns off LED 7.
+* ''void EE_led_8_on(void);''
+*: Description: The function turns on LED 8.
+* ''void EE_led_8_off(void);''
+*: Description: The function turns off LED 8.
+
+==== Requirements ====
+ERIKA Enterprise supports Atmel AVR ATmega128L.
+* Atmel Studio
+* WinAVR
+	
+Useful links
+* [http://www.atmel.com/tools/ATMELSTUDIO.aspx Atmel Studio download link]
+* [http://winavr.sourceforge.net/ WinAVR download link]
+
+=== Atmel STK600 Board ===
+This chapter describes the support done in ERIKA Enterprise for the Atmel STK600 Board (see Figure 5.1).
+
+[[File:atmel_stk600.jpg|center|thumb|200px|Figure 5.1: The Atmel STK600 board running ERIKA Enterprise]]
+
+The STK600 is a low cost, efficient development board produced by [http://www.atmel.com Atmel] with interfaces to JTAG, SPI, and RS-232. To configure the usage of the STK600 Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+<pre>
+...
+BOARD_DATA = ATMEL_STK60X {
+...
+}
+...
+</pre>
+
+The STK600 board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+
+The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATxmega16D4 MCU. Please remember that you have to connect ISP6PIN plug of the STK500 with the SPROG plug of the STK600 through 6-wires cable.
+
+==== LEDs ====
+The Atmel STK600 Board has a set of 8 LEDs which could be attached to one PORT pins of the microcontroller. To use the LEDs on the Board, the developer should specify the USELEDS attribute as TRUE and select the port of the microcontroller, as in the following example:
+<pre>
+...
+BOARD_DATA = ATMEL_STK600 {
+  USELEDS = TRUE;
+  LEDPORT = A;
+...
+}
+...
+</pre>
+
+The following subsections will describe the functions available to control the Atmel STK600 LEDs:
+* ''void EE_Led_Init(EE_TYPELED Led, EE_TYPELEDFLAGS Flags);''
+*: Description: The function initializes a LED.
+* ''void EE_Led_DeInit(EE_TYPELED Led, EE_TYPELEDFLAGS Flags);''
+*: Description: The function de-initializes a LED.
+* ''void EE_Led_On(EE_TYPELED Led);''
+*: Description: The function turns on a LED.
+* ''void EE_Led_Off(EE_TYPELED Led);''
+*: Description: The function turns off a LED.
+* ''void EE_Led_Toggle(EE_TYPELED Led);''
+*: Description: The function toggles a LED.
+
+==== Requirements ====
+ERIKA Enterprise supports Atmel AVR ATxmega16D4.
+* Atmel Studio
+* WinAVR
+	
+Useful links
+* [http://www.atmel.com/tools/ATMELSTUDIO.aspx Atmel Studio download link]
+* [http://winavr.sourceforge.net/ WinAVR download link]
+
+=== Arduino Uno Board ===
+This chapter describes the support done in ERIKA Enterprise for the Arduino Uno Board (see Figure 6.1).
+
+[[File:Arduino_uno.jpg|center|thumb|200px|Figure 6.1: The Arduino Uno board running ERIKA Enterprise]]
+
+The Arduino Uno is a low cost, open-source board produced by [http://www.arduino.cc/ Arduino] with interfaces to USB, and RS-232. To configure the usage of the Arduino Uno Board, the user has to specify an appropriate BOARD_DATA, as in the following example:
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+...
+}
+...
+</pre>
+
+The Arduino Uno board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+
+The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATmega328p MCU.
+
+The following subsections will describe the functions available to control the Arduino Uno Board:
+* ''void EE_board_init(void);''
+*: Description: The function initializes the board.
+
+==== LEDs ====
+The Arduino Uno Board has a 1 LED. To use the LED on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+  USELEDS = TRUE;
+...
+}
+...
+</pre>
+
+The following subsections will describe the functions available to control the Arduino Uno LED:
+* ''void EE_led_on(void);''
+*: Description: The function turns on the LED.
+* ''void EE_led_off(void);''
+*: Description: The function turns off the LED.
+* ''void EE_led_toggle(void);''
+*: Description: The function toggles the LED.
+
+==== Requirements ====
+ERIKA Enterprise supports Atmel AVR ATmega328p.
+* Atmel Studio
+* WinAVR
+	
+Useful links
+* [http://www.atmel.com/tools/ATMELSTUDIO.aspx Atmel Studio download link]
+* [http://winavr.sourceforge.net/ WinAVR download link]
+
+= UISP =
+
+[http://www.nongnu.org/uisp/download.html Download UISP]
+
+UISP is a tool for AVR (and AT89S) microcontrollers which can interface to many hardware in-system programmers.
+UISP was written to work in a GNU/Linux environment, but can also run inside Microsoft Windows systems, by using Cygwin.
+
+[[Category:Supported Devices]]

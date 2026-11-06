@@ -1,0 +1,256 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Sci WriteTxData Int Err Seq Dia.png</title>
+    <id>2416</id>
+    <revision>
+      <id>5265</id>
+      <timestamp>2013-07-16T21:02:57Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_WriteTxData() Sequence Diagram (interrupt - error).</comment>
+      <text xml:space="preserve">Sci_WriteTxData() Sequence Diagram (interrupt - error).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci WriteTxData Int Seq Dia.png</title>
+    <id>2414</id>
+    <revision>
+      <id>5263</id>
+      <timestamp>2013-07-16T21:01:10Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_WriteTxData() Sequence Diagram (interrupt).</comment>
+      <text xml:space="preserve">Sci_WriteTxData() Sequence Diagram (interrupt).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci WriteTxData Seq Dia.png</title>
+    <id>2410</id>
+    <revision>
+      <id>5258</id>
+      <timestamp>2013-07-16T20:57:23Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_WriteTxData() Sequence Diagram (polling).</comment>
+      <text xml:space="preserve">Sci_WriteTxData() Sequence Diagram (polling).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicos splash.png</title>
+    <id>1803</id>
+    <revision>
+      <id>2732</id>
+      <timestamp>2011-02-24T11:21:19Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab1.png</title>
+    <id>1614</id>
+    <revision>
+      <id>1964</id>
+      <timestamp>2010-05-17T08:33:19Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab10.png</title>
+    <id>1621</id>
+    <revision>
+      <id>1972</id>
+      <timestamp>2010-05-17T08:38:18Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab11.png</title>
+    <id>1622</id>
+    <revision>
+      <id>1973</id>
+      <timestamp>2010-05-17T08:38:43Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab12.png</title>
+    <id>1623</id>
+    <revision>
+      <id>1974</id>
+      <timestamp>2010-05-17T08:38:56Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1975</id>
+      <timestamp>2010-05-17T08:40:06Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Scicoslab12.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2.png</title>
+    <id>1615</id>
+    <revision>
+      <id>1965</id>
+      <timestamp>2010-05-17T08:33:45Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 01 participants.jpg</title>
+    <id>1670</id>
+    <revision>
+      <id>2073</id>
+      <timestamp>2010-10-21T14:39:00Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Participants to the ScicosLab 2010 training course in Florence</comment>
+      <text xml:space="preserve">Participants to the ScicosLab 2010 training course in Florence</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 02 simone.jpg</title>
+    <id>1671</id>
+    <revision>
+      <id>2074</id>
+      <timestamp>2010-10-21T14:39:42Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Simone explaining the ScicosLab code generation process...</comment>
+      <text xml:space="preserve">Simone explaining the ScicosLab code generation process...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 03 pj.jpg</title>
+    <id>1672</id>
+    <revision>
+      <id>2076</id>
+      <timestamp>2010-10-21T14:41:46Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>PJ explaining the ERIKA Enterprise workflow.</comment>
+      <text xml:space="preserve">PJ explaining the ERIKA Enterprise workflow.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 04 simone.jpg</title>
+    <id>1673</id>
+    <revision>
+      <id>2078</id>
+      <timestamp>2010-10-21T14:46:22Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Simone shows how to design a controller on ScicosLab...</comment>
+      <text xml:space="preserve">Simone shows how to design a controller on ScicosLab...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 05 simone.jpg</title>
+    <id>1674</id>
+    <revision>
+      <id>2079</id>
+      <timestamp>2010-10-21T14:46:54Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>Simone shows the ScicosLab code generation process...</comment>
+      <text xml:space="preserve">Simone shows the ScicosLab code generation process...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 06 pj daniele.jpg</title>
+    <id>1675</id>
+    <revision>
+      <id>2081</id>
+      <timestamp>2010-10-21T14:54:36Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>PJ and Daniele trying an example on the FLEX boards...</comment>
+      <text xml:space="preserve">PJ and Daniele trying an example on the FLEX boards...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Scicoslab2010 07 pj.jpg</title>
+    <id>1676</id>
+    <revision>
+      <id>2082</id>
+      <timestamp>2010-10-21T14:59:34Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>PJ and the Amazing Ball...</comment>
+      <text xml:space="preserve">PJ and the Amazing Ball...</text>
+    </revision>
+  </page>
+</mediawiki>

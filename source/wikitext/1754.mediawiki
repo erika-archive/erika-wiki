@@ -1,0 +1,47 @@
+This is a list of YouTube videos about ERIKA Enterprise, FLEX Boards, Scicos-FLEX code generator, and others...
+
+* [http://www.youtube.com/watch?v=b-i4wBevN8Y MEMOS 2 - A Simple Robotic System for Neurorehabilitation]
+* [http://www.youtube.com/watch?v=3lsRgz0lt5k Real-time control of an Inverted Pendulum using FLEX + ERIKA
+* [http://www.youtube.com/watch?v=w10vCZGGT5Y Real-time control of an Inverted Pendulum using FLEX + ERIKA]
+* [http://www.youtube.com/watch?v=1_xCUJm3tHc dsPIC visual tracking using a CMOS camera!]
+* [http://www.youtube.com/watch?v=XQ_ThZHNe4c dsPIC Scilab/Scicos Inverted Pendulum at SUPSI Lugano]
+* [http://www.youtube.com/watch?v=1QU9DNQxvB0 dsPIC Scilab/Scicos Servo DC control at SUPSI Lugano]
+* [http://www.youtube.com/watch?v=cPhM6OQhSD0 Furuta Pendulum]
+* [http://www.diiga.univpm.it/ DII (Intelligenza Artificiale e sistemi in tempo reale) Lab of Università Politecnica delle Marche]
+** [http://www.youtube.com/watch?v=5jQdaR8xhdI ER1 Robot face-control application. Uses Nexus S with Android 2.3.4, OpenCV and Erika Enterprise RTOS part 1, Made by the DII (Intelligenza Artificiale e sistemi in tempo reale) Lab of Università Politecnica delle Marche]
+** [http://www.youtube.com/watch?v=JdYnQf3fdd8 ER1 Robot face-detection application. Uses Nexus S with Android 2.3.4, OpenCV and Erika Enterprise RTOS part 2, Made by the DII (Intelligenza Artificiale e sistemi in tempo reale) Lab of Università Politecnica delle Marche]
+** [http://www.youtube.com/watch?v=sErGUOpKwE8 ER1 Robot face-detection application. Uses Nexus S with Android 2.3.4, OpenCV and Erika Enterprise RTOS part 3, Made by the DII (Intelligenza Artificiale e sistemi in tempo reale) Lab of Università Politecnica delle Marche]
+* Centro Piaggio - Università di Pisa
+** [http://youtu.be/ONTW-826x6E Remotely Controlling a Furuta Pendulum using FLEX, ERIKA Enterprise, and an ethernet connection]
+
+Multicores
+* [http://www.youtube.com/watch?feature=player_embedded&v=x_5bOkzU3H8 Multicore ERIKA and Linux, presented at the Automotive Linux Summit in Edimburgh October 2013]
+
+Some Amazing Ball videos
+* [http://www.youtube.com/watch?v=FBy_e4yvqhQ dsPIC Ball & Plate with touchscreen and servomotors, the inititial Master thesis where everything started]
+* [http://www.youtube.com/watch?v=Hd0ItooPKwM The "Amazing Ball" Ball & Plate System]
+* [http://www.youtube.com/watch?v=oEVfSDkphTE An old version of the Amazing Ball]
+* [http://www.youtube.com/watch?v=ldI5JXG_sQI The "Amazing Ball" Ball & Plate System]
+
+UNIFi Videos
+* [http://www.youtube.com/watch?v=-LlX8l1bkck Hexapod Robot UNIFI 2]
+* [http://www.youtube.com/watch?v=Ug8ZdfeaY2Q Hexapod Robot UNIFI 3]
+* [http://www.youtube.com/watch?v=0gOjRjhLaas Cart powered by ERIKA, FLEX Demo2, and scicos-FLEX ]
+
+EICASLAB Integration with ERIKA Enterprise
+* [http://www.youtube.com/watch?v=UhWneRG9pvs First webinar of integration between ERIKA Enterprise and EICASLAB for code generation for embedded systems]
+* [http://www.youtube.com/watch?v=nGSOMM99R3g Second webinar about Modelling and Like Real-Time Simulation Part 1]
+* [http://www.youtube.com/watch?v=GYKpL2pDFxc Second webinar about Modelling and Like Real-Time Simulation Part 2]
+* [http://www.youtube.com/watch?v=Pp_8bFmmSGw Second webinar about Modelling and Like Real-Time Simulation Part 3]
+* [http://www.youtube.com/watch?v=aWAz0Jo73WA Third webinar about Rapid Control prototyping - Fundamentals - Part 1]
+* [http://www.youtube.com/watch?v=KEXzcsMcmE4 Third webinar about Rapid Control prototyping - Fundamentals - Part 2]
+* [http://www.youtube.com/watch?v=xgHfgASmQMM Third webinar about Rapid Control prototyping - Fundamentals - Part 3]
+* [http://www.youtube.com/watch?v=f9_wI7ojWcw Third webinar about Rapid Control prototyping - Fundamentals - Part 4]
+* [http://www.youtube.com/watch?v=bodtIJADmAE Fourth webinar about Rapid Control prototyping - operative mode with the Amazing Ball - Part 1]
+* [http://www.youtube.com/watch?v=hcOX8GIyX3M Fourth webinar about Rapid Control prototyping - operative mode with the Amazing Ball - Part 2]
+* [http://www.youtube.com/watch?v=9k41zvbphGw Fifth webinar about Slow Motion Sub Mode]
+
+Path Following robots
+* [http://youtu.be/9L-AuspfB1E 2002 - Path Follower using Lego RCX and Erika Educational]
+* [http://www.youtube.com/watch?v=3IVOXxPg4-Q 2012 - Path follower using SMCube and EasyLab] by [http://www.tritytech.com/ TrityTech]
+* [http://www.youtube.com/watch?v=vtA3M4hXIzE 2012 - Path follower using SMCube and EasyLab on a shaded path]  by [http://www.tritytech.com/ TrityTech]

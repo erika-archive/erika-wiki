@@ -1,0 +1,312 @@
+= Introduction =
+
+This small tutorial describes the steps needed to download, compile and run a simple application showing the main features of Erika Enterprise and RT-Druid for the Microchip dsPIC DSC platform. However many parts of this tutorial can be easily applied to other architectures.
+
+This tutorial has been tested on a FLEX board produced by Evidence and Embedded Solutions. Moreover, the needed software has been installed and tested on an Ubuntu 10.10 maverick but the installation process should be adapted to almost all other releases.
+
+Even if all the steps needed to run an application will be depicted, a preliminary knowledge on the Microchip MPLAB X IDE and its debug environment should be useful to the reader.
+
+= Note for Linux Users =
+
+If you are using a Linux distribution please look carefully at the following warnings:
+
+# The Evidence package installation path should NOT contain directory name with spaces. e.g. use <tt>~/Evidence</tt>.
+# The Scilab package installation path should NOT contain directory name with spaces: e.g. use <tt>~/Evidence/scicoslab-4.4b7</tt>.
+# It is strongly encouraged to adopt real paths instead of using symbolic links and aliases.
+# Please install all the Microchip compilers into their default directory (<tt>/opt/XXXX</tt>).
+
+= Prerequisites =
+Before proceeding with the installation process it should be useful to completely update the packages installed in you system to the latest version. To update all the packages open a Terminal window and execute the following commands:
+
+<pre>
+sudo apt-get update
+sudo apt-get upgrade
+</pre>
+
+To execute the MPLAB X IDE a 32bit JRE have to be installed.
+Before to proceed with the JRE installation you need to check the multiverse repository enabled. You can perform this step from the Ubuntu Software Center and select "Edit -> Software Sources...", after inserting you password you must check the "Software restricetd by copiright or legal issues (multiverse)" option; otherwise you can enable this repository by editing the source.list, to do that in a Terminal window execute:
+<pre>
+sudo gedit /etc/apt/sources.list
+</pre>
+
+Then on the gedit window uncomment the line:
+
+deb http://archive.canonical.com/ubuntu maverick partner<br>
+
+by removing the "#" character, then save the file and close gedit.
+
+
+Finally to install the JRE on a Terminal window insert:
+<pre>
+sudo apt-get update
+sudo apt-get install sun-java6-jre sun-java6-plugin sun-java6-fonts
+</pre>
+
+Please notice that by installing a 64bit JRE RT-Druid will not work properly.
+
+= Installing MPLAB X IDE =
+
+To download the the MPLAB X IDE in a Terminal window execute:
+<pre>
+cd ~
+
+mkdir mplab_temp
+cd mplab_temp
+
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabx-ide-beta50-linux-32-bit-installer.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc18.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc30.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc32.bin
+
+
+chmod a+x *.bin
+
+sudo ./mplabx-ide-beta50-linux-32-bit-installer.bin
+sudo ./mplabc32.bin
+sudo ./mplabc30.bin
+sudo ./mplabc18.bin
+</pre>
+Please notice that this step can require few minutes depending on the downloading speed.<br> 
+You can speedup this process by downloading and installing only the compilers needed by your platform. 
+Please remember to reboot you system after the installation of the last compiler.
+
+
+At the end of the installation process either the directory and the bin files can be removed:
+<pre>
+cd ~
+rm -r mplab_temp
+</pre>
+
+
+To enable the correct execution of the MPLAB X IDE you have to assign the correct owner to the Desktop shortcut. In a Terminal window insert:
+<pre>sudo chown user:user ~/Desktop/MPLAB\ X\ IDE\ beta5.desktop</pre>
+please notice that "user" must be substituted with your username on the Linux host. Moreover, the location of the file depends on the language of your installed OS, e.g. for Italian people the file could be located on <tt> ~/Scrivania/MPLAB\ X\ IDE\ beta5.desktop</tt>.
+
+
+Moreover, to enable MPLAB X IDE to connect with the supported programmers you must set the execution flag to the file dorun.sh
+<pre>sudo chmod +x /opt/microchip/mplabx/mplab_ide/ide/bin/nativeexecution/dorun.sh</pre>
+
+For further information on MPLAB X IDE and its supported programmers please visit<br>
+http://ww1.microchip.com/downloads/mplab/X_Beta<br> 
+and/or download<br>
+http://ww1.microchip.com/downloads/mplab/X_Beta/Getting_Started_with_MPLAB-X.pdf
+
+= Installing ERIKA Enterprise and RT-Druid on Linux =
+
+To download RT-Druid you can select the correct file from the webpage:<br>
+http://erika.tuxfamily.org/erika-for-multiple-devices.html<br>
+or simply insert in a Terminal window
+<pre>
+cd ~
+mkdir eclipse_temp
+cd eclipse_temp
+
+wget http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Linux.zip
+unzip EE_160_Linux.zip
+mkdir ../Evidence/
+mv eclipse ../Evidence
+</pre>
+Please notice that the download process can require few minutes depending on the downloading speed.
+
+You can now remove the downloaded file by
+<pre>
+cd ~
+rm -r eclipse_temp
+</pre>
+
+To enable a desktop shortcut to the <tt>~/Evidence/eclipse/eclipse</tt> file you can insert in a Terminal window
+<pre>
+ln -s ~/Evidence/eclipse/eclipse eclipse
+</pre>
+
+= First RT-Druid startup and configuration =
+
+By opening Eclipse you will be prompted with a window asking for the directory containing your workspace.
+[[File:RT-druid.1.6.0-workspace.png|center|thumb|200px|This screenshot shows how to 
+select the workspace directory.]]
+It should be noticed that instead of "user" your username on the linux box will be displayed.
+You can simply click on "Ok" and the directory "workspace" will be created in your home.
+
+
+After few seconds you will be prompted with a "Welcome" screen<br>
+[[File:RT-druid.1.6.0.welcome.png|center|thumb|200px|This screenshot shows the Eclipse welcome window.]]
+
+
+At this point can be useful to check for updates. See [[Tutorial: Update ERIKA and RT-Druid]]
+
+
+Before to be able to compile you first application you have to select the correct compiler path. As this tutorial is devoted to enable programming a Flex Demo application, the correct compiler for C24 and dsPIC must be selected. Select "Window -> Preferences"<br>
+[[File:RT-druid.1.6.0-preferences.01.png|center|thumb|200px|This screenshot shows where find the preferences menu.]]
+On the "preference" window you have to select "RT-Druid -> Oil -> dsPIC" and then insert the path of the C and ASM compilers (/opt/microchip/mplabc30/v3.24/)
+[[File:RT-druid.1.6.0-preferences.02.png|center|thumb|200px|This screenshot shows how to select the PIC24, PIC30 and dsPIC compiler.]]
+
+You can now close the "Welcome" screen by selecting "Workbench" icon
+[[File:RT-druid.1.6.0-nowelcome.png|center|thumb|200px|This screenshot shows how close the "Welcome" screen.]]then to remove the autobuild you can uncheck "Project -> Build Automatically"
+[[File:RT-druid.1.6.0-noautobuild.png|center|thumb|200px|This screenshot shows how to disable the auto build option.]]
+
+= Create and Compiling your first ERIKA Enterprise demo =
+
+By opening Eclipse you will be now prompted with an empty screen
+[[File:RT-druid.1.6.0-empty.png|center|thumb|200px|This screenshot shows an Ecplise empty screen.]]
+to create your fist project select "File -> New -> Rt-Druid Oil and C/C++ Project"
+[[File:RT-druid.1.6.0-newproject.01.png|center|thumb|200px|This screenshot shows how to open the "C Project" window.]]
+then on the "C Project" window, insert the name of you project, e.g. <tt>my_first_project</tt>. 
+[[File:RT-druid.1.6.0-newproject.02.png|center|thumb|200px|This screenshot shows how to assign the project name.]]
+then click on "Next". After checking "Create a project using one of these template", select "pic30-> FLEX Demo Board -> OO examples -> Task Demo" and click on "Finish".
+[[File:RT-druid.1.6.0-newproject.03.png|center|thumb|200px|This screenshot shows how to select a project template.]]
+
+
+You will now be prompted with a screen containing all the existing project in the workspace
+[[File:RT-druid.1.6.0-newproject.04.png|center|thumb|200px|This screenshot shows a new template based project.]]
+To build the project you can right-click on the project name and select "Build Project" from the context menu
+[[File:RT-druid.1.6.0-newproject.05.png|center|thumb|200px|This screenshot shows hot to build a project.]]
+at the end of the building process Eclipse will signal the creation of the executable file and on the left panel a "Debug" subfolder contining all the files generated will be prompted
+[[File:RT-Druid.1.6.0-newproject.06.png|center|thumb|200px|This screenshot shows the results of a correct building process.]]
+
+= Running your first ERIKA Enterprise demo =
+
+MPLAB X IDE is used in this tutorial to run and debug the application on the FLEX DEMO board.
+
+
+By opening MPLAB X IDE you will be prompted by a "Welcome" screen
+[[File:Mplabx.beta4-welcome.01.png|center|thumb|200px|This screenshot shows the MPLAB X IDE "Welcome" screen.]]
+
+To open a new project select "File -> New Project"
+[[File:Mplabx.beta4-newproject.01.png|center|thumb|200px|This screenshot shows how to 
+open the "New Project" screen.]]
+in the "New Project" window you have to select "Microchip Embedded" and "Prebuilt (Loadable Image) Project", and click "Next".
+[[File:Mplabx.beta4-newproject.02.png|center|thumb|200px|This screenshot shows how to 
+chose the project.]]
+on the "Import Image File" you have to select the file produced by the compiling process previously executed, in this case it is located in <tt> ~/wokspace/my_first_project/Debug_pic30.elf</tt>, by clicking on "Next"
+[[File:Mplabx.beta4-newproject.03.png|center|thumb|200px|This screenshot shows how to 
+select the image file to be imported.]]
+you joint the "Select Device" window, where you have to select the correct Family and Device to be programmed. For the FLEX Demo board you have to select "DSPIC33" and "dsPIC33FJ256MC710".
+[[File:Mplabx.beta4-newproject.04.png|center|thumb|200px|This screenshot shows how to 
+select the DEvice and Family to be programmed.]]
+To retrieve those informations you can open Eclipse, in the main project folder you can open the conf.oil. In this file you have to find the <tt>MODEL</tt> field on the <tt>MCU_DATA</tt> section.
+[[File:RT-Druid.1.6.0-PICModel.01.png|center|thumb|200px|This screenshot shows how to 
+find the PIC related informations on the conf.oil file.]]
+The same information can be retrieved from the board by looking at the installed micro.<br>
+On the "Select Tool" you have to select the programmer you will use lather. 
+[[File:Mplabx.beta4-newproject.05.png|center|thumb|200px|This screenshot shows how to select the programmer.]]
+Even if we are selecting the ICD3, you have to select the programmer you are equipped with.
+It should be noticed that we have correctly tested the ICD2, ICD3, and PICkit3.<br>
+In the next screen you will be asked for using a link to the loadable image or keeping the original file. As we are using an ELF file, we have to select "Copy files" and clic "Next".
+[[File:Mplabx.beta4-newproject.06.png|center|thumb|200px|This screenshot shows how to use a copy of the image file.]]
+Finally we have to select the project name and folder, in this case we are using the default values, and click on "Next".
+[[File:Mplabx.beta4-newproject.07.png|center|thumb|200px|This screenshot shows how to select the project name and folder.]]
+Please notice that the default "Project Location" and "Project Folder" are in the Debug directory of Eclipse. If you use the default values the MPLAB X IDE will be deleted if you select "Clean Project" in Eclipse.<br>
+Finally bu clicking on "Finish" the project will be created.
+[[File:Mplabx.beta4-newproject.08.png|center|thumb|200px|This screenshot shows the summary of the project creation process.]]
+
+
+The project creation process can take a very long time depending on your PC and loadable image file type. We have experienced more than 20 minutes while loading the cof version of the example proposed in the tutorial with a PC with a 2.8 GHz Pentium IV and 512 MB of RAM, on the other hand HEX and COFF files will need a shorter time to be loaded.
+
+
+At the end of the project creation process you can find the pic30 project loaded in the MPLAB X IDE main window.
+[[File:Mplabx.beta4-newproject.09.png|center|thumb|200px|This screenshot shows the pic30 project loaded by MPLAB X IDE.]]
+To be able to program the board you must connect the programmer to the Linux host and to the board, that have to be powered by an external supply, you can then right click on the pic30 project and select "Properties",
+[[File:Mplabx.beta4-newproject.10.png|center|thumb|200px|This screenshot shows how to select the project properties.]]
+in the "Project Properties" window you can now select the "default" category. On the right side of the window the installed programmer and its serial number will by displayed, you have to select the serial number of the programmer you are using and click on "Ok".
+[[File:Mplabx.beta4-newproject.11.png|center|thumb|200px|This screenshot shows how to select the installed programmer serial number.]]
+
+
+You have now imported the ELF file inside MPLAB X IDE and select the right programmer; by right clicking on the project and select "Run" in order to program the application on the board
+[[File:Mplabx.beta4-newproject.12.png|center|thumb|200px|This screenshot shows how to select the run command.]]
+
+
+After few time, depending on your Pc and on the type of the loadable image file type (cof, hex etc.), you will be prompted by a screen reporting the correct execution of the programming process.
+[[File:Mplabx.beta4-newproject.13.png|center|thumb|200px|This screenshot shows the end of a successful programming process.]]
+
+= How to use ERIKA sources from svn =
+
+While developing an application it should be useful to use the SVN version of ERIKA Enterprise to be aligned to the last version of the OS sources. In this tutorial we will use the the anonymous read only access to the SVN, please refer to [[ERIKA Enterprise and RT-Druid SVN Access]] for other access type.
+
+If you don't have the svn tool installe din your Linux host you have to select and install the package. Before to proceed sould be usefull to update the pakages in your system to the last version. In a Terminal window insert:
+<pre>
+sudo apt-get update
+sudo apt- get upgrade
+
+sudo apt-get install subversion
+</pre>
+
+
+You now need to create a folder to store the ERIKA Enterprise repository; in a Terminal window insert:
+<pre>
+cd ~
+mkdir Erika
+cd Erika
+
+svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee ./
+</pre>
+
+
+After few minutes, depending on your Internet connection, you will have the last version of ERIKA Enterprise in the <tt>~/Erika</tt> folder. You can now setup the environmental variables needed to enable Eclipse compiling with an external ERIKA Enterprise version.
+
+
+== Eclipse from Terminal ==
+
+To enable an Eclipse session launched by a shell to compile with the previously uploaded ERIKA sources you can open the <tt>~/.bashrc</tt> file by inserting a Terminal window
+<pre>
+gedit ~/.bashrc
+</pre>
+then, at the end of the file you can put the following lines:
+<pre>
+# ERIKA Enteprise location for Eclipse
+export ERIKA_FILES="$HOME/Erika"
+</pre>
+You can now save the file and close the editor. To try compiling with the new ERIKA sources you can open a new Terminal window and insert
+<pre>
+~/Evidence/ecipse/eclipse
+</pre>
+It should be noticed that only the Terminal windows opened after saving the .bashrc file will contain the ERIKA_FILES variable.
+
+
+Using an Eclipse session started by a shell enable the user to receive a lot of info on the compiling process and on the actions executed by Eclipse (e.g. by using the -consoleLog parameter). On the other hand many users would like to use a shortcut to start Eclipse.
+
+== Eclipse from gnome ==
+
+To enable an Eclipse started by gnome to compile with the previously downloaded ERIKA sources you can open the <tt>~/.gnomerc</tt> by inserting in a Terminal window
+<pre>
+gedit ~/.gnomerc
+</pre>
+and insert at the end of the file the lines
+<pre>
+# ERIKA Enteprise location for Eclipse
+export ERIKA_FILES="$HOME/Erika"
+</pre>
+If the file doesn't exist you can simply create it.
+Before to be able to use the previously downloaded ERIKA sources you have to log out from the current session and start a new session.
+
+== Eclipse from kde ==
+
+'''In progress '''
+
+= Notes from the Forum: ERIKA2 2.8 on Ubuntu 18 =
+
+(Original text from: http://www.erika-enterprise.com/forum/viewtopic.php?f=4&t=1249&sid=f59ff95f19adb9d478cc4aabbd6e811d)
+
+Setting up Erika2 2.8 on Ubuntu 18:
+
+# Download JDK 1.7_80 from Oracle
+# Extract it to a local directory and move it to /usr/lib/jvm:
+#:  sudo cp ./jdk1.7.0_80 /usr/lib/jvm
+# Setup Java alternatives so you can switch between 7 and the system default (normally 11)
+#:  sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0_80/bin/java" 1 
+#:  sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0_80/bin/javac" 1 
+#:  sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0_80/bin/javaws" 1
+# Select your Java version with:
+#:  sudo update-alternatives --config java
+# Install some pre-requisites
+#:  sudo apt-get install build-essential li32ncurses5 lib32z1
+# Install ARM cross compiler
+#:  https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update
+# Don't forget to set the compiler PATH in Windows/Preferences/RT-Druid/Oil/Cortex
+# Then I launched eclipse Juno and created a project from one of the demo templates.
+#: For task aware debugging in Lauterbach TRACE32, add a new line at line 70 of conf.oil, which reads:
+#: /* Enable ORTI debug symbols */
+#: ORTI_SECTIONS = ALL;
+
+
+
+[[Category:RT-Druid]]

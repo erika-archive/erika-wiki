@@ -1,0 +1,488 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Architecture_description_.28Ref._Freescale_MPC5643LRM_Rev._9_12_Mar_2012.29"><span class="tocnumber">1</span> <span class="toctext">Architecture description (Ref. Freescale MPC5643LRM Rev. 9 12 Mar 2012)</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Flash_Usage"><span class="tocnumber">2</span> <span class="toctext">Flash Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#BOOT_Flash_area"><span class="tocnumber">2.1</span> <span class="toctext">BOOT Flash area</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#APPLICATION_Flash_area"><span class="tocnumber">3</span> <span class="toctext">APPLICATION Flash area</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Erika_OS"><span class="tocnumber">3.1</span> <span class="toctext">Erika OS</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Drivers"><span class="tocnumber">3.2</span> <span class="toctext">Drivers</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#User_Application"><span class="tocnumber">3.3</span> <span class="toctext">User Application</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Board_Internal_Connections"><span class="tocnumber">4</span> <span class="toctext">Board Internal Connections</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Device_Drivers"><span class="tocnumber">5</span> <span class="toctext">Device Drivers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Can_Driver_.28CanDrv.29"><span class="tocnumber">5.1</span> <span class="toctext">Can Driver (CanDrv)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#CanDrv_Configuration"><span class="tocnumber">5.1.1</span> <span class="toctext">CanDrv Configuration</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#CanDrv_API"><span class="tocnumber">5.1.2</span> <span class="toctext">CanDrv API</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Spi_Driver_.28SpiDrv.29"><span class="tocnumber">5.2</span> <span class="toctext">Spi Driver (SpiDrv)</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Pwm.2BAdc_Drivers_.28with_CTU_support.29"><span class="tocnumber">5.3</span> <span class="toctext">Pwm+Adc Drivers (with CTU support)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#PWM"><span class="tocnumber">5.3.1</span> <span class="toctext">PWM</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#ADC"><span class="tocnumber">5.3.2</span> <span class="toctext">ADC</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#CTU_.28Cross_Triggering_Unit.29"><span class="tocnumber">5.3.3</span> <span class="toctext">CTU (Cross Triggering Unit)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Stm_Driver"><span class="tocnumber">5.4</span> <span class="toctext">Stm Driver</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Debugger_support"><span class="tocnumber">6</span> <span class="toctext">Debugger support</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Architecture_description_.28Ref._Freescale_MPC5643LRM_Rev._9_12_Mar_2012.29"> Architecture description (Ref. Freescale MPC5643LRM Rev. 9 12 Mar 2012) </span></h1>
+<p>The Qorivva MPC5643L microcontroller is based on the Power Architecture. All MPC5643L devices are built around a dual-core safety platform, each core is a member of the e200z4 Power Architecture family. Lock step Redundancy Checking Units are implemented at each output of this Sphere of Replication (SoR). ECC is available for on-chip SRAM and flash memories. A programmable fault collection and control unit monitors the integrity status of the device and provides flexible safe state control. The peripheral set provides high-end electrical motor control capability with very low CPU intervention due to the on-chip cross-triggering unit (CTU).
+</p>
+<h1> <span class="mw-headline" id="Flash_Usage"> Flash Usage </span></h1>
+<p>There are three address spaces featuring Flash memory of MPC5643L:
+</p>
+<ul><li> Low address space (256 KB)
+</li><li> Mid address space (256 KB)
+</li><li> High address space (512 KB)
+</li></ul>
+<p>The MPC5643L flash memory usage has been managed as follow.
+</p>
+<ul><li> Block L0 (0x0 - 0x00004000) hosts the boot key of the microcontroler. MPC5643L has several boot sectors, Each boot sector in the flash memory contains at offset 0x00 the Reset Configuration Half-Word (RCHW) that is composed by 2 parts. First part is used to mark this boot sector as "bootable" (0x5A), second part to set VLE/BOOK E mode:
+</li></ul>
+<ol><li> 0x15a0000 if the microcontroller runs in "VLE" mode
+</li><li> 0x05a0000 if the microcontroller runs in "BOOK E" mode
+</li></ol>
+<p>RCHW is immediately followed by the reset vector of the microcontroller (the address from the microncontroller starts from).
+</p>
+<ul><li> Block L1, L2 and L3 (0x00004000 - 0x00020000) hosts Non-Volatile-RAM (NVRAM) data. The policy in charge of managing this flash area is explained in section NVRAM.
+</li><li> Block L4 and L5 (0x00020000 - 0x00040000) hosts boot code. The content of this flash area is explained in section BOOT.
+</li><li> Block M0 and M1 (0x00040000 - 0x00080000) hosts calibrations data. The policy in charge of managing this flash area is explained in section CALIBRATIONS.
+</li><li> Block H0 and H1 (0x00080000 - 0x000C0000) hosts application code. The content of this flash area is explained in section APPLICATION.
+</li></ul>
+<p>Flash memory is devised as follow:
+</p><p><a href="/wiki/index.php?title=File:Flash_map_prova.png" class="image"><img alt="Flash map prova.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9a/Flash_map_prova.png" width="670" height="270" /></a>
+</p>
+<h2> <span class="mw-headline" id="BOOT_Flash_area"> BOOT Flash area </span></h2>
+<p>This area will be used to locate Bootloader code. Not provided in this version
+</p>
+<h1> <span class="mw-headline" id="APPLICATION_Flash_area"> APPLICATION Flash area </span></h1>
+<p>Application Flash area hosts user application, drivers and Erika OS.
+</p>
+<h2> <span class="mw-headline" id="Erika_OS"> Erika OS </span></h2>
+<p>Erika has been provide with the following configurations:
+</p>
+<ul><li> <b>Single Core (DPM mode)</b>. The main feaure of this configuration is that the user has 128 Kbytes of SRAM memory available divided in two memory banks (0x40000000 - 0x4000FFFF and 0x50000000 - 0x5000FFFF). This configuration can be executed from SRAM and from FLASH. The flags used to enable SRAM configurations is: __E200ZX_EXECUTE_FROM_RAM__, if it is not used, FLASH configuration is enabled by default. Notice that SRAM configuration is used for a comfortable debug, if the application executes from SRAM, code and data share SRAM banks and Flash is not used, consequently reducing the amount of memory available by user application.
+</li></ul>
+<p><br />
+<a href="/wiki/index.php?title=File:Sram_dpm.png" class="image"><img alt="Sram dpm.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/35/Sram_dpm.png" width="668" height="105" /></a>
+</p><p><br />
+</p>
+<ul><li> <b>Single core (Lock-step)</b>. The main feaure of this configuration is that the user has 128 Kbytes of SRAM memory available (0x40000000 - 0x0001FFFF). This configuration can be executed from SRAM and from FLASH. In order to enable Lock-step mode the LOCK_STEP flag has to be enabled. This flag has to be combined with __E200ZX_EXECUTE_FROM_RAM__ if the target has to execute from SRAM. If only LOCK_STEP is enabled the target executes from Flash. Notice that SRAM configuration is used for a comfortable debug, if the application executes from SRAM, code and data share SRAM banks and Flash is not used, consequently reducing the amount of memory available by user application.
+</li></ul>
+<p><br />
+<a href="/wiki/index.php?title=File:Sram_lock.png" class="image"><img alt="Sram lock.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ef/Sram_lock.png" width="668" height="105" /></a>
+</p><p><br />
+</p>
+<ul><li> <b>Multicore (DPM mode)</b>. The main feature of this configuration is that the user has 64 Kbytes of SRAM memory available for each core. In particular the first 64 Kbytes-bank of SRAM memory (0x40000000 - 0x4000FFFF) is allocated to the master core, this memory area also hosts data shared by both cores. The second 64 Kbytes-bank of SRAM memory (0x50000000 - 0x5000FFFF) is allocated to the slave core. In order to enable this configuration the flag __MSRP__ has to be defined. It has to be combined with __E200ZX_EXECUTE_FROM_RAM__ to have a system running from SRAM. If this flag is not enabled, hence the multicore application is configured to run from Flash. Notice that SRAM configuration is used for a comfortable debug, if the application executes from SRAM, code and data share SRAM banks and Flash is not used, consequently reducing the amount of memory available by user application.
+</li></ul>
+<p><br />
+<a href="/wiki/index.php?title=File:Multi_dpm.png" class="image"><img alt="Multi dpm.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3d/Multi_dpm.png" width="668" height="104" /></a>
+</p><p><br />
+<b>Additional notes about Erika-multicore in MPC5643L</b>
+</p><p>Erika uses hardware semaphores to guarantee data coherence between master and slave cores. It also used a signalling system based on software interrupts to provides basic inter-core synchronisation mechanism. MPC5643L has two SEMA4 modules, each module has 16 HW semaphores, but these semaphores are not all available by the user since they are used by the operating system to implement a barrier to synchronise both cores after boot sequence. According with these assumptions the 7-th software interrupt is used by signal mechanism and semaphore 0 and 1 of the master's SEMA4 module are used to implement synchronisation barrier, therefore they cannot be used for different purposes. All the remaining semaphores (from 2 to 15 belonging to the master's SEMA4 and all 16 belonging to the slave's SEMA4) and software interrupts (from 1 to 7 of both interrupt controllers) can be used by the user application. Notice that these limitations have to be taken into account only when the system is configured as multi-core. In single-core mode the user is free to use all software interrupts according with his needs, since boot-barrier is not enabled and inter-processor (software) interrupt are not required.
+</p>
+<h2> <span class="mw-headline" id="Drivers"> Drivers </span></h2>
+<p>The implemented drivers are: CanDrv, FlashDrv, SpiDrv, Adc, Pwm and CTU. The details concerning these Drivers are reported in section Device Drivers.
+</p>
+<h2> <span class="mw-headline" id="User_Application"> User Application </span></h2>
+<p>Evidence is not in charge of this part.
+</p>
+<h1> <span class="mw-headline" id="Board_Internal_Connections"> Board Internal Connections </span></h1>
+<p>This chapter provides a schema to show connections required for SPI, ADC, CAN (configured as CANDRV_NORMAL), System clock and one PWM signal (PWM0_A1).
+</p><p><a href="/wiki/index.php?title=File:Board.png" class="image"><img alt="Board.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5e/Board.png" width="812" height="505" /></a>
+</p>
+<h1> <span class="mw-headline" id="Device_Drivers"> Device Drivers </span></h1>
+<h2> <span class="mw-headline" id="Can_Driver_.28CanDrv.29"> Can Driver (CanDrv) </span></h2>
+<p>Can Driver is based on Freescale FlexCan present in MPC5643L. Can Driver details will be provided in two distinct sections: configuration and API. Configuration section concerns Can Driver static configuration, that means that Can Driver has to be statically configured by CanCfg module (reference: sources/ApplCfg/CanCfg.c). The API section of the manual shows the set of functionalities featuring this CanDrv implemenation.
+</p>
+<h3> <span class="mw-headline" id="CanDrv_Configuration"> CanDrv Configuration </span></h3>
+<p>There two levels of CanDrv configuration: FlexCan level and message level. First level is used to configure Can Module with respect the following fields:
+</p>
+<ul><li> peripheralEn: it can be CANDRV_ENABLED/CANDRV_DISABLED according with the fact that the user wants to enabled or disabled the current Flexcan module. Notice that MPC5643L has two FlexCan modules.
+</li><li> mode: it can be CANDRV_NORMAL, CANDRV_LOOPBACK or CANDRV_OPENDRAIN. CANDRV_LOOPBACK means that FlexCan module works in loopback mode (look at Reference Manual for details. Ref: MPC5643LRM Rev. 9 12 Mar 2012), CANDRV_OPENDRAIN means that Flexcan is in open drain mode that means that user can connect two FlexCan modules available in MPC564L without the need of external connections.
+</li><li> autobusonEn: this field can be CANDRV_ENABLED/CANDRV_DISABLED according with the fact that the Auto-buson feature is enabled or not (look at Reference Manual for details. Ref: MPC5643LRM Rev. 9 12 Mar 2012)
+</li><li> peripheralFreq: this field determines FlexCan frequency. There five available values: CANDRV_1MBPS, CANDRV_500KBPS, CANDRV_250KBPS or CANDRV_125KBPS.
+</li><li> errorHandlingEn: it can be CANDRV_ENABLED/CANDRV_DISABLED according with the fact that user needs error handling capability.
+</li><li> sampleNumMode: it can be CANDRV_THREE_SAMPLE if user wants to sample the signal three times.
+</li></ul>
+<p>In CW project and Integration project there are three cases (NORMAL, LOOPBACK and OPENDRAIN) characterised by their configuration parameters. LOOPBACK and OPENDRAIN cases are commented, in order to try these configurations please comment NORMAL mode and uncomment LOOPBACK or OPENDRAIN.
+The configuration version currently available in the repository provides FlexCan0 module enabled and FlexCan1 module disabled. All the fields of FlexCan1 are set to CANDRV_DO_NOT_CARE because peripheralEn is set to CANDRV_DISABLED. CanFlex0 is set as a 500 Kbps FlexCan module, with error handling enabled, auto-buson enabled, normal mode and three samples feature enabled.
+</p>
+<h3> <span class="mw-headline" id="CanDrv_API"> CanDrv API </span></h3>
+<p><b>StdReturnType CanDrvInit(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>Initialise canDrv component according with the features set in CanCfg module.
+</p><p><b>void ManageCanIsr(uint8 isrSourceIndex, uint32 bufferFlags, CanChannelType canChannel);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> isrSourceIndex: is the offset in the FLAG1 register representing the isr source;
+</li><li> bufferFlags: the real isr source;
+</li><li> canChannel: represents FlexCan0 or FlexCan1
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>Initialises Flexcan modules according with the user features set in CanCfg.
+</p><p><b>StdReturnType CanTransmit(CanTxMsgIndexType msgIndex);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> msgIndex: message index taken from all message indexes defined by the user;
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> a value to be used to check if function execution has been successfully performed.
+</li></ul>
+<p>Description:
+</p><p>This function transmits "msgIndex" Can message. Return value of this function is the return value of CanSendManageMsg().
+</p><p><b>StdReturnType CanPollMessage(CanRxMsgIndexType msgIndex, CanChannelType canChannel);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> msgIndex: message index taken from all message indexes defined by the user;
+</li><li> canChannel: FlexCan channel. It can be Flexcan0 or FlexCan1.
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> a value to be used to check if function execution has been successfully performed.
+</li></ul>
+<p>Description:
+</p><p>If canChannel is different fromFlexcan0 or Flexcan1, return value is STD_NOT_OK. If CanPollMessage() is called for a message for which a isr has been defined and the driver is working in INTERRUPT mode, return value is STD_NOT_OK. For all the remaining scenarios the return value is STD_OK.
+</p><p><b>void CanDrvEnableInterrupts(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>Enable Flexcan interrupts according with the CanCfg flags.
+</p><p><b>void CanDrvDisableInterrupts(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+Disable ALL FlexCan interrupts featuring ENABLED Flexcan modules.
+</p><p><b>void CanDrvPolling(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>This function polls all FlexCan messages.
+</p>
+<h2> <span class="mw-headline" id="Spi_Driver_.28SpiDrv.29"> Spi Driver (SpiDrv) </span></h2>
+<p>A simplified Spi Driver has been provide. Through this driver it is possible to use Spi Module both in Polling mode and Isr mode. APIs are defined as follow:
+</p><p><b>void SpiTransmit(uint8 channel, uint8 chip_select, uint8 * data, uint8 length);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> channel: is the Spi channel
+</li><li> chip_select: is the cuip select (from 0 to 7).
+</li><li> length: is message length
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>This function transmits a spi message. Notice that no checks are performed on input parameters.
+</p><p><b>StdReturnType SpiDrvInit(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> a value to be used to check if function execution has been successfully performed.
+</li></ul>
+<p>Description:
+</p><p>This function initialises Spi Driver according with flags present in SpiCfg module.
+</p><p><b>void SpiPoolChannel(const uint8 channel, uint16_t * res);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> channel: is the Spi channel
+</li><li> res: is the location of the result
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>This function pools one Spi channel and store the result in the location pointed by res.
+</p><p><b>uint32 SpiGetMessageLenght(const uint8 channel);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> channel: is the Spi channel
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> message length
+</li></ul>
+<p>Description:
+</p><p>Not still developed (NO REQUIREMENTS).
+</p>
+<h2> <span class="mw-headline" id="Pwm.2BAdc_Drivers_.28with_CTU_support.29"> Pwm+Adc Drivers (with CTU support) </span></h2>
+<p>In PWM driven systems it is important to schedule the acquisition of the state variables with respect to
+PWM cycle. State variables are obtained through the following peripherals: ADC, position counter (e.g.
+quadrature decoder, resolver and sine-cos sensor) and PWM duty cycle decoder.
+The cross triggering unit (CTU) is intended to completely avoid CPU involvement in the time acquisitions
+of state variables during the control cycle that can be the PWM cycle, the half PWM cycle or a number of
+PWM cycles. In such case the pre-setting of the acquisition times needs to be completed during the
+previous control cycle, where the actual acquisitions are to be made, and a double-buffered structure for
+the CTU registers is used, in order to activate the new settings at the beginning of the next control cycle.
+</p><p><b>Problem:</b> the main problem featuring this part of the application concerns ADC timing. In order to speed the acquisition up, the
+PWM A0 rising edge is used to trigger the Star-Of-Conversion (SOC). This means that whenever the PWM counter ramp reaches the maximum value,
+the CTU triggers a ADC acquisition without CPU intervention. This CTU action starts an ADC conversion at the beginning of 50 usec interval (SOC).
+Once the ADC conversion terminates at the End-Of-Conversion point (EOC at point 2), a ISR may be raised (but it has been disabled, since a polling strategy has
+been preferred). The remaining chunk of time (from EOC to the end of 50 usec), can be used for secondary activities (it is denoted as Free Bandwidth).
+At the end of 50-usecs interval, CTU triggers a new acquisition. Notice that the end of 50 usec represents a HARD Deadline, hence it will never being missed.
+</p><p><a href="/wiki/index.php?title=File:Ctu.png" class="image"><img alt="Ctu.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/47/Ctu.png" width="640" height="400" /></a>
+</p><p><b>Performance note:</b> through a preliminary test, the interval of time between SOC and EOC (the red chunk) assumes a value equal to 790 PWM counter ticks (approximately 14 usec with a 120 Mhz CPU clock).
+</p>
+<h3> <span class="mw-headline" id="PWM"> PWM </span></h3>
+<p>MPC5643L has two PWM modules, 
+A simplified PWM Driver has been provide. Through this driver it is possible to access PWM basic functionalities. MPC5643L has two PWM modules, each PWM module has four PWM devices, for this application only a subset of FlexPWM0 module is used to generate three PWM signals: PWM0_A0, PWM0_A1 and PWM0_A2. APIs are defined as follow:
+</p><p><b>void InitFlexPWM0(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function initialises FlexPWM0.
+</p><p><b>void PWM0_AX_load_new_rising_edge(unsigned int val);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> val: match value of the rising edge of X sub-module (X=0,1,2)
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function sets the match value (for rising edge) of PWM0_AX sub-module (X=0,1,2).
+</p><p><b>void PWM0_AX_load_new_falling_edge(unsigned int val);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> val: match value of the falling edge of X sub-module (X=0,1,2)
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function sets the match value (for falling edge) of PWM0_AX sub-module (X=0,1,2).
+</p>
+<h3> <span class="mw-headline" id="ADC"> ADC </span></h3>
+<p>The Analog to Digital Converter (ADC) is a 12 bit Successive Approximation register (SAR) ADC with a mixed capacitive/resistive DAC. This device includes two ADC modules, referred to as ADC_0 and ADC_1. A conversion can be triggered by
+software or hardware (CTU), the solution selected for this application is the second one, that is based on CTU support. Currently the system starts the acquisition of 8 different ADC signals of the ADC_0 module as soon as CTU triggers the ADC_0 module. This happens whenever the internal counter of the PWM0 module matches its maximum value.
+</p><p>External ADC channels:
+</p>
+<ul><li> 9 external channels on ADC_0 (channels 0..8)
+</li><li> 9 external channels on ADC_1 (channels 0..8)
+</li><li> 4 external channels shared between ADC_0 and ADC_1 (channels 11..14)
+</li></ul>
+<p>This the list of ADC Driver APIs:
+</p><p><b>StdReturnType   InitADC(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> a value to be used to check if function execution has been successfully performed.
+</li></ul>
+<p>Description:
+This function initialises ADC_0 module according with flags present in sources/ApplCfg/AdcCfg/AdcCfg.c. Data structure featuring ADC_0 and ADC_1 is adcConfContainer[2], it is characterised by the followinh data fields:
+</p>
+<ul><li> peripheralEn: it can be ADC_ENABLED/ADC_DISABLED to enable/disable ADC_0
+</li><li> peripheralFreq: it can be ADC_HALF_SYS_FREQ for a working freq. equal to 1/2 of the system freq. It can be ADC_SYS_FREQ if the user requires a working freq. equal to the system freq.
+</li><li> adcCommandConfigPtr: pointer to a CTU command list.
+</li></ul>
+<p><br />
+<b>uint8 AdcPollChannel(const uint8 adcModule, const uint8 channel)</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> adcModule: it can be ADC__0 or ADC__1
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function pools the couple "ADC module and channel" represented by adcModule and channel.
+</p>
+<h3> <span class="mw-headline" id="CTU_.28Cross_Triggering_Unit.29"> CTU (Cross Triggering Unit) </span></h3>
+<p>The CTU in this context is used to synchronises the Star-Of-Conversion of the ADC0 channel to the PWM0 counter rising edge , this has been guaranteed without any CPU intervention. CTU has to be initialised in order to accomplish this requirement. All the initialization parameters are collected in one API:
+</p><p><b>void InitCTU(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function initialises CTU to address the problem shown at the beginning of section "Pwm+Adc Drivers (with CTU support)".
+</p>
+<h2> <span class="mw-headline" id="Stm_Driver"> Stm Driver </span></h2>
+<p>Driver supporting basic STM (System Timer Module) functionalities. In the Erika repository is also provided a AUTOSAR-like version of STM Driver. This is the list of APIs featuring this STM basic driver:
+</p><p><b>void mpc5643l_stm_freeze_on(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>Enable freeze mode option of STM timer. If enabled, when system switches to debug mode, timer stops running.
+</p><p><b>void mpc5643l_stm_freeze_off(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+</p><p>Disable freeze mode option of STM timer. If disabled, when system switches to debug mode, timer continues to increment.
+</p><p><b>void mpc5643l_stm_set_prescaler(unsigned int val);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> val: prescaler value
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function set STM prescaler
+</p><p><b>void mpc5643l_stm_select_channel(unsigned int ch);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> ch: channel to be use
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function select STM timer to use
+</p><p><b>void mpc5643l_stm_unselect_channel(unsigned int ch);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> ch: channel to be unselected
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This function deselects a specific STM channel.
+</p><p><b>void mpc5643l_stm_channel_cmp(unsigned int ch, unsigned int val);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> ch: channel to be unselected
+</li><li> val: comparator value
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+This set a comparator for a specific STM channel
+</p><p><b>void mpc5643l_stm_clear_int(unsigned int ch);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> ch: channel to be unselected
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+Clear interrupt for a specific STM channel
+</p><p><b>void mpc5643l_stm_set_counter(unsigned int val);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> val: set the counter of the STM
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+Set STM counter value
+</p><p><b>void mpc5643l_stm_enable(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+Enable STM
+</p><p><b>void mpc5643l_stm_disable(void);</b>
+</p><p>Input parameters are:
+</p>
+<ul><li> No input parameters
+</li></ul>
+<p>Output parameter:
+</p>
+<ul><li> No output parameters
+</li></ul>
+<p>Description:
+Disable STM
+</p>
+<h1> <span class="mw-headline" id="Debugger_support"> Debugger support </span></h1>
+<ul><li> <a href="/wiki/index.php?title=Lauterbach_TRACE32_Support_for_Leopard_MPC5643L" title="Lauterbach TRACE32 Support for Leopard MPC5643L">Lauterbach TRACE32 Support for Leopard MPC5643L</a>
+</li></ul>
+<ul><li> <a href="/wiki/index.php?title=ISYSTEM_winIDEA_Support_for_Leopard_MPC5643L" title="ISYSTEM winIDEA Support for Leopard MPC5643L">iSYSTEM winIDEA Support for Leopard MPC5643L</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 74/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,29 @@
+The '''FLEX-MotionBoard''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Flex_mtb_button.png]]
+| This block controls the FLEX Motion Daughter Board buttons. The internal parameter specifies the button(from 1 to 2).
+|-
+| [[image:Flex_mtb_led.png]]
+| This block controls the FLEX Motion Daughter Board leds. The internal parameter specifies the led(from 1 to 2).
+|-
+| [[image:Flex_mtb_pwm.png]]
+| This block controls the FLEX Motion Daughter Board buttons. The internal parameter specifies the pwm channel(from 1 to 2).
+|-
+| [[image:Flex_mtb_touch.png]]
+| This block controls a touch panel connected to the FLEX Motion Daughter Board (refer Amazing Ball). The internal parameters specifie the axis and the panel resolution(from 1 to 2).
+|-
+| [[image:Flex_mtb_switch.png]]
+| This block controls the FLEX Motion Daughter Board switch. The internal parameter specifies the switch number(from 1 to 8).
+|-
+| [[image:Flex_mtb_encoder.png]]
+| This block controls the FLEX Motion Daughter Board encoder. The internal parameter specifies the encoder type(0 for HW encoder based on QEI, 1 for SW encoder based on interrupts). HW encoder output is in "counts" 4x mode in the range +-2^15, SW encoder output is in "counts" 2*2x mode in the range +-2^16.
+|-
+| [[image:Flex_mtb_dcm_pwm.png]]
+| This block controls the FLEX Motion Daughter Board PWM plugin for DC-Motor. The internal parameter specifies the channel(from 1 to 2). The code of the block assumes a max voltage of 12V and a saturarion voltage of +-6V.
+|-

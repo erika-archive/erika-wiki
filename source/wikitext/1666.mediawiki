@@ -1,0 +1,5 @@
+* Optimal On-Line Sampling Period Assignment: Theory and Experiments In IEEE Transactions on Control Systems Technology, accepted for publications, June 2010. Authors: Anton Cervin, Manel Velasco, Pau Martí and Antonio Camacho.
+
+* Design of an Embedded Control Systems Laboratory Experiment In IEEE Transactions on Industrial Electronics, accepted for publication, January 2010. Authors: Pau Martí, Manel Velsco, Josep M. Fuertes, Antonio Camacho, Giorgio Buttazzo.
+
+* Experimental Evaluation of Slack Management in Real-Time Control Systems: Coordinated vs. Self-Triggered Approach In Journal of Systems Architecture, Vol. 56, N. 1, January 2010. Authors: Manel Velasco, Pau Martí, Josep M. Fuertes, Camilo Lozoya, Scott Brandt.

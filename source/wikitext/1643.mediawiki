@@ -1,0 +1,1 @@
+Deselect the ''Build Automatically'' flag in the ''Project'' menu.

@@ -1,0 +1,252 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Ab foto.png</title>
+    <id>2240</id>
+    <revision>
+      <id>4379</id>
+      <timestamp>2012-01-24T14:02:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4380</id>
+      <timestamp>2012-01-24T14:03:55Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Ab foto.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:About Eclipse Evidence.png</title>
+    <id>2367</id>
+    <revision>
+      <id>5171</id>
+      <timestamp>2013-07-16T10:15:54Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>About Eclipse Evidence</comment>
+      <text xml:space="preserve">About Eclipse Evidence</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:About Eclipse Features.png</title>
+    <id>2368</id>
+    <revision>
+      <id>5172</id>
+      <timestamp>2013-07-16T10:16:25Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>About Eclipse Features</comment>
+      <text xml:space="preserve">About Eclipse Features</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:About Eclipse Installation Details.png</title>
+    <id>2403</id>
+    <revision>
+      <id>5241</id>
+      <timestamp>2013-07-16T18:09:32Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>About Eclipse Installation Details.</comment>
+      <text xml:space="preserve">About Eclipse Installation Details.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Add.png</title>
+    <id>2250</id>
+    <revision>
+      <id>4442</id>
+      <timestamp>2012-01-26T15:53:37Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Add Repository Archive.png</title>
+    <id>2357</id>
+    <revision>
+      <id>5157</id>
+      <timestamp>2013-07-16T09:33:22Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Add Repository Archive</comment>
+      <text xml:space="preserve">Add Repository Archive</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Add Repository OK.png</title>
+    <id>2359</id>
+    <revision>
+      <id>5159</id>
+      <timestamp>2013-07-16T09:34:26Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Add Repository OK</comment>
+      <text xml:space="preserve">Add Repository OK</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Add source.png</title>
+    <id>1782</id>
+    <revision>
+      <id>2606</id>
+      <timestamp>2011-02-15T14:43:00Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Add source</comment>
+      <text xml:space="preserve">Add source</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Add web address.PNG</title>
+    <id>2202</id>
+    <revision>
+      <id>4197</id>
+      <timestamp>2011-12-12T16:24:27Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 2.JPG</title>
+    <id>2241</id>
+    <revision>
+      <id>4382</id>
+      <timestamp>2012-01-24T15:10:24Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 3.JPG</title>
+    <id>2242</id>
+    <revision>
+      <id>4383</id>
+      <timestamp>2012-01-24T15:10:38Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 4.JPG</title>
+    <id>2243</id>
+    <revision>
+      <id>4384</id>
+      <timestamp>2012-01-24T15:10:54Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 5.JPG</title>
+    <id>2244</id>
+    <revision>
+      <id>4385</id>
+      <timestamp>2012-01-24T15:11:07Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 6.JPG</title>
+    <id>2245</id>
+    <revision>
+      <id>4386</id>
+      <timestamp>2012-01-24T15:11:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 7.JPG</title>
+    <id>2246</id>
+    <revision>
+      <id>4387</id>
+      <timestamp>2012-01-24T15:11:33Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Amazing 8.JPG</title>
+    <id>2247</id>
+    <revision>
+      <id>4388</id>
+      <timestamp>2012-01-24T15:11:50Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

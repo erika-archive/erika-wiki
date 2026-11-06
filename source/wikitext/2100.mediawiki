@@ -1,0 +1,112 @@
+= Introduction =
+This page explains how to build a configuration file for FPG-EYE's fpga from a source platform with binary camera. 
+Prerequisites:
+* [[Installation of Mico32/FPG-EYE development environment | Install Mico32/FPG-EYE development environment]] 
+* Get a local copy of Erika repository to have the platform projects.
+For further info see this page:[[ERIKA_Enterprise_and_RT-Druid_SVN_Access#Anonymous.2C_readonly_access | ERIKA Enterprise and RT-Druid SVN Access instructions]].
+* To download the platform JEDEC file, you need a '''programming cable''' connected to the JTAG port of the board, follow the instructions on [http://erika.tuxfamily.org/wiki/index.php?title=Programming_the_FPG-EYE_board  How programming the FPG-EYE board].
+
+= Import platform project in LatticeMico System IDE =
+
+Launch [http://www.latticesemi.com/products/designsoftware/micodevelopmenttools/index.cfm ''LatticeMico System'']  software, and click on '''MSB Perspective''' button (as the following figure):
+
+[[File:select_msb_from_msb_ide.png|center|thumb|700px| '''MSB''' button]]
+
+Open the '''Open Platform form''' by selecting the '''File->Open Platform''' menu item:
+
+[[File:open_msb_from_msb_ide.png|center|thumb|700px| Open '''MSB''' platform]]
+
+Now if you are using the software ispLever click the '''Browse''' button and load '''ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_isplever/msb/soc/fpg_eye_mico32.msb''' while, if you are using the software Diamond click the '''Browse''' button and load '''ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_diamond/msb/soc/fpg_eye_mico32.msb''' file inside Erika repository local copy.
+
+[[File:Select_fpg_eye_mico32_msb_from_msb_ide.png|center|thumb|700px| Select ''fpg_eye_mico32.msb'']]
+
+The platform's architecture is visible under '''Sources in Project''' window:
+
+[[File:fpg_eya_mico32_from_msb.png|center|thumb|700px| Select ''fpg_eye_mico32.msb'' platform architecture]]
+
+Note: You don't need to make any changes to the platform.
+And finally, generate the platform source by selecting the '''Run Generator''' menu item:
+
+[[File:fpg_eya_mico32_from_msb_run.png|center|thumb|700px| Clicking on '''Run Generator''' we have the platform source]]
+
+The [http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm mico32] platform's Verilog source is generated. To use this platform in FPG-EYE, the source code must be compiled in binary format.
+The next session explains how to compile the [http://www.verilog.com/ Verilog] platform's code with ispLEVER tool.
+
+= Import hardware platform project in ispLever IDE =
+
+Open [http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar ispLEVER] and select ''Open Project'' under ''File menu'':
+
+[[File:open_project_from_ispLever_ide.png|center|thumb|700px| ''Open project'' from ispLever]]
+
+Load '''ee/examples/mico32/demo/platforms/fpg_eye_isplever/isplever/fpg_eye_mico32.syn''' inside Erika repository local copy:
+
+[[File:fpg_eya_mico32_from_ispLever.png|center|thumb|700px| Load ''fpg_eye_mico32.msb'']]
+
+The hardware project structure is visible under ''Sources in Project'' window. Ensure that ''fpg_eye_mico32_wrapper.v'' is selected and active:
+
+[[File:fpg_eye_mico32_wrapper_active.png|center|thumb|700px| ''ispLever'' project structure]]
+
+Before compiling the ispLever project, there are two more steps to perform (refer sections below).
+
+== Importing ''camera_component_mod.ngo'' in the ispLever ==
+
+The component camera installed in the platform ''fpg_eye_mico32'' is a binary version. So it is necessary to import in the ispLever the netlist of the camera. To do this, copy the file ''camera_component_mod.ngo'', from the [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE Software Packet] to the ispLever project directory.
+
+[[File:camera_component_ngo_in ispLever.png|center|thumb|700px| ''camera_component_mod.ngo'' in ispLever project directory]]
+
+== ''meminit_ebr.mem'' bootloader file in the ispLEVER ==
+
+The file ''meminit_ebr.mem'' is the compiled file. It is the program bootloader which will be placed in the XP2 EBR non volatile memory. For the bootloader reference guide, refer section [[Tutorial: Running ERIKA on Mico32 and FPG-EYE]]. Be sure that the file is present in the ispLever project directory.
+
+[[File:isp_lever_mem_file.png|center|thumb|700px| ''meminit_ebr.mem'' in ispLever project directory]]
+
+== Build the platform with ispLEVER ==
+
+On '''Processes of current source''' click and select '''Generate Data File (JEDEC)''' then right click and select '''Force''' :
+
+[[File:isp_lever_compile_fpg_eye_mico32.png|center|thumb|700px| '''Force''' from '''Generate Data File (JEDEC)''' menu]]
+
+When the process is complete the file the FPGA configuration file '''JEDEC''' is ready to use.
+
+[[File:generate_data_file_jedec_from_isplever.png|center|thumb|700px| '''Generate Data File (JEDEC)''']]
+
+= Import hardware platform project in Diamond IDE =
+
+Open [http://www.latticesemi.com/products/designsoftware/diamond Diamond] and select ''Open Project'' under ''File menu'':
+
+[[File:open_project_from_diamond_ide.png|center|thumb|700px| ''Open project'' from Diamond]]
+
+Load '''ee/examples/mico32/demo/platforms/fpg_eye_diamond/diamond/fpg_eye_mico32.ldf''' inside Erika repository local copy:
+
+[[File:fpg_eya_mico32_from_diamond.png|center|thumb|700px| Load ''fpg_eye_mico32.msb'']]
+
+The hardware project structure is visible under ''Sources in Project'' window. Ensure that ''fpg_eye_mico32_wrapper.v'' is selected and active:
+
+[[File:fpg_eye_mico32_wrapper_active_diamond.png|center|thumb|700px| ''Diamond'' project structure]]
+
+Before compiling the Diamond project, there are two more steps to perform (refer sections below).
+
+== Importing ''camera_component_mod.ngo'' in the Diamond ==
+
+The component camera installed in the platform ''fpg_eye_mico32'' is a binary version. So it is necessary to import in the Diamond the netlist of the camera. To do this, copy the file ''camera_component_mod.ngo'', from the [http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip FPG-EYE Software Packet] to the Diamond project directory.
+
+[[File:camera_component_ngo_in_diamond.png|center|thumb|700px| ''camera_component_mod.ngo'' in Diamond project directory]]
+
+== ''meminit_ebr.mem'' bootloader file in the Diamond ==
+
+The file ''meminit_ebr.mem'' is a compiled file. It is the program bootloader which will be placed in the XP2 EBR non volatile memory. For the bootloader reference guide, refer section [[Tutorial: Running ERIKA on Mico32 and FPG-EYE]]. Be sure than this file is present in the Diamond project directory.
+
+[[File:diamond_mem_file.png|center|thumb|700px| ''meminit_ebr.mem'' in Diamond project directory]]
+
+== Build the platform with Diamond ==
+
+On '''Processes of current source''' click and select '''Generate Data File (JEDEC)''' then right click and select '''Return All''' :
+
+[[File:diamond_compile_fpg_eye_mico32.png|center|thumb|700px| '''Force''' from '''Generate Data File (JEDEC)''' menu]]
+
+When the process is complete the file the FPGA configuration file '''JEDEC''' is ready to use.
+
+[[File:generate_data_file_jedec_from_diamond.png|center|thumb|700px| '''Generate Data File (JEDEC)''']]
+
+= Programming the platform on FPG-EYE board =
+The last step is download the '''JEDEC''' file into ''FPG-EYE''. Please follow the [[Programming the FPG-EYE board]] istructions.

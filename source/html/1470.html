@@ -1,0 +1,28 @@
+<h3> <span class="mw-headline" id="Reference_test"> Reference test </span></h3>
+<p><tt>examples/s12xs/porting_examples/EEtest5</tt>
+</p>
+<h3> <span class="mw-headline" id="Description"> Description </span></h3>
+<ul><li> The test below tests the behavior which may happen with nested interrupts.
+</li><li> The goal is to test the execution of the interrupts with different priorities. A low priority ISR is interrupted by a high priority interrupt repeatedly. The goal is to obtain that all ISR routines execute with the proper status registers. 
+</li><li> The isr configuration is architecture dependent. In this case we modified the <tt>vector_s12x.c</tt> file.  
+</li></ul>
+<ul><li> Finally, we created inside the <tt>EEtest5</tt> a C file with a main() function. That function explicitly calls the function for periodic interrupt timer configuration and finishing with a <tt>for(;;)</tt>. Please note that this small application can be executed to test again the behaviour of the interrupt stub. The compilation must finish with an executable fully linked.
+</li></ul>
+<ul><li> Note1: As the previous test for correct interrupt execution we should take care of the interrupt stub and the following functions <tt>EE_ISR2_prestub</tt>, <tt>EE_ISR2_poststub</tt> (see the header file <tt>ee_irqstub.h</tt> at the path <tt>ee\pkg\cpu\cosmic_hs12xs\inc</tt>).
+</li></ul>
+<h3> <span class="mw-headline" id="Expected_output"> Expected output </span></h3>
+<p>When everything is done in the right way, with the following commands we can have the executable file:
+</p>
+<ul><li> open a Cygwin shell
+</li><li> <tt>cd</tt> into the <tt>Debug</tt> directory
+</li><li> the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+</li></ul>
+<p>To simulate the application we can use directly the hardware or a "good" software debugger.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

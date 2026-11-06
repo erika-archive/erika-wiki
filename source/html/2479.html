@@ -1,0 +1,188 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#temporary_page_as_a_skeleton_for_x86_support"><span class="tocnumber">1</span> <span class="toctext">temporary page as a skeleton for x86 support</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#x86_support"><span class="tocnumber">2</span> <span class="toctext">x86 support</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Download_and_install"><span class="tocnumber">3</span> <span class="toctext">Download and install</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#How_to_run_a_simple_demo_on_the_Virtual_Machine"><span class="tocnumber">4</span> <span class="toctext">How to run a simple demo on the Virtual Machine</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Target_Configuration_and_Programming"><span class="tocnumber">5</span> <span class="toctext">Target Configuration and Programming</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Compiler_Path"><span class="tocnumber">5.1</span> <span class="toctext">Compiler Path</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#CPU"><span class="tocnumber">5.2</span> <span class="toctext">CPU</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Interrupt_Handling"><span class="tocnumber">5.2.1</span> <span class="toctext">Interrupt Handling</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Boards"><span class="tocnumber">5.3</span> <span class="toctext">Boards</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#OSEK.2FVDX_Extensions"><span class="tocnumber">6</span> <span class="toctext">OSEK/VDX Extensions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Resource_Managament_at_ISR_level"><span class="tocnumber">6.1</span> <span class="toctext">Resource Managament at ISR level</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#System_Timer"><span class="tocnumber">6.2</span> <span class="toctext">System Timer</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Acknowledgements"><span class="tocnumber">7</span> <span class="toctext">Acknowledgements</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="temporary_page_as_a_skeleton_for_x86_support"> temporary page as a skeleton for x86 support </span></h1>
+<h1> <span class="mw-headline" id="x86_support"> x86 support </span></h1>
+<p>ERIKA Enterprise supports the x86 platforms. 
+The support for RT-Druid is not yet available.<br />
+</p><p>The x86 support includes: 
+</p>
+<ol><li> support for gcc and llvm/clang (&gt;= v3.3) compiler toolchains;
+</li><li> support for single and multi stack configurations;
+</li><li> ISR Type 1 and Type 2 supported;
+</li><li> support for gdb Debuggers via qemu debug stub.
+</li><li> currently tested on emulated execution environment (qem-system-i386)
+</li></ol>
+<ul><li> Supported IDEs:
+<ul><li> RT-Druid IDE
+</li></ul>
+</li></ul>
+<ul><li> Mode of operation:
+<ul><li> <i>Mono-stack</i>: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> <i>Multi-stack</i>: Every task can have its private stack, or it can share it with other tasks.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Download_and_install"> Download and install </span></h1>
+<p>RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+</p>
+<ul><li> <a href="http://erika.tuxfamily.org/drupal/download.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/drupal/download.html</a>
+</li></ul>
+<p>Once downloaded, extract all the files contained in it and copy the folder named <i>eclipse</i> in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+Now, launch the program by double-clicking on the executable <i>eclipse.exe</i>inside the <i>C:\Evidence\eclipse</i> folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+</p><p>If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+</p>
+<pre> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> -r number_of_revision
+</pre>
+<p>Note: 
+Cygwin can be downloaded from this web site: <a href="http://www.cygwin.com/" class="external free" rel="nofollow">http://www.cygwin.com/</a>. To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+</p>
+<ul><li> The procedure to update Erika and RT-Druid plugins is described at <a href="/wiki/index.php?title=Tutorial:_Update_ERIKA_and_RT-Druid" title="Tutorial: Update ERIKA and RT-Druid">Tutorial: Update ERIKA and RT-Druid</a>.
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_run_a_simple_demo_on_the_Virtual_Machine"> How to run a simple demo on the Virtual Machine </span></h1>
+<p>Just enter an arbitrary EEtest0x folder in <code>examples/x86/porting_examples/{monostack,multistack}&gt;</code>, and type <code>make run</code> to build and run the test case.
+</p>
+<h1> <span class="mw-headline" id="Target_Configuration_and_Programming"> Target Configuration and Programming </span></h1>
+<h2> <span class="mw-headline" id="Compiler_Path"> Compiler Path </span></h2>
+<p>It is possible to choose the path of the compiler in three different ways:
+</p>
+<ul><li> environment var:
+<ul><li> XXX
+</li></ul>
+</li><li> configuration file:
+<ul><li> see <a href="/wiki/index.php?title=RT-Druid_configuration#Compiler_paths" title="RT-Druid configuration">RT-Druid configuration#Compiler paths</a>
+</li></ul>
+</li><li> gui:
+<ul><li> inside eclipse preferences, it is possible to set the paths of above compilers.
+</li></ul>
+</li></ul>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="CPU"> CPU </span></h2>
+<p><code>CPU_DATA</code> must be set to <code>X86</code>.<br />
+The exact model is specified with the <code>MODEL</code> item.<br />
+The compiler is specified with the <code>COMPILER_TYPE</code> item (TBD! supported values will  be <code>gcc</code> and <code>clang</code>).<br />
+Example of a CPU_DATA section:
+</p>
+<pre> CPU_DATA = X86 {
+   APP_SRC = "code.c";
+   COMPILER_TYPE = GCC;
+   MULTI_STACK = TRUE {
+     IRQ_STACK = TRUE {
+       SYS_SIZE=512;
+     };
+   };
+ };
+</pre>
+<h3> <span class="mw-headline" id="Interrupt_Handling"> Interrupt Handling </span></h3>
+<p>To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+</p>
+<pre> ISR &lt;SYMBOL&gt; {
+   CATEGORY = &lt;ISR_TYPE&gt;;
+   ENTRY = "&lt;ENTRY&gt;";
+ };
+</pre>
+<p>Where <code>&lt;ISR_TYPE&gt;</code> is the type of the ISR (1 or 2), <code>&lt;SYMBOL&gt;</code> is the symbol that must be the parameter of <code>ISR&lt;ISR_TYPE&gt;()</code> ISR signature, and <code>&lt;ENTRY&gt;</code> is the fixed Interrupt Vector Table Entry identifier.
+</p>
+<h2> <span class="mw-headline" id="Boards"> Boards </span></h2>
+<p>The port is currently tested to to run in the qemu emulator (qemu-system-i386).<br />
+</p><p>The toolchain builds an ELF file including a multiboot header.
+The resulting image can be booted from any multiboot compliant boot loader (e.g., <code>grub2</code>).
+The toolchain further generates a bootable CDROM image (using <code>grub-mkrescue</code>). <br />
+</p><p>The resulting images can be run in qemu either from the cdrom image:<br />
+<code>qemu-system-i386 -cdrom erika.iso -no-reboot -machine pc,accel=tcg -nographic</code><br />
+</p><p>Or by direclty loading the elf image (using <code>-kernel</code>):<br />
+<code>qemu-system-i386 -kernel Debug/Debug/out.elf -no-reboot -machine pc,accel=tcg -nographic</code><br />
+</p><p>Please, don't forget the <code>-machine pc,accel=tcg</code> parameter, which disables the KVM based accelerations.
+</p>
+<h1> <span class="mw-headline" id="OSEK.2FVDX_Extensions"> OSEK/VDX Extensions </span></h1>
+<p>This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex MX support. All of these features are not yet implemented in Cortex M0 (NXP LPCXpresso LPC12xx MCU) porting of ERIKA Enterprise.
+</p>
+<h2> <span class="mw-headline" id="Resource_Managament_at_ISR_level"> Resource Managament at ISR level </span></h2>
+<p>This feauture is automatically enabled by RT-Druid during the configuration generation step. To specify that a Resource is used by both a Task and a ISR you need to add that respource to the corrisponding ISR object as follows:
+</p>
+<pre> TASK Task1 {
+   ...
+   RESOURCE = "ResourceA";
+ };
+ 
+ ISR &lt;SYMBOL&gt; {
+   PRIORITY = &lt;PRIORITY_LEVEL&gt;;
+   CATEGORY = &lt;ISR_TYPE&gt;;
+   ENTRY = "&lt;ENTRY&gt;";
+   RESOURCE = "ResourceA";
+ };
+ 
+ RESOURCE ResourceA { RESOURCEPROPERTY = STANDARD; };
+</pre>
+<h2> <span class="mw-headline" id="System_Timer"> System Timer </span></h2>
+<p>The port uses the PIT timer for periodic interrupts.
+At the moment, the timer unit must initialised manually (<code>EE_pit_init()</code>), which sets up a default period of 1000 Hz.<br />
+The rate can be changed using <code>EE_pit_set_periodic(EE_UINT16 rate_in_Hz)</code>.
+Please note: Due to hardware limitations, the minimal PIT rate is around 20 Hz.<br />
+</p><p>A user-defined interrupt handler can then be realised, by providing a <code>EE_pit_handler(void)</code> function, which replaces an empty weakly linked default handler. See also the porting examples for more details.
+</p><p><b>The following configuration options not implemented yet:</b><br />
+The OSEK/VDX standard provides support for a <b>System Counter</b> (a counter that is automatically linked to hardware timers). The System Timer is used to give a coherent timing reference across the entire application.
+</p><p>In ERIKA Enterprise, this special counter has been named <b>System Timer</b>. To use it, you need to set a specific attribute in a Counter definition. Please note that only one counter can be the System Timer.
+</p><p>A Counter which is not a System Counter must be incremented manually using the primitive IncrementCounter.
+</p><p>The following is an example OIL definition for a System Counter:
+</p>
+<pre>  COUNTER SystemTimer {
+   MINCYCLE = 1;
+   MAXALLOWEDVALUE = 2147483647;
+   TICKSPERBASE = 1;
+   TYPE = HARDWARE {
+     DEVICE = "PIT";
+     SYSTEM_TIMER = TRUE;
+   };
+   SECONDSPERTICK = 0.001;
+ };
+</pre>
+<p>The meaning of the various attributes is as follows:
+</p>
+<ul><li> COUNTER/TYPE must be set to "HARDWARE", and SYSTEM_TIMER must be set to true.
+</li><li> COUNTER/TYPE/DEVICE must be a valid device that can be used for a system timer. Currently, for X86 only "PIT" is a valid device for system timer. 
+</li><li> SECONDSPERTICK is used to declare the wanted time duration of one hardware tick in seconds.
+</li></ul>
+<p>The System Timer can be attached to ALARMs as usual, as in the following example:
+</p>
+<pre> ALARM AlarmExample {
+   COUNTER = SystemTimer;
+   ACTION  = ACTIVATETASK{
+      TASK = TaskExample;
+   };
+ };
+</pre>
+<h1> <span class="mw-headline" id="Acknowledgements"> Acknowledgements </span></h1>
+<p>This port was provided by <a href="https://www4.cs.fau.de/~hoffmann" class="external text" rel="nofollow">Martin Hoffmann</a> from the <a href="https://www4.cs.fau.de" class="external text" rel="nofollow">Department of Computer Science 4</a> (System Software Group) at FAU Erlangen.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 50/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

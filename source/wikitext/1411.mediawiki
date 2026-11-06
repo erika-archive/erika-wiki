@@ -1,0 +1,1 @@
+FLEX boards are used in the research lab for doing experiments on embedded systems.

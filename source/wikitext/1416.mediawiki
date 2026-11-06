@@ -1,0 +1,15 @@
+'''Project:''' Model based development of automotive applications based on Open Source Tools and Technologies.
+
+'''Details:''' The objective is to set up a rigorous development cycle leveraging cheap technologies.
+
+The architecture consists of three FLEX cards connected through a CAN bus.
+
+The major issues are:
+* Modeling of the complex hybrid dynamics of the mechanical and electrical engine using SCICOS
+* Modeling and simulation of the control algorithms using SCICOS
+* Modeling of architectural aspects of the FLEX/Erika platform using a specialized SCICOS blockset
+* Automatic code generation from SCICOS blocks and configuration of the RTOS
+
+'''Contact:''' Department of Information Science and Engineering
+
+'''Web-site:''' -

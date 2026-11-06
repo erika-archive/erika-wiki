@@ -1,0 +1,21 @@
+A preliminary test on Freescale MPC5643L (Leopard) under the following conditions:
+* Single core;
+* I-Cache disabled;
+* CPU running at 120 Mhz;
+* Flash prefetch enabled;
+* 3 wait state while reading from Flash.
+
+Gave the following result:
+
+{| border="1" cellpadding="2" cellspacing="0"
+! align="center" | Test Name !! align="center" | value (usec)  
+|-
+| New task from an ISR2 (Time between the first instruction of the Erika ISR-handler and the Task body defined by the user) || align="center" | 5.700 
+|-
+| ISR2 latency (Time between the first instruction of the Erika ISR-handler and the ISR2 body defined by the user) || align="center" | 0.800
+|-
+|}
+
+Note: these results have been collected by using the Lauterbach-Tracer funcionalities. More details available at http://www.lauterbach.com
+
+[[Category:Benchmarks]]

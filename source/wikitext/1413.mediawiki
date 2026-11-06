@@ -1,0 +1,1 @@
+FLEX boards are used as development boards for the embedded real-time course.

@@ -1,0 +1,1485 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Tasks"><span class="tocnumber">2</span> <span class="toctext">Tasks</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#ISR2s"><span class="tocnumber">3</span> <span class="toctext">ISR2s</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Hooks"><span class="tocnumber">4</span> <span class="toctext">Hooks</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Timers_and_Counters"><span class="tocnumber">5</span> <span class="toctext">Timers and Counters</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Autosar_New_API_for_Timers_and_Counters"><span class="tocnumber">5.1</span> <span class="toctext">Autosar New API for Timers and Counters</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#IncrementCounter"><span class="tocnumber">5.1.1</span> <span class="toctext">IncrementCounter</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#GetCounterValue"><span class="tocnumber">5.1.2</span> <span class="toctext">GetCounterValue</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#GetElapsedValue"><span class="tocnumber">5.1.3</span> <span class="toctext">GetElapsedValue</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#OSEK_Requirements_Extensions"><span class="tocnumber">5.2</span> <span class="toctext">OSEK Requirements Extensions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Minor_Further_Requirements"><span class="tocnumber">6</span> <span class="toctext">Minor Further Requirements</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Memory_protection"><span class="tocnumber">7</span> <span class="toctext">Memory protection</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#CheckISRMemoryAccess"><span class="tocnumber">7.1</span> <span class="toctext">CheckISRMemoryAccess</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#CheckTaskMemoryAccess"><span class="tocnumber">7.2</span> <span class="toctext">CheckTaskMemoryAccess</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Memory_protection_notes"><span class="tocnumber">7.3</span> <span class="toctext">Memory protection notes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Stack_monitoring"><span class="tocnumber">8</span> <span class="toctext">Stack monitoring</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#OS-Applications"><span class="tocnumber">9</span> <span class="toctext">OS-Applications</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#New_Autosar_API"><span class="tocnumber">9.1</span> <span class="toctext">New Autosar API</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#GetApplicationID"><span class="tocnumber">9.1.1</span> <span class="toctext">GetApplicationID</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#CheckObjectAccess"><span class="tocnumber">9.1.2</span> <span class="toctext">CheckObjectAccess</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#CheckObjectOwnership"><span class="tocnumber">9.1.3</span> <span class="toctext">CheckObjectOwnership</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#TerminateApplication"><span class="tocnumber">9.1.4</span> <span class="toctext">TerminateApplication</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#AllowAccess"><span class="tocnumber">9.1.5</span> <span class="toctext">AllowAccess</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#GetApplicationState"><span class="tocnumber">9.1.6</span> <span class="toctext">GetApplicationState</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Application_specific_StartupHook"><span class="tocnumber">9.1.7</span> <span class="toctext">Application specific StartupHook</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#Application_specific_ErrorHook"><span class="tocnumber">9.1.8</span> <span class="toctext">Application specific ErrorHook</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="#Application_specific_ShutdownHook"><span class="tocnumber">9.1.9</span> <span class="toctext">Application specific ShutdownHook</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#OS-Applications_notes"><span class="tocnumber">9.1.10</span> <span class="toctext">OS-Applications notes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-29"><a href="#Privileged_mode"><span class="tocnumber">9.2</span> <span class="toctext">Privileged mode</span></a>
+<ul>
+<li class="toclevel-3 tocsection-30"><a href="#CallTrustedFunction"><span class="tocnumber">9.2.1</span> <span class="toctext">CallTrustedFunction</span></a></li>
+<li class="toclevel-3 tocsection-31"><a href="#Privileged_mode_notes"><span class="tocnumber">9.2.2</span> <span class="toctext">Privileged mode notes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-32"><a href="#Protection_hook"><span class="tocnumber">9.3</span> <span class="toctext">Protection hook</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-33"><a href="#Other_New_Autosar_APIs"><span class="tocnumber">10</span> <span class="toctext">Other New Autosar APIs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-34"><a href="#GetISRID"><span class="tocnumber">10.1</span> <span class="toctext">GetISRID</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-35"><a href="#Timing_Protection"><span class="tocnumber">11</span> <span class="toctext">Timing Protection</span></a>
+<ul>
+<li class="toclevel-2 tocsection-36"><a href="#General_Requirement"><span class="tocnumber">11.1</span> <span class="toctext">General Requirement</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Timing_Protection:_Tasks"><span class="tocnumber">11.2</span> <span class="toctext">Timing Protection: Tasks</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#Timing_Protection:_ISR2"><span class="tocnumber">11.3</span> <span class="toctext">Timing Protection: ISR2</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#Timing_Protection:_Resource_Locking_and_Interrupt_Disabling"><span class="tocnumber">11.4</span> <span class="toctext">Timing Protection: Resource Locking and Interrupt Disabling</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-40"><a href="#Multi-Core"><span class="tocnumber">12</span> <span class="toctext">Multi-Core</span></a>
+<ul>
+<li class="toclevel-2 tocsection-41"><a href="#Basic_Requirements"><span class="tocnumber">12.1</span> <span class="toctext">Basic Requirements</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Multi-Core_start-up_Requirements"><span class="tocnumber">12.2</span> <span class="toctext">Multi-Core start-up Requirements</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#Multicore_Shutdown_Requirements"><span class="tocnumber">12.3</span> <span class="toctext">Multicore Shutdown Requirements</span></a></li>
+<li class="toclevel-2 tocsection-44"><a href="#OS_Other_Services_Requirements"><span class="tocnumber">12.4</span> <span class="toctext">OS Other Services Requirements</span></a></li>
+<li class="toclevel-2 tocsection-45"><a href="#MultiCore_notes"><span class="tocnumber">12.5</span> <span class="toctext">MultiCore notes</span></a></li>
+<li class="toclevel-2 tocsection-46"><a href="#Other_AUTOSAR_Multicore_API"><span class="tocnumber">12.6</span> <span class="toctext">Other AUTOSAR Multicore API</span></a>
+<ul>
+<li class="toclevel-3 tocsection-47"><a href="#GetCoreID"><span class="tocnumber">12.6.1</span> <span class="toctext">GetCoreID</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-48"><a href="#Spinlocks"><span class="tocnumber">12.7</span> <span class="toctext">Spinlocks</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-49"><a href="#Inter-OS-Application_Communicator_.28IOC.29_Requirements"><span class="tocnumber">13</span> <span class="toctext">Inter-OS-Application Communicator (IOC) Requirements</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>Erika Enterprise is the first open-source Free RTOS that has been certified OSEK/VDX compliant and it's under current developtment to fulfil Autosar 4 OS Requirements too. In the following table are logged the AUTOSAR requirements already implemneted in ERIKA.
+</p>
+<ul><li> All the requirement tagged as OK are implemented in all supported Architectures.
+</li><li> All the requirements related to <b>memory protection</b> are available only for those MCU that have memory protection implmentented: currently only support for Freescale MPC5674F has been released.
+</li><li> All the requirements tagged as TriCore are implemented but will be realesed when the full support for TriCore AURIX will be released.
+</li></ul>
+<p>Scalability Classes are not implemented yet, but each feature/API is activated only if required by the configuration.
+</p>
+<h1> <span class="mw-headline" id="Tasks"> Tasks </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS052 </td><td> OK
+</td><td> If a task returns from its entry function without making a TerminateTask() or ChainTask() call, the Operating System shall terminate the task (and call the PostTaskHook() if configured).
+</td></tr>
+<tr>
+<td> OS069 </td><td> OK
+</td><td> If a task returns from its entry function without making a TerminateTask() or ChainTask() call AND the error hook is configured, the Operating System shall call the ErrorHook() (this is done regardless of whether the task causes other errors, e.g. E_OS_RESOURCE) with status E_OS_MISSINGEND before the task leaves the RUNNING state.
+</td></tr>
+<tr>
+<td> OS070 </td><td> OK
+</td><td> If a task returns from the entry function without making a TerminateTask() or ChainTask() call and still holds OSEK Resources, the Operating System shall release them.
+</td></tr>
+<tr>
+<td> OS239 </td><td> OK
+</td><td> If a task returns from the entry function without making a TerminateTask() or ChainTask() call and interrupts are still disabled, the Operating System shall enable them.
+</td></tr>
+<tr>
+<td> OS071 </td><td> OK
+</td><td> If the PostTaskHook() is configured, the Operating System shall not call the hook if ShutdownOS() is called.
+</td></tr></table>
+<h1> <span class="mw-headline" id="ISR2s"> ISR2s </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS368 </td><td> OK
+</td><td> If a Category 2 OsIsr calls DisableAllInterupts() SuspendAllInterrupts() / SuspendOSInterrupts() and ends (returns) without calling the corresponding EnableAllInterrupts() / ResumeAllInterrupts() / ResumeOSInterrupts(), the Operating System shall perform the missing service and shall call the ErrorHook() (if configured) with the status E_OS_DISABLEDINT.
+</td></tr>
+<tr>
+<td> OS369 </td><td> OK
+</td><td> If a Category 2 OsIsr calls GetResource() and ends (returns) without calling the corresponding ReleaseResource(), the Operating System shall perform the ReleaseResource() call and shall call the ErrorHook() (if configured) with the status E_OS_RESOURCE.
+</td></tr></table>
+<h1> <span class="mw-headline" id="Hooks"> Hooks </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS236 </td><td> OK TriCore
+</td><td> If both a system-specific and one (or more) application specific startup hook(s) are configured, the Operating System shall call the system-specific startup hook before the application-specific startup hook(s).
+</td></tr>
+<tr>
+<td> OS112 </td><td> OK TriCore
+</td><td> If an application-specific shutdown hook is configured for an OS-Application &lt;App&gt;, the Operating System shall call ShutdownHook_&lt;App&gt; on shutdown of the OS.
+</td></tr>
+<tr>
+<td> OS225 </td><td> OK TriCore
+</td><td> The Operating System shall execute an application-specific shutdown hook with the access rights of the associated OS-Application.
+</td></tr>
+<tr>
+<td> OS237 </td><td> OK TriCore
+</td><td> If both a system-specific and one (or more) application specific shutdown hook(s) are configured, the Operating System shall call the system-specific shutdown hook after the application-specific shutdown hook(s).
+</td></tr>
+<tr>
+<td> OS246 </td><td> OK TriCore
+</td><td> When an error occurs AND an application-specific error hook is configured for the faulty OS-Application &lt;App&gt;, the Operating System shall call that application- specific error hook ErrorHook_&lt;App&gt; after the system specific error hook is called (if configured).
+</td></tr>
+<tr>
+<td> OS085 </td><td> OK TriCore
+</td><td> The Operating System shall execute an application-specific error hook with the access rights of the associated OS-Application.
+</td></tr></table>
+<h1> <span class="mw-headline" id="Timers_and_Counters"> Timers and Counters </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS301 </td><td> OK
+</td><td> The Operating System shall provide the ability to increment a software counter as an alternative action on alarm expiry.
+</td></tr>
+<tr>
+<td> OS399 </td><td> OK
+</td><td> The OS shall provide an API call to increment a software counter.
+</td></tr>
+<tr>
+<td> OS374 </td><td> OK
+</td><td> The Operating System shall handle all the initialization and configuration of timers used directly by the OS and not handled by the GPT driver.
+</td></tr>
+<tr>
+<td> OS383 </td><td> OK (partials)
+</td><td> The Operating System shall provide a service to read the current count value of a counter (returning either the hardware timer ticks if counter is driven by hardware or the software ticks when user drives counter).
+</td></tr>
+<tr>
+<td> OS392 </td><td> OK
+</td><td> The Operating System shall provide a service to get the number of ticks between the current tick value and a previously read tick value.
+</td></tr>
+<tr>
+<td> OS384 </td><td>
+</td><td> The Operating System shall adjust the read out values of hardware timers (which drive counters) in such that the lowest value is zero and consecutive reads return an increasing count value until the timer wraps at its modulus.
+</td></tr></table>
+<h2> <span class="mw-headline" id="Autosar_New_API_for_Timers_and_Counters"> Autosar New API for Timers and Counters </span></h2>
+<h3> <span class="mw-headline" id="IncrementCounter"> IncrementCounter </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS399 </td><td> OK
+</td><td> IncrementCounter
+</td></tr>
+<tr>
+<td> OS285 </td><td> OK
+</td><td> If the input parameter &lt;CounterID&gt; in a call of IncrementCounter() is not valid OR the counter is a hardware counter, IncrementCounter() shall return E_OS_ID.
+</td></tr>
+<tr>
+<td> OS286 </td><td> OK
+</td><td> If the input parameter of IncrementCounter() is valid, IncrementCounter() shall increment the counter &lt;CounterID&gt; by one (if any alarm connected to this counter expires, the given action, e.g. task activation, is done) and shall return E_OK.
+</td></tr>
+<tr>
+<td> OS321 </td><td> OK
+</td><td> If in a call of IncrementCounter() an error happens during the execution of an alarm action, e.g. E_OS_LIMIT caused by a task activation, IncrementCounter() shall call the error hook(s), but the IncrementCounter() service itself shall return E_OK.
+</td></tr>
+<tr>
+<td> OS529 </td><td> OK
+</td><td> Caveats of IncrementCounter(): If called from a task, rescheduling may take place.
+</td></tr>
+<tr>
+<td> OS530 </td><td> OK
+</td><td> Availability of IncrementCounter(): Available in all Scalability Classes.
+</td></tr></table>
+<h3> <span class="mw-headline" id="GetCounterValue"> GetCounterValue </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS383 </td><td> OK
+</td><td> GetCounterValue
+</td></tr>
+<tr>
+<td> OS376 </td><td> OK
+</td><td> If the input parameter &lt;CounterID&gt; in a call of GetCounterValue() is not valid, GetCounterValue() shall return E_OS_ID.
+</td></tr>
+<tr>
+<td> OS377 </td><td> OK
+</td><td> If the input parameter &lt;CounterID&gt; in a call of GetCounterValue() is valid, GetCounterValue() shall return the current tick value of the counter via &lt;Value&gt; and return E_OK.
+</td></tr>
+<tr>
+<td> OS531 </td><td> OK (partials)
+</td><td> Caveats of GetCounterValue(): Note that for counters of OsCounterType = HARDWARE the real timer value (the – possibly adjusted – hardware value, see OS384) is returned, whereas for counters of OsCounterType = SOFTWARE the current “software” tick value is returned.
+</td></tr>
+<tr>
+<td> OS532 </td><td> OK
+</td><td> Availability of GetCounterValue(): Available in all Scalability Classes.
+</td></tr></table>
+<h3> <span class="mw-headline" id="GetElapsedValue"> GetElapsedValue </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS392 </td><td> OK
+</td><td> GetElapsedValue
+</td></tr>
+<tr>
+<td> OS381 </td><td> OK
+</td><td> If the input parameter &lt;CounterID&gt; in a call of GetElapsedValue() is not valid GetElapsedValue() shall return E_OS_ID.
+</td></tr>
+<tr>
+<td> OS391 </td><td> OK
+</td><td> If the &lt;Value&gt; in a call of GetElapsedValue() is larger than the max allowed value of the &lt;CounterID&gt;, GetElapsedValue() shall return E_OS_VALUE.
+</td></tr>
+<tr>
+<td> OS382 </td><td> OK
+</td><td> If the input parameters in a call of GetElapsedValue() are valid, GetElapsedValue() shall return the number of elapsed ticks since the given &lt;Value&gt; value via &lt;ElapsedValue&gt; and shall return E_OK.
+</td></tr>
+<tr>
+<td> OS460 </td><td> OK
+</td><td> GetElapsedValue() shall return the current tick value of the counter in the &lt;Value&gt; parameter.
+</td></tr>
+<tr>
+<td> OS533 </td><td> OK
+</td><td> Caveats of GetCounterValue():If the timer already passed the &lt;Value&gt; value a second (or multiple) time, the result returned is wrong. The reason is that the service can not detect such a relative overflow.
+</td></tr>
+<tr>
+<td> OS534 </td><td> OK
+</td><td> Availability of GetCounterValue(): Available in all Scalability Classes.
+</td></tr></table>
+<h2> <span class="mw-headline" id="OSEK_Requirements_Extensions"> OSEK Requirements Extensions </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS304 </td><td> OK
+</td><td> If in a call to SetRelAlarm() the parameter “increment” is set to zero, the service shall return E_OS_VALUE in standard and extended status .
+</td></tr>
+<tr>
+<td> OS424 </td><td> OK
+</td><td> The first call to StartOS() (for starting the Operating System) shall not return.
+</td></tr>
+<tr>
+<td> OS425 </td><td> OK
+</td><td> If ShutdownOS() is called and ShutdownHook() returns then the operating system shall disable all interrupts and enter an endless loop.
+</td></tr>
+<tr>
+<td> OS299 </td><td> OK
+</td><td>The Operating System shall provide the services DisableAllInterrupts(), EnableAllInterrupts(), SuspendAllInterrupts(), ResumeAllInterrupts() prior to calling StartOS() and after calling ShutdownOS(). (It is assumed that the static variables of these functions are initialized).
+</td></tr>
+<tr>
+<td> OS051 </td><td> OK TriCore
+</td><td> If an invalid address (address is not writable by this OS-Application) is passed as an out-parameter to an OS service, the Operating System shall return the status code E_OS_ILLEGAL_ADDRESS.
+</td></tr>
+<tr>
+<td> OS088 </td><td> OK TriCore
+</td><td> If an OS-Application makes a service call from the wrong context AND is currently not inside a Category 1 OsIsr the Operating System shall not perform the requested action (the service call shall have no effect), and return E_OS_CALLEVEL or the “invalid value” of the service.
+</td></tr>
+<tr>
+<td> OS092 </td><td> OK
+</td><td> If EnableAllInterrupts() ResumeAllInterrupts() / ResumeOSInterrupts() are called and no corresponding DisableAllInterupts() / SuspendAllInterrupts() / SuspendOSInterrupts() was done before, the Operating System shall not perform this OS service.
+</td></tr>
+<tr>
+<td> OS093 </td><td> OK
+</td><td> If interrupts are disabled/suspended by a Task/OsIsr and the Task/OsIsr calls any OS service (excluding the interrupt services) then the Operating System shall ignore the service AND shall return E_OS_DISABLEDINT if the service returns a StatusType value.
+</td></tr>
+<tr>
+<td> OS054 </td><td> OK TriCore
+</td><td> The Operating System shall ignore calls to ShutdownOS() from non-trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS056 </td><td> OK TriCore
+</td><td> If an OS-object identifier is the parameter of a system service, and no sufficient access rights have been assigned at configuration time (Parameter Os[...]AccessingApplication) to the calling Task/Category 2 OsIsr, the system service shall return E_OS_ACCESS.
+</td></tr>
+<tr>
+<td> OS449 </td><td> OK
+</td><td> CheckTaskMemoryAccess and CheckIsrMemoryAccess check the memory access. Memory access checking is possible for all OS-Applications and from all OS- Applications and does not need granted rights (This is an exception to OS056).
+</td></tr>
+<tr>
+<td> OS450 </td><td> OK
+</td><td> CheckObjectAccess checks the access rights for OS objects. Checking object access is possible for all OS-Applications and from all OS-Applications and does not need granted rights (This is an exception to OS056).
+</td></tr>
+<tr>
+<td> OS439 </td><td> OK
+</td><td> The Operating System shall offer the OSEK error macros (OSError...()) to all configured error hooks AND there shall be two (like in OIL) global configuration parameter to switch these macros on or off.
+</td></tr>
+<tr>
+<td> OS367 </td><td> OK
+</td><td> Operating System services which do not return a StatusType shall not raise the error hook(s).
+</td></tr>
+<tr>
+<td> OS566 </td><td> OK
+</td><td> The Operating System API shall check in extended mode all pointer argument for NULL pointer and return OS_E_PARAMETER if such argument is NULL.
+</td></tr></table>
+<h1> <span class="mw-headline" id="Minor_Further_Requirements"> Minor Further Requirements </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS398 </td><td> OK
+</td><td> The OS shall not define the symbol LOCALMESSAGESONLY
+</td></tr>
+<tr>
+<td> OS242 </td><td> No scalability Classes support (But this will be prevented in Any AS configuration)
+</td><td> The Operating System shall only allow Alarm Callbacks in Scalability Class 1.
+</td></tr></table>
+<h1> <span class="mw-headline" id="Memory_protection"> Memory protection </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS198 </td><td> Partial <a href="#Memory_protection_notes"><sup>[a]</sup></a>
+</td><td> The Operating System shall prevent write access to its own data sections and its own stack from non-trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS026 </td><td> OK (configurable)
+</td><td> The Operating System may prevent read access to an OS-Application’s data section attempted by other non-trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS086 </td><td> OK
+</td><td> The Operating System shall permit an OS-Application read and write access to that OS-Application’s own private data sections.
+</td></tr>
+<tr>
+<td> OS207 </td><td> OK
+</td><td> The Operating System shall prevent write access to the OS-Application’s private data sections from other non-trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS196 </td><td> OK
+</td><td> The Operating System shall permit a Task/Category 2 OsIsr read and write access to that Task’s/Category 2 OsIsr’s own private stack.
+</td></tr>
+<tr>
+<td> OS208 </td><td> OK (not prevented)
+</td><td> The Operating System may prevent write access to the private stack of Tasks/Category 2 OsIsrs of a non-trusted application from all other Tasks/OsIsrs in the same OS-Application.
+</td></tr>
+<tr>
+<td> OS355 </td><td> OK
+</td><td> The Operating System shall prevent write access to all private stacks of Tasks/Category 2 OsIsrs of an OS-Application from other non-trusted OS- Applications.
+</td></tr>
+<tr>
+<td> OS087 </td><td> OK
+</td><td> The Operating System shall permit a Task/Category 2 OsIsr read and write access to that Task’s/Category 2 OsIsr’s own private data sections.
+</td></tr>
+<tr>
+<td> OS195 </td><td> OK (not prevented)
+</td><td> The Operating System may prevent write access to the private data sections of a Task/Category 2 OsIsr of a non-trusted application from all other Tasks/OsIsrs in the same OS-Application.
+</td></tr>
+<tr>
+<td> OS356 </td><td> OK
+</td><td> The Operating System shall prevent write access to all private data sections of a Task/Category 2 OsIsr of an OS-Application from other non-trusted OS- Applications.
+</td></tr>
+<tr>
+<td> OS027 </td><td> OK (not protected)
+</td><td> The Operating System may provide an OS-Application the ability to protect its code sections against executing by non-trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS081 </td><td> OK (all code is shared)
+</td><td> The Operating System shall provide the ability to provide shared library code in sections that are executable by all OS-Applications.
+</td></tr>
+<tr>
+<td> OS209 </td><td> OK
+</td><td> The Operating System shall permit trusted OS-Applications read and write access to peripherals.
+</td></tr>
+<tr>
+<td> OS083 </td><td> Not done <a href="#Memory_protection_notes"><sup>[b]</sup></a>
+</td><td> The Operating System shall allow non-trusted OS-Applications to write to their assigned peripherals only (incl. reads that have the side effect of writing to a memory location).
+</td></tr>
+<tr>
+<td> OS044 </td><td> OK TriCore <a href="#Memory_protection_notes"><sup>[c]</sup></a>
+</td><td> If a memory access violation is detected, the Operating System shall call the Protection Hook with status code E_OS_PROTECTION_MEMORY.
+</td></tr></table>
+<p>No timing and memory protection for alarm callbacks.
+</p>
+<h2> <span class="mw-headline" id="CheckISRMemoryAccess"> CheckISRMemoryAccess </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS512 </td><td> OK
+</td><td> CheckISRMemoryAccess
+</td></tr>
+<tr>
+<td> OS267 </td><td> OK
+</td><td> If the ISR reference &lt;ISRID&gt; in a call of CheckISRMemoryAccess() is valid, CheckISRMemoryAccess() shall return the access rights of the ISR on the specified memory area.
+</td></tr>
+<tr>
+<td> OS313 </td><td> OK <a href="#Memory_protection_notes"><sup>[d]</sup></a>
+</td><td> If an access right (e.g. “read”) is not valid for the whole memory area specified in a call of CheckISRMemoryAccess(), CheckISRMemoryAccess() shall yield no access regarding this right.
+</td></tr>
+<tr>
+<td> OS268 </td><td> OK
+</td><td> If the ISR reference &lt;ISRID&gt; is not valid, CheckISRMemoryAccess() shall yield no access rights.
+</td></tr>
+<tr>
+<td> OS517 </td><td> No scalability Classes support
+</td><td> Availability of CheckISRMemoryAccess(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h2> <span class="mw-headline" id="CheckTaskMemoryAccess"> CheckTaskMemoryAccess </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS513 </td><td> OK
+</td><td> CheckTaskMemoryAccess
+</td></tr>
+<tr>
+<td> OS269 </td><td> OK
+</td><td> If the Task reference &lt;TaskID&gt; in a call of CheckTaskMemoryAccess() is valid, CheckTaskMemoryAccess() shall return the access rights of the task on the specified memory area.
+</td></tr>
+<tr>
+<td> OS314 </td><td> OK <a href="#Memory_protection_notes"><sup>[d]</sup></a>
+</td><td> If an access right (e.g. “read”) is not valid for the whole memory area specified in a call of CheckTaskMemoryAccess(), CheckTaskMemoryAccess() shall yield no access regarding this right.
+</td></tr>
+<tr>
+<td> OS270 </td><td> OK
+</td><td> If the Task reference &lt;TaskID&gt; in a call of CheckTaskMemoryAccess() is not valid, CheckTaskMemoryAccess() shall yield no access rights.
+</td></tr>
+<tr>
+<td> OS518 </td><td> No scalability Classes support
+</td><td> Availability of CheckTaskMemoryAccess(): Available in Scalability Classes 3 and 4
+</td></tr></table>
+<h2> <span class="mw-headline" id="Memory_protection_notes"> Memory protection notes </span></h2>
+<ul><li> [a] - The OS shares the stack with tasks and ISRs.  If SP is invalid when calling a system API, a fault may happen.  If a context change happens inside a system call (e.g., ActivateTask() made on a task with higher priority), data from the OS remain saved on the stack of the calling task; other tasks or ISRs from the same OS-Application can overwrite those values. A solution for this problem is in testing on TriCore implementation, but since the kernel on AURIX never allocate stack (this is due to the special carateristic of TriCore Architecture and the compilers optimizations) the implementation cannot be proved until it will backported on PPC or on a new architecture with this pontential problem.
+</li><li> [b] - This is tricky. Currently, only trusted OS-Applications can access MCU registers.  Probably the granularity of the MMU is not enough, and maybe the MPU is not suitable either.
+</li><li> [c] - In MPC5674F When a protection error occur, one of the IVOR routines is called, which jump to <code>__empty_handler</code>. In TriCore protection hook will be fully supported.
+</li><li> [d] - The current implementation is more restrictive.  If the given memory range is not contained in a single memory section (e.g., it starts inside the stack section and ends inside BSS), no access is returned.  This should not create problems, as crossing sections depends on the memory layout; relying on that would be very fragile and no application should do it.
+</li></ul>
+<h1> <span class="mw-headline" id="Stack_monitoring"> Stack monitoring </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS067 </td><td> OK TriCore
+</td><td> The Operating System shall offer a stack monitoring which detects possible stack faults of Task(s)/Category 2 OsIsr(s).
+</td></tr>
+<tr>
+<td> OS068 </td><td> OK TriCore
+</td><td> If a stack fault is detected by stack monitoring AND the configured scalability class is 1 or 2, the Operating System shall call the ShutdownOS() service with the status E_OS_STACKFAULT.
+</td></tr>
+<tr>
+<td> OS396 </td><td> OK TriCore
+</td><td> If a stack fault is detected by stack monitoring AND the configured scalability class is 3 or 4, the Operating System shall call the ProtectionHook() with the status E_OS_STACKFAULT.
+</td></tr></table>
+<h1> <span class="mw-headline" id="OS-Applications"> OS-Applications </span></h1>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS445 </td><td> Partial <a href="#OS-Applications_notes"><sup>[a]</sup></a>
+</td><td> The Operating System shall support OS-Applications which are a composition of (at least one Task OR OsIsr) AND (zero or more Alarms, Schedule tables, Counters or Resources) AND (zero or one hooks for startup, error and shutdown).
+</td></tr>
+<tr>
+<td> OS446 </td><td> OK
+</td><td> The Operating System shall support the notion of trusted and not trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS464 </td><td> OK
+</td><td> Trusted OS-Applications may offer services (“trusted services”) to other (even non-trusted) OS-Applications.
+</td></tr>
+<tr>
+<td> OS016 </td><td> OK (see GetApplicationID())
+</td><td> The Operating System shall provide a service to determine the currently running OS-Application (a unique identifier shall be allocated to each application).
+</td></tr>
+<tr>
+<td> OS017 </td><td> OK (see CheckObjectOwnership())
+</td><td> The Operating System shall provide a service to determine to which OS-Application a given Task, OsIsr, Resource, Counter, Alarm or Schedule Table belongs.
+</td></tr>
+<tr>
+<td> OS256 </td><td> OK (see CheckObjectAccess())
+</td><td> The Operating System shall provide a service to determine which OS-Applications are allowed to use the IDs of a Task, OsIsr, Resource, Counter, Alarm or Schedule Table in API calls.
+</td></tr>
+<tr>
+<td> OS258 </td><td> OK (see TerminateApplication())
+</td><td> The Operating System shall provide a service to terminate the OS-Application to which the calling Task/Category 2 OsIsr/application specific error hook belongs. (This is an OS-Application level variant of the TerminateTask() service)
+</td></tr>
+<tr>
+<td> OS447 </td><td> OK
+</td><td> Terminating an OS-Application means to:
+<ul><li> terminate all running, ready and waiting Tasks/OsIsrs of the OS-Application AND
+</li><li> disabling all interrupts of the OS-Application AND
+</li><li> stop all active alarms of the OS-Applications AND
+</li><li> stop all schedule tables of the OS-Application.
+</li></ul>
+</td></tr>
+<tr>
+<td> OS448 </td><td> OK TriCore
+</td><td> OS-Applications, trusted or non-trusted, shall by default have only access rights to objects belonging to this OS-Application. Access rights from other OS-Applications shall be granted explicitely by configuration.
+</td></tr>
+<tr>
+<td> OS060 </td><td> OK TriCore <a href="#OS-Applications_notes"><sup>[a]</sup></a>
+</td><td> If an application-specific startup hook is configured for an OS-Application &lt;App&gt;, the Operating System shall call StartupHook_&lt;App&gt; on startup of the OS.
+</td></tr>
+<tr>
+<td> OS110 </td><td> OK <a href="#OS-Applications_notes"><sup>[c]</sup></a>
+</td><td> If the Operating System forcibly terminates an OS-Application, it:
+<ul><li> forcibly terminates all Tasks/OsIsrs of the OS-Application AND
+</li><li> cancels all alarms of the OS-Application AND
+</li><li> stops schedule tables of the OS-Application AND
+</li><li> disables interrupt sources of Category 2 OsIsrs belonging to the OS-Application
+</li></ul>
+</td></tr>
+<tr>
+<td> OS111 </td><td> OK <a href="#OS-Applications_notes"><sup>[c]</sup></a>
+</td><td> When the Operating System restarts an OS-Application it activates the configured OsRestartTask.
+</td></tr></table>
+<h2> <span class="mw-headline" id="New_Autosar_API"> New Autosar API </span></h2>
+<h3> <span class="mw-headline" id="GetApplicationID"> GetApplicationID </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS016 </td><td> OK
+</td><td> GetApplicationID
+</td></tr>
+<tr>
+<td> OS261 </td><td> OK TriCore <a href="#OS-Applications_notes"><sup>[a]</sup></a>
+</td><td> GetApplicationID() shall return the application identifier to which the executing Task/ISR/hook belongs.
+</td></tr>
+<tr>
+<td> OS262 </td><td> OK
+</td><td> If no OS-Application is running, GetApplicationID() shall return INVALID_OSAPPLICATION.
+</td></tr>
+<tr>
+<td> OS514 </td><td> No scalability Classes support
+</td><td> Availability of GetApplicationID(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="CheckObjectAccess"> CheckObjectAccess </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS256 </td><td> OK TriCore
+</td><td> CheckObjectAccess
+</td></tr>
+<tr>
+<td> OS271 </td><td> OK TriCore
+</td><td> If the OS-Application &lt;ApplID&gt; in a call of CheckObjectAccess() has access to the queried object, CheckObjectAccess() shall return ACCESS.
+</td></tr>
+<tr>
+<td> OS272 </td><td> OK TriCore
+</td><td> If the OS-Application &lt;ApplID&gt; in a call of CheckObjectAccess() has no access to the queried object, CheckObjectAccess() shall return NO_ACCESS.
+</td></tr>
+<tr>
+<td> OS423 </td><td> OK TriCore
+</td><td> If in a call of CheckObjectAccess() the object to be examined is not a valid object OR &lt;ApplID&gt; is invalid OR &lt;ObjectType&gt; is invalid THEN CheckObjectAccess() shall return NO_ACCESS.
+</td></tr>
+<tr>
+<td> OS519 </td><td> No scalability Classes support
+</td><td> Availability of CheckObjectAccess(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="CheckObjectOwnership"> CheckObjectOwnership </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS017 </td><td> OK TriCore
+</td><td> CheckObjectOwnership
+</td></tr>
+<tr>
+<td> OS273 </td><td> OK TriCore
+</td><td> If the object ObjectType specified in a call of CheckObjectOwnership() exists, CheckObjectOwnership() shall return the identifier of the OS-Application to which the object belongs.
+</td></tr>
+<tr>
+<td> OS274 </td><td> OK TriCore
+</td><td> If in a call of CheckObjectOwnership() the specified object ObjectType is invalid OR the argument of the type (the  “...”) is invalid, CheckObjectOwnership() shall return INVALID_OSAPPLICATION.
+</td></tr>
+<tr>
+<td> OS520 </td><td> No scalability Classes support
+</td><td> Availability of CheckObjectOwnership():Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="TerminateApplication"> TerminateApplication </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS258 </td><td> OK TriCore
+</td><td> TerminateApplication
+</td></tr>
+<tr>
+<td> OS493 </td><td> OK TriCore
+</td><td> If the input parameter &lt;Application&gt; in a call of TerminateApplication() is not valid TerminateApplication() shall return E_OS_ID.
+</td></tr>
+<tr>
+<td> OS459 </td><td> OK TriCore
+</td><td> If the &lt;RestartOption&gt; in a call of TerminateApplication() is invalid, TerminateApplication() shall return E_OS_VALUE.
+</td></tr>
+<tr>
+<td> OS494 </td><td> OK TriCore
+</td><td> If the input parameter &lt;Application&gt; in a call of TerminateApplication() is valid AND the caller belongs to a non-trusted OS-Application AND the caller does not belong to &lt;Application&gt; TerminateApplication() shall return E_OS_ACCESS.
+</td></tr>
+<tr>
+<td> OS507 </td><td> OK TriCore
+</td><td> If the state of &lt;Application&gt; in a call of TerminateApplication() is APPLICATION_TERMINATED TerminateApplication() shall return E_OS_STATE.
+</td></tr>
+<tr>
+<td> OS508 </td><td> OK TriCore
+</td><td> If the state of &lt;Application&gt; in a call of TerminateApplication() is APPLICATION_RESTARTING and the caller does not belong to the &lt;Application&gt; then TerminateApplication() shall return E_OS_STATE.
+</td></tr>
+<tr>
+<td> OS548 </td><td> OK TriCore
+</td><td> If the state of &lt;Application&gt; in a call of TerminateApplication() is APPLICATION_RESTARTING AND the caller does belong to the &lt;Application&gt; AND the &lt;RestartOption&gt; is equal RESTART then TerminateApplication() shall return E_OS_STATE.
+</td></tr>
+<tr>
+<td> OS287 </td><td> OK TriCore
+</td><td> If the parameters in a call of TerminateApplication() are valid and the above criteria are met TerminateApplication() shall terminate &lt;Application&gt; (i.e. to kill all tasks, disable the interrupt sources of those ISRs which belong to the OS-Application and free all other OS resources associated with the application) AND shall activate the configured OsRestartTask of &lt;Application&gt; if &lt;RestartOption&gt; equals RESTART. If  the   &lt;Application&gt; is  restarted, its  state is set to APPLICATION_RESTARTING otherwise to APPLICATION_TERMINATED. If the caller belongs to &lt;Application&gt; TerminateApplication() shall not return, otherwise it shall return E_OK.
+</td></tr>
+<tr>
+<td> OS535 </td><td> OK TriCore
+</td><td> Caveats of TerminateApplication():
+<ul><li> If no applications are configured the implementation shall make sure that this service is not available.
+</li><li> Tasks and interrupts that are owned by a trusted application can terminate any OS-Application. Tasks and interrupts that are owned by a non-trusted application can only terminate their owning OS-Application.
+</li></ul>
+</td></tr>
+<tr>
+<td> OS536 </td><td> No scalability Classes support
+</td><td> Availability of TerminateApplication(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="AllowAccess"> AllowAccess </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS501 </td><td> OK TriCore
+</td><td> AllowAccess
+</td></tr>
+<tr>
+<td> OS497 </td><td> OK TriCore
+</td><td> If the state of the OS-Application of the caller of AllowAccess() is not APPLICATION_RESTARTING AllowAccess() shall return E_OS_STATE.
+</td></tr>
+<tr>
+<td> OS498 </td><td> OK TriCore
+</td><td> If the state of the OS-Application of the caller of AllowAccess() is APPLICATION_RESTARTING, AllowAccess() shall set the state to APPLICATION_ACCESSIBLE and allow other OS-Applications to access the configured objects of the callers OS-Application.
+</td></tr>
+<tr>
+<td> OS547 </td><td> No scalability Classes support
+</td><td> Availability of AllowAccess(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="GetApplicationState"> GetApplicationState </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS499 </td><td> OK TriCore
+</td><td> GetApplicationState
+</td></tr>
+<tr>
+<td> OS495 </td><td> OK TriCore
+</td><td> If the &lt;Application&gt; in a call of GetApplicationState() is not valid GetApplicationState() shall return E_OS_ID.
+</td></tr>
+<tr>
+<td> OS496 </td><td> OK TriCore
+</td><td> If the parameters in a call of GetApplicationState() are valid, GetApplicationState() shall return the state of OS-Application &lt;Application&gt; in &lt;Value&gt;.
+</td></tr>
+<tr>
+<td> OS537 </td><td> No scalability Classes support
+</td><td> Availability of GetApplicationState(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="Application_specific_StartupHook"> Application specific StartupHook </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS539 </td><td> OK
+</td><td> Application specific StartupHook. The application specific StartupHook is always called after the standard StartupHook() (see OS236). If more than one OS-Application is configured which use startup hooks, the order of calls to the startup hooks of the different OS- Applications is not defined.
+</td></tr>
+<tr>
+<td> OS543 </td><td> No scalability Classes support
+</td><td> Availability of StartupHook_&lt;App&gt;(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="Application_specific_ErrorHook"> Application specific ErrorHook </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS540 </td><td> OK TriCore
+</td><td> Application specific ErrorHook. If the general ErrorHook() is configured, the general ErrorHook() is called before the application specific error hook is called (see OS246).
+</td></tr>
+<tr>
+<td> OS544 </td><td> OK TriCore
+</td><td> Availability of ErrorHook_&lt;App&gt;(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="Application_specific_ShutdownHook"> Application specific ShutdownHook </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS541 </td><td> OK
+</td><td> Application specific ShutdownHook. If the general ShutdownHook() is configured, the general ShutdownHook() is called after all application specific shutdown hook(s) are called (see OS237). If more OS-Applications with an application specific shutdown hook exist the order of calls to these application specific shutdown hooks is not defined.
+</td></tr>
+<tr>
+<td> OS545 </td><td> No scalability Classes support
+</td><td> Availability of ShutdownHook_&lt;App&gt;(): Available in Scalability Classes 3 and 4.
+</td></tr></table>
+<h3> <span class="mw-headline" id="OS-Applications_notes"> OS-Applications notes </span></h3>
+<ul><li> [a] - Application-specific hook will be supported by TriCore full release.
+</li><li> [b] - Object protection will be introduced by TriCore full release, by now all objects are accessible by any OS-Application.
+</li><li> [c] - Termination of OS-Applications will be introduced by TriCore full release, is not supported yet.
+</li></ul>
+<h2> <span class="mw-headline" id="Privileged_mode"> Privileged mode </span></h2>
+<p>Please see note <a href="#Privileged_mode_notes"><sup>[a]</sup></a>.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS058 </td><td> OK
+</td><td> If supported by hardware, the Operating System shall execute non-trusted OS-Applications in non-privileged mode.
+</td></tr>
+<tr>
+<td> OS096 </td><td> OK
+</td><td> As far as supported by hardware, the Operating System shall not allow non- trusted OS-Applications to access control registers managed by the Operating System.
+</td></tr>
+<tr>
+<td> OS245 </td><td> OK<a href="#Privileged_mode_notes"><sup>[b]</sup></a>
+</td><td> If an instruction exception occurs (e.g. division by zero) the operating system shall call the protection hook with E_OS_PROTECTION_EXCEPTION.
+</td></tr>
+<tr>
+<td> OS451 </td><td> OK
+</td><td> The Operating System shall allow to export services from trusted OS-Applications.
+</td></tr>
+<tr>
+<td> OS097 </td><td> OK
+</td><td> The Operating System shall provide a mechanism to call a trusted function from a (trusted or non-trusted) OS-Application.
+</td></tr>
+<tr>
+<td> OS100 </td><td> OK
+</td><td> If a called trusted function is not configured the Operating System shall call the ErrorHook with E_OS_SERVICEID.
+</td></tr>
+<tr>
+<td> OS226 </td><td> OK<a href="#Privileged_mode_notes"><sup>[b]</sup></a>
+</td><td> The Operating System shall execute an application-specific startup hook with the access rights of the associated OS-Application.
+</td></tr></table>
+<h3> <span class="mw-headline" id="CallTrustedFunction"> CallTrustedFunction </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS097 </td><td> OK
+</td><td> CallTrustedFunction
+</td></tr>
+<tr>
+<td> OS265 </td><td> OK
+</td><td> If &lt;FunctionIndex&gt; is a defined function index, CallTrustedFunction() shall switch the processor into privileged mode AND shall call the function &lt;FunctionIndex&gt; out of a list of implementation specific trusted functions with disabled memory protection AND shall return E_OK after completion.
+</td></tr>
+<tr>
+<td> OS312 </td><td> OK
+</td><td> Caveats of CallTrustedFunction():
+<ul><li> The called trusted function must conform to the following C prototype: void TRUSTED_&lt;name_of_the_trusted_service&gt;( TrustedFunctionIndexType,TrustedFunctionParameterRefType); (The arguments are the same as the arguments of CallTrustedFunction).
+</li><li> Normally, a user will not directly call this service, but it will be part of some standard interface, e.g. a standard I/O interface.
+</li><li> It is the duty of the called trusted function to check rights of passed parameters, especially if parameters are interpreted as out parameters.
+</li><li> It should be noted that the CallTrustedFunction() does not disable timing protection for the task which called the service. This may lead to timing faults (calls of the ProtectionHook()) even inside of a trusted OS-Application. It is therefore recommended to use CallTrustedFunction() only for stateless functions (e.g. functions which do not write or do not have internal states)
+</li></ul>
+</td></tr>
+<tr>
+<td> OS266 </td><td> OK <a href="#Privileged_mode_notes"><sup>[b]</sup></a>
+</td><td> When CallTrustedFunction() calls the function &lt;FunctionIndex&gt;, that function shall be executed with the same processor mode and memory protection boundaries as the OS-Application to which it belongs. It shall however retain the timing protection and service protection limitations of the calling Task or ISR, and the notion of "current application" shall remain that of the calling Task or Category 2 ISR.
+</td></tr>
+<tr>
+<td> OS364 </td><td> OK <a href="#Privileged_mode_notes"><sup>[b]</sup></a><a href="#Privileged_mode_notes"><sup>[c]</sup></a>
+</td><td> If CallTrustedFunction() calls the trusted function from a Category 2 ISR context, that function shall continue to run on the same interrupt priority and be allowed to call all system services defined for Category 2 ISR (see table in chapter 7.7.3.2).
+</td></tr>
+<tr>
+<td> OS365 </td><td> OK <a href="#Privileged_mode_notes"><sup>[b]</sup></a><a href="#Privileged_mode_notes"><sup>[c]</sup></a>
+</td><td> If CallTrustedFunction() calls the trusted function from a task context, that function shall continue to run on the same priority and be allowed to call all system services defined for tasks (see table in chapter 7.7.3.2).
+</td></tr></table>
+<h3> <span class="mw-headline" id="Privileged_mode_notes"> Privileged mode notes </span></h3>
+<dl><dd> [a] - In MPC5674F priviliged mode is enabled by the SC4 flag (This incomplete support of scalability classes have been removed in TriCore porting).
+</dd><dd> [b] - Supported only by TriCore implementation.
+</dd><dd> [c] - In MPC5674F a trusted function is executed in the security context of the calling function, although it runs in privileged mode.
+</dd></dl>
+<h2> <span class="mw-headline" id="Protection_hook"> Protection hook </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS099 </td><td> OK (See CheckTaskMemoryAccess() and CheckISRMemoryAccess())
+</td><td> The Operating System shall offer OS-Applications a service to check if a memory region is write/read/execute accessible from a Task/Category 2 OsIsr and also return information if the memory region is part of the stack space.
+</td></tr>
+<tr>
+<td> OS211 </td><td> OK TriCore
+</td><td> The Operating System shall execute the ProtectionHook() with the same permissions as the Operating System.
+</td></tr>
+<tr>
+<td> OS106 </td><td> OK TriCore
+</td><td> The Operating System shall perform one of the following reactions depending on the return value of the ProtectionHook():
+<ul><li> Do nothing
+</li><li> Forcibly terminate the faulty Task/Category 2 OsIsr OR
+</li><li> Forcibly terminate the faulty OS-Application OR
+</li><li> Forcibly terminate the faulty OS-Application and restart the OS-Application. OR
+</li><li> Call ShutdownOS().
+</li></ul>
+</td></tr>
+<tr>
+<td> OS107 </td><td> OK TriCore
+</td><td> If no ProtectionHook() is configured and a protection error occurs, the Operating System shall call ShutdownOS().
+</td></tr>
+<tr>
+<td> OS475 </td><td> OK TriCore
+</td><td> If the reaction is to do nothing and the ProtectionHook() was not called with E_OS_PROTECTION_ARRIVAL then the Operating System shall call ShutdownOS()
+</td></tr>
+<tr>
+<td> OS243 </td><td> OK TriCore
+</td><td> If the reaction is to forcibly terminate the Task/Category 2 OsIsr and no Task or OsIsr can be associated with the error, the running OS-Application is forcibly terminated by the Operating System.
+</td></tr>
+<tr>
+<td> OS244 </td><td> OK TriCore
+</td><td> If the reaction is to forcibly terminate the faulty OS-Application and no OS- Application can be assigned, ShutdownOS()is called.
+</td></tr>
+<tr>
+<td> OS108 </td><td> OK TriCore
+</td><td> If the Operating System forcibly terminates a task, it terminates the task (no PostTaskHook() for the task will be called), releases all allocated OSEK resources and calls EnableAllInterrupts()/ / ResumeOSInterrupts() ResumeAllInterrupts() if the Task called DisableAllInterrupts() / / SuspendAllInterrupts() before without the SuspendOSInterrupts() EnableAllInterrupts()/ / corresponding ResumeOSInterrupts() ResumeAllInterrupts() call.
+</td></tr>
+<tr>
+<td> OS109 </td><td> OK TriCore
+</td><td> If the Operating System forcibly terminates an interrupt service routine, it clears the interrupt request, aborts the interrupt service routine (The interrupt source stays in the current state.) and releases all OSEK resources the interrupt service routine has allocated and calls EnableAllInterrupts() / ResumeOSInterrupts() / ResumeAllInterrupts() if the interrupt called DisableAllInterrupts() / / SuspendAllInterrupts() before without the SuspendOSInterrupts() corresponding EnableAllInterrupts()/ / ResumeOSInterrupts() ResumeAllInterrupts() call.
+</td></tr>
+<tr>
+<td> OS538 </td><td> OK TriCore
+</td><td> Protection Hook Depending on the return value the Operating System module will either:
+<ul><li> forcibly terminate the Task/Category 2 ISR which causes the problem OR
+</li><li> forcibly terminate the OS-Application the Task/Category 2 ISR belong     (optional with restart) OR
+</li><li> shutdown the system OR
+</li><li> do nothing (see 7.8.2)
+</li></ul>
+</td></tr>
+<tr>
+<td> OS308 </td><td> OK TriCore
+</td><td> If ProtectionHook() returns an invalid value, the Operating System module shall take the same action as if no protection hook is configured.
+</td></tr>
+<tr>
+<td> OS542 </td><td> No scalability Classes support
+</td><td> Availability of ProtectionHook(): Available in Scalability Classes 2, 3 and 4.
+</td></tr></table>
+<h1> <span class="mw-headline" id="Other_New_Autosar_APIs"> Other New Autosar APIs </span></h1>
+<h3> <span class="mw-headline" id="GetISRID"> GetISRID </span></h3>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS511 </td><td> OK
+</td><td> GetISRID
+</td></tr>
+<tr>
+<td> OS263 </td><td> OK
+</td><td> If called from category 2 ISR (or Hook routines called inside a category 2 ISR), GetISRID() shall return the identifier of the currently executing ISR.
+</td></tr>
+<tr>
+<td> OS264 </td><td> partial
+</td><td> If its caller is not a category 2 ISR (or Hook routines called inside a category 2 ISR), GetISRID() shall return INVALID_ISR.
+</td></tr>
+<tr>
+<td> OS515 </td><td> OK (?)
+</td><td> Availability of GetISRID(): Available in all Scalability Classes.
+</td></tr></table>
+<p><br />
+</p>
+<h1> <span class="mw-headline" id="Timing_Protection"> Timing Protection </span></h1>
+<p>Actually implemented only for Tricore
+</p>
+<h2> <span class="mw-headline" id="General_Requirement"> General Requirement </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS028 </td><td> OK, but not Enforced by RT-Druid
+</td><td> In a non-trusted OS-Application, the Operating System module shall apply timing protection to every Task/Category 2 ISR of this non-trusted OS-Application
+</td></tr>
+<tr>
+<td> OS089 </td><td> OK
+</td><td> In a trusted OS-Application, the Operating System module shall provide the ability to apply timing protection to Tasks/Category 2 ISRs of this OS-Application.
+</td></tr>
+<tr>
+<td> OS397 </td><td> OK
+</td><td> If no OS-Application is configured, the Operating System module shall be able to apply timing protection to Tasks/Category 2 ISRs.
+</td></tr></table>
+<h2> <span class="mw-headline" id="Timing_Protection:_Tasks"> Timing Protection: Tasks </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS064 </td><td> OK
+</td><td>  If a task’s OsTaskExecutionBudget is reached then the Operating System module shall call the ProtectionHook() with E_OS_PROTECTION_TIME.
+</td></tr>
+<tr>
+<td> OS473 </td><td> OK
+</td><td>  OsTaskExecutionBudget on a transition to the SUSPENDED or WAITING states.
+</td></tr>
+<tr>
+<td> OS465 </td><td> OK
+</td><td>  The Operating System module shall limit the inter-arrival time of tasks to one per OsTaskTimeFrame
+</td></tr>
+<tr>
+<td> OS469 </td><td> OK
+</td><td>  The Operating System module shall start an OsTaskTimeFrame when a task is activated successfully
+</td></tr>
+<tr>
+<td> OS472 </td><td> OK
+</td><td>   The Operating System module shall start an OsTaskTimeFrame when a task is released successfully
+</td></tr>
+<tr>
+<td> OS466 </td><td> OK
+</td><td>    If an attempt is made to activate a task before the end of an OsTaskTimeFrame then the Operating System module shall not perform the activation AND shall call the ProtectionHook() with E_OS_PROTECTION_ARRIVAL
+</td></tr>
+<tr>
+<td> OS467 </td><td> OK
+</td><td>    If an attempt is made to release a task before the end of an OsTaskTimeFrame then the Operating System module shall not perform the release AND shall call the ProtectionHook() with E_OS_PROTECTION_ARRIVAL AND the event shall be set
+</td></tr>
+</table>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Timing_Protection:_ISR2"> Timing Protection: ISR2 </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS210 </td><td> OK
+</td><td> If a Category 2 ISR’s OsIsrExecutionBudget is reached then the Operating System module shall call the ProtectionHook() with E_OS_PROTECTION_TIME
+</td></tr>
+<tr>
+<td> OS474 </td><td> OK
+</td><td> The Operating System module shall rest an ISR’s OsIsrExecutionBudget when the ISR returns control to the Operating terminates
+</td></tr>
+<tr>
+<td> OS470 </td><td> OK
+</td><td> The Operating System module shall limit the inter-arrival time of Category 2 ISRs to one per OsIsrTimeFrame
+</td></tr>
+<tr>
+<td> OS471 </td><td> OK
+</td><td> The Operating System module shall measure the start of an OsIsrTimeFrame from the point at which it recognises the interrupt (i.e. in the Operating System interrupt wrapper)
+</td></tr>
+<tr>
+<td> OS048 </td><td> OK
+</td><td> If Category 2 interrupt occurs before the end of the OsIsrTimeFrame then the Operating System module shall not execute the user provided ISR AND shall call the ProtectionHook() with E_OS_PROTECTION_ARRIVAL
+</td></tr></table>
+<h2> <span class="mw-headline" id="Timing_Protection:_Resource_Locking_and_Interrupt_Disabling"> Timing Protection: Resource Locking and Interrupt Disabling </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS033 </td><td> OK
+</td><td> If a Task/Category 2 ISR holds an OSEK Resource and exceeds the Os[Task|Isr]ResourceLockBudget, the Operating System module shall call the ProtectionHook() with E_OS_PROTECTION_LOCKED
+</td></tr>
+<tr>
+<td> OS037 </td><td> OK
+</td><td> If a ISR disables interrupts (via Suspend/Disable|All/OS|Interrupts()) and exceeds the configured Os[Task|Isr][All|OS]InterruptLockBudget, the Operating System module shall call the ProtectionHook() Task/Category2 with E_OS_PROTECTION_LOCKED 
+</td></tr></table>
+<h1> <span class="mw-headline" id="Multi-Core"> Multi-Core </span></h1>
+<h2> <span class="mw-headline" id="Basic_Requirements"> Basic Requirements </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS567 </td><td> OK (We have some doubts relates to this, but it should be OK)
+</td><td> The generated part of the OS is derived from a single configuration that contains the relevant information for all cores. This implies, that IDs (e.g. TASKID, RESOURCEID, …) are unique across cores. Every ID shall refer exactly to one entity independent from the core on which the entity is accessed. This applies also to objects that cannot be shared between cores. (BSW4080008)
+</td></tr>
+<tr>
+<td> OS568 </td><td> OK
+</td><td>Implementations shall be able to independently execute a TASK or an ISR on each started AUTOSAR OS core in parallel. (BSW4080001)
+</td></tr>
+<tr>
+<td> OS569 </td><td> OK
+</td><td>The scheduling strategy as defined in AUTOSAR OS shall apply for each individual core in a Multi-Core system, for the TASKs and ISR assigned to the core. (BSW4080001, BSW4080013)
+</td></tr>
+<tr>
+<td> OS570 </td><td> OK
+</td><td> All TASKs that are assigned to the same OS-Application shall execute on the same core. (BSW4080003, BSW4080005)
+</td></tr>
+<tr>
+<td> OS571 </td><td> OK
+</td><td> All ISRs that are assigned to the same OS-Application shall execute on the same core. (BSW4080003, BSW4080005)
+</td></tr>
+<tr>
+<td> OS572 </td><td> N.A. in Supported Architectures (PPC TriCore)
+</td><td> ISR balancing (if supported by the HW) shall be switched off at boot time by the OS. (BSW4080005, BSW4080006)
+</td></tr>
+<tr>
+<td> OS764 </td><td> No scalability classes support (OS-Applications are enabled when configurated).
+</td><td> The OS module shall support OS-Applications in case of Multi-Core also for SC1 and SC2.
+</td></tr>
+<tr>
+<td> OS763 </td><td> No scalability classes support (But we don't understend this requirement).
+</td><td> In an SC1 system standard mode shall be possible.
+</td></tr>
+<tr>
+<td> OS573 </td><td>
+</td><td> The binding of OS-Applications to cores shall be configured within the OS-Application container. A new configuration item: OsApplicationCoreAssignment{CORE} within the OS-Application container shall be used to define the core to which the OS-Application is bound. The OS generator will map the configuration parameter “CORE” to a certain core, so that all OS-Applications with the same configuration parameter reside on the same core. (BSW4080003, BSW4080005)
+</td></tr>
+<tr>
+<td> OS623 </td><td> OK
+</td><td> The OS API function CallTrustedFunction shall return E_OS_ACCESS in extended status if the target trusted function is part of an OS-Application on another core. (BSW4080013)
+</td></tr>
+</table>
+<h2> <span class="mw-headline" id="Multi-Core_start-up_Requirements"> Multi-Core start-up Requirements </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS574 </td><td> OK
+</td><td> The master core shall be able to activate cores. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS575 </td><td> OK
+</td><td> Any slave core shall be able to activate cores. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS576 </td><td> OK
+</td><td> It shall be allowed to use only a subset of the cores available on a μC for the AUTOSAR system. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS577 </td><td> OK (TriCore e PPC e200zx are naturally in Master-Slave configuration)
+</td><td> The cores shall boot in master-slave mode. If this is not supported by the hardware, it shall be that the cores boot in parallel and emulate the behavior of a master-slave system.. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS578 </td><td> N.A.
+</td><td> In case of an emulation a slave core (CoreS), which is controlled by the AUTOSAR OS (AUTOSAR core), shall not enter the main function before another
+<p>core has activated the slave core by means of StartCore(CoreS). (BSW4080006)
+</p>
+</td></tr>
+<tr>
+<td> OS579 </td><td> OK
+</td><td> All cores that belong to the AUTOSAR system shall be synchronized within the StartOS function before the scheduling is started and after the global
+<p>StartupHook is called.. (BSW4080001, BSW4080006)
+</p>
+</td></tr>
+<tr>
+<td> OS580 </td><td> OK
+</td><td> All cores that belong to the AUTOSAR system shall be synchronized within the StartOS function before the scheduling is started and after the global
+<p>StartupHook is called.. (BSW4080006)
+</p>
+</td></tr>
+<tr>
+<td> OS581 </td><td> OK TriCore
+</td><td> The global StartupHook shall be called on all cores immediately after the first synchronisation point (BSW4080006)
+</td></tr>
+<tr>
+<td> OS582 </td><td> OK TriCore
+</td><td> The OS-Application-specific StartupHooks shall be called after the global StartupHook but only on the cores to which the OS-Application is bound (BSW4080006, BSW4080008)
+</td></tr>
+<tr>
+<td> </td><td> OK TriCore
+</td><td> The AUTOSAR OS API provides a StartCore function to start the cores under its control. The StartCore function takes a scalar value parameter of type CoreIDType, specifying the core that shall be started. StartCore can be called more than once on the master core and also on slave cores. Each core can only be started once, however The StartOS function shall be called on all cores that have been activated by StartCore. It is not allowed to call StartCore from a core that has already called StartOS. Cores that belong to the AUTOSAR system shall be started by the designated AUTOSAR OS API service StartCore.
+</td></tr>
+<tr>
+<td> OS583 </td><td> OK TriCore
+</td><td> The number of cores that can be controlled by the AUTOSAR OS shall be configured offline. A new configuration item (OsNumberOfCores) within the “OsOS” container is used to specify the maximum number of cores that are controlled by the AUTOSAR OS. If no value for (OsNumberOfCores) has been specified the number of cores shall be one. (BSW4080001, BSW4080011)
+</td></tr>
+<tr>
+<td> OS584 </td><td> OK TriCore
+</td><td> The AUTOSAR OS shall provide a function called StartNonAutosarCore that can be used to start cores, which are not controlled by the AUTOSAR OS. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS585 </td><td> OK TriCore
+</td><td> It shall be possible to activate cores that are not controlled by the AUTOSAR OS before and after calling StartOS. (BSW4080006, BSW4080026, BSW4080027)
+</td></tr>
+<tr>
+<td> OS606 </td><td> OK TriCore
+</td><td> The AUTOSAR specification does not support the activation of AUTOSAR cores after calling StartOS on that core. If StartCore is called after StartOS it shall return with E_OS_ACCESS in extended status. (BSW4080001)
+</td></tr>
+<tr>
+<td> OS607 </td><td> OK TriCore
+</td><td> StartOS shall start the OS on the core on which it is called. (BSW4080006, BSW4080013)
+</td></tr>
+<tr>
+<td> OS608 </td><td> OK TriCore
+</td><td> If more than one core calls StartOS with an AppMode other than “DONOTCARE”, the AppModes shall be the same. StartOS shall check this at the first synchronisation point. In case of violation, StartOS shall not start the scheduling, shall not call any StartupHooks, and shall enter an endless loop on every core. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS609 </td><td> OK TriCore
+</td><td> If StartOS is called with the AppMode “DONOTCARE” the application mode of the other core(s) (differing from “DONOTCARE”) shall be used. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS610 </td><td> OK TriCore
+</td><td> At least one core shall define an AppMode other than “DONOTCARE”. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS611 </td><td> OK TriCore
+</td><td> If the IOC is configured, StartOS shall initialize the data structures of the IOC. (BSW4080020)
+</td></tr>
+<tr>
+<td> OS668 </td><td> OK
+</td><td> The AUTOSAR Operating System shall automatically activate all auto-start TASKs configured for the current AppMode, with respect to the core, before the initial start of the scheduling. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS669 </td><td> OK
+</td><td> The AUTOSAR Operating System shall automatically activate all auto-start ALARMs configured for the current AppMode, with respect to the core, before the initial start of the scheduling. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS670 </td><td> Not Schedule tables supported yet
+</td><td> The AUTOSAR Operating System shall automatically activate all auto-start schedule tables configured for the current AppMode, with respect to the core, before the initial start of the scheduling. (BSW4080006)
+</td></tr>
+</table>
+<h2> <span class="mw-headline" id="Multicore_Shutdown_Requirements"> Multicore Shutdown Requirements </span></h2>
+<p>AUTOSAR supports two shutdown concepts, the synchronized shutdown and the individual shutdown concept. While the synchronized shutdown is triggered by the new API function <b>ShutdownAllCores()</b>, the individual shutdown is invoked by the existing API function <b>ShutdownOS()</b>.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS586 </td><td> OK TriCore
+</td><td> During the shutdown, the OS-Application specific ShutdownHook shall be called on the core on which the corresponding OS-Application is bound. (BSW4080007)
+</td></tr>
+<tr>
+<td> OS587 </td><td> OK TriCore (if ShutdownAllCores has been called)
+</td><td> Before calling the global ShutdownHook, all cores shall be synchronized. (BSW4080007)
+</td></tr>
+<tr>
+<td> OS588 </td><td> OK
+</td><td> The global ShutdownHook shall be called on all cores.  (BSW4080007)
+</td></tr>
+<tr>
+<td> OS762 </td><td> OK TriCore (fullfilled by ProtectionHook implementation)
+</td><td> In cases where the OS detects a fatal internal error all cores shall be shutdown.
+</td></tr>
+<tr>
+<td> OS616 </td><td> OK
+</td><td> ShutdownOS shall be callable from each core running an AUTOSAR OS. (BSW4080001, BSW4080007)
+</td></tr>
+<tr>
+<td> OS617 </td><td> OK
+</td><td> ShutdownOS shall shutdown the core on which it was called. (BSW4080007)
+</td></tr>
+<tr>
+<td> OS618 </td><td> OK
+</td><td> The OS shall not start TASKs of an OS-Application once the shutdown procedure has been entered on a particular core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS619 </td><td> OK
+</td><td> The AUTOSAR OS function ShutdownOS shall be callable in parallel on multiple cores. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS620 </td><td> OK TriCore
+</td><td> ShutdownOS shall release all spinlocks which are occupied by the calling core. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS621 </td><td> OK TriCore
+</td><td> ShutdownAllCores shall be callable from each core running an AUTOSAR OS. (BSW4080007)
+</td></tr>
+</table>
+<h2> <span class="mw-headline" id="OS_Other_Services_Requirements"> OS Other Services Requirements </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS589 </td><td> OK TriCore
+</td><td> All functions that are not allowed to operate cross core shall return E_OS_CORE in extended status if called with parameters that require a cross core operation. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS590 </td><td> OK
+</td><td> The OS service “DisableAllInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS591 </td><td> OK
+</td><td> The OS service “EnableAllInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS592 </td><td> OK
+</td><td> The OS service “SuspendAllInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS593 </td><td> OK
+</td><td> The OS service “ResumeAllInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS594 </td><td> OK
+</td><td> The OS service “SuspendOSInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS595 </td><td> OK
+</td><td> The OS service “ResumeOSInterrupts” shall only affect the core on which it is called. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS596 </td><td> OK
+</td><td> It shall be possible to activate a TASK that is part of an OS-Application located on another core, as long as the assigned access rights allow it. (BSW4080001, BSW4080015)
+</td></tr>
+<tr>
+<td> OS598 </td><td> OK TriCore (RPC Dispactcher)
+</td><td> The call of ActivateTask across cores shall behave synchronously, i.e. a call returns after the task has been activated or an error has been detected. It shall not be possible to continue execution on the calling core before ActivateTask is accomplished on the remote core. (BSW4080015)
+</td></tr>
+<tr>
+<td> OS599 </td><td> OK TriCore (RPC Dispactcher)
+</td><td> In case of an error when calling ActivateTask across cores, the error handler shall be called on the core on which ActivateTask was originally called. (BSW4080015)
+</td></tr>
+<tr>
+<td> OS600 </td><td> OK
+</td><td> It shall be possible to chain a TASK that is part of an OS-Application located on another core, as long as the assigned access rights allow it. (BSW4080001, BSW4080015)
+</td></tr>
+<tr>
+<td> OS602 </td><td> OK
+</td><td> It shall be possible to set an EVENT that is part of an OS-Application located on another core, as long as the assigned access rights allow it. (BSW4080016)
+</td></tr>
+<tr>
+<td> OS604 </td><td> OK TriCore (RPC Dispactcher)
+</td><td> The call of SetEvent across cores shall behave synchronously, i.e. a call returns after the Event has been set or an error has been detected. It shall not be possible to continue execution on the calling core before SetEvent is accomplished on the remote core. (BSW4080016)
+</td></tr>
+<tr>
+<td> OS605 </td><td> OK TriCore (RPC Dispactcher <a href="#MultiCore_notes"><sup>[a]</sup></a>)
+</td><td> In case of an error when calling SetEvent across cores, the error handler shall be called on the core on which SetEvent was originally called. (BSW4080016)
+</td></tr>
+<tr>
+<td> OS612 </td><td> OK TriCore
+</td><td> In extended status TerminateTask / ChainTask shall return with an error (E_OS_SPINLOCK), which can be evaluated in the application. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS613 </td><td> OK TriCore
+</td><td> Spinlocks occupied by TASKS that are terminated in response to a protection hook shall be automatically released. This applies also to the case in which an OS-Application is terminated. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS614 </td><td> OK TriCore
+</td><td> TerminateApplication shall check if any of the TASKs in the OS-Application have occupied a spinlock. If so, the spinlocks shall be released.(BSW4080021)
+</td></tr>
+<tr>
+<td> OS615 </td><td>
+</td><td> If TerminateApplication(A) is called in parallel from different cores, the OsApplication “A” is terminated by the first call, any subsequent calls will return with 'E_OK' in standard and extended status without doing anything, until the termination is completed.
+</td></tr>
+<tr>
+<td> OS622 </td><td> OK
+</td><td> The AUTOSAR Operating System WaitEvent API service shall check if it has been called while the calling TASK has occupied a spinlock. In extended status an error E_OS_SPINLOCK shall be returned and the TASK shall not enter the wait state. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS624 </td><td> OK
+</td><td> The AUTOSAR Operating System Schedule API service shall check if it has been called while the calling TASK has occupied a spinlock. In extended status an error E_OS_SPINLOCK shall be returned and the scheduler shall not be called. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS629 </td><td> OK
+</td><td> A COUNTER belonging to an OS-Application shall be incremented by the core on which the OS-Application resides. The COUNTER shall not be incremented by other cores. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS630 </td><td> OK
+</td><td> It shall not be allowed to drive a schedule table from a COUNTER, which is assigned to a different core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS631 </td><td> OK
+</td><td> It shall not be allowed to drive an ALARM from a COUNTER, which is assigned to a different core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS632 </td><td> OK
+</td><td> If an ALARM expires, it shall be allowed to activate a TASK on a different core. (BSW4080018)
+</td></tr>
+<tr>
+<td> OS633 </td><td> OK
+</td><td> If an ALARM expires, it shall be allowed to set an EVENT on a different core. (BSW4080018)
+</td></tr>
+<tr>
+<td> OS634 </td><td> OK
+</td><td> The AUTOSAR Operating System shall process an ALARM on the core on which its corresponding OS-Application resides. (BSW4080018)
+</td></tr>
+<tr>
+<td> OS635 </td><td> OK
+</td><td> ALARM callbacks shall be executed on the core to which the ALARM is bound. This is only applicable to SC1 systems, because otherwise Alarm Callback
+<p>are not allowed (OS242). (BSW4080013)
+</p>
+</td></tr>
+<tr>
+<td> OS636 </td><td> OK
+</td><td> SetRelAlarm shall also work on an ALARM that is bound to another core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS637 </td><td> OK
+</td><td> SetAbsAlarm shall also work on an ALARM that is bound to another core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS638 </td><td> OK
+</td><td> CancelAlarm shall also work on an ALARM that is bound to another core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS639 </td><td> OK
+</td><td> GetAlarmBase shall also work on an ALARM that is bound to another core. (BSW4080013)
+</td></tr>
+<tr>
+<td> OS640 </td><td> OK
+</td><td> GetAlarm shall also work on an ALARM that is bound to another core. (BSW4080013)
+</td></tr>
+</table>
+<h2> <span class="mw-headline" id="MultiCore_notes"> MultiCore notes </span></h2>
+<dl><dd> [a] - <a href="/wiki/index.php?title=Infineon_Aurix#Multicore_Autosar_OS_Support" title="Infineon Aurix">New RPC MultiCore dispatcher</a>
+</dd></dl>
+<h2> <span class="mw-headline" id="Other_AUTOSAR_Multicore_API"> Other AUTOSAR Multicore API </span></h2>
+<h3> <span class="mw-headline" id="GetCoreID"> GetCoreID </span></h3>
+<p>Every HW assigns a unique physical Id to a core. The physical core Id is the only way to distinguish between cores. 
+The physical core Ids of a μC are not necessarily consecutive and do not necessarily start with zero.
+The SW requires a mechanism to identify a core, e.g. to use core specific variables. Because the physical core Id usually can not be used as a direct array index for core specific variables, a logical CoreID is necessary to map physical core Ids to array indexes. In the SW it is not necessary to know the physical core Id, the logical CoreID is sufficient.
+The mapping of OSApplications and other SW objects to cores is specified in the configuration files. All such mappings shall be HW independent and therefore shall not be based on the physical core Id but on the logical CoreID. The function GetCoreID internally maps the physical core Id to the logical CoreID. The mapping is implementation specific. GetCoreID can be either a C function or a macro.
+</p><p><b>N.B</b> In Erika with code replication the core ID is not a real issue.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS625 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System API function GetCoreID shall be callable before StartOS. (BSW4080006)
+</td></tr>
+<tr>
+<td> OS626 </td><td> OK TriCore
+</td><td> An implementation shall offer a function GetNumberOfActivatedCores that returns the number of cores running the AUTOSAR OS. (BSW4080001)
+</td></tr>
+<tr>
+<td> OS627 </td><td> OK TriCore
+</td><td> An implementation shall define a set of constants OS_CORE_ID_&lt;No&gt; of the type CoreIDType with &lt;No&gt; a value from 0 to “OsNumberOfCores -1. (BSW4080001)
+</td></tr>
+<tr>
+<td> OS628 </td><td> OK TriCore
+</td><td> An implementation shall offer a constant OS_CORE_ID_MASTER of the type CoreIDType that refers to the master core. (BSW4080001)
+</td></tr></table>
+<h2> <span class="mw-headline" id="Spinlocks"> Spinlocks </span></h2>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS648 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall provide a spinlock mechanism that works across cores. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS649 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall provide a GetSpinlock function which occupies a spinlock. If the spinlock is already occupied, GetSpinlock shall
+<p>keep on trying to occupy the spinlock until it succeeds. (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS650 </td><td> OK TriCore
+</td><td> GetSpinlock shall be callable from TASK level. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS651 </td><td> OK TriCore
+</td><td> GetSpinlock shall be callable from ISR2 level. The behavior of GetSpinlock is undefined if called from a category 1 ISR. (BSW4080021)
+</td></tr>
+<tr>
+<td> OS652 </td><td> OK TriCore (With Trivial spinlocks)
+</td><td> The AUTOSAR Operating System shall provide a TryToGetSpinlock function which occupies a spinlock. If the spinlock is already occupied by a TASK,
+<p>TryToGetSpinlock shall return. (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS653 </td><td> OK TriCore
+</td><td> TryToGetSpinlock shall be callable from TASK level. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS654 </td><td> OK TriCore
+</td><td> TryToGetSpinlock shall be callable from ISR2 level. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS655 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall provide a ReleaseSpinlock function which releases an occupied spinlock. If the spinlock is not occupied an error
+<p>shall be returned. (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS656 </td><td> OK TriCore
+</td><td> ReleaseSpinlock shall be callable from TASK level. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS657 </td><td> OK TriCore
+</td><td> ReleaseSpinlock shall be callable from ISR2 level. (BSW4080018, BSW4080021)
+</td></tr>
+<tr>
+<td> OS658 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall generate an error if a TASK tries to occupy a spinlock that is assigned to a TASK/ISR2 on the same core (including
+<p>itself). (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS659 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall generate an error if an ISR2 tries to occupy a spinlock that is assigned to a TASK/ISR2 on the same core.
+<p>(BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS660 </td><td> OK TriCore
+</td><td> A unique order in which multiple spinlocks can be occupied by a TASK/ISR2 should be configurable in the AUTOSAR Operating System. This might
+<p>be realized by the configuration item (OsSpinlockSuccessor{NEXT_SPINLOCK}) where “NEXT_SPINLOCK” refers to the consecutive spinlock. (See chapter 10.2.5) (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+<tr>
+<td> OS661 </td><td> OK TriCore
+</td><td> The AUTOSAR Operating System shall generate an error if a TASK/ISR2 that currently holds a spinlock tries to seize another spinlock that has not been
+<p>configured as a direct or indirect successor of the latest acquired spinlock (by means of the OsSpinlockSuccessor configuration parameter) or if no successor is configured. (BSW4080018, BSW4080021)
+</p>
+</td></tr>
+</table>
+<h1> <span class="mw-headline" id="Inter-OS-Application_Communicator_.28IOC.29_Requirements"> Inter-OS-Application Communicator (IOC) Requirements </span></h1>
+<p>IOC stands for Inter OS-Application Communicator. The "IOC" is responsible for the communication between OS-Applications and in
+particular for the communication crossing core or memory protection boundaries. It's internal functionality is closely connected to the Operating System.
+</p><p>Memory protection boundaries are a characteristic of OS-Applications and special communication mechanisms are needed to cross them.
+Multi-Core systems may also need additional measures to make communication between cores safe.
+</p><p>The IOC provides communication services between OS-Applications and in particular over core boundaries in Multi-Core systems. Because the cross-core communication is always an inter-OS-Application communication, the two mechanisms are combined. An inter OS-Application communication may not necessarily require a cross core communication, however.
+</p><p>In systems with only one core, the IOC can be omitted completely, if just one OS-Application is available, or if no OS-Application uses memory protection mechanisms.
+</p><p><b>N.B</b> Since a lot of Code of IOC is configurated and generated starting from RTE configuration, it doesn't make sense generate a whole IOC system without a complete RTE generator. But <b>we choiced the cross-boundaries communication mechanism</b> that is the heart of IOC. The same mechanism is employed to implement OS Services remote invocation.
+</p><p><br />
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th>ID </th><th> State </th><th> Description
+</th></tr>
+<tr>
+<td> OS671 </td><td>
+</td><td> The IOC implementation shall be part of the Operating System The IOC is a third type of communication, in addition to:
+<ul><li> Intra OS-Application communication: Always handled within the RTE
+</li><li> Inter ECU communication: already available via well defined interfaces to the communication stack (COM).
+</li></ul>
+<p>(BSW4080020)
+</p>
+</td></tr>
+</table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 212/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

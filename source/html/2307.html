@@ -1,0 +1,194 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Renesas_RX200_Series_support"><span class="tocnumber">1</span> <span class="toctext">Renesas RX200 Series support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#MCUs"><span class="tocnumber">1.1</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Boards"><span class="tocnumber">1.2</span> <span class="toctext">Boards</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Download_and_install"><span class="tocnumber">2</span> <span class="toctext">Download and install</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Target_Configuration_and_Programming"><span class="tocnumber">3</span> <span class="toctext">Target Configuration and Programming</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Compiler_Path"><span class="tocnumber">3.1</span> <span class="toctext">Compiler Path</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#CPU"><span class="tocnumber">3.2</span> <span class="toctext">CPU</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#MCU"><span class="tocnumber">3.3</span> <span class="toctext">MCU</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Interrupt_Handling"><span class="tocnumber">3.4</span> <span class="toctext">Interrupt Handling</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Libraries"><span class="tocnumber">4</span> <span class="toctext">Libraries</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#OIL_file_configuration"><span class="tocnumber">4.1</span> <span class="toctext">OIL file configuration</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Examples"><span class="tocnumber">5</span> <span class="toctext">Examples</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#See_also"><span class="tocnumber">6</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Renesas_RX200_Series_support"> Renesas RX200 Series support </span></h1>
+<p>ERIKA Enterprise supports Renesas RX200 series microcontrollers, in particular the <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html" class="external text" rel="nofollow">RX210</a> and <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html" class="external text" rel="nofollow">RX130</a> Groups.
+The support for RT-Druid is now available.<br />
+</p><p>Due to customer restrictions, the <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html" class="external text" rel="nofollow">RX130</a> porting is not yet public. If you want to get more information about the <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html" class="external text" rel="nofollow">RX130</a> porting, please contact <a href="mailto:info@evidence.eu.com" class="external text" rel="nofollow">info@evidence.eu.com</a>.
+</p><p>The Renesas RX200 support includes: 
+</p>
+<ol><li> support for <a href="https://www.renesas.com/en-eu/products/software-tools/tools/compiler-assembler/compiler-package-for-rx-family.html" class="external text" rel="nofollow">C/C++ Compiler Package for RX Family</a>;
+</li><li> support for single and multi stack configurations;
+</li><li> ISR Type 1 and Type 2 supported;
+</li><li> support for Renesas <a href="https://www.renesas.com/en-sg/products/software-tools/tools/emulator/e1.html" class="external text" rel="nofollow">E1</a> debugger/emulator;
+</li></ol>
+<ul><li> Supported IDEs:
+<ul><li> Renesas <a href="https://www.renesas.com/en-us/products/software-tools/tools/ide/hew.html" class="external text" rel="nofollow">High-performance Embedded Workshop</a>;
+</li><li> Renesas <a href="https://www.renesas.com/en-us/products/software-tools/tools/ide/e2studio.html" class="external text" rel="nofollow">e2studio</a> IDE;
+</li></ul>
+</li></ul>
+<ul><li> Mode of operation:
+<ul><li> Mono-stack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> Multi-stack HAL: Every task can have its private stack, or it can share it with other tasks.
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="MCUs"> MCUs </span></h3>
+<ul><li> The MCU currently supported is the following:
+<ul><li> R5F52108xxxx
+</li><li> R5F51308xxxx
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="Boards"> Boards </span></h3>
+<ul><li> The board currently supported is the following:
+<ul><li> <a href="https://www.renesas.com/en-eu/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx210.html" class="external text" rel="nofollow">Renesas Starter Kit for RX210</a> (part number R0K505210S000BE)
+</li><li> <a href="https://www.renesas.com/en-us/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx130-512kb.html" class="external text" rel="nofollow">Renesas Starter Kit for RX130-512KB</a> (part number RTK5051308C00000BE)
+</li></ul>
+</li></ul>
+<ul><li> List of functions:
+<ul><li> <a href="https://www.renesas.com/en-eu/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx210.html" class="external text" rel="nofollow">Renesas Starter Kit for RX210</a> is supported by Erika RTOS. Currently only leds, buttons and the LCD module are supported.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Download_and_install"> Download and install </span></h1>
+<p>RT-Druid and Erika Enterprise RTOS (version 1.6.1) can be freely downloaded from the following web address:
+</p>
+<ul><li> <a href="http://erika.tuxfamily.org/erika-for-multiple-devices.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/erika-for-multiple-devices.html</a>
+</li></ul>
+<p>Once downloaded, extract all the files contained in it and copy the folder named <i>eclipse</i> in your preferred directory on your PC (a recommended path is: C:\\Evidence\\).
+Now, launch the program by double-clicking on the executable <i>eclipse.exe</i>inside the <i>C:\Evidence\eclipse</i> folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+</p><p>If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+</p>
+<pre> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> -r number_of_revision
+</pre>
+<p>Note: 
+Cygwin can be downloaded from this web site: <a href="http://www.cygwin.com/" class="external free" rel="nofollow">http://www.cygwin.com/</a> 
+To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+</p><p>The Renesas RX200 plug-in for Eclipse is part of the official distribution of RT-Druid.
+</p>
+<ul><li> The procedure to update Erika and RT-Druid plugins is described at <a href="/wiki/index.php?title=Tutorial:_Update_ERIKA_and_RT-Druid" title="Tutorial: Update ERIKA and RT-Druid">Tutorial: Update ERIKA and RT-Druid</a>.
+</li></ul>
+<h1> <span class="mw-headline" id="Target_Configuration_and_Programming"> Target Configuration and Programming </span></h1>
+<p>ERIKA is configured through <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics"> RT-Druid and an OIL file</a>
+</p>
+<h2> <span class="mw-headline" id="Compiler_Path"> Compiler Path </span></h2>
+<p>It is possible to choose the path of the compiler in three different ways:
+</p>
+<ul><li> environment var:
+<ul><li> CCRX compiler: the CCRX_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+</li></ul>
+</li><li> configuration file:
+<ul><li> see <a href="/wiki/index.php?title=RT-Druid_configuration#Compiler_paths" title="RT-Druid configuration">RT-Druid configuration#Compiler paths</a>
+</li></ul>
+</li><li> gui:
+<ul><li>inside eclipse preferences, it is possible to set the paths of above compilers.
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="CPU"> CPU </span></h2>
+<p><code>CPU_DATA</code> must be set to <code>RX200</code>.<br />
+The exact model is specified with the <code>MODEL</code> item (supported values are <code>M0</code> for Cortex M0 and <code>M4</code> for Cortex M4).<br />
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (currently the only supported value is <code>CCRX&lt;code&gt;).<br />
+Example of a CPU_DATA section:
+</p><p>CPU_DATA = RX200 {
+</p>
+<pre>  APP_SRC = "code.c";
+  COMPILER_TYPE = CCRX;
+  MULTI_STACK = TRUE {
+      IRQ_STACK = TRUE {
+           SYS_SIZE=512;
+      };
+  };
+</pre>
+<p>};
+</p>
+<h2> <span class="mw-headline" id="MCU"> MCU </span></h2>
+<p>&lt;code&gt;MCU_DATA</code> must be set to <code>RENESAS</code> <br />
+The only item supported is <code>MODEL</code>. The model currently supported is the RF5210x<br />
+Example of a MCU_DATA section:
+</p>
+<pre>MCU_DATA = RENESAS {
+   MODEL = R5F5210x;
+};
+</pre>
+<h2> <span class="mw-headline" id="Interrupt_Handling"> Interrupt Handling </span></h2>
+<p>Renesas MCU R5F5210x is configured to have a flexible Interrupt Vector Table specified in  <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/renesas_r5f5210x/src/ee_vtable_ccrx.c" class="external free" rel="nofollow">http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/renesas_r5f5210x/src/ee_vtable_ccrx.c</a>.<br />
+Each entry is specified by the following macro:
+</p>
+<pre> EE_&lt;ARCH&gt;_&lt;ENTRY&gt;_ISR
+</pre>
+<p>Where <code>&lt;ARCH&gt;</code> is the architecture depended identifier (E.g. <code>RX200</code>), and <code>&lt;ENTRY&gt;</code> is the fixed Interrupt Vector Table Entry identifier (E.g. <code>CMIA0</code>).
+</p><p>To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+</p>
+<pre> ISR &lt;SYMBOL&gt; {
+   CATEGORY = &lt;ISR_TYPE&gt;;
+   ENTRY = "&lt;ENTRY&gt;";
+ };
+</pre>
+<p>Where <code>&lt;ISR_TYPE&gt;</code> is the type of the ISR (1 or 2), <code>&lt;SYMBOL&gt;</code> is the symbol that must be the parameter of <code>ISR&lt;ISR_TYPE&gt;()</code> ISR signature, and <code>&lt;ENTRY&gt;</code> is the variable Interrupt Vector Table Entry identifier.
+</p>
+<h1> <span class="mw-headline" id="Libraries"> Libraries </span></h1>
+<ul><li> The software libraries currently supported are those provided with Erika:
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/renesas_rskrx210" class="external text" rel="nofollow">Leds and Buttons</a>.
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/renesas_rskrx210" class="external text" rel="nofollow">Operating Frequency Setup</a>. 
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/renesas_r5f5210x" class="external text" rel="nofollow">System tick</a>. 
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="OIL_file_configuration"> OIL file configuration </span></h3>
+<p>To enable system tick routines, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre>EE_OPT = "__USE_SYSTICK__";
+</pre>
+<p>To enable board support library with Renesas RX210  starter kit, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre>EE_OPT = "__RSKRX210__";
+</pre>
+<p>To use the board's leds add: 
+</p>
+<pre>EE_OPT = "__USE_RSKRX120_USER_LED__";
+</pre>
+<p>To use the board's buttons add: 
+</p>
+<pre>EE_OPT = "__USE_RSKRX120_BUTTONS__";
+</pre>
+<p>To use the Operating Frequency Setup routine add:
+</p>
+<pre>EE_OPT = "__USE_RSKRX210_OP_FREQ_SETUP__";
+</pre>
+<p>If you want to add an external library, such as the Renesas RPDL library, and need to tell the linker to allocate the code Section "L" into the loadable module,
+the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre>EE_OPT = "__ADD_LIB_SECT__";
+</pre>
+<h1> <span class="mw-headline" id="Examples"> Examples </span></h1>
+<ul><li> The examples and tests are available in this folder:
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/porting_examples" class="external free" rel="nofollow">http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/porting_examples</a>: Porting examples.
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/rskrx210_base_demo" class="external free" rel="nofollow">http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/rskrx210_base_demo</a>: Base demo for the RX210 Starter Kit board that uses leds, buttons and the LCD module.
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="See_also"> See also </span></h1>
+<ul><li> <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>
+</li><li> <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li><li> <a href="http://am.renesas.com/products/mpumcu/rx/rx200/rx210/index.jsp" class="external text" rel="nofollow">Renesas RX210 architecture webpage.</a>
+</li><li> <a href="http://am.renesas.com/products/tools/introductory_evaluation_tools/renesas_starter_kits/rsk_rx210/index.jsp" class="external text" rel="nofollow">RX210 Starter Kit</a>
+</li><li> <a href="http://am.renesas.com/products/tools/ide/ide_hew/index.jsp" class="external text" rel="nofollow">Renesas High-performance Embedded Workshop </a>}
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 50/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

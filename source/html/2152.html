@@ -1,0 +1,30 @@
+<p>In the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a> you can find the <i>test_hw.jed</i> file. With this file is possible test all hardware device present on the FPG-EYE board. 
+</p>
+<ul><li> leds
+</li><li> boot flash
+</li><li> sram
+</li><li> sdram
+</li><li> rtc
+</li><li> light sensor
+</li><li> ethernet
+</li><li> camera
+</li></ul>
+<h2> <span class="mw-headline" id="Programming_test_hw_in_the_FPG-EYE"> Programming <i>test_hw</i> in the FPG-EYE </span></h2>
+<p>Once the file is extracted from <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a> you have to program the <i>test_hw.jed</i> in the board. The instructions are on <a href="/wiki/index.php?title=Programming_the_FPG-EYE_board" title="Programming the FPG-EYE board">Programming the FPG-EYE board</a> section.
+</p>
+<h2> <span class="mw-headline" id="FPG-EYE_test"> FPG-EYE test </span></h2>
+<p>The result of the tests is written on the RS232 port. So the FPG-EYE must be connected via serial cable to a PC where is running a serial program communication like HyperTerminal, putty, GTerminal etc. The output of the test on working board is something like the follow figure:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:352px;"><a href="/wiki/index.php?title=File:Test_working_fpg_eye.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e2/Test_working_fpg_eye.png" width="350" height="393" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Test_working_fpg_eye.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>FPG-EYE test ok</div></div></div></div>
+<p>In this figure is present a hardware bug (we removed the ethernet module):
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:352px;"><a href="/wiki/index.php?title=File:Test_no_working_fpg_eye.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0c/Test_no_working_fpg_eye.png" width="350" height="402" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Test_no_working_fpg_eye.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>FPG-EYE test ok</div></div></div></div>
+<p>Whenever the test of board reports an error you can try to turn off and then some minutes turn on the power supply. If the test reports again the bug please contact <a href="http://www.evidence.eu.com/" class="external text" rel="nofollow">Evidence S.r.l.</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

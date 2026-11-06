@@ -1,0 +1,614 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Types_Defintions"><span class="tocnumber">3.2</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#struct_Sci_ConfigType"><span class="tocnumber">3.2.1</span> <span class="toctext">struct Sci_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#enum_Sci_StatusType"><span class="tocnumber">3.2.2</span> <span class="toctext">enum Sci_StatusType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#typedef_uint_Sci_ChannelType"><span class="tocnumber">3.2.3</span> <span class="toctext">typedef uint Sci_ChannelType</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#typedef_void_.28.2ASci_TxNotification.29.28void.29"><span class="tocnumber">3.2.4</span> <span class="toctext">typedef void (*Sci_TxNotification)(void)</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#typedef_void_.28.2ASci_TxErrNotification.29.28void.29"><span class="tocnumber">3.2.5</span> <span class="toctext">typedef void (*Sci_TxErrNotification)(void)</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#typedef_void_.28.2ASci_RxNotification.29.28void.29"><span class="tocnumber">3.2.6</span> <span class="toctext">typedef void (*Sci_RxNotification)(void)</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#typedef_void_.28.2ASci_RxErrNotification.29.28void.29"><span class="tocnumber">3.2.7</span> <span class="toctext">typedef void (*Sci_RxErrNotification)(void)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Functions_Definitions"><span class="tocnumber">3.3</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#void_Sci_Init.28const_Sci_ConfigType_.2AConfigPtr.29"><span class="tocnumber">3.3.1</span> <span class="toctext">void Sci_Init(const Sci_ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#void_Sci_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.3.2</span> <span class="toctext">void Sci_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Std_ReturnType_Sci_WriteTxData.28Sci_ChannelType_Channel.2C_uint8_Data.29"><span class="tocnumber">3.3.3</span> <span class="toctext">Std_ReturnType Sci_WriteTxData(Sci_ChannelType Channel, uint8 Data)</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Std_ReturnType_Sci_ReadRxData.28Sci_ChannelType_Channel.2C_uint8_.2ADataPtr.29"><span class="tocnumber">3.3.4</span> <span class="toctext">Std_ReturnType Sci_ReadRxData(Sci_ChannelType Channel, uint8 *DataPtr)</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Sci_StatusType_Sci_GetStatus.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.5</span> <span class="toctext">Sci_StatusType Sci_GetStatus(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Std_ReturnType_Sci_GoToSleep.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.6</span> <span class="toctext">Std_ReturnType Sci_GoToSleep(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Std_ReturnType_Sci_Wakeup.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.7</span> <span class="toctext">Std_ReturnType Sci_Wakeup(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Std_ReturnType_Sci_CheckWakeup.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.8</span> <span class="toctext">Std_ReturnType Sci_CheckWakeup(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Std_ReturnType_Sci_DisableTx.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.9</span> <span class="toctext">Std_ReturnType Sci_DisableTx(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Std_ReturnType_Sci_EnableTx.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.10</span> <span class="toctext">Std_ReturnType Sci_EnableTx(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#Std_ReturnType_Sci_DisableRx.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.11</span> <span class="toctext">Std_ReturnType Sci_DisableRx(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="#Std_ReturnType_Sci_EnableRx.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.12</span> <span class="toctext">Std_ReturnType Sci_EnableRx(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-28"><a href="#void_Sci_EnableNotifications.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.13</span> <span class="toctext">void Sci_EnableNotifications(Sci_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#void_Sci_DisableNotifications.28Sci_ChannelType_Channel.29"><span class="tocnumber">3.3.14</span> <span class="toctext">void Sci_DisableNotifications(Sci_ChannelType Channel)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-30"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-31"><a href="#SCI_Data_byte_transmission_.28polling.29"><span class="tocnumber">4.1</span> <span class="toctext">SCI Data byte transmission (polling)</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#SCI_Data_byte_reception_.28polling.29"><span class="tocnumber">4.2</span> <span class="toctext">SCI Data byte reception (polling)</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#SCI_Data_byte_transmission_.28polling.29_-_Transmission_Error"><span class="tocnumber">4.3</span> <span class="toctext">SCI Data byte transmission (polling) - Transmission Error</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#SCI_Data_byte_reception_.28polling.29_-_Reception_Error"><span class="tocnumber">4.4</span> <span class="toctext">SCI Data byte reception (polling) -  Reception Error</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#SCI_Data_byte_transmission_.28interrupt.29"><span class="tocnumber">4.5</span> <span class="toctext">SCI Data byte transmission (interrupt)</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#SCI_Data_byte_reception_.28interrupt.29"><span class="tocnumber">4.6</span> <span class="toctext">SCI Data byte reception (interrupt)</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#SCI_Data_byte_transmission_.28interrupt.29_-_Transmission_Error"><span class="tocnumber">4.7</span> <span class="toctext">SCI Data byte transmission (interrupt) - Transmission Error</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#SCI_Data_byte_reception_.28interrupt.29_-_Reception_Error"><span class="tocnumber">4.8</span> <span class="toctext">SCI Data byte reception (interrupt) -  Reception Error</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-39"><a href="#Build"><span class="tocnumber">5</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-40"><a href="#Supported_Architectures"><span class="tocnumber">6</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-41"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">6.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-42"><a href="#Driver_Configuration"><span class="tocnumber">6.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-4 tocsection-43"><a href="#Configuration_Selection"><span class="tocnumber">6.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-4 tocsection-44"><a href="#API_Selection"><span class="tocnumber">6.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-45"><a href="#Interrupts"><span class="tocnumber">6.1.2</span> <span class="toctext">Interrupts</span></a></li>
+<li class="toclevel-3 tocsection-46"><a href="#Implemetations_Demos"><span class="tocnumber">6.1.3</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The SCI [Serial Communication Interface] Driver and provides serial communications services.
+</p><p>The SCI Driver is part of the microcontroller abstraction layer (MCAL), performs the hardware access and offers a
+hardware independent API to the upper layer.
+</p><p>The SCI Driver can support more than one channel. This means that the SCI driver can handle one or more SCI channels as long as
+they are belonging to the same SCI hardware unit as shown in the figure below.
+</p><p><a href="/wiki/index.php?title=File:SCI_Architecture.png" class="image"><img alt="SCI Architecture.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c4/SCI_Architecture.png" width="565" height="435" /></a>
+</p><p>Only one SCI channel of an ECU is allowed to connect to a particular Transceiver. Unless there are unused (not connected) channels in the ECU, the number of SCI channels is equal to the number of Transceivers the hardware can potentially connects to.
+</p><p>The hardware of the internal SCI hardware unit depends on the system clock, prescaler(s) and PLL. Hence, the length of the SCI bit timing depends on the clock settings made in module SCI. The SCI driver module will not take care of setting the registers that configure the clock, prescaler(s) and PLL (e.g. switching on/off the PLL) in its init functions.
+</p><p>The MCU module must do this.
+</p><p>The Port driver configures the port pins used for the SCI driver as input or output. Hence, the Port driver has to be initialized prior to the use of SCI functions. Otherwise, SCI driver functions will exhibit undefined behavior
+.
+The SCI driver uses interrupts and therefore there is a dependency on the OS, which configures the interrupt sources.
+</p><p>The SCI driver has a state machine that is shown in the figure below.
+</p><p><a href="/wiki/index.php?title=File:SCI_STATE.png" class="image"><img alt="SCI STATE.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/46/SCI_STATE.png" width="871" height="771" /></a>
+</p><p><b>Module State</b>
+</p>
+<ul><li> <i>SCI_UNINIT</i>: The state <i>SCI_UNINIT</i> means that the Sci module has not been initialized yet and cannot be used.
+</li><li> <i>SCI_INIT</i>: The <i>SCI_INIT</i> state indicates that the SCI driver has been initialized, making each available channel ready for service.
+</li></ul>
+<p><b>Channel State</b>
+</p>
+<ul><li> <i>SCI_CH_OPERATIONAL</i>: The individual channel has been initialized (using at least one statically configured data set) and is able to communicate.
+</li><li> <i>SCI_CH_SLEEP</i>: The SCI hardware is into a low power mode if such a mode is provided by the hardware.
+</li></ul>
+<ul><li> <i>Reset</i> -&gt; <i>SCI_UNINIT</i>: After reset, the Sci module shall set its state to <i>SCI_UNINIT</i>.
+</li><li> <i>SCI_UNINIT</i> -&gt; <i>SCI_INIT</i>: The Sci module shall transition from <i>SCI_UNINIT</i> to <i>SCI_INIT</i> when the function <i>Sci_Init()</i> is called.
+</li><li> <i>SCI_INIT</i> -&gt; <i>SCI_UNINIT</i>: The Sci module shall transition from <i>SCI_INIT</i> to <i>SCI_UNINIT</i> when the function <i>Sci_DeInit()</i> is calle
+</li></ul>
+<p>On entering the state <i>SCI_INIT</i>, the Sci module shall set each channel into state <i>SCI_CH_OPERATIONAL</i>.
+</p>
+<ul><li> <i>SCI_CH_OPERATIONAL</i> -&gt; <i>SCI_CH_SLEEP</i>: If a <i>Sci_GoToSleep()</i> function is called, the Sci module enters in the <i>SCI_CH_SLEEP</i> state.
+</li><li> <i>SCI_CH_SLEEP</i> -&gt; <i>SCI_CH_OPERATIONAL</i>: if a <i>Sci_Wakeup()</i> functions is called, the Sci module go back in the state <i>SCI_CH_OPERATIONAL</i>.
+</li></ul>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:SCI_Driver_File_structure.png" class="image"><img alt="SCI Driver File structure.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0e/SCI_Driver_File_structure.png" width="927" height="658" /></a>
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Sci_ConfigType"> <i>struct Sci_ConfigType</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>SCI Configuration Parameters.
+</p><p>The structure <i>Sci_ConfigType</i> is an external data structure (i.e. implementation specific) and shall contain the initialization data for the SCI module.
+</p><p>It shall contain:
+</p>
+<ul><li> SCI dependent properties
+</li><li> SCI hardware units initialization parameters
+</li><li> SFR's [Special Function Register] settings affecting the SCI channels
+</li></ul>
+<h4> <span class="mw-headline" id="enum_Sci_StatusType"> <i>enum Sci_StatusType</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>SCI Status Type.
+</p><p>The type <i>Sci_StatusType</i> is the type of the return value of the API function <i>Sci_GetStatus()</i>.
+</p><p>The type of <i>Sci_StatusType</i> is an enumeration describing the operation states for a SCI channel or for a SCI communication.
+</p><p><b>Enumerator</b>:
+</p>
+<ul><li> <i>SCI_NOT_OK</i>: Development or production error occurred.
+</li><li> <i>SCI_TX_OK</i>: Successful transmission.
+</li><li> <i>SCI_TX_BUSY</i>: Ongoing transmission.
+</li><li> <i>SCI_TX_ERROR</i>: Erroneous transmission such as:
+<ul><li> Transmission disabled.
+</li><li> Physical bus error.
+</li></ul>
+</li><li> <i>SCI_RX_OK</i>: Successful reception.
+</li><li> <i>SCI_RX_BUSY</i>: Ongoing reception.
+</li><li> <i>SCI_RX_ERROR</i>: Erroneous reception such as:
+<ul><li> Reception disabled.
+</li><li> Parity error.
+</li><li> Framing error.
+</li><li> Overrun error.
+</li></ul>
+</li><li> <i>SCI_OPERATIONAL</i>: Normal operation; the related SCI channel is ready to transmit or receive. No data from previous communication available (e.g. after
+</li></ul>
+<p>initialization).
+</p>
+<ul><li> <i>SCI_CH_SLEEP</i>: Sleep state operation; in this state wake-up detection is enabled.
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Sci_ChannelType"> <i>typedef uint Sci_ChannelType</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Type.
+</p><p>Parameters of type <i>Sci_ChannelType</i> contain the numeric ID of a SCI channel.
+</p><p>The mapping of the ID is implementation specific but not configurable.
+</p><p>For parameter values of type <i>Sci_ChannelType</i>, the Sci's user shall use the symbolic names provided by the configuration description.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>, depending on μC platform.
+</p>
+<h4> <span class="mw-headline" id="typedef_void_.28.2ASci_TxNotification.29.28void.29"> <i>typedef void (*Sci_TxNotification)(void)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Transmission Notifications Callback.
+</p><p>The notification prototype <i>Sci_TxNotification()</i> is for the transmission notifications callback function and shall be implemented by the user.
+</p><p>The SCI module's environment shall declare a separate transmission notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency
+.
+The transmission notifications callback <i>Sci_TxNotification_&lt;channel&gt;()</i> shall be configurable as pointers to user defined functions within the configuration structure.
+</p><p>Each channel shall provide its own transmission notifications callback if configured.
+</p><p>When disabled, the SCI Driver will send no transmission notifications.
+</p><p>The SCI Driver shall invoke a notification callback whenever a transmission event occurred on channel.
+</p><p>The ISR's, providing the SCI events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+</p><p>For all available channels, callback functions have to be declared by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="typedef_void_.28.2ASci_TxErrNotification.29.28void.29"> <i>typedef void (*Sci_TxErrNotification)(void)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Transmission Errors Notifications Callback.
+</p><p>The notification prototype <i>Sci_TxErrNotification()</i> is for the transmission errors notifications callback function and shall be implemented by the user.
+</p><p>The SCI module's environment shall declare a separate transmission errors notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency.
+</p><p>The transmission errors notifications callback <i>Sci_TxErrNotification_&lt;channel&gt;()</i> shall be configurable as pointers to user defined functions within the configuration structure.
+</p><p>Each channel shall provide its own transmission errors notifications callback if configured.
+</p><p>When disabled, the SCI Driver will send no transmission errors notifications.
+</p><p>The SCI Driver shall invoke a notification callback whenever a transmission error occurred on channel.
+</p><p>The ISR's, providing the SCI events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+</p><p>For all available channels, callback functions have to be declared by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="typedef_void_.28.2ASci_RxNotification.29.28void.29"> <i>typedef void (*Sci_RxNotification)(void)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Reception Notifications Callback.
+</p><p>The notification prototype <i>Sci_RxNotification()</i> is for the reception notifications callback function and shall be implemented by the user.
+</p><p>The SCI module's environment shall declare a separate reception notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency
+.
+The reception notifications callback <i>Sci_RxNotification_&lt;channel&gt;()</i> shall be configurable as pointers to user defined functions within the configuration structure.
+</p><p>Each channel shall provide its own reception notifications callback if configured.
+</p><p>When disabled, the SCI Driver will send no reception notifications.
+</p><p>The SCI Driver shall invoke a notification callback whenever a reception event occurred on channel.
+</p><p>The ISR's, providing the SCI events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+</p><p>For all available channels, callback functions have to be declared by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="typedef_void_.28.2ASci_RxErrNotification.29.28void.29"> <i>typedef void (*Sci_RxErrNotification)(void)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Reception Errors Notifications Callback.
+</p><p>The notification prototype <i>Sci_RxErrNotification()</i> is for the reception errors notifications callback function and shall be implemented by the user.
+</p><p>The SCI module's environment shall declare a separate reception errors notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency
+.
+The reception errors notifications callback <i>Sci_RxErrNotification_&lt;channel&gt;()</i> shall be configurable as pointers to user defined functions within the configuration structure.
+</p><p>Each channel shall provide its own reception errors notifications callback if configured.
+</p><p>When disabled, the SCI Driver will send no reception errors notifications.
+</p><p>The SCI Driver shall invoke a notification errors callback whenever a reception error event occurred on channel.
+</p><p>The ISR's, providing the SCI events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+</p><p>For all available channels, callback functions have to be declared by the configuration tool.
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="void_Sci_Init.28const_Sci_ConfigType_.2AConfigPtr.29"> <i>void Sci_Init(const Sci_ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>SCI Driver Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr</i>:	Pointer to SCI driver configuration set.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service initializes the SCI driver.
+</p><p>Service 0x00
+</p><p>The function <i>Sci_Init()</i> shall initialize the Sci module (i.e. static variables, including flags and SCI hardware unit global hardware settings), as well as the SCI channels.
+</p><p>Different sets of static configuration may have been configured.
+</p><p>The function <i>Sci_Init()</i> shall initialize the module according to the configuration set pointed to by the parameter <i>ConfigPtr</i>.
+</p><p>The function <i>Sci_Init()</i> shall invoke initializations for relevant hardware register settings common to all channels available on the SCI hardware unit.
+</p><p>The function <i>Sci_Init()</i> shall also invoke initializations for SCI channel specific settings.
+</p><p>The SCI module’s environment shall not call any function of the Sci module before having called <i>Sci_Init()</i> except <i>Sci_GetVersionInfo()</i>.
+</p><p>Symbolic names of the available configuration sets are provided by the configuration description of the SCI driver.
+</p>
+<h4> <span class="mw-headline" id="void_Sci_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Sci_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>SCI Driver version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>:	Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service retrieves the SCI driver version informations.
+</p><p>Service 0x01
+</p><p>The function <i>Sci_GetVersionInfo()</i> shall return the version information of the SCI module.
+</p><p>The version information includes:
+</p>
+<ul><li> Module Id
+</li><li> Vendor Id
+</li><li> Vendor specific version numbers
+</li></ul>
+<p>The function <i>Sci_GetVersionInfo()</i> shall be configurable On/Off by the configuration parameter <i>SciVersionInfoApi</i>.
+</p><p>If source code for caller and callee of the function <i>Sci_GetVersionInfo()</i> is available, the SCI module should realize this function as a macro.
+</p><p>The SCI module should define this macro in the module’s header file.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_WriteTxData.28Sci_ChannelType_Channel.2C_uint8_Data.29"> <i>Std_ReturnType Sci_WriteTxData(Sci_ChannelType Channel, uint8 Data)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Tx Data Write.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li><li> <i>Data</i>:	Data byte to be write
+</li></ul>
+<p>Returns:
+</p>
+<ul><li> <i>E_OK</i>:	Write command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Write command has not been accepted
+</li></ul>
+<p>The service writes a Data byte into the Tx data register of the SCI HW Unit for the addressed Channel.
+</p><p>Service 0x02
+</p><p>The SCI module's environment shall only call <i>Sci_WriteTxData()</i> on a channel which is in state <i>SCI_OPERATIONAL</i> or in one of the sub-states of <i>SCI_OPERATIONAL</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_ReadRxData.28Sci_ChannelType_Channel.2C_uint8_.2ADataPtr.29"> <i>Std_ReturnType Sci_ReadRxData(Sci_ChannelType Channel, uint8 *DataPtr)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Rx Data Read.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li><li> <i>DataPtr</i>:	Buffer pointer for the Data byte to be read
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	Read command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Read command has not been accepted
+</li></ul>
+<p>The service reads a Data byte from the Rx data register of the SCI HW Unit for the addressed Channel.
+</p><p>Service 0x03
+</p><p>The SCI module's environment shall only call <i>Sci_ReadRxData()</i> on a channel which is in state <i>SCI_OPERATIONAL</i> or in one of the sub-states of <i>SCI_OPERATIONAL</i>.
+</p>
+<h4> <span class="mw-headline" id="Sci_StatusType_Sci_GetStatus.28Sci_ChannelType_Channel.29"> <i>Sci_StatusType Sci_GetStatus(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>SCI Channel Status Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:		ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>SCI_NOT_OK</i>:	Development or production error occurred
+</li><li> <i>SCI_TX_OK</i>:	Successful transmission.
+</li><li> <i>SCI_TX_BUSY</i>:	Ongoing transmission.
+</li><li> <i>SCI_TX_ERROR</i>:	Erroneous transmission such as:
+<ul><li> Transmission disabled.
+</li><li> Physical bus error.
+</li></ul>
+</li><li> <i>SCI_RX_OK</i>:	Successful reception.
+</li><li> <i>SCI_RX_BUSY</i>:	Ongoing reception.
+</li><li> <i>SCI_RX_ERROR</i>:	Erroneous reception such as:
+<ul><li> Reception disabled.
+</li><li> Parity error.
+</li><li> Framing error.
+</li><li> Overrun error.
+</li></ul>
+</li><li> <i>SCI_OPERATIONAL</i>:	Normal operation; the related SCI channel is ready to transmit or receive. No data from previous communication available (e.g. after initialization).
+</li><li> <i>SCI_CH_SLEEP</i>:	Sleep state operation; in this state wake-up detection is enabled.
+</li></ul>
+<p>The service gets the status of the specified SCI channel.
+</p><p>Service 0x08
+</p><p>The function <i>Sci_GetStatus()</i> shall return the current transmission, reception or operation status of the SCI driver.
+</p><p>The return states <i>SCI_TX_OK</i>, <i>SCI_TX_BUSY</i>, <i>SCI_TX_ERROR</i>, <i>SCI_RX_OK</i>, <i>SCI_RX_BUSY</i> and <i>SCI_RX_ERROR</i> are substates of the channel state <i>SCI_CH_OPERATIONAL</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_GoToSleep.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_GoToSleep(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Go To Sleep.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	command has been accepted
+</li><li> <i>E_NOT_OK</i>:	command has not been accepted
+</li></ul>
+<p>The service instructs the driver to set the addressed SCI channel in the state <i>SCI_CH_SLEEP</i>.
+</p><p>Service 0x06
+</p><p>The function <i>Sci_GoToSleep()</i> shall set the channel state to <i>SCI_CH_SLEEP</i>.
+</p><p>The function <i>Sci_GoToSleep()</i> shall optionally set the SCI hardware unit to reduced power operation mode (if supported by HW).
+</p><p>The SCI channel shall enter <i>SCI_CH_SLEEP</i> state even in case of an erroneous transmission/reception.
+</p><p>The function <i>Sci_GoToSleep()</i> shall terminate ongoing frame transmission of prior transmission requests, even if the transmission is unsuccessfully completed.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_Wakeup.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_Wakeup(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Wake-up.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	command has been accepted
+</li><li> <i>E_NOT_OK</i>:	command has not been accepted
+</li></ul>
+<p>The service generates a wake-up pulse on the addressed SCI channel.
+</p><p>Service 0x07
+</p><p>The function <i>Sci_Wakeup()</i> shall generate a wake up pulse on the addressed SCI channel.
+</p><p>The SCI driver's environment shall only call <i>Sci_Wakeup()</i> when the SCI channel is in state <i>SCI_CH_SLEEP</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_CheckWakeup.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_CheckWakeup(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Wake-up Check.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	SCI Channel Waked-up
+</li><li> <i>E_NOT_OK</i>:	SCI Channel Sleep
+</li></ul>
+<p>This service checks if a wake-up has occurred on the addressed SCI channel.
+</p><p>Service 0x0A
+</p><p>The function <i>Sci_CheckWakeup()</i> shall evaluate the wake-up on the addressed SCI channel.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_DisableTx.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_DisableTx(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Transmission Disable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	Command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Command has not been accepted
+</li></ul>
+<p>The service instructs the driver to disable the transmission for the addressed SCI channel.
+</p><p>Service 0x0B
+</p><p>The function <i>Sci_DisableTx()</i> shall terminate ongoing transmission of prior transmission requests, even if the transmission is unsuccessfully completed.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_EnableTx.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_EnableTx(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Transmission Enable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	Command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Command has not been accepted
+</li></ul>
+<p>The service instructs the driver to enable the transmission for the addressed SCI channel.
+</p><p>Service 0x0B
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_DisableRx.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_DisableRx(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Reception Disable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	Command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Command has not been accepted
+</li></ul>
+<p>The service instructs the driver to disable the reception for the addressed SCI channel.
+</p><p>Service 0x0C
+</p><p>The function <i>Sci_DisableRx()</i> shall terminate ongoing transmission of prior reception requests, even if the reception is unsuccessfully completed.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Sci_EnableRx.28Sci_ChannelType_Channel.29"> <i>Std_ReturnType Sci_EnableRx(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Reception Enable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	Command has been accepted
+</li><li> <i>E_NOT_OK</i>:	Command has not been accepted
+</li></ul>
+<p>The service instructs the driver to enable the reception for the addressed SCI channel.
+</p><p>Service 0x0D
+</p>
+<h4> <span class="mw-headline" id="void_Sci_EnableNotifications.28Sci_ChannelType_Channel.29"> <i>void Sci_EnableNotifications(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Notifications Enable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service enables the interrupt notifications for a channel.
+</p><p>Service 0x04
+</p><p>The function <i>Sci_EnableNotifications()</i> shall enable the interrupt notifications of the referenced channel configured for notifications.
+</p><p>The function shall save an attribute like "notifications enabled" of the channel.
+</p><p>'<i>Note</i>: This attribute affects the interrupt notifications always when the channel is in <i>SCI_OPERATIONAL</i> state or substates. In <i>SCI_CH_SLEEP</i> state the attribute has no influence.
+</p><p>The function <i>Sci_EnableNotifications()</i> shall be reentrant, if the SCI channels used in concurrent calls are different.
+</p><p>The function <i>Sci_EnableNotifications()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>SciEnableDisableNotificationsApi</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Sci_DisableNotifications.28Sci_ChannelType_Channel.29"> <i>void Sci_DisableNotifications(Sci_ChannelType Channel)</i> </span></h4>
+<pre> #include "Sci.h"
+</pre>
+<p>Channel Notifications Disable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	ID of SCI Channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service disables the interrupt notifications for a channel.
+</p><p>Service 0x05
+</p><p>The function <i>Sci_DisableNotifications()</i> shall disable the interrupt notifications of the referenced channel configured for notifications.
+</p><p>The function shall save an attribute like "notifications disabled" of the channel.
+</p><p>'<i>Note</i>: This attribute affects the interrupt notifications always when the channel is in <i>SCI_OPERATIONAL</i> state or substates. In <i>SCI_CH_SLEEP</i> state the attribute has no influence.
+</p><p>The function <i>Sci_DisableNotifications()</i> shall be reentrant, if the SCI channels used in concurrent calls are different.
+</p><p>The function <i>Sci_DisableNotifications()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>SciDisableDisableNotificationsApi</i>.
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="SCI_Data_byte_transmission_.28polling.29"> SCI Data byte transmission (polling) </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_WriteTxData_Seq_Dia.png" class="image"><img alt="Sci WriteTxData Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e0/Sci_WriteTxData_Seq_Dia.png" width="948" height="550" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_reception_.28polling.29"> SCI Data byte reception (polling) </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_ReadRxData_Seq_Dia.png" class="image"><img alt="Sci ReadRxData Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ad/Sci_ReadRxData_Seq_Dia.png" width="930" height="670" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_transmission_.28polling.29_-_Transmission_Error"> SCI Data byte transmission (polling) - Transmission Error </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_WriteTxData_Err_Seq_Dia.png" class="image"><img alt="Sci WriteTxData Err Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6a/Sci_WriteTxData_Err_Seq_Dia.png" width="960" height="550" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_reception_.28polling.29_-_Reception_Error"> SCI Data byte reception (polling) -  Reception Error </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_ReadRxData_Err_Seq_Dia.png" class="image"><img alt="Sci ReadRxData Err Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b7/Sci_ReadRxData_Err_Seq_Dia.png" width="946" height="530" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_transmission_.28interrupt.29"> SCI Data byte transmission (interrupt) </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_WriteTxData_Int_Seq_Dia.png" class="image"><img alt="Sci WriteTxData Int Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d4/Sci_WriteTxData_Int_Seq_Dia.png" width="940" height="590" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_reception_.28interrupt.29"> SCI Data byte reception (interrupt) </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_ReadRxData_Int_Seq_Dia.png" class="image"><img alt="Sci ReadRxData Int Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1f/Sci_ReadRxData_Int_Seq_Dia.png" width="930" height="640" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_transmission_.28interrupt.29_-_Transmission_Error"> SCI Data byte transmission (interrupt) - Transmission Error </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_WriteTxData_Int_Err_Seq_Dia.png" class="image"><img alt="Sci WriteTxData Int Err Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b4/Sci_WriteTxData_Int_Err_Seq_Dia.png" width="940" height="590" /></a>
+</p>
+<h3> <span class="mw-headline" id="SCI_Data_byte_reception_.28interrupt.29_-_Reception_Error"> SCI Data byte reception (interrupt) -  Reception Error </span></h3>
+<p><a href="/wiki/index.php?title=File:Sci_ReadRxData_Int_Err_Seq_Dia.png" class="image"><img alt="Sci ReadRxData Int Err Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b8/Sci_ReadRxData_Int_Err_Seq_Dia.png" width="930" height="640" /></a>
+</p>
+<h2> <span class="mw-headline" id="Build"> Build </span></h2>
+<p>To enable AUTOSAR SCI Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_SCI_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Sci_Cfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<h4> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h4>
+<p>In order to configure the AUTOSAR-like SCI Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Sci" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_SCI.png" class="new" title="File:Erika Driver Configurator SCI.png">File:Erika Driver Configurator SCI.png</a>
+</p>
+<h5> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h5>
+<p>In this section you can add/edit/delete configurations in SCI Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li><li> Each configuration, inside the configurations set, has a set of Channels.
+<ul><li> Each Channel SHALL have a <i>Name</i> which must be unique inside the Channels.
+</li></ul>
+</li></ul>
+<h5> <span class="mw-headline" id="API_Selection"> API Selection </span></h5>
+<p>In this section you can select SCI Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Version Info</i>: <i>Sci_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_SCI_set.png" class="new" title="File:Erika Driver Configurator SCI set.png">File:Erika Driver Configurator SCI set.png</a>
+</p>
+<h4> <span class="mw-headline" id="Interrupts"> Interrupts </span></h4>
+<p>To use the SCI driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for every SCI Channel:
+</p>
+<pre> ISR Sci_Channel_&lt;Channel Number&gt;_ISR {
+   CATEGORY = 2;
+   ENTRY = "UART_&lt;Channel Number&gt;";
+   PRIORITY = &lt;ISR Priority&gt;;
+ };
+</pre>
+<p>Where <code>&lt;Channel Number&gt;</code> is the "channel number" as stated in the SCI Driver Channel Identifier of the channel and <code>&lt;ISR Priority&gt;</code> is a number indicating the level of priority (0: Lowest).
+</p>
+<h4> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h4>
+<p>Implementation Demos of the AUTOSAR-like SCI Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 182/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

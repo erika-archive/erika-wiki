@@ -1,0 +1,274 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Mplabx.beta4-newproject.08.png</title>
+    <id>1747</id>
+    <revision>
+      <id>2289</id>
+      <timestamp>2011-02-03T09:44:33Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: summary of the project creation process.</comment>
+      <text xml:space="preserve">Mplabx.beta4: summary of the project creation process.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.09.png</title>
+    <id>1749</id>
+    <revision>
+      <id>2295</id>
+      <timestamp>2011-02-03T10:55:47Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: the pic30 project loaded</comment>
+      <text xml:space="preserve">Mplabx.beta4: the pic30 project loaded</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.10.png</title>
+    <id>1750</id>
+    <revision>
+      <id>2296</id>
+      <timestamp>2011-02-03T10:59:09Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: how to select the project properties.</comment>
+      <text xml:space="preserve">Mplabx.beta4: how to select the project properties.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.11.png</title>
+    <id>1751</id>
+    <revision>
+      <id>2297</id>
+      <timestamp>2011-02-03T11:04:06Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4:  how to select the serial number of the programmer.</comment>
+      <text xml:space="preserve">Mplabx.beta4:  how to select the serial number of the programmer.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.12.png</title>
+    <id>1753</id>
+    <revision>
+      <id>2299</id>
+      <timestamp>2011-02-03T11:14:25Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: how to select the run command.</comment>
+      <text xml:space="preserve">Mplabx.beta4: how to select the run command.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-newproject.13.png</title>
+    <id>1752</id>
+    <revision>
+      <id>2298</id>
+      <timestamp>2011-02-03T11:13:46Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: end of a successful programming process.</comment>
+      <text xml:space="preserve">Mplabx.beta4: end of a successful programming process.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mplabx.beta4-welcome.01.png</title>
+    <id>1740</id>
+    <revision>
+      <id>2282</id>
+      <timestamp>2011-02-03T08:48:23Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>Mplabx.beta4: welcome</comment>
+      <text xml:space="preserve">Mplabx.beta4: welcome</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Msb open.png</title>
+    <id>2073</id>
+    <revision>
+      <id>3427</id>
+      <timestamp>2011-09-28T10:26:13Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3489</id>
+      <timestamp>2011-09-28T15:53:22Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Msb open.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Msb perspective.png</title>
+    <id>2094</id>
+    <revision>
+      <id>3492</id>
+      <timestamp>2011-09-28T15:56:54Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Multi dpm.png</title>
+    <id>2491</id>
+    <revision>
+      <id>5894</id>
+      <timestamp>2014-11-10T13:39:21Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Multibus eth.PNG</title>
+    <id>1611</id>
+    <revision>
+      <id>1957</id>
+      <timestamp>2010-05-12T08:09:40Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Name.PNG</title>
+    <id>1497</id>
+    <revision>
+      <id>1726</id>
+      <timestamp>2009-12-02T16:42:41Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Name.png</title>
+    <id>2253</id>
+    <revision>
+      <id>4451</id>
+      <timestamp>2012-01-26T16:10:55Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4452</id>
+      <timestamp>2012-01-26T16:13:32Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Name.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Name project.png</title>
+    <id>1780</id>
+    <revision>
+      <id>2601</id>
+      <timestamp>2011-02-15T14:36:16Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Add name project</comment>
+      <text xml:space="preserve">Add name project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Name project diamond.png</title>
+    <id>2193</id>
+    <revision>
+      <id>4141</id>
+      <timestamp>2011-11-14T15:05:08Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:NewWorkspace.png</title>
+    <id>2512</id>
+    <revision>
+      <id>5994</id>
+      <timestamp>2015-11-06T10:04:42Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>5995</id>
+      <timestamp>2015-11-06T10:08:01Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:NewWorkspace.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

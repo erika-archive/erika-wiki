@@ -1,0 +1,1 @@
+Generic scheme of the usage of the ring buffer inside the Xen ARM PV protocol

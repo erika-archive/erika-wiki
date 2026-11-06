@@ -1,0 +1,14 @@
+The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+
+This stack configuration can only be used when the scheduling algorithm implemented by the kernel insures that there is not an interleaving among the various tasks in the system.
+
+That is, the kernel must guarantee that there are no blocking primitives implemented in the system. OSEK/VDX Immediate Priority Ceiling Protocol guarantees that property.
+
+The Monostack configuration has some nice properties, in particular due to the fact that, in the FP, EDF, and FRSH kernels, there is no need to save registers when a context switch happens because a task called a primitive.
+
+Most the code required for Monostack is probably already available in among the [[Common files for the HAL]].  See the [[Freescale PPC e200 (MPC 56xx)]] or the [[Lattice Mico32]] porting for examples on how to use them.
+
+# [[Writing a mono-stack application without interrupts]]
+# [[Writing a mono-stack with interrupt not nested]]
+# [[Writing a mono-stack with nested interrupts]]
+# [[Implementing TerminateTask]]

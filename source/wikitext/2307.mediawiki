@@ -1,0 +1,164 @@
+= Renesas RX200 Series support =
+
+ERIKA Enterprise supports Renesas RX200 series microcontrollers, in particular the [https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html RX210] and [https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html RX130] Groups.
+The support for RT-Druid is now available.<br>
+
+Due to customer restrictions, the [https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html RX130] porting is not yet public. If you want to get more information about the [https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rx/rx200/rx210.html RX130] porting, please contact [mailto:info@evidence.eu.com info@evidence.eu.com].
+
+The Renesas RX200 support includes: 
+# support for [https://www.renesas.com/en-eu/products/software-tools/tools/compiler-assembler/compiler-package-for-rx-family.html C/C++ Compiler Package for RX Family];
+# support for single and multi stack configurations;
+# ISR Type 1 and Type 2 supported;
+# support for Renesas [https://www.renesas.com/en-sg/products/software-tools/tools/emulator/e1.html E1] debugger/emulator;
+
+* Supported IDEs:
+** Renesas [https://www.renesas.com/en-us/products/software-tools/tools/ide/hew.html High-performance Embedded Workshop];
+** Renesas [https://www.renesas.com/en-us/products/software-tools/tools/ide/e2studio.html e2studio] IDE;
+
+* Mode of operation:
+** Mono-stack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+** Multi-stack HAL: Every task can have its private stack, or it can share it with other tasks.
+
+=== MCUs ===
+
+* The MCU currently supported is the following:
+** R5F52108xxxx
+** R5F51308xxxx
+
+=== Boards ===
+
+* The board currently supported is the following:
+** [https://www.renesas.com/en-eu/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx210.html Renesas Starter Kit for RX210] (part number R0K505210S000BE)
+** [https://www.renesas.com/en-us/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx130-512kb.html Renesas Starter Kit for RX130-512KB] (part number RTK5051308C00000BE)
+
+* List of functions:
+** [https://www.renesas.com/en-eu/products/software-tools/boards-and-kits/renesas-starter-kits/renesas-starter-kit-for-rx210.html Renesas Starter Kit for RX210] is supported by Erika RTOS. Currently only leds, buttons and the LCD module are supported.
+
+= Download and install =
+
+RT-Druid and Erika Enterprise RTOS (version 1.6.1) can be freely downloaded from the following web address:
+* http://erika.tuxfamily.org/erika-for-multiple-devices.html
+
+Once downloaded, extract all the files contained in it and copy the folder named ''eclipse'' in your preferred directory on your PC (a recommended path is: C:\\Evidence\\).
+Now, launch the program by double-clicking on the executable ''eclipse.exe''inside the ''C:\Evidence\eclipse'' folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+
+If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+  svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee -r number_of_revision
+
+Note: 
+Cygwin can be downloaded from this web site: http://www.cygwin.com/ 
+To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+
+The Renesas RX200 plug-in for Eclipse is part of the official distribution of RT-Druid.
+* The procedure to update Erika and RT-Druid plugins is described at [[Tutorial: Update ERIKA and RT-Druid]].
+
+= Target Configuration and Programming =
+
+ERIKA is configured through [[Tutorial: RT-Druid and OIL basics | RT-Druid and an OIL file]]
+
+== Compiler Path ==
+
+It is possible to choose the path of the compiler in three different ways:
+
+* environment var:
+** CCRX compiler: the CCRX_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+* configuration file:
+** see [[RT-Druid configuration#Compiler paths]]
+* gui:
+**inside eclipse preferences, it is possible to set the paths of above compilers.
+
+== CPU ==
+
+<code>CPU_DATA</code> must be set to <code>RX200</code>.<br>
+The exact model is specified with the <code>MODEL</code> item (supported values are <code>M0</code> for Cortex M0 and <code>M4</code> for Cortex M4).<br>
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (currently the only supported value is <code>CCRX<code>).<br>
+Example of a CPU_DATA section:
+
+CPU_DATA = RX200 {
+   APP_SRC = "code.c";
+   COMPILER_TYPE = CCRX;
+   MULTI_STACK = TRUE {
+       IRQ_STACK = TRUE {
+            SYS_SIZE=512;
+       };
+   };
+};
+
+== MCU ==
+
+<code>MCU_DATA</code> must be set to <code>RENESAS</code> <br>
+The only item supported is <code>MODEL</code>. The model currently supported is the RF5210x<br>
+Example of a MCU_DATA section:
+
+ MCU_DATA = RENESAS {
+    MODEL = R5F5210x;
+ };
+
+== Interrupt Handling ==
+
+Renesas MCU R5F5210x is configured to have a flexible Interrupt Vector Table specified in  http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/renesas_r5f5210x/src/ee_vtable_ccrx.c.<br>
+Each entry is specified by the following macro:
+
+  EE_<ARCH>_<ENTRY>_ISR
+
+Where <code><ARCH></code> is the architecture depended identifier (E.g. <code>RX200</code>), and <code><ENTRY></code> is the fixed Interrupt Vector Table Entry identifier (E.g. <code>CMIA0</code>).
+
+To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+
+  ISR <SYMBOL> {
+    CATEGORY = <ISR_TYPE>;
+    ENTRY = "<ENTRY>";
+  };
+
+Where <code><ISR_TYPE></code> is the type of the ISR (1 or 2), <code><SYMBOL></code> is the symbol that must be the parameter of <code>ISR<ISR_TYPE>()</code> ISR signature, and <code><ENTRY></code> is the variable Interrupt Vector Table Entry identifier.
+
+= Libraries =
+
+* The software libraries currently supported are those provided with Erika:
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/renesas_rskrx210 Leds and Buttons].
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/board/renesas_rskrx210 Operating Frequency Setup]. 
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/renesas_r5f5210x System tick]. 
+
+=== OIL file configuration ===
+
+To enable system tick routines, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+ EE_OPT = "__USE_SYSTICK__";
+
+To enable board support library with Renesas RX210  starter kit, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+ EE_OPT = "__RSKRX210__";
+
+To use the board's leds add: 
+
+ EE_OPT = "__USE_RSKRX120_USER_LED__";
+
+To use the board's buttons add: 
+
+ EE_OPT = "__USE_RSKRX120_BUTTONS__";
+
+To use the Operating Frequency Setup routine add:
+
+ EE_OPT = "__USE_RSKRX210_OP_FREQ_SETUP__";
+
+If you want to add an external library, such as the Renesas RPDL library, and need to tell the linker to allocate the code Section "L" into the loadable module,
+the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+ EE_OPT = "__ADD_LIB_SECT__";
+
+= Examples =
+
+* The examples and tests are available in this folder:
+** http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/porting_examples: Porting examples.
+** http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/rx200/rskrx210_base_demo: Base demo for the RX210 Starter Kit board that uses leds, buttons and the LCD module.
+
+= See also =
+
+* [[Tutorial: Installing ERIKA and RT-Druid, and compile your first application]]
+* [[Tutorial: RT-Druid and OIL basics]]
+* [http://am.renesas.com/products/mpumcu/rx/rx200/rx210/index.jsp Renesas RX210 architecture webpage.]
+* [http://am.renesas.com/products/tools/introductory_evaluation_tools/renesas_starter_kits/rsk_rx210/index.jsp RX210 Starter Kit]
+* [http://am.renesas.com/products/tools/ide/ide_hew/index.jsp Renesas High-performance Embedded Workshop ]
+
+[[Category:Supported Devices]]}

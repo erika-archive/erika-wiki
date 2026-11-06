@@ -1,0 +1,45 @@
+Here is the list of Erika Enterprise OSEK/VDX certifications.
+
+See [http://www.osek-vdx.org OSEK/VDX] website for more details.
+
+== TI Stellaris ARM Cortex M4 KS-LM4F232 ==
+
+{| border="0"
+|-
+| '''Conformance:''' || OSEK OS 2.2.3, OSEK COM 3.0.3, OSEK OIL 2.5
+|-
+| '''Test Suite Revision:''' || Testsuite SB5 Version 4.5.8
+|-
+| '''Approved Version:''' || ERIKA Enterprise revision 2475, tag osek_ti_kslm4f232
+|-
+| '''Processor:''' || TI Stellaris ARM Cortex M4 KS-LM4F232
+|-
+| '''Coverage:''' || BCC1, BCC2, ECC1, ECC2, CCCA, CCCB, Resources on Interrupt level
+|-
+| '''Environment:''' || Keil uVision 4.0
+|-
+| '''Date:''' || 16.08.2012
+|-
+|  || [http://www.evidence.eu.com/download/news/Evidence-SB45-20120816-ArmCortex-Keil4.0_Certificate.pdf Download certification]
+|}
+
+== Infineon AURIX26x ==
+
+{| border="0"
+|-
+| '''Conformance:''' || OSEK OS 2.2.3, OSEK COM 3.0.3, OSEK OIL 2.5
+|-
+| '''Test Suite Revision:''' || Testsuite SB5 Version 4.5.8
+|-
+| '''Approved Version:''' || ERIKA Enterprise revision 2916, tag osek_infineon_TC26x
+|-
+| '''Processor:''' || Infineon Tricore 26x
+|-
+| '''Coverage:''' || BCC1, BCC2, ECC1, ECC2, CCCA, CCCB, Resources on Interrupt level
+|-
+| '''Environment:''' || HighTec Gcc Compiler v4.6.3.1
+|-
+| '''Date:''' || 14.02.2014
+|-
+|  || [http://erika.tuxfamily.org/drupal/sites/default/files/Evidence-SB5-20140213-TriCore-HighTecGccV4.6.3.1___Certificate.pdf Download certification]
+|}

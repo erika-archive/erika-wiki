@@ -1,0 +1,148 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Benchmark_Purpose"><span class="tocnumber">1</span> <span class="toctext">Benchmark Purpose</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Benchmark_Location_for_Erika_Enterprise"><span class="tocnumber">2</span> <span class="toctext">Benchmark Location for Erika Enterprise</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Benchmark_Location_for_embOS"><span class="tocnumber">3</span> <span class="toctext">Benchmark Location for embOS</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#How_to_Run_the_Benchmark"><span class="tocnumber">4</span> <span class="toctext">How to Run the Benchmark</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Bechmark_Results_Table_for_Erika_Enterprise"><span class="tocnumber">5</span> <span class="toctext">Bechmark Results Table for Erika Enterprise</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Bechmark_Results_Table_for_embOS"><span class="tocnumber">6</span> <span class="toctext">Bechmark Results Table for embOS</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Benchmark_Purpose"> Benchmark Purpose </span></h1>
+<p>The purpose of this benchmark is to provide a measure of the performance of Erika Enterprise
+in comparison with embOS provided by Segger. We used the binary version of embOS available on the Segger home page (see below).
+</p><p>The comparison is done for the following kernel mechanisms:
+</p>
+<ul><li> ISR1 latency: the time elapsed from the activation of an Interrupt Service Routine of type 1 (ISR1), to the first ISR instruction. 
+</li><li> ISR1 exit: the time elapsed from the last instruction of an ISR1 to the subsequent instruction of the interrupted task.
+</li><li> ISR2 latency: the time elapsed from the activation of an Interrupt Service Routine of type 2 (ISR2), to the first ISR2 instruction. 
+</li><li> ISR2 exit: the time elapsed from the last instruction of an ISR2  to the subsequent instruction of the interrupted task.
+</li><li> New task from an ISR2: the time elapsed from the last instruction of an ISR2 to the first instruction of the new task.
+</li><li> New task with preemption: the time elapsed from the first instruction necessary to active a new task to the first instruction of the new task.
+</li><li> New task without preemption: the time elapsed from the first instruction necessary to active a new task to the last instruction necessary to active the new task.
+</li><li> Terminate task (not activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+</li><li> Terminate task (activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+</li></ul>
+<h1> <span class="mw-headline" id="Benchmark_Location_for_Erika_Enterprise"> Benchmark Location for Erika Enterprise</span></h1>
+<p>The benchmark project for Erika is located in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lpc12xx/benchmark/" class="external text" rel="nofollow">examples/cortex_mx/lpc12xxx/benchmark/</a> folder.
+</p><p>The benchmark project folder is organized as follows:
+root directory contains "readme.txt", with all the information you can find in this page, plus the "makefile" and the following subfolders;
+</p>
+<ul><li> <b>benchmark</b>: it contains the source files of the benchmark application;
+</li><li> <b>output</b>: it will contain, after the compilation process, all the files of the project.
+</li><li> <b>Keil_Debug_BM_Project</b>: it contains the configuration files for the Keil IDE.
+</li><li> <b>results</b>: it contains the file with the benchmark results (the result of the test is already committed on the SVN repository)
+</li></ul>
+<h1> <span class="mw-headline" id="Benchmark_Location_for_embOS"> Benchmark Location for embOS</span></h1>
+<p>The benchmark project for embOS is located in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lpc12xx/benchmark_embOS/" class="external text" rel="nofollow">examples/cortex_mx/lpc12xxx/benchmark_embOS/</a> folder.
+</p><p>The benchmark project folder is organized as follows:
+root directory contains "readme.txt", with all the information you can find in this page, plus the "makefile" and the following subfolders;
+</p>
+<ul><li> <b>benchmark</b>: it contains the source files of the benchmark application;
+</li><li> <b>output</b>: it will contain, after the compilation process, all the files of the project.
+</li><li> <b>Keil_Debug_BM_Project</b>: it contains the configuration files for the Keil IDE.
+</li><li> <b>results</b>: it contains the file with the benchmark results (the result of the test is already committed on SVN repository)
+</li><li> <b>embOS</b>: it just contains the folders tree where to put the embOS files.  
+</li></ul>
+<p>The readme.txt file contains the instructions on how to get and use all the necessary embOS files to
+run the benchmark. Please note that the embOS source code has not been inserted in the ERIKA Enterprise SVN.
+</p>
+<h1> <span class="mw-headline" id="How_to_Run_the_Benchmark"> How to Run the Benchmark  </span></h1>
+<p>Follow the instruction below to compile and run the benchmark:
+</p>
+<ol><li>Open the cygwin shell and go in the benchmark directory.
+</li><li>If you want to compile and execute the benchmark with the simulator provided with the Keil IDE, type the following two commands:
+</li></ol>
+<pre>export Debugger=Simul
+make
+</pre>
+<p>If you want to compile and run the benchmark with the target board, just type the <tt>make</tt> command.
+If you want to compile and run the benchmark with the target board and get the output from the
+UART type the following two commands:
+</p>
+<pre>export OUTPUT_PORT=uart
+make
+</pre>
+<p>After the execution of the benchmark, the obtained results are stored in the file 
+<tt>BM_NXP_LPC1227.log</tt>. The instructions above are valid both for Erika and for embOS. 
+</p><p>For Erika Enterprise, the folder results already contains <tt>BM_NXP_LPC1227_HW.log</tt> and <tt>BM_NXP_LPC1227_SIM.log</tt>.
+</p><p>For embOS, the folder results already contains <tt>BM_NXP_LPC1227_ULINK2.log</tt> and <tt>BM_NXP_LPC1227_Simul.log</tt>.
+</p><p>These files report respectively the results obtained with the LPCXpresso board connected to the ULINK2 debugger and with the Keil simulator.
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Bechmark_Results_Table_for_Erika_Enterprise"> Bechmark Results Table for Erika Enterprise </span></h1>
+<p>The results are obtained working with a clock frequency of 24 MHz. The results are obtained with <b>SVN revision number 2473</b>.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th align="center"> Test Name </th><th align="center"> Samples </th><th align="center"> Mean </th><th align="center"> Minimun </th><th align="center"> Maximum
+</th></tr>
+<tr>
+<td> ISR1 Latency </td><td align="center"> 50 </td><td> 79 ticks (3.291 usec) </td><td> 79 ticks (3.291 usec) </td><td> 79 ticks (3.291 usec)
+</td></tr>
+<tr>
+<td> ISR1 exit </td><td align="center"> 50 </td><td> 66 ticks (2.750 usec) </td><td> 66 ticks (2.750 usec) </td><td> 66 ticks (2.750 usec)
+</td></tr>
+<tr>
+<td> ISR2 Latency </td><td align="center"> 50 </td><td> 113 ticks (4.708 usec) </td><td> 113 ticks (4.708 usec) </td><td> 113 ticks (4.708 usec)
+</td></tr>
+<tr>
+<td> ISR2 Exit </td><td align="center"> 50 </td><td> 229 ticks (9.541 usec) </td><td> 229 ticks (9.541 usec) </td><td> 229 ticks (9.541 usec)
+</td></tr>
+<tr>
+<td> New task from ISR </td><td align="center"> 50 </td><td> 424 ticks (17.666 usec) </td><td> 424 ticks (17.666 usec) </td><td> 424 ticks (17.666 usec)
+</td></tr>
+<tr>
+<td> New task with preemption </td><td align="center"> 50 </td><td> 361 ticks (15.041 usec) </td><td> 361 ticks (15.041 usec) </td><td> 361 ticks (15.041 usec)
+</td></tr>
+<tr>
+<td> New task without preemption </td><td align="center"> 50 </td><td> 187 ticks (7.791 usec) </td><td> 187 ticks (7.791 usec) </td><td> 187 ticks (7.791 usec)
+</td></tr>
+<tr>
+<td> Task (not activated from IRQ) exit </td><td align="center"> 50 </td><td> 315 ticks (13.125 usec) </td><td> 315 ticks (13.125 usec) </td><td> 315 ticks (13.125 usec)
+</td></tr>
+<tr>
+<td> Task (activated from IRQ) exit </td><td align="center"> 50 </td><td> 798 ticks (33.250 usec) </td><td> 798 ticks (33.250 usec) </td><td> 798 ticks (33.250 usec)
+</td></tr></table>
+<h1> <span class="mw-headline" id="Bechmark_Results_Table_for_embOS"> Bechmark Results Table for embOS </span></h1>
+<p>The results are obtained working with a clock frequency of 24 MHz. The results are obtained with embOS_CortexM_Keil_Trial_V386e.
+</p>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr>
+<th align="center"> Test Name </th><th align="center"> Samples </th><th align="center"> Mean </th><th align="center"> Minimun </th><th align="center"> Maximum
+</th></tr>
+<tr>
+<td> ISR1 Latency </td><td align="center"> 50 </td><td> 79 ticks (3.291 usec) </td><td> 79 ticks (3.291 usec) </td><td> 79 ticks (3.291 usec)
+</td></tr>
+<tr>
+<td> ISR1 exit </td><td align="center"> 50 </td><td> 64 ticks (2.666 usec) </td><td> 64 ticks (2.666 usec) </td><td> 64 ticks (2.666 usec)
+</td></tr>
+<tr>
+<td> ISR2 Latency </td><td align="center"> 50 </td><td> 103 ticks (4.291 usec) </td><td> 103 ticks (4.291 usec) </td><td> 103 ticks (4.291 usec)
+</td></tr>
+<tr>
+<td> ISR2 Exit </td><td align="center"> 50 </td><td> 98 ticks (4.083 usec) </td><td> 98 ticks (4.083 usec) </td><td> 98 ticks (4.083 usec)
+</td></tr>
+<tr>
+<td> New task from ISR </td><td align="center"> 50 </td><td> 311 ticks (12.958 usec) </td><td> 311 ticks (12.958 usec) </td><td> 311 ticks (12.958 usec)
+</td></tr>
+<tr>
+<td> New task with preemption </td><td align="center"> 50 </td><td> 509 ticks (21.208 usec) </td><td> 509 ticks (21.208 usec) </td><td> 509 ticks (21.208 usec)
+</td></tr>
+<tr>
+<td> New task without preemption </td><td align="center"> 50 </td><td> 294 ticks (12.250 usec) </td><td> 287 ticks (11.958 usec) </td><td> 295 ticks (12.291 usec)
+</td></tr>
+<tr>
+<td> Task (not activated from IRQ) exit </td><td align="center"> 50 </td><td> 396 ticks (16.500 usec) </td><td> 396 ticks (16.500 usec) </td><td> 396 ticks (16.500 usec)
+</td></tr>
+<tr>
+<td> Task (activated from IRQ) exit </td><td align="center"> 50 </td><td> 789 ticks (32.875 usec) </td><td> 789 ticks (32.875 usec) </td><td> 789 ticks (32.875 usec)
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 22/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,1 @@
+An error that shows up on some Windows machines. Please check the <tt>mymake_cygwin.bat</tt> file.

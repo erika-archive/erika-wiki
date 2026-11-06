@@ -1,0 +1,72 @@
+RT-Druid 2.0 comes with a new textual editor for oil files.
+
+= New features =
+
+New features are: 
+* Content assist
+* On-line documantation
+* Resolution of cross reference
+* On-line validation
+* Quick fixes
+* Fully customizable syntax coloring
+* Support for templates
+
+Oil files may or may not contain the oil Implementation section. If this section is missing, the default one is used.
+
+
+== Content assist ==
+
+It is always possible to ask the list of valid values at the current cursor position.
+The default key sequence is '''crtl-space'''.
+
+Depending on what is written before current cursor position, the content assist may propose 
+* a key word, like TASK
+* one or more attributes for the current element
+* the value of an attribute. Usually this is available for boolean, enumerators and reference to objects (like tasks)
+The set of proposed attributes may be reduced after typing few characters.
+
+== On-line documantation == 
+
+In many conditions, will try to show the description and documentation (if available) of elements.
+This usually happens during the content assist selection and moving the mouse over an element.
+
+It is possible to document an element directly through the oil editor, adding a multi line comment '''/* ... */''' just before the element or using oil description sintax (i.e. adding ''': "..."''' just after the element).
+If an element has an oil description, the multi line comment is ignored even if available.
+
+== Resolution of cross reference == 
+
+Inside oil CPU sections, there are a lot of references and these references are navigable with '''crtl+mouse left click''' if the referred object is in the same file. Examples of references are:
+* the name of an attribute
+* the value of a Boolean
+* the value of an Enum
+* the value of a reference to an Oil Object (like a task)
+
+== On-line validation == 
+
+While typing, the editor will try to check if the oil is valid or not.
+Some examples of validation checks are
+* the syntax is correct
+* attributes are defined
+* values of an attribute are valid for that attribute type, considering also restriction if present
+
+"Heavy" checks are not done in this phase, in order to achieve a quicker response.
+
+== Quick fixes == 
+
+For some kins of problem, the editor is able to propose quick fixes, i.e. suggest one or more way to solve the problem and perform the select one.
+
+A simple example is to propose the list of valid values (if there are a limited set).
+
+== Fully customizable syntax coloring == 
+
+The editor comes with a preference page that allow the user to change the color and the font for each type of element in the editor.
+
+== Support for templates ==
+
+Using a preference page, it is possible to write your own template and specify where it is available.
+
+= Limitations =
+
+Current editor works only within a single file. This means
+# it is not possible to follow cross references to object outside the edited file. This usually happens for oil attributes described RT-Druid oil file library.
+# the editor does not handle inclusion, i.e. '''#include ".."''' may cause unexpected errors and references to objects in the included file are not resolved.

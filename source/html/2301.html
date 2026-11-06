@@ -1,0 +1,120 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Packaging"><span class="tocnumber">2</span> <span class="toctext">Packaging</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Advantages"><span class="tocnumber">3</span> <span class="toctext">Advantages</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Disadvantages"><span class="tocnumber">4</span> <span class="toctext">Disadvantages</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Configuration"><span class="tocnumber">5</span> <span class="toctext">Configuration</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Ant_Tasks"><span class="tocnumber">6</span> <span class="toctext">Ant Tasks</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#RT-Druid_scripts"><span class="tocnumber">7</span> <span class="toctext">RT-Druid scripts</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Makefile_examples"><span class="tocnumber">8</span> <span class="toctext">Makefile examples</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Introduction"> Introduction </span></h2>
+<p>It is possible to execute few RT-Druid's tasks without using a GUI. These tasks are invoked through ant scripts or using directly RT-Druid scripts.
+</p>
+<pre> Please, note that RT-Druid is based on eclipse framework even in the CLI form. This means that 
+ - ant scripts with RT-Druid tasks should be run using ant embedded in eclipse
+ - direct invocation of RT-Druid scripts result in execution of an eclipse environment
+</pre>
+<h2> <span class="mw-headline" id="Packaging"> Packaging </span></h2>
+<p>RT-Druid is distributed in several packagings:
+</p>
+<ul><li> Update site: it contains only RT-Druid and Erika Enterprise plugins and can be used to update an existing installation of RT-Druid, or to add RT-Druid functionalities to a generic (and standard) installation of eclipse
+</li><li> GUI: it contains RT-Druid and Erika Enterprise plugins, eclipse framework and c/c++ support. There are several versions, depending on Os (es. Windows, Linux). It contains also RT-Druid scripts.
+</li><li> CLI: it contains RT-Druid and Erika Enterprise plugins and the minimum set of eclipse plugins required by RT-Druid. It contains also RT-Druid scripts. There are three versions
+<ul><li> RT-Druid: contains only RT-Druid and can be invoked only with RT-Druid scripts
+</li><li> EE_RT-Druid: contains Erika Enterprise (sources and examples) and RT-Druid. Can be invoked only with RT-Druid scripts
+</li><li> EE_RT-Druid_ant: contains Erika Enterprise (sources and examples) and RT-Druid. Can be invoked both with RT-Druid scripts and ant scripts
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Advantages"> Advantages </span></h2>
+<p>Both GUI and CLI packages can be used without a graphical interface but the CLI ones are smaller, than you can save space:
+</p>
+<ul><li> GUI packages requires around 180MByte
+</li><li> CLI with Erika Enterprise, RT-Druid and ant support requires around 71MByte
+</li><li> CLI with Erika Enterprise, RT-Druid requires around 55MByte
+</li><li> CLI with RT-Druid requires around 7MByte
+</li></ul>
+<p>moreover the package with only RT-Druid is the best one if you are using Erika Enterprise from svn and compiling everything in an automated system.
+</p>
+<h2> <span class="mw-headline" id="Disadvantages"> Disadvantages </span></h2>
+<p>On the other side, all CLI versions cannot be automatically updated and the only way to "update" them is to download a new one.
+</p>
+<h2> <span class="mw-headline" id="Configuration"> Configuration </span></h2>
+<p>Usually, it is useful to configure one or more parameter before run RT-Druid from command line, like compiler and Erika Enterprise path. [<a href="http://erika.tuxfamily.org/wiki/index.php?title=RT-Druid_configuration" class="external text" rel="nofollow">Here</a>] is some details about how do it.
+</p>
+<h2> <span class="mw-headline" id="Ant_Tasks"> Ant Tasks </span></h2>
+<p>Here is the list of available RT-Druid ant tasks:
+</p>
+<table border="1" style="color: black; background-color: #eeeeee;" width="85%">
+<caption>
+</caption><tr>
+<th style="width: 30%; background-color: #cccccc;"> Task Name
+</th><th style="width: 70%; background-color: #cccccc;"> Description
+</th></tr>
+<tr>
+<td>  <a href="/wiki/index.php?title=RT-Druid_ant_tasks#rtdruid.Convert" title="RT-Druid ant tasks"> rtdruid.Convert</a>
+</td><td> If needed, converts and merges one or more input files into a single new RT-Druid file
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php?title=RT-Druid_ant_tasks#rtdruid.Oil.Configurator" title="RT-Druid ant tasks"> rtdruid.Oil.Configurator</a>
+</td><td> Generates the Erika Enterprise configuration files
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php?title=RT-Druid_ant_tasks#rtdruid.Oil.Example" title="RT-Druid ant tasks"> rtdruid.Oil.Example</a>
+</td><td> Instantiates a single example
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php?title=RT-Druid_ant_tasks#rtdruid.Oil.Examples" title="RT-Druid ant tasks"> rtdruid.Oil.Examples</a>
+</td><td> Instantiates all examples managed by RT-Druid
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php?title=RT-Druid_ant_tasks#rtdruid.templates.path.add" title="RT-Druid ant tasks"> rtdruid.templates.path.add</a>
+</td><td> Add additional paths where search templates
+</td></tr></table>
+<p><a href="http://ant.apache.org/" class="external text" rel="nofollow">Here</a> you can find info about ant.
+</p>
+<h2> <span class="mw-headline" id="RT-Druid_scripts"> RT-Druid scripts </span></h2>
+<p>Here is the list of available scripts:
+</p>
+<table border="1" style="color: black; background-color: #cccccc;" width="85%">
+<caption>
+</caption><tr>
+<th> Task Name </th><th> Description
+</th></tr>
+<tr>
+<td style="width: 30%; background-color: #eeeeee;"> <a href="/wiki/index.php?title=RT-Druid_scripts#Generate_Code" title="RT-Druid scripts"> generate_code</a>
+</td><td style="width: 70%; background-color: #eeeeee;"> Generates all configuration files for Erika Enterprise
+</td></tr>
+<tr>
+<td style="width: 30%; background-color: #eeeeee;"> <a href="/wiki/index.php?title=RT-Druid_scripts#Instantiate_template" title="RT-Druid scripts"> instantiate_template</a>
+</td><td style="width: 70%; background-color: #eeeeee;"> Instantiates a template
+</td></tr>
+<tr>
+<td style="width: 30%; background-color: #eeeeee;"> <a href="/wiki/index.php?title=RT-Druid_scripts#Start_Ant" title="RT-Druid scripts"> start_ant</a>
+</td><td style="width: 70%; background-color: #eeeeee;"> Executes an ant script using ant libraries provided with eclipse
+</td></tr></table>
+<p>Each script is available in for windows (with .bat suffix) and for cygwin/linux (with .sh suffix).
+</p>
+<pre> Please note that current version of generate_code.sh requires bash to work
+</pre>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Makefile_examples"> Makefile examples </span></h2>
+<p>Here there are two examples about how use RT-Druid command line versions. In both makefile, main targets are:
+</p>
+<ul><li> download or just update RT-Druid and Erika Enterprise
+</li><li> configure the system
+</li><li> build
+</li></ul>
+<p>The first <a href="/wiki/index.php?title=Makefile:_RT-Druid_CLI_with_EE_svn" title="Makefile: RT-Druid CLI with EE svn"> makefile</a> gets Erika Enterprise directly from svn and the package with RT-Druid only. In this way it easier to read and modify Erika Enterprise files.
+</p><p>The second <a href="/wiki/index.php?title=Makefile:_EE_RT-Druid_CLI" title="Makefile: EE RT-Druid CLI"> makefile</a> gets the package with both Erika Enterprise and RT-Druid. The benefit is that this couple passed all tests we do before release RT-Druid packages.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 30/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,72 @@
+<p>This section focuses on the USB data communication between the FLEX Board and a host PC.
+</p><p>Please start by downloading this file:
+</p>
+<ul><li> <a href="http://www.evidence.eu.com/download/flex/USB_driver.zip" class="external free" rel="nofollow">http://www.evidence.eu.com/download/flex/USB_driver.zip</a>
+</li></ul>
+<p><br />
+</p><p><br />
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#PIC18_USB_firmware"><span class="tocnumber">1</span> <span class="toctext">PIC18 USB firmware</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Interfacing_with_the_PC"><span class="tocnumber">2</span> <span class="toctext">Interfacing with the PC</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Prerequisites_for_the_USB_PC_application"><span class="tocnumber">3</span> <span class="toctext">Prerequisites for the USB PC application</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Using_Scicos_pack_8.1_USB_PC_application"><span class="tocnumber">4</span> <span class="toctext">Using Scicos pack 8.1 USB PC application</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="PIC18_USB_firmware"> PIC18 USB firmware </span></h2>
+<p>The FLEX Full USB connection is provided by the PIC18F2550 that communicates  with the dsPIC through a SPI protocol. Download the <tt>FLEX_USB_PIC18.cof</tt> (furnished with <i>USB_driver</i> software) inside the microcontroller using MPLAB IDE. Usually, there is no need to change the configuration bits. In some cases the a configuration bit must be changed manually. After importing the cof file, check under MPLAB IDE in Configure → Configuration bits that address 0x300000 has value 0x24. If the proposed value is 0x04 unselect the checkbox and insert the correct value. After flashing the device, reset the board and connect the USB cable. 
+</p>
+<h2> <span class="mw-headline" id="Interfacing_with_the_PC"> Interfacing with the PC </span></h2>
+<p>This is a <b>one time operation</b> that has to be done before using the FLEX Full Board.
+</p>
+<ol><li> After programming the Flex board, connect it to the PC
+</li><li> The PC automatically recognize the device as a HID device. Open the PC control panel → system → device manager: open the Human Interface Device (as shown in the Figure below).
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_1a.jpg" class="image"><img alt="Usb 1a.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/10/Usb_1a.jpg" width="642" height="499" /></a></div></div>
+</dt></dl>
+</li><li> Double click on one of the devices, in order to identify the device with VID = 0x04d8 and PID = 0x0033 on the property window. This is the FLEX board. See the Figure below
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_1b.jpg" class="image"><img alt="Usb 1b.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5f/Usb_1b.jpg" width="414" height="459" /></a></div></div>
+</dt></dl>
+</li><li> Click on the driver tab as in the Figure below:
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_1c.jpg" class="image"><img alt="Usb 1c.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b9/Usb_1c.jpg" width="405" height="455" /></a></div></div>
+</dt></dl>
+</li><li> Click on Update driver → search the driver in the computer → manually search the driver. 
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_1d.jpg" class="image"><img alt="Usb 1d.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/2b/Usb_1d.jpg" width="503" height="390" /></a></div></div>
+</dt></dl>
+</li><li> Specify the path of the folder <tt>libusb</tt> furnished with <i>USB_driver</i> software (<tt>USB_driver\libusb</tt>). 
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_1e.jpg" class="image"><img alt="Usb 1e.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6a/Usb_1e.jpg" width="505" height="555" /></a></div></div>
+</dt></dl>
+</li><li> The PC will load this as a new driver for the FLEX Full Board.
+<dl><dt> <div class="center"><div class="floatnone"><a href="/wiki/index.php?title=File:Usb_2.jpg" class="image"><img alt="Usb 2.jpg" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fb/Usb_2.jpg" width="642" height="499" /></a></div></div>
+</dt></dl>
+</li></ol>
+<h2> <span class="mw-headline" id="Prerequisites_for_the_USB_PC_application"> Prerequisites for the USB PC application </span></h2>
+<ul><li> First of all you have to download and install Scilab 4.1.2. The Scilab executable can be found at the following addresses:
+</li></ul>
+<p><a href="http://www.scilab.org/download/index_download.php?page=old_releases" class="external autonumber" rel="nofollow">[1]</a>
+<a href="http://www.evidence.eu.com/content/view/293/382/" class="external autonumber" rel="nofollow">[2]</a>
+</p>
+<ul><li> Then you have to download and install Visual studio 2008 C++ express edition from the Microsoft website. To compile external code, Scilab must detect and support Visual studio 2008 C++ express edition with dynamic link. This is required if you want to re-compile the scicos pack dll. 
+</li></ul>
+<p>The tool is downloadable at:
+<a href="http://www.microsoft.com/Express/VC/" class="external autonumber" rel="nofollow">[3]</a>
+</p>
+<ul><li> Then can be useful to download and install the Microchip MPLAB IDE to program the
+</li></ul>
+<p>Flex Full microcontroller (dsPIC33FJ256MC710). For the download go to the site:
+<a href="http://www.microchip.com/stellent/idcplg?IdcService=SS_GET_PAGE&amp;nodeId=1406&amp;dDocName=en019469&amp;part=SW007002" class="external autonumber" rel="nofollow">[4]</a>
+</p>
+<ul><li> The next step is to download and install ERIKA Enterprise for Microchip dsPIC and the scicos pack 8.1. The software can be found at:
+</li></ul>
+<p><a href="http://www.evidence.eu.com/content/view/293/382/" class="external autonumber" rel="nofollow">[5]</a>
+</p>
+<h2> <span class="mw-headline" id="Using_Scicos_pack_8.1_USB_PC_application"> Using Scicos pack 8.1 USB PC application </span></h2>
+<p>The demo description is at <strong class="selflink">FLEX usb data communication using Scilab and Scicos</strong>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 15/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

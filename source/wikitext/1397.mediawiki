@@ -1,0 +1,14 @@
+This is a list of the peripherals currently used in the EE device drivers for the FLEX boards:
+
+''Note: the list is currently incomplete!''
+
+{| border=1 width=100% style="border:1px;border-spacing:0px"
+|-
+| DMA 0
+| 
+; FLEX Full+Demo daughter board: SPI Tx for USB connection through PIC18
+|-
+| DMA 1
+| 
+; FLEX Full+Demo daughter board: SPI Rx for USB connection through PIC18
+|}

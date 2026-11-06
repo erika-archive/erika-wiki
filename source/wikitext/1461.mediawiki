@@ -1,0 +1,41 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/EEtest2</tt>
+
+<tt>examples/s12xs/porting_examples/EEtest3</tt>
+
+<tt>examples/s12xs/porting_examples/EEtest4</tt>
+
+
+=== Description ===
+
+The three tests below tests the behavior which may happen at the end of an interrupt:
+# from the main() function, return to the main() function
+# from the main() function, return to a ready task activated in the interrupt
+# from the running task, return to a ready task activated in the interrupt
+# from the running task, return to the same task (eventually another task has been activated and is queued in the ready queue)
+
+<tt>examples/s12xs/porting_examples/EEtest2</tt>:
+* tests behavior 1 and 2
+* The goal is to test a task activation made within an interrupt. The execution behavior is that when the main is running, an interrupt arrives calling ActivateTask. At the end of the interrupt, the task is activated.
+* To configure the task set we must change the files <tt>eecfg.h</tt> and <tt>eecfg.c</tt> located inside the Debug folder. 
+* The isr configuration is architecture dependent. In this case we modified the <tt>vector_s12x.c</tt> file.  
+
+* Finally, we created inside the <tt>EEtest2</tt> a C file with a main() function. That function explicitly calls the function for periodic interrupt timer configuration and finishing with a <tt>for(;;)</tt>. Please note that this small application can be executed to test the behaviour of the interrupt stub. The compilation must finish with an executable fully linked.
+
+<tt>examples/s12xs/porting_examples/EEtest3</tt>:
+* tests behavior 3
+* The goal is to activate two tasks with different priorities to test the preemption behavior. The main function activates the low priority task. The high priority task is activated within the interrupt and is executed at the end of the interrupt. Then the low priority task can continue until the end.
+
+<tt>examples/s12xs/porting_examples/EEtest4</tt>:
+* tests behavior 4
+* The goal is to activate two tasks with different priorities to test again the preemption behaviour. The main function activates the high priority task. The low priority task is activated within the interrupt and is not executed at the end of the interrupt. The rtos continues the execution of the first task and then the low priority task is scheduled.
+
+*Note1: for correct interrupt execution we should take care of the interrupt stub and the following functions <tt>EE_ISR2_prestub</tt>, <tt>EE_ISR2_poststub</tt> (see the header file <tt>ee_irqstub.h</tt> at the path <tt>ee\pkg\cpu\cosmic_hs12xs\inc</tt>).
+
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

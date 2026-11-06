@@ -1,0 +1,72 @@
+<p>The FPG-EYE is a development board produced by <a href="http://www.evidence.eu.com/" class="external text" rel="nofollow">Evidence S.r.l.</a>.
+The board is based on Lattice core <a href="http://www.latticesemi.com/products/fpga/xp2/index.cfm" class="external text" rel="nofollow">Lattice XP2-17 fpga</a>. This board can either be used as a standard fpga development board or as a <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">mico32</a> soft-core platform.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#FPG-EYE_Hardware"><span class="tocnumber">1</span> <span class="toctext">FPG-EYE Hardware</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#FPG-EYE_Software"><span class="tocnumber">2</span> <span class="toctext">FPG-EYE Software</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Brief_description_of_software_components"><span class="tocnumber">3</span> <span class="toctext">Brief description of software components</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Evidence_custom_camera_component"><span class="tocnumber">3.1</span> <span class="toctext">Evidence custom camera component</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Evidence_custom_serpar_io_component"><span class="tocnumber">3.2</span> <span class="toctext">Evidence custom serpar_io component</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="FPG-EYE_Hardware"> FPG-EYE Hardware </span></h2>
+<p>The FPG-EYE is equipped with following onboard devices:
+</p>
+<ul><li> Fpga LFXP2-17
+</li><li> 25Mhz crystal oscillator
+</li><li> SRAM: 512 kB 
+</li><li> SDRAM: 32 MB  
+</li><li> Serial Flash: 4 MB
+</li><li> Leds and switches
+</li></ul>
+<p>and additional external standard modules:
+</p>
+<ul><li> RS232 Transceiver
+</li><li> Ethernet module  
+</li></ul>
+<p>Following external modules are also available optionally: 
+</p>
+<ul><li> CMOS Camera (Color) 
+</li><li> RF Transceiver Module
+</li></ul>
+<p><br />
+For more details, refer <a href="http://www.evidence.eu.com/content/view/377/436/" class="external text" rel="nofollow">Evidence FPG-EYE page</a>. In the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a> you can find a <a href="/wiki/index.php?title=Test_hardware" title="Test hardware">Test hardware</a> file. This <a href="/wiki/index.php?title=Test_hardware" title="Test hardware">Test hardware</a> file tests all component device present on the FPG-EYE.
+</p>
+<h2> <span class="mw-headline" id="FPG-EYE_Software"> FPG-EYE Software </span></h2>
+<p>In the <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/" class="external text" rel="nofollow">Erika repository</a> there are two <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/mico32/demo/platforms" class="external text" rel="nofollow">platform project</a>. If you use the <a href="http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar" class="external text" rel="nofollow">Lattice ispLever</a> as development tool, you have to choose the <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_isplever" class="external text" rel="nofollow">fpg_eye_isplever</a>, while if you use more recent <a href="http://www.latticesemi.com/products/designsoftware/diamond/index.cfm" class="external text" rel="nofollow">Diamond</a> as development tool the right platform is the <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/mico32/demo/platforms/fpg_eye_diamond" class="external text" rel="nofollow">fpg_eye_diamond</a>. Please remember, if you are using the ispLever software, you have to apply the patches at the sram and serial flash components. The patches are placed in the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a>.
+The FPG-EYE board comes with a pre-loaded demo application, the Web-server Camera demo, which is hosted by a <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">Mico32 platform</a>. 
+The <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/mico32/demo/sw_projects/webserver_camera/" class="external text" rel="nofollow">demo source files</a> can be found in the Erika examples.
+The Web-server Camera demo is an Erika-based application and uses Evidence custom components and platforms.
+The FPG-EYE custom components and the bootloader are contained in the <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a> and can be freely downloaded. 
+</p><p>The <a href="http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip" class="external text" rel="nofollow">FPG-EYE software packet</a> includes:
+</p>
+<ul><li> Evidence custom <b>mico32_camera</b> component (MSB component with binary netlist).
+</li><li> Evidence custom <b>serpar_io</b> component (MSB source component).
+</li><li> Binary external flash bootloader.
+</li><li> Python bootloader interface script.
+</li><li> Mico32 standard Async SRAM Controller and SPI Flash Controller components patched (only for Lattice ispLever, not required for Lattice Diamond).
+</li></ul>
+<h2> <span class="mw-headline" id="Brief_description_of_software_components"> Brief description of software components </span></h2>
+<h3> <span class="mw-headline" id="Evidence_custom_camera_component"> Evidence custom camera component </span></h3>
+<p>The <b>mico32_camera</b> is a <a href="http://www.google.it/url?sa=t&amp;rct=j&amp;q=wishobone%20bus&amp;source=web&amp;cd=2&amp;ved=0CDAQFjAB&amp;url=http%3A%2F%2Fsen.enst.fr%2Ffilemanager%2Factive%3Ffid%3D662&amp;ei=w9GFTpHzLOqs0QW8wdH7Dw&amp;usg=AFQjCNExXH_Cr7tBXmN2Gc9Kj9BDxAw8Bw&amp;cad=rj" class="external text" rel="nofollow">wishbone</a> component developed by <a href="http://www.evidence.eu.com/" class="external text" rel="nofollow">Evidence S.r.l.</a>. It must be <a href="/wiki/index.php?title=Installation_of_Mico32/FPG-EYE_development_environment#Import_custom_Mico32_components_in_LatticeMico_System_Development_Tools" title="Installation of Mico32/FPG-EYE development environment"> imported in MSB's</a> <i>Available Components</i>, before using in platform designs.
+<b>Mico32_camera</b> comes with an <a href="http://www.evidence.eu.com/content/view/27/254/" class="external text" rel="nofollow">Erika</a> driver which is needed for developing your applications. 
+</p><p>Example of <i>mico32_camera</i> can be found under the section <a href="/wiki/index.php?title=Camera_API" title="Camera API">Camera API</a>. 
+To write your customised driver, refer <a href="/wiki/index.php?title=Mico32_camera:_Writing_drivers_based_on_mico32_camera" title="Mico32 camera: Writing drivers based on mico32 camera">Mico32_camera: Writing drivers based on mico32_camera</a> page.
+</p>
+<h3> <span class="mw-headline" id="Evidence_custom_serpar_io_component"> Evidence custom serpar_io component </span></h3>
+<p>This is a component developed by <a href="http://www.evidence.eu.com/" class="external text" rel="nofollow">Evidence S.r.l.</a>. Like any custom component, it must be <a href="/wiki/index.php?title=Installation_of_Mico32/FPG-EYE_development_environment#Import_custom_Mico32_components_in_LatticeMico_System_Development_Tools" title="Installation of Mico32/FPG-EYE development environment"> imported in MSB's</a> before hand.
+</p><p>It is basically a parallel to serial converter. The processor writes a datum on serpar_io component out register, that serializes it out to a <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf" class="external text" rel="nofollow">74hc595</a> (serial to parallel shift register) device. 
+Similarly, serpar_io can get a serialized datum from <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT165.pdf" class="external text" rel="nofollow">74hc165</a> (parallel to serial shift register) and puts it on the register so that the cpu can read it. The serial to parallel shift register enables/disables board peripherals power supply and LEDs, while the parallel to serial shift register reads switches the states.
+</p><p>The <a href="/wiki/index.php?title=Sample_code_for_serialpar_io" title="Sample code for serialpar io">sample code for serialpar_io</a> shows a simple use of this component.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 19/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

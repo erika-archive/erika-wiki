@@ -1,0 +1,449 @@
+[
+  {
+    "url": "http://erika.tuxfamily.org/wiki/skins/common/images/magnify-clip.png",
+    "path": "assets/linked/magnify-clip--a5d4a96677685a13.png",
+    "kind": "embedded",
+    "pages": [
+      "ARM Cortex MX",
+      "Arduino",
+      "Arduino boards",
+      "Atmel AVR5",
+      "Atmel AVR8",
+      "CAL support on FPG-EYE",
+      "Create a Cal project with System Actors",
+      "ERIKA Enterprise and RT-Druid Design Flow",
+      "Easylab board: Description & MPLAB IDE Library",
+      "Erika path in RT-Druid",
+      "How Compile and Run a MPLAB's project",
+      "ISYSTEM winIDEA Support for Leopard MPC5643L",
+      "Installation of Mico32/FPG-EYE development environment",
+      "Mico32 camera: Building platform with mico32 camera component",
+      "Mico32 camera: Writing drivers based on mico32 camera",
+      "Microchip dsPIC",
+      "Programming the FPG-EYE board",
+      "Sample code for serialpar io",
+      "ScicosLab Course October 2010 - Florence",
+      "Test hardware",
+      "Tutorial: AVR8 - First installation and application compilation on Window",
+      "Tutorial: Avr5 - First installation and application compilation on Windows",
+      "Tutorial: Building a Mico32 platform for FPG-EYE",
+      "Tutorial: Compiling a CAL application with ERIKA Enterprise",
+      "Tutorial: Develop RT-Druid plugins",
+      "Tutorial: Installing ERIKA and RT-Druid on a Linux host",
+      "Tutorial: Installing scicoslab and generating code from a Scicos diagram",
+      "Tutorial: Mico32 library for ERIKA",
+      "Tutorial: PIC30 - Installing ERIKA and RT-Druid, and compile your first application",
+      "Tutorial: RT-Druid and OIL code generation using XML and XSLT transformations",
+      "Tutorial: Running ERIKA on Mico32 and FPG-EYE",
+      "Tutorial: S12XS - First installation and application compilation on Windows",
+      "Tutorial: STM32 - Integrated Debugging in Eclipse using GNU toolchain",
+      "Tutorial: Simulate and then generating code from a Scicos diagram",
+      "Tutorial: Update ERIKA and RT-Druid",
+      "Tutorial: Use a customized makefile"
+    ],
+    "status": "downloaded",
+    "bytes": 204,
+    "sha256": "2fa10fb97613fc38a76b79e7b8a392c29fe59f62df440a8df36ce37b531fe026",
+    "resolved_url": "http://erika.tuxfamily.org/wiki/skins/common/images/magnify-clip.png"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/emf-sdo-xsd-SDK-2.0.3.zip",
+    "path": "assets/linked/emf-sdo-xsd-SDK-2.0.3--be66e6ff6fd391c3.zip",
+    "kind": "attachment",
+    "pages": [
+      "Altera Nios II"
+    ],
+    "status": "downloaded",
+    "bytes": 19885849,
+    "sha256": "d14a5de378ed2057df3d2f4aac2f98a87ac4ab4bb4c9258b51a18fda1530a0c5",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/emf-sdo-xsd-SDK-2.0.3.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/GEF-SDK-3.0.1.zip",
+    "path": "assets/linked/GEF-SDK-3.0.1--7f16d4ed515e48bf.zip",
+    "kind": "attachment",
+    "pages": [
+      "Altera Nios II"
+    ],
+    "status": "downloaded",
+    "bytes": 5983670,
+    "sha256": "10a5380efd3b5665ddcbd5a8195947a0b208375909ff5061c7f55aadb1c36bb7",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/GEF-SDK-3.0.1.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/090504_evidence_ee.zip",
+    "path": "assets/linked/090504_evidence_ee--e6134edb3667a79f.zip",
+    "kind": "attachment",
+    "pages": [
+      "Altera Nios II"
+    ],
+    "status": "downloaded",
+    "bytes": 390368,
+    "sha256": "c166f3119ae5a45c11297044cc94267f81a1b31444b7c8211f74cd69af9bfe0f",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/090504_evidence_ee.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/rtd_gpl_nios2__142___20090511_1832.zip",
+    "path": "assets/linked/rtd_gpl_nios2__142___20090511_1832--af67fbb2ecbf55a1.zip",
+    "kind": "attachment",
+    "pages": [
+      "Altera Nios II"
+    ],
+    "status": "downloaded",
+    "bytes": 3326321,
+    "sha256": "8ef3a9fcf2fca514d1529398269ef83e0acae8117c935c5dc55b144ece4e90f7",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/rtd_gpl_nios2__142___20090511_1832.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/FRESCOR_WP4_D-EP7v2.pdf",
+    "path": "assets/linked/FRESCOR_WP4_D-EP7v2--18e99682e85f83be.pdf",
+    "kind": "attachment",
+    "pages": [
+      "Altera Nios II",
+      "Erika Enterprise Benchmark for Nios 2"
+    ],
+    "status": "downloaded",
+    "bytes": 938772,
+    "sha256": "92c5540c610b42afd76c823522632cc4d4b695e4b069cf0aa8babaf97dcd13cb",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/nios2/1422/FRESCOR_WP4_D-EP7v2.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip",
+    "path": "assets/linked/Easylab--cc938ae0ed0d1078.zip",
+    "kind": "attachment",
+    "pages": [
+      "Easylab board: Description & MPLAB IDE Library",
+      "How Compile and Run a MPLAB's project"
+    ],
+    "status": "downloaded",
+    "bytes": 91754,
+    "sha256": "aee5e81c196adc3228731d7663d4ae9ee6728075e4925a1edfc55b34a508abe5",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/easylab/Easylab.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/benchmarks/2012_05_24_ERIKA_benchmark_ppc.pdf",
+    "path": "assets/linked/2012_05_24_ERIKA_benchmark_ppc--7dbc7db84149cbce.pdf",
+    "kind": "attachment",
+    "pages": [
+      "Erika Enterprise Benchmark for MPC5674F Mamba"
+    ],
+    "status": "downloaded",
+    "bytes": 384190,
+    "sha256": "0983769e2e0502096c50e58140eb925558a0cf4f0518dad0bc77adb0861c3504",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/benchmarks/2012_05_24_ERIKA_benchmark_ppc.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip",
+    "path": "assets/linked/FPG-EYE_software_packet--117012d0f3aa1162.zip",
+    "kind": "attachment",
+    "pages": [
+      "FPG-EYE hardware and software",
+      "Installation of Mico32/FPG-EYE development environment",
+      "Test hardware",
+      "Tutorial: Building a Mico32 platform for FPG-EYE",
+      "Tutorial: Running ERIKA on Mico32 and FPG-EYE"
+    ],
+    "status": "downloaded",
+    "bytes": 803701,
+    "sha256": "8f38f35e820092f64d06049b81223e4a494d033fc2d4a91dc11c9b6104afa359",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/fpg-eye/FPG-EYE_software_packet.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Win.zip",
+    "path": "assets/linked/EE_160_Win--6458a6f59fe60629.zip",
+    "kind": "attachment",
+    "pages": [
+      "Freescale S12"
+    ],
+    "status": "unavailable",
+    "error": "http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Win.zip: HTTP Error 404: Not Found"
+  },
+  {
+    "url": "http://erika.tuxfamily.org/download/20130717_aglw_webinar/AGLW_Evidence_v1.6.pdf",
+    "path": "assets/linked/AGLW_Evidence_v1.6--bb8227fb91e4dfe0.pdf",
+    "kind": "attachment",
+    "pages": [
+      "Main Page"
+    ],
+    "status": "downloaded",
+    "bytes": 1257142,
+    "sha256": "68ed9533abdfac83a8a6c53ab7f76e86d992e93103c30fdb41e609bd4a956855",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20130717_aglw_webinar/AGLW_Evidence_v1.6.pdf"
+  },
+  {
+    "url": "http://erika.tuxfamily.org/drupal/sites/default/files/Evidence-SB5-20140213-TriCore-HighTecGccV4.6.3.1___Certificate.pdf",
+    "path": "assets/linked/Evidence-SB5-20140213-TriCore-HighTecGccV4.6.3.1___Certificate--c5ceb86298502e92.pdf",
+    "kind": "attachment",
+    "pages": [
+      "OSEK VDX certifications"
+    ],
+    "status": "downloaded",
+    "bytes": 281213,
+    "sha256": "abad32f991c781f360c403cf2d89c3d06b927a1cac3f0b62d37b43b8166eb4e0",
+    "resolved_url": "http://erika.tuxfamily.org/drupal/sites/default/files/Evidence-SB5-20140213-TriCore-HighTecGccV4.6.3.1___Certificate.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/manuals_pdf/rtdruid_refman_1_5.0.pdf",
+    "path": "assets/linked/rtdruid_refman_1_5.0--f652278e8166b38c.pdf",
+    "kind": "attachment",
+    "pages": [
+      "QP framework"
+    ],
+    "status": "downloaded",
+    "bytes": 1630216,
+    "sha256": "88af34dbf761e6b958f95a3b7f3a0faafbc8735ac8497848c6d084efe412b79d",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/manuals_pdf/rtdruid_refman_1_5.0.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/smcube_examples/smcube_saturation_example.zip",
+    "path": "assets/linked/smcube_saturation_example--9127957cd7350691.zip",
+    "kind": "attachment",
+    "pages": [
+      "SMCube - simple saturation example"
+    ],
+    "status": "downloaded",
+    "bytes": 6647,
+    "sha256": "4161f694d6ae36aeb91ef0f4ccec86dbaac0ba85a65a9a7d0524e3019b5e1b72",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/smcube_examples/smcube_saturation_example.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments.pdf",
+    "path": "assets/linked/FLEX_Experiments--aa1c47e0f238325f.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course November 2010 - Malaysia"
+    ],
+    "status": "downloaded",
+    "bytes": 1195196,
+    "sha256": "cd87d4c2178fa58eca869d042e9f0da1a2867277f7d5613fd0a9122b6af662c4",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments_Files.zip",
+    "path": "assets/linked/FLEX_Experiments_Files--b0d41026d2a6af03.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course November 2010 - Malaysia"
+    ],
+    "status": "downloaded",
+    "bytes": 233732,
+    "sha256": "34665b8739fccf378cf6098597664ce012cb050c2a7967d6fbe91a424837c395",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101124_scicoslab_course_malaysia/FLEX_Experiments_Files.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_v2.pdf",
+    "path": "assets/linked/20110128_FLEX_Experiments_v2--2f565e13e199a6bd.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course November 2010 - Malaysia"
+    ],
+    "status": "downloaded",
+    "bytes": 2359828,
+    "sha256": "2820991cfca7ae7ce8d2c7d19c0f8e979c6f7d9f0760160db9ff8b6b87b9d0a1",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_v2.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_Files_v2.zip",
+    "path": "assets/linked/20110128_FLEX_Experiments_Files_v2--4dc2b49ab73f7722.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course November 2010 - Malaysia"
+    ],
+    "status": "downloaded",
+    "bytes": 186817,
+    "sha256": "8dadd735c3fb3fefd239ee72228036a3abd9ebfeffb4cc272f0826dc2ba7ac89",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload//20110128_scicoslab_course_malaysia/20110128_FLEX_Experiments_Files_v2.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab_Florence_2010_brochure_r4.pdf",
+    "path": "assets/linked/scicoslab_Florence_2010_brochure_r4--276d587859675e64.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 427466,
+    "sha256": "895ece42477c97ee0771829aa7041d663d05ea24bd18c4a7ea86d356592dac5f",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab_Florence_2010_brochure_r4.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D1_r7.pdf",
+    "path": "assets/linked/Florence_2010_D1_r7--d9618dba50cadcd4.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 1225075,
+    "sha256": "710e790040b6f51d6aa3646aed3568a53638b96ba368e053decd9d62f2632215",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D1_r7.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day1.zip",
+    "path": "assets/linked/examples_day1--6743507eb9d04131.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 246722,
+    "sha256": "5ead052b3849cfd8b9a78e2c898878d101f18f8fc216b65729c47d9faf18adec",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day1.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D2_r6.pdf",
+    "path": "assets/linked/Florence_2010_D2_r6--7979d891a4e74a6b.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 9391557,
+    "sha256": "4644bbc33c97740a8f6f9c7dc78bcbad6a9f34dfa86ba1227a6b49b0533f4a1f",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/Florence_2010_D2_r6.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day2.zip",
+    "path": "assets/linked/examples_day2--dbfd73723a111ce6.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 8582000,
+    "sha256": "bf36f1bcbbb225424c7f6cee867efaf879e6a3794bdcd2df00b2c7952bdd365f",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/scicoslab/examples_day2.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_reduced.pdf",
+    "path": "assets/linked/rtos_osek_reduced--8cfc50f6861ac3d1.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 766886,
+    "sha256": "fb3a22d77079c74b60365e9777a9662557b09bbedd29bbc6929b410fe4bb99c6",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_reduced.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_examples.pdf",
+    "path": "assets/linked/rtos_osek_examples--41a7e611f7faeecb.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 51329,
+    "sha256": "7e46ad1ecc077ae017c4471cf56b3b4a8d6497cd7d54396c712477b25b0cd763",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/rtos_osek_examples.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/ee.pdf",
+    "path": "assets/linked/ee--4cc486c5b4774775.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 1307415,
+    "sha256": "e2481dc8df6f39b4295462b17b06d7e31352404c31b95d0cb6f936960bdc85e0",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/erikaenterprise/ee.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/canOpen.pdf",
+    "path": "assets/linked/canOpen--a89fa8b619a931bc.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 1536446,
+    "sha256": "75e303871261036cfb68647030b1f7f068e8e671888c45ad107ce663b5abe120",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/canOpen.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/examples.zip",
+    "path": "assets/linked/examples--6eb4a00c51e91cc9.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 581045,
+    "sha256": "41799900586d4284a9862dcbec3cde7ff1bad1ccb483d0878ba38c05d6b7543e",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/examples.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/controller.pdf",
+    "path": "assets/linked/controller--6495e9ff43fc2f86.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 416479,
+    "sha256": "1089bfc01386f72051cb0bb049223d5475df43efed88d34b2930b9b84b0a8775",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtai_canopen/controller.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss.pdf",
+    "path": "assets/linked/Florence_2010_D3_rtss--4d4abb057ca9cc79.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 1860824,
+    "sha256": "5e1825855916540c8fb87fadabb06d445c1037a30d8aafabdf19ff7abbd5ddf2",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss_videos.zip",
+    "path": "assets/linked/Florence_2010_D3_rtss_videos--4379f6f5e3b70198.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 1973524,
+    "sha256": "0f9d2bce33b416a4ef7db2ad8290272c7f34ab653d456fbc3f0b80b2d994a288",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/rtss/Florence_2010_D3_rtss_videos.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/Florence_2010_D3_DM_r3.pdf",
+    "path": "assets/linked/Florence_2010_D3_DM_r3--9035023c47538030.pdf",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 14964060,
+    "sha256": "b70289589abceeb3a391c653c7737c8cec1912b44e8fc331aad66467b6cbbec3",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/Florence_2010_D3_DM_r3.pdf"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/examples.zip",
+    "path": "assets/linked/examples--bdd9fd03b2b7d4f6.zip",
+    "kind": "attachment",
+    "pages": [
+      "ScicosLab Course October 2010 - Florence"
+    ],
+    "status": "downloaded",
+    "bytes": 475679,
+    "sha256": "d21d6c7cc8e5f683ac1e009f46df5fe8f60d0af7da4322edd4fa6787dd294936",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/20101021_scicoslab_course_florence/smps/examples.zip"
+  },
+  {
+    "url": "http://download.tuxfamily.org/erika/webdownload/eeCygwin_1_7_9.zip",
+    "path": "assets/linked/eeCygwin_1_7_9--eb026434b036e317.zip",
+    "kind": "attachment",
+    "pages": [
+      "Tutorial: Installing scicoslab and generating code from a Scicos diagram"
+    ],
+    "status": "downloaded",
+    "bytes": 36368532,
+    "sha256": "19bce5eb9431fb3c0fb38bb5b3d06cf4fe5005b00ee1fc16edfd4e2a18504234",
+    "resolved_url": "http://download.tuxfamily.org/erika/webdownload/eeCygwin_1_7_9.zip"
+  }
+]

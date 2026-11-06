@@ -1,0 +1,262 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Ppp3.png</title>
+    <id>2499</id>
+    <revision>
+      <id>5940</id>
+      <timestamp>2014-11-13T09:27:08Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Preferences menu.png</title>
+    <id>2142</id>
+    <revision>
+      <id>3909</id>
+      <timestamp>2011-10-18T11:19:53Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Prod-cons-ringbuffer.png</title>
+    <id>2508</id>
+    <revision>
+      <id>5976</id>
+      <timestamp>2015-02-02T17:00:00Z</timestamp>
+      <contributor>
+        <username>Arianna Avanzini</username>
+        <id>499</id>
+      </contributor>
+      <comment>Schematic representation of a Xen ringbuffer as used to implement a producer-consumer interaction between XenBus clients.</comment>
+      <text xml:space="preserve">Schematic representation of a Xen ringbuffer as used to implement a producer-consumer interaction between XenBus clients.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Progress.PNG</title>
+    <id>1500</id>
+    <revision>
+      <id>1729</id>
+      <timestamp>2009-12-02T16:43:52Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3203</id>
+      <timestamp>2011-08-24T14:20:15Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Progress.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project New Other.png</title>
+    <id>2369</id>
+    <revision>
+      <id>5175</id>
+      <timestamp>2013-07-16T12:06:19Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Project New Other</comment>
+      <text xml:space="preserve">Project New Other</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Project ee path.png</title>
+    <id>2144</id>
+    <revision>
+      <id>3912</id>
+      <timestamp>2011-10-18T13:07:36Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project link ee include.png</title>
+    <id>2145</id>
+    <revision>
+      <id>3920</id>
+      <timestamp>2011-10-18T14:50:13Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project link ee sources.png</title>
+    <id>2147</id>
+    <revision>
+      <id>3922</id>
+      <timestamp>2011-10-18T14:51:30Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project name.PNG</title>
+    <id>2206</id>
+    <revision>
+      <id>4209</id>
+      <timestamp>2011-12-12T17:26:06Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project path.PNG</title>
+    <id>2211</id>
+    <revision>
+      <id>4215</id>
+      <timestamp>2011-12-12T17:30:18Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Project rebuild index.png</title>
+    <id>2146</id>
+    <revision>
+      <id>3921</id>
+      <timestamp>2011-10-18T14:50:52Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-Druid.1.6.0-PICModel.01.png</title>
+    <id>1744</id>
+    <revision>
+      <id>2286</id>
+      <timestamp>2011-02-03T09:16:15Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0: PIC model</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0: PIC model</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-Druid.1.6.0-newproject.06.png</title>
+    <id>1738</id>
+    <revision>
+      <id>2279</id>
+      <timestamp>2011-02-03T07:30:40Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta: results of a correct building process.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta: results of a correct building process.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-Druid Oil Project.png</title>
+    <id>2272</id>
+    <revision>
+      <id>4579</id>
+      <timestamp>2012-02-01T12:07:38Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-empty.png</title>
+    <id>1731</id>
+    <revision>
+      <id>2258</id>
+      <timestamp>2011-02-02T13:22:12Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta Eclipse empty screen.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta Eclipse empty screen.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:RT-druid.1.6.0-newproject.01.png</title>
+    <id>1732</id>
+    <revision>
+      <id>2259</id>
+      <timestamp>2011-02-02T13:24:47Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>RT-Druid 1.6.0 beta Eclipse how to create a new RT-Druid project.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta Eclipse how to create a new RT-Druid project.</text>
+    </revision>
+    <revision>
+      <id>2260</id>
+      <timestamp>2011-02-02T13:31:06Z</timestamp>
+      <contributor>
+        <username>Rischiav</username>
+        <id>253</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:RT-druid.1.6.0-newproject.01.png]]&quot;:&amp;#32;RT-druid 1.6.9: how to open the &quot;C Project&quot; window.</comment>
+      <text xml:space="preserve">RT-Druid 1.6.0 beta Eclipse how to create a new RT-Druid project.</text>
+    </revision>
+  </page>
+</mediawiki>

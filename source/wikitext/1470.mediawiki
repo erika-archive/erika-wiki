@@ -1,0 +1,20 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/EEtest5</tt>
+
+=== Description ===
+
+* The test below tests the behavior which may happen with nested interrupts.
+* The goal is to test the execution of the interrupts with different priorities. A low priority ISR is interrupted by a high priority interrupt repeatedly. The goal is to obtain that all ISR routines execute with the proper status registers. 
+* The isr configuration is architecture dependent. In this case we modified the <tt>vector_s12x.c</tt> file.  
+
+* Finally, we created inside the <tt>EEtest5</tt> a C file with a main() function. That function explicitly calls the function for periodic interrupt timer configuration and finishing with a <tt>for(;;)</tt>. Please note that this small application can be executed to test again the behaviour of the interrupt stub. The compilation must finish with an executable fully linked.
+
+* Note1: As the previous test for correct interrupt execution we should take care of the interrupt stub and the following functions <tt>EE_ISR2_prestub</tt>, <tt>EE_ISR2_poststub</tt> (see the header file <tt>ee_irqstub.h</tt> at the path <tt>ee\pkg\cpu\cosmic_hs12xs\inc</tt>).
+
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

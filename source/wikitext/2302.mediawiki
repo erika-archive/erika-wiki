@@ -1,0 +1,96 @@
+== Generate Code ==
+
+'''generate_code.bat''' and '''generate_code.sh''' can be used to generate Erika Enterprise Configuration files from one or more input files. Usually the input is a single oil file, but it is possible to specify multiple files of different types. The available types for input files depends on the specific set of RT-Druid plugins that you have installed.
+
+The usage is: 
+  <code> code_generation.XXX "RT-Druid_dir" "input_file" ["additional_input_file1"..."additional_input_fileN"] "output_dir" </code>
+where XXX is .bat or .sh depending on your shell.
+
+
+
+{| border="1" style="color: black; background-color: #eeeeee;" width="85%"
+|+
+! style="color: black; background-color: #cccccc;" width="20%" | Field 
+! style="color: black; background-color: #cccccc;" width="70%" | Description 
+! style="color: black; background-color: #cccccc;" | Required
+|-
+| RT-Druid_dir
+| The home directory of RT-Druid
+| Yes
+|-
+| input_file
+| The first input file
+| Yes
+|-
+| additional_input_file
+| Additional input files. They can be zero, one or more
+| No
+|-
+| output_dir
+| The directory where store generated Erika Enterprise Configuration file. If the directory does not exist, RT-Druid will try to create it.
+| Yes
+|}
+
+
+
+== Instantiate template ==
+
+'''instantiate_template.bat''' and '''instantiate_template.sh''' can be used to instantiate one of all examples managed by RT-Druid.
+
+The usage is: 
+  <code> instantiate_template.XXX "RT-Druid_dir" "template_id" "output_dir" </code>
+where XXX is .bat or .sh depending on your shell.
+
+
+{| border="1" style="color: black; background-color: #eeeeee;" width="85%"
+|+
+! style="color: black; background-color: #cccccc;" width="20%" | Field 
+! style="color: black; background-color: #cccccc;" width="70%" | Description 
+! style="color: black; background-color: #cccccc;" | Required
+|-
+| RT-Druid_dir
+| The home directory of RT-Druid
+| Yes
+|-
+| template_id
+| The id of the template that should be instantiate
+| Yes
+|-
+| output_dir
+| The directory where store all files related to the choosed template. If the directory does not exist, RT-Druid will try to create it.
+| Yes
+|}
+
+  Note that you can use environment variable or RT-Druid configuration parameter to provide
+  to RT-Druid your own templates, as described in [[RT-Druid_configuration#Erika_Enterprise_Templates_path | RT-Druid configuration page]].
+  In this way, you can instantiate one of your template.
+
+== Start Ant ==
+
+'''start_ant.bat''' and '''start_ant.sh''' can be used to run a generic build.xml file using ant library provided with eclipse. The advantage is that all eclipse plugins are available, including RT-Druid ones.
+
+The usage is:
+  <code> start_ant.XXX "RT-Druid_dir" [ant options]
+where XXX is .bat or .sh depending on your shell.
+
+{| border="1" style="color: black; background-color: #eeeeee;" width="85%"
+|+
+! style="color: black; background-color: #cccccc;" width="20%" | Field 
+! style="color: black; background-color: #cccccc;" width="70%" | Description 
+! style="color: black; background-color: #cccccc;" | Required
+|-
+| RT-Druid_dir
+| The home directory of RT-Druid
+| Yes
+|-
+| ant options
+| Zero or more ant options that are provided as them are to ant library. An example is -buildfile to select a build file or -Dparam=value to set a specific value
+| No
+|}
+
+With RT-Druid is provided a simple build.xml file. The description of RT-Druid ant tasks is [[RT-Druid_ant_tasks|here]]. Useful links are
+[http://ant.apache.org/manual/index.html the ant manual] and the section with
+[http://ant.apache.org/manual/using.html#buildfile details on writhing buildfiles].
+
+
+[[Category:RT-Druid]]

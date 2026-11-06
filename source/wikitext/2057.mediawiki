@@ -1,0 +1,18 @@
+EEOPT is a way to specify configuration flags to the Erika build environment.  
+
+EEOPTs can be specified as strings in the OS section of the OIL file.  Examples:
+  EE_OPT = "DEBUG";
+  EE_OPT = "USE_UART";
+Please notice that spelling inside the OIL file includes an underscore: <code>EE_OPT</code>.
+
+The only supported format for EEOPTs is a single name, which should be a valid C identifier (i.e., only Latin letters, digits, and underscore are allowed; the first character cannot be a digit).  And any other format is not supported, and even if it works now, it may break in the future.
+
+==Common EEOPTs==
+The following list shows EEOPTs supported by all architectures (except when stated otherwise)
+;DEBUG
+;__MULTI__
+;__IRQ_STACK_NEEDED__
+
+==See Also==
+* [[Erika Makefiles]]
+* [[Tutorial: RT-Druid and OIL basics]]

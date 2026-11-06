@@ -1,0 +1,249 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Startup Code.png</title>
+    <id>2351</id>
+    <revision>
+      <id>5118</id>
+      <timestamp>2013-07-15T16:32:42Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Scope of MCU Driver Specification.</comment>
+      <text xml:space="preserve">Scope of MCU Driver Specification.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:State mico32 camera.png</title>
+    <id>2071</id>
+    <revision>
+      <id>3371</id>
+      <timestamp>2011-09-27T10:03:05Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Struct camera 50 from ispLever ide.png</title>
+    <id>2108</id>
+    <revision>
+      <id>3613</id>
+      <timestamp>2011-10-04T12:25:23Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Switches.png</title>
+    <id>1775</id>
+    <revision>
+      <id>2578</id>
+      <timestamp>2011-02-15T10:02:44Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>System Actors Switches structure</comment>
+      <text xml:space="preserve">System Actors Switches structure</text>
+    </revision>
+    <revision>
+      <id>2708</id>
+      <timestamp>2011-02-21T14:43:40Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Switches.png]]&quot;</comment>
+      <text xml:space="preserve">System Actors Switches structure</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:SystemConfiguration.png</title>
+    <id>2515</id>
+    <revision>
+      <id>6000</id>
+      <timestamp>2015-11-06T10:25:16Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:System builder.png</title>
+    <id>1787</id>
+    <revision>
+      <id>2626</id>
+      <timestamp>2011-02-15T15:59:32Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Nomespace</comment>
+      <text xml:space="preserve">Nomespace</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:System builder diamond.png</title>
+    <id>2197</id>
+    <revision>
+      <id>4151</id>
+      <timestamp>2011-11-14T15:45:18Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Task.PNG</title>
+    <id>1496</id>
+    <revision>
+      <id>1725</id>
+      <timestamp>2009-12-02T16:42:12Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Task demo.PNG</title>
+    <id>2207</id>
+    <revision>
+      <id>4210</id>
+      <timestamp>2011-12-12T17:26:20Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Test no working fpg eye.png</title>
+    <id>2154</id>
+    <revision>
+      <id>3991</id>
+      <timestamp>2011-10-28T10:07:32Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Test working fpg eye.png</title>
+    <id>2153</id>
+    <revision>
+      <id>3988</id>
+      <timestamp>2011-10-28T09:32:11Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Tutorial proj prop add custom makefile.png</title>
+    <id>2053</id>
+    <revision>
+      <id>3104</id>
+      <timestamp>2011-05-03T12:27:02Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Udp cfg.png</title>
+    <id>2078</id>
+    <revision>
+      <id>3440</id>
+      <timestamp>2011-09-28T10:55:49Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Udp receive.png</title>
+    <id>2077</id>
+    <revision>
+      <id>3439</id>
+      <timestamp>2011-09-28T10:55:24Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Udp send.png</title>
+    <id>2076</id>
+    <revision>
+      <id>3438</id>
+      <timestamp>2011-09-28T10:55:05Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 1a.jpg</title>
+    <id>1399</id>
+    <revision>
+      <id>1424</id>
+      <timestamp>2008-08-19T08:57:00Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

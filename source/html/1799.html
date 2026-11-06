@@ -1,0 +1,42 @@
+<p><b>JEDEC</b> is a ASCII text files containing programming information that can be used to configure a FPGA device. <b>JEDEC</b> is generated from <a href="http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar" class="external text" rel="nofollow">ispLever</a> or <a href="http://www.latticesemi.com/products/designsoftware/diamond" class="external text" rel="nofollow">Diamond</a> when a logic circuit is synthesized. 
+It can be downloaded in the <a href="http://www.latticesemi.com/" class="external text" rel="nofollow">Lattice</a> device through the <a href="http://en.wikipedia.org/wiki/Joint_Test_Action_Group" class="external text" rel="nofollow">JTAG</a> port . To do this two things are necessary:
+</p>
+<ul><li> Programming Cable.
+</li><li> Software: ispVM System or Diamond Programmer.
+</li></ul>
+<h2> <span class="mw-headline" id="Programming_Cable"> Programming Cable </span></h2>
+<p>After completion of the logic design and creation of a programming file with the <a href="http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar" class="external text" rel="nofollow">ispLever</a> software, is necessary a <i>programming cable</i> for programming the devices directly on the PC board. There are a lot of compatible Lattice <i>programming cable</i>. This is very simple and low cost <a href="http://www.latticesemi.com/products/developmenthardware/programmingcables.cfm" class="external text" rel="nofollow">programming cable</a>.
+</p>
+<h2> <span class="mw-headline" id="ispVM_System"> ispVM System </span></h2>
+<p>The <a href="http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm" class="external text" rel="nofollow"><i>ispVM</i></a> software is default installed together <a href="http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar" class="external text" rel="nofollow">ispLever</a> or <a href="http://www.latticesemi.com/products/designsoftware/diamond" class="external text" rel="nofollow">Diamond</a> software. The default directory is <tt>(installation directory Lattice)/Accessories/ispVM System</tt>
+</p>
+<ul><li> The <i>programming cable</i> must be connected to the FPG-EYE <a href="http://en.wikipedia.org/wiki/Joint_Test_Action_Group" class="external text" rel="nofollow">JTAG</a> board connector and PC port (can be Usb, serial or parallel).
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Jtag_con.jpg" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f6/Jtag_con.jpg" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Jtag_con.jpg" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Jtag connector</div></div></div></div>
+<ul><li> Turn on the power of the FPG-EYE board, and launch <a href="http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm" class="external text" rel="nofollow">ispVM</a> software.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Open_ispVM.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/30/Open_ispVM.png" width="700" height="340" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Open_ispVM.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Open ispVM software</div></div></div></div>
+<ul><li> Push <b>Scan</b> button, the software should find the Fpga model. If it don't be sure then the <a href="http://en.wikipedia.org/wiki/Joint_Test_Action_Group" class="external text" rel="nofollow">JTAG</a> cable is connected and/or the FPG-EYE is powered.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Scan_ispVM.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c7/Scan_ispVM.png" width="700" height="342" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Scan_ispVM.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Scan on ispVM software</div></div></div></div>
+<ul><li> Aftre click on <b>FileName/IR-Lenght</b> field will show the <i>Chair Configuration</i> window. With <b>Browes</b> button select <b>jed</b> file in local repository. 
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Select_file_ispVM.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/2c/Select_file_ispVM.png" width="700" height="339" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Select_file_ispVM.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select jed file</div></div></div></div>
+<ul><li> Click on <b>OK</b> button and return on The <a href="http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm" class="external text" rel="nofollow"><i>ispVM</i></a> main page. Click on <b>GO</b> and start the programming configuration in the FPGA. At end the board is ready for use.
+</li></ul>
+<h2> <span class="mw-headline" id="Diamond_Programmer"> Diamond Programmer </span></h2>
+<ul><li> The <i>programming cable</i> must be connected to the FPG-EYE JTAG board connector and PC port (can be Usb, serial or parallel).
+</li><li> Turn on the power of the FPG-EYE board, and launch Diamond Programmer software.
+</li><li> Push <b>Detect Cable</b> button, the software should find the cable. 
+</li><li> Select the Lattice Mico32 device and the JEDEC file as shown in the next figure.
+</li><li> From the menu, select 'Design -&gt; Program' to load the platform on the device. At end the board is ready for use.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:702px;"><a href="/wiki/index.php?title=File:Diamond_programmer.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f6/Diamond_programmer.png" width="700" height="407" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Diamond_programmer.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Diamond Programmer</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

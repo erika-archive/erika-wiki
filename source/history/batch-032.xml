@@ -1,0 +1,280 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Img1.png</title>
+    <id>2215</id>
+    <revision>
+      <id>4232</id>
+      <timestamp>2011-12-23T11:31:50Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img2.png</title>
+    <id>2216</id>
+    <revision>
+      <id>4236</id>
+      <timestamp>2011-12-23T11:53:56Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img3.png</title>
+    <id>2217</id>
+    <revision>
+      <id>4237</id>
+      <timestamp>2011-12-23T11:54:18Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img4.png</title>
+    <id>2218</id>
+    <revision>
+      <id>4238</id>
+      <timestamp>2011-12-23T11:54:43Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img5.png</title>
+    <id>2219</id>
+    <revision>
+      <id>4240</id>
+      <timestamp>2011-12-23T11:56:44Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img6.png</title>
+    <id>2220</id>
+    <revision>
+      <id>4241</id>
+      <timestamp>2011-12-23T11:57:11Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img7.png</title>
+    <id>2221</id>
+    <revision>
+      <id>4242</id>
+      <timestamp>2011-12-23T11:57:30Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img8.png</title>
+    <id>2222</id>
+    <revision>
+      <id>4243</id>
+      <timestamp>2011-12-23T11:57:45Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Img9.png</title>
+    <id>2223</id>
+    <revision>
+      <id>4245</id>
+      <timestamp>2011-12-23T11:58:31Z</timestamp>
+      <contributor>
+        <username>Maurizio Malaspina</username>
+        <id>489</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Import create custom component.png</title>
+    <id>2095</id>
+    <revision>
+      <id>3494</id>
+      <timestamp>2011-09-28T16:15:20Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3497</id>
+      <timestamp>2011-09-28T16:17:18Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Import create custom component.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Import file.png</title>
+    <id>1784</id>
+    <revision>
+      <id>2612</id>
+      <timestamp>2011-02-15T14:55:54Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Import file</comment>
+      <text xml:space="preserve">Import file</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Import file diamond.png</title>
+    <id>2196</id>
+    <revision>
+      <id>4148</id>
+      <timestamp>2011-11-14T15:34:47Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4149</id>
+      <timestamp>2011-11-14T15:35:05Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Import file diamond.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Install.png</title>
+    <id>2257</id>
+    <revision>
+      <id>4460</id>
+      <timestamp>2012-01-26T16:39:55Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4461</id>
+      <timestamp>2012-01-26T16:43:31Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Install.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4463</id>
+      <timestamp>2012-01-26T16:58:41Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Install.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Install Add.png</title>
+    <id>2356</id>
+    <revision>
+      <id>5156</id>
+      <timestamp>2013-07-16T09:32:51Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Add Plug-in to install</comment>
+      <text xml:space="preserve">Add Plug-in to install</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Install Details Next.png</title>
+    <id>2365</id>
+    <revision>
+      <id>5168</id>
+      <timestamp>2013-07-16T09:58:51Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Install Details Next</comment>
+      <text xml:space="preserve">Install Details Next</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Install Finish.png</title>
+    <id>2361</id>
+    <revision>
+      <id>5162</id>
+      <timestamp>2013-07-16T09:49:12Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Install Finish</comment>
+      <text xml:space="preserve">Install Finish</text>
+    </revision>
+  </page>
+</mediawiki>

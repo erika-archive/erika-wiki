@@ -1,0 +1,243 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:SCI Driver File structure.png</title>
+    <id>2409</id>
+    <revision>
+      <id>5254</id>
+      <timestamp>2013-07-16T20:54:35Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>SCI Driver File Structure.</comment>
+      <text xml:space="preserve">SCI Driver File Structure.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:SCI STATE.png</title>
+    <id>2408</id>
+    <revision>
+      <id>5252</id>
+      <timestamp>2013-07-16T20:50:32Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>SCI State Machine.</comment>
+      <text xml:space="preserve">SCI State Machine.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:SPI Buffering Channel Usage Table.png</title>
+    <id>2439</id>
+    <revision>
+      <id>5317</id>
+      <timestamp>2013-07-18T09:23:20Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:SPI File Structure.png</title>
+    <id>2440</id>
+    <revision>
+      <id>5318</id>
+      <timestamp>2013-07-18T09:23:44Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:SPI Scalability.png</title>
+    <id>2437</id>
+    <revision>
+      <id>5315</id>
+      <timestamp>2013-07-18T09:22:35Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:SPI Sequences Jobs Channels.png</title>
+    <id>2438</id>
+    <revision>
+      <id>5316</id>
+      <timestamp>2013-07-18T09:23:00Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sb.png</title>
+    <id>1815</id>
+    <revision>
+      <id>2744</id>
+      <timestamp>2011-02-24T11:23:23Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sb1.png</title>
+    <id>1816</id>
+    <revision>
+      <id>2745</id>
+      <timestamp>2011-02-24T11:23:28Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sb2.png</title>
+    <id>1817</id>
+    <revision>
+      <id>2746</id>
+      <timestamp>2011-02-24T11:23:34Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scan ispVM.png</title>
+    <id>1796</id>
+    <revision>
+      <id>2698</id>
+      <timestamp>2011-02-21T10:26:25Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Scheme.png</title>
+    <id>1634</id>
+    <revision>
+      <id>2010</id>
+      <timestamp>2010-06-22T08:50:29Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci ReadRxData Err Seq Dia.png</title>
+    <id>2413</id>
+    <revision>
+      <id>5262</id>
+      <timestamp>2013-07-16T21:00:26Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_ReadRxData() Sequence Diagram (polling - error).</comment>
+      <text xml:space="preserve">Sci_ReadRxData() Sequence Diagram (polling - error).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci ReadRxData Int Err Seq Dia.png</title>
+    <id>2417</id>
+    <revision>
+      <id>5267</id>
+      <timestamp>2013-07-16T21:04:11Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_ReadRxData() Sequence Diagram (interrupt - error).</comment>
+      <text xml:space="preserve">Sci_ReadRxData() Sequence Diagram (interrupt - error).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci ReadRxData Int Seq Dia.png</title>
+    <id>2415</id>
+    <revision>
+      <id>5264</id>
+      <timestamp>2013-07-16T21:01:59Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_ReadRxData() Sequence Diagram (Interrupt).</comment>
+      <text xml:space="preserve">Sci_ReadRxData() Sequence Diagram (Interrupt).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci ReadRxData Seq Dia.png</title>
+    <id>2411</id>
+    <revision>
+      <id>5259</id>
+      <timestamp>2013-07-16T20:58:06Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_ReadRxData() Sequence Diagram (polling).</comment>
+      <text xml:space="preserve">Sci_ReadRxData() Sequence Diagram (polling).</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Sci WriteTxData Err Seq Dia.png</title>
+    <id>2412</id>
+    <revision>
+      <id>5260</id>
+      <timestamp>2013-07-16T20:59:05Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Sci_WriteTxData() Sequence Diagram (polling - error).</comment>
+      <text xml:space="preserve">Sci_WriteTxData() Sequence Diagram (polling - error).</text>
+    </revision>
+  </page>
+</mediawiki>

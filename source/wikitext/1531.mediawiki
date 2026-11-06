@@ -1,0 +1,28 @@
+The '''Amazing Ball''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:amazing_reset.png]]
+| This block controls the reset procedure of the Amazing Ball System.
+|-
+| [[image:amazing_tuner.png]]
+| This block controls the calibration procedure of the Amazing Ball System. The internal parameters specifie the touch panel resolution.
+|-
+| [[image:amazing_switch.png]]
+| This block reads the switches values of the Amazing Ball Motion board. The internal parameter specifies the button number(from 1 to 8).
+|-
+| [[image:amazing_pwm.png]]
+| This block controls the PWM channel of the Amazing Ball Motion board. The block accepts two inputs in degrees.
+|-
+| [[image:amazing_touch.png]]
+| This block controls the touch panel data acquisition for the Amazing Ball. The internal parameter specifies the axis ('X' or 'Y'). The block provides the ball coordinate in signed pixel (example: if the touch panel resolution is 240x180 the coordinate for X will be in the range:-120,119 and for Y:-90,89). 
+|-
+| [[image:amazing_button.png]]
+| This block controls the buttons of the Amazing Ball Motion Board. The internal parameter specifies button number(from 1 to 2).
+|-
+| [[image:amazing_led.png]]
+| This block controls the LED 1 of the Flex daughter board.

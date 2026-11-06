@@ -1,0 +1,10 @@
+== Zigbee modules and the FLEX Demo Daughter Board ==
+
+The Demo Daughter board has a connector compatible with two zigbee modules, one from Chipcon (EasyBee) and one from Microchip. In effect, there are two adaptors in the Demo board kit that can be used to connect the Zigbee modules to the Zigbee connector.
+
+The Chipcon Transceiver that is already supported by the OpenZB implementation in EE 1.4.3 is the Easybee produced by RF Solutions: 
+[http://it.farnell.com/1330067/elettrico-protezione-circuito/product.us0?sku=rf-solutions-easybee Here the link to buy it from Farnell]
+
+== Zigbee and the Daughter Board ==
+The connections for the Easybee to a Flex Light or Full without using the demo daughter Board can be found looking at the 
+[http://erika.tuxfamily.org/applicationnotes/34-flex-and-dspic/76-easybee.html Wireless Communication using FLEX and ERIKA Enterprise Basic] Application note

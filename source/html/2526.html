@@ -1,0 +1,64 @@
+<p>In order to use the iSystem iC5000 hardware emulator follow these steps.
+</p><p>The first time you launch the winIDEA program, you will be requested to create a new Workspace:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:285px;"><a href="/wiki/index.php?title=File:NewWorkspace.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/55/NewWorkspace.png" width="283" height="215" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:NewWorkspace.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Add a name, select a Location and press the OK button</div></div></div></div>
+<p><br />
+As first thing configure the communication to the iSystem device (for our purpose, we've connected the device through TCP/IP connection). Go under Hardware -&gt; Hardware menu and set the following options:
+</p><p><br />
+</p>
+<table style="border-spacing: 2px; border: 1px solid darkgray; margin: 1em auto 1em auto;">
+
+<tr>
+<td style="border: 1px solid darkgray;">
+<p><a href="/wiki/index.php?title=File:HardwareType.png" class="image"><img alt="HardwareType.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/de/HardwareType.png" width="467" height="413" /></a>
+</p>
+</td><td style="border: 1px solid darkgray;">
+<p><a href="/wiki/index.php?title=File:SystemConfiguration.png" class="image"><img alt="SystemConfiguration.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/56/SystemConfiguration.png" width="503" height="350" /></a>
+</p>
+</td><td style="border: 1px solid darkgray;">
+<p><a href="/wiki/index.php?title=File:Communication.png" class="image"><img alt="Communication.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/19/Communication.png" width="467" height="413" /></a>
+</p>
+</td></tr>
+<tr style="text-align: center;">
+<td>Select iC5000, iTAG2k and press the System Configuration button </td><td> Insert the IP address, the subnet mask and leave the default TCP port.<br />Finally press Apply Changes button </td><td> Select the TCP/IP type of connection, insert the right IP address <br />and leave the default port as 5313
+</td></tr></table>
+<p><br />
+</p><p>You can now test the communication by pressing the Test button under Hardware -&gt; Hardware, Communication tab. The expected result should be something like:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:304px;"><a href="/wiki/index.php?title=File:ISystemTestCommunication.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7d/ISystemTestCommunication.png" width="302" height="251" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:ISystemTestCommunication.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Communication Ok displayed in the Status text box</div></div></div></div>
+<p><br />
+We can now set the type of board we want to use in Hardware -&gt; Emulation Options. Please make sure to select the right board in CPU tab:
+</p><p><br />
+</p>
+<table style="border-spacing: 2px; border: 1px solid darkgray; margin: 1em auto 1em auto;">
+
+<tr>
+<td style="border: 1px solid darkgray;">
+<p><a href="/wiki/index.php?title=File:ISystemCPU.png" class="image"><img alt="ISystemCPU.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4d/ISystemCPU.png" width="477" height="335" /></a>
+</p>
+</td><td style="border: 1px solid darkgray;">
+<p><a href="/wiki/index.php?title=File:ISystemCpuSetupLockStepMode.png" class="image"><img alt="ISystemCpuSetupLockStepMode.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0d/ISystemCpuSetupLockStepMode.png" width="476" height="478" /></a>
+</p>
+</td></tr>
+<tr style="text-align: center;">
+<td>Select the CPU corresponding to the Leopard board and press CPU Setup button </td><td> Under SoC tab make sure to select the Lock Step mode as CPU mode
+</td></tr></table>
+<p>Leave all the other settings under Hardware -&gt; Emulation Options and Hardware -&gt; CPU Setup as default.
+</p><p>As last thing go under Flash -&gt; Setup and make sure that Auto program FLASH is set to never in the Target tab as shown below:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:362px;"><a href="/wiki/index.php?title=File:ISystemTarget.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6b/ISystemTarget.png" width="360" height="306" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:ISystemTarget.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Set auto program FLASH to never</div></div></div></div>
+<p><br />
+In order to flash the device, go under Debug -&gt; Files for Download and select the application to flash:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:362px;"><a href="/wiki/index.php?title=File:ISystemFilesForDownload.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bc/ISystemFilesForDownload.png" width="360" height="325" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:ISystemFilesForDownload.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select an application, remove it or add a brand new one by pressing the New button. Default options for the selected elf will suit.</div></div></div></div>
+<p>Finally flash the new application by pressing Debug -&gt; Download
+</p>
+<hr />
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 3/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

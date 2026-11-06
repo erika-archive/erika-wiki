@@ -1,0 +1,30 @@
+<p>This page gives some short information about the data structures used in the OSEK/VDX implementation.
+</p><p>It is not meant as a complete list; This page is filled up as a reference as the questions come on the Forum.
+</p>
+<ul><li> EE_th_rnact
+<dl><dd> contains the remaining activations for a task
+</dd></dl>
+</li><li> EE_th_nact
+<dl><dd> (for FP, EDF, FRSH, not for OO) contains the number of pending activations still to be executed
+</dd></dl>
+</li><li> EE_th_status
+<dl><dd> contains the execution status of the thread (SUSPENDED, RUNNING, WAITING, READY)
+</dd></dl>
+</li><li> EE_th_next
+<dl><dd> next pointer, used to create the ready or stacked queue at runtime
+</dd></dl>
+</li><li> EE_th_ready_prio
+<dl><dd> Priority of the task as specified in the OIL file, implemented as a bitmask
+</dd></dl>
+</li><li> EE_th_dispatch_prio
+<dl><dd> Run-time priority of the task. Can be higher than the ready task due to the implementation of Internal Resources or if the task is non-preemptive
+</dd></dl>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

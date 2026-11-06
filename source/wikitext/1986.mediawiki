@@ -1,0 +1,5 @@
+Microchip PIC32 is supported directly on the [[SEED-EYE board]], an evaluation board providing support for Ethernet and 802.15.4.
+
+More info to be added soon.
+
+[[Category:Supported Devices]]

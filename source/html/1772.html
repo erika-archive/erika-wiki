@@ -1,0 +1,189 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Prerequisites"><span class="tocnumber">2</span> <span class="toctext">Prerequisites</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Eclipse"><span class="tocnumber">2.1</span> <span class="toctext">Eclipse</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#OpenForge"><span class="tocnumber">2.2</span> <span class="toctext">OpenForge</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#OpenDf"><span class="tocnumber">2.3</span> <span class="toctext">OpenDf</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#ispLEVER"><span class="tocnumber">2.4</span> <span class="toctext">ispLEVER</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Diamond"><span class="tocnumber">2.5</span> <span class="toctext">Diamond</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#FPG-EYE_package"><span class="tocnumber">3</span> <span class="toctext">FPG-EYE package</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#LEDs_System_Actor"><span class="tocnumber">3.1</span> <span class="toctext">LEDs System Actor</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Switches_System_Actor"><span class="tocnumber">3.2</span> <span class="toctext">Switches System Actor</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Camera_System_Actor"><span class="tocnumber">3.3</span> <span class="toctext">Camera System Actor</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#How_to_Interface_a_CAL_Netlist_to_System_Actors"><span class="tocnumber">4</span> <span class="toctext">How to Interface a CAL Netlist to System Actors</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#How_to_Build_a_CAL_Project_with_ispLEVER_or_Diamond"><span class="tocnumber">5</span> <span class="toctext">How to Build a CAL Project with ispLEVER or Diamond</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#How_to_Build_a_CAL_Project_with_Diamond"><span class="tocnumber">6</span> <span class="toctext">How to Build a CAL Project with Diamond</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#How_to_Program_the_FPG-EYE_board"><span class="tocnumber">7</span> <span class="toctext">How to Program the FPG-EYE board</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Introduction"> Introduction </span></h2>
+<p>This tutorial explains how to create a <a href="/wiki/index.php?title=Brief_introduction_to_the_CAL_language" title="Brief introduction to the CAL language"> CAL</a> network for the FPGA on the Evidence's FPG-EYE board using three system actors developed for the FPG-EYE board. Also, it explains how to integrate a hardware CAL network with our system actors.  For more background information, see the <a href="/wiki/index.php?title=Brief_introduction_to_the_CAL_language" title="Brief introduction to the CAL language">Brief introduction to the CAL language</a>.
+</p>
+<h2> <span class="mw-headline" id="Prerequisites"> Prerequisites </span></h2>
+<p>Before to start working with FPG-EYE board, you have to download and install the right developer tools. 
+</p>
+<h3> <span class="mw-headline" id="Eclipse"> Eclipse </span></h3>
+<p>Eclipse is designed to build integrated development environments (IDEs). It can be used to create various end-to-end computing solutions for multiple execution environments. You can download it at <a href="http://www.eclipse.org/" class="external free" rel="nofollow">http://www.eclipse.org/</a>.
+</p>
+<h3> <span class="mw-headline" id="OpenForge"> OpenForge </span></h3>
+<p>OpenForge is a XLIM to HDL compiler. You can download it at <a href="https://openforge.svn.sourceforge.net/svnroot/openforge" class="external free" rel="nofollow">https://openforge.svn.sourceforge.net/svnroot/openforge</a>.
+</p>
+<h3> <span class="mw-headline" id="OpenDf"> OpenDf </span></h3>
+<p>OpenDf is a CAL simulator working as the front end for HDL generation. The OpenDf tools can even produce XLIM code as intermediate format.
+You can download it at <a href="https://opendf.svn.sourceforge.net/svnroot/opendf" class="external free" rel="nofollow">https://opendf.svn.sourceforge.net/svnroot/opendf</a>. To install the plug-in in Eclipse you can follow <a href="https://opendf.svn.sourceforge.net/svnroot/opendf/trunk/doc/Eclipse_Plugin_Install.txt" class="external text" rel="nofollow">these instructions on the OpendDf site</a>.
+</p>
+<h3> <span class="mw-headline" id="ispLEVER"> ispLEVER </span></h3>
+<p>FPG-EYE board is based on a Lattice FPGA, so Lattice developer tools must be used to compile CAL projects. In this tutorial <a href="http://www.latticesemi.com/products/designsoftware/isplever/index.cfm" class="external text" rel="nofollow">Lattice ispLEVER</a> is adopted. ispLEVER is an integrated software development environment able to control all aspects of the development work flow. It should be noticed that the free ispLEVER version cannot be used for this tutorial as it is able to compile project containing only either Verilog or VHDL source files. 
+In order to be able to proceed with this tutorial you need a commercial license for ispLEVER from Lattice Semiconductor.
+</p>
+<h3> <span class="mw-headline" id="Diamond"> Diamond </span></h3>
+<p>Diamond is the next generation replacement for ispLEVER featuring design exploration, ease of use, improved design flow, and numerous other enhancements. A free version is available on <a href="http://www.latticesemi.com/products/designsoftware/diamond/downloads.cfm" class="external text" rel="nofollow">download Lattice page</a>. A free license can be requested from the Lattice website previous Lattice site registration. 
+It should be noticed that the free Diamond version cannot be used for this tutorial as it is able to compile project containing only either Verilog or VHDL source files. 
+In order to be able to proceed with this tutorial you need a commercial license for Diamond from Lattice Semiconductor.
+</p>
+<h2> <span class="mw-headline" id="FPG-EYE_package"> FPG-EYE package </span></h2>
+<p>The FPG-EYE package contains the system actors source files in Verilog for three actors (LEDs, Switches, and Camera), some examples their use, and  test bench to simulate each actor. To be used those examples have only to be compiled.
+</p><p>The system actors we have created for the FPG-EYE are:
+</p>
+<ul><li> <tt>Leds</tt>.
+</li><li> <tt>Switches</tt>.
+</li><li> <tt>Camera</tt>.
+</li></ul>
+<h3> <span class="mw-headline" id="LEDs_System_Actor"> LEDs System Actor </span></h3>
+<p>The <tt>LEDs System Actor</tt>, written in Verilog, uses the eight <tt>LEDs</tt> on the boards (see <tt>DL0</tt>,...., <tt>DL7</tt> into <tt>ES-02610_SCH_main.pdf</tt> file) to display the input byte.
+The Actor input interface receives an 8 bit token from another actor in the system, one bit for each LEDs (<tt>data_0 =&gt; led0</tt>, <tt>data_1 =&gt; led1</tt>, <tt>etc...</tt>). When a <tt>data_bit</tt> is 0 the corresponding <tt>LED</tt> is off, when a <tt>data_bit</tt> is 1 logic, the corresponding <tt>LED</tt> is on.
+The actor <tt>LEDs</tt> consists of the following files:
+</p>
+<ul><li> <tt>LEDs.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_led</tt>)
+</li><li> <tt>arbiter2.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\arbiter2</tt>)
+</li><li> <tt>serial_io.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\serial_io</tt>)
+</li><li> <tt>wb_leds.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\examble1</tt>)
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Leds.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bd/Leds.png" width="200" height="170" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Leds.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>System Actors LEDs structure</div></div></div></div>
+<dl><dt>leds.v
+</dt><dd> The <tt>leds.v</tt> file contains the module <tt>leds</tt> (a state machine written in Verilog) that manages both the <tt>Actors</tt> protocol, and the <tt>WishBone</tt> bus protocol.
+</dd></dl>
+<dl><dt>arbiter2.v
+</dt><dd> The <tt>arbiter2.v</tt> file contains the <tt>arbiter</tt> module (written in Verilog), a two-way <tt>WishBone</tt> arbiter with two <tt>masters</tt> and a single <tt>slave</tt>. The actor <tt>LEDs</tt> uses the <tt>master bus 0</tt> (wb0), while the actors <tt>Switches</tt> uses the <tt>master bus 1</tt> (wb1).
+</dd></dl>
+<dl><dt>serial_io.v
+</dt><dd> The file <tt>serial_io.v</tt> contains a state machine <tt>serial_io</tt> (written in Verilog) managing the <tt>WishBone</tt> protocol, and a serial/parallel register, interfacing with the <tt>74hc595</tt> chip that drives the LEDs on the board.
+</dd></dl>
+<dl><dt>wb_leds.v
+</dt><dd>The file <tt>wb_leds.v</tt> is a wrapper enclosing the component <tt>leds</tt>, <tt>arbiter</tt> and <tt>serial_io</tt> as their connections.
+</dd></dl>
+<p>An example of these actors and the related component could be located in <tt>svn-cal\hw\trunk\examples\example1</tt>, where a simple testbench of the <tt>leds</tt> actor is present (<tt>example1\active_hdl</tt>). A project example based on an 8-bit number generator and the <tt>LEDs</tt> actor can be find in the directory <tt>svn-cal\hw\trunk\examples\example3</tt>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Example3.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/04/Example3.png" width="200" height="100" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Example3.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Example3: LEDs System Actor with eight bits number generator</div></div></div></div>
+<h3> <span class="mw-headline" id="Switches_System_Actor"> Switches System Actor </span></h3>
+<p>The <tt>Switches System Actor</tt> is an actor for the FPG-EYE board written in Verilog.
+This actor uses eight Switches on the boards (see <tt>SW0</tt>,...., <tt>SW7</tt> into <tt>ES-02610_SCH_main.pdf</tt> file) to read their state, and produce a token containing such state.
+The actor <tt>Switches</tt> consists of the following files:
+</p>
+<ul><li> <tt>switches.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_switches</tt>)
+</li><li> <tt>arbiter2.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\arbiter2</tt>)
+</li><li> <tt>serial_io.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\serial_io</tt>)
+</li><li> <tt>wb_switches.v</tt> (in the directory <tt>svn-cal\hw\trunk\examples\examble2</tt>)
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Switches.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ea/Switches.png" width="200" height="87" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Switches.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Switches System Actors structure</div></div></div></div>
+<dl><dt> switches.v
+</dt><dd> The <tt>switches.v</tt> file consists of the state machine <tt>switches</tt> (written in Verilog) that manages both the Actors and the WishBone protocols.
+</dd></dl>
+<dl><dt> arbiter2.v
+</dt><dd> The <tt>arbiter2.v</tt> file contains the <tt>arbiter</tt> module (written in Verilog), a two-way <tt>WishBone</tt> arbiter with two <tt>masters</tt> and a single <tt>slave</tt>. The actor <tt>LEDs</tt> uses the <tt>master bus 0</tt> (wb0), while the actors <tt>Switches</tt> uses the <tt>master bus 1</tt> (wb1).
+</dd></dl>
+<dl><dt> serial_io.v
+</dt><dd> The file <tt>serial_io.v</tt> contains a state machine <tt>serial_io</tt> (written in Verilog) managing the <tt>WishBone</tt> protocol, and a serial/parallel register, interfacing with the <tt>74hc595</tt> and <tt>74hc195</tt> chips that drive the LEDs and poll the switches.
+</dd></dl>
+<dl><dt> wb_switches.v
+</dt><dd> The file <tt>wb_switches.v</tt> is a wrapper enclosing the component <tt>switches</tt>, <tt>arbiter</tt> and <tt>serial_io</tt>.
+</dd></dl>
+<p>A simple testbench for this actors could be find in the directory <tt>svn-cal\hw\trunk\examples\example2</tt>.
+Moreover, a simulation example where the actor <tt>switches</tt> is used along
+with the actor <tt>LEDs</tt> is contained in the directory
+<tt>svn-cal\hw\trunk\examples\example4</tt>. In this example, when a switch is
+turned off/on the correspondent LED is turned off/on (see fig: Example4).  The related Lattice FPGA implementation can be found in the <tt>svn-cal\hw\trunk\examples\example5</tt> directory.
+</p>
+<h3> <span class="mw-headline" id="Camera_System_Actor"> Camera System Actor </span></h3>
+<p>The <tt>Camera System Actor</tt> is an actor for the FPG-EYE board written in
+Verilog. The actor require a hardware <tt>camera</tt> module to be mounted on
+the board.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Camera.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/80/Camera.png" width="200" height="63" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Camera.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>System Actors camera structure</div></div></div></div>
+<p>The actor <tt>Camera</tt> consists only of the file <tt>act_camera.v</tt> (in the directory <tt>svn-cal\hw\trunk\hdl_actors\actor_camera</tt>)
+</p>
+<dl><dt> act_camera.v
+</dt><dd> The <tt>act_camera.v</tt> file consists of the state machine <tt>camera</tt> (written in Verilog) that manages the camera signals and the CAL protocol. The actor <tt>Camera</tt> has two CAL compatible output interfaces (sending tokens to other actors). The first CAL output has a data size of 8 bits and sends token containing the image pixel values, while the second CAL output, with a data size of 1 bit, sends a token whenever a new frame starts.
+</dd></dl>
+<p>A simple example for <tt>camera</tt> actor is located in the <tt>svn-cal\hw\trunk\examples\example7</tt> directory. All the three actors are used in this example: the LEDs act as a bar graph, whose length is proportional to the average image luminance.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Example7.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/20/Example7.png" width="200" height="106" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Example7.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>example7: Board LEDs are turned on or off proportionally to the average image luminance</div></div></div></div>
+<h2> <span class="mw-headline" id="How_to_Interface_a_CAL_Netlist_to_System_Actors"> How to Interface a CAL Netlist to System Actors </span></h2>
+<p>To interface a CAL Netlist with an actor few steps are needed:
+</p>
+<ul><li> Create a Netlist in the CAL environment with the needed number of input and output ports
+</li><li> Build a wrapper in Verilog (or VHDL) that connects the netlist with the required system actors
+</li></ul>
+<h2> <span class="mw-headline" id="How_to_Build_a_CAL_Project_with_ispLEVER_or_Diamond"> How to Build a CAL Project with ispLEVER or Diamond </span></h2>
+<p>First you must to have a Cal project with System Actors for FPG-EYE. See <a href="/wiki/index.php?title=Create_a_Cal_project_with_System_Actors" title="Create a Cal project with System Actors">Create a Cal project with System Actors</a> for instructions on how to do it.
+To build an ispLEVER CAL project we have to:
+</p>
+<ul><li> Open ispLEVER and click on new project. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:New_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/de/New_project.png" width="200" height="182" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:New_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Click on "Open Project"</div></div></div></div>
+</li><li> In the following window choose the project name and the its destination path. Please remember to select "Mixed Verilog/VHDL" for the option "Design Entry Type". <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Name_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/93/Name_project.png" width="200" height="180" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Name_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Add "Name Project"</div></div></div></div>
+</li><li> In the following window we have to select the device. For the FPG-EYE board we must use:
+<ul><li> Family: LatticeXP2;
+</li><li> Device: LFXP2-17E;
+</li><li> Speed grade: 5;
+</li><li> Package type: PQFP208;
+</li><li> Operating conditions: Commercial;
+</li><li> PartName: LFXP2-17E-5QN208C. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Select_device.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/62/Select_device.png" width="200" height="180" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Select_device.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>"Select Device"</div></div></div></div>
+</li></ul>
+</li><li> Finally by clicking the End button <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Add_source.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/40/Add_source.png" width="200" height="182" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Add_source.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>"Add Source"</div></div></div></div> the following window will be displayed: <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Isp_lever.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/35/Isp_lever.png" width="200" height="151" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Isp_lever.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>ispLEVER</div></div></div></div>
+</li><li> To import <tt>lattice_cal.vhdl</tt> the library (<tt>svn-cal/hw/trunk/lib_vhdl</tt>) we have to right click on device and select "Import...". <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Import_file.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/97/Import_file.png" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Import_file.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import file</div></div></div></div>
+</li><li> In the file window we can now select the file <tt>lattice_cal.vhdl</tt> <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Lib_vhdl.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a3/Lib_vhdl.png" width="200" height="102" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Lib_vhdl.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import the file "lattice_cal.vhdl"</div></div></div></div>
+</li><li> Now by right clicking the lattice_cal.vhdl we can select "Library Name" <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Library_name.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a6/Library_name.png" width="200" height="150" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Library_name.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Select "Library Name"</div></div></div></div>
+</li><li> In the Box "VHDL Library Name" we can insert the namespace <tt>SystemBuilder</tt><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:System_builder.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/08/System_builder.png" width="200" height="151" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:System_builder.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Write: SystemBuilder</div></div></div></div>
+</li><li> Each file created by the CAL compiler has an undefined module FD. This module is a D-FF (flip flop) declared in the xilinx library. This is part of a small reset synchronizer circuit. You have to remove this part because the Lattice software does not recognize it.<br /> There is a Perl script <tt>main_modify.pl</tt> that searches these FD instances in Verilog files and replaces them with a reset synchronizer. You can run this Perl script with the top level VHDL file as input. Before executing the Perl script, please check that all generated files are in the same folder. If the top level generated file name is <tt>main_nw.vhd</tt>, we can issue <tt>perl main_modify.pl main_nw</tt>.<br /> The script will produce a *_mod.v file for each parsed Verilog file.
+</li><li> After importing the files related to the various actors (LED, camera, and those related to our CAL netlist), a constraint file describing the connection between FPGA pins and logic blocks must be created. An example of these constraints can be found in "svn-cal\hw\trunk\examples\example7\isp_lever\example7.lpf"
+</li><li> We can finally compile the project, thus obtaining a binary JED file to program the FPG-EYE board.
+</li></ul>
+<h2> <span class="mw-headline" id="How_to_Build_a_CAL_Project_with_Diamond"> How to Build a CAL Project with Diamond </span></h2>
+<p>First you must to have a Cal project with System Actors for FPG-EYE. See <a href="/wiki/index.php?title=Create_a_Cal_project_with_System_Actors" title="Create a Cal project with System Actors">Create a Cal project with System Actors</a> for instructions on how to do it.
+To build a Diamond CAL project we have to:
+</p>
+<ul><li> Open Diamond and click on new project. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:New_project_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0a/New_project_diamond.png" width="200" height="141" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:New_project_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Click on "Open Project"</div></div></div></div>
+</li><li> In the following window choose the project name and the its destination path.<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Name_project_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cb/Name_project_diamond.png" width="200" height="142" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Name_project_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Add "Name Project"</div></div></div></div>
+</li><li> In the following window we have to select the device. For the FPG-EYE board we must use:
+<ul><li> Family: LatticeXP2;
+</li><li> Device: LFXP2-17E;
+</li><li> Speed grade: 5;
+</li><li> Package type: PQFP208;
+</li><li> Operating conditions: Commercial;
+</li><li> PartName: LFXP2-17E-5QN208C. <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Select_device_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/33/Select_device_diamond.png" width="200" height="148" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Select_device_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>"Select Device"</div></div></div></div>
+</li></ul>
+</li><li> Finally by clicking the End button the following window will be displayed: <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ea/Diamond.png" width="200" height="149" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Diamond</div></div></div></div>
+</li><li> To import <tt>lattice_cal.vhdl</tt> the library (<tt>svn-cal/hw/trunk/lib_vhdl</tt>) we have to right click on device and select "Add-&gt;Existing File". <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Import_file_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d6/Import_file_diamond.png" width="200" height="155" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Import_file_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import file</div></div></div></div>
+</li><li> In the file window we can now select the file <tt>lattice_cal.vhdl</tt> <div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Lib_vhdl.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a3/Lib_vhdl.png" width="200" height="102" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Lib_vhdl.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Import the file "lattice_cal.vhdl"</div></div></div></div>
+</li><li> Now by right clicking the lattice_cal.vhdl we can select "Properties" an then in the Box "VHDL Library Name" we can insert the namespace <tt>SystemBuilder</tt><div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:System_builder_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/80/System_builder_diamond.png" width="200" height="155" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:System_builder_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Write: SystemBuilder</div></div></div></div>
+</li><li> Each file created by the CAL compiler has an undefined module FD. This module is a D-FF (flip flop) declared in the xilinx library. This is part of a small reset synchronizer circuit. You have to remove this part because the Lattice software does not recognize it.<br /> There is a Perl script <tt>main_modify.pl</tt> that searches these FD instances in Verilog files and replaces them with a reset synchronizer. You can run this Perl script with the top level VHDL file as input. Before executing the Perl script, please check that all generated files are in the same folder. If the top level generated file name is <tt>main_nw.vhd</tt>, we can issue <tt>perl main_modify.pl main_nw</tt>.<br /> The script will produce a *_mod.v file for each parsed Verilog file.
+</li><li> After importing the files related to the various actors (LED, camera, and those related to our CAL netlist), a constraint file describing the connection between FPGA pins and logic blocks must be created. An example of these constraints can be found in "svn-cal\hw\trunk\examples\example7\diamond\example7.lpf"
+</li><li> We can finally compile the project, thus obtaining a binary JED file to program the FPG-EYE board.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Compile_diamond.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b0/Compile_diamond.png" width="200" height="155" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Compile_diamond.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>"Return All" for obtaining a binary JED file</div></div></div></div>
+<h2> <span class="mw-headline" id="How_to_Program_the_FPG-EYE_board"> How to Program the FPG-EYE board </span></h2>
+<p>See <a href="/wiki/index.php?title=Programming_the_FPG-EYE_board" title="Programming the FPG-EYE board">Programming the FPG-EYE board</a> for instructions on how to download the JED file onto the board
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 58/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

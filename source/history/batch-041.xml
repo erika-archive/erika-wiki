@@ -1,0 +1,243 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Mcu PerformReset Seq Dia.png</title>
+    <id>2377</id>
+    <revision>
+      <id>5192</id>
+      <timestamp>2013-07-16T13:11:12Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Mcu_PerformReset() Sequence Diagram.</comment>
+      <text xml:space="preserve">Mcu_PerformReset() Sequence Diagram.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Meminit ebr mem in ispLever directory.png</title>
+    <id>2110</id>
+    <revision>
+      <id>3622</id>
+      <timestamp>2011-10-04T15:04:23Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 compile library.png</title>
+    <id>2118</id>
+    <revision>
+      <id>3719</id>
+      <timestamp>2011-10-07T11:24:06Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project.png</title>
+    <id>1788</id>
+    <revision>
+      <id>2630</id>
+      <timestamp>2011-02-15T16:47:46Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows which button has to be pressed to create a mico32 library project</comment>
+      <text xml:space="preserve">This screenshot shows which button has to be pressed to create a mico32 library project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project build.png</title>
+    <id>1793</id>
+    <revision>
+      <id>2639</id>
+      <timestamp>2011-02-15T17:01:44Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to build the mico32 library project</comment>
+      <text xml:space="preserve">This screenshot shows how to build the mico32 library project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project configuration.png</title>
+    <id>1791</id>
+    <revision>
+      <id>2637</id>
+      <timestamp>2011-02-15T17:00:01Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the mico32 library project configuration panel</comment>
+      <text xml:space="preserve">This screenshot shows the mico32 library project configuration panel</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project options.png</title>
+    <id>1792</id>
+    <revision>
+      <id>2638</id>
+      <timestamp>2011-02-15T17:01:04Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to set the Platform options</comment>
+      <text xml:space="preserve">This screenshot shows how to set the Platform options</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project properties.png</title>
+    <id>1790</id>
+    <revision>
+      <id>2635</id>
+      <timestamp>2011-02-15T16:59:11Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows which button has to be pressed to enter the mico32 library project properties</comment>
+      <text xml:space="preserve">This screenshot shows which button has to be pressed to enter the mico32 library project properties</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library project settings.png</title>
+    <id>1789</id>
+    <revision>
+      <id>2633</id>
+      <timestamp>2011-02-15T16:53:55Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows how to properly edit the mico32 library project settings</comment>
+      <text xml:space="preserve">This screenshot shows how to properly edit the mico32 library project settings</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library wizard C-C++.png</title>
+    <id>2116</id>
+    <revision>
+      <id>3714</id>
+      <timestamp>2011-10-07T11:15:54Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 library wizard C-C++ step2.png</title>
+    <id>2117</id>
+    <revision>
+      <id>3716</id>
+      <timestamp>2011-10-07T11:19:58Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Mico32 standardmakec wizard.png</title>
+    <id>2119</id>
+    <revision>
+      <id>3721</id>
+      <timestamp>2011-10-07T11:38:25Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom.png</title>
+    <id>2233</id>
+    <revision>
+      <id>4357</id>
+      <timestamp>2012-01-19T16:18:56Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom capture on off.png</title>
+    <id>2238</id>
+    <revision>
+      <id>4372</id>
+      <timestamp>2012-01-20T10:49:09Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom capture which file.png</title>
+    <id>2239</id>
+    <revision>
+      <id>4374</id>
+      <timestamp>2012-01-20T10:55:14Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Minicom configure.png</title>
+    <id>2234</id>
+    <revision>
+      <id>4360</id>
+      <timestamp>2012-01-19T16:40:53Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

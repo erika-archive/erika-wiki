@@ -1,0 +1,14 @@
+== ErikaWiki help ==
+
+No specific help is needed to use the ErikaWiki.
+
+ErikaWiki runs on [[Special:Version|MediaWiki]] software.
+
+== MediaWiki help ==
+[http://www.mediawiki.org/wiki/Help:Contents Help] (Syntax for links, formatting, etc. is described here)
+
+[http://www.mediawiki.org/wiki/Manual:Contents Technical manual]
+
+[http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+
+[http://www.mediawiki.org/wiki/Project:Support_desk Support desk]

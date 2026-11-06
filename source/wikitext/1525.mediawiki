@@ -1,0 +1,15 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/multistack/EEtest3</tt>
+
+=== Description ===
+* The goal of this test is to activate two tasks that runs on multiple stacks with nested interrupts.
+
+* We changed inside the <tt>EEtest3</tt> the C file with the main() function. The program configures two periodic timers to enable the corresponding interrupt. The ISRs functions explicitly calls ActivateTask for the two tasks. Please note that this small application can be executed to test the behavior of the kernel internal function ready2stacked, the ISRs nesting mechanism in the MULTISTACK case. The kernel functions must be linked and used without problems resulting in an fully linked executable file.
+ 
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

@@ -1,0 +1,79 @@
+First of all, you need the RT-Druid code. To get it, please [[ERIKA Enterprise and RT-Druid SVN Access | check it out from the Svn repository]].
+Then you need an editor. There are two options:
+* use your preferred one
+* use Eclipse
+
+This page contains a few hints in case you are going to use Eclipse.
+ Note that you need some Eclipse <tt>plugins</tt> to compile RT-Druid even if you compile it by hand,
+ i.e. not using Eclipse build environment.
+ <br>We strongly suggest to use Eclipse environment to build and debug RT-Druid <tt>plugins</tt>.
+
+
+
+== Code structure ==
+RT-Druid source code is organized in several <tt>Eclipse projects</tt>; most of them correspond to a <tt>feature</tt> or a <tt>plugin</tt>.
+These projects are organized in the repository in few categories:
+* '''Products''': contains <tt>Eclipse projects</tt> related to the packaging of the RT-Druid distributions
+* '''Source''': the source code of RT-Druid
+** '''Core''': the main part
+** '''Analysis''': <tt>plugins</tt> related to the schedulability analysis of a system
+** '''Oil''': OIL language support
+* '''Testing''': all <tt>plugins</tt> related to the test of RT-Druid code
+
+
+
+
+== Setting up Eclipse ==
+What you need to develop RT-Druid plugins is:
+* '''java sdk''': i.e., the compiler. We suggest to use the Oracle jdk 1.6 ([http://www.oracle.com/technetwork/java/javase/downloads/index.html here is the Java SE download page])
+* '''Eclipse sdk''': if you do not have preferences or something already installed, take the [http://www.eclipse.org/downloads/packages/eclipse-classic-37/indigor "classic" package of Eclipse]. Then you need to add few <tt>plugins</tt>, if you do not already have them:
+** '''Emf''': emf <tt>update site</tt> is http://download.eclipse.org/modeling/emf/updates/releases/. Suggested selection is Emf.sdk (it contains the code and more than what you need, but it is the fastest way)
+** '''Gef''': gef <tt>update site</tt> is http://download.eclipse.org/tools/gef/updates/releases/. Again we suggest the SDK pack: gef.sdk
+** '''CDT''': cdt <tt>update site</tt> is http://download.eclipse.org/tools/cdt/releases/indigo/. Also here we suggest the SDK pack.
+
+Even if they are not required, you can install also <tt>plugins</tt> for versioning like [http://www.eclipse.org/subversive/downloads.php subversive], or for bug reporting like [http://www.eclipse.org/mylyn/downloads/ mylyn].
+
+ '''Note''': [http://help.eclipse.org/indigo/topic/org.eclipse.platform.doc.user/tasks/tasks-34.htm here you can find] some instruction about how install the plugins using the <tt>Eclipse Update Manager</tt>.
+
+ '''Note''': We suggest to use Eclipse 3.7 (<tt>Indigo</tt>). Today RT-Druid works with all versions of Eclipse since 3.4,
+ but future development may break this compatibility.
+
+== Setting Ant and output paths ==
+In order to easily move RT-Druid <tt>plugins</tt> through various versions and installations of Eclipse, we use two <tt>variables</tt> ANT_HOME and MEM_OUTPUT_LOCATION.
+We can set both using the Eclipse preference window, opened through the '''Preferences''' command in the '''Window''' menu
+
+[[File:rtd_prefs.png|center|thumb|200px|Preferences location in the Eclipse menu]]
+
+* '''ANT_HOME''' points to the Ant <tt>plugin</tt> in the current installation of Eclipse
+[[File:rtd_ant_home.png|center|thumb|300px|An example of ANT_HOME variable]]
+
+* '''MEM_OUTPUT_LOCATION''' is the place where store binary files generated during the Eclipse build. (Note that this path is not used during the building of the <tt>update site</tt> and other <tt>RT-Druid products</tt>). This allows to separate the source from the binary, with some useful effects like:
+** it is possible to put the output files in a ram-disk (to speed up compilation...)
+** you can compile the same code files with more than one version/instance of Eclipse at the same time
+** the source code directories are kept clean 
+[[File:rtd_mem_output.png|center|thumb|300px|An example of MEM_OUTPUT_LOCATION variable]]
+
+
+
+== Importing projects ==
+To import RT-Druid <tt>projects</tt> into your Eclipse workspace, you have to select '''Import...''' from '''File menu'''
+
+[[File:rtd_import_01.png|center|thumb|200px|Import command]]
+
+Then select "Existing projects into workspace"
+
+[[File:rtd_import_02.png|center|thumb|300px|Select import Existing projects]]
+
+The window requires the path on your filesystem containing RT-Druid source <tt>projects</tt> (in this example, the path is '''E:\work\RT-Druid'''). If the path is correct you should see the list of the available RT-Druid <tt>projects</tt>, and you can select the ones to import in your <tt>workspace</tt>.
+The '''Copy project''' flag allows you to copy all the files in your <tt>workspace</tt>, otherwise Eclipse will read and write directly in the path you specified.
+<tt>Working set</tt> is useful to quickly select a group of <tt>projects</tt>.
+
+[[File:rtd_import_03.png|center|thumb|300px|Import Existing projects wizard]]
+
+If you set "ant" and "output" paths, and if you have <tt>autobuild</tt> enabled (true by default), you should see Eclipse starting to compile all RT-Druid <tt>projects</tt> you just imported.
+
+	
+[[File:rtd_import_04.png|center|thumb|300px|Import result]]
+
+
+[[Category:RT-Druid]]

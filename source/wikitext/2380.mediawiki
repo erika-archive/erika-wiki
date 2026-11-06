@@ -1,0 +1,383 @@
+== Synopsis ==
+
+The PORT driver provides services for initializing the whole PORT structure of the microcontroller.
+
+Many ports and port pins can be assigned to various functionalities, e.g.
+* General purpose I/O
+* ADC
+* SPI
+* SCI
+* PWM
+* CAN
+* etc
+
+For this reason, there shall be an overall configuration and initialization of this port structure.
+
+The configuration and mode of these port pins is microcontroller and ECU [Electronic Control Unit] dependent.
+
+This PORT driver module shall complete the overall configuration and initialisation of the port structure which is used in the DIO driver module. Therefore, the DIO driver works on pins and ports which are configured by the PORT driver.
+
+The PORT driver shall be initialised prior to use of the DIO functions. Otherwise DIO functions will exhibit undefined behaviour.
+
+The diagram below identifies the PORT driver functions, and the structure of the PORT driver and DIO driver.
+
+[[File:PORT-DIO.png]]
+
+The PORT Driver module shall allow the configuration of different functionality for each port and port pin, e.g. ADC, SPI, DIO etc.
+
+The configuration of the port (i.e. whole port or single port pin) is microcontroller dependent.
+
+The PORT Driver module shall provide additional configurations for the MCU port/port pins:
+* Pin direction (input/output).
+* Pin level initial value.
+* Pin direction changeable during runtime (yes/no).
+* Port mode changeable during runtime.
+
+The PORT Driver module shall provide a number of optional configurations for the MCU ports and port pins (if supported by hardware):
+* Slew rate control.
+* Activation of internal pull-ups.
+* Input Thresholds.
+* Pin driven mode (push-pull / open drain).
+* Type of Readback support (pin level, output register value).
+
+The PORT Driver module shall not provide the facility to configure pin level inversion. The default value shall be set (i.e. not inverted).
+
+'''Note''': The IO Hardware Abstraction layer shall carry out level inversion.
+
+For the port pins configured as changeable using the configuration tool, the PORT driver shall allow the user to change the direction of port pins during runtime. If the MCU port control hardware provides an output latch for setting the output level on a port pin, switching the port pin direction shall not alter the level set in this output latch.
+
+For refreshing of the port on the microcontroller, the PORT driver shall allow the user to refresh the direction of those port pins whose direction is set by configuration and cannot be changed dynamically.
+
+The PORT Driver module shall configure all ports and port pins that are not used (neither as GPIO nor special purpose IO) to be set to a defined state by the PORT Driver module configuration.
+
+The user of the PORT Driver module shall configure the symbolic names of the port pins of the MCU. These symbolic names for the individual port pins (e.g. ''PORT_A_PIN_0'') shall be defined in the configuration tool.
+
+The PORT Driver module shall provide atomic access to all ports and port pins.
+
+'''Note''': An atomic access is a non interruptible access to Microcontroller registers by the use of either atomic instructions or the usage of an exclusive area (interrupt disabling for example) provided by Erika Enterprise.
+
+== File Structure ==
+
+[[File:PORT_Driver_File_structure_2.png]]
+
+== API Specification ==
+
+=== Imported Types ===
+
+==== ''typedef uint8 Std_ReturnType'' ====
+
+  #include "Std_Types.h"
+
+Standard Return Type.
+
+This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+
+The ''Std_ReturnType'' shall normally be used with value ''E_OK'' or ''E_NOT_OK''.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+
+==== ''struct Std_VersionInfoType'' ====
+
+  #include "Std_Types.h"
+
+Standard Version Informations Type.
+
+This type shall be used to request the version of a AUTOSAR-like module using the ''<Module Name>_GetVersionInfo()'' function.
+
+'''Field Documentation:'''
+
+  ''uint16 Std_VersionInfoType::moduleID''
+	Module Identifier. 
+
+  ''uint8 Std_VersionInfoType::sw_major_version''
+	Software Version Major Number. 
+
+  ''uint8 Std_VersionInfoType::sw_minor_version''
+	Software Version Minor Number. 
+
+  ''uint8 Std_VersionInfoType::sw_patch_version''
+	Software Version Patch Number. 
+
+  ''uint16 Std_VersionInfoType::vendorID''
+	Vendor Identifier.
+
+=== Types Defintions ===
+
+==== ''struct Port_ConfigType'' ====
+
+  #include "Port.h"
+
+PORT Driver Configuration Parameters.
+
+The type ''Port_ConfigType'' is a type for the external data structure containing the initialization data for the PORT Driver. 
+
+'''Note''': The user shall use the symbolic names defined in the configuration tool.
+
+'''Note''': The configuration of each port pin is MCU specific. Therefore, it is not possible to include a complete list of different configurations in this specification.
+
+A list of possible port configurations for the structure ''Port_ConfigType'' is given below:
+* Pin mode (e.g. DIO, ADC, SPI …) – this port pin configuration is mandatory unless the port pin is configured for DIO.
+* Pin direction (input, output) – this port pin configuration is mandatory when the port pin is to be used for DIO.
+* Pin level init value – this port pin configuration is mandatory when the port pin is used for DIO.
+* Pin direction changeable during runtime (STD_ON/STD_OFF) – this port pinconfiguration is MCU dependent.
+* Pin mode changeable during runtime (STD_ON/STD_OFF) – configuration is MCU dependent.
+
+Optional parameters (if supported by hardware)
+* Slew rate control.
+* Activation of internal pull-ups.
+* Microcontroller specific port pin properties.
+
+==== ''typedef uint Port_PinType'' ====
+
+  #include "Port.h"
+
+Data type for the symbolic name of a port pin.
+
+Shall cover all available port pins. The type should be chosen for the specific MCU platform (best performance).
+
+The type ''Port_PinType'' shall be used for the symbolic name of a Port Pin.
+
+The type ''Port_PinType'' shall be ''uint8'', ''uint16'' or ''uint32'' based on the specific MCU platform.
+
+'''Note''': The user shall use the symbolic names provided by the configuration tool.
+
+==== ''enum Port_PinDirectionType'' ====
+
+  #include "Port.h"
+
+Possible directions of a port pin.
+
+The type ''Port_PinDirectionType''  is a type for defining the direction of a Port Pin.
+
+The type ''Port_PinDirectionType'' shall be of enumeration type having range as ''PORT_PIN_IN'' and ''PORT_PIN_OUT'' . 
+
+'''Enumerator''': 
+* ''PORT_PIN_IN'':  	Sets port pin as input. 
+* ''PORT_PIN_OUT'':  	Sets port pin as output.
+
+==== ''typedef uint Port_PinModeType'' ====
+
+  #include "Port.h"
+
+Different port pin modes.
+
+A port pin shall be configurable with a number of port pin modes (type ''Port_PinModeType'').
+
+The type ''Port_PinModeType'' shall be used with the function call ''Port_SetPinMode()''.
+
+The type ''Port_PinModeType'' shall be ''uint8'', ''uint16'' or ''uint32''.
+
+=== Functions Definitions ===
+
+==== ''void Port_Init(const Port_ConfigType *ConfigPtr)'' ====
+
+  #include "Port.h"
+
+PORT Driver Initialization.
+
+'''Parameters''':
+* ''ConfigPtr'':	Pointer to configuration set 
+
+'''Returns''':
+* ''None''.
+
+Initializes the Port Driver module.
+
+Service 0x00
+
+The function ''Port_Init()'' shall initialize ALL ports and port pins with the configuration set pointed to by the parameter ''ConfigPtr''.
+
+The Port Driver module’s environment shall call the function ''Port_Init()'' first in order to initialize the port for use.
+
+If ''Port_Init()'' function is not called first, then no operation can occur on the MCU ports and port pins.
+
+The function ''Port_Init()'' shall initialize all configured resources.
+
+The function ''Port_Init()'' shall avoid glitches and spikes on the affected port pins.
+
+The Port Driver module’s environment shall call the function ''Port_Init()'' after a reset in order to reconfigure the ports and port pins of the MCU.
+
+The function ''Port_Init()'' shall initialize all variables used by the PORT driver module to an initial state.
+
+The function ''Port_Init()'' shall apply the following rules regarding initialisation of controller registers.
+* If the hardware allows for only one usage of the register, the driver module implementing that functionality is responsible for initializing the register.
+* If the register can affect several hardware modules and if it is an I/O register it shall be initialised by this PORT driver.
+* If the register can affect several hardware modules and if it is not an I/O register, it shall be initialised by the MCU driver.
+* One-time writable registers that require initialisation directly afterreset shall be initialised by the startup code.
+* All the other registers not mentioned before, shall be initialised by the start-up code.
+
+The Port Driver module’s environment may also uses the function ''Port_Init()'' to initialize the driver software and reinitialize the ports and port pins to another configured state depending on the configuration set passed to this function.
+
+'''Note''': In some cases, MCU port control hardware provides an output latch for setting the output level on a port pin that may be used as a DIO port pin.
+
+The function ''Port_Init()'' shall set the port pin output latch to a default level (defined during configuration) before setting the port pin direction to output.
+
+'''Example''':	On some MCU’s, after a power-on-reset, a DIO configurable port pin will	be configured as an input pin. If the required configuration of the port pin is an output pin, then the function ''Port_Init()'' shall ensure that the default level is set before switching the functionality of the port pin from input to output.
+
+The Port Driver module’s environment shall not call the function ''Port_Init()'' during a running operation. This shall only apply if there is more than one caller of the PORT module.
+
+Configuration of ''Port_Init()'': All port pins and their functions, and alternate functions shall be configured by the configuration tool.
+
+==== ''void Port_SetPinDirection(Port_PinType Pin, Port_PinDirectionType Direction)'' ====
+
+  #include "Port.h"
+
+Port Pin Direction Setting.
+
+'''Parameters''':
+* ''Pin'':		Port Pin ID number 
+* ''Direction'':	Port Pin Direction 
+
+'''Returns''':
+* ''None''.
+
+Sets the port pin direction.
+
+Service 0x01
+
+The function ''Port_SetPinDirection()'' shall set the port pin direction during runtime.
+
+The function ''Port_SetPinDirection()'' shall be re-entrant if accessing different pins independent of a port.
+
+The function ''Port_SetPinDirection()'' shall only be available to the user if the configuration parameter ''PortSetPinDirectionApi'' is set to ''TRUE''. If set to ''FALSE'', the function ''Port_SetPinDirection()'' is not available.
+
+Configuration of ''Port_SetPinDirection()'': All ports and port pins shall beconfigured by the configuration tool.
+
+==== ''void Port_RefreshPortDirection(void)'' ====
+
+  #include "Port.h"
+
+Port Direction Refresh.
+
+'''Parameters''':
+* ''None''. 
+
+'''Returns''':
+* ''None''.
+
+This service refreshes the ports direction.
+
+Service 0x02
+
+The function ''Port_RefreshPortDirection()'' shall refresh the direction of all configured ports to the configured direction (PortPinDirection).
+
+The function ''Port_RefreshPortDirection()'' shall exclude those port pins from refreshing that are configured as ‘pin direction changeable during runtime‘.
+
+The configuration tool shall provide names for each configured port pin.
+
+==== ''void Port_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)'' ====
+
+  #include "Port.h"
+
+PORT Driver version informations retrieval.
+
+'''Parameters''':
+* ''VersionInfoPtr'':	Pointer to where to store the version information of this module.
+
+'''Returns''':
+* ''None''.
+
+This service retrieves the PORT driver version informations.
+
+Service 0x03
+
+The function ''Port_GetVersionInfo()'' shall return the version information of the PORT module.
+
+The version information includes:
+* Module Id
+* Vendor Id
+* Vendor specific version numbers
+
+The function ''Port_GetVersionInfo()'' shall be configurable On/Off by the configuration parameter ''PortVersionInfoApi''.
+
+If source code for caller and callee of the function ''Port_GetVersionInfo()'' is available, the PORT module should realize this function as a macro. The PORT module should define this macro in the module’s header file.
+
+==== ''void Port_SetPinMode(Port_PinType Pin, Port_PinModeType Mode)'' ====
+
+  #include "Port.h"
+
+Port Pin Mode Setting.
+
+'''Parameters''':
+* ''Pin'':	Port Pin ID number 
+* ''Mode'':	New Port Pin mode to be set on port pin
+
+'''Returns''':
+* ''None''.
+
+Sets the port pin mode.
+
+Service 0x04
+
+The function ''Port_SetPinMode()'' shall set the port pin mode of the referenced pin during runtime.
+
+The function ''Port_SetPinMode()'' shall be re-entrant if accessing different pins, independent of a port.
+
+Configuration of ''Port_SetPinMode()'': All ports and port pins shall be configured by the configuration tool.
+
+== Usage Examples ==
+
+=== Overall Configuration of Ports ===
+
+[[File:Port_Init_Seq_Dia.png]]
+
+=== Set the Direction of a Port Pin ===
+
+[[File:Port_SetPinDirection_Seq_dia.png]]
+
+=== Refresh the Direction of all Port Pins ===
+
+[[File:Port_RefreshPortDirection_Seq_Dia.png]]
+
+=== Change the Mode of a Port Pin ===
+
+[[File:Port_SetPinMode_Seq_Dia.png]]
+
+== Build ==
+
+To enable AUTOSAR-like PORT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_PORT_DRIVER__";
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Port_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+== Supported Architectures ==
+
+=== TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain ===
+
+==== Driver Configuration ====
+
+In order to configure the AUTOSAR-like PORT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Port" tab-sheet on driver configuration instance file.
+
+[[File:Erika_Driver_Configurator_PORT.png]]
+
+===== Configuration Selection =====
+
+In this section you can add/edit/delete configurations in PORT Driver configuration set:
+* Each configuration SHALL have an ''Identifier'' which must be unique inside the configurations set.
+* Each configuration, inside the configurations set, has a set of Pin Modes and Port Pins.
+** Each Pin mode SHALL have an ''Identifier'' which must be unique inside the Pin Modes.
+** Each Port Pin SHALL have a ''Name'' which must be unique inside the Port Pins.
+
+===== API Selection =====
+
+In this section you can select PORT Driver APIs and features will be included in build process:
+* ''Enable error detection API'': Development Error Detection features
+* ''Enable SetPinDirection'': ''Port_SetPinDirection()'' API
+* ''Enable SetPinMode'': ''Port_SetPinMode()'' API
+* ''Version Info'': ''Port_GetVersionInfo()'' API
+
+[[File:Erika_Driver_Configurator_PORT_set.png]]
+
+==== Implemetations Demos ====
+
+Implementation Demos of the AUTOSAR-like PORT Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]

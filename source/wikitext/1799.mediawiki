@@ -1,0 +1,41 @@
+'''JEDEC''' is a ASCII text files containing programming information that can be used to configure a FPGA device. '''JEDEC''' is generated from [http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar ispLever] or [http://www.latticesemi.com/products/designsoftware/diamond Diamond] when a logic circuit is synthesized. 
+It can be downloaded in the [http://www.latticesemi.com/ Lattice] device through the [http://en.wikipedia.org/wiki/Joint_Test_Action_Group JTAG] port . To do this two things are necessary:
+
+* Programming Cable.
+* Software: ispVM System or Diamond Programmer.
+
+== Programming Cable ==
+
+After completion of the logic design and creation of a programming file with the [http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar ispLever] software, is necessary a ''programming cable'' for programming the devices directly on the PC board. There are a lot of compatible Lattice ''programming cable''. This is very simple and low cost [http://www.latticesemi.com/products/developmenthardware/programmingcables.cfm programming cable].
+
+== ispVM System ==
+
+The [http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm ''ispVM''] software is default installed together [http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar ispLever] or [http://www.latticesemi.com/products/designsoftware/diamond Diamond] software. The default directory is <tt>(installation directory Lattice)/Accessories/ispVM System</tt>
+
+* The ''programming cable'' must be connected to the FPG-EYE [http://en.wikipedia.org/wiki/Joint_Test_Action_Group JTAG] board connector and PC port (can be Usb, serial or parallel).
+
+[[File:jtag_con.jpg|center|thumb|200px|Jtag connector]]
+
+* Turn on the power of the FPG-EYE board, and launch [http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm ispVM] software.
+
+[[File:open_ispVM.png|center|thumb|700px|Open ispVM software]]
+
+* Push '''Scan''' button, the software should find the Fpga model. If it don't be sure then the [http://en.wikipedia.org/wiki/Joint_Test_Action_Group JTAG] cable is connected and/or the FPG-EYE is powered.
+
+[[File:scan_ispVM.png|center|thumb|700px|Scan on ispVM software]]
+
+* Aftre click on '''FileName/IR-Lenght''' field will show the ''Chair Configuration'' window. With '''Browes''' button select '''jed''' file in local repository. 
+
+[[File:select_file_ispVM.png|center|thumb|700px|Select jed file]]
+
+* Click on '''OK''' button and return on The [http://www.latticesemi.com/products/designsoftware/ispvmsystem/index.cfm ''ispVM''] main page. Click on '''GO''' and start the programming configuration in the FPGA. At end the board is ready for use.
+
+== Diamond Programmer ==
+
+* The ''programming cable'' must be connected to the FPG-EYE JTAG board connector and PC port (can be Usb, serial or parallel).
+* Turn on the power of the FPG-EYE board, and launch Diamond Programmer software.
+* Push '''Detect Cable''' button, the software should find the cable. 
+* Select the Lattice Mico32 device and the JEDEC file as shown in the next figure.
+* From the menu, select 'Design -> Program' to load the platform on the device. At end the board is ready for use.
+
+[[File:Diamond_programmer.png|center|thumb|700px|Diamond Programmer]]

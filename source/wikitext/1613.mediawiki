@@ -1,0 +1,75 @@
+Step 1:
+*   Open ScicosLab 4.4b7, the Scicos-FLEX pack is recognized by the program (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab\scicoslab_44b7\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scicoslab1.png]]
+::::::: Figure 1 – ScicosLab
+
+Step 2:
+*   Open file “pid_ctrl_codegen_udp_tuning_square_circle.cos” (refer Fig. 2) in Scicos.
+: The .cos file contains the schematic for the FLEX embedded code generation (with SCICOS).
+: This application is for tuning coefficients of the PID control for improving system
+: performance.
+
+[[image:scicoslab2.png]]
+::::::: Figure 2 – Control system schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen.
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 3)
+: Provide path name and then press OK for code generation (refer Fig. 4)
+
+[[image:scicoslab3.png]] 
+::::::: Figure 3 – Embedded Code Generator window
+
+[[image:scicoslab4.png]] 
+::::::: Figure 4 – Code Generator results
+
+Step 4:
+* Open MPLAB IDE and import “pic30.cof” file created by the code generator in Step 3.
+: Connect the FLEX board (with DEMO2 motion control pack) to ICD for programming the
+dsPic (refer Fig. 5). Program the FLEX board but do not start the application.
+
+[[image:cof_ide1.png]] 
+[[image:cof_ide2.png]] 
+::::::: Figure 5 - MPLAB IDE: COF file importing and target programming
+
+Step 5:
+* Check TCP/IP settings of the PC ethernet port (refer Fig. 6).
+
+[[image:scicoslab6.png]] 
+::::::: Figure 6 – Check the TCP/IP port settings 
+
+Step 6:
+* Open the PC-side file “PCside_AmazingBall_UDP_PIDtuning.cos” in Scicos;
+: The .cos file contains the schematic for the PC-side (refer Fig. 7).
+: Connect the ethernet cable and start the almost-real-time simulation in SCICOS.
+: The application shows the received UDP data on multiple scopes and sends data for PID tuning 
+: to the FLEX board (refer Fig. 8).
+
+[[image:scicoslab7.png]] 
+::::::: Figure 7 – PC-side schematic
+
+[[image:scicoslab8.png]] 
+::::::: Figure 8 – PC-side application (PID tuner)
+
+Step 7:
+* Release the reset to run the demo on the board(refer Fig.9);
+: Initially the application calibrates the touch screen (refer Fig. 11), then the control algorithm starts.
+: The application running on the board must be started after running the SCICOS diagram simulation to allow 
+: proper initialization of the FLEX UDP interface. If the FLEX board does not receive data from the PC for any reason 
+: the control algorithm does not start. (refer Fig.12).
+
+[[image:released_reset.png]]
+::::::: Figure 9 - MPLAB IDE: Target released from reset
+
+[[image:scicoslab10.png]]
+::::::: Figure 10 – Touch panel calibration
+
+[[image:scicoslab11.png]]
+::::::: Figure 11 – Control result
+
+[[image:scicoslab12.png]]
+::::::: Figure 12 – Data Plot

@@ -1,0 +1,19 @@
+Now we are going to create a Cal project using the FPG-EYE's System Actor. Our System Actors are not yet included in the Cal development tool. This requires manual editing of some files.
+
+== Cal project without System Actors ==
+
+First step we have to create a Cal network without FPG-EYE's System actors. But the network must have the inputs/outputs external ports.
+
+[[File:cal_project.png|center|thumb|200px| Cal project without FPG-EYE's System Actors]]
+
+
+== Wrapper Cal project with System Actors ==
+
+Now we have to create a vhdl file wapper. In this wrapper we must put the Cal network and the FPG-EYE's System Actors.
+
+[[File:cal_project_wrapper.png|center|thumb|200px| Cal project with wrapper and FPG-EYE's System Actors]]
+
+In the wrapper we can add other component. For example in the example3 and example8, we have added a module <tt>Pll</tt> and
+a module <tt>Reset</tt>.
+
+[[File:cal_project_wrapper_pll_rst.png|center|thumb|200px| Wrapper with a <tt>Pll</tt> and <tt>Reset</tt> modules. ]]

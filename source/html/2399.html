@@ -1,0 +1,613 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Types_Defintions"><span class="tocnumber">3.2</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#struct_Gpt_ConfigType"><span class="tocnumber">3.2.1</span> <span class="toctext">struct Gpt_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#typedef_uint_Gpt_ChannelType"><span class="tocnumber">3.2.2</span> <span class="toctext">typedef uint Gpt_ChannelType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#typedef_uint_Gpt_ValueType"><span class="tocnumber">3.2.3</span> <span class="toctext">typedef uint Gpt_ValueType</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#enum_Gpt_StatusType"><span class="tocnumber">3.2.4</span> <span class="toctext">enum Gpt_StatusType</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#typedef_void_.28.2AGpt_Notification.29.28void.29"><span class="tocnumber">3.2.5</span> <span class="toctext">typedef void (*Gpt_Notification)(void)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#Functions_Definitions"><span class="tocnumber">3.3</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#void_Gpt_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.3.1</span> <span class="toctext">void Gpt_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#void_Gpt_Init.28const_Gpt_ConfigType_.2AConfigPtr.29"><span class="tocnumber">3.3.2</span> <span class="toctext">void Gpt_Init(const Gpt_ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#void_Gpt_DeInit.28void.29"><span class="tocnumber">3.3.3</span> <span class="toctext">void Gpt_DeInit(void)</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Gpt_ValueType_Gpt_GetTimeElapsed.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.4</span> <span class="toctext">Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Gpt_ValueType_Gpt_GetTimeRemaining.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.5</span> <span class="toctext">Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#void_Gpt_StartTimer.28Gpt_ChannelType_Channel.2C_Gpt_ValueType_Value.29"><span class="tocnumber">3.3.6</span> <span class="toctext">void Gpt_StartTimer(Gpt_ChannelType Channel, Gpt_ValueType Value)</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#void_Gpt_StopTimer.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.7</span> <span class="toctext">void Gpt_StopTimer(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#void_Gpt_EnableNotification.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.8</span> <span class="toctext">void Gpt_EnableNotification(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#void_Gpt_DisableNotification.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.9</span> <span class="toctext">void Gpt_DisableNotification(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Std_ReturnType_Gpt_GoToSleep.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.10</span> <span class="toctext">Std_ReturnType Gpt_GoToSleep(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Std_ReturnType_Gpt_Wakeup.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.11</span> <span class="toctext">Std_ReturnType Gpt_Wakeup(Gpt_ChannelType Channel)</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Gpt_StatusType_Gpt_GetStatus.28Gpt_ChannelType_Channel.29"><span class="tocnumber">3.3.12</span> <span class="toctext">Gpt_StatusType Gpt_GetStatus(Gpt_ChannelType Channel)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-26"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-27"><a href="#GPT_.E2.80.9Cone-shot_mode.E2.80.9D"><span class="tocnumber">4.1</span> <span class="toctext">GPT “one-shot mode”</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#GPT_.E2.80.9Ccontinuous_mode.E2.80.9D"><span class="tocnumber">4.2</span> <span class="toctext">GPT “continuous mode”</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#GPT_Notifications"><span class="tocnumber">4.3</span> <span class="toctext">GPT Notifications</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-30"><a href="#Build"><span class="tocnumber">5</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-31"><a href="#Supported_Architectures"><span class="tocnumber">6</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-32"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">6.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-33"><a href="#Driver_Configuration"><span class="tocnumber">6.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-4 tocsection-34"><a href="#Configuration_Selection"><span class="tocnumber">6.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-4 tocsection-35"><a href="#API_Selection"><span class="tocnumber">6.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+<li class="toclevel-4 tocsection-36"><a href="#Gpt_Channels"><span class="tocnumber">6.1.1.3</span> <span class="toctext">Gpt Channels</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-37"><a href="#Interrupts"><span class="tocnumber">6.1.2</span> <span class="toctext">Interrupts</span></a>
+<ul>
+<li class="toclevel-4 tocsection-38"><a href="#Examples"><span class="tocnumber">6.1.2.1</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-39"><a href="#Implemetations_Demos"><span class="tocnumber">6.1.3</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The GPT driver is part of the microcontroller abstraction layer (MCAL).
+</p><p>It initializes and controls the internal General Purpose Timer(s) of the microcontroller.
+</p><p>The GPT driver provides services and configuration parameters for
+</p>
+<ul><li> Starting and stopping hardware timers
+</li><li> Getting timer values
+</li><li> Controlling time triggered interrupt notifications
+</li></ul>
+<p>The tick duration of a timer channel depends on channel specific settings (part of GPT driver) as well as on system clock and settings of the clock tree controlled by the MCU module.
+</p><p>The tick duration is not limited by this specification.
+</p><p>Not all hardware timers must be controlled by the GPT module.
+</p><p>The number of timer channels controlled by the GPT driver depends on hardware, implementation and system configuration.
+</p><p>The GPT depends on the system clock, prescaler(s) and PLL. Thus, changes of the system clock (e.g. PLL on → PLL off) also affect the clock settings of the GPT hardware. Module GPT will not take care of settings which configure the clock, prescaler(s) and PLL in its init function. This has to be done by the MCU module. Hence the conversions between time and ticks shall be part of an upper layer.
+</p><p>The GPT driver only generates time bases, and does not serve as an event counter.
+</p><p>This functionality is provided by another driver module.
+</p><p>Each timer channel is able to trigger an interrupt and therefore there is a dependency on the OS, which configures the interrupt sources.
+</p><p>The GPT driver has a state machine that is shown in the figure below.
+</p><p><a href="/wiki/index.php?title=File:GPT_State.png" class="image"><img alt="GPT State.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/89/GPT_State.png" width="871" height="771" /></a>
+</p><p><b>Module State</b>
+</p>
+<ul><li> <i>GPT_UNINIT</i>: The state <i>GPT_UNINIT</i> means that the Gpt module has not been initialized yet and cannot be used.
+</li><li> <i>GPT_INIT</i>:   The <i>GPT_INIT</i> state indicates that the GPT driver has been initialized, making each available channel ready for service.
+</li></ul>
+<p><b>Channel State</b>
+</p>
+<ul><li> <i>GPT_CH_OPERATIONAL</i>: The individual channel has been initialized (using at least one statically configured data set) and is able to communicate.
+</li><li> <i>GPT_CH_SLEEP</i>:       The GPT hardware is into a low power mode if such a mode is provided by the hardware.
+</li></ul>
+<ul><li> <i>Reset</i> -&gt; <i>GPT_UNINIT</i>: After reset, the Gpt module shall set its state to <i>GPT_UNINIT</i>.
+</li><li> <i>GPT_UNINIT</i> -&gt; <i>GPT_INIT</i>: The Gpt module shall transition from <i>GPT_UNINIT</i> to <i>GPT_INIT</i> when the function <i>Gpt_Init()</i> is called.
+</li><li> <i>GPT_INIT</i> -&gt; <i>GPT_UNINIT</i>: The Gpt module shall transition from <i>GPT_INIT</i> to <i>GPT_UNINIT</i> when the function <i>Gpt_DeInit()</i> is called.
+</li></ul>
+<p>On entering the state <i>GPT_INIT</i>, the Gpt module shall set each channel into state <i>GPT_CH_OPERATIONAL</i>.
+</p>
+<ul><li> <i>GPT_CH_OPERATIONAL</i> -&gt; <i>GPT_CH_SLEEP</i>: If a <i>Gpt_GoToSleep()</i> function is called, the Gpt module enters in the <i>GPT_CH_SLEEP</i> state.
+</li><li> <i>GPT_CH_SLEEP</i> -&gt; <i>GPT_CH_OPERATIONAL</i>: if a <i>Gpt_Wakeup()</i> functions is called, the Gpt module go back in the state <i>GPT_CH_OPERATIONAL</i>.
+</li></ul>
+<p>The GPT driver provides services for starting and stopping timer channels (logical timer instances assigned to a timer hardware), individual for each channel by calling of:
+</p>
+<ul><li> <i>Gpt_StartTimer()</i>
+</li><li> <i>Gpt_StopTimer()</i>
+</li></ul>
+<p>The "target time" is passed as a parameter to <i>Gpt_StartTimer()</i>. So, for each start of a timer channel, the target time can be set individually.
+</p><p>The states and the state transitions of a timer channel are shown in Figure below:
+</p><p><a href="/wiki/index.php?title=File:GPT_Driver_modes.png" class="image"><img alt="GPT Driver modes.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0d/GPT_Driver_modes.png" width="832" height="494" /></a>
+</p><p>A timer channel can be configured in "one-shot mode" or in "continuous mode".
+</p><p>A timer channel starts counting at value zero.
+</p><p>If a timer channel is configured in "one-shot mode": If the timer has reached the target time (timer value = target time), the timer shall stop automatically and maintain its timer value unchanged. The channel state shall change from "running" to "expired".
+</p><p><a href="/wiki/index.php?title=File:GPT_Driver_one_shot.png" class="image"><img alt="GPT Driver one shot.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4b/GPT_Driver_one_shot.png" width="927" height="425" /></a>
+</p><p>If a timer channel is configured in "continuous mode": If the timer has reached the target time (timer value = target time), the timer shall continue running with the value "0" at next timer tick. So, the time interval of the recurrence is: target time + 1. This interval shall be independently of implementation, e.g. interrupt delays.
+</p><p><a href="/wiki/index.php?title=File:GPT_Driver_continuous.png" class="image"><img alt="GPT Driver continuous.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/26/GPT_Driver_continuous.png" width="927" height="427" /></a>
+</p><p>If a timer channel is configured in "continuous mode": If supported by hardware, it shall be possible to realize a free running timer. This means: A timer which rolls over automatically by hardware, if the target time is set to the maximum value the timer is able to count (max value = 2n -1, n=number of bits).
+</p><p>Both, the relative time elapsed and the time remaining can be queried by calling:
+</p>
+<ul><li> <i>Gpt_GetTimeElapsed()</i>
+</li><li> <i>Gpt_GetTimeRemaining()</i>
+</li></ul>
+<p><a href="/wiki/index.php?title=File:GPT_Driver_elapsed_remaining.png" class="image"><img alt="GPT Driver elapsed remaining.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/88/GPT_Driver_elapsed_remaining.png" width="954" height="378" /></a>
+</p><p>If supported by hardware, a timer channel shall be able to be configured to call a notification function. If enabled, the function is called when the target time is reached (timer value = target time).
+</p><p>Interrupt notifications can be enabled and disabled at runtime individually for each channel by calling of:
+</p>
+<ul><li> <i>Gpt_EnableNotification()</i>
+</li><li> <i>Gpt_DisableNotification()</i>
+</li></ul>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:GPT_Driver_file_structure.png" class="image"><img alt="GPT Driver file structure.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b7/GPT_Driver_file_structure.png" width="925" height="417" /></a>
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Gpt_ConfigType"> <i>struct Gpt_ConfigType</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Configuration Parameters.
+</p><p>This is the type of the data structure including the configuration set required for initializing the GPT timer unit.
+</p><p>The structure <i>Gpt_ConfigType</i> is an external data structure (i.e. implementation specific) and shall contain the initialization data for the GPT module.
+</p><p>It shall contain:
+</p>
+<ul><li> GPT dependent properties
+</li><li> GPT hardware units initialization parameters
+</li><li> SFR's [Special Function Register] settings affecting the GPT channels
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Gpt_ChannelType"> <i>typedef uint Gpt_ChannelType</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Channel Type.
+</p><p>Parameters of type <i>Gpt_ChannelType</i> contain the numeric ID of a GPT channel.
+</p><p>The mapping of the ID is implementation specific but not configurable and not all values may be valid within this type.
+</p><p>For parameter values of type <i>Gpt_ChannelType</i>, the Gpt's user shall use the symbolic names provided by the configuration description.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>, depending on μC platform.
+</p>
+<h4> <span class="mw-headline" id="typedef_uint_Gpt_ValueType"> <i>typedef uint Gpt_ValueType</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Value Type.
+</p><p>The type <i>Gpt_ValueType</i> is the type for reading and setting the timer values (in number of ticks).
+</p><p>The range of this type is μC dependent (width of the timer register) and has to be described by the supplier.
+</p>
+<h4> <span class="mw-headline" id="enum_Gpt_StatusType"> <i>enum Gpt_StatusType</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Status Type.
+</p><p>The type <i>Gpt_StatusType</i> is the type of the return value of the function <i>Gpt_GetStatus()</i>.
+</p><p>The type of <i>Gpt_StatusType</i> is an enumeration describing the operation states for a GPT channel.
+</p><p><b>Enumerator</b>:
+</p>
+<ul><li> <i>GPT_NOT_OK</i>:	Development or production error occurred.
+</li><li> <i>GPT_OPERATIONAL</i>:	Normal operation mode of the GPT
+</li><li> <i>GPT_CH_SLEEP</i>:	Sleep state operation.
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_void_.28.2AGpt_Notification.29.28void.29"> <i>typedef void (*Gpt_Notification)(void)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Notifications Callback Function Pointer.
+</p><p>The notification prototype <i>Gpt_Notification_&lt;channel&gt;()</i> is for the notifications callback function and shall be implemented by the user.
+</p><p>The GPT module's environment shall declare a separate notifications callback for each channel to avoid parameters in notification services and to improve run time efficiency.
+</p><p>The notifications callback <i>Gpt_Notification_&lt;channel&gt;()</i> shall be configurable as pointers to  user defined functions within the configuration structure.
+</p><p>Each channel shall provide its own notifications callback if configured.
+</p><p>When disabled, the GPT Driver will send no notifications.
+</p><p>The GPT Driver shall invoke a notification callback whenever the defined target time of the channel is reached.
+</p><p>The ISR's, providing the GPT events, shall be responsible for resetting the interrupt flags (if needed by hardware) and calling the according notification function.
+</p><p>For all available channels, callback functions have to be declared by the configuration tool.
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="void_Gpt_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Gpt_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Driver version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>:	Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service retrieves the GPT driver version informations.
+</p><p>Service 0x00
+</p><p>The function <i>Gpt_GetVersionInfo()</i> shall return the version information of this module according to the definition of <i>Std_VersionInfoType</i>.
+</p><p>If source code for caller and callee of <i>Gpt_GetVersionInfo()</i> is available, the GPT module should realize <i>Gpt_GetVersionInfo()</i> as a macro, defined in the module’s header file.
+</p><p>The function <i>Gpt_GetVersionInfo()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptVersionInfoApi</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_Init.28const_Gpt_ConfigType_.2AConfigPtr.29"> <i>void Gpt_Init(const Gpt_ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Driver Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr</i>:	Pointer to GPT driver configuration set. 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service initializes the GPT driver.
+</p><p>Service 0x01
+</p><p>The function <i>Gpt_Init()</i> shall initialize the hardware timer module according to a configuration set referenced by <i>ConfigPtr</i>.
+</p><p>The function <i>Gpt_Init()</i> shall disable all interrupt notifications, controlled by the GPT driver.
+</p><p>The function <i>Gpt_Init()</i> shall only initialize the configured resources. Resources that are not configured in the configuration file shall not be touched.
+</p><p>The function <i>Gpt_Init()</i> shall set the operation mode of the GPT driver to "normal mode".
+</p><p>A re-initialization of the GPT driver by executing the <i>Gpt_Init()</i> function requires a de-initialization before by executing a <i>Gpt_DeInit()</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_DeInit.28void.29"> <i>void Gpt_DeInit(void)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Deinitializes all hardware timer channels.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service deinitializes all hardware timer channels.
+</p><p>Service 0x02
+</p><p>The function <i>Gpt_DeInit()</i> shall deinitialize the hardware used by the GPT driver (depending on configuration) to the power on reset state. Values of registers which are not writeable are excluded. It’s the responsibility of the hardware design that the state does not lead to undefined activities in the μC.
+</p><p>The function <i>Gpt_DeInit()</i> shall disable all interrupt notifications controlled by the GPT driver.
+</p><p>The function <i>Gpt_DeInit()</i> shall influence only the peripherals, which are allocated by the static configuration.
+</p><p>If a postbuild multiple selectable configuration variant was used, the function <i>Gpt_DeInit()</i> shall further influence only the peripherals, which are allocated by the runtime configuration set passed by the previous call of the function <i>Gpt_Init()</i>.
+</p><p>The function <i>Gpt_DeInit()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptDeInitApi</i>.
+</p><p>The function <i>Gpt_DeInit()</i> shall set the operation mode of the GPT driver to "uninitialized".
+</p>
+<h4> <span class="mw-headline" id="Gpt_ValueType_Gpt_GetTimeElapsed.28Gpt_ChannelType_Channel.29"> <i>Gpt_ValueType Gpt_GetTimeElapsed(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Elapsed Time Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Elapsed timer value (in number of ticks)
+</li></ul>
+<p>The service returns the time already elapsed.
+</p><p>Service 0x03
+</p><p>The function <i>Gpt_GetTimeElapsed()</i> shall return the time already elapsed. When the channel is in mode "one-shot mode", this is the value relative to the point in time, the channel has been started.
+</p><p>When the channel is in mode "continuous mode", the return value of <i>Gpt_GetTimeElapsed()</i> is the value relative to the last recurrence (target time reached) or to the start of the channel before the first recurrence occurs.
+</p><p>If the function <i>Gpt_GetTimeElapsed()</i> is called on a timer channel in state "initialized" (channel started never before), the function shall return the value "0".
+</p><p>If the function <i>Gpt_GetTimeElapsed()</i> is called on a timer channel in state "stopped", the function shall return the time value at the moment of stopping.
+</p><p>If the function <i>Gpt_GetTimeElapsed()</i> is called on a channel configured for "one-shot mode" in state "expired" (timer has reached the target time), the function shall return the target time.
+</p><p>The function <i>Gpt_GetTimeElapsed()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p><p>The function <i>Gpt_GetTimeElapsed()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptTimeElapsedApi</i>.
+</p><p>If the driver is not initialized, the function <i>Gpt_GetTimeElapsed()</i> shall return the value "0".
+</p><p>If the parameter Channel is invalid (not within the range specified by configuration), the function <i>Gpt_GetTimeElapsed()</i> shall return the value "0".
+</p>
+<h4> <span class="mw-headline" id="Gpt_ValueType_Gpt_GetTimeRemaining.28Gpt_ChannelType_Channel.29"> <i>Gpt_ValueType Gpt_GetTimeRemaining(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Remaining Time Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Remaining timer value (in number of ticks)
+</li></ul>
+<p>The service returns the time remaining until the target time is reached.
+</p><p>Service 0x04
+</p><p>The function <i>Gpt_GetTimeRemaining()</i> shall return the timer value remaining until the target time will be reached next time. The remaining time is the "target time" minus the time already elapsed.
+</p><p>If the function <i>Gpt_GetTimeRemaining()</i> is called on a timer channel in state "initialized" (channel started never before), the function shall return the value "0".
+</p><p>If the function <i>Gpt_GetTimeRemaining()</i> is called on a timer channel in state "stopped", the function shall return the remaining time value at the moment of stopping.
+</p><p>If the function <i>Gpt_GetTimeRemaining()</i> is called on a channel configured for "one-shot mode" in state "expired" (timer has reached the target time), the function shall return the value "0".
+</p><p>The function <i>Gpt_GetTimeRemaining()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p><p>The function <i>Gpt_GetTimeRemaining()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptTimeRemainingApi</i>.
+</p><p>If the driver is not initialized, the function <i>Gpt_GetTimeRemaining()</i> shall return the value "0".
+</p><p>If the parameter Channel is invalid (not within the range specified by configuration), the function <i>Gpt_GetTimeRemaining()</i> shall return the value "0".
+</p><p><br />
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_StartTimer.28Gpt_ChannelType_Channel.2C_Gpt_ValueType_Value.29"> <i>void Gpt_StartTimer(Gpt_ChannelType Channel, Gpt_ValueType Value)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Timer Start.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel
+</li><li> <i>Value</i>:	Target time in number of ticks.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service starts a timer channel.
+</p><p>Service 0x05
+</p><p>The function <i>Gpt_StartTimer()</i> shall start the selected timer channel with a defined target time.
+</p><p>If configured and enabled, an interrupt notification or	a wakeup interrupt occurs, when the target time is reached.
+</p><p>The function <i>Gpt_StartTimer()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p><p>The state of the selected timer channel shall be changed to "running" if <i>Gpt_StartTimer()</i> is called.
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_StopTimer.28Gpt_ChannelType_Channel.29"> <i>void Gpt_StopTimer(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Timer Stop.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service stops a timer channel.
+</p><p>Service 0x06
+</p><p>The function <i>Gpt_StopTimer()</i> shall stop the selected timer channel.
+</p><p>The state of the selected timer channel shall be changed to "stopped" if <i>Gpt_StopTimer()</i> is called.
+</p><p>If the function <i>Gpt_StopTimer()</i> is called on a channel in state "initialized", "stopped" or "expired", the function shall leave without any action (no change of the channel state).
+</p><p>The function <i>Gpt_StopTimer()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_EnableNotification.28Gpt_ChannelType_Channel.29"> <i>void Gpt_EnableNotification(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Channel Notification Enable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel. 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service enables the interrupt notification for a channel relevant in normal mode).
+</p><p>Service 0x07
+</p><p>The function <i>Gpt_EnableNotification()</i> shall enable the interrupt notification of the referenced channel configured for notification.
+</p><p><b>Note</b>:	The function shall save an attribute like "notification enabled" of the	channel.
+</p><p><b>Note</b>	This attribute affects the interrupt notification always when the driver is in "normal mode". In "sleep mode" the attribute has no influence.
+</p><p>The function <i>Gpt_EnableNotification()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p><p>The function <i>Gpt_EnableNotification()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptEnableDisableNotificationApi</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Gpt_DisableNotification.28Gpt_ChannelType_Channel.29"> <i>void Gpt_DisableNotification(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Channel Notification Disable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>The service disables the interrupt notifications for a channel (relevant in normal mode).
+</p><p>Service 0x08
+</p><p>The function <i>Gpt_DisableNotification()</i> shall disable the interrupt notification of the referenced channel configured for notification.
+</p><p>Note:	The function shall save an attribute like "notification disabled" of the channel.
+</p><p>Note:	This attribute affects the interrupt notification always when the driver is in "normal mode". In "sleep mode" the attribute has no influence.
+</p><p>The function <i>Gpt_DisableNotification()</i> shall be reentrant, if the timer channels used in concurrent calls are different.
+</p><p>The function <i>Gpt_DisableNotification()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptEnableDisableNotificationApi</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Gpt_GoToSleep.28Gpt_ChannelType_Channel.29"> <i>Std_ReturnType Gpt_GoToSleep(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Channel Go To Sleep.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	command has been accepted 
+</li><li> <i>E_NOT_OK</i>:	command has not been accepted 
+</li></ul>
+<p>The service instructs the driver to set the addressed GPT channel in the state <i>GPT_CH_SLEEP</i>.
+</p><p>Service 0x0D
+</p><p>The function <i>Gpt_GoToSleep()</i> shall set the channel state to <i>GPT_CH_SLEEP</i>.
+</p><p>The function <i>Gpt_GoToSleep()</i> shall optionally set the GPT hardware unit to reduced power operation mode (if supported by HW).
+</p><p>The function <i>Gpt_GoToSleep()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptChannelWakeupFunctionalityApi</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Gpt_Wakeup.28Gpt_ChannelType_Channel.29"> <i>Std_ReturnType Gpt_Wakeup(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>Channel Wake-up.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:	Numeric identifier of the GPT channel.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:	command has been accepted 
+</li><li> <i>E_NOT_OK</i>:	command has not been accepted 
+</li></ul>
+<p>The service generates a wake-up pulse on the addressed GPT channel.
+</p><p>Service 0x0E
+</p><p>The function <i>Gpt_Wakeup()</i> shall generate a wake up pulse on the addressed GPT channel.
+</p><p>The GPT driver's environment shall only call Gpt_Wakeup() when the GPT channel is in state <i>GPT_CH_SLEEP</i>.
+</p><p>The function <i>Gpt_Wakeup()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptChannelWakeupFunctionalityApi</i>.
+</p>
+<h4> <span class="mw-headline" id="Gpt_StatusType_Gpt_GetStatus.28Gpt_ChannelType_Channel.29"> <i>Gpt_StatusType Gpt_GetStatus(Gpt_ChannelType Channel)</i> </span></h4>
+<pre> #include "Gpt.h"
+</pre>
+<p>GPT Channel Status Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Channel</i>:		Numeric identifier of the GPT channel.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>GPT_NOT_OK</i>:	Development or production error occurred.
+</li><li> <i>GPT_OPERATIONAL</i>:	Normal operation.
+</li><li> <i>GPT_CH_SLEEP</i>: 	Sleep state operation.
+</li></ul>
+<p>The service gets the status of the specified GPT channel.
+</p><p>Service 0x0F
+</p><p>The function <i>Gpt_GetStatus()</i> shall return the current transmission, reception or operation status of the SCI driver.
+</p><p>The function <i>Gpt_GetStatus()</i> shall be pre compile time configurable On/Off by the configuration parameter: <i>GptChannelWakeupFunctionalityApi</i>.
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="GPT_.E2.80.9Cone-shot_mode.E2.80.9D"> GPT “one-shot mode” </span></h3>
+<p><a href="/wiki/index.php?title=File:GPT_One_Shot_Seq_Dia.png" class="image"><img alt="GPT One Shot Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/33/GPT_One_Shot_Seq_Dia.png" width="688" height="735" /></a>
+</p>
+<h3> <span class="mw-headline" id="GPT_.E2.80.9Ccontinuous_mode.E2.80.9D"> GPT “continuous mode” </span></h3>
+<p><a href="/wiki/index.php?title=File:GPT_One_Continuous_Dia.png" class="image"><img alt="GPT One Continuous Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/ef/GPT_One_Continuous_Dia.png" width="726" height="846" /></a>
+</p>
+<h3> <span class="mw-headline" id="GPT_Notifications"> GPT Notifications </span></h3>
+<p><a href="/wiki/index.php?title=File:GPT_Notification_Dia.png" class="image"><img alt="GPT Notification Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4f/GPT_Notification_Dia.png" width="720" height="728" /></a>
+</p>
+<h2> <span class="mw-headline" id="Build"> Build </span></h2>
+<p>To enable AUTOSAR GPT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_GPT_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Gpt_Cfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<h4> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h4>
+<p>In order to configure the AUTOSAR-like Gpt Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Gpt" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_GPT.png" class="new" title="File:Erika Driver Configurator GPT.png">File:Erika Driver Configurator GPT.png</a>
+</p>
+<h5> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h5>
+<p>In this section you can add/edit/delete configurations in GPT Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li><li> Each configuration, inside the configurations set, has a set of Channels.
+<ul><li> Each Channel SHALL have a <i>Name</i> which must be unique inside the Channels.
+</li></ul>
+</li></ul>
+<h5> <span class="mw-headline" id="API_Selection"> API Selection </span></h5>
+<p>In this section you can select GPT Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Version Info</i>: <i>Gpt_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_GPT_set.png" class="new" title="File:Erika Driver Configurator GPT set.png">File:Erika Driver Configurator GPT set.png</a>
+</p>
+<h5> <span class="mw-headline" id="Gpt_Channels"> Gpt Channels </span></h5>
+<p>The Stellaris General-Purpose Timer Module (GPTM) contains six 16/32-bit GPTM blocks and six 32/64-bit Wide GPTM blocks.
+</p><p>Each 16/32-bit GPTM block provides two 16-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 8-bit prescaler) or concatenated to operate as one 32-bit timer (without prescaler).
+</p><p>Channel Identifiers for 16/32-bit GPTM blocks operating indipendently are the followings:
+</p>
+<pre> GPT_CHANNEL_0_A /* block 0 timer A */
+ GPT_CHANNEL_0_B /* block 0 timer B */
+ GPT_CHANNEL_1_A /* block 1 timer A */
+ GPT_CHANNEL_1_B /  block 1 timer B */
+ ...
+ GPT_CHANNEL_5_A /* block 5 timer A */
+ GPT_CHANNEL_5_B /* block 5 timer B */
+</pre>
+<p>If a timer value can't be translated on 16-bit, the driver enables the 8-bit prescaler extending the timer counter size to 24-bit.
+</p><p>Channel Identifiers for 16/32-bit GPTM blocks concatenated are the followings:
+</p>
+<pre> GPT_CHANNEL_J_0 /* block 0 [timer B]:[timer A] */
+ GPT_CHANNEL_J_1 /* block 1 [timer B]:[timer A] */
+ ...
+ GPT_CHANNEL_J_5 /* block 5 [timer B]:[timer A] */
+</pre>
+<p>The timer counter size is fixed to 32-bit.
+</p><p>Each 32/64-bit Wide GPTM block provides two 32-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 16-bit prescaler) or concatenated to operate as one 64-bit timer (without prescaler).
+</p><p>Channel Identifiers for 32/64-bit GPTM blocks operating indipendently are the followings:
+</p>
+<pre> GPT_CHANNEL_W_0_A /* block 0 timer A */
+ GPT_CHANNEL_W_0_B /* block 0 timer B */
+ GPT_CHANNEL_W_1_A /* block 1 timer A */
+ GPT_CHANNEL_W_1_B /  block 1 timer B */
+ ...
+ GPT_CHANNEL_W_5_A /* block 5 timer A */
+ GPT_CHANNEL_W_5_B /* block 5 timer B */
+</pre>
+<p>If a timer value can't be represented on 32-bit, the driver enables the 16-bit prescaler extending the timer counter size to 48-bit.
+</p><p>Channel Identifiers for 32/64-bit GPTM blocks concatenated are the followings:
+</p>
+<pre> GPT_CHANNEL_J_W_0 /* block 0 [timer B]:[timer A] */
+ GPT_CHANNEL_J_W_1 /* block 1 [timer B]:[timer A] */
+ ...
+ GPT_CHANNEL_J_W_5 /* block 5 [timer B]:[timer A] */
+</pre>
+<p>The timer counter size is fixed to 64-bit.
+</p>
+<h4> <span class="mw-headline" id="Interrupts"> Interrupts </span></h4>
+<p>To use the GPT driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for every GPT Channel:
+</p>
+<pre> ISR Gpt_Channel_&lt;Channel&gt;_ISR {
+   CATEGORY = 2;
+   ENTRY = "[WIDE_]TIMER_&lt;Channel&gt;";
+   PRIORITY = &lt;ISR Priority&gt;;
+ };
+</pre>
+<p>Where <code>&lt;Channel&gt;</code> is the "channel identifier" part as stated in the GPT Driver Channel Identifier of the channel and <code>&lt;ISR Priority&gt;</code> is a number indicating the level of priority (0: Lowest).
+</p>
+<h5> <span class="mw-headline" id="Examples"> Examples </span></h5>
+<pre> /* GPT_CHANNEL_0_B: 16-bit GPTM block 0 timer B */
+ ISR Gpt_Channel_0_B_ISR {
+   CATEGORY = 2;
+   ENTRY = "TIMER_0_B";
+   PRIORITY = 4;
+ };
+ ...
+ /* GPT_CHANNEL_J_1: 32-bit GPTM conactenated GPTM block 1 [timer B]:[timer A] */
+ ISR Gpt_Channel_J_1_ISR {
+   CATEGORY = 2;
+   ENTRY = "TIMER_1_A"; /* Concatenated GPTM blocks ALWAYS refers timer A ENTRY */
+   PRIORITY = 3;
+ };
+ ...
+ /* GPT_CHANNEL_W_4_A: 32-bit WIDE GPTM block 4 timer A */
+ ISR Gpt_Channel_0_B_ISR {
+   CATEGORY = 2;
+   ENTRY = "WIDE_TIMER_4_A"; /* WIDE GPTM block */
+   PRIORITY = 6;
+ };
+ ...
+ /* GPT_CHANNEL_J_W_3: 64-bit conactenated WIDE GPTM block 3 [timer B]:[timer A] */
+ ISR Gpt_Channel_J_W_3_ISR {
+   CATEGORY = 2;
+   ENTRY = "WIDE_TIMER_3_A"; /* Concatenated WIDE GPTM blocks ALWAYS refers timer A ENTRY */
+   PRIORITY = 7;
+ };
+</pre>
+<h4> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h4>
+<p>Implementation Demos of the AUTOSAR-like GPT Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 154/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

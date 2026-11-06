@@ -1,0 +1,32 @@
+Requirements: 
+* Install the Freescale CodeWarrior IDE and the compiler '''CWS12v5.1'''
+** The Windows version of the IDE (that ocntains the compiler) can be downloaded from the following site (please note that the site requires registration): [http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=CW-SUITE-SPECIAL&fpsp=1&tab=Design_Tools_Tab HCS12_CODEWARRIOR_V5.1]
+** Install the software in your desired location (every path without blank spaces is a recommended path, for example: ''C:\Programmi\Freescale\CWS12v5.1'').
+* Create a project for RT-Druid. 
+** First enter the compiler path in RT-Druid. In the menu at the top, under ''Windows - Preferences - RT-Druid - Oil - Freescale S12'', enter the path where you installed the compiler as shown in the figure.
+[[image:compiler_preferences.PNG|center|300px]]
+* Then, select ''File - New - RT_Druid ILO and C / C + + project'' to create a new project.
+[[image:new_s12g_project.PNG|center|300px]]
+* Enter the name of the project (for example: ''s12_cw_task_demo'') and click on ''Next'' to specify a template.
+[[image:project_name.PNG|center|300px]]
+* Choose the ''Monostack TASK demo'' as shown in the figure and click on the ''Finish'' button.
+[[image:task_demo.PNG|center|300px]]
+* To use a selected revision of the kernel for project building, right-click on the project name and open the ''Properties'' window. Then select ''Erika files location'' and click to ''Configure workspace Settings'' to set the EE kernel location path for the IDE or choose another option.
+[[image:ee_path.PNG|center|300px]]
+* Now you can compile all the files of the project. To do this, simply right-click on the project name and select ''Build Project''.
+[[image:build_s12g.PNG|center|300px]]
+* If the compilation has been successfully completed the executable file, named “s12.elf”, should be present inside the Debug folder in the project tree.
+[[image:build_success.PNG|center|300px]]
+* Execute the application on the S12G micro-controller. The USB drivers for the '''TWRS12G128''' board should be already installed, otherwise follow the installation procedure described in the user manual of the board. Move the power jumpers in the right position and connect the board with the USB cable (for more info see the manual of the board). Then connect the board and your PC using a serial communication cable (please note that you may need a USB-serial converter if your PC hasn't a DB9 connector).
+** Copy the project path from the project properties as shown in the figure (the project path is needed to upload the executable file ''s12.elf'' in the debugger).
+[[image:project_path.PNG|center|300px]]
+* Open the Freescale debugger named HIWAVE, launching the executable “hiwave.exe” located in the “Prog” folder under the installation directory of the compiler (for example: C:\Programmi\Freescale\CWS12v5.1\Prog).
+[[image:hiwave.PNG|center|300px]]
+* Board selection. Under the menu “Component” select ''Set Connection''. In the menu choose ''HC12'', ''P&E Multilink/Cyclone Pro'' in the combo boxes and click OK.
+[[image:pe.PNG|center|300px]]
+* From the HC12MultilinkCyclonePro menu, choose ''Load ...'' and upload the executable file ''s12.elf'' located in the  Debug folder inside the project. 
+Check the box ''Automatically erase and program into FLASH and EEPROM'' and click ''Open'' (see image below).
+[[image:hiwave_s12_elf.PNG|center|300px]]
+* A message of warning will appear, don't worry and click OK. If the source files are not displayed correctly open the configuration file (''PE_Multilink_CyclonePro.ini'') before loading the file s12.elf. Push Run (or press F5 on the keyboard) to start the application.
+
+Note: If your version of HIWAVE does not recognize the board is likely that the problem is related to the version of the dll ''peosbdmv1.dll", in the folder 	''C:\Programmi\Freescale\CWS12v5.1\Prog''. Please, update the dll installing the service pack named ''CW12_V5_1_HCS12_G240_SP.exe'' or replacing the old dll with the new one provided by the latest P&E drivers.

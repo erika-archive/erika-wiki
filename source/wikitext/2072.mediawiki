@@ -1,0 +1,11 @@
+== Introduction ==
+
+In this document we will see how to build the platform with the component [[mico32_camera]].
+The platform can be downloaded at the following address [http://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee/examples/mico32/demo/platforms/camera_debug_50/ svn]. 
+Recall that to compile a platform is necessary Lattice tools [[http://www.latticesemi.com/products/designsoftware/isplever/isplever/index.cfm?source=sidebar ispLever]] and [[http://www.latticesemi.com/products/designsoftware/micodevelopmenttools/index.cfm MSB]].
+
+=== Open Platform with MSB ===
+
+Once downloaded the platform open the MSB Lattice tool.
+
+[[File:msb_open.png|center|thumb|200px|tool ''msb'']]

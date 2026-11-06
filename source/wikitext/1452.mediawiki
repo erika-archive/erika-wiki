@@ -1,0 +1,21 @@
+= Charset problems in titles =
+
+ Note: The problem in the example below was fixed. I haven't, with a fast browsing,
+ found any other similar problem.
+
+
+Example:
+The link below
+
+[[Universitat_Politècnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)_left_as_example]]
+
+used in the [[FLEX_University_projects]] page
+
+was not imported correctly. 
+
+The imported page is found instead at 
+
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department) ]].
+
+
+The first link contains an handcoded statical redirection to better explain this problem.

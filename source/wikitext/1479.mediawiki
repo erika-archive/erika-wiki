@@ -1,0 +1,15 @@
+==Seems to be orphaned==
+
+This page appears to be orphaned, but it is not.
+
+It's now protected against moving...
+This way only WikiSysop can (re)move it...
+but now the links to this page(see below) could be changed 
+(and its contents erased) by any user.
+
+
+[[FLEX_University_projects]] links to it...
+
+The status of orphan is caused by the 'è' in the title?
+
+It could be caused by the fact that when the import from mambowiki was done the link was corrupted (due to that letter 'è')

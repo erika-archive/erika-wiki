@@ -1,0 +1,193 @@
+# Tutorial: AVR8 - First installation and application compilation on Window
+
+<a id="RT-Druid_and_Erika_Enterprise_tutorial_for_AVR8"></a>
+
+## RT-Druid and Erika Enterprise tutorial for AVR8
+
+This small tutorial describes a set of steps needed to compile a simple application that shows the main features of ERIKA Enterprise and RT-Druid for the AVR8 platform.
+
+This tutorial has been tested on a STK50X board produced by Atmel and on a Crossbow Mib520 board.
+
+<a id="Installing_Erika_Enterprise_and_RT-Druid_on_Microsoft_Windows"></a>
+
+## Installing Erika Enterprise and RT-Druid on Microsoft Windows
+
+This chapter will guide the developer to the installation procedure of ERIKA Enterprise and RT-Druid for the AVR8 platform.
+
+```
+Warning:
+The Cygwin install pathname, the ERIKA Enterprise install pathname, and the pathname of RT-Druid workspaces
+where the user projects reside, MUST NOT contain any blank space, otherwise Erika Enterprise may not work properly.
+
+E.g., C:\MyApplications\Evidence\ and C:\MyApplications\Cygwin\ are acceptable,
+while C:\My Applications\Evidence\ or C:\My Applications\Cygwin\ MUST be avoided.
+
+This is a known issue that will soon be fixed.
+```
+
+The installation of ERIKA Enterprise and RT-Druid is composed by the following packages:
+
+- The Eclipse development environment, which is used by RT-Druid to provide the basic development environment for ERIKA Enterprise applications.
+- The Eclipse environment is based on the Java platform, so that a working Java Runtime Environment must be present for using RT-Druid.
+- The RT-Druid plugins, which provide the code generation for ERIKA Enterprise and ERIKA Enterprise for Eclipse.
+- The ERIKA Enterprise source code.
+- A subset of the [Cygwin](http://www.cygwin.com) environment, including a set of utilities like make, gawk, and few others, which are used during the compilation process of an ERIKA Enterprise application.
+- A set of examples for the AVR8 Platform, which can be used to compile a first set of running examples for the Atmel STK50X board, the Crossbow MIB5X0 board. These applications are organized in “templates”, available at project creation.
+
+To install the software, execute the following steps:
+
+- Install your favourite Java Runtime Environment, which is needed to run RT-Druid; in fact, RT-Druid is a plugin of the Eclipse editor, which requires Java to be executed.
+- Install the AVR8GCC Compiler, available as WinAVR sourceforge.net project at the website <http://sourceforge.net/projects/winavr/> or as Windows project on Atmel <http://www.atmel.com/tools/ATMELAVRTOOLCHAINFORWINDOWS.aspx>. Even in this case, you can use the default install directory. When it is asked to change the default environment, please do accept.
+- Run the ERIKA Enterprise and RT-Druid installer.
+- The installer will prompt a list of packages which can be installed. Select all the packages you wish to install and continue the installation procedure (see Figure 2.1).
+
+[![](../assets/uploads/Avr5tut_installer_options--0a368a33b7.png)](../files/File_Avr5tut_installer_options.png--2323.md)
+
+Figure 2.1: This screenshot shows the dialog box with the available install packages.
+
+- At this point, please check the first line of the file evidencedir\bin\mymake\_cygwin.bat (where evidencedir is the directory you chose during the installation). For example, if Cygwin is installed inside C:\cygwin, then the first line of the file should look like the following one:
+
+@set EE\_BASH\_PATH=C:\ cygwin \ bin\ bash
+
+...that is, the line contains the correct path to the bash.exe file in your Cygwin installation. If you accepted the default settings, the correct pathname should be C:\cygwin\bin\bash as specified in the example before.
+
+```
+Note:
+We ask to perform this check because it seems that on some Windows machines the Cygwin installer
+does not correctly set the registry keys used by the Erika Enterprise installer.
+```
+
+- If you are going to use the Atmel stk50x or the Crossbow Mib5x0 boards, you can use the UISP programmer to program the AVR microcontroller. To Install the UISP software, which is an AVR In-system Programmer using the USB connection provided by the boards cited above, please follow the instructions below:
+
+- If not installed, run the Cygwin setup from <http://www.cygwin.com> to install the following Cygwin packages: gcc.
+- Install the UISP - AVR in-System Programmer, available at the website <http://www.nongnu.org/uisp/>.
+
+The rest of this tutorial supposes that the AVR-Gcc Compiler and binutils is installed within the C:\WinAVR-20071221\bin directory. Please note that these values may be different from the settings you have chosen on your machine.
+
+<a id="First_RT-Druid_startup_and_configuration"></a>
+
+## First RT-Druid startup and configuration
+
+After all the required packages have been installed, you are ready to start RT-Druid for the first time. Please follow the next steps:
+
+- As the first step, run the Eclipse IDE from the Evidence menu inside the Start menu of your Windows machine, choosing Start/Programs/Evidence/RT-Druid.
+- A dialog box will appear, asking to choose the right workspace (see Figure 3.1). Leave the default workpackage directory as it is, and proceed by pressing “OK”.
+
+[![](../assets/uploads/Avr5tut_select_workspace--b1f9783c43.png)](../files/File_Avr5tut_select_workspace.png--2324.md)
+
+Figure 3.1: This screenshot shows the dialog box for the choice of the current workspace directory.
+
+```
+Warning:
+The workspace pathname MUST NOT contain any blank space, otherwise ERIKA Enterprise and RT-Druid may not work properly.
+```
+
+- The Eclipse Welcome screen appears, like in Figure 3.2.
+
+[![](../assets/uploads/Avr5tut_welcome--bb2a17a7c9.png)](../files/File_Avr5tut_welcome.png--2325.md)
+
+Figure 3.2: The Eclipse Welcome screen.
+
+- Before being able to correctly build your application, you should set the path to the AVR8GCC compiler. For doing so, please go to the “Preference” menu, as shown in Figure 3.3, and find the “RT-Druid/Oil/Avr5 Configurator” form as depicted in Figure 3.4. The first textbox, labeled Gcc path, refers to the installation directory of the AVR-Gcc compiler. The second and third textboxes are useful if you are using a development environment based on the Crossbow Mib5x0 board. In particular, the second textbox, labeled Uisp path, refers to the installation directory of the uisp programmer for Crossbow Mib5x0 board, and the third textbox, labeled Serial port device, refers to the COM serial port where the board is attached.
+
+[![](../assets/uploads/Avr5tut_preferences_menu--41bc652a1c.png)](../files/File_Avr5tut_preferences_menu.png--2326.md)
+
+Figure 3.3: Go to the “Preference” menu.
+
+```
+Warning:
+The install directories specified for the AVR8GCC Compiler in the textboxes of Figure 3.4 does not include the bin directory!
+That is, c:\WinAVR-20071221 is correct, wheras c:\WinAVR-20071221\bin is not.
+```
+
+[![](../assets/uploads/Avr5tut_preferences--9acce0f416.png)](../files/File_Avr5tut_preferences.png--2327.md)
+
+Figure 3.4: Select paths for compiler and assembler.
+
+- Before creating and building your application, please deselect the “Build Automatically” flag inside the “Project” menu, as shown in Figure 3.5.
+
+[![](../assets/uploads/Avr5tut_build_automatically--3fc4de3057.png)](../files/File_Avr5tut_build_automatically.png--2328.md)
+
+Figure 3.5: Deselect the “Build Automatically” flag in the “Project” menu.
+
+<a id="Compiling_your_first_Erika_Enterprise_demo_for_AVR8"></a>
+
+## Compiling your first Erika Enterprise demo for AVR8
+
+You are now ready to compile your first ERIKA Enterprise demo. Please execute the following steps:
+
+- Please select “New Project”, then “RT-Druid Oil and c/c++ Project” from the “File menu”, as in Figure 4.1.
+
+[![](../assets/uploads/Avr5tut_newproject--9367e91b93.png)](../files/File_Avr5tut_newproject.png--2329.md)
+
+Figure 4.1: Select “New project” from the “File” menu.
+
+- A Dialog box appear. Please select a template for the new project, as in Figure 4.2.
+
+[![](../assets/uploads/Avr5tut_newproject2--fde0200814.png)](../files/File_Avr5tut_newproject2.png--2330.md)
+
+Figure 4.2: Select a template for your project.
+
+- Press “Next”.
+- Insert the name of the new project. Please type myProject (you can choose other names of course). Please see Figure 4.3. Press the “Finish” button.
+
+[![](../assets/uploads/Avr5tut_project_name--7354afa6b3.png)](../files/File_Avr5tut_project_name.png--2331.md)
+
+Figure 4.3: Type a name for the new project
+
+- We are now ready to build the demo. Right click on the project name in the Eclipse navigation bar, and choose “Build Project” (see Figure 4.4).
+
+[![](../assets/uploads/Avr5tut_build_project--21b953db94.png)](../files/File_Avr5tut_build_project.png--2332.md)
+
+Figure 4.4: We are now able to build the project.
+
+```
+Note:
+“Build Project” only appears if the “Build Automatically” flag is not selected in the “Project” menu.
+```
+
+- Then, the compilation process starts as depicted in Figure 4.5. Please note the message that appears when the compilation is successfull.
+
+[![](../assets/uploads/Avr5tut_compiling--73a5ad4d31.png)](../files/File_Avr5tut_compiling.png--2333.md)
+
+Figure 4.5: The compilation process.
+
+```
+Note:
+If the error depicted in Figure 4.6 appears (meaning that mymake_cygwin.bat is unable to find a file),
+then please follow the instructions at the last point of Chapter 2.
+```
+
+[![](../assets/uploads/Avr5tut_mymake_cygwin_error--175c648525.png)](../files/File_Avr5tut_mymake_cygwin_error.png--2334.md)
+
+Figure 4.6: An error that shows up on some Windows machines. Please check the mymake\_cygwin.bat file as explained in the last point of Chapter 2.
+
+- At the end of the compiling process you will be able to find a file named avr.elf and a file named avr.srec inside the Debug directory inside the project, as shown in Figure 4.7 and in the figure 4.8.
+
+[![](../assets/uploads/Avr5tut_elf_file--2d82bea303.png)](../files/File_Avr5tut_elf_file.png--2335.md)
+
+Figure 4.7: The output file is ready to be programmed on the target board.
+
+[![](../assets/uploads/Avr5tut_srec_file--53992dd9e0.png)](../files/File_Avr5tut_srec_file.png--2336.md)
+
+Figure 4.8: The output file is ready to be programmed on the target board.
+
+- You can now program the device using avr5 programmer as shown in Figure 4.9 and in Figure 4.10. Please remember that you have to connect ISP6PIN plug of the STK500 with the SPROG plug of the STK501 through 6-wires cable.
+
+[![](../assets/uploads/Avr5tut_program_device1--5b159f4a14.png)](../files/File_Avr5tut_program_device1.png--2337.md)
+
+Figure 4.9: Program the Flash memory of the device.
+
+[![](../assets/uploads/Avr5tut_program_device2--359fc84523.png)](../files/File_Avr5tut_program_device2.png--2338.md)
+
+Figure 4.10: Program the Flash memory process.
+
+---
+
+## Archive provenance
+
+- [Original page](http://erika.tuxfamily.org/wiki/index.php?title=Tutorial%3A_AVR8_-_First_installation_and_application_compilation_on_Window) · [Archived source revision 5536](http://erika.tuxfamily.org/wiki/index.php?oldid=5536)
+- Last source edit: 2014-03-24T14:36:13Z. Source retrieved on 2026-11-06; Markdown conversion completed on 2026-11-07.
+- Original contributors recorded in exported history: Giuseppe Serano.
+- [Original MediaWiki source](../source/wikitext/2469.mediawiki) · [Original editing history](../source/history/batch-010.xml)
+- [Attribution and licensing notice](../NOTICE.md). Original file-specific notices, where present, remain applicable.

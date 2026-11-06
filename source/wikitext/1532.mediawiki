@@ -1,0 +1,87 @@
+= Amazing Ball Control Application =
+
+'''AMAZING BALL: An example of PID control and USB-UDP communication with the FLEX Motion Daughter Board'''
+<br /><br />
+
+{| class="wikitable"
+
+Step 1:
+*   Open Scilab  4.1.2, the Scicos-FLEX pack is recognized by Scilab (refer Fig. 1).
+: Change the working directory to “C:\Programmi\scilab-4.1.2\contrib\dspic”.
+: Type exec builder.sce to build any application of the pack.
+
+[[image:scilab.png]]
+::::::: Figure 1 – Scilab
+
+Step 2:
+*   Open file “pid_ctrl_codegen_usbudp_tuning_square_circle.cos” (refer Fig. 2) in 
+: Scicos.
+: The .cos file contains the schematic for the generation (with SCICOS) of the FLEX 
+: FULL board program.
+: This application is for tuning coefficients of the PID control  for improving 
+: system performance. 
+
+[[image:flexside_schematic.png]]
+::::::: Figure 2 – Control system schematic
+
+Step 3:
+*   Click menu CodeGen and select FlexCodeGen.
+: Click on the super-block, the Embedded Code Generator's block property settings 
+: window will appear (refer Fig. 3)
+: Provide path name and then press OK for code generation (refer Fig. 4)
+
+[[image:generator_window.png]] 
+::::::: Figure 3 – Embedded Code Generator window
+
+[[image:generator_results.png]] 
+::::::: Figure 4 – Code Generator results
+
+Step 4:
+* Open MPLAB IDE and import “pic30.cof” file created by the code generator in Step 3.
+: Connect the FLEX003 (FLEX Full Base Board) to ICD for programming the dsPic 
+:(refer Fig. 5). The board is programmed and set in reset mode.
+
+[[image:cof_ide1.png]] 
+[[image:cof_ide2.png]] 
+::::::: Figure 5 - MPLAB IDE: COF file importing and target programming
+
+Step 5:
+* Check the USB device recognition in the peripherals window (refer Fig. 6) and 
+: execute the program app_flex_scicos.exe (refer Fig. 7)
+: Note1: The program needs CygWin Win32 usb library and is compiled using make 
+: command.
+: Note2: Download the FLEX USB drivers for Windows and the PIC18 firmware at: 
+: [[FLEX usb data communication using Scilab and Scicos]] 
+
+[[image:usb_recognition.png]] 
+::::::: Figure 6 – Check the USB device recognition
+
+[[image:compilation_gateway.png]] 
+::::::: Figure 7 – Compilation and start of the program
+
+Step 6:
+* Open the PC-side file “pc_pid_tuning.cos” in Scicos;
+: The .cos file contains the schematic for the PC-side (refer Fig. 8). 
+: The almost-real-time simulation runs in SCICOS environment. The application 
+: shows the received USB data on the multiple scope and sends other data to the 
+: FLEX FULL board (refer Fig. 9). 
+
+[[image:pcside_schematic.png]] 
+::::::: Figure 8 – PC-side schematic
+
+[[image:pc_side_tuner.png]] 
+::::::: Figure 9 – PC-side application (PID tuner)
+
+Step 7:
+* Release the reset to run the demo (refer Fig.10);
+: Initially the application calibrates the touch screen (refer Fig. 11), followed 
+: by rest of the demo (refer Fig.12). 
+
+[[image:released_reset.png]]
+::::::: Figure 10 - MPLAB IDE: Target released from reset
+
+[[image:scicoslab10.png]]
+::::::: Figure 11 – Touch panel calibration
+
+[[image:scicoslab11.png]]
+::::::: Figure 12 – Control result

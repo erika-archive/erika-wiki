@@ -1,0 +1,22 @@
+The '''FLEX''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Flex_sources_flexadc.png]]
+| This block maps to an analog input pin of the FLEX Board. The internal parameter specifies the ADC pin (from 1 to 8).
+|-
+| [[image:Flex_sources_flexgpin.png]]
+| This block maps to an digital input pin of the FLEX Board. The internal parameter specifies the GPIO pin (from 1 to 8).
+|-
+| [[image:Flex_sinks_flexled.png]]
+| This block controls the FLEX system LED. The LED is on when the input is greater than 0.5.
+|-
+| [[image:Flex_sinks_flexgpout.png]]
+| This block controls an output pin of the FLEX Board. It has an internal parameter which is the ouput pin.
+|-
+| [[image:Flex_sinks_flexlcd.png]]
+| This block controls the LCD which is attached to the first prototype of the Demo Daughter Board (this hardware is no more available, and the block is here for historical usage). If used with the Demo Daughter Board, it controls the LCD of that board.

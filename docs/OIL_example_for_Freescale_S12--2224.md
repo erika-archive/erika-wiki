@@ -1,0 +1,91 @@
+# OIL example for Freescale S12
+
+- OIL example for Freescale S12:
+
+```
+ CPU test_application {
+   OS EE {
+     EE_OPT = "__ASSERT__";    // to use assertion mechanism
+     EE_OPT = "DEBUG";      // to include debug info
+     EE_OPT = "__CODEWARRIOR__";  // to use CODEWARRIOR compiler otherwise COSMIC compiler will be used.
+     EE_OPT = "CW_EVAL_VERSION";       // If the Codewarrior compiler license is expired use this 
+                                               // option to avoid syntax errors during the compilation.
+     CFLAGS = "-D__FAR_DATA";    // Options for the C compiler (refer to the compiler manual)
+     ASFLAGS = "";      // Options for the assembler (refer to the assembler manual)
+     LDFLAGS = "-addansibi.lib";  // Options for the linker (refer to the linker manual)
+     CPU_DATA = MC9S12 {      // CPU section
+         APP_SRC = "code.c";    // Specify source files in this section...
+         APP_SRC = "Vectors.c";
+         APP_SRC = "CPU12ISRs.c";
+         APP_SRC = "Start12.c";
+         MULTI_STACK = FALSE;
+     };
+     MCU_DATA = MC9S12 {      // MCU section
+         MODEL = CUSTOM{      // Allowed values for S12 are: MC9S12G128, MC9S12XS128, CUSTOM
+                              // MC9S12G128 model uses these default settings:
+                              //    Codewarrior Linker script: MC9S12G128.prm (in ee\pkg\mcu\hs12xs)
+                              //    Codewarrior Header: mc9s12g128.h (from the CW compiler installation directory)
+                              //    Codewarrior SRC: mc9s12g128.c (from the CW compiler installation directory)
+                              //    No Cosmic support for MC9S12G128 
+                              // MC9S12XS128 model uses these default settings:
+                              //    Codewarrior Linker script: MC9S12XS128.prm (in ee\pkg\mcu\hs12xs)
+                              //    Cosmic Linker script: MC9S12XS128.lkf (in ee\pkg\mcu\hs12xs)
+                              //    Codewarrior Header: mc9s12xs128.h (from the compiler installation directory)
+                              //    Cosmic Header: ioxs256.h (from the compiler installation directory)
+                              //    Codewarrior SRC: mc9s12xs128.c (from the compiler installation directory)
+                              //    Cosmic SRC: nothing
+                              // CUSTOM model can be used to change default settings.
+         MODEL = "MC9S12G128"; // Device model
+         LINKERSCRIPT = "../mc9s12g128.prm"; // User linker script. If this field is void, a default linker script will be used.
+         INCLUDE_H = "mc9s12g128.h";    // Header from user or compiler folder. 
+         INCLUDE_C = "mc9s12g128.c";    // Registers definition file from user or compiler folder.
+         INCLUDE_S = "";                // ASM file for startup if needed.
+       };
+       TIMER = TRUE;      // This options enables timer driver compilation. Equivalent options:
+                          // MC9S12XS128: __USE_TIMER__, __USE_PIT__
+                          // MC9S12G128:  __USE_TIMER__            
+       SERIAL = TRUE;     // This options enables serial interface driver compilation. Equivalent options:
+                          // MC9S12XS128: __USE_SCI__
+                          // MC9S12G128:  __USE_SCI__
+       };
+       STATUS = EXTENDED;      // Kernel configuration 
+       STARTUPHOOK = FALSE;
+       ERRORHOOK = FALSE;
+       SHUTDOWNHOOK = FALSE;
+       PRETASKHOOK = FALSE;
+       POSTTASKHOOK = FALSE;
+       USEGETSERVICEID = FALSE;
+       USEPARAMETERACCESS = FALSE;
+       USERESSCHEDULER = TRUE;
+       KERNEL_TYPE = BCC1;    // Kernel type 
+   };
+   /* Here you can specify tasks, alarms, events, counters, ... */
+   TASK Task1 {
+     PRIORITY = 1;
+     ACTIVATION = 1;
+     SCHEDULE = FULL;
+     AUTOSTART = TRUE;
+     STACK = SHARED;
+   };
+   COUNTER Counter1 {
+     MINCYCLE = 2;
+     MAXALLOWEDVALUE = 16 ;
+     TICKSPERBASE = 1;
+   };
+   ALARM Alarm1 {
+     COUNTER = "Counter1";
+     ACTION = ACTIVATETASK { TASK = "Task1"; };
+     AUTOSTART = FALSE;
+   };
+ };
+```
+
+---
+
+## Archive provenance
+
+- [Original page](http://erika.tuxfamily.org/wiki/index.php?title=OIL_example_for_Freescale_S12) · [Archived source revision 4283](http://erika.tuxfamily.org/wiki/index.php?oldid=4283)
+- Last source edit: 2012-01-12T11:20:11Z. Source retrieved on 2026-11-06; Markdown conversion completed on 2026-11-07.
+- Original contributors recorded in exported history: Erikadds.
+- [Original MediaWiki source](../source/wikitext/2224.mediawiki) · [Original editing history](../source/history/batch-008.xml)
+- [Attribution and licensing notice](../NOTICE.md). Original file-specific notices, where present, remain applicable.

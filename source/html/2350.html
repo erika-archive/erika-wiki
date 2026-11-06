@@ -1,0 +1,511 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Types_Defintions"><span class="tocnumber">3.2</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#struct_Mcu_ConfigType"><span class="tocnumber">3.2.1</span> <span class="toctext">struct Mcu_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#enum_Mcu_PllStatusType"><span class="tocnumber">3.2.2</span> <span class="toctext">enum Mcu_PllStatusType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#typedef_uint_Mcu_ClockType"><span class="tocnumber">3.2.3</span> <span class="toctext">typedef uint Mcu_ClockType</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#enum_Mcu_ResetType"><span class="tocnumber">3.2.4</span> <span class="toctext">enum Mcu_ResetType</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#typedef_uint_Mcu_RawResetType"><span class="tocnumber">3.2.5</span> <span class="toctext">typedef uint Mcu_RawResetType</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#typedef_uint_Mcu_ModeType"><span class="tocnumber">3.2.6</span> <span class="toctext">typedef uint Mcu_ModeType</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#typedef_uint_Mcu_RamSectionType"><span class="tocnumber">3.2.7</span> <span class="toctext">typedef uint Mcu_RamSectionType</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#enum_Mcu_RamStateType"><span class="tocnumber">3.2.8</span> <span class="toctext">enum Mcu_RamStateType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#Functions_Definitions"><span class="tocnumber">3.3</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#void_Mcu_Init.28const_Mcu_ConfigType_.2AConfigPtr.29"><span class="tocnumber">3.3.1</span> <span class="toctext">void Mcu_Init(const Mcu_ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Std_returnType_Mcu_InitRamSection.28Mcu_RamSectionType_RamSection.29"><span class="tocnumber">3.3.2</span> <span class="toctext">Std_returnType Mcu_InitRamSection(Mcu_RamSectionType RamSection)</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Std_ReturnType_Mcu_InitClock.28Mcu_ClockType_ClockSetting.29"><span class="tocnumber">3.3.3</span> <span class="toctext">Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#void_Mcu_DistributeClock.28void.29"><span class="tocnumber">3.3.4</span> <span class="toctext">void Mcu_DistributeClock(void)</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Mcu_PllStatusType_Mcu_GetPllStatus.28void.29"><span class="tocnumber">3.3.5</span> <span class="toctext">Mcu_PllStatusType Mcu_GetPllStatus(void)</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Mcu_ResetType_Mcu_GetResetReason.28void.29"><span class="tocnumber">3.3.6</span> <span class="toctext">Mcu_ResetType Mcu_GetResetReason(void)</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Mcu_RawResetType_Mcu_GetResetRawValue.28void.29"><span class="tocnumber">3.3.7</span> <span class="toctext">Mcu_RawResetType Mcu_GetResetRawValue(void)</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#void_Mcu_PerformReset.28void.29"><span class="tocnumber">3.3.8</span> <span class="toctext">void Mcu_PerformReset(void)</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#void_Mcu_SetMode.28Mcu_ModeType_McuMode.29"><span class="tocnumber">3.3.9</span> <span class="toctext">void Mcu_SetMode(Mcu_ModeType McuMode)</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#void_Mcu_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.3.10</span> <span class="toctext">void Mcu_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="#Mcu_RamStateType_Mcu_GetRamState.28void.29"><span class="tocnumber">3.3.11</span> <span class="toctext">Mcu_RamStateType Mcu_GetRamState(void)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-28"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-29"><a href="#MCU_initialization_services"><span class="tocnumber">4.1</span> <span class="toctext">MCU initialization services</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#.CE.BCC_reset_reason_retrieval_service"><span class="tocnumber">4.2</span> <span class="toctext">μC reset reason retrieval service</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#.CE.BCC_reset_raw_value_retrieval_service"><span class="tocnumber">4.3</span> <span class="toctext">μC reset raw value retrieval service</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#.CE.BCC_reset_service"><span class="tocnumber">4.4</span> <span class="toctext">μC reset service</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-33"><a href="#Build"><span class="tocnumber">5</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-34"><a href="#Supported_Architectures"><span class="tocnumber">6</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-35"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">6.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-36"><a href="#Driver_Configuration"><span class="tocnumber">6.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-4 tocsection-37"><a href="#Configuration_Selection"><span class="tocnumber">6.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-4 tocsection-38"><a href="#API_Selection"><span class="tocnumber">6.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-39"><a href="#Implemetations_Demos"><span class="tocnumber">6.1.2</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The MCU driver provides services for basic microcontroller initialization, power down functionality, reset and microcontroller specific functions required by other MCAL [Microcontroller  Abstraction  Layer] software modules. The initialization services allow a flexible and application related MCU initialization in addition to the start-up code (see figure  below).  The  start-up  code  is  very  MCU  specific.  The start-up code is provided by Evidence Srl within Erika Enterprise.
+</p><p><a href="/wiki/index.php?title=File:Startup_Code.png" class="image"><img alt="Startup Code.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/8a/Startup_Code.png" width="921" height="492" /></a>
+</p><p><b>MCU driver Features</b>:<br />
+</p>
+<ul><li> Initialization of MCU clock, PLL, clock prescalers and MCU clock distribution
+</li><li> Initialization of RAM sections
+</li><li> Activation of μC reduced power modes
+</li><li> Activation of a μC reset
+</li><li> Provides a service to get the reset reason from hardware
+</li></ul>
+<p>The MCU driver accesses the microcontroller hardware directly and is located in the Microcontroller Abstraction Layer.
+</p>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:MCU_Driver_File_structure.png" class="image"><img alt="MCU Driver File structure.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/60/MCU_Driver_File_structure.png" width="927" height="658" /></a>
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Mcu_ConfigType"> <i>struct Mcu_ConfigType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>MCU Configuration Parameters.
+</p><p>The structure <i>Mcu_ConfigType</i> is an external data structure (i.e. implementation specific) and shall contain the initialization data for the MCU module. It shall contain:
+</p>
+<ul><li> MCU dependent properties
+</li><li> Reset Configuration
+</li><li> Definition of MCU modes
+</li><li> Definition of Clock settings
+</li><li> Definition of RAM sections
+</li></ul>
+<p>The structure <i>Mcu_ConfigType</i> shall provide a configurable (enable/disable) clock failure notification if the MCU provides an interrupt for such detection. If the clock failure is detected with other HW mechanisms e.g., the generation of a trap, this notification shall be disabled and the failure reporting shall be done outside the MCU driver.
+</p><p>The definitions for each MCU mode within the structure <i>Mcu_ConfigType</i> shall contain: (depending on MCU)
+</p>
+<ul><li> MCU specific properties
+</li><li> Change of CPU clock
+</li><li> Change of Peripheral clock
+</li><li> Change of PLL settings
+</li><li> Change of MCU power supply
+</li></ul>
+<p>The definitions for each Clock setting within the structure <i>Mcu_ConfigType</i> shall contain:
+</p>
+<ul><li> MCU specific properties as, e.g., clock safety features and special clock distribution settings
+</li><li> PLL settings /start lock options
+</li><li> Internal oscillator setting
+</li></ul>
+<p>The definitions for each RAM section within the structure <i>Mcu_ConfigType</i> shall contain:
+</p>
+<ul><li> RAM section base address
+</li><li> Section size
+</li><li> Data pre-setting to be initialized
+</li></ul>
+<p>Usage of linker symbols instead of scalar values is allowed.
+</p>
+<h4> <span class="mw-headline" id="enum_Mcu_PllStatusType"> <i>enum Mcu_PllStatusType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>PLL Status Type.
+</p><p>The type <i>Mcu_PllStatusType</i> is the type of the return value of the API function <i>Mcu_GetPllStatus()</i>.
+</p><p>The type of <i>Mcu_PllStatusType</i> is an enumeration with the following values: <i>MCU_PLL_LOCKED</i>, <i>MCU_PLL_UNLOCKED</i>, <i>MCU_PLL_STATUS_UNDEFINED</i>.
+</p><p><b>Enumerator:</b>
+</p>
+<ul><li> <i>MCU_PLL_LOCKED</i>:			PLL is locked. 
+</li><li> <i>MCU_PLL_UNLOCKED</i>:			PLL is unlocked.
+</li><li> <i>MCU_PLL_STATUS_UNDEFINED</i>:		PLL Status is unknown.
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Mcu_ClockType"> <i>typedef uint Mcu_ClockType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Clock Type.
+</p><p>The type <i>Mcu_ClockType</i> defines the identification (ID) for clock setting configured via the configuration structure.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>, depending on μC platform.
+</p>
+<h4> <span class="mw-headline" id="enum_Mcu_ResetType"> <i>enum Mcu_ResetType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Reset Type.
+</p><p>This type represents the different reset that a specified MCU can have.
+</p><p>The MCU module shall provide at least the values <i>MCU_POWER_ON_RESET</i> and <i>MCU_RESET_UNDEFINED</i>.
+</p><p><b>Note</b>: Additional reset types may be added depending on MCU.
+</p><p><b>Enumerator</b>: 
+</p>
+<ul><li> <i>MCU_POWER_ON_RESET</i>:  		Power On Reset (default) 
+</li><li> <i>MCU_WATCHDOG_RESET</i>:  		Internal Watchdog Timer Reset 
+</li><li> <i>MCU_SW_RESET</i>:  			Software Reset 
+</li><li> <i>MCU_RESET_UNDEFINED</i>: 		Reset is undefined
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Mcu_RawResetType"> <i>typedef uint Mcu_RawResetType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Raw Reset Type.
+</p><p>The type <i>Mcu_RawResetType</i> specifies the reset reason in raw register format, read from a reset status register.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>  based on best performance.
+</p>
+<h4> <span class="mw-headline" id="typedef_uint_Mcu_ModeType"> <i>typedef uint Mcu_ModeType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Mode Type.
+</p><p>The <i>Mcu_ModeType</i> specifies the identification (ID) for a MCU mode, configured via configuration structure.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>.
+</p>
+<h4> <span class="mw-headline" id="typedef_uint_Mcu_RamSectionType"> <i>typedef uint Mcu_RamSectionType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Ram Section Type.
+</p><p>The <i>Mcu_RamSectionType</i> specifies the identification (ID) for a RAM section, configured via the configuration structure.
+</p><p>The type shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i> , based on best performance. 
+</p>
+<h4> <span class="mw-headline" id="enum_Mcu_RamStateType"> <i>enum Mcu_RamStateType</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Ram State Type.
+</p><p>This is the Ram State data type returned by the function Mcu_GetRamState() of the Mcu module. It is not required that all RAM state types are supported by the hardware.
+</p><p><b>Enumerator</b>:
+</p>
+<ul><li> <i>MCU_RAM_STATE_INVALID</i>:  	Ram content is not valid or unknown (default) 
+</li><li> <i>MCU_RAM_STATE_VALID</i>:  	Ram content is valid
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="void_Mcu_Init.28const_Mcu_ConfigType_.2AConfigPtr.29"> <i>void Mcu_Init(const Mcu_ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>MCU Driver Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr </i>: Pointer to MCU driver configuration set. 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> None.
+</li></ul>
+<p>This service initializes the MCU driver.
+</p><p>Service 0x00
+</p><p>The function <i>Mcu_Init()</i> shall initialize the MCU module, i.e. make the configuration settings for power down, clock and RAM sections visible within the MCU module.
+</p><p><b>Note</b>: After the execution of the function <i>Mcu_Init()</i>, the configuration data are accessible and can be used by the MCU module functions as, e.g., <i>Mcu_InitRamSection()</i>.
+</p><p>The MCU module's implementer shall apply the following rules regarding initialization of controller registers within the function <i>Mcu_Init()</i>:
+</p>
+<ul><li> If the hardware allows for only one usage of the register, the driver module implementing that functionality is responsible for initializing the register.
+</li><li> If the register can affect several hardware modules and if it is an I/O register, it shall be initialised by the <b>PORT</b> driver.
+</li><li> If the register can affect several hardware modules and if it is not an I/O register, it shall be initialised by this <b>MCU</b> driver.
+</li><li> One-time writable registers that require initialisation directly after reset shall be initialised by the startup code.
+</li><li> All other registers not mentioned before shall be initialised by the start-up code.
+</li></ul>
+<p>If not applicable, the MCU module's environment shall pass a <i>NULL</i> pointer to the function <i>Mcu_Init()</i>. In this case the check for this <i>NULL</i> pointer has to be omitted.
+</p><p><b>Note</b>: The term 'Hardware Module' refers to internal modules of the MCU.
+</p>
+<h4> <span class="mw-headline" id="Std_returnType_Mcu_InitRamSection.28Mcu_RamSectionType_RamSection.29"> <i>Std_returnType Mcu_InitRamSection(Mcu_RamSectionType RamSection)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Ram Section Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>RamSection</i>: Selects RAM memory section provided in configuration set 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>: 		command has been accepted
+</li><li> <i>E_NOT_OK</i>: 	command has not been accepted e.g. due to parameter error
+</li></ul>
+<p>This service initializes the RAM section wise.
+</p><p>Service 0x01
+</p><p>The function <i>Mcu_InitRamSection()</i> shall fill the memory from address McuRamSectionBaseAddress up to address <i>McuRamSectionBaseAddress</i> + <i>McuRamSectionSize</i>  - <i>1</i> with the byte-value contained in <i>McuRamDefaultValue</i>, where <i>McuRamSectionBaseAddress</i>, <i>McuRamSectionSize</i> and <i>McuRamDefaultValue</i> are the values of the configuration parameters for each RamSection.
+</p><p>The MCU module's environment shall call the function <i>Mcu_InitRamSection()</i> only after the MCU module has been initialized using the function <i>Mcu_Init()</i>.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Mcu_InitClock.28Mcu_ClockType_ClockSetting.29"> <i>Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Clock Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ClockSetting</i>: Clock Setting
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>: 		command has been accepted
+</li><li> <i>E_NOT_OK</i>: 	command has not been accepted
+</li></ul>
+<p>This service initializes the PLL and other Mcu Specific clock options.
+</p><p>Service 0x02
+</p><p>The function <i>Mcu_InitClock()</i> shall initialize the PLL and other MCU specific clock options. The clock configuration parameters are provided via the configuration structure.
+</p><p>The function <i>Mcu_InitClock()</i> shall start the PLL lock procedure (if PLL shall be initialized) and shall return without waiting until the PLL is locked.
+</p><p>The MCU module's environment shall only call the function <i>Mcu_InitClock()</i> after the MCU module has been initialized using the function <i>Mcu_Init()</i>.
+</p><p>The function <i>Mcu_InitClock()</i> shall be disabled if the configuration parameter <i>McuInitClock</i> is set to <i>FALSE</i>. Instead this function is available if the former parameter is set to <i>TRUE</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Mcu_DistributeClock.28void.29"> <i>void Mcu_DistributeClock(void)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>PLL Clock Distribution.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><br />
+<b>Returns</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p>This service activates the PLL clock to the MCU clock ditribution.
+</p><p>Service 0x03
+</p><p>The function <i>Mcu_DistributePllClock()</i> shall activate the PLL clock to the MCU clock distribution.
+</p><p>The MCU module's environment shall execute the function <i>Mcu_DistributePllClock()</i> if the MCU module needs a separate request to activate the PLL clock after the PLL is locked. In this case, the function shall remove the current clock source (for example internal oscillator clock) from MCU clock distribution.
+</p><p>The function <i>Mcu_DistributePllClock()</i> shall return without affecting the MCU hardware if the PLL clock has been automatically activated by the MCU hardware.
+</p><p>The MCU module's environment shall only call the function <i>Mcu_DistributePllClock()</i> after the status of the PLL has been detected as locked by the function <i>Mcu_GetPllStatus()</i>.
+</p><p>The function <i>Mcu_DistributePllClock()</i> shall be available if the configuration parameter <i>McuNoPll</i> is set to <i>FALSE</i>. Otherwise, this API has to be disabled.
+</p>
+<h4> <span class="mw-headline" id="Mcu_PllStatusType_Mcu_GetPllStatus.28void.29"> <i>Mcu_PllStatusType Mcu_GetPllStatus(void)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>PLL Status Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><br />
+<b>Returns</b>:
+</p>
+<ul><li> PLL Status.
+</li></ul>
+<p>This service provides the lock status of the PLL.
+</p><p>Service 0x04
+</p><p>The function <i>Mcu_GetPllStatus()</i> shall return the lock status of the PLL.
+</p><p>The function <i>Mcu_GetPllStatus()</i> shall return <i>MCU_PLL_STATUS_UNDEFINED</i> if this function is called prior to calling of the function <i>Mcu_Init()</i>.
+</p><p>The function <i>Mcu_GetPllStatus()</i> shall also return <i>MCU_PLL_STATUS_UNDEFINED</i> if the pre-compile parameter <i>McuNoPll</i> is set to <i>TRUE</i>.
+</p>
+<h4> <span class="mw-headline" id="Mcu_ResetType_Mcu_GetResetReason.28void.29"> Mcu_ResetType Mcu_GetResetReason(void) </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Reset Reason Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Reset Reason.
+</li></ul>
+<p>This service reads the reset type from the hardware, if supported.
+</p><p>Service 0x05
+</p><p>The function <i>Mcu_GetResetReason()</i> shall read the reset reason from the hardware and return this reason if supported by the hardware. If the hardware does not support the hardware detection of the reset reason, the return value from the function <i>Mcu_GetResetReason()</i> shall always be <i>MCU_POWER_ON_RESET</i>.
+</p><p>The function <i>Mcu_GetResetReason()</i> shall return <i>MCU_RESET_UNDEFINED</i> if this function is called prior to calling of the function <i>Mcu_Init()</i>, and if supported by the hardware.
+</p><p><b>Note</b>: The User should ensure that the reset reason is cleared once it has been read out to avoid multiple reset reasons.
+</p>
+<h4> <span class="mw-headline" id="Mcu_RawResetType_Mcu_GetResetRawValue.28void.29"> <i>Mcu_RawResetType Mcu_GetResetRawValue(void)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Reset Raw Value Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Reset Raw Value.
+</li></ul>
+<p>This service reads the reset type from the hardware, if supported.
+</p><p>Service 0x06
+</p><p>The function <i>Mcu_GetResetRawValue()</i> shall return an implementation specific value which does not correspond to a valid value of the reset status register and is not equal to <i>0</i> if this function is called prior to calling of the function <i>Mcu_Init()</i>, and if supported by the hardware.
+</p><p>The function <i>Mcu_GetResetRawValue()</i> shall read the reset raw value from the hardware register if the hardware supports this. If the hardware does not have a reset status register, the return value shall be <i>0</i>.
+</p><p><b>Note</b>: The User should ensure that the reset reason is cleared once it has been read out to avoid multiple reset reasons.
+</p>
+<h4> <span class="mw-headline" id="void_Mcu_PerformReset.28void.29"> <i>void Mcu_PerformReset(void)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>Microcontroller Reset.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> None.
+</li></ul>
+<p>This service performs a microcontroller reset.
+</p><p>Service 0x07
+</p><p>The function <i>Mcu_PerformReset()</i> shall perform a microcontroller reset by using the hardware feature of the microcontroller.
+</p><p>The function <i>Mcu_PerformReset()</i> shall perform the reset type which is configured in the configuration set.
+</p><p>The MCU module's environment shall only call the function <i>Mcu_PerformReset()</i> after the MCU module has been initialized by the function <i>Mcu_Init()</i>.
+</p><p>The function <i>Mcu_PerformReset()</i> is only available if the configurationparameter <i>McuPerformResetApi</i> is set to <i>TRUE</i>. If set to <i>FALSE</i>, the function <i>Mcu_PerformReset()</i> is not applicable.
+</p>
+<h4> <span class="mw-headline" id="void_Mcu_SetMode.28Mcu_ModeType_McuMode.29"> <i>void Mcu_SetMode(Mcu_ModeType McuMode)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>MCU Mode Setting.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>McuMode</i>: Set different MCU power modes configured in the configuration set
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p>This service activates the MCU power modes.
+</p><p>Service 0x08
+</p><p>The function <i>Mcu_SetMode()</i> shall set the MCU power mode. In case of CPU power down mode, the function <i>Mcu_SetMode()</i> returns after it has performed a wake-up.
+</p><p>The MCU module's environment shall only call the function <i>Mcu_SetMode()</i> after the MCU module has been initialized by the function <i>Mcu_Init()</i>.
+</p>
+<h4> <span class="mw-headline" id="void_Mcu_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Mcu_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>MCU Driver version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>: Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p>This service retrieves the MCU driver version informations.
+</p><p>Service 0x09
+</p><p>The function <i>Mcu_GetVersionInfo()</i> shall return the version information of the MCU module. The version information includes:
+</p>
+<ul><li> Module Id
+</li><li> Vendor Id
+</li><li> Vendor specific version numbers
+</li></ul>
+<p>The function <i>Mcu_GetVersionInfo()</i> shall be configurable On/Off by the configuration parameter <i>McuVersionInfoApi</i>.
+</p><p>If source code for caller and callee of the function <i>Mcu_GetVersionInfo()</i> is available, the MCU module should realize this function as a macro. The MCU module should define this macro in the module’s header file.
+</p>
+<h4> <span class="mw-headline" id="Mcu_RamStateType_Mcu_GetRamState.28void.29"> <i>Mcu_RamStateType Mcu_GetRamState(void)</i> </span></h4>
+<pre> #include "Mcu.h"
+</pre>
+<p>RAM State Retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> None
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> Status of the RAM content.
+</li></ul>
+<p>This service provides the actual statusof the microcontroller RAM, if supported.
+</p><p>Service 0x0A
+</p><p><b>Note</b>: Some microcontrollers offer the functionality to check if the RAM Status is valid after a reset. The function <i>Mcu_GetRamState()</i> can be used for this reason.
+</p><p>The MCU module's environment shall call this function only if the MCU module has been already initialized using the function <i>Mcu_Init()</i>.
+</p><p>The function <i>Mcu_GetRamState()</i> shall be available to the user if the configuration parameter <i>McuGetRamStateApi</i> is set to <i>TRUE</i>. Instead, if the former parameter is set to <i>FALSE</i>, this function shall be disabled (e.g. the hardware does not support this functionality).
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="MCU_initialization_services"> MCU initialization services </span></h3>
+<p><a href="/wiki/index.php?title=File:Mcu_Init_Examples.png" class="image"><img alt="Mcu Init Examples.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a6/Mcu_Init_Examples.png" width="891" height="833" /></a>
+</p><p>The order of services is just an example and might differ depending on the user.
+<i>Mcu_Init()</i> shall be executed first after power-up.
+The user takes care that the PLL is locked by executing <i>Mcu_GetPllStatus()</i>.
+</p>
+<h3> <span class="mw-headline" id=".CE.BCC_reset_reason_retrieval_service"> μC reset reason retrieval service </span></h3>
+<p><a href="/wiki/index.php?title=File:Mcu_GetResetReason_Seq_Dia.png" class="image"><img alt="Mcu GetResetReason Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ae/Mcu_GetResetReason_Seq_Dia.png" width="699" height="288" /></a>
+</p>
+<h3> <span class="mw-headline" id=".CE.BCC_reset_raw_value_retrieval_service"> μC reset raw value retrieval service </span></h3>
+<p><a href="/wiki/index.php?title=File:Mcu_GetRawResetValue_Seq_Diag.png" class="image"><img alt="Mcu GetRawResetValue Seq Diag.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/99/Mcu_GetRawResetValue_Seq_Diag.png" width="795" height="312" /></a>
+</p>
+<h3> <span class="mw-headline" id=".CE.BCC_reset_service"> μC reset service </span></h3>
+<p><a href="/wiki/index.php?title=File:Mcu_PerformReset_Seq_Dia.png" class="image"><img alt="Mcu PerformReset Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/00/Mcu_PerformReset_Seq_Dia.png" width="806" height="368" /></a>
+</p>
+<h2> <span class="mw-headline" id="Build"> Build </span></h2>
+<p>To enable AUTOSAR-like MCU Driver in Erika Enterprise build process, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_MCU_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Mcu_Cfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<h4> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h4>
+<p>In order to configure the AUTOSAR-like MCU Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Mcu" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=File:Erika_Driver_Configurator_MCU.png" class="image"><img alt="Erika Driver Configurator MCU.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c3/Erika_Driver_Configurator_MCU.png" width="1280" height="984" /></a>
+</p>
+<h5> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h5>
+<p>In this section you can add/edit/delete configurations in MCU Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li><li> Each configuration, inside the configurations set, has a set of Ram sections and a set of clock configurations.
+<ul><li> Each Ram section SHALL have an <i>Identifier</i> which must be unique inside the Ram sections set.
+</li><li> Each clock configuration SHALL have an <i>Identifier</i> which must be unique inside the clock configurations set.
+</li></ul>
+</li></ul>
+<h5> <span class="mw-headline" id="API_Selection"> API Selection </span></h5>
+<p>In this section you can select MCU Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Dev err detect</i>: Development Error Detection features
+</li><li> <i>Get ram state</i>: <i>Mcu_GetRam_state()</i> API
+</li><li> <i>Init clock</i>: <i>Mcu_InitClock()</i> API
+</li><li> <i>Pll</i>: PLL releated APIs and features
+</li><li> <i>Perform reset api</i>: <i>Mcu_PerformReset()</i> API
+</li><li> <i>Version Info</i>: <i>Mcu_GetVersionInfo()</i> API
+</li></ul>
+<p><br />
+<a href="/wiki/index.php?title=File:Erika_Driver_Configurator_MCU_set.png" class="image"><img alt="Erika Driver Configurator MCU set.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e2/Erika_Driver_Configurator_MCU_set.png" width="1280" height="984" /></a>
+</p>
+<h4> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h4>
+<p>Implementation Demos of the AUTOSAR-like MCU Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 154/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

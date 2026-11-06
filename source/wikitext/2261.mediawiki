@@ -1,0 +1,406 @@
+= AUTOSAR Drivers =
+
+To enable AUTOSAR Drivers for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+  EE_OPT = "__AUTOSAR_R4_0__";
+
+AUTOSAR Drivers need to be configured by C header compiler file (Compiler_Cfg.h). These file (for now) needs to be manually written.<br>Template of these file can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header compiler file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header compiler file is stored.
+
+<b>Note:</b> Each AUTOSAR Driver must be enabled individually.
+
+=== AUTOSAR MCU Driver ===
+
+To enable AUTOSAR MCU Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_MCU_DRIVER__";
+
+The AUTOSAR MCU Driver needs to be configured by C header and source files (Mcu_Cfg.h and Mcu_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Mcu_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+Usage examples of the AUTOSAR MCU Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR PORT Driver ===
+
+To enable AUTOSAR PORT Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_PORT_DRIVER__";
+
+The AUTOSAR PORT Driver needs to be configured by C header and source files (Port_Cfg.h and Port_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Port_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+Usage examples of the AUTOSAR PORT Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR DIO Driver ===
+
+To enable AUTOSAR DIO Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_DIO_DRIVER__";
+
+The AUTOSAR DIO Driver needs to be configured by C header and source files (Dio_Cfg.h and Dio_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Dio_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+Usage examples of the AUTOSAR DIO Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR SCI Driver ===
+
+To enable AUTOSAR SCI Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_SCI_DRIVER__";
+
+The AUTOSAR SCI Driver needs to be configured by C header and source files (Sci_Cfg.h and Sci_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Sci_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+To use the SCI driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for every SCI Channel:
+
+  ISR Sci_Channel_<Channel Number>_ISR {
+    CATEGORY = 2;
+    ENTRY = "UART_<Channel Number>";
+    PRIORITY = <ISR Priority>;
+  };
+
+Where <code><Channel Number></code> is the "channel number" as stated in the SCI Driver Channel Identifier of the channel and <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+Usage examples of the AUTOSAR SCI Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR GPT Driver ===
+
+To enable AUTOSAR GPT Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_GPT_DRIVER__";
+
+The AUTOSAR GPT Driver needs to be configured by C header and source files (Gpt_Cfg.h and Gpt_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Gpt_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+The Stellaris General-Purpose Timer Module (GPTM) contains six 16/32-bit GPTM blocks and six 32/64-bit Wide GPTM blocks.
+
+Each 16/32-bit GPTM block provides two 16-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 8-bit prescaler) or concatenated to operate as one 32-bit timer (without prescaler).
+
+Channel Identifiers for 16/32-bit GPTM blocks operating indipendently are the followings:
+
+  GPT_CHANNEL_0_A /* block 0 timer A */
+  GPT_CHANNEL_0_B /* block 0 timer B */
+  GPT_CHANNEL_1_A /* block 1 timer A */
+  GPT_CHANNEL_1_B /  block 1 timer B */
+  ...
+  GPT_CHANNEL_5_A /* block 5 timer A */
+  GPT_CHANNEL_5_B /* block 5 timer B */
+
+If a timer value can't be translated on 16-bit, the driver enables the 8-bit prescaler extending the timer counter size to 24-bit.
+
+Channel Identifiers for 16/32-bit GPTM blocks concatenated are the followings:
+
+  GPT_CHANNEL_J_0 /* block 0 [timer B]:[timer A] */
+  GPT_CHANNEL_J_1 /* block 1 [timer B]:[timer A] */
+  ...
+  GPT_CHANNEL_J_5 /* block 5 [timer B]:[timer A] */
+
+The timer counter size is fixed to 32-bit.
+
+Each 32/64-bit Wide GPTM block provides two 32-bit timers (referred to as Timer A and Timer B) that can be configured to operate independently (with optional 16-bit prescaler) or concatenated to operate as one 64-bit timer (without prescaler).
+
+Channel Identifiers for 32/64-bit GPTM blocks operating indipendently are the followings:
+
+  GPT_CHANNEL_W_0_A /* block 0 timer A */
+  GPT_CHANNEL_W_0_B /* block 0 timer B */
+  GPT_CHANNEL_W_1_A /* block 1 timer A */
+  GPT_CHANNEL_W_1_B /  block 1 timer B */
+  ...
+  GPT_CHANNEL_W_5_A /* block 5 timer A */
+  GPT_CHANNEL_W_5_B /* block 5 timer B */
+
+If a timer value can't be represented on 32-bit, the driver enables the 16-bit prescaler extending the timer counter size to 48-bit.
+
+Channel Identifiers for 32/64-bit GPTM blocks concatenated are the followings:
+
+  GPT_CHANNEL_J_W_0 /* block 0 [timer B]:[timer A] */
+  GPT_CHANNEL_J_W_1 /* block 1 [timer B]:[timer A] */
+  ...
+  GPT_CHANNEL_J_W_5 /* block 5 [timer B]:[timer A] */
+
+The timer counter size is fixed to 64-bit.
+
+To use the GPT driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for every GPT Channel:
+
+  ISR Gpt_Channel_<Channel>_ISR {
+    CATEGORY = 2;
+    ENTRY = "[WIDE_]TIMER_<Channel>";
+    PRIORITY = <ISR Priority>;
+  };
+
+Where <code><Channel></code> is the "channel identifier" part as stated in the GPT Driver Channel Identifier of the channel and <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+Examples:
+
+  /* GPT_CHANNEL_0_B: 16-bit GPTM block 0 timer B */
+  ISR Gpt_Channel_0_B_ISR {
+    CATEGORY = 2;
+    ENTRY = "TIMER_0_B";
+    PRIORITY = 4;
+  };
+  ...
+  /* GPT_CHANNEL_J_1: 32-bit GPTM conactenated GPTM block 1 [timer B]:[timer A] */
+  ISR Gpt_Channel_J_1_ISR {
+    CATEGORY = 2;
+    ENTRY = "TIMER_1_A"; /* Concatenated GPTM blocks ALWAYS refers timer A ENTRY */
+    PRIORITY = 3;
+  };
+  ...
+  /* GPT_CHANNEL_W_4_A: 32-bit WIDE GPTM block 4 timer A */
+  ISR Gpt_Channel_0_B_ISR {
+    CATEGORY = 2;
+    ENTRY = "WIDE_TIMER_4_A"; /* WIDE GPTM block */
+    PRIORITY = 6;
+  };
+  ...
+  /* GPT_CHANNEL_J_W_3: 64-bit conactenated WIDE GPTM block 3 [timer B]:[timer A] */
+  ISR Gpt_Channel_J_W_3_ISR {
+    CATEGORY = 2;
+    ENTRY = "WIDE_TIMER_3_A"; /* Concatenated WIDE GPTM blocks ALWAYS refers timer A ENTRY */
+    PRIORITY = 7;
+  };
+
+Usage examples of the AUTOSAR GPT Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR DMA Driver ===
+
+To enable AUTOSAR DMA Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_DMA_DRIVER__";
+
+The AUTOSAR DMA Driver needs to be configured by C header and source files (Dma_Cfg.h and Dma_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Dma_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+To use the DMA driver in interrupt mode, an ISR object must be added to OSEK/VDX configuration for Software DMA Channel Transfer End and another ISR must be added to OSEK/VDX configuration for DMA Transfer Error:
+
+  ISR Dma_SoftwareTransferEnd_ISR {
+    CATEGORY = 2;
+    ENTRY = "UDMA_SOFT_TRANSF";
+    PRIORITY = <ISR Priority>;
+  }
+
+  ISR Dma_TransferError_ISR {
+    CATEGORY = 2;
+    ENTRY = "UDMA_ERR";
+    PRIORITY = <ISR Priority>;
+  };
+
+Where <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+Usage examples of the AUTOSAR DMA Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR SPI Driver ===
+
+To enable AUTOSAR SPI Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_SPI_DRIVER__";
+
+The AUTOSAR SPI Driver needs to be configured by C header and source files (Spi_Cfg.h and Spi_Cfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Spi_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+To use the AUTOSAR SPI driver, the AUTOSAR DMA driver must be enabled and configured too. Moreover an ISR object must be added to OSEK/VDX configuration for every TI Stellaris SSI harware unit configured and :
+
+  ISR Spi_HwUnit_<Hardware Unit Number>_ISR {
+    CATEGORY = 2;
+    ENTRY = "SSI_<Hardware Unit Number>";
+    PRIORITY = <ISR Priority>;
+  }
+
+
+Where <code><Hardware Unit Number></code> is the TI Stellaris SSI hardware unit number (from 0 to 3) and <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest).
+
+Usage examples of the AUTOSAR SPI Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== AUTOSAR WDG Driver ===
+
+Texas Instruments Stellaris LM4F232 MCU provides two watchdog peripherals: one clocked by Precision Internal Oscillator (PIOsc) with a fixed frequency of 16MHz and the other clocked System Clock (SysClk) which frequency is configurable by AUTOSAR MCU Driver.
+
+Each watchdog is driven by a separate driver.
+
+==== AUTOSAR PIOSC WDG Driver ====
+
+To enable AUTOSAR PIOSC WDG Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_WDG_PIOSC_DRIVER__";
+
+The AUTOSAR PIOSC WDG Driver needs to be configured by C header and source files (Wdg_PIOscCfg.h and Wdg_PIOscCfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Wdg_PIOscCfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+To use the AUTOSAR PIOSC WDG driver, almost another pheriperal must be configured and initialized to be clocked by PIOsc (eg. Adc, Spi, Sci, ...). Moreover an ISR object must be added to OSEK/VDX configuration:
+
+  ISR Wdg_PIOsc_ISR {
+    CATEGORY = 2;
+    ENTRY = "WATCHDOG_TIMER";
+    PRIORITY = <ISR Priority>;
+  }
+
+Where <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest); if the driver is configured to fire "Standard" Interrupts, or:
+
+  ISR Wdg_PIOsc_ISR {
+    CATEGORY = 2;
+    ENTRY = "NMI";
+  }
+
+If the driver is configured to fire Non-Maskable Interrupts with a fixed priority higher than "standard".
+
+Usage examples of the AUTOSAR PIOSC WDG Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+==== AUTOSAR SYSCLK WDG Driver ====
+
+To enable AUTOSAR SYSCLK WDG Driver for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_WDG_SYSCLK_DRIVER__";
+
+The AUTOSAR PIOSC WDG Driver needs to be configured by C header and source files (Wdg_SysClkCfg.h and Wdg_SysClkCfg.c). These files (for now) need to be manually written.<br>Templates of these files can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/config/ contrib/as/arch/stellaris/config/].
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Wdg_SysClkCfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+To use the AUTOSAR SYSCLK WDG driver an ISR object must be added to OSEK/VDX configuration:
+
+  ISR Wdg_SysClk_ISR {
+    CATEGORY = 2;
+    ENTRY = "WATCHDOG_TIMER";
+    PRIORITY = <ISR Priority>;
+  }
+
+Where <code><ISR Priority></code> is a number indicating the level of priority (0: Lowest); if the driver is configured to fire "Standard" Interrupts, or:
+
+  ISR Wdg_SysClk_ISR {
+    CATEGORY = 2;
+    ENTRY = "NMI";
+  }
+
+If the driver is configured to fire Non-Maskable Interrupts with a fixed priority higher than "standard".
+
+Usage examples of the AUTOSAR SYSCLK WDG Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
+
+=== Stand-alone Library ===
+
+To build a stand-alone library (libas.a) containing enabled AUTOSAR Drivers for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__ADD_LIBS__";
+  LIB = ENABLE {
+    NAME = "AUTOSAR";
+  };
+
+It's possible to include into library the drivers configurations by the following <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__NO_APP__";
+
+=== Keil uVision Integration ===
+
+To integrate AUTOSAR Drivers for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain in a ARM KEIL uVision application project, it nees:<br>
+* To add a previously builded libas.a (containing drivers configurations) to a Target Sources Group of ARM KEIL uVision Project.
+* To add AUTOSAR Drivers include path ([http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/include/ contrib/as/include/]) to ARM KEIL uVision C/C++ compiler include paths.
+* To add AUTOSAR Drivers for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/as/arch/stellaris/keil/include/ contrib/as/arch/stellaris/keil/include/] to Keil uVision C/C++ compiler include paths.
+* To add AUTOSAR Drivers configurations for Texas Instruments Stellaris LM4F232H5QD Evaluation Board with ARM KEIL compiler toolchain include path to ARM KEIL uVision C/C++ compiler include paths.
+
+= See also =
+
+* [[ARM Cortex MX#Building stand-alone libee.a using RT-Druid Eclipse]]
+* [[ARM Cortex MX#Building ERIKA based application using KEIL uVision]]
+* [http://www.autosar.org/ AUTOSAR - Automotive Open System Architecture - Web site]
+* [http://www.ti.com/tool/ek-lm4f232?DCMP=cortexm4f&HQS=ek-lm4f232 Texas Instruments - Stellaris LM4F232 USB+CAN Evaluation Kits - Web site]
+* [http://www.keil.com/ Keil Embedded Development Tools Web site]

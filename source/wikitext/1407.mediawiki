@@ -1,0 +1,29 @@
+This is an incomplete list of universities using ERIKA Enterprise and/or the FLEX boards:
+
+* Italy
+** Scuola Superiore Sant'Anna (RETIS Lab)
+** [[University of Pavia (Robotics Lab)]]
+** University of Pisa
+** [[University of Firenze (Applied Mechanics Lab)]]
+** University of Siena
+** [[University of Trento]]
+** [[University of Ancona]]
+** Politecnico di Milano
+* Germany
+** [[University of Kaiserslautern]]
+** University of Dortmund
+* France
+** [[INRIA_Roquencourt_(Scilab_Consortium)]]
+* Switzerland
+** [[SUPSI Lugano]]
+* Spain
+** [[Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]
+* Portugal
+** [[University of Porto (IPP-Hurray)]]
+* USA
+** IUPUI, Indiana
+** UIUC, Urbana Champaign
+* Brasil
+** Aeronautical Engineering - University of São Paulo
+* FP7 Projects
+** Predator FP7 Project

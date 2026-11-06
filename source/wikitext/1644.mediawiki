@@ -1,0 +1,1 @@
+Select ''New project'' from the ''File'' menu.

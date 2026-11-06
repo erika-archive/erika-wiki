@@ -1,0 +1,257 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Flexside scheme.png</title>
+    <id>1573</id>
+    <revision>
+      <id>1849</id>
+      <timestamp>2010-01-11T09:26:35Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Folder.png</title>
+    <id>2252</id>
+    <revision>
+      <id>4449</id>
+      <timestamp>2012-01-26T16:06:03Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Force form ispLever.png</title>
+    <id>2111</id>
+    <revision>
+      <id>3645</id>
+      <timestamp>2011-10-05T08:40:02Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg-eye cavo seriale custom.png</title>
+    <id>2122</id>
+    <revision>
+      <id>3736</id>
+      <timestamp>2011-10-07T15:03:22Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg-eye connettore seriale.png</title>
+    <id>2121</id>
+    <revision>
+      <id>3735</id>
+      <timestamp>2011-10-07T15:00:46Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eya mico32 from diamond.png</title>
+    <id>2172</id>
+    <revision>
+      <id>4081</id>
+      <timestamp>2011-11-07T14:55:31Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eya mico32 from ispLever.png</title>
+    <id>2166</id>
+    <revision>
+      <id>4056</id>
+      <timestamp>2011-11-07T13:56:20Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eya mico32 from msb.png</title>
+    <id>2163</id>
+    <revision>
+      <id>4039</id>
+      <timestamp>2011-11-07T11:29:56Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eya mico32 from msb run.png</title>
+    <id>2164</id>
+    <revision>
+      <id>4041</id>
+      <timestamp>2011-11-07T11:36:51Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4042</id>
+      <timestamp>2011-11-07T11:38:10Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Fpg eya mico32 from msb run.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eye mico32 wrapper active.png</title>
+    <id>2168</id>
+    <revision>
+      <id>4060</id>
+      <timestamp>2011-11-07T14:12:06Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fpg eye mico32 wrapper active diamond.png</title>
+    <id>2173</id>
+    <revision>
+      <id>4083</id>
+      <timestamp>2011-11-07T15:06:05Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Fullchip.PNG</title>
+    <id>1504</id>
+    <revision>
+      <id>1733</id>
+      <timestamp>2009-12-02T16:45:29Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT Driver continuous.png</title>
+    <id>2421</id>
+    <revision>
+      <id>5284</id>
+      <timestamp>2013-07-17T12:02:47Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT Driver elapsed remaining.png</title>
+    <id>2422</id>
+    <revision>
+      <id>5285</id>
+      <timestamp>2013-07-17T12:03:26Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT Driver file structure.png</title>
+    <id>2423</id>
+    <revision>
+      <id>5288</id>
+      <timestamp>2013-07-17T12:06:51Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:GPT Driver modes.png</title>
+    <id>2419</id>
+    <revision>
+      <id>5282</id>
+      <timestamp>2013-07-17T12:00:43Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>GPT Driver Modes.</comment>
+      <text xml:space="preserve">GPT Driver Modes.</text>
+    </revision>
+    <revision>
+      <id>5286</id>
+      <timestamp>2013-07-17T12:05:13Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:GPT Driver modes.png]]&amp;quot;</comment>
+      <text xml:space="preserve">GPT Driver Modes.</text>
+    </revision>
+  </page>
+</mediawiki>

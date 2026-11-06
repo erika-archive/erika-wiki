@@ -1,0 +1,183 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Requirements"><span class="tocnumber">1</span> <span class="toctext">Requirements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#MSP430_support"><span class="tocnumber">2</span> <span class="toctext">MSP430 support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#LPM_management"><span class="tocnumber">2.1</span> <span class="toctext">LPM management</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#MCU"><span class="tocnumber">3</span> <span class="toctext">MCU</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#BOARD"><span class="tocnumber">4</span> <span class="toctext">BOARD</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#UTMOST"><span class="tocnumber">4.1</span> <span class="toctext">UTMOST</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#LaunchPad"><span class="tocnumber">4.2</span> <span class="toctext">LaunchPad</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#General"><span class="tocnumber">4.2.1</span> <span class="toctext">General</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#LEDs"><span class="tocnumber">4.2.2</span> <span class="toctext">LEDs</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#BUTTONs"><span class="tocnumber">4.2.3</span> <span class="toctext">BUTTONs</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Configuration"><span class="tocnumber">5</span> <span class="toctext">Configuration</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Acknowledgements"><span class="tocnumber">6</span> <span class="toctext">Acknowledgements</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Requirements"> Requirements </span></h1>
+<p>ERIKA for MSP430 microcontrollers currently supports the GCC toolchain: MSP430GCC. 
+It can be downloaded from <a href="http://mspgcc.sourceforge.net/" class="external free" rel="nofollow">http://mspgcc.sourceforge.net/</a>
+</p>
+<h1> <span class="mw-headline" id="MSP430_support"> MSP430 support </span></h1>
+<p>ERIKA Enterprise supports MSP430 microcontrollers.
+</p><p>RT-Druid support is working under both Linux and Windows hosts. See <a href="#Configuration">#Configuration</a>
+</p><p>The MSP430 support includes:
+</p>
+<ul><li> support for single and multi stack configurations
+</li><li> isr interrupt not nested/nested supported
+</li><li> support for LPM management
+</li></ul>
+<p>Mode of operation
+</p>
+<ul><li> Mono-stack: This configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> Multi-stack: Every task can have its private stack, or it can share it with other tasks. 
+</li></ul>
+<h2> <span class="mw-headline" id="LPM_management"> LPM management </span></h2>
+<p>An important feature of MSP430 is management of low power consumption and this is possibile by LPM (low power mode).
+ERIKA Enterprise supports this feature. To use it you should set the option: 
+</p>
+<pre>
+CPU_DATA = MSP430 {
+	USELPM=TRUE
+};
+</pre>
+<p>The functions available are:
+</p>
+<ul><li> void EE_msp430_enter_LPM(EE_UINT8 lpm): it allows to enter in a particular low power mode
+</li><li> void EE_msp430_exit_LPM(EE_UINT8 lpm): it allows to exit from a low power mode ( can be use only in ISR )
+</li><li> void EE_msp430_change_LPM(EE_UINT8 lpm): it allows to change a low power mode ( can be use only in ISR )
+</li></ul>
+<p><br />
+</p>
+<h1> <span class="mw-headline" id="MCU"> MCU </span></h1>
+<p>MCU support is defined using the following OIL object, substituting the relevant MCU type where appropriate:
+</p>
+<pre>
+    MCU_DATA = MSP430 {
+        MODEL = CUSTOM {
+            MODEL = &quot;-mmcu=msp430x2012&quot;;
+        };
+};
+</pre>
+<p>If working directly with a Makefile, the MCU should be passed to the tool chain using the following directives:
+</p>
+<pre>
+CFLAGS  += -mmcu=msp430x2012
+ASFLAGS += -mmcu=msp430x2012
+LDFLAGS += -mmcu=msp430x2012
+</pre>
+<p>The following functionality is implemented:
+</p>
+<ul><li> Watchdog, using <tt>EE_watchdog_disable()</tt>
+</li><li> System clock, using <tt>EE_sysclk_init_1MHz()</tt> [also 8, 12 and 16 MHz supported depending on device type]
+</li></ul>
+<h1> <span class="mw-headline" id="BOARD"> BOARD </span></h1>
+<h2> <span class="mw-headline" id="UTMOST"> UTMOST </span></h2>
+<p>Supported devices:
+</p>
+<ul><li> LED. Please use the USELEDS option.
+</li></ul>
+<pre>
+BOARD_DATA = UTMOST {
+    USELEDS = TRUE;
+};
+</pre>
+<h2> <span class="mw-headline" id="LaunchPad"> LaunchPad </span></h2>
+<h3> <span class="mw-headline" id="General"> General </span></h3>
+<p>OIL:
+</p>
+<pre>
+EE_OPT = &quot;__MSP430_LAUNCHPAD__&quot;;
+</pre>
+<p>Makefile:
+</p>
+<pre>
+EEOPT += __MSP430_LAUNCHPAD__
+</pre>
+<p>Note that the msp430x2231 device variant supplied with the LaunchPad is not supported by MSPGCC version 4.4.3 so use msp430x2012 instead.
+</p>
+<h3> <span class="mw-headline" id="LEDs"> LEDs </span></h3>
+<p>There are two LEDs: red on P1.0 = led_0&nbsp;; green on P1.6 = led_1
+</p><p>OIL:
+</p>
+<pre>
+EE_OPT = &quot;__USE_LEDS__&quot;;
+</pre>
+<p>Makefile:
+</p>
+<pre>
+EEOPT += __USE_LEDS__
+</pre>
+<p>API:
+</p>
+<ul><li> <tt>EE_leds_init()</tt>
+</li><li> <tt>EE_led_0_off()</tt>
+</li><li> <tt>EE_led_0_on()</tt>
+</li><li> <tt>EE_led_0_toggle()</tt>
+</li><li> <tt>EE_led_1_off()</tt>
+</li><li> <tt>EE_led_1_on()</tt>
+</li><li> <tt>EE_led_1_toggle()</tt>
+</li></ul>
+<h3> <span class="mw-headline" id="BUTTONs"> BUTTONs </span></h3>
+<p>The LaunchPad has a single button on P2.3 = BUTTON_0
+</p><p>OIL:
+</p>
+<pre>
+EE_OPT = &quot;__USE_BUTTONS__&quot;;
+</pre>
+<p>Makefile:
+</p>
+<pre>
+EEOPT += __USE_BUTTONS__
+</pre>
+<p>API:
+</p>
+<ul><li> <tt>EE_buttons_init()</tt>
+</li><li> <tt>EE_buttons_enable_interrupts (BUTTON_0)</tt> - raises interrupts on <b>PORT1_VECTOR</b>
+</li><li> <tt>EE_buttons_disable_interrupts (BUTTON_0)</tt>
+</li><li> <tt>EE_buttons_interrupt (BUTTON_0)</tt> - returns non-zero if button has raised interrupt
+</li><li> <tt>EE_buttons_clear_ISRflag (BUTTON_0)</tt> - clears pending interrupt
+</li><li> <tt>EE_buttons_get_state (BUTTON_0)</tt> - returns non-zero if button is currently pressed
+</li></ul>
+<h1> <span class="mw-headline" id="Configuration"> Configuration </span></h1>
+<p>If you are trying to build under RT-Druid on Windows and see something like this:
+</p>
+<pre>
+MAKE_DIRECTORIES
+CPP   eecfg.c
+eecfg.c:1:16: error: ee.h: No such file or directory
+eecfg.c:4: warning: data definition has no type or storage class
+eecfg.c:4: warning: type defaults to 'int' in declaration of 'DeclareTask'
+eecfg.c:4: warning: parameter names (without types) in function declaration
+eecfg.c:6: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_hal_thread_body'
+eecfg.c:12: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_ready_prio'
+eecfg.c:17: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_dispatch_prio'
+eecfg.c:29: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_next'
+eecfg.c:33: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_nact'
+eecfg.c:35: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_stkfirst'
+eecfg.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_rqfirst'
+eecfg.c:41: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_sys_ceiling'
+make: *** [obj/eecfg.o] Error 1
+</pre>
+<p>... add a variable called "PLATFORM" with the value "WINDOWS" to your project environment variables (Project-&gt;Properties-&gt;C/C++ Build-&gt;Environment-&gt;Environment variables to set).
+</p>
+<h1> <span class="mw-headline" id="Acknowledgements"> Acknowledgements </span></h1>
+<p>This port was provided by Christian Grioli.
+</p><p>The LaunchPad Board Support Package was added by <a href="/wiki/index.php?title=User:Steve" title="User:Steve">Steve Langstaff</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 145/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

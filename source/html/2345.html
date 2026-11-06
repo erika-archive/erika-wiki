@@ -1,0 +1,58 @@
+<p>The following paragraphs give an idea of the internal directory structure of the kernel:
+</p>
+<ul><li> pkg
+<dl><dd> all the code of ERIKA Enterprise
+</dd></dl>
+<ul><li> cpu
+<dl><dd> core CPU (int. disabling, context change, types, ...)
+</dd></dl>
+</li><li> mcu
+<dl><dd> specific microcontroller (how many serial lines?)
+</dd></dl>
+</li><li> board
+<dl><dd> connection of a MCU in the board (functions to light a LED that is connected on pin 35 of the MCU on board XYZ)
+</dd></dl>
+</li><li> kernel
+<dl><dd> scheduling algorithms
+</dd></dl>
+<ul><li> as
+<dl><dd> AUTOSAR extensions for the OO kernel
+</dd></dl>
+</li><li> edf
+<dl><dd> minimal EDF implementation, useful for research purposes
+</dd></dl>
+</li><li> fp
+<dl><dd> minimal Fixed Point implementation, useful for research purposes
+</dd></dl>
+</li><li> frsh
+<dl><dd> minimal implementation of a scheduler with resource reservations, useful for research purposes, result of the FRESCOR FP6 Project
+</dd></dl>
+</li><li> oo
+<dl><dd> OSEK/VDX OSEK OS kernel API
+</dd></dl>
+</li><li> rn
+<dl><dd> remote notifications, for implementing interprocessor interrupts on multicores
+</dd></dl>
+</li><li> sem
+<dl><dd> semaphore implementation used by FP, EDF, FRSH
+</dd></dl>
+</li></ul>
+</li></ul>
+</li><li> contrib
+<dl><dd> third party libraries, with licenses other than GPL2+linking exception
+</dd></dl>
+</li><li> examples
+<dl><dd> demo application done with ERIKA Enterprise
+</dd></dl>
+</li><li> testcase
+<dl><dd> regression tests, see <a href="/wiki/index.php?title=Black_Box_Regression_tests" title="Black Box Regression tests">Black Box Regression tests</a>
+</dd></dl>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

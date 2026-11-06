@@ -1,0 +1,100 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Prerequisites"><span class="tocnumber">2</span> <span class="toctext">Prerequisites</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Create_your_first_project:_cal_demo"><span class="tocnumber">3</span> <span class="toctext">Create your first project: cal_demo</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Create_your_second_project:_cal_demo_cal_actors"><span class="tocnumber">4</span> <span class="toctext">Create your second project: cal_demo_cal_actors</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Create_and_compile_a_CAL_project_from_scratch"><span class="tocnumber">5</span> <span class="toctext">Create and compile a CAL project from scratch</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Introduction"> Introduction </span></h2>
+<p>This small tutorial describes the steps to follow in order to create and compile two demo applications with CAL actors in Erika Enterprise using a Lattice Mico32 platform.
+</p><p>For a brief introduction to CAL language and CAL actors please refer to <a href="/wiki/index.php?title=Brief_introduction_to_the_CAL_language" title="Brief introduction to the CAL language">Brief introduction to the CAL language</a>
+</p>
+<h2> <span class="mw-headline" id="Prerequisites"> Prerequisites </span></h2>
+<p>Make sure you have correctly installed both LatticeMico32 System and ispVM System on your Linux machine and exported all the environment variables needed for compiling a project. For any help please have a look at <a href="/wiki/index.php?title=Tutorial:_Installing_CAL_with_ERIKA_Enterprise" title="Tutorial: Installing CAL with ERIKA Enterprise">Tutorial: Installing CAL with ERIKA Enterprise</a>.
+</p><p>In order to compile a project it is essential to create a library for the Lattice Mico32 platform as explained in <a href="/wiki/index.php?title=Tutorial:_Mico32_library_for_ERIKA" title="Tutorial: Mico32 library for ERIKA">Tutorial: Mico32 library for ERIKA</a>.
+</p>
+<h2> <span class="mw-headline" id="Create_your_first_project:_cal_demo"> Create your first project: cal_demo </span></h2>
+<p>We are now ready to create our first project and compile it. This first demo, called cal_demo, is composed of two system actors, a switch actor and a led actor called <tt>art_switch.c</tt> and <tt>art_led.c</tt>. These files are created in C language and can be found, along with the appropriate CAL files, into Erika's repository in: <tt>~/Evidence/Erika/ee/contrib/cal/src</tt>. 
+The two system actors are combined in a netlist file named <tt>switchled.nl</tt> that you can find into cal_demo's directory.
+The purpose of this demo is to read the state of the switches and button residing on the FPG-EYE and produce it switching on/off the appropriate leds on the board itself.
+</p><p><br />
+Open the Lattice Mico32 System and press the C/C++ button on the status bar:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Eclipse_empty_screen.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fd/Eclipse_empty_screen.png" width="200" height="194" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Eclipse_empty_screen.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the C/C++ button that must be pressed</div></div></div></div>
+<p>Let's create a standard C project:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Eclipse-standard-make-project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/fb/Eclipse-standard-make-project.png" width="200" height="195" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Eclipse-standard-make-project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the button which must be pressed to create a standard C project</div></div></div></div>
+<p>Give the project a name you like (i.e. cal_demo) and beware not to use the default location suggested by the program but the directory where resides the cal_demo into the Erika's trunk:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal-demo-project-settings.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/68/Cal-demo-project-settings.png" width="200" height="198" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal-demo-project-settings.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to properly edit the project settings for the cal_demo project</div></div></div></div>
+<p>Press the Finish button and your project will be added to the list of C/C++ projects.
+</p><p>Here's how your newly created project appears:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_project_created.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/30/Cal_demo_project_created.png" width="200" height="179" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_project_created.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the files you will find once created a new cal_demo project</div></div></div></div>
+<p>The files present at this stage of the project are:
+</p>
+<ul><li> main.c: main file project needed to initialize components of the FPG-EYE that will be used in the project. The user can place here it's own code.
+</li><li> switchled.nl: the netlist file listing the actors present in our CAL project; it's because of netlist files that actors will be automatically included in the building process.  To better understand where the system actors were injected into ERIKA's repository and where newly created CAL actors have to be saved have a look <a href="/wiki/index.php?title=CAL_support_on_ERIKA_Enterprise" title="CAL support on ERIKA Enterprise"> here</a>
+</li><li> conf.oil: configuration file, part of the OSEK/VDX standard, that is used for OS and application configuration. You will find here, as application sources, both main.c and switchled.nl files. For further explanation about oil files please have a look at <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li><li> makefile: makefile of our project
+</li><li> crt0ram.S: file that implements boot-code and exception handlers
+</li></ul>
+<p>To build the project right click on the cal_demo project and press the Build Project button:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_build_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/0d/Cal_demo_build_project.png" width="200" height="195" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_build_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to build the cal_demo project</div></div></div></div>
+<p>The result of the compilation is shown in the next screenshot:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_compilation_successful.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e6/Cal_demo_compilation_successful.png" width="200" height="198" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_compilation_successful.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the results of a correct building process</div></div></div></div>
+<p>As you can see in the previous screenshot there's a newly created folder named <tt>output/folder</tt> where object and dependency files are placed. Here you can find:
+</p>
+<ul><li> <tt>switchled.depend</tt> and <tt>switchled.xdf</tt>: these files are automatically created by the ACTORS makefiles in the process of creating the <tt>switchled.c</tt> from the netlist file present in our project
+</li><li> out.elf: the executable file
+</li></ul>
+<p>To clean the project right click on the cal_demo project and press the Clean Project button:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_clean_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/27/Cal_demo_clean_project.png" width="200" height="196" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_clean_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to clean a project</div></div></div></div>
+<h2> <span class="mw-headline" id="Create_your_second_project:_cal_demo_cal_actors"> Create your second project: cal_demo_cal_actors </span></h2>
+<p>The main point of this second demo is that we used a CAL actor named <tt>gen.cal</tt>, a counter, instead of the previously used <tt>art_switch.c</tt> system actor; our counter is combined with the <tt>art_led.c</tt> system actor by the <tt>genled.nl</tt>. Both the netlist and the CAL actor files are placed in the project's directory. 
+The purpose of this demo is to visualize the number produced by the counter switching on/off appropriately the leds placed into the FPG-EYE board
+</p><p>In order to create the project follow the steps described in the previous example, paying attention to the settings of the project:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_project_settings.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/09/Cal_demo_cal_actors_project_settings.png" width="200" height="198" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_project_settings.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to properly edit the project settings for the cal_demo_cal_actors project</div></div></div></div>
+<p><br />
+Here's how your newly created project appears:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_project_created.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e0/Cal_demo_cal_actors_project_created.png" width="200" height="198" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_project_created.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the files you will find once created a new cal_demo_cal_actors project</div></div></div></div>
+<p>Looking at the files present at this stage and comparing them with the previous cal_demo example the main differences you will note are:
+</p>
+<ul><li> gen.cal: this is the CAL actor
+</li><li> genled.nl: this is the new netlist file. Please note the different nomenclature it to be used to address a system actor or a CAL one. To fully understand the meaning of the this nomenclature please refer to <a href="/wiki/index.php?title=CAL_support_on_ERIKA_Enterprise" title="CAL support on ERIKA Enterprise">CAL support on ERIKA Enterprise</a>
+</li><li> conf.oil: the application sources now present are main.c and genled.nl.
+</li></ul>
+<p>The result of a successful compilation (to be undertaken as explained in the previous example) is shown in the next screenshot:
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_compilation_successful.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4c/Cal_demo_cal_actors_compilation_successful.png" width="200" height="198" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_demo_cal_actors_compilation_successful.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the results of a correct building process of the cal_demo_cal_actors project</div></div></div></div>
+<p>Looking at the newly created files you will notice some differences comparing with the previous example:
+</p>
+<ul><li> <tt>output/obj</tt>: there is now <tt>gen_0.c</tt> which is the C file created from the <tt>gen.cal</tt> CAL actor. In the process of obtaing <tt>gen_0.c</tt> and <tt>genled.c</tt> files the ACTORS makefiles created also <tt>gen_0.xlim</tt>, <tt>gen_0.par</tt> and <tt>art_led_0.par</tt> files that are stored into the project's directory.
+</li></ul>
+<h2> <span class="mw-headline" id="Create_and_compile_a_CAL_project_from_scratch"> Create and compile a CAL project from scratch </span></h2>
+<p>You have now the basic knowledge to create your own CAL project from scratch. In the following you will find the steps to follow and the main points to be aware of:
+</p>
+<ul><li> create a directory for your project and copy into it the <tt>crt0ram.S</tt>, <tt>makefile</tt> <tt>conf.oil</tt> files. The latter will be opportunely modified in a secon moment.
+</li><li> create in the project's directory your <tt>main.c</tt> file and insert here your code
+</li><li> create CAL actors and/or system actors and a netlist file combining all the actors together. Please note that:
+<ul><li> CAL actors are created in CAL language and have to be placed in the project's directory.
+</li><li> system actors have to be written in C language and placed in <tt>contrib/cal/src</tt> directory as explained in <a href="/wiki/index.php?title=CAL_support_on_ERIKA_Enterprise" title="CAL support on ERIKA Enterprise">CAL support on ERIKA Enterprise</a>.
+</li></ul>
+</li><li> edit the <tt>conf.oil</tt> file in order to add as applications sources your main C file and your netlist. Moreover pay attention to link correctly your platform library according to where it is placed on your system. For further explanation about oil files please have a look at <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li></ul>
+<p>Now build your CAL application following the previous examples.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 18/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

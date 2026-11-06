@@ -1,0 +1,1 @@
+Mplabx.beta4: select the image file to be imported.

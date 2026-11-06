@@ -1,0 +1,250 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Compile diamond.png</title>
+    <id>2198</id>
+    <revision>
+      <id>4154</id>
+      <timestamp>2011-11-14T16:00:19Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Compiler preferences.PNG</title>
+    <id>2204</id>
+    <revision>
+      <id>4206</id>
+      <timestamp>2011-12-12T17:23:11Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Con8 demo.png</title>
+    <id>1608</id>
+    <revision>
+      <id>1946</id>
+      <timestamp>2010-05-03T08:59:34Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Conf.PNG</title>
+    <id>1503</id>
+    <revision>
+      <id>1732</id>
+      <timestamp>2009-12-02T16:45:04Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3206</id>
+      <timestamp>2011-08-24T14:23:58Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Conf.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Console.png</title>
+    <id>1820</id>
+    <revision>
+      <id>2749</id>
+      <timestamp>2011-02-24T11:24:15Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Coord.png</title>
+    <id>1561</id>
+    <revision>
+      <id>1833</id>
+      <timestamp>2010-01-07T14:53:01Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Ctrl results.png</title>
+    <id>1596</id>
+    <revision>
+      <id>1886</id>
+      <timestamp>2010-01-11T10:56:56Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Ctu.png</title>
+    <id>2493</id>
+    <revision>
+      <id>5896</id>
+      <timestamp>2014-11-10T13:41:10Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DIO-PORT.png</title>
+    <id>2390</id>
+    <revision>
+      <id>5225</id>
+      <timestamp>2013-07-16T17:42:01Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO PORT</comment>
+      <text xml:space="preserve">DIO PORT</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:DIO Channel Group.png</title>
+    <id>2391</id>
+    <revision>
+      <id>5226</id>
+      <timestamp>2013-07-16T17:42:34Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO Channel Group.</comment>
+      <text xml:space="preserve">DIO Channel Group.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:DIO Driver File structure.png</title>
+    <id>2393</id>
+    <revision>
+      <id>5229</id>
+      <timestamp>2013-07-16T17:43:42Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO Driver File Structure.</comment>
+      <text xml:space="preserve">DIO Driver File Structure.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:DIO services.png</title>
+    <id>2392</id>
+    <revision>
+      <id>5227</id>
+      <timestamp>2013-07-16T17:43:02Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>DIO Services.</comment>
+      <text xml:space="preserve">DIO Services.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Auto.png</title>
+    <id>2433</id>
+    <revision>
+      <id>5307</id>
+      <timestamp>2013-07-17T15:14:21Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Auto Int.png</title>
+    <id>2434</id>
+    <revision>
+      <id>5308</id>
+      <timestamp>2013-07-17T15:14:47Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Driver File structure.png</title>
+    <id>2430</id>
+    <revision>
+      <id>5304</id>
+      <timestamp>2013-07-17T15:12:49Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:DMA Initialization.png</title>
+    <id>2431</id>
+    <revision>
+      <id>5305</id>
+      <timestamp>2013-07-17T15:13:27Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

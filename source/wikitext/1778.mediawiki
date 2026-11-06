@@ -1,0 +1,21 @@
+This tutorial quickly explains how to build a a library for the Lattice Mico32 platform. Please refer to the [http://www.latticesemi.com/dynamic/index.cfm?fuseaction=view_documents&document_type=35&sloc=01-01-08-11-48-02&source=sidebar LatticeMico32 Software Developer User Guide], version 8.0, in the chapter "Standard-Make Projects" at page 262 to have further details on how this step has to be accomplished.
+
+First of all it has to be chosen a suitable location for the library since this will have an impact on the creation of <tt>conf.oil</tt> files, as explained in [[Tutorial: RT-Druid and OIL basics]]; for our projects we have chosen the <tt>lib_camera_user</tt> directory under <tt>examples/mico32/demo/sw_projects</tt>.
+In order to create a library you first have to create a microprocessor platform as explained in detail in the User Guide linked above or take a <tt>msb</tt> file already present in the ERIKA's repository in <tt>examples/mico32/demo/platforms/camera_50/soc/camera_50.msb</tt>
+Now launch the LatticeMico32 System as explained in [[Tutorial: Installing CAL with ERIKA Enterprise]] and create a new Mico32 Library Project as shown below:
+[[File:mico32_library_project.png|center|thumb|200px|This screenshot shows which button has to be pressed to create a mico32 library project]]
+
+In the project settings choose a Library Name (i.e. <tt>camera_user_fast</tt>), a Location and a Target Hardware in this way:
+[[File:mico32_library_project_settings.png|center|thumb|200px|This screenshot shows how to properly edit the mico32 library project settings]]
+
+Before compiling your library there are further adjustments to be arranged. First of all press the Properties button from your library project as shown below:
+[[File:mico32_library_project_properties.png|center|thumb|200px|This screenshot shows which button has to be pressed to enter the mico32 library project properties]]
+
+In the C/C++ build menu make sure that the Configuration is set to Release:
+[[File:mico32_library_project_configuration.png|center|thumb|200px|This screenshot shows the mico32 library project configuration panel]]
+
+In addition in the Platform menu set all the options as shown below:
+[[File:mico32_library_project_options.png|center|thumb|200px|This screenshot shows how to set the Platform options]]
+
+You can now build your library by pressing the Build Project button:
+[[File:mico32_library_project_build.png|center|thumb|200px|This screenshot shows how to build the mico32 library project]]

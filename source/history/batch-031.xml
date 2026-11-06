@@ -1,0 +1,326 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:How change ethernet address.png</title>
+    <id>2126</id>
+    <revision>
+      <id>3756</id>
+      <timestamp>2011-10-10T08:24:57Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyper herminal download picture.png</title>
+    <id>2229</id>
+    <revision>
+      <id>4330</id>
+      <timestamp>2012-01-17T15:04:51Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyper herminal downloading.png</title>
+    <id>2230</id>
+    <revision>
+      <id>4332</id>
+      <timestamp>2012-01-17T15:10:36Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyper herminal file pmg.png</title>
+    <id>2228</id>
+    <revision>
+      <id>4328</id>
+      <timestamp>2012-01-17T14:44:54Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4333</id>
+      <timestamp>2012-01-17T15:13:30Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Hyper herminal file pmg.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4334</id>
+      <timestamp>2012-01-17T15:14:33Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Hyper herminal file pmg.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4335</id>
+      <timestamp>2012-01-17T15:14:50Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Hyper herminal file pmg.png]]&amp;quot;: Reverted to version as of 15:13, 17 January 2012</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyper herminal picture.png</title>
+    <id>2231</id>
+    <revision>
+      <id>4339</id>
+      <timestamp>2012-01-17T15:39:31Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyper herminal test acquired.png</title>
+    <id>2227</id>
+    <revision>
+      <id>4326</id>
+      <timestamp>2012-01-17T14:34:27Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Hyperterminal.png</title>
+    <id>2268</id>
+    <revision>
+      <id>4536</id>
+      <timestamp>2012-01-31T10:24:12Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemCPU.png</title>
+    <id>2517</id>
+    <revision>
+      <id>6007</id>
+      <timestamp>2015-11-06T11:37:51Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6012</id>
+      <timestamp>2015-11-06T11:43:12Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemCPU.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemCpuSetupLockStepMode.png</title>
+    <id>2522</id>
+    <revision>
+      <id>6019</id>
+      <timestamp>2015-11-06T13:43:56Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemFilesForDownload.png</title>
+    <id>2524</id>
+    <revision>
+      <id>6025</id>
+      <timestamp>2015-11-06T14:44:13Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemHardware.png</title>
+    <id>2518</id>
+    <revision>
+      <id>6008</id>
+      <timestamp>2015-11-06T11:38:03Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6013</id>
+      <timestamp>2015-11-06T11:43:39Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemHardware.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemInitialization.png</title>
+    <id>2519</id>
+    <revision>
+      <id>6009</id>
+      <timestamp>2015-11-06T11:38:20Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6014</id>
+      <timestamp>2015-11-06T11:44:05Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemInitialization.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemInitializationAfterDownload.png</title>
+    <id>2520</id>
+    <revision>
+      <id>6010</id>
+      <timestamp>2015-11-06T11:38:41Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6015</id>
+      <timestamp>2015-11-06T11:44:32Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemInitializationAfterDownload.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemJTAG.png</title>
+    <id>2521</id>
+    <revision>
+      <id>6011</id>
+      <timestamp>2015-11-06T11:39:14Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6016</id>
+      <timestamp>2015-11-06T11:45:05Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemJTAG.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemTarget.png</title>
+    <id>2523</id>
+    <revision>
+      <id>6022</id>
+      <timestamp>2015-11-06T14:20:10Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>6024</id>
+      <timestamp>2015-11-06T14:37:38Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ISystemTarget.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ISystemTestCommunication.png</title>
+    <id>2516</id>
+    <revision>
+      <id>6004</id>
+      <timestamp>2015-11-06T11:20:44Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

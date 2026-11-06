@@ -1,0 +1,24 @@
+<ol><li> Checkout the svn repository to work with the last version of the test cases. Note that you can use subversion in anonymous mode without logging in (in this case you won't be allowed to write on the repository for adding, editing or removing files). 
+<ul><li> To checkout the source, type: <tt> svn co <a href="svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee" class="external free" rel="nofollow">svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee</a> </tt>
+</li><li> To update the sources type: <tt> svn update </tt>
+</li></ul>
+</li><li> Change the working directory to: <tt> repos/ee/trunk/ee/testcase </tt>
+</li><li> Start the compilation by typing <tt>make ARCH=e200zx</tt> (see below for other targets) and by specifying MCU target, e.g: make ARCH=e200zx_diab_5_5_1_vle MCU_TARGET=mamba where mamba represents MPC5674F. The build system will compile all the projects through the following steps:
+<ol><li> Creating all the temporary directories;
+</li><li> Processing the OIL configuration files using RT_DRUID;
+</li><li> Compiling the sources to generate the .elf files;
+</li><li> Creating the Lauterbach scripts to run the regression tests on the processor.DIRS="modistarc_task_1" &lt;/tt&gt; 
+</li></ol>
+</li><li> Launch the tests: <tt>cd tmp; t32mppc</tt>
+</li><li> After the test, open the file <tt>tmp/report.log</tt>.  You should find a line saying <tt>Test OK</tt> for every test; if a test is marked with <tt>Test Failed</tt> then you have found something broken.
+</li></ol>
+<p>The <tt>e200zx</tt> target uses the Diab compiler and the FLE instruction set.  It is possible to choose the CodeWarrior compiler and/or the VLE instruction set using one of these other targets: <tt>e200zx_diab_vle</tt>, <tt>e200zx_codewarrior_vle</tt>, or <tt>e200zx_codewarrior_fle</tt>.
+</p><p>See also: <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

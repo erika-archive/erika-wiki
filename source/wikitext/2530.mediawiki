@@ -1,0 +1,12 @@
+ERIKA Enterprise supports since 2001 an integration with Lauterbach TRACE32. This Category is collecting all pages including Lauterbach TRACE32 support information.
+
+=== Short description of Lauterbach ===
+Lauterbach is the world’s leading manufacturer of complete, modular microprocessor
+development tools with 35 years’ experience in the field of embedded designs and has
+supported debugging and tracing of multicore chips for more than 10 years. It is an international,
+well-established company with blue chip customers in every corner of the globe and has a close
+working relationship with all semiconductor manufacturers. Besides the headquarters in
+Hoehenkirchen, Germany, the company has its own branch offices in United Kingdom, Italy,
+France, Tunisia, on the East and West coasts of the United States, Japan and China. Highly
+qualified sales and support engineers are also available in many other countries. For more
+information visit http://www.lauterbach.com/

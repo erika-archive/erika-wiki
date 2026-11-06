@@ -1,0 +1,27 @@
+The '''MCHP16 Typeconversion''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_typeconversion_doubletoint8.png]]
+| This block converts the input from double to int8.
+|-
+| [[image:Mchp16_typeconversion_doubletoint16.png]]
+| This block converts the input from double to int16.
+|-
+| [[image:Mchp16_typeconversion_doubletoint32.png]]
+| This block converts the input from double to int32.
+|-
+| [[image:Mchp16_typeconversion_int8todouble.png]]
+| This block converts the input from int8 to double.
+|-
+| [[image:Mchp16_typeconversion_int16todouble.png]]
+| This block converts the input from int16 to double.
+|-
+| [[image:Mchp16_typeconversion_int32todouble.png]]
+| This block converts the input from int32 to double.
+|-
+|}

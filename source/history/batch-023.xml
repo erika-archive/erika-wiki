@@ -1,0 +1,258 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Druid.PNG</title>
+    <id>1495</id>
+    <revision>
+      <id>1724</id>
+      <timestamp>2009-12-02T16:41:11Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3198</id>
+      <timestamp>2011-08-24T14:12:18Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Druid.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Dspicdemrunning.jpg</title>
+    <id>2068</id>
+    <revision>
+      <id>3271</id>
+      <timestamp>2011-09-21T06:38:29Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <comment>The Microchip dsPICDEM 1.1 Plus board running Erika Enterprise.</comment>
+      <text xml:space="preserve">The Microchip dsPICDEM 1.1 Plus board running Erika Enterprise.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:EEApp build finished.png</title>
+    <id>2276</id>
+    <revision>
+      <id>4587</id>
+      <timestamp>2012-02-01T12:28:03Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:EEApp build project.png</title>
+    <id>2275</id>
+    <revision>
+      <id>4585</id>
+      <timestamp>2012-02-01T12:23:23Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:EEApp conf oil.png</title>
+    <id>2274</id>
+    <revision>
+      <id>4583</id>
+      <timestamp>2012-02-01T12:18:51Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:ERIKA-system-components.png</title>
+    <id>2509</id>
+    <revision>
+      <id>5978</id>
+      <timestamp>2015-02-02T17:01:49Z</timestamp>
+      <contributor>
+        <username>Arianna Avanzini</username>
+        <id>499</id>
+      </contributor>
+      <comment>Schematic of the components of a Xen-compatible ERIKA Enterprise application.</comment>
+      <text xml:space="preserve">Schematic of the components of a Xen-compatible ERIKA Enterprise application.</text>
+    </revision>
+    <revision>
+      <id>5981</id>
+      <timestamp>2015-02-02T17:08:24Z</timestamp>
+      <contributor>
+        <username>Arianna Avanzini</username>
+        <id>499</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:ERIKA-system-components.png]]&amp;quot;: Schematic of the components of a Xen-compatible ERIKA Enterprise application.</comment>
+      <text xml:space="preserve">Schematic of the components of a Xen-compatible ERIKA Enterprise application.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab adc.png</title>
+    <id>2082</id>
+    <revision>
+      <id>3447</id>
+      <timestamp>2011-09-28T11:23:10Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab buzzer.png</title>
+    <id>2083</id>
+    <revision>
+      <id>3448</id>
+      <timestamp>2011-09-28T11:23:19Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab cpuload gpout.png</title>
+    <id>2136</id>
+    <revision>
+      <id>3825</id>
+      <timestamp>2011-10-13T14:00:56Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab cpuload pwm.png</title>
+    <id>2135</id>
+    <revision>
+      <id>3824</id>
+      <timestamp>2011-10-13T14:00:42Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab diagram block.png</title>
+    <id>2258</id>
+    <revision>
+      <id>4487</id>
+      <timestamp>2012-01-30T13:55:24Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab input.png</title>
+    <id>2085</id>
+    <revision>
+      <id>3450</id>
+      <timestamp>2011-09-28T11:23:39Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab leds.png</title>
+    <id>2087</id>
+    <revision>
+      <id>3452</id>
+      <timestamp>2011-09-28T11:23:57Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab menu.png</title>
+    <id>2269</id>
+    <revision>
+      <id>4538</id>
+      <timestamp>2012-01-31T10:45:25Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab output.png</title>
+    <id>2086</id>
+    <revision>
+      <id>3451</id>
+      <timestamp>2011-09-28T11:23:48Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab pwm.png</title>
+    <id>2090</id>
+    <revision>
+      <id>3455</id>
+      <timestamp>2011-09-28T11:24:21Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

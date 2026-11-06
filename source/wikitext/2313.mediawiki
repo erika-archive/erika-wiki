@@ -1,0 +1,5 @@
+Benchmark performed on MPC5674F Mamba can be found here:
+
+[http://download.tuxfamily.org/erika/webdownload/benchmarks/2012_05_24_ERIKA_benchmark_ppc.pdf MPC5674F Mamba Benchmarks]
+
+[[Category:Benchmarks]]

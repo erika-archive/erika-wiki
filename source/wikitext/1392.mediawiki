@@ -1,0 +1,60 @@
+The '''MCHP16 Linear''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:Mchp16_linear_multip.png]]
+| This block implement a proportional gain. The Gain value is specified as the internal parameter.
+|-
+| [[image:Mchp16_linear_subtract.png]]
+| This block implements a sum/subtraction of different inputs. The Sign vector and the Overflow rules can be specified as the internal parameters.
+|-
+| [[image:Mchp16_linear_intmultip.png]]
+| This block implement a proportional gain with integer inputs. The Gain value is specified as the internal parameter.
+|-
+| [[image:Mchp16_linear_intsubtract.png]]
+| This block implements a sum/subtraction of different integer inputs. The Sign vector and the Overflow rules can be specified as the internal parameters.
+|-
+| [[image:Mchp16_linear_sh.png]]
+| This is a sample and hold block.
+|-
+| [[image:Mchp16_linear_z.png]]
+| This is a delay of 1 sample.
+|-
+| [[image:Mchp16_linear_intsh.png]]
+| This is a sample and hold block for integer inputs.
+|-
+| [[image:Mchp16_linear_intz.png]]
+| This is a delay of 1 sample, for integer inputs.
+|-
+| [[image:Mchp16_linear_integral.png]]
+| This is a continuous integral block. Internal parameters specified are Initial condition, Reinitialization, Saturation, and Upper and Lower limits.
+|-
+| [[image:Mchp16_linear_derivate.png]]
+| This is a continuous derivate.
+|-
+| [[image:Mchp16_linear_contdelay.png]]
+| This is a delay block.
+|-
+| [[image:Mchp16_linear_vardelay.png]]
+| This is a variable delay.
+|-
+| [[image:Mchp16_linear_shift.png]]
+| This is a shift register. The Initial length and the Values of the shift register can be specified using the internal variables.
+|-
+| [[image:Mchp16_linear_fracts.png]]
+| This is a continuous transfer function.
+|-
+| [[image:Mchp16_linear_matrixs.png]]
+| This is a continuous linear system.
+|-
+| [[image:Mchp16_linear_fractz.png]]
+| This is a discrete transfer function.
+|-
+| [[image:Mchp16_linear_matrixz.png]]
+| This is a discrete linear system.
+|-
+|}

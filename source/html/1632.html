@@ -1,0 +1,160 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Lattice_Mico32_support"><span class="tocnumber">1</span> <span class="toctext">Lattice Mico32 support</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Configuration"><span class="tocnumber">2</span> <span class="toctext">Configuration</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#EEOPTs"><span class="tocnumber">2.1</span> <span class="toctext">EEOPTs</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#CPU"><span class="tocnumber">2.2</span> <span class="toctext">CPU</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#MCU"><span class="tocnumber">2.3</span> <span class="toctext">MCU</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Boards"><span class="tocnumber">2.4</span> <span class="toctext">Boards</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#FPG-EYE_board"><span class="tocnumber">2.4.1</span> <span class="toctext">FPG-EYE board</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Lattice_Standard_XP2_Evaluation_board"><span class="tocnumber">2.4.2</span> <span class="toctext">Lattice Standard XP2 Evaluation board</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-9"><a href="#Lattice_Mico32_OIL_example"><span class="tocnumber">2.5</span> <span class="toctext">Lattice Mico32 OIL example</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Lattice_Mico32_support">Lattice Mico32 support</span></h2>
+<p><a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">Lattice Mico32</a> is the soft processor developed by Lattice for their FPGAs.  ERIKA Enterprise supports Lattice Mico32.  The support for RT-Druid is now available using the nightly build.  Instructions on how to get nightly builds can be found on the
+<a href="http://erika.tuxfamily.org/erika-for-multiple-devices.html" class="external text" rel="nofollow">Erika web site</a>
+</p><p>The Lattice Mico32 support includes:
+</p>
+<ol><li> support for lm32-elf-gcc compiler.
+</li><li> support for single and multi stack configurations.
+</li><li> ISR interrupt supported.
+</li><li> support for Lattice Debugger.
+</li></ol>
+<ul><li> Supported compiler
+<ul><li> lm32-elf-gcc cross compiler and ELF module generation for debugging.  The compiler can be downloaded together with the Lattice Mico32 from the <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">Lattice Web site</a>.
+</li></ul>
+</li></ul>
+<pre> We notice that the objdump of debug symbols may fail with a segmentation fault if
+ the binary file was produced using <i>NOLOAD</i> keyword in the linker-script.
+ <a href="/wiki/index.php?title=Tutorial:_Running_ERIKA_on_Mico32_and_FPG-EYE" title="Tutorial: Running ERIKA on Mico32 and FPG-EYE">The webserver camera demo</a> is an example of this problem.
+</pre>
+<ul><li> Mode of operation
+<ul><li> Mono-stack: The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+</li><li> Multistack HAL: Every thread can have its private stack, or it can share it with other threads.
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Configuration">Configuration</span></h2>
+<p>ERIKA Enterprise for Lattice Mico32 can be configured with the usual <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics"> OIL file and RT-Druid workflow</a>.  Here the items specific for the Lattice Mico32 support are described.
+</p>
+<h3> <span class="mw-headline" id="EEOPTs">EEOPTs</span></h3>
+<dl><dt>__SPACE__
+</dt><dd> Optimize for space
+</dd><dt>__USE_CUSTOM_LINKER_SCRIPT__
+</dt><dd> Don't use the dafault linker script.  Users can direct the linker to use their own linker script by setting the <code>LDFLAGS</code> variable. Example:
+</dd></dl>
+<pre>OS EE {
+   EE_OPT = "__USE_CUSTOM_LINKER_SCRIPT__";
+   LDFLAGS = "-T my_linker_script.ld";
+};
+</pre>
+<dl><dt>__USE_CUSTOM_CRT0__
+</dt><dd> Don't use Erika default crt0.  Users can provide their own crt0 by adding source files in the usual way (APP_SRC in the OIL file).
+</dd><dt>__LM32_NOISY_HANDLERS__
+</dt><dd> On the FPG-EYE board, exception handlers make the LEDs blink with an error code
+</dd><dt>__LM32_VERBOSE_HANDLERS__
+</dt><dd> On the FPG-EYE board, exception handlers make the LEDs blink with an error code and print the values of all CPU registers to the serial port (115200, 8N1) when a key is pressed
+</dd><dt>__LM32_STANDARD_HANDLERS__
+</dt><dd> On the FPG-EYE board, use the standard exception handlers (which call the debugger)
+</dd></dl>
+<h3> <span class="mw-headline" id="CPU">CPU</span></h3>
+<ul><li> The CPU currently supported is the following:
+<ul><li> Lattice Mico32; The LatticeMico32™ is a configurable 32-bit soft processor core for Lattice Field Programmable Gate Array (FPGA) devices. By combining a 32-bit wide instruction set with 32 general-purpose registers, the LatticeMico32 provides the performance and flexibility suitable for a wide variety of markets. Some of the key features of this 32-bit processor include: RISC architecture, 32-bit data path, 32-bit instructions, 32 general-purpose registers, Up to 32 external interrupts, Optional instruction cache, Optional data cache, Dual WISHBONE memory interfaces (instruction and data).
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="MCU">MCU</span></h3>
+<ul><li> Timer support is enabled with the <tt>TIMER</tt> option:
+<dl><dd> DEVICE = TIMER {
+<dl><dd>  NAME = "freetimer";
+</dd></dl>
+</dd><dd> };
+</dd><dd> // Also, interrupts are supported:
+</dd><dd> DEVICE = TIMER {
+<dl><dd>  NAME = "timer";
+</dd><dd>  OPTIONS = TIMER_IRQ_SUPPORT;
+</dd></dl>
+</dd><dd> };
+</dd></dl>
+</li><li> Uart support is enabled with the <tt>UART</tt> option:
+<dl><dd> DEVICE = UART {
+<dl><dd>  NAME = "myuart";
+</dd></dl>
+</dd><dd> };
+</dd><dd> // Also, interrupts are supported:
+</dd><dd> DEVICE = UART {
+<dl><dd>  NAME = "myuart";
+</dd><dd>  OPTIONS = UART_IRQ_SUPPORT;
+</dd></dl>
+</dd><dd> };
+</dd></dl>
+</li><li> SPI support is enabled with the <tt>SPI</tt> option:
+<dl><dd> DEVICE = SPI {
+<dl><dd>  NAME = "myspi";
+</dd></dl>
+</dd><dd> };
+</dd></dl>
+</li><li> I2C support is enabled with the <tt>SPI</tt> option:
+<dl><dd> DEVICE = I2C {
+<dl><dd>  NAME = "myi2c";
+</dd></dl>
+</dd><dd> };
+</dd></dl>
+</li><li> GPIO support is enabled with the <tt>GPIO</tt> option:
+<dl><dd> DEVICE = GPIO {
+<dl><dd>  NAME = "mygpio";
+</dd></dl>
+</dd><dd> };
+</dd><dd> // Also, interrupts are supported:
+</dd><dd> DEVICE = GPIO {
+<dl><dd>  NAME = "mygpio";
+</dd><dd>  OPTIONS = GPIO_IRQ_SUPPORT;
+</dd></dl>
+</dd><dd> };
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Boards">Boards</span></h3>
+<h4> <span class="mw-headline" id="FPG-EYE_board">FPG-EYE board</span></h4>
+<p>Item <tt>BOARD_DATA = XP2_CAMERA_BOARD</tt> of <tt>EE</tt> in <tt>conf.oil</tt>.
+Supported devices:
+</p>
+<ul><li> Real-time clock.  Option <tt>RTCLOCK</tt>.
+</li><li> Leds.  Option <tt>LEDS</tt>.
+</li><li> Power transistors.  Option <tt>TRANSISTORS</tt>.
+</li><li> Switches and user button.  Option <tt>SWITCHES</tt>.
+</li><li> RS232 serial interface.  Option <tt>RS232</tt>.  IRQ for RS232 can be enabled with <tt>RS232_IRQ_SUPPORT</tt>.
+</li><li> HV7131GP Camera.  Option <tt>CAMERA</tt>.  IRQ for the camera can be enabled with <tt>CAMERA_IRQ_SUPPORT</tt>.
+</li><li> Real-time clock.  Option <tt>RTCLOCK</tt>.  IRQ for the real time clock can be enabled with <tt>RTCLOCK_IRQ_SUPPORT</tt>.
+</li><li> External SPI master interfaces.  Option <tt>EXTSPI</tt>.  IRQ for the external SPIs can be enabled with <tt>EXTSPI_IRQ_SUPPORT</tt>.
+</li><li> IEEE 802.15.4 (ZigBee) module.  Option <tt>ZIGBEE</tt>.  IRQ for the ZigBee module can be enabled with <tt>ZIGBEE_IRQ_SUPPORT</tt>.  Please note that ZigBee and Ethernet are mutually exclusive.
+</li><li> ENC28J60 Ethernet interface.  Option <tt>ETHERNET</tt>.  IRQ for the Ethernet can be enabled with <tt>ETHERNET_IRQ_SUPPORT</tt>.  Please note that ZigBee and Ethernet are mutually exclusive.
+</li><li> Everything, included the ZigBee (Ethernet is excluded).  Option <tt>ALL_ZIGBEE</tt>.
+</li><li> Everything, included the Ethernet (ZigBee is excluded).  Option <tt>ALL_ETHERNET</tt>.
+</li></ul>
+<h4> <span class="mw-headline" id="Lattice_Standard_XP2_Evaluation_board">Lattice Standard XP2 Evaluation board</span></h4>
+<ul><li> Leds.  Option <tt>LEDS</tt>.
+</li><li> RS232 serial interface.  Option <tt>RS232</tt>.  IRQ for RS232 can be enabled with <tt>RS232_IRQ_SUPPORT</tt>.
+</li><li> HV7131GP Camera.  Option <tt>CAMERA</tt>.  IRQ for the camera can be enabled with <tt>CAMERA_IRQ_SUPPORT</tt>.
+</li></ul>
+<h3> <span class="mw-headline" id="Lattice_Mico32_OIL_example">Lattice Mico32 OIL example</span></h3>
+<p>See the example <a href="/wiki/index.php?title=OIL_file_for_Lattice_Mico32" title="OIL file for Lattice Mico32">OIL file for Lattice Mico32</a>
+</p>
+<h2> <span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li> <a href="/wiki/index.php?title=Tutorial:_Installing_ERIKA_and_RT-Druid,_and_compile_your_first_application" title="Tutorial: Installing ERIKA and RT-Druid, and compile your first application" class="mw-redirect">Tutorial: Installing ERIKA and RT-Druid, and compile your first application</a>
+</li><li> <a href="/wiki/index.php?title=Tutorial:_RT-Druid_and_OIL_basics" title="Tutorial: RT-Druid and OIL basics">Tutorial: RT-Druid and OIL basics</a>
+</li><li> <a href="http://www.latticesemi.com/products/intellectualproperty/ipcores/mico32/index.cfm" class="external text" rel="nofollow">Lattice Mico32 page on the Lattice Semiconductor Web site</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 38/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

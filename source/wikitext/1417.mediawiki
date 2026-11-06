@@ -1,0 +1,2 @@
+* [http://www.evidence.eu.com/content/view/274/266/ Controlling an Inverted Pendulum using FLEX with Scilab/Scicos]
+* [http://www.evidence.eu.com/content/view/273/266/ DC Motor Servo control using FLEX with Scilab/Scicos]

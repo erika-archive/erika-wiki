@@ -1,0 +1,109 @@
+<h2> <span class="mw-headline" id="Generate_Code"> Generate Code </span></h2>
+<p><b>generate_code.bat</b> and <b>generate_code.sh</b> can be used to generate Erika Enterprise Configuration files from one or more input files. Usually the input is a single oil file, but it is possible to specify multiple files of different types. The available types for input files depends on the specific set of RT-Druid plugins that you have installed.
+</p><p>The usage is: 
+</p>
+<pre> <code> code_generation.XXX "RT-Druid_dir" "input_file" ["additional_input_file1"..."additional_input_fileN"] "output_dir" </code>
+</pre>
+<p>where XXX is .bat or .sh depending on your shell.
+</p><p><br />
+</p>
+<table border="1" style="color: black; background-color: #eeeeee;" width="85%">
+<caption>
+</caption><tr>
+<th style="color: black; background-color: #cccccc;" width="20%"> Field
+</th><th style="color: black; background-color: #cccccc;" width="70%"> Description
+</th><th style="color: black; background-color: #cccccc;"> Required
+</th></tr>
+<tr>
+<td> RT-Druid_dir
+</td><td> The home directory of RT-Druid
+</td><td> Yes
+</td></tr>
+<tr>
+<td> input_file
+</td><td> The first input file
+</td><td> Yes
+</td></tr>
+<tr>
+<td> additional_input_file
+</td><td> Additional input files. They can be zero, one or more
+</td><td> No
+</td></tr>
+<tr>
+<td> output_dir
+</td><td> The directory where store generated Erika Enterprise Configuration file. If the directory does not exist, RT-Druid will try to create it.
+</td><td> Yes
+</td></tr></table>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Instantiate_template"> Instantiate template </span></h2>
+<p><b>instantiate_template.bat</b> and <b>instantiate_template.sh</b> can be used to instantiate one of all examples managed by RT-Druid.
+</p><p>The usage is: 
+</p>
+<pre> <code> instantiate_template.XXX "RT-Druid_dir" "template_id" "output_dir" </code>
+</pre>
+<p>where XXX is .bat or .sh depending on your shell.
+</p><p><br />
+</p>
+<table border="1" style="color: black; background-color: #eeeeee;" width="85%">
+<caption>
+</caption><tr>
+<th style="color: black; background-color: #cccccc;" width="20%"> Field
+</th><th style="color: black; background-color: #cccccc;" width="70%"> Description
+</th><th style="color: black; background-color: #cccccc;"> Required
+</th></tr>
+<tr>
+<td> RT-Druid_dir
+</td><td> The home directory of RT-Druid
+</td><td> Yes
+</td></tr>
+<tr>
+<td> template_id
+</td><td> The id of the template that should be instantiate
+</td><td> Yes
+</td></tr>
+<tr>
+<td> output_dir
+</td><td> The directory where store all files related to the choosed template. If the directory does not exist, RT-Druid will try to create it.
+</td><td> Yes
+</td></tr></table>
+<pre> Note that you can use environment variable or RT-Druid configuration parameter to provide
+ to RT-Druid your own templates, as described in <a href="/wiki/index.php?title=RT-Druid_configuration#Erika_Enterprise_Templates_path" title="RT-Druid configuration"> RT-Druid configuration page</a>.
+ In this way, you can instantiate one of your template.
+</pre>
+<h2> <span class="mw-headline" id="Start_Ant"> Start Ant </span></h2>
+<p><b>start_ant.bat</b> and <b>start_ant.sh</b> can be used to run a generic build.xml file using ant library provided with eclipse. The advantage is that all eclipse plugins are available, including RT-Druid ones.
+</p><p>The usage is:
+</p>
+<pre> <code> start_ant.XXX "RT-Druid_dir" [ant options]
+</pre>
+<p>where XXX is .bat or .sh depending on your shell.
+</p>
+<table border="1" style="color: black; background-color: #eeeeee;" width="85%">
+<caption>
+</caption><tr>
+<th style="color: black; background-color: #cccccc;" width="20%"> Field
+</th><th style="color: black; background-color: #cccccc;" width="70%"> Description
+</th><th style="color: black; background-color: #cccccc;"> Required
+</th></tr>
+<tr>
+<td> RT-Druid_dir
+</td><td> The home directory of RT-Druid
+</td><td> Yes
+</td></tr>
+<tr>
+<td> ant options
+</td><td> Zero or more ant options that are provided as them are to ant library. An example is -buildfile to select a build file or -Dparam=value to set a specific value
+</td><td> No
+</td></tr></table>
+<p>With RT-Druid is provided a simple build.xml file. The description of RT-Druid ant tasks is <a href="/wiki/index.php?title=RT-Druid_ant_tasks" title="RT-Druid ant tasks">here</a>. Useful links are
+<a href="http://ant.apache.org/manual/index.html" class="external text" rel="nofollow">the ant manual</a> and the section with
+<a href="http://ant.apache.org/manual/using.html#buildfile" class="external text" rel="nofollow">details on writhing buildfiles</a>.</code>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

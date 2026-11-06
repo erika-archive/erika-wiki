@@ -1,0 +1,305 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Z7-rtd-build.png</title>
+    <id>1630</id>
+    <revision>
+      <id>2002</id>
+      <timestamp>2010-05-27T11:14:55Z</timestamp>
+      <contributor>
+        <username>Fchecconi</username>
+        <id>24</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Z7-rtd-name.png</title>
+    <id>1628</id>
+    <revision>
+      <id>2000</id>
+      <timestamp>2010-05-27T11:14:26Z</timestamp>
+      <contributor>
+        <username>Fchecconi</username>
+        <id>24</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Z7-rtd-new.png</title>
+    <id>1626</id>
+    <revision>
+      <id>1998</id>
+      <timestamp>2010-05-27T11:13:29Z</timestamp>
+      <contributor>
+        <username>Fchecconi</username>
+        <id>24</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Z7-rtd-proj.png</title>
+    <id>1629</id>
+    <revision>
+      <id>2001</id>
+      <timestamp>2010-05-27T11:14:41Z</timestamp>
+      <contributor>
+        <username>Fchecconi</username>
+        <id>24</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Z7-rtd-templ.png</title>
+    <id>1627</id>
+    <revision>
+      <id>1999</id>
+      <timestamp>2010-05-27T11:14:11Z</timestamp>
+      <contributor>
+        <username>Fchecconi</username>
+        <id>24</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Zigbee receive.png</title>
+    <id>1560</id>
+    <revision>
+      <id>1832</id>
+      <timestamp>2010-01-07T14:52:41Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Zigbee send.png</title>
+    <id>1559</id>
+    <revision>
+      <id>1831</id>
+      <timestamp>2010-01-07T14:52:10Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>Help:Contents</title>
+    <id>1454</id>
+    <revision>
+      <id>1595</id>
+      <timestamp>2009-11-04T18:42:23Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve">[http://www./wiki/Help:Contents Help]</text>
+    </revision>
+    <revision>
+      <id>1596</id>
+      <timestamp>2009-11-04T18:46:22Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve">= ErikaWiki help =
+
+No specific 
+
+= MediaWiki help =
+[http://www.mediawiki.org/wiki/Help:Contents Help]
+
+[http://www.mediawiki.org/wiki/Manual:Contents Technical manual]
+
+[http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+
+[http://www.mediawiki.org/wiki/Project:Support_desk Support desk]</text>
+    </revision>
+    <revision>
+      <id>1597</id>
+      <timestamp>2009-11-04T18:55:43Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve">= ErikaWiki help =
+
+No specific help is needed to use the ErikaWiki.
+
+ErikaWiki runs on [[Special:Version|MediaWiki]] software.
+
+= MediaWiki help =
+[http://www.mediawiki.org/wiki/Help:Contents Help]
+
+[http://www.mediawiki.org/wiki/Manual:Contents Technical manual]
+
+[http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+
+[http://www.mediawiki.org/wiki/Project:Support_desk Support desk]</text>
+    </revision>
+    <revision>
+      <id>3177</id>
+      <timestamp>2011-07-20T11:04:52Z</timestamp>
+      <contributor>
+        <username>Dibbe</username>
+        <id>6</id>
+      </contributor>
+      <text xml:space="preserve">== ErikaWiki help ==
+
+No specific help is needed to use the ErikaWiki.
+
+ErikaWiki runs on [[Special:Version|MediaWiki]] software.
+
+== MediaWiki help ==
+[http://www.mediawiki.org/wiki/Help:Contents Help] (Syntax for links, formatting, etc. is described here)
+
+[http://www.mediawiki.org/wiki/Manual:Contents Technical manual]
+
+[http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+
+[http://www.mediawiki.org/wiki/Project:Support_desk Support desk]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:Benchmarks</title>
+    <id>2311</id>
+    <revision>
+      <id>4789</id>
+      <timestamp>2012-07-09T15:44:21Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Created page with &quot;This is a list of links to pages containing benchmarks of current ERIKA Enterprise implementations&quot;</comment>
+      <text xml:space="preserve">This is a list of links to pages containing benchmarks of current ERIKA Enterprise implementations</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:Debugging Tool Lauterbach TRACE32</title>
+    <id>2530</id>
+    <revision>
+      <id>6045</id>
+      <timestamp>2015-11-16T14:07:42Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Created page with &quot;ERIKA Enterprise supports since 2001 an integration with Lauterbach TRACE32. This Category is collecting all pages including Lauterbach TRACE32 support information.  === Short de...&quot;</comment>
+      <text xml:space="preserve">ERIKA Enterprise supports since 2001 an integration with Lauterbach TRACE32. This Category is collecting all pages including Lauterbach TRACE32 support information.
+
+=== Short description of Lauterbach ===
+Lauterbach is the world’s leading manufacturer of complete, modular microprocessor
+development tools with 35 years’ experience in the field of embedded designs and has
+supported debugging and tracing of multicore chips for more than 10 years. It is an international,
+well-established company with blue chip customers in every corner of the globe and has a close
+working relationship with all semiconductor manufacturers. Besides the headquarters in
+Hoehenkirchen, Germany, the company has its own branch offices in United Kingdom, Italy,
+France, Tunisia, on the East and West coasts of the United States, Japan and China. Highly
+qualified sales and support engineers are also available in many other countries. For more
+information visit http://www.lauterbach.com/</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:Debugging Tool iSYSTEM winIDEA</title>
+    <id>2529</id>
+    <revision>
+      <id>6043</id>
+      <timestamp>2015-11-16T14:03:13Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Created page with &quot;ERIKA Enterprise supports an integration with iSYSTEM winIDEA. This Category is collecting all pages including iSYSTEM winIDEA support information.  iSYSTEM is a privately held c...&quot;</comment>
+      <text xml:space="preserve">ERIKA Enterprise supports an integration with iSYSTEM winIDEA. This Category is collecting all pages including iSYSTEM winIDEA support information.
+
+iSYSTEM is a privately held company headquartered in Germany, close to Munich with an R&amp;D and Production center close to Ljubljana, Slovenia. Since its foundation in 1986, iSYSTEM is an independent manufacturer and provider of embedded software debugging, analysis and test tools. iSYSTEM' s Software and Blue Box Technology stand for fast and easy single and multi-core processor hardware access via any kind of debug interface. No matter whether one is developing, debugging or testing embedded software on a real hardware, iSYSTEM' s solutions work for you. The flexible integration and application of iSYSTEM solutions within the entire development process is enabled by open and public interfaces (APIs) that also allow engineers to automate timing analysis and testing. iSYSTEM maintains long standing and close relationships with all major semiconductor, operating system and compiler companies worldwide. This guarantees quick tool availability and the highest level of integration.</text>
+    </revision>
+    <revision>
+      <id>6044</id>
+      <timestamp>2015-11-16T14:03:39Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <text xml:space="preserve">ERIKA Enterprise supports an integration with iSYSTEM winIDEA. This Category is collecting all pages including iSYSTEM winIDEA support information.
+
+=== Short description of iSYSTEM ===
+iSYSTEM is a privately held company headquartered in Germany, close to Munich with an R&amp;D and Production center close to Ljubljana, Slovenia. Since its foundation in 1986, iSYSTEM is an independent manufacturer and provider of embedded software debugging, analysis and test tools. iSYSTEM' s Software and Blue Box Technology stand for fast and easy single and multi-core processor hardware access via any kind of debug interface. No matter whether one is developing, debugging or testing embedded software on a real hardware, iSYSTEM' s solutions work for you. The flexible integration and application of iSYSTEM solutions within the entire development process is enabled by open and public interfaces (APIs) that also allow engineers to automate timing analysis and testing. iSYSTEM maintains long standing and close relationships with all major semiconductor, operating system and compiler companies worldwide. This guarantees quick tool availability and the highest level of integration.</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:ERIKA internals</title>
+    <id>2129</id>
+    <revision>
+      <id>3767</id>
+      <timestamp>2011-10-11T17:00:29Z</timestamp>
+      <contributor>
+        <username>Dibbe</username>
+        <id>6</id>
+      </contributor>
+      <comment>Created page with &quot;ERIKA Enterprise is a very efficient real-time operating system that supports many configurations.  For this reason, its data structures are often non-obvious.  Here are listed p...&quot;</comment>
+      <text xml:space="preserve">ERIKA Enterprise is a very efficient real-time operating system that supports many configurations.  For this reason, its data structures are often non-obvious.  Here are listed pages containing documentation about the internals of ERIKA.</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:RT-Druid</title>
+    <id>2304</id>
+    <revision>
+      <id>4705</id>
+      <timestamp>2012-03-29T09:28:09Z</timestamp>
+      <contributor>
+        <username>Nicola</username>
+        <id>194</id>
+      </contributor>
+      <comment>Created page with &quot;RT-Druid instructions, info and hints.&quot;</comment>
+      <text xml:space="preserve">RT-Druid instructions, info and hints.</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:Supported Devices</title>
+    <id>1975</id>
+    <revision>
+      <id>2966</id>
+      <timestamp>2011-04-07T08:57:07Z</timestamp>
+      <contributor>
+        <username>WikiSysop</username>
+        <id>1</id>
+      </contributor>
+      <comment>Created page with 'Architectures supported by ERIKA Enterprise and RT-Druid'</comment>
+      <text xml:space="preserve">Architectures supported by ERIKA Enterprise and RT-Druid</text>
+    </revision>
+  </page>
+</mediawiki>

@@ -1,0 +1,287 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Acknowledgements"><span class="tocnumber">1</span> <span class="toctext">Acknowledgements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Rationale"><span class="tocnumber">2</span> <span class="toctext">Rationale</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#How_to_use_it"><span class="tocnumber">3</span> <span class="toctext">How to use it</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Preparing_the_environment"><span class="tocnumber">3.1</span> <span class="toctext">Preparing the environment</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Running_the_tests"><span class="tocnumber">3.2</span> <span class="toctext">Running the tests</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Analyzing_the_results"><span class="tocnumber">3.3</span> <span class="toctext">Analyzing the results</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#The_analyze_target"><span class="tocnumber">3.4</span> <span class="toctext">The analyze target</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#The_Hudson_target"><span class="tocnumber">3.5</span> <span class="toctext">The Hudson target</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#How_to_add_a_new_test"><span class="tocnumber">4</span> <span class="toctext">How to add a new test</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Create_the_directory"><span class="tocnumber">4.1</span> <span class="toctext">Create the directory</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Create_and_tag_the_design"><span class="tocnumber">4.2</span> <span class="toctext">Create and tag the design</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Make_the_conf.in_file"><span class="tocnumber">4.3</span> <span class="toctext">Make the conf.in file</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#the_conf_line"><span class="tocnumber">4.3.1</span> <span class="toctext">the conf line</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#the_worksfor_line"><span class="tocnumber">4.3.2</span> <span class="toctext">the worksfor line</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Fill_the_directory"><span class="tocnumber">4.4</span> <span class="toctext">Fill the directory</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Acknowledgements"> Acknowledgements </span></h1>
+<p>I would like to thank Ramine Nikoukhah, Roberto Bucher, Simone Mannori, and Dario Di Stefano for their help in setting up this environment. Without them, I simply couldn't do that. PJ
+</p>
+<h1> <span class="mw-headline" id="Rationale"> Rationale </span></h1>
+<p>The number of blocks supported by the ScicosLab-FLEX package is constantly growing. For that reason, we designed a regression test mechanism similar to the <i>testcase</i> scripts available on ERIKA Enterprise to be able to always check that all blocks compiles without problems.
+</p><p>The idea is that before every release we will be able to test the compilation of a set of example diagrams, hopefully containing most of the supported blocks, ensuring in that way that the system at least compiles.
+</p><p>As a future work, we will also need to check the results of the execution of the various tests (but this is more difficult since it involves the target).
+</p>
+<h1> <span class="mw-headline" id="How_to_use_it"> How to use it </span></h1>
+<h2> <span class="mw-headline" id="Preparing_the_environment"> Preparing the environment </span></h2>
+<ul><li> install the following packages in your Cygwin installation
+<ul><li> procmail
+</li><li> gcc
+</li></ul>
+</li><li> do a checkout from the ERIKA svn using the command
+<ul><li> svn+ssh://TUXFAMILY_USERNAME@svn.tuxfamily.org/svnroot/erika/erikae/repos/scilab_codegen/trunk/testcase
+</li></ul>
+</li><li> move the testcase directory in the installation dir of ScicosLab
+<ul><li> on my PC, it is under c:\Evidence\scicoslab-44b7
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Running_the_tests"> Running the tests </span></h2>
+<ul><li> open a Cygwin XTerm window
+</li><li> cd in the testcase directory
+</li><li> type "make". the system will ask to export some environment variables. Each message ends with printing a command, which is typically the right one to type&nbsp;:-)
+</li><li> when done, type again make. You will get some help message. Again, the last line is the command to type.
+</li><li> type "make ARCH=flex" to compile the examples for the FLEX boards.
+</li></ul>
+<p>The following is a report of what happens on my machine (only one example is present).
+<b>Note: it may take a while to compile!!!</b>
+</p>
+<pre>
+pj@tom ~
+$ cd /cygdrive/c/Evidence/scicoslab-44b7/testcase/
+
+pj@tom /cygdrive/c/Evidence/scicoslab-44b7/testcase
+$ make
+ERROR: Missing environment variable SCIBASE
+...maybe you can try with the following command:
+export SCIBASE=/cygdrive/c/Evidence/scicoslab-44b7/testcase/..
+
+pj@tom /cygdrive/c/Evidence/scicoslab-44b7/testcase
+$ export SCIBASE=/cygdrive/c/Evidence/scicoslab-44b7/testcase/..
+
+pj@tom /cygdrive/c/Evidence/scicoslab-44b7/testcase
+$ make
+---------------------------------------------------
+ScicosLab testcases
+---------------------------------------------------
+
+This testcase will compile all the ScicosLab tests
+for all the configuration with a name starting with
+a given prefix.
+
+usage:
+
+make ARCH=prefix
+make clean
+make supported ARCH=prefix
+
+where 
+
+- &quot;DIRS&quot; are the list of examples you want to test
+- &quot;DISTCC=distcc&quot; if not set in your bash_profile, 
+  allows to run tests using distcc
+
+- &quot;prefix&quot; is one of:
+
+  - &quot;flex&quot; - ScicosLab FLEX codegen
+  ... and others
+
+- the &quot;clean&quot; rule removes all the */out* directories
+
+- the &quot;supported&quot; rule prints for each testcase if the particular ARCHitecture
+  is supported
+
+Examples:
+
+make ARCH=flex
+
+pj@tom /cygdrive/c/Evidence/scicoslab-44b7/testcase
+$ make ARCH=flex
+RM tmp directory
+EXPERIMENT flex_led/ BOARD=BOARDFLEX
+CLEAN flex_led/ BOARD=BOARDFLEX
+CODEGEN flex_led/ BOARD=BOARDFLEX
+COMPILE flex_led/ BOARD=BOARDFLEX
+ALL ended successfully!
+
+pj@tom /cygdrive/c/Evidence/scicoslab-44b7/testcase
+$ 
+</pre>
+<h2> <span class="mw-headline" id="Analyzing_the_results"> Analyzing the results </span></h2>
+<ul><li> The testcase directory contains a set of subdirectory, each one containing a test.cos file
+</li><li> the test.cos file can be compiled in various ways. each time the test.cos is compiled, a directory is created
+</li><li> each created directory is inside the directory containing the original test.cos file
+</li></ul>
+<p>Example:
+</p>
+<ul><li> there is a "flex_led" directory
+</li><li> inside the "flex_led" directory another directory is created, named "out_flex_BOARD_BOARDFLEX" (for the naming of the directory see below)
+</li><li> the "out_flex_BOARD_BOARDFLEX" directory contains a copy of teh original .cos file, plus the result of the code generation as it was done from the graphical interface. in our case, we have a "test_scig" subdirectory containing the code generated by ScicosLab for the "test.cos" file.
+</li><li> the "test_scig" directory contains the generated code, compiled using the dsPIC toolchain.
+</li><li> as a result of the compilation a "Debug" directory is created inside "test_scig"
+</li></ul>
+<ul><li> all the output of the various phases are stored in two files into the "out_flex_BOARD_BOARDFLEX" directory. In particular:
+<ul><li> <b>scicoslab_log.txt</b> contains the log of the commandline execution of ScicosLab
+</li><li> <b>compile_log.txt</b> contains the log of the compilation of the generated application
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="The_analyze_target"> The analyze target </span></h2>
+<p>The <tt>analyze</tt> target can be used to make an analysis of the coverage of the tests. Just run
+</p>
+<pre>make analyze ARCH=flex 
+</pre>
+<p>And you will get the following results:
+</p>
+<ul><li> <tt>tmp/globalblocklist.txt</tt>, which contains the pair (test_directory, block_contained), that lists the blocks used in each example
+</li><li> <tt>tmp/globalpalettelist.txt</tt>, which contains the pair (palette, block_contained), that lists the blocks contained in each palette added by the Scicos-FLEX project
+</li><li> <tt>tmp/globalcoverage.txt</tt>, which contains a text report with, for each block, the examples and the palettes containing the specific block. This file is the most important because it ensures that each block has been compiled at least once.
+</li></ul>
+<h2> <span class="mw-headline" id="The_Hudson_target"> The Hudson target </span></h2>
+<p>This target is used during the integration with <a href="http://hudson-ci.org/" class="external text" rel="nofollow">Hudson</a>.
+</p><p>The idea is the following:
+</p>
+<ul><li> the examples are compiled in different way, depending on their <tt>conf.in</tt> file
+</li><li> on the same directory, the various architectures are built by using, for each architecture,
+</li></ul>
+<pre>make ARCH=xxx
+</pre>
+<ul><li> at the end, the various tests compiled will be all there
+</li><li> all the compilations done correctly will produce a <tt>doneflag.txt</tt> file
+</li><li> then we run
+</li></ul>
+<pre>make hudson
+</pre>
+<ul><li> the <tt>hudson</tt> target will check the existence of all the <tt>doneflag.txt</tt> files generated by all possible compilations, plus it will check that all blocks has at least an example including it
+</li><li> the <tt>hudson</tt> target will generate an XML file in <tt>tmp/results.xml</tt> containing the results of the checks
+</li><li> if a block should be ignored, it should be listed into <tt>hudson_ignoreblocks.txt</tt>
+</li></ul>
+<h1> <span class="mw-headline" id="How_to_add_a_new_test"> How to add a new test </span></h1>
+<p>Adding a new test is quite simple. You need to do the following:
+</p>
+<h2> <span class="mw-headline" id="Create_the_directory"> Create the directory </span></h2>
+<ul><li> each directory <b>must</b> contain only one .cof file.
+</li><li> the name of the .cof file <b>must be test.cos</b>
+</li></ul>
+<h2> <span class="mw-headline" id="Create_and_tag_the_design"> Create and tag the design </span></h2>
+<ul><li> the test.cos must have a superblock tagged with the ID "cg" ("c"ode "g"enerator)
+<ul><li> to tag the superblock you need to do the following:
+<ul><li> click on the superblock to select it
+</li><li> right click on the superblock. A pop-up menu appears
+</li><li> select Block Properties --&gt; Identification
+</li><li> a window titled "Set Block Identification" appears, with a textbox named "ID"
+</li><li> enter "cg" into the textbox.
+</li><li> press Ok
+</li><li> save the design
+</li></ul>
+</li></ul>
+</li></ul>
+<p><b>We need to tag each test.cos!</b> The rationale is that each design may contain more than one superblock. For that reason, the script needs to know exactly which is the block to be generated.
+</p>
+<h2> <span class="mw-headline" id="Make_the_conf.in_file"> Make the conf.in file </span></h2>
+<p>You need to prepare a "conf.in" file to be put in the test directory.
+</p><p><b>The quick way: USE THE FOLLOWING CONTENT FOR THE conf.in FILE</b>
+</p>
+<pre>
+conf = BOARD=BOARDFLEX
+worksfor = flex
+</pre>
+<p>The following gives the explanation of the content of each line.
+</p><p>Basically, the two lines stands for:
+</p>
+<ul><li> <b>worksfor</b>: is the toolchain used (FLEX, RTAI, ...)
+</li><li> <b>conf</b>: is the specific template/configuration used (example: the FLEX board can be compiled on different boards with different "templates")
+</li></ul>
+<h3> <span class="mw-headline" id="the_conf_line"> the conf line </span></h3>
+<ul><li> contains a set of values which are used to compile the test.
+</li><li> the test is compiled with a combination of all the specified values
+</li><li> <b>do not use the underscore "_" inside the values.</b>
+</li></ul>
+<p>Example:
+</p>
+<pre>
+conf = CONF=B1,B2,E1,E2 STATUS=STD,EXT
+</pre>
+<p>Means that 8 tests will be done:
+</p>
+<ul><li> CONF=B1 STATUS=STD
+</li><li> CONF=B2 STATUS=STD
+</li><li> CONF=E1 STATUS=STD
+</li><li> CONF=E2 STATUS=STD
+</li><li> CONF=B1 STATUS=EXT
+</li><li> CONF=B2 STATUS=EXT
+</li><li> CONF=E1 STATUS=EXT
+</li><li> CONF=E2 STATUS=EXT
+</li></ul>
+<p>Also means that 8 subdirectories will be created, named
+</p>
+<ul><li> out_CONF_B1_STATUS_STD
+</li><li> out_CONF_B2_STATUS_STD
+</li><li> out_CONF_E1_STATUS_STD
+</li><li> out_CONF_E2_STATUS_STD
+</li><li> out_CONF_B1_STATUS_EXT
+</li><li> out_CONF_B2_STATUS_EXT
+</li><li> out_CONF_E1_STATUS_EXT
+</li><li> out_CONF_E2_STATUS_EXT
+</li></ul>
+<p>with the respective configuration inside.
+</p><p>For the ScicosLab tests we currently use only one variable, "BOARD".
+</p><p>The typical value for BOARD is BOARDFLEX, resulting in:
+</p>
+<pre>
+conf = BOARD=BOARDFLEX
+</pre>
+<p>for most examples.
+</p><p>If in the future we find that an example can work for more than one type of hardware, then the line will be like the following, meaning that the same design is compiled for more than one configuration:
+</p>
+<pre>
+conf = BOARD=BOARDFLEX,BOARDXXX,RTAI,RTAI_GEA
+</pre>
+<p><b>Remember, no underscores in the names above!</b>
+</p><p>In order for the various boards to work, you will need to modify the file testcase/common/flex_codegen/run_compile.sh
+</p>
+<h3> <span class="mw-headline" id="the_worksfor_line"> the worksfor line </span></h3>
+<p>The idea is that the regression system will work for various toolchains. examples:
+</p>
+<ul><li> RTAI
+</li><li> Xenomai
+</li><li> FLEX
+</li><li> ...
+</li></ul>
+<p>and each toolchain may have its own scripts to make sure the compilation works correctly.
+</p><p>Currently, we support only one toolchain, "flex". for taht reason, the line will look like:
+</p>
+<pre>
+worksfor = flex
+</pre>
+<p>If a demo can be compiled with more than one toolchain, we need to separate the toolchains by spaces. Example:
+</p>
+<pre>
+worksfor = flex rtai
+</pre>
+<p>The list of supported toolchains can be obtained by typing "make" in the "testcase" directory.
+</p><p>The toolchains are then specified in files named "test.mk" under subdirectories of the testcase/common directory. For example, look at testcase/common/flex_codegen/test.mk
+</p>
+<h2> <span class="mw-headline" id="Fill_the_directory"> Fill the directory </span></h2>
+<ul><li> put the "test.cos" in the directory
+</li><li> put the "conf.in" in the directory
+</li></ul>
+<p>The script automatically recognizes the presence of a test by the fact that the "conf.in" file exists.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 121/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,149 @@
+= Requirements =
+ERIKA for MSP430 microcontrollers currently supports the GCC toolchain: MSP430GCC. 
+It can be downloaded from http://mspgcc.sourceforge.net/
+
+= MSP430 support =
+ERIKA Enterprise supports MSP430 microcontrollers.
+
+RT-Druid support is working under both Linux and Windows hosts. See [[#Configuration]]
+
+The MSP430 support includes:
+* support for single and multi stack configurations
+* isr interrupt not nested/nested supported
+* support for LPM management
+
+Mode of operation
+* Mono-stack: This configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+* Multi-stack: Every task can have its private stack, or it can share it with other tasks. 
+
+== LPM management ==
+An important feature of MSP430 is management of low power consumption and this is possibile by LPM (low power mode).
+ERIKA Enterprise supports this feature. To use it you should set the option: 
+<pre>
+CPU_DATA = MSP430 {
+	USELPM=TRUE
+};
+</pre>
+The functions available are:
+
+* void EE_msp430_enter_LPM(EE_UINT8 lpm): it allows to enter in a particular low power mode
+* void EE_msp430_exit_LPM(EE_UINT8 lpm): it allows to exit from a low power mode ( can be use only in ISR )
+* void EE_msp430_change_LPM(EE_UINT8 lpm): it allows to change a low power mode ( can be use only in ISR )
+
+
+
+= MCU =
+
+MCU support is defined using the following OIL object, substituting the relevant MCU type where appropriate:
+<pre>
+    MCU_DATA = MSP430 {
+        MODEL = CUSTOM {
+            MODEL = "-mmcu=msp430x2012";
+        };
+};
+</pre>
+
+If working directly with a Makefile, the MCU should be passed to the tool chain using the following directives:
+<pre>
+CFLAGS  += -mmcu=msp430x2012
+ASFLAGS += -mmcu=msp430x2012
+LDFLAGS += -mmcu=msp430x2012
+</pre>
+
+The following functionality is implemented:
+* Watchdog, using <tt>EE_watchdog_disable()</tt>
+* System clock, using <tt>EE_sysclk_init_1MHz()</tt> [also 8, 12 and 16 MHz supported depending on device type]
+
+= BOARD =
+== UTMOST ==
+Supported devices:
+
+* LED. Please use the USELEDS option.
+
+<pre>
+BOARD_DATA = UTMOST {
+    USELEDS = TRUE;
+};
+</pre>
+
+== LaunchPad ==
+=== General ===
+OIL:
+<pre>
+EE_OPT = "__MSP430_LAUNCHPAD__";
+</pre>
+Makefile:
+<pre>
+EEOPT += __MSP430_LAUNCHPAD__
+</pre>
+
+Note that the msp430x2231 device variant supplied with the LaunchPad is not supported by MSPGCC version 4.4.3 so use msp430x2012 instead.
+
+=== LEDs ===
+There are two LEDs: red on P1.0 = led_0 ; green on P1.6 = led_1
+
+OIL:
+<pre>
+EE_OPT = "__USE_LEDS__";
+</pre>
+Makefile:
+<pre>
+EEOPT += __USE_LEDS__
+</pre>
+API:
+* <tt>EE_leds_init()</tt>
+* <tt>EE_led_0_off()</tt>
+* <tt>EE_led_0_on()</tt>
+* <tt>EE_led_0_toggle()</tt>
+* <tt>EE_led_1_off()</tt>
+* <tt>EE_led_1_on()</tt>
+* <tt>EE_led_1_toggle()</tt>
+
+=== BUTTONs ===
+The LaunchPad has a single button on P2.3 = BUTTON_0
+
+OIL:
+<pre>
+EE_OPT = "__USE_BUTTONS__";
+</pre>
+Makefile:
+<pre>
+EEOPT += __USE_BUTTONS__
+</pre>
+API:
+* <tt>EE_buttons_init()</tt>
+* <tt>EE_buttons_enable_interrupts (BUTTON_0)</tt> - raises interrupts on <b>PORT1_VECTOR</b>
+* <tt>EE_buttons_disable_interrupts (BUTTON_0)</tt>
+* <tt>EE_buttons_interrupt (BUTTON_0)</tt> - returns non-zero if button has raised interrupt
+* <tt>EE_buttons_clear_ISRflag (BUTTON_0)</tt> - clears pending interrupt
+* <tt>EE_buttons_get_state (BUTTON_0)</tt> - returns non-zero if button is currently pressed
+
+= Configuration =
+
+If you are trying to build under RT-Druid on Windows and see something like this:
+<pre>
+MAKE_DIRECTORIES
+CPP   eecfg.c
+eecfg.c:1:16: error: ee.h: No such file or directory
+eecfg.c:4: warning: data definition has no type or storage class
+eecfg.c:4: warning: type defaults to 'int' in declaration of 'DeclareTask'
+eecfg.c:4: warning: parameter names (without types) in function declaration
+eecfg.c:6: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_hal_thread_body'
+eecfg.c:12: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_ready_prio'
+eecfg.c:17: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_dispatch_prio'
+eecfg.c:29: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_next'
+eecfg.c:33: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_th_nact'
+eecfg.c:35: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_stkfirst'
+eecfg.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_rqfirst'
+eecfg.c:41: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'EE_sys_ceiling'
+make: *** [obj/eecfg.o] Error 1
+</pre>
+... add a variable called "PLATFORM" with the value "WINDOWS" to your project environment variables (Project->Properties->C/C++ Build->Environment->Environment variables to set).
+
+= Acknowledgements =
+This port was provided by Christian Grioli.
+
+The LaunchPad Board Support Package was added by [[user:steve|Steve Langstaff]]
+
+
+[[Category:Supported Devices]]

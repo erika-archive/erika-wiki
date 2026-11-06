@@ -1,0 +1,268 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Erikatutorial mplab selectdevice dspic.png</title>
+    <id>1655</id>
+    <revision>
+      <id>2036</id>
+      <timestamp>2010-06-26T12:39:50Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Selecting the dsPIC MCU mounted on the FLEX boards.</comment>
+      <text xml:space="preserve">Selecting the dsPIC MCU mounted on the FLEX boards.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mplab selectdevice pic18.png</title>
+    <id>1657</id>
+    <revision>
+      <id>2039</id>
+      <timestamp>2010-06-26T12:45:02Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Selecting the PIC18 MCU mounted on the FLEX Full boards.</comment>
+      <text xml:space="preserve">Selecting the PIC18 MCU mounted on the FLEX Full boards.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mymake cygwin error.png</title>
+    <id>1649</id>
+    <revision>
+      <id>2028</id>
+      <timestamp>2010-06-26T12:28:30Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>An error that shows up on some Windows machines. Please check the &lt;tt&gt;mymake_cygwin.bat&lt;/tt&gt; file.</comment>
+      <text xml:space="preserve">An error that shows up on some Windows machines. Please check the &lt;tt&gt;mymake_cygwin.bat&lt;/tt&gt; file.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial newproject.png</title>
+    <id>1644</id>
+    <revision>
+      <id>2023</id>
+      <timestamp>2010-06-26T12:26:55Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Select ''New project'' from the ''File'' menu.</comment>
+      <text xml:space="preserve">Select ''New project'' from the ''File'' menu.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial newproject2.png</title>
+    <id>1645</id>
+    <revision>
+      <id>2024</id>
+      <timestamp>2010-06-26T12:27:11Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Select a template for your project.</comment>
+      <text xml:space="preserve">Select a template for your project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial preferences menu.png</title>
+    <id>1641</id>
+    <revision>
+      <id>2020</id>
+      <timestamp>2010-06-26T12:25:49Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Go to the ''Preference'' menu.</comment>
+      <text xml:space="preserve">Go to the ''Preference'' menu.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial preferences pic30.png</title>
+    <id>1642</id>
+    <revision>
+      <id>2021</id>
+      <timestamp>2010-06-26T12:26:09Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Select paths for compiler and assembler.</comment>
+      <text xml:space="preserve">Select paths for compiler and assembler.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial projectname.png</title>
+    <id>1646</id>
+    <revision>
+      <id>2025</id>
+      <timestamp>2010-06-26T12:27:32Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Type a name for the new project.</comment>
+      <text xml:space="preserve">Type a name for the new project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial select workspace.png</title>
+    <id>1639</id>
+    <revision>
+      <id>2018</id>
+      <timestamp>2010-06-26T12:25:02Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>This screenshot shows the dialog box for the choice of the current workspace directory.</comment>
+      <text xml:space="preserve">This screenshot shows the dialog box for the choice of the current workspace directory.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial welcome.png</title>
+    <id>1640</id>
+    <revision>
+      <id>2019</id>
+      <timestamp>2010-06-26T12:25:29Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>The Eclipse Welcome screen.</comment>
+      <text xml:space="preserve">The Eclipse Welcome screen.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Example3.png</title>
+    <id>1774</id>
+    <revision>
+      <id>2569</id>
+      <timestamp>2011-02-15T09:29:47Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Example3 System Actor Leds with eigth bits number generator.</comment>
+      <text xml:space="preserve">Example3 System Actor Leds with eigth bits number generator.</text>
+    </revision>
+    <revision>
+      <id>2706</id>
+      <timestamp>2011-02-21T11:23:24Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Example3.png]]&quot;</comment>
+      <text xml:space="preserve">Example3 System Actor Leds with eigth bits number generator.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Example7.png</title>
+    <id>1777</id>
+    <revision>
+      <id>2593</id>
+      <timestamp>2011-02-15T13:34:09Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>Board Leds are turned on or off proportionally to the average image luminance</comment>
+      <text xml:space="preserve">Board Leds are turned on or off proportionally to the average image luminance</text>
+    </revision>
+    <revision>
+      <id>2705</id>
+      <timestamp>2011-02-21T11:15:11Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Example7.png]]&quot;</comment>
+      <text xml:space="preserve">Board Leds are turned on or off proportionally to the average image luminance</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:FPG-EYE FlashSuccess.png</title>
+    <id>2125</id>
+    <revision>
+      <id>3751</id>
+      <timestamp>2011-10-07T15:36:16Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:FPG-EYE bootloader-script synchronization.png</title>
+    <id>2124</id>
+    <revision>
+      <id>3750</id>
+      <timestamp>2011-10-07T15:35:39Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:FPG EYE Buttons.png</title>
+    <id>2123</id>
+    <revision>
+      <id>3745</id>
+      <timestamp>2011-10-07T15:28:27Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Finish.png</title>
+    <id>2255</id>
+    <revision>
+      <id>4456</id>
+      <timestamp>2012-01-26T16:33:04Z</timestamp>
+      <contributor>
+        <username>Outlawch</username>
+        <id>486</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

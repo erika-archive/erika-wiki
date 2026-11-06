@@ -1,0 +1,519 @@
+== Synopsis ==
+
+The MCU driver provides services for basic microcontroller initialization, power down functionality, reset and microcontroller specific functions required by other MCAL [Microcontroller  Abstraction  Layer] software modules. The initialization services allow a flexible and application related MCU initialization in addition to the start-up code (see figure  below).  The  start-up  code  is  very  MCU  specific.  The start-up code is provided by Evidence Srl within Erika Enterprise.
+
+[[File:Startup_Code.png]]
+
+'''MCU driver Features''':<br>
+* Initialization of MCU clock, PLL, clock prescalers and MCU clock distribution
+* Initialization of RAM sections
+* Activation of μC reduced power modes
+* Activation of a μC reset
+* Provides a service to get the reset reason from hardware
+
+The MCU driver accesses the microcontroller hardware directly and is located in the Microcontroller Abstraction Layer.
+
+== File Structure ==
+
+[[File:MCU_Driver_File_structure.png]]
+
+== API Specification ==
+
+=== Imported Types ===
+
+==== ''typedef uint8 Std_ReturnType'' ====
+
+  #include "Std_Types.h"
+
+Standard Return Type.
+
+This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+
+The ''Std_ReturnType'' shall normally be used with value ''E_OK'' or ''E_NOT_OK''.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+
+==== ''struct Std_VersionInfoType'' ====
+
+  #include "Std_Types.h"
+
+Standard Version Informations Type.
+
+This type shall be used to request the version of a AUTOSAR-like module using the ''<Module Name>_GetVersionInfo()'' function.
+
+'''Field Documentation:'''
+
+  ''uint16 Std_VersionInfoType::moduleID''
+	Module Identifier. 
+
+  ''uint8 Std_VersionInfoType::sw_major_version''
+	Software Version Major Number. 
+
+  ''uint8 Std_VersionInfoType::sw_minor_version''
+	Software Version Minor Number. 
+
+  ''uint8 Std_VersionInfoType::sw_patch_version''
+	Software Version Patch Number. 
+
+  ''uint16 Std_VersionInfoType::vendorID''
+	Vendor Identifier.
+
+=== Types Defintions ===
+
+==== ''struct Mcu_ConfigType'' ====
+
+  #include "Mcu.h"
+
+MCU Configuration Parameters.
+
+The structure ''Mcu_ConfigType'' is an external data structure (i.e. implementation specific) and shall contain the initialization data for the MCU module. It shall contain:
+* MCU dependent properties
+* Reset Configuration
+* Definition of MCU modes
+* Definition of Clock settings
+* Definition of RAM sections
+
+The structure ''Mcu_ConfigType'' shall provide a configurable (enable/disable) clock failure notification if the MCU provides an interrupt for such detection. If the clock failure is detected with other HW mechanisms e.g., the generation of a trap, this notification shall be disabled and the failure reporting shall be done outside the MCU driver.
+
+The definitions for each MCU mode within the structure ''Mcu_ConfigType'' shall contain: (depending on MCU)
+* MCU specific properties
+* Change of CPU clock
+* Change of Peripheral clock
+* Change of PLL settings
+* Change of MCU power supply
+
+The definitions for each Clock setting within the structure ''Mcu_ConfigType'' shall contain:
+* MCU specific properties as, e.g., clock safety features and special clock distribution settings
+* PLL settings /start lock options
+* Internal oscillator setting
+
+The definitions for each RAM section within the structure ''Mcu_ConfigType'' shall contain:
+* RAM section base address
+* Section size
+* Data pre-setting to be initialized
+
+Usage of linker symbols instead of scalar values is allowed.
+
+==== ''enum Mcu_PllStatusType'' ====
+
+  #include "Mcu.h"
+
+PLL Status Type.
+
+The type ''Mcu_PllStatusType'' is the type of the return value of the API function ''Mcu_GetPllStatus()''.
+
+The type of ''Mcu_PllStatusType'' is an enumeration with the following values: ''MCU_PLL_LOCKED'', ''MCU_PLL_UNLOCKED'', ''MCU_PLL_STATUS_UNDEFINED''.
+
+'''Enumerator:'''
+* ''MCU_PLL_LOCKED'':			PLL is locked. 
+* ''MCU_PLL_UNLOCKED'':			PLL is unlocked.
+* ''MCU_PLL_STATUS_UNDEFINED'':		PLL Status is unknown.
+
+==== ''typedef uint Mcu_ClockType'' ====
+
+  #include "Mcu.h"
+
+Clock Type.
+
+The type ''Mcu_ClockType'' defines the identification (ID) for clock setting configured via the configuration structure.
+
+The type shall be ''uint8'', ''uint16'' or ''uint32'', depending on μC platform.
+
+==== ''enum Mcu_ResetType'' ====
+
+  #include "Mcu.h"
+
+Reset Type.
+
+This type represents the different reset that a specified MCU can have.
+
+The MCU module shall provide at least the values ''MCU_POWER_ON_RESET'' and ''MCU_RESET_UNDEFINED''.
+
+'''Note''': Additional reset types may be added depending on MCU.
+
+'''Enumerator''': 
+* ''MCU_POWER_ON_RESET'':  		Power On Reset (default) 
+* ''MCU_WATCHDOG_RESET'':  		Internal Watchdog Timer Reset 
+* ''MCU_SW_RESET'':  			Software Reset 
+* ''MCU_RESET_UNDEFINED'': 		Reset is undefined
+
+==== ''typedef uint Mcu_RawResetType'' ====
+
+  #include "Mcu.h"
+
+Raw Reset Type.
+
+The type ''Mcu_RawResetType'' specifies the reset reason in raw register format, read from a reset status register.
+
+The type shall be ''uint8'', ''uint16'' or ''uint32''  based on best performance.
+
+==== ''typedef uint Mcu_ModeType'' ====
+
+  #include "Mcu.h"
+
+Mode Type.
+
+The ''Mcu_ModeType'' specifies the identification (ID) for a MCU mode, configured via configuration structure.
+
+The type shall be ''uint8'', ''uint16'' or ''uint32''.
+
+==== ''typedef uint Mcu_RamSectionType'' ====
+
+  #include "Mcu.h"
+
+Ram Section Type.
+
+The ''Mcu_RamSectionType'' specifies the identification (ID) for a RAM section, configured via the configuration structure.
+
+The type shall be ''uint8'', ''uint16'' or ''uint32'' , based on best performance. 
+
+==== ''enum Mcu_RamStateType'' ====
+
+  #include "Mcu.h"
+
+Ram State Type.
+
+This is the Ram State data type returned by the function Mcu_GetRamState() of the Mcu module. It is not required that all RAM state types are supported by the hardware.
+
+'''Enumerator''':
+* ''MCU_RAM_STATE_INVALID'':  	Ram content is not valid or unknown (default) 
+* ''MCU_RAM_STATE_VALID'':  	Ram content is valid
+
+
+=== Functions Definitions ===
+
+==== ''void Mcu_Init(const Mcu_ConfigType *ConfigPtr)'' ====
+
+  #include "Mcu.h"
+
+MCU Driver Initialization.
+
+'''Parameters''':
+* ''ConfigPtr '': Pointer to MCU driver configuration set. 
+
+'''Returns''':
+* None.
+
+This service initializes the MCU driver.
+
+Service 0x00
+
+The function ''Mcu_Init()'' shall initialize the MCU module, i.e. make the configuration settings for power down, clock and RAM sections visible within the MCU module.
+
+'''Note''': After the execution of the function ''Mcu_Init()'', the configuration data are accessible and can be used by the MCU module functions as, e.g., ''Mcu_InitRamSection()''.
+
+The MCU module's implementer shall apply the following rules regarding initialization of controller registers within the function ''Mcu_Init()'':
+* If the hardware allows for only one usage of the register, the driver module implementing that functionality is responsible for initializing the register.
+* If the register can affect several hardware modules and if it is an I/O register, it shall be initialised by the '''PORT''' driver.
+* If the register can affect several hardware modules and if it is not an I/O register, it shall be initialised by this '''MCU''' driver.
+* One-time writable registers that require initialisation directly after reset shall be initialised by the startup code.
+* All other registers not mentioned before shall be initialised by the start-up code.
+
+If not applicable, the MCU module's environment shall pass a ''NULL'' pointer to the function ''Mcu_Init()''. In this case the check for this ''NULL'' pointer has to be omitted.
+
+'''Note''': The term 'Hardware Module' refers to internal modules of the MCU.
+
+==== ''Std_returnType Mcu_InitRamSection(Mcu_RamSectionType RamSection)'' ====
+
+  #include "Mcu.h"
+
+Ram Section Initialization.
+
+'''Parameters''':
+* ''RamSection'': Selects RAM memory section provided in configuration set 
+
+'''Returns''':
+* ''E_OK'': 		command has been accepted
+* ''E_NOT_OK'': 	command has not been accepted e.g. due to parameter error
+
+This service initializes the RAM section wise.
+
+Service 0x01
+
+The function ''Mcu_InitRamSection()'' shall fill the memory from address McuRamSectionBaseAddress up to address ''McuRamSectionBaseAddress'' + ''McuRamSectionSize''  - ''1'' with the byte-value contained in ''McuRamDefaultValue'', where ''McuRamSectionBaseAddress'', ''McuRamSectionSize'' and ''McuRamDefaultValue'' are the values of the configuration parameters for each RamSection.
+
+The MCU module's environment shall call the function ''Mcu_InitRamSection()'' only after the MCU module has been initialized using the function ''Mcu_Init()''.
+
+==== ''Std_ReturnType Mcu_InitClock(Mcu_ClockType ClockSetting)'' ====
+
+  #include "Mcu.h"
+
+Clock Initialization.
+
+'''Parameters''':
+* ''ClockSetting'': Clock Setting
+
+'''Returns''':
+* ''E_OK'': 		command has been accepted
+* ''E_NOT_OK'': 	command has not been accepted
+
+This service initializes the PLL and other Mcu Specific clock options.
+
+Service 0x02
+
+The function ''Mcu_InitClock()'' shall initialize the PLL and other MCU specific clock options. The clock configuration parameters are provided via the configuration structure.
+
+The function ''Mcu_InitClock()'' shall start the PLL lock procedure (if PLL shall be initialized) and shall return without waiting until the PLL is locked.
+
+The MCU module's environment shall only call the function ''Mcu_InitClock()'' after the MCU module has been initialized using the function ''Mcu_Init()''.
+
+The function ''Mcu_InitClock()'' shall be disabled if the configuration parameter ''McuInitClock'' is set to ''FALSE''. Instead this function is available if the former parameter is set to ''TRUE''.
+
+==== ''void Mcu_DistributeClock(void)'' ====
+
+  #include "Mcu.h"
+
+PLL Clock Distribution.
+
+'''Parameters''':
+* None
+
+
+'''Returns''':
+* None
+
+This service activates the PLL clock to the MCU clock ditribution.
+
+Service 0x03
+
+The function ''Mcu_DistributePllClock()'' shall activate the PLL clock to the MCU clock distribution.
+
+The MCU module's environment shall execute the function ''Mcu_DistributePllClock()'' if the MCU module needs a separate request to activate the PLL clock after the PLL is locked. In this case, the function shall remove the current clock source (for example internal oscillator clock) from MCU clock distribution.
+
+The function ''Mcu_DistributePllClock()'' shall return without affecting the MCU hardware if the PLL clock has been automatically activated by the MCU hardware.
+
+The MCU module's environment shall only call the function ''Mcu_DistributePllClock()'' after the status of the PLL has been detected as locked by the function ''Mcu_GetPllStatus()''.
+
+The function ''Mcu_DistributePllClock()'' shall be available if the configuration parameter ''McuNoPll'' is set to ''FALSE''. Otherwise, this API has to be disabled.
+
+==== ''Mcu_PllStatusType Mcu_GetPllStatus(void)'' ====
+
+  #include "Mcu.h"
+
+PLL Status Retrieval.
+
+'''Parameters''':
+* None
+
+
+'''Returns''':
+* PLL Status.
+
+This service provides the lock status of the PLL.
+
+Service 0x04
+
+The function ''Mcu_GetPllStatus()'' shall return the lock status of the PLL.
+
+The function ''Mcu_GetPllStatus()'' shall return ''MCU_PLL_STATUS_UNDEFINED'' if this function is called prior to calling of the function ''Mcu_Init()''.
+
+The function ''Mcu_GetPllStatus()'' shall also return ''MCU_PLL_STATUS_UNDEFINED'' if the pre-compile parameter ''McuNoPll'' is set to ''TRUE''.
+
+==== Mcu_ResetType Mcu_GetResetReason(void) ====
+
+  #include "Mcu.h"
+
+Reset Reason Retrieval.
+
+'''Parameters''':
+* None
+
+'''Returns''':
+* Reset Reason.
+
+This service reads the reset type from the hardware, if supported.
+
+Service 0x05
+
+The function ''Mcu_GetResetReason()'' shall read the reset reason from the hardware and return this reason if supported by the hardware. If the hardware does not support the hardware detection of the reset reason, the return value from the function ''Mcu_GetResetReason()'' shall always be ''MCU_POWER_ON_RESET''.
+
+The function ''Mcu_GetResetReason()'' shall return ''MCU_RESET_UNDEFINED'' if this function is called prior to calling of the function ''Mcu_Init()'', and if supported by the hardware.
+
+'''Note''': The User should ensure that the reset reason is cleared once it has been read out to avoid multiple reset reasons.
+
+==== ''Mcu_RawResetType Mcu_GetResetRawValue(void)'' ====
+
+  #include "Mcu.h"
+
+Reset Raw Value Retrieval.
+
+'''Parameters''':
+* None
+
+'''Returns''':
+* Reset Raw Value.
+
+This service reads the reset type from the hardware, if supported.
+
+Service 0x06
+
+The function ''Mcu_GetResetRawValue()'' shall return an implementation specific value which does not correspond to a valid value of the reset status register and is not equal to ''0'' if this function is called prior to calling of the function ''Mcu_Init()'', and if supported by the hardware.
+
+The function ''Mcu_GetResetRawValue()'' shall read the reset raw value from the hardware register if the hardware supports this. If the hardware does not have a reset status register, the return value shall be ''0''.
+
+'''Note''': The User should ensure that the reset reason is cleared once it has been read out to avoid multiple reset reasons.
+
+==== ''void Mcu_PerformReset(void)'' ====
+
+  #include "Mcu.h"
+
+Microcontroller Reset.
+
+'''Parameters''':
+* None
+
+'''Returns''':
+* None.
+
+This service performs a microcontroller reset.
+
+Service 0x07
+
+The function ''Mcu_PerformReset()'' shall perform a microcontroller reset by using the hardware feature of the microcontroller.
+
+The function ''Mcu_PerformReset()'' shall perform the reset type which is configured in the configuration set.
+
+The MCU module's environment shall only call the function ''Mcu_PerformReset()'' after the MCU module has been initialized by the function ''Mcu_Init()''.
+
+The function ''Mcu_PerformReset()'' is only available if the configurationparameter ''McuPerformResetApi'' is set to ''TRUE''. If set to ''FALSE'', the function ''Mcu_PerformReset()'' is not applicable.
+
+==== ''void Mcu_SetMode(Mcu_ModeType McuMode)'' ====
+
+  #include "Mcu.h"
+
+MCU Mode Setting.
+
+'''Parameters''':
+* ''McuMode'': Set different MCU power modes configured in the configuration set
+
+'''Returns''':
+* None
+
+This service activates the MCU power modes.
+
+Service 0x08
+
+The function ''Mcu_SetMode()'' shall set the MCU power mode. In case of CPU power down mode, the function ''Mcu_SetMode()'' returns after it has performed a wake-up.
+
+The MCU module's environment shall only call the function ''Mcu_SetMode()'' after the MCU module has been initialized by the function ''Mcu_Init()''.
+
+==== ''void Mcu_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)'' ====
+
+  #include "Mcu.h"
+
+MCU Driver version informations retrieval.
+
+'''Parameters''':
+* ''VersionInfoPtr'': Pointer to where to store the version information of this module.
+
+'''Returns''':
+* None
+
+This service retrieves the MCU driver version informations.
+
+Service 0x09
+
+The function ''Mcu_GetVersionInfo()'' shall return the version information of the MCU module. The version information includes:
+* Module Id
+* Vendor Id
+* Vendor specific version numbers
+
+The function ''Mcu_GetVersionInfo()'' shall be configurable On/Off by the configuration parameter ''McuVersionInfoApi''.
+
+If source code for caller and callee of the function ''Mcu_GetVersionInfo()'' is available, the MCU module should realize this function as a macro. The MCU module should define this macro in the module’s header file.
+
+==== ''Mcu_RamStateType Mcu_GetRamState(void)'' ====
+
+  #include "Mcu.h"
+
+RAM State Retrieval.
+
+'''Parameters''':
+* None
+
+'''Returns''':
+* Status of the RAM content.
+
+This service provides the actual statusof the microcontroller RAM, if supported.
+
+Service 0x0A
+
+'''Note''': Some microcontrollers offer the functionality to check if the RAM Status is valid after a reset. The function ''Mcu_GetRamState()'' can be used for this reason.
+
+The MCU module's environment shall call this function only if the MCU module has been already initialized using the function ''Mcu_Init()''.
+
+The function ''Mcu_GetRamState()'' shall be available to the user if the configuration parameter ''McuGetRamStateApi'' is set to ''TRUE''. Instead, if the former parameter is set to ''FALSE'', this function shall be disabled (e.g. the hardware does not support this functionality).
+
+== Usage Examples ==
+
+=== MCU initialization services ===
+
+[[File:Mcu_Init_Examples.png]]
+
+The order of services is just an example and might differ depending on the user.
+''Mcu_Init()'' shall be executed first after power-up.
+The user takes care that the PLL is locked by executing ''Mcu_GetPllStatus()''.
+
+=== μC reset reason retrieval service ===
+
+[[File:Mcu_GetResetReason_Seq_Dia.png]]
+
+=== μC reset raw value retrieval service ===
+
+[[File:Mcu_GetRawResetValue_Seq_Diag.png]]
+
+=== μC reset service ===
+
+[[File:Mcu_PerformReset_Seq_Dia.png]]
+
+== Build ==
+
+To enable AUTOSAR-like MCU Driver in Erika Enterprise build process, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_MCU_DRIVER__";
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Mcu_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+== Supported Architectures ==
+
+=== TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain ===
+
+==== Driver Configuration ====
+
+In order to configure the AUTOSAR-like MCU Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Mcu" tab-sheet on driver configuration instance file.
+
+[[File:Erika_Driver_Configurator_MCU.png]]
+
+===== Configuration Selection =====
+
+In this section you can add/edit/delete configurations in MCU Driver configuration set:
+* Each configuration SHALL have an ''Identifier'' which must be unique inside the configurations set.
+* Each configuration, inside the configurations set, has a set of Ram sections and a set of clock configurations.
+** Each Ram section SHALL have an ''Identifier'' which must be unique inside the Ram sections set.
+** Each clock configuration SHALL have an ''Identifier'' which must be unique inside the clock configurations set.
+
+===== API Selection =====
+
+In this section you can select MCU Driver APIs and features will be included in build process:
+* ''Dev err detect'': Development Error Detection features
+* ''Get ram state'': ''Mcu_GetRam_state()'' API
+* ''Init clock'': ''Mcu_InitClock()'' API
+* ''Pll'': PLL releated APIs and features
+* ''Perform reset api'': ''Mcu_PerformReset()'' API
+* ''Version Info'': ''Mcu_GetVersionInfo()'' API
+
+
+[[File:Erika_Driver_Configurator_MCU_set.png]]
+
+==== Implemetations Demos ====
+
+Implementation Demos of the AUTOSAR-like MCU Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]

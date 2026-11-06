@@ -1,0 +1,439 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Internal_watchdog_driver"><span class="tocnumber">1.1</span> <span class="toctext">Internal watchdog driver</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#External_watchdog_driver"><span class="tocnumber">1.2</span> <span class="toctext">External watchdog driver</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Operational_Modes"><span class="tocnumber">1.3</span> <span class="toctext">Operational Modes</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Triggering_concept_to_support_windowed_watchdogs"><span class="tocnumber">1.4</span> <span class="toctext">Triggering concept to support windowed watchdogs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#enum_WdgIf_ModeType"><span class="tocnumber">3.2</span> <span class="toctext">enum WdgIf_ModeType</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Types_Defintions"><span class="tocnumber">3.3</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#struct_Wdg_.3Cxxx.3E_ConfigType"><span class="tocnumber">3.3.1</span> <span class="toctext">struct Wdg_&lt;xxx&gt;_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#typedef_void_.28.2AWdg_.3Cxxx.3E_Notification.29.28void.29"><span class="tocnumber">3.3.2</span> <span class="toctext">typedef void (*Wdg_&lt;xxx&gt;_Notification)(void)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="#Functions_Definitions"><span class="tocnumber">3.4</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#void_Wdg_.3Cxxx.3E_Init.28const_Wdg_.3Cxxx.3EConfigType_.2AConfigPtr.29"><span class="tocnumber">3.4.1</span> <span class="toctext">void Wdg_&lt;xxx&gt;_Init(const Wdg_&lt;xxx&gt;ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Std_ReturnType_Wdg_.3Cxxx.3E_SetMode.28WdgIf_ModeType_Mode.29"><span class="tocnumber">3.4.2</span> <span class="toctext">Std_ReturnType Wdg_&lt;xxx&gt;_SetMode(WdgIf_ModeType Mode)</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#void_Wdg_.3Cxxx.3E_SetTriggerCondition.28uint16_Timeout.29"><span class="tocnumber">3.4.3</span> <span class="toctext">void Wdg_&lt;xxx&gt;_SetTriggerCondition(uint16 Timeout)</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#void_Wdg_.3Cxxx.3E_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.4.4</span> <span class="toctext">void Wdg_&lt;xxx&gt;_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-21"><a href="#Watchdog_initialization.2C_setting_trigger_condition_and_mode"><span class="tocnumber">4.1</span> <span class="toctext">Watchdog initialization, setting trigger condition and mode</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Data_exchange_between_watchdog_driver_and_hardware"><span class="tocnumber">4.2</span> <span class="toctext">Data exchange between watchdog driver and hardware</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Supported_Architectures"><span class="tocnumber">5</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-24"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">5.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-25"><a href="#WDG_PIOSC"><span class="tocnumber">5.1.1</span> <span class="toctext">WDG PIOSC</span></a>
+<ul>
+<li class="toclevel-4 tocsection-26"><a href="#Driver_Configuration"><span class="tocnumber">5.1.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-5 tocsection-27"><a href="#Configuration_Selection"><span class="tocnumber">5.1.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-5 tocsection-28"><a href="#API_Selection"><span class="tocnumber">5.1.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-4 tocsection-29"><a href="#Build"><span class="tocnumber">5.1.1.2</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-4 tocsection-30"><a href="#Interrupts"><span class="tocnumber">5.1.1.3</span> <span class="toctext">Interrupts</span></a></li>
+<li class="toclevel-4 tocsection-31"><a href="#Implemetations_Demos"><span class="tocnumber">5.1.1.4</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-32"><a href="#WDG_SYSCLK"><span class="tocnumber">5.1.2</span> <span class="toctext">WDG SYSCLK</span></a>
+<ul>
+<li class="toclevel-4 tocsection-33"><a href="#Driver_Configuration_2"><span class="tocnumber">5.1.2.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-5 tocsection-34"><a href="#Configuration_Selection_2"><span class="tocnumber">5.1.2.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-5 tocsection-35"><a href="#API_Selection_2"><span class="tocnumber">5.1.2.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-4 tocsection-36"><a href="#Build_2"><span class="tocnumber">5.1.2.2</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-4 tocsection-37"><a href="#Interrupts_2"><span class="tocnumber">5.1.2.3</span> <span class="toctext">Interrupts</span></a></li>
+<li class="toclevel-4 tocsection-38"><a href="#Implemetations_Demos_2"><span class="tocnumber">5.1.2.4</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The WDG driver provides the functionality and API for a WDG [WatchDoG] driver and provides services for initialization, changing the operation mode and setting the trigger condition (timeout) of a watchdog device.
+</p><p>The functional requirements and the functional scope are the same for both internal and external watchdog drivers. Hence the API is semantically identical.
+</p><p>An internal watchdog driver belongs to the Microcontroller Abstraction Layer (MCAL), whereas an external watchdog driver belongs to the Onboard Device Abstraction Layer. Therefore, an external watchdog driver needs other drivers (in MCAL) in order to access the microcontroller hardware.
+</p><p>The Wdg module for an external watchdog driver shall have source code that is independent of the microcontroller platform.
+</p><p>If the hardware of the internal watchdog depends on the system clock, changes to the system clock (e.g. PLL on → PLL off) may also affect the clock settings of the watchdog hardware.
+</p><p>A Wdg module for an external watchdog device depends on the API and capabilities of the used onboard communication handlers or drivers (e.g. SPI handler).
+</p>
+<h3> <span class="mw-headline" id="Internal_watchdog_driver"> Internal watchdog driver </span></h3>
+<p>To access the internal watchdog hardware, the corresponding Wdg module instance shall access the hardware for watchdog servicing directly.
+</p><p><b>Hint</b>:	An internal watchdog driver is part of the Microcontroller Abstraction Layer, which allows direct hardware access.
+</p><p>The routine servicing an internal watchdog shall be implemented either as an interrupt routine driven by a hardware timer or as a GPT driver callback.
+</p><p><b>Note</b>:	In both cases, the watchdog servicing routine runs in interrupt context.
+</p>
+<h3> <span class="mw-headline" id="External_watchdog_driver"> External watchdog driver </span></h3>
+<p>To access the external watchdog hardware, the corresponding Wdg module instance shall use the functionality and API of the corresponding handler or driver, e.g. the SPI handler or DIO driver.
+</p><p>The routine servicing an external watchdog shall be implemented as a GPT driver callback.
+</p><p><b>Hint</b>:	An external watchdog driver is part of the Onboard Device Abstraction Layer, which excludes direct hardware access.
+</p><p>A Wdg module for an external watchdog shall satisfy the same functional requirements and offer the same functional scope as a Wdg module for an internal watchdog. Hence their respective APIs are semantically identical.
+</p><p>The Wdg module shall add all parameters required for accessing the external watchdog hardware, e.g. the used SPI channel or DIO port, to the module’s published parameters and to the module’s configuration parameters.
+</p>
+<h3> <span class="mw-headline" id="Operational_Modes"> Operational Modes </span></h3>
+<p>The Wdg module shall support the following operational mode for a watchdog hardware: 
+</p>
+<ul><li> <b>Off-Mode</b>:	The watchdog hardware is disabled / shut down. This might be necessary in order to shut down the complete ECU and not get cyclic resets from a still running external watchdog. This mode might not be allowed for safety critical systems. In this case, the Wdg module has to be configured to prevent switching to this mode.
+</li></ul>
+<ul><li> <b>Slow-Mode</b>:	Triggering the watchdog hardware can be done with a long timeout period. This mode can e.g. be used during system startup / initialization phase. E.g. The watchdog hardware is configured for toggle mode (no constraints on the point in time at which the triggering is done) and a timeout period of 20 milliseconds.
+</li></ul>
+<ul><li> <b>Fast-Mode</b>:	Triggering the watchdog hardware has to be done with a short timeout period. This mode can e.g. be used during normal operations of the	ECU. E.g. The watchdog hardware is configured for window mode (triggering the watchdog has to occur within certain minimum / maximum boundaries within the timeout period) and a timeout period of 5 milliseconds.
+</li></ul>
+<h3> <span class="mw-headline" id="Triggering_concept_to_support_windowed_watchdogs"> Triggering concept to support windowed watchdogs </span></h3>
+<p>The watchdog servicing routine is called from an upper layer of the software which made it difficult to guarantee timing constraints namely for windowed watchdog conditions. This concept will be changed leading to the requirements explained in this chapter.
+</p><p>The basic idea of this concept is to decouple the timing for servicing the watchdog hardware from the logical control.
+</p><p>The time base for triggering the watchdog shall be provided by means of a hardware timer or via the GPT driver. This ensures minimum timing jitter. This also imply that servicing of the watchdog hardware is done directly from a timer ISR. This ensures minimum latencies. These two conditions – minimum jitter and latencies - ensure that the time window of a windowed watchdog can be met.
+</p><p>The Wdg Driver expects, that the logical control of the watchdog (whether the watchdog shall be triggered or not) shall be the responsibility of the environment, e.g. A Wdg Manager, so that the basic concepts of the Wdg Manager (alive supervision) shall remain unchanged. 
+</p><p>A Wdg Manager (or other entities) shall control the watchdog driver via a so called trigger condition: as long as the trigger condition is valid the Wdg Driver services the watchdog hardware, if the trigger condition becomes invalid the Wdg Driver stops triggering and the watchdog expires.
+</p><p>The semantics of the trigger condition can be interpreted as a “permission to service the watchdog for the next n milliseconds”. Within this time frame the trigger condition has to be updated by the controlling entity else the watchdog will expire. Handover of the watchdog control logic is simply done by shared usage of the trigger condition (e.g. during startup / shutdown).
+</p><p>If the trigger counter is greater than zero, the watchdog servicing routine shall decrement the trigger counter and trigger the hardware watchdog.
+</p><p>If the trigger counter has reached zero, the watchdog servicing routine shall do nothing (i.e. the watchdog is not triggered and will therefore expire).
+</p><p>If the watchdog hardware requires an activation code which can be configured or changed, the Wdg Driver shall handle the activation code internally. In this case, the Wdg Driver shall pass the correct activation code to the watchdog hardware and the watchdog hardware in turn shall update the Wdg module’s internal variable where the next expected access code is stored.
+</p><p>If the watchdog hardware requires an activation code which can be configured or changed, the trigger cycle of the Wdg Driver shall be defined with a value so that updating the activation code by the watchdog hardware can be guaranteed.
+</p><p>If the watchdog hardware requires an activation code which can be configured or changed and the initial activation code can be configured, the activation code shall be provided in the Wdg Driver’s configuration set. If the activation code is fixed for a particular hardware the above requirement can be ignored.
+</p><p><b>Hint</b>:	The Wdg module’s environment shall make sure that the Wdg Driver module has been initialized before watchdog servicing routine is called.
+</p>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:Wdg_File_Structure.png" class="image"><img alt="Wdg File Structure.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ab/Wdg_File_Structure.png" width="901" height="961" /></a>
+</p><p>The possible name expansion for multiple driver modules are indicated as <i>&lt;xxx&gt;</i>.
+</p><p>If more than one watchdog driver instance exists on an ECU (namely an external and an internal one) the implementer shall provide unique header file names.
+</p><p>Since the API names are also to be expanded, the header <i>Wdg&lt;xxx&gt;.h</i> will become instance specific.
+</p><p>The need to include headers from GPT-, SPI-, DIO- or other drivers depends on how the watchdog is serviced and the watchdog hardware is accessed.
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="enum_WdgIf_ModeType"> <i>enum WdgIf_ModeType</i> </span></h3>
+<pre> #include "WdgIf_Types.h"
+</pre>
+<p>Watchdog Driver Mode Type.
+</p><p>The <i>WdgIf_ModeType</i> values shall be passed as parameters to the watchdog drivers mode switching function (<i>Wdg_SetMode()</i>).
+</p><p><b>Enumerator</b>: 
+</p>
+<ul><li> <i>WDGIF_OFF_MODE</i>:		In this mode, the watchdog driver is disabled (switched off).
+</li><li> <i>WDGIF_SLOW_MODE</i>:		In this mode, the watchdog driver is set up for a long timeout period (slow triggering).
+</li><li> <i>WDGIF_FAST_MODE</i>:		In this mode, the watchdog driver is set up for a short timeout period (fast triggering).
+</li></ul>
+<p><b>Note</b>:	The hardware specific settings behind these modes are given in the watchdog drivers configuration set.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Wdg_.3Cxxx.3E_ConfigType"> <i>struct Wdg_&lt;xxx&gt;_ConfigType</i> </span></h4>
+<pre> #include "Wdg&lt;xxx&gt;.h"
+</pre>
+<p>Wdg&lt;xxx&gt; Module Configuration Parameters.
+</p><p>Structure to hold the watchdog driver configuration set.
+</p><p>Used for pointers to structures holding configuration data provided to the Wdg&lt;xxx&gt; module initialization routine for configuration of the module and watchdog hardware.
+</p>
+<h4> <span class="mw-headline" id="typedef_void_.28.2AWdg_.3Cxxx.3E_Notification.29.28void.29"> <i>typedef void (*Wdg_&lt;xxx&gt;_Notification)(void)</i> </span></h4>
+<pre> #include "Wdg&lt;xxx&gt;.h"
+</pre>
+<p>Watchdog Notifications Callback.
+</p><p>The notification prototype <i>Wdg_&lt;xxx&gt;_Notification()</i> is for the notifications callback function and shall be implemented by the user.
+</p><p>Each watchdog mode shall provide its own notifications callback if configured.
+</p><p>The notifications callback <i>Wdg_&lt;xxx&gt;_Notification_&lt;mode&gt;()</i> shall be configurable as pointers to user defined functions within the configuration structure.
+</p><p>When disabled, the WDG Driver will send no notifications.
+</p><p>The WDG Driver shall invoke a notification callback whenever the defined target time of the watchdog is reached.
+</p><p>For all available watchdog modes, callback functions have to be declared by the configuration tool.
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="void_Wdg_.3Cxxx.3E_Init.28const_Wdg_.3Cxxx.3EConfigType_.2AConfigPtr.29"> <i>void Wdg_&lt;xxx&gt;_Init(const Wdg_&lt;xxx&gt;ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Wdg&lt;xxx&gt;.h"
+</pre>
+<p>Wdg&lt;xxx&gt; Module Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr</i>:	Pointer to Wdg&lt;xxx&gt; module configuration set. 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Initializes the module.
+</p><p>Service 0x00
+</p><p>The <i>Wdg_&lt;xxx&gt;_Init()</i> function shall initialize the Wdg&lt;xxx&gt; module and the watchdog hardware, i.e. it shall set the default watchdog mode and timeout period as provided in the configuration set.
+</p><p><b>Note</b>:	Via configuration, the user can choose the configuration set to be used with the <i>Wdg_&lt;xxx&gt;_Init()</i> function from a limited number of statically configured sets.
+</p><p>The <i>Wdg_&lt;xxx&gt;_Init()</i> function shall initialize all global variables of the Wdg&lt;xxx&gt; module and set the default watchdog mode and initial timeout period.
+</p><p>The <i>Wdg_&lt;xxx&gt;_Init()</i> function shall initialize those controller registers that are needed for controlling the watchdog hardware and that do not influence/depend on other (hardware) modules.
+</p><p>Registers that can influence or depend on other modules are initialized by a common system module.
+</p><p>If disabling the watchdog is not allowed (because pre-compile configuration parameter (<i>WDG_DISABLE_ALLOWED</i> == <i>OFF</i>) and if the default mode given in the provided configuration set disables the watchdog, the <i>Wdg_&lt;xxx&gt;_Init()</i> function shall not execute the initialization.
+</p><p>If switching the Wdg&lt;xxx&gt; module and the watchdog hardware into the default mode is not possible, e.g. because of inconsistent mode settings or because some timing constraints have not been met, the <i>Wdg_&lt;xxx&gt;_Init()</i> function shall not execute the initialization.
+</p><p>The function <i>Wdg_&lt;xxx&gt;_Init()</i> shall check that the parameter <i>ConfigPtr</i> is not <i>NULL_PTR</i>. If this error is detected, the function <i>Wdg_&lt;xxx&gt;_Init()</i> shall not execute the initialization.
+</p><p>The <i>Wdg_&lt;xxx&gt;_Init()</i> function shall check that the (hardware specific) contents of the given configuration set is within the allowed boundaries. If this error is detected, the function <i>Wdg_&lt;xxx&gt;_Init()</i> shall not execute the initialization.
+</p><p>The <i>Wdg_&lt;xxx&gt;_Init()</i> function shall set the Wdg&lt;xxx&gt; module's internal state from <i>WDG_UNINIT</i> (the default state indicating a non-initialized module) to <i>WDG_IDLE</i> if the initialization was successful.
+</p><p><b>Note</b>:	This specification prescribes the symbols <i>WDG_IDLE</i> and <i>WDG_UNINIT</i> only, if they are externally visible, e.g. for debugging. Choosing the data type for the status variable is up to the implementation.
+</p>
+<h4> <span class="mw-headline" id="Std_ReturnType_Wdg_.3Cxxx.3E_SetMode.28WdgIf_ModeType_Mode.29"> <i>Std_ReturnType Wdg_&lt;xxx&gt;_SetMode(WdgIf_ModeType Mode)</i> </span></h4>
+<pre> #include "Wdg&lt;xxx&gt;.h"
+</pre>
+<p>Watchdog Mode Switching.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Mode</i>:		One of the following statically configured modes:
+<ul><li> <i>WDGIF_OFF_MODE</i>
+</li><li> <i>WDGIF_SLOW_MODE</i>
+</li><li> <i>WDGIF_FAST_MODE</i>
+</li></ul>
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>E_OK</i>:		Mode switching command has been accepted 
+</li><li> <i>E_NOT_OK</i>:		Mode switching command has not been accepted 
+</li></ul>
+<p>Switches the watchdog into the mode Mode.
+</p><p>Service 0x01
+</p><p>The function <i>Wdg_&lt;xxx&gt;_SetMode()</i> shall switch the watchdog driver from the current watchdog mode into the mode given by the argument Mode.
+</p><p>This means: By choosing one of a limited number of statically configured settings (e.g. toggle or window watchdog, different timeout periods) the Wdg&lt;xxx&gt; module and the watchdog hardware are switched to one of the following three different modes:
+</p>
+<ul><li> <i>WDGIF_OFF_MODE</i>
+</li></ul>
+<ul><li> <i>WDGIF_SLOW_MODE</i>
+</li></ul>
+<ul><li> <i>WDGIF_FAST_MODE</i>
+</li></ul>
+<p>The configuration set provided to the Wdg&lt;xxx&gt; module's initialization routine shall contain the hardware / driver specific parameters to be used in the different watchdog modes.
+</p><p><b>Hint</b>:	This may, for example, include mode-dependent settings for the GPT timer, if GPT callbacks are used.
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall reset the watchdog timeout counter based on the new watchdog mode i.e. the timeout frame remaining shall be recalculated based on a changed trigger period.
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall return E_OK if the mode switch has been executed completely and successfully, i.e. all parameters of the Wdg&lt;xxx&gt; module and the watchdog hardware have been set to the new values.
+</p><p>If switching the Wdg&lt;xxx&gt; module and the watchdog hardware into the requested mode is not possible, e.g. because of inconsistent mode settings or because some timing constraints have not been met, the Wdg_&lt;xxx&gt;_SetMode()function shall return the value <i>E_NOT_OK</i>.
+</p><p>If disabling the watchdog is not allowed (e.g. in safety relevant systems) the <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall check whether the settings for the requested mode would disable the watchdog. In this case, the function shall return with the value <i>E_NOT_OK</i>.
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall check that the parameter Mode is within the allowed range. If this is not the case, the function shall not execute the mode switch but return with the value <i>E_NOT_OK</i>.
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall check that the (hardware specific) settings for the requested mode are within the allowed boundaries. If this is not the case, the function shall not execute the mode switch but return with the value <i>E_NOT_OK</i>. 
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall check that the Wdg&lt;xxx&gt; module's state is <i>WDG_IDLE</i> (meaning the Wdg&lt;xxx&gt; module and the watchdog hardware are initialized and the watchdog is currently not being triggered or switched). If this is not the case, the function shall not execute the mode switch but return with the value <i>E_NOT_OK</i>.
+</p><p>The <i>Wdg_&lt;xxx&gt;_SetMode()</i> function shall set the Wdg&lt;xxx&gt; module's state to <i>WDG_BUSY</i> during its execution (indicating, that the module is busy) and shall reset the Wdg&lt;xxx&gt; module's state to <i>WDG_IDLE</i> as last operation before it returns to the caller. 
+</p><p><b>Note</b>:	This specification prescribes the symbols <i>WDG_IDLE</i> and <i>WDG_BUSY</i> only, if they are externally visible, e.g. For debugging. Choosing the data type for the status variable is up to the implementation.
+</p>
+<h4> <span class="mw-headline" id="void_Wdg_.3Cxxx.3E_SetTriggerCondition.28uint16_Timeout.29"> <i>void Wdg_&lt;xxx&gt;_SetTriggerCondition(uint16 Timeout)</i> </span></h4>
+<pre> #include "Wdg&lt;xxx&gt;.h"
+</pre>
+<p>Channel Notifications Enable.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Timeout</i>:	Timeout value (milliseconds) for setting the trigger counter.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Sets the timeout value for the trigger counter.
+</p><p>Service 0x03
+</p><p>The function <i>Wdg_&lt;xxx&gt;_SetTriggerCondition()</i> shall reset the watchdog timeout counter according to the Timeout value passed.
+</p><p>The Timeout value passed shall be interpreted as 'milliseconds'. The conversion from milliseconds to the corresponding counter value shall be done internally by the Wdg&lt;xxx&gt; module.
+</p><p>The current watchdog mode shall be taken into account when calculating the counter value from the Timeout parameter.
+</p><p>This function shall also allow to set <i>0</i> as the time frame for triggering which will result in an (almost) immediate stop of the watchdog triggering and an (almost) instantaneous watchdog reset of the ECU.
+</p><p>The function <i>Wdg_&lt;xxx&gt;_SetTriggerCondition()</i> shall check that the Timeout parameter given is less or equal to the maximum timeout value. If this is not the case the function shall not reload the timeout counter and return to the caller.
+</p>
+<h4> <span class="mw-headline" id="void_Wdg_.3Cxxx.3E_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Wdg_&lt;xxx&gt;_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Spi.h"
+</pre>
+<ol><li>include "Wdg&lt;xxx&gt;.h"
+</li></ol>
+<p>Version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>:	Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Returns the version information of the module.
+</p><p>Service 0x04
+</p><p>The function <i>Wdg_&lt;xxx&gt;_GetVersionInfo()</i> shall return the version information of the Wdg module. The version information includes:
+</p>
+<ul><li> Module Id
+</li><li> Vendor Id
+</li><li> Vendor specific version numbers
+</li></ul>
+<p>The function <i>Wdg_&lt;xxx&gt;_GetVersionInfo()</i> shall be configurable On/Off by configuration.
+</p><p>If source code for caller and callee of the function <i>Wdg_&lt;xxx&gt;_GetVersionInfo()</i> is available, the Wdg module should realize this function as a macro. The Wdg module should define this macro in the module’s header file.
+</p><p>If the <i>VersionInfoPtr</i> argument is a <i>NULL_PTR</i> pointer, the function <i>Wdg_&lt;xxx&gt;_GetVersionInfo()</i> shall return without any action.
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="Watchdog_initialization.2C_setting_trigger_condition_and_mode"> Watchdog initialization, setting trigger condition and mode </span></h3>
+<p><a href="/wiki/index.php?title=File:Wdg_Init_Seq_Dia.png" class="image"><img alt="Wdg Init Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c3/Wdg_Init_Seq_Dia.png" width="416" height="609" /></a>
+</p>
+<h3> <span class="mw-headline" id="Data_exchange_between_watchdog_driver_and_hardware"> Data exchange between watchdog driver and hardware </span></h3>
+<p>Depending on the implementation, the interrupt routine for servicing the watchdog could also come via a GPT Driver callback. For an external watchdog, the watchdog hardware cannot be accessed directly, but only via drivers of the MCAL layer, like SPI or DIO.
+</p><p><a href="/wiki/index.php?title=File:Wdg_Trigger_Seq_Dia.png" class="image"><img alt="Wdg Trigger Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a5/Wdg_Trigger_Seq_Dia.png" width="704" height="668" /></a>
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<p>Texas Instruments Stellaris LM4F232 MCU provides two watchdog peripherals: one clocked by Precision Internal Oscillator (PIOsc) with a fixed frequency of 16MHz and the other clocked System Clock (SysClk) which frequency is configurable by AUTOSAR MCU Driver.
+</p><p>Each watchdog is driven by a separate driver.
+</p>
+<h4> <span class="mw-headline" id="WDG_PIOSC"> WDG PIOSC </span></h4>
+<h5> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h5>
+<p>In order to configure the AUTOSAR-like PIOSC WDG Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Wdg PIOSC" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_PIOSC_WDG.png" class="new" title="File:Erika Driver Configurator PIOSC WDG.png">File:Erika Driver Configurator PIOSC WDG.png</a>
+</p>
+<h6> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h6>
+<p>In this section you can add/edit/delete configurations in WDG PIOSC Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li></ul>
+<h6> <span class="mw-headline" id="API_Selection"> API Selection </span></h6>
+<p>In this section you can select PIOSC WDG Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Version Info</i>: <i>Wdg_PIOsc_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_WDG_PIOSC_set.png" class="new" title="File:Erika Driver Configurator WDG PIOSC set.png">File:Erika Driver Configurator WDG PIOSC set.png</a>
+</p>
+<h5> <span class="mw-headline" id="Build"> Build </span></h5>
+<p>In order to enable AUTOSAR PIOSC WDG Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_WDG_PIOSC_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Wdg_PIOscCfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h5> <span class="mw-headline" id="Interrupts"> Interrupts </span></h5>
+<p>In order to use the AUTOSAR-like PIOSC WDG driver, almost another pheriperal must be configured and initialized to be clocked by PIOsc (eg. Adc, Spi, Sci, ...). Moreover an ISR object must be added to OSEK/VDX configuration:
+</p>
+<pre> ISR Wdg_PIOsc_ISR {
+   CATEGORY = 2;
+   ENTRY = "WATCHDOG_TIMER";
+   PRIORITY = &lt;ISR Priority&gt;;
+ }
+</pre>
+<p>Where <code>&lt;ISR Priority&gt;</code> is a number indicating the level of priority (0: Lowest); if the driver is configured to fire "Standard" Interrupts, or:
+</p>
+<pre> ISR Wdg_PIOsc_ISR {
+   CATEGORY = 2;
+   ENTRY = "NMI";
+ }
+</pre>
+<p>If the driver is configured to fire Non-Maskable Interrupts with a fixed priority higher than "standard".
+</p>
+<h5> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h5>
+<p>Implementation Demos of the AUTOSAR-like PIOSC WDG Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<h4> <span class="mw-headline" id="WDG_SYSCLK"> WDG SYSCLK </span></h4>
+<h5> <span class="mw-headline" id="Driver_Configuration_2"> Driver Configuration </span></h5>
+<p>In order to configure the AUTOSAR-like SYSCLK WDG Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Wdg SYSCLK" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_SYSCLK_WDG.png" class="new" title="File:Erika Driver Configurator SYSCLK WDG.png">File:Erika Driver Configurator SYSCLK WDG.png</a>
+</p>
+<h6> <span class="mw-headline" id="Configuration_Selection_2"> Configuration Selection </span></h6>
+<p>In this section you can add/edit/delete configurations in WDG SYSCLK Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li></ul>
+<h6> <span class="mw-headline" id="API_Selection_2"> API Selection </span></h6>
+<p>In this section you can select SYSCLK WDG Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Version Info</i>: <i>Wdg_SysClk_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=Special:Upload&amp;wpDestFile=Erika_Driver_Configurator_WDG_SYSCLK_set.png" class="new" title="File:Erika Driver Configurator WDG SYSCLK set.png">File:Erika Driver Configurator WDG SYSCLK set.png</a>
+</p>
+<h5> <span class="mw-headline" id="Build_2"> Build </span></h5>
+<p>In order to enable AUTOSAR SYSCLK WDG Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_WDG_SYSCLK_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Wdg_SysClkCfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h5> <span class="mw-headline" id="Interrupts_2"> Interrupts </span></h5>
+<p>In order to use the AUTOSAR SYSCLK WDG driver an ISR object must be added to OSEK/VDX configuration:
+</p>
+<pre> ISR Wdg_SysClk_ISR {
+   CATEGORY = 2;
+   ENTRY = "WATCHDOG_TIMER";
+   PRIORITY = &lt;ISR Priority&gt;;
+ }
+</pre>
+<p>Where <code>&lt;ISR Priority&gt;</code> is a number indicating the level of priority (0: Lowest); if the driver is configured to fire "Standard" Interrupts, or:
+</p>
+<pre> ISR Wdg_SysClk_ISR {
+   CATEGORY = 2;
+   ENTRY = "NMI";
+ }
+</pre>
+<p>If the driver is configured to fire Non-Maskable Interrupts with a fixed priority higher than "standard".
+</p>
+<h5> <span class="mw-headline" id="Implemetations_Demos_2"> Implemetations Demos </span></h5>
+<p>Implementation Demos of the AUTOSAR-like SYSCLK WDG Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 150/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

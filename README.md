@@ -1,21 +1,31 @@
 # ERIKA Wiki — Unofficial Historical Archive
 
-This repository is a placeholder for an unofficial historical archive of the ERIKA project Wiki. It is not an official project repository and does not imply endorsement by the original authors or maintainers.
+A Markdown preservation copy of the original ERIKA Enterprise and RT-Druid Wiki, retrieved on **2026-11-06**. Original authorship, source revisions, upload credits and licensing notices are retained. This archive is not an official project repository and does not imply endorsement by the original maintainers.
 
-No upstream source code or Wiki content has been imported. Only this archive notice is currently included.
+**[Read the Wiki main page →](docs/Main_Page.md)**
 
-## Attribution and licensing
+## Browse the archive
 
-All credit for the original project belongs to its original authors and contributors. Any future import must preserve the original authorship, copyright notices, contributor credits, and applicable license texts. This archive does not claim ownership of the original work or grant additional rights. Original license terms applicable to each imported file remain in effect.
+- [All articles and reference pages](INDEX.md)
+- [All 690 original uploaded images and resources](ASSETS.md)
+- [ERIKA internals](categories/Category_ERIKA_internals--2129.md)
+- [Supported devices](categories/Category_Supported_Devices--1975.md)
+- [RT-Druid](categories/Category_RT-Druid--2304.md)
 
-The original Wiki license has not yet been verified. No Wiki license is assigned or inferred here, including from the operating system source code license. Permissions and applicable terms must be verified before Wiki content is imported.
+The archive contains **206 articles** and **910 page records in total**, including resource descriptions, categories, help and discussions. Images use local repository files, and links between archived pages point to Markdown files.
 
-## Original project reference
+## Source, attribution and licensing
 
-- Original project Wiki: http://erika.tuxfamily.org/wiki
+- [Original Wiki](http://erika.tuxfamily.org/wiki/index.php?title=Main_Page)
+- [Attribution and licensing notice](NOTICE.md)
+- [Original GNU Free Documentation License 1.2 text](LICENSE-GFDL-1.2.txt)
+- [Preservation details and verification](ARCHIVE.md)
 
-## Related repositories
+The original site declares **GNU Free Documentation License 1.2** for Wiki content. Original image/file descriptions and any separate rights notices are preserved; this archive does not invent a blanket license for third-party resources.
+
+Unrelated gift-card/generator spam pages were excluded at the archive owner's request and are listed in [the exclusion manifest](metadata/excluded-spam-pages.json). Personal account/profile pages and MediaWiki interface messages are outside the documentation archive. External websites remain external links; unavailable original resources are documented in the verification report.
+
+## Related code archives
 
 - [ERIKA Enterprise](https://github.com/erika-archive/erika-enterprise)
 - [RT-Druid](https://github.com/erika-archive/rt-druid)
-- [ERIKA Wiki](https://github.com/erika-archive/erika-wiki)

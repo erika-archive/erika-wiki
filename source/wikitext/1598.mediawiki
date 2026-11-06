@@ -1,0 +1,60 @@
+This page describes the procedure to run a regression test on the examples which are shipped as templates together with ERIKA Enterprise.
+
+== what is tested ==
+
+We need to make sure that all tests '''installed in the RT-Druid plugins''':
+* are visible to RT-Druid
+* can be instantiated with the template generator
+* have a working OIL file 
+* compile ok
+* the test to compile are taken from the current SVN tree, but the templates are taken from the installed plugins
+
+Note that the makefile described below takes all the information from the current SVN tree.
+
+This means that '''the list''' of the tests will be taken from the SVN. The '''tests really compiled''' are those installed in the plugins.
+
+== how to run the regression test ==
+
+* do a checkout from SVN
+* go into <tt>ee/trunk/ee/examples</tt>
+* run <tt>make</tt>
+
+The result of the makefile is an help screen with the major commands to run.
+
+The idea is the following:
+* a <tt>regression</tt> directory is created
+* the directory contains one dir for each template ID
+* the makefile runs with "-j", meaning that you can run multiple compilations in parallel
+* each test has its own report file under <tt>regression/testid/output.log</tt>
+* if a test finished without errors, it will not be remade, helping to concentrate on tests which fail
+
+Finally, to run a specific template, use
+ make -j 4 all TEMPLATE_LIST=templatename
+
+To run all templates in an architecture, use
+ make -j 4 all ARCH=PIC30
+
+== special commands ==
+
+* list all available templates
+ make list
+* list all templates not tested during this session
+ make listmissing
+* list all templates with errors during the current session
+ make witherrors
+
+== integration with Hudson ==
+The regression tests are able to create a [http://hudson-ci.org/ Hudson] compatible XML for managing automatic builds.
+
+Usage:
+  make xml ARCH=PIC30
+
+This target makes the Hudson XML file for the tests for a specific architecture.
+
+The resulting XML classifies all the examples in the following way:
+* tests for the selected architecture which compiled ok - marked as "ok"
+* tests for the selected architecture which does not compile ok - marked as "not ok"
+* tests for other architectures listed in the makefile - marked as "ignored"
+* other tests present in the repository but not listed in the makefile - marked as "not ok". This last target should make sure that new tests will be integrated in the regression tests as soon as the first regression build will be generated.
+
+Please note that all tests must be listed in the makefile as either to be compiled or to be ignored. A valid test for the regression tests is a test that contains a template.xml file.

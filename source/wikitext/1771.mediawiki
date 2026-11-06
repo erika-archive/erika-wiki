@@ -1,0 +1,1 @@
+This screenshot shows the results of a correct building process of the cal_demo_cal_actors project

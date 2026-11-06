@@ -1,0 +1,121 @@
+<p>ERIKA Enterprise Manual for Renesas RL78 targets
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#ERIKA_Enterprise_and_RT-Druid_for_RL78"><span class="tocnumber">1.1</span> <span class="toctext">ERIKA Enterprise and RT-Druid for RL78</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Integration_with_other_tools_for_RL78"><span class="tocnumber">1.2</span> <span class="toctext">Integration with other tools for RL78</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Content_of_this_document"><span class="tocnumber">1.3</span> <span class="toctext">Content of this document</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Erika_Enterprise_for_RL78"><span class="tocnumber">2</span> <span class="toctext">Erika Enterprise for RL78</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#The_RT-Druid_and_Erika_Enterprise_design_flow"><span class="tocnumber">2.1</span> <span class="toctext">The RT-Druid and Erika Enterprise design flow</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Building_an_application_from_command_line"><span class="tocnumber">2.1.1</span> <span class="toctext">Building an application from command line</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Setting_up_the_compiling_environment_for_RL78"><span class="tocnumber">2.2</span> <span class="toctext">Setting up the compiling environment for RL78</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>This manual describes the porting details of the ERIKA Enterprise kernel(s) for the Renesas families of microcontrollers which supports 8/16-bit CISC RL78 cores (aka RL78).
+</p><p>Due to customer restrictions, this porting is not yet public. If you want to get more information about the RL78 porting, please contact <a href="mailto:info@evidence.eu.com" class="external text" rel="nofollow">info@evidence.eu.com</a>.
+</p>
+<h2> <span class="mw-headline" id="ERIKA_Enterprise_and_RT-Druid_for_RL78"> ERIKA Enterprise and RT-Druid for RL78 </span></h2>
+<p>Embedded applications often require tight control on the temporal behavior of each single activity in the system. Real-time complex system systems such as Wireless Sensor Networks are nowadays deployed in academic and industrial environments. The very limited set of resources available in the popular hardware platforms, and the diversified domains of WSN applications, require the adoption of an Operating System responding to the following pre-requisites:
+</p>
+<ul><li> minimum footprint to fit the limited RAM capacity (of the order of few KB); 
+</li><li> tunable scheduling algorithm to handle the execution of the tasks;
+</li><li> an application interface acting on the kernel layer and well decoupled from OS service implementation.
+</li></ul>
+<p>ERIKA Enterprise and RT-Druid represent the answer of Evidence Srl for the development of scalable real-time applications for RL78.
+</p><p>ERIKA Enterprise provides RL78 developers the following features:
+</p>
+<ul><li> Traditional RTOS features:
+<ul><li> Support for four conformance classes to match different application requirements;
+</li><li> Support for preemptive and non-preemptive multitasking;
+</li><li> Support for fixed priority scheduling;
+</li><li> Support for stack sharing techniques, and one-shot task model to reduce the overall stack usage;
+</li><li> Support for shared resources;
+</li><li> Support for periodic activations using Alarms;
+</li><li> Support for centralized Error Handling;
+</li><li> Support for hook functions before and after each context switch.
+</li></ul>
+</li></ul>
+<ul><li> RT-Druid development environment
+<ul><li> Development environment based on the Eclipse IDE;
+</li><li> Support for the OIL language for the specification of the RTOS configuration;
+</li><li> Graphical configuration plugin to easily generate the OIL configuration file and to easily configure the RTOS parameters;
+</li><li> Full integration with the Cygwin development environment to provide a Unix-style scripting environment;
+</li><li> Apache ANT scripting support for code generation.
+</li></ul>
+</li></ul>
+<ul><li> RL78 integration features
+<ul><li> Installation setup which integrates the <a href="https://www.renesas.com/en-us/products/software-tools/tools/compiler-assembler/compiler-package-for-rl78-family.html" class="external text" rel="nofollow">C Compiler Package for RL78 Family</a> and Renesas <a href="https://www.renesas.com/en-us/products/software-tools/tools/ide/e2studio.html" class="external text" rel="nofollow">e2studio</a> IDE together with ERIKA Enterprise and RT-Druid;
+</li><li> Support for Renesas <a href="http://tool-support.renesas.com/autoupdate/support/eng/cs_plus/CA78K0R_List.html" class="external text" rel="nofollow">CA78K0R</a> Compiler;
+</li><li> Support for Renesas <a href="https://www.renesas.com/en-sg/products/software-tools/tools/emulator/e1.html" class="external text" rel="nofollow">E1</a> debugger/emulator;
+</li><li> Support for the following families Renesas RL78 MCUs:
+<ul><li> <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rl78/rl78f1x/rl78f13.html" class="external text" rel="nofollow">RL78/F13</a>
+</li><li> <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rl78/rl78f1x/rl78f14.html" class="external text" rel="nofollow">RL78/F14</a>
+</li><li> <a href="https://www.renesas.com/en-us/products/microcontrollers-microprocessors/rl78/rl78g1x/rl78g14.html" class="external text" rel="nofollow">RL78/G14</a>
+</li></ul>
+</li><li> Support for following boards
+<ul><li> <a href="https://www.renesas.com/en-eu/products/software-tools/boards-and-kits/cpu-mpu-boards/qb-r5f10bmg-tb.html" class="external text" rel="nofollow">QB-R5F10BMG-TB</a> (RL78/F13)
+</li><li> <a href="https://www.renesas.com/en-us/products/software-tools/boards-and-kits/cpu-mpu-boards/qb-r5f10ppj-tb.html" class="external text" rel="nofollow">QB-R5F10PPJ-TB</a> (RL78/F14)
+</li><li> <a href="https://www.renesas.com/en-us/products/software-tools/boards-and-kits/renesas-promotion-boards/yrpbrl78g14-for-rl78-g14.html" class="external text" rel="nofollow">YRPBRL78G14</a> (RL78/G14)
+</li></ul>
+</li><li> List of functions:
+<ul><li> Full support for Renesas <a href="https://www.renesas.com/en-us/products/software-tools/tools/ide/e2studio.html" class="external text" rel="nofollow">e2studio</a> IDE
+</li><li> Full support for <a href="http://www.lauterbach.com/bdm78k0r.html" class="external text" rel="nofollow">Lauterbach</a> JTAG Debugger
+</li><li> Full support for ORTI
+</li></ul>
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Integration_with_other_tools_for_RL78"> Integration with other tools for RL78 </span></h2>
+<p>ERIKA Enterprise and RT-Druid aims to the best integration with the existing tools for development available from the RL78 microcontrollers.
+RT-Druid will be used to quickly configure the application, setting temporal parameters of real-time tasks, memory requirements, stack allocation and many other parameters. Moreover, RT-Druid generates the application template, and leaves the developer the task to implement the logic of each single task.
+While programming the application, the developer can exploit the power and flexibility offered by the primitives of the ERIKA Enterprise real-time kernel.
+ERIKA Enterprise also supports the compiling environments provided by Renesas, providing also direct support for the programming and JTAG solutions of Renesas.
+</p>
+<h2> <span class="mw-headline" id="Content_of_this_document"> Content of this document </span></h2>
+<p>The purpose of this document is to describe all the information needed to create, develop and modify an Erika Enterprise application for the RL78 family of microcontrollers.
+</p><p>In particular, the document describes:
+</p>
+<ul><li> The design flow which should be used to generate an Erika Enterprise application;
+</li><li> The configuration of the development environment;
+</li><li> The options which are available to configure the system.
+</li></ul>
+<p>As a final note, all the settings which are explained in this document apply both to Erika Enterprise if not otherwise stated.
+</p>
+<h1> <span class="mw-headline" id="Erika_Enterprise_for_RL78"> Erika Enterprise for RL78 </span></h1>
+<h2> <span class="mw-headline" id="The_RT-Druid_and_Erika_Enterprise_design_flow"> The RT-Druid and Erika Enterprise design flow </span></h2>
+<p>The typical development environment provided by Renesas for the software development for the Renesas microcontrollers is composed by the Renesas e2studio. Renesas e2studio is a development environment for Microsoft Windows which integrates a source code editor, an instruction set simulator and a debugger.
+</p><p>In addition to the traditional development flow, Evidence Srl provides a design and configuration environment named RT-Druid, based on <a href="http://www.eclipse.org" class="external text" rel="nofollow">Eclipse</a>. Eclipse is an open framework initially developed by IBM, which allows the possibility of integrating various development tools in a common environment.
+</p><p>For that reason, when developing an application for Erika Enterprise the user is supposed to write the source code inside the RT-Druid IDE.
+</p><p>Application compilation is also done inside the Eclipse Framework. In fact, the RTDruid code generator is able to generate the Erika Enterprise configuration files together with a set of configuration files (typically, a makefile plus a set of .c files) which are then used to compile the source code.
+</p><p>The choice of the Cygwin environment has been done to simplify the building process of an application: in fact, Cygwin provides a set of traditional Unix tools like make, awk, sed, which are really useful to implement a command line application building framework. Moreover, these tools are typically available for free on the Linux platform, easing in this way the porting of the application to a free development environment such as Linux.
+</p>
+<h3> <span class="mw-headline" id="Building_an_application_from_command_line"> Building an application from command line </span></h3>
+<p>The RT-Druid plugins provide three ways to develop an application:
+</p>
+<ol><li> A graphical interface to simplify the development of an application, based on Eclipse.
+</li><li> A scripting interface based on <a href="http://ant.apache.org" class="external text" rel="nofollow">Apache ANT</a>, which is the default scripting environment used in the Eclipse Framework.
+</li><li> A standalone code generator, that does not use Eclipse.
+</li></ol>
+<p>Using ANT or the standalone version, the developer can automatically generate from scripts the configuration data and the makefiles which are then used to compile the application. This removes the need of opening the graphical environment to compile an application, providing a way to implement automatic compilation scripts and regression tests.
+</p><p>Please refer to the RT-Druid reference manual for information about ANT scripting.
+</p>
+<h2> <span class="mw-headline" id="Setting_up_the_compiling_environment_for_RL78"> Setting up the compiling environment for RL78 </span></h2>
+<p>Erika Enterprise has been designed to be compiled using the <a href="https://www.renesas.com/en-us/products/software-tools/tools/compiler-assembler/compiler-package-for-rl78-family.html" class="external text" rel="nofollow">C Compiler Package for RL78 Family</a>. The RL78 porting of ERIKA Enterprise in particular can be compiled using the <a href="https://www.renesas.com/en-us/products/software-tools/tools/compiler-assembler/compiler-package-for-rl78-family.html" class="external text" rel="nofollow">C Compiler Package for RL78 Family</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 31/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

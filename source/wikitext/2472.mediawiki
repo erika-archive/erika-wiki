@@ -1,0 +1,50 @@
+ERIKA Enterprise Manual for Arduino Uno and Arduino Nano boards
+= Introduction =
+The Arduino board (see Figure 1.1) is supported by the [[Atmel AVR8]] porting of ERIKA Enterprise.
+
+[[File:Arduino_uno.jpg|center|thumb|200px|Figure 1.1: The Arduino Uno board running ERIKA Enterprise]]
+
+The Arduino Uno is a low cost, open-source board produced by [http://www.arduino.cc/ Arduino] with Atmel ATmega328p microcontroller, interfaces to USB, and many I/O to connect whatever device you need. To configure the usage of the Arduino Uno board, the user has to specify an appropriate BOARD_DATA in the OIL file, as in the following example:
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+...
+}
+...
+</pre>
+
+The Arduino Uno board supports a set of devices which are directly available and mounted on it. These devices can be configured by adding attributes inside the BOARD_DATA section.
+
+The supported devices and the API functions needed to use them are described in the following sections. Please note that the current version of the board support only supports the AVR model ATmega328p MCU.
+
+The following subsections will describe the functions available to control the Arduino Uno Board:
+* ''void EE_board_init(void);''
+*: Description: The function initializes the board.
+
+==== LEDs ====
+The Arduino Uno Board has a 1 LED. To use the LED on the Board, the developer should specify the USELEDS attribute as TRUE, as in the following example:
+<pre>
+...
+BOARD_DATA = ARDUINO_UNO {
+  USELEDS = TRUE;
+...
+}
+...
+</pre>
+
+The following subsections will describe the functions available to control the Arduino Uno LED:
+* ''void EE_led_on(void);''
+*: Description: The function turns on the LED.
+* ''void EE_led_off(void);''
+*: Description: The function turns off the LED.
+* ''void EE_led_toggle(void);''
+*: Description: The function toggles the LED.
+
+==== Requirements ====
+ERIKA Enterprise supports Atmel AVR ATmega328p.
+* Atmel Studio
+* WinAVR
+	
+Useful links
+* [http://www.atmel.com/tools/ATMELSTUDIO.aspx Atmel Studio download link]
+* [http://winavr.sourceforge.net/ WinAVR download link]

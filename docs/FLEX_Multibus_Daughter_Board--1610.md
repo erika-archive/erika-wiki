@@ -1,0 +1,92 @@
+# FLEX Multibus Daughter Board
+
+<a id="Description"></a>
+
+## Description
+
+The FLEX Multibus Board is a FLEX Daughter Board, targeted specifically for data communication.
+The Multibus Board simplifies the work with the communication peripherals integrated in the Microchip dsPIC (R) DSC. The board, which is fully modular, provides a set of modules that realize the hardware interface with the buses. The Multibus Base Daughter Board is piggybacked on FLEX Full/Light Base Board.
+
+The following slots are available on the Multibus Board:
+
+- UART2 slot, for Serial TTL/RS232/RS485/RS422 module
+- UART1 slot, for Serial TTL/RS232/RS485 module
+- CAN1 slot, for CAN module
+- CAN2 slot, for CAN module
+- I2C slot (channel selectable), for I2C module
+- SPI slot (channel selectable), for SPI module
+- Ethernet slot, for 10Mbit Ethernet module
+
+Modules are mounted only if needed. For example, if the application requires the Ethernet interface and the connection to the CAN bus, only the corresponding modules will be mounted on the Multibus Board, leaving the remaining pins free for other use.
+
+[FLEX Multibus Daughter Board product page](http://www.evidence.eu.com/content/view/168/211/)
+
+<a id="FAQ"></a>
+
+## FAQ
+
+- **Could you please explain how to create a project based on the Microchip UDP (or TCP/IP) stack?**
+
+If you use the Demo2 pack for motion control (Motion Daughter Board) you can create a project starting from Scicos.
+With the Multibus daughter board you can implement the Microchip TCP/IP stack in a project in this way.
+
+In RT-DRUID/Eclipse, create a project using the template 'pic30/FLEX Multibus board/UDP demo'.
+
+This is the link to the example folder in the repository:
+[UDP demo](http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/pic30/pic30_MultibusBoard_udp_demo/)
+
+Description of the files:
+
+"HardwareProfile.h" contains the HW configuration macros for the Multibus board.
+
+"TCPIPConfig.h" contains the IP address used by the net protocols.
+
+"flex\_udp.c" and "flex\_udp.h" contain the functions you can use in your UDP application.
+
+"code.c" and "conf.oil" are the application files.
+
+The image below shows how to set the jumpers and the Ethernet module on the daughter board.
+
+[![Multibus eth.PNG](../assets/uploads/Multibus_eth--32f8d68346.png)](../files/File_Multibus_eth.PNG--1611.md)
+
+
+
+- **Could you please explain how to use RS232 module with the FLEX Multibus daugther board?**
+
+You just have to mount the RS232 module on the socket and to set up two jumpers as shown in the following
+image.
+
+[![Rs232 multibus.PNG](../assets/uploads/Rs232_multibus--ac876a04d4.png)](../files/File_Rs232_multibus.PNG--1624.md)
+
+
+
+- **Could you please explain how to set up the basic demo-project based on CAN bus?**
+
+Prerequisites HW: Multibus and FLEX boards with CAN modules.
+Prerequisites SW: RT-DRUID and Erika Enterprise v1.6.0.
+
+The Erika demo-project based on CAN bus can be found in the RT-Druid C/C++ templates.
+
+Description of the files:
+
+"conf.oil" is the main configuration file. You can uncomment the line you need, to configure the device as a sender or receiver.
+
+"conf\_sender.oil" is the CAN sender configuration file.
+
+"conf\_receiver.oil" is the CAN receiver configuration file.
+
+"code\_sender.c" and "code\_receiver.c" are the application source files
+
+The image below shows how to connect the boards and set the jumpers on the CAN modules.
+
+[![Can multibus.PNG](../assets/uploads/Can_multibus--cc4360d7a3.png)](../files/File_Can_multibus.PNG--2151.md)
+
+---
+
+## Archive provenance
+
+- [Original page](http://erika.tuxfamily.org/wiki/index.php?title=FLEX_Multibus_Daughter_Board) · [Archived source revision 4747](http://erika.tuxfamily.org/wiki/index.php?oldid=4747)
+- Last source edit: 2012-04-26T08:19:18Z. Source retrieved on 2026-11-06; Markdown conversion completed on 2026-11-07.
+- Original contributors recorded in exported history: Erikadds.
+- [Original MediaWiki source](../source/wikitext/1610.mediawiki) · [Original editing history](../source/history/batch-005.xml)
+- [Attribution and licensing notice](../NOTICE.md). Original file-specific notices, where present, remain applicable.

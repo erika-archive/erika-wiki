@@ -1,0 +1,22 @@
+<p>In the Multistack HAL every thread can have its private stack, or it can share it with other threads. 
+This allows the Kernel Layer to use scheduling algorithms that could block threads in synchronization 
+primitives (as for example, a fixed priority scheduler with semaphores) or for arbitrary reasons 
+(as, for example, a classical round robin scheduler).
+</p><p>Some code required for Multistack is already available in among the <a href="/wiki/index.php?title=Common_files_for_the_HAL" title="Common files for the HAL">Common files for the HAL</a>.  This is used for example in the <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a> or the <a href="/wiki/index.php?title=Lattice_Mico32" title="Lattice Mico32">Lattice Mico32</a> porting.  Those architectures feature a HAL that is easier to write than older ports, so you are encouraged to take those ports as a reference to develop your new port.
+</p><p>The following steps explain how to write the MULTISTACK part of a CPU layer.
+</p>
+<ol><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_a_single_stack" title="Writing a multi-stack application that runs on a single stack">Writing a multi-stack application that runs on a single stack</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks" title="Writing a multi-stack application that runs on multiple stacks">Writing a multi-stack application that runs on multiple stacks</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_interrupt_not_nested" title="Writing a multi-stack application that runs on multiple stacks with interrupt not nested">Writing a multi-stack application that runs on multiple stacks with interrupt not nested</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_nested_interrupts" title="Writing a multi-stack application that runs on multiple stacks with nested interrupts">Writing a multi-stack application that runs on multiple stacks with nested interrupts</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_nested_interrupts_and_separate_interrupt_stacks" title="Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks">Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks</a>
+</li><li> <a href="/wiki/index.php?title=Writing_a_multi-stack_application_that_runs_on_multiple_stacks_with_semaphores" title="Writing a multi-stack application that runs on multiple stacks with semaphores">Writing a multi-stack application that runs on multiple stacks with semaphores</a>
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

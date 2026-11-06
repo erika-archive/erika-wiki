@@ -1,0 +1,15 @@
+<p>The ERIKA build system for Infineon AURIX produces a Lauterbach Trace32 configuration file (<b>t32.cmm</b>) and a ORTI description file (<b>system.orti</b>) inside the output directory. The ORTI file is produced only if ORTI support is enabled in the OIL configuration file. To launch the Trace32 debugger for singlecore projects, please issue <b>t32mtc</b> from the output directory. The ERIKA build system honors the <b>T32SYS</b> environment variable, if set (default <i>T32SYS&nbsp;?= C:/T32</i>)
+</p>
+<h3> <span class="mw-headline" id="Muticore_Projects"> Muticore Projects </span></h3>
+<p>For multicore projects, the files mentioned above are produced inside the core directories for each core, and a startup script (named <b>tc27x_mc_start.sh</b> under cygwin and linux or <b>tc27x_mc_start.bat</b> for Windows cmd) is produced in the output directory. If the build targeted AURIX Flash (the default behaviour), before executing debug you need to flash multicore images.
+To do that simply execute <b>tc27x_mc_flash.sh</b> (under Linux or Cygwin environment) or <b>tc27x_mc_flash.bat</b> (in Windows environment) scripts.
+</p><p>To run the debugger, please issue <i>tc27x_mc_start.[sh,bat]</i> from the output directory. The script creates up to three instances of the debugger, one for each core. Slave cores cannot be started until master core (Core 0) enable them, thing that is made early in start-up code. Nonetheless, the startup script loads all the code and the debug symbols for each core and each debugger instances. The barrier inside <b>StartOS()</b> comes handy to synchronize the code running on the different cores.
+</p><p><b>N.B.</b> To let know the build system for wich Trace32 architecture (windows, windows64, pc_linux ecc.) it have to generate script for, set <b>T32ARCH</b> environment variable/pass it as make parameter with the right value (default <i>T32ARCH&nbsp;?= windows64</i>).
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 3/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

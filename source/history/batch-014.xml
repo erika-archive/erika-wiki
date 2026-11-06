@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:mediawiki xmlns:ns0="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <ns0:siteinfo>
+    <ns0:sitename>ErikaWiki</ns0:sitename>
+    <ns0:base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</ns0:base>
+    <ns0:generator>MediaWiki 1.16.4</ns0:generator>
+    <ns0:case>first-letter</ns0:case>
+    <ns0:namespaces>
+      <ns0:namespace key="-2" case="first-letter">Media</ns0:namespace>
+      <ns0:namespace key="-1" case="first-letter">Special</ns0:namespace>
+      <ns0:namespace key="0" case="first-letter" />
+      <ns0:namespace key="1" case="first-letter">Talk</ns0:namespace>
+      <ns0:namespace key="2" case="first-letter">User</ns0:namespace>
+      <ns0:namespace key="3" case="first-letter">User talk</ns0:namespace>
+      <ns0:namespace key="4" case="first-letter">ErikaWiki</ns0:namespace>
+      <ns0:namespace key="5" case="first-letter">ErikaWiki talk</ns0:namespace>
+      <ns0:namespace key="6" case="first-letter">File</ns0:namespace>
+      <ns0:namespace key="7" case="first-letter">File talk</ns0:namespace>
+      <ns0:namespace key="8" case="first-letter">MediaWiki</ns0:namespace>
+      <ns0:namespace key="9" case="first-letter">MediaWiki talk</ns0:namespace>
+      <ns0:namespace key="10" case="first-letter">Template</ns0:namespace>
+      <ns0:namespace key="11" case="first-letter">Template talk</ns0:namespace>
+      <ns0:namespace key="12" case="first-letter">Help</ns0:namespace>
+      <ns0:namespace key="13" case="first-letter">Help talk</ns0:namespace>
+      <ns0:namespace key="14" case="first-letter">Category</ns0:namespace>
+      <ns0:namespace key="15" case="first-letter">Category talk</ns0:namespace>
+    </ns0:namespaces>
+  </ns0:siteinfo>
+  <ns0:page>
+    <ns0:title>Talk:Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)</ns0:title>
+    <ns0:id>1958</ns0:id>
+    <ns0:redirect />
+    <ns0:revision>
+      <ns0:id>2936</ns0:id>
+      <ns0:timestamp>2011-04-05T09:13:07Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>moved [[Talk:Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]] to [[Talk:Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Depa</ns0:comment>
+      <ns0:text xml:space="preserve">#REDIRECT [[Talk:Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]]</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>Talk:Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)</ns0:title>
+    <ns0:id>1479</ns0:id>
+    <ns0:revision>
+      <ns0:id>1696</ns0:id>
+      <ns0:timestamp>2009-11-30T11:51:05Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve">This page appears to be orphaned, but it is not.</ns0:text>
+    </ns0:revision>
+    <ns0:revision>
+      <ns0:id>1697</ns0:id>
+      <ns0:timestamp>2009-11-30T12:01:25Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve">This page appears to be orphaned, but it is not.
+
+It's now protected against moving...
+This way only WikiSysop can (re)move it...
+but now the links to this page(see below) could be changed 
+(and its contents erased) by any user.
+
+
+[[FLEX_University_projects]] links to it...
+
+The status of orphan is caused by the 'è' in the title?
+
+It could be caused by the fact that when the import from mambowiki was done the link was corrupted (due to that letter 'è')</ns0:text>
+    </ns0:revision>
+    <ns0:revision>
+      <ns0:id>1698</ns0:id>
+      <ns0:timestamp>2009-11-30T12:02:14Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve">==Seems to be orphaned==
+
+This page appears to be orphaned, but it is not.
+
+It's now protected against moving...
+This way only WikiSysop can (re)move it...
+but now the links to this page(see below) could be changed 
+(and its contents erased) by any user.
+
+
+[[FLEX_University_projects]] links to it...
+
+The status of orphan is caused by the 'è' in the title?
+
+It could be caused by the fact that when the import from mambowiki was done the link was corrupted (due to that letter 'è')</ns0:text>
+    </ns0:revision>
+    <ns0:revision>
+      <ns0:id>2935</ns0:id>
+      <ns0:timestamp>2011-04-05T09:13:07Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:minor />
+      <ns0:comment>moved [[Talk:Universitat PolitÃ¨cnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Department)]] to [[Talk:Universitat Politècnica de Catalunia (Intelligent Robotics and Systems research group, Automatic Control Depa</ns0:comment>
+      <ns0:text xml:space="preserve">==Seems to be orphaned==
+
+This page appears to be orphaned, but it is not.
+
+It's now protected against moving...
+This way only WikiSysop can (re)move it...
+but now the links to this page(see below) could be changed 
+(and its contents erased) by any user.
+
+
+[[FLEX_University_projects]] links to it...
+
+The status of orphan is caused by the 'è' in the title?
+
+It could be caused by the fact that when the import from mambowiki was done the link was corrupted (due to that letter 'è')</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>ErikaWiki:Protected page guidelines</ns0:title>
+    <ns0:id>1450</ns0:id>
+    <ns0:revision>
+      <ns0:id>1583</ns0:id>
+      <ns0:timestamp>2009-11-04T16:52:36Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve">Be sure of what you're doing :-)</ns0:text>
+    </ns0:revision>
+    <ns0:revision>
+      <ns0:id>3080</ns0:id>
+      <ns0:timestamp>2011-04-15T11:54:59Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>WikiSysop</ns0:username>
+        <ns0:id>1</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve">Be sure of what you're doing :-)
+
+(for more information, look at wikimedia manual)</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:1 - install gdb hw debug.PNG</ns0:title>
+    <ns0:id>2460</ns0:id>
+    <ns0:revision>
+      <ns0:id>5447</ns0:id>
+      <ns0:timestamp>2013-09-13T12:57:20Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows how to install the GDB Hardware Debugging in Eclipse Juno.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows how to install the GDB Hardware Debugging in Eclipse Juno.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:2 - external tool.PNG</ns0:title>
+    <ns0:id>2463</ns0:id>
+    <ns0:revision>
+      <ns0:id>5465</ns0:id>
+      <ns0:timestamp>2013-09-13T13:51:49Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows how to configure ST-UTIL as an external tool in Eclipse.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows how to configure ST-UTIL as an external tool in Eclipse.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:3 - debug config (1).PNG</ns0:title>
+    <ns0:id>2461</ns0:id>
+    <ns0:revision>
+      <ns0:id>5451</ns0:id>
+      <ns0:timestamp>2013-09-13T13:15:28Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows how to configure the eclipse debugger for STM32F4.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows how to configure the eclipse debugger for STM32F4.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:4 - debug config (2).PNG</ns0:title>
+    <ns0:id>2462</ns0:id>
+    <ns0:revision>
+      <ns0:id>5457</ns0:id>
+      <ns0:timestamp>2013-09-13T13:34:00Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows how to configure the eclipse debugger for STM32F4.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows how to configure the eclipse debugger for STM32F4.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:5 - launch st-util.PNG</ns0:title>
+    <ns0:id>2464</ns0:id>
+    <ns0:revision>
+      <ns0:id>5468</ns0:id>
+      <ns0:timestamp>2013-09-13T13:54:33Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows how to launch ST-UTIL as an external tool in Eclipse.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows how to launch ST-UTIL as an external tool in Eclipse.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:6 - debug screenshot.PNG</ns0:title>
+    <ns0:id>2465</ns0:id>
+    <ns0:revision>
+      <ns0:id>5471</ns0:id>
+      <ns0:timestamp>2013-09-13T14:09:15Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Alessandro Biondi</ns0:username>
+        <ns0:id>494</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>This screenshot shows the Eclipse integrated debugger in action.</ns0:comment>
+      <ns0:text xml:space="preserve">This screenshot shows the Eclipse integrated debugger in action.</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:74hc165.png</ns0:title>
+    <ns0:id>2149</ns0:id>
+    <ns0:revision>
+      <ns0:id>3945</ns0:id>
+      <ns0:timestamp>2011-10-19T12:39:08Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Salva</ns0:username>
+        <ns0:id>270</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve" />
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:74hc595.png</ns0:title>
+    <ns0:id>2150</ns0:id>
+    <ns0:revision>
+      <ns0:id>3958</ns0:id>
+      <ns0:timestamp>2011-10-19T14:03:34Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Salva</ns0:username>
+        <ns0:id>270</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve" />
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:802154 receive.png</ns0:title>
+    <ns0:id>1558</ns0:id>
+    <ns0:revision>
+      <ns0:id>1830</ns0:id>
+      <ns0:timestamp>2010-01-07T14:51:58Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Erikadds</ns0:username>
+        <ns0:id>7</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve" />
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:802154 send.png</ns0:title>
+    <ns0:id>1557</ns0:id>
+    <ns0:revision>
+      <ns0:id>1829</ns0:id>
+      <ns0:timestamp>2010-01-07T14:45:09Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Erikadds</ns0:username>
+        <ns0:id>7</ns0:id>
+      </ns0:contributor>
+      <ns0:text xml:space="preserve" />
+    </ns0:revision>
+  </ns0:page>
+  <ns0:page>
+    <ns0:title>File:AUTOSAR Device Drivers.png</ns0:title>
+    <ns0:id>2352</ns0:id>
+    <ns0:revision>
+      <ns0:id>5130</ns0:id>
+      <ns0:timestamp>2013-07-15T16:58:36Z</ns0:timestamp>
+      <ns0:contributor>
+        <ns0:username>Eguidieri</ns0:username>
+        <ns0:id>485</ns0:id>
+      </ns0:contributor>
+      <ns0:comment>AUTOSAR-like Drivers Architecture</ns0:comment>
+      <ns0:text xml:space="preserve">AUTOSAR-like Drivers Architecture</ns0:text>
+    </ns0:revision>
+  </ns0:page>
+<ns0:page><ns0:title>ErikaWiki::Problems::Charset</ns0:title><ns0:id>1452</ns0:id><ns0:revision><ns0:id>1590</ns0:id><ns0:timestamp>2009-11-04T17:40:13Z</ns0:timestamp><ns0:contributor><ns0:username>WikiSysop</ns0:username></ns0:contributor><ns0:comment /><ns0:text xml:space="preserve">= Charset problems in titles =
+
+Example:
+The link below
+
+[[Universitat_Politècnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)]]
+
+used in the [[FLEX_University_projects]] page
+
+was not imported correctly. 
+
+That link contains an handcoded statical redirection to better explain this problem.</ns0:text></ns0:revision><ns0:revision><ns0:id>1591</ns0:id><ns0:timestamp>2009-11-04T17:48:39Z</ns0:timestamp><ns0:contributor><ns0:username>WikiSysop</ns0:username></ns0:contributor><ns0:comment>/* Charset problems in titles */</ns0:comment><ns0:text xml:space="preserve">= Charset problems in titles =
+
+Example:
+The link below
+
+[[Universitat_Politècnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)]]
+
+used in the [[FLEX_University_projects]] page
+
+was not imported correctly. 
+
+The imported page is found instead at 
+
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department) ]].
+
+
+That link contains an handcoded statical redirection to better explain this problem.</ns0:text></ns0:revision><ns0:revision><ns0:id>1592</ns0:id><ns0:timestamp>2009-11-04T17:48:56Z</ns0:timestamp><ns0:contributor><ns0:username>WikiSysop</ns0:username></ns0:contributor><ns0:comment>/* Charset problems in titles */</ns0:comment><ns0:text xml:space="preserve">= Charset problems in titles =
+
+Example:
+The link below
+
+[[Universitat_Politècnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)]]
+
+used in the [[FLEX_University_projects]] page
+
+was not imported correctly. 
+
+The imported page is found instead at 
+
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department) ]].
+
+
+The first link contains an handcoded statical redirection to better explain this problem.</ns0:text></ns0:revision><ns0:revision><ns0:id>1605</ns0:id><ns0:timestamp>2009-11-05T16:39:53Z</ns0:timestamp><ns0:contributor><ns0:username>Roberto</ns0:username></ns0:contributor><ns0:comment>/* Charset problems in titles */</ns0:comment><ns0:text xml:space="preserve">= Charset problems in titles =
+
+ Note: The problem in the example below was fixed. I haven't, with a fast browsing,
+ found any other similar problem.
+
+
+Example:
+The link below
+
+[[Universitat_Politècnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department)_left_as_example]]
+
+used in the [[FLEX_University_projects]] page
+
+was not imported correctly. 
+
+The imported page is found instead at 
+
+[[Universitat_PolitÃ¨cnica_de_Catalunia_(Intelligent_Robotics_and_Systems_research_group%2C_Automatic_Control_Department) ]].
+
+
+The first link contains an handcoded statical redirection to better explain this problem.</ns0:text></ns0:revision></ns0:page><ns0:page><ns0:title>ErikaWiki::Problems::Stale mambowiki stuffs</ns0:title><ns0:id>1453</ns0:id><ns0:revision><ns0:id>1594</ns0:id><ns0:timestamp>2009-11-04T18:35:54Z</ns0:timestamp><ns0:contributor><ns0:username>WikiSysop</ns0:username></ns0:contributor><ns0:comment /><ns0:text xml:space="preserve">Some mambowiki specific stuffs remained around.
+
+* an anonymous user receive this message "You have to [[[Template:MAMBOLOGIN]] login_TOP] to edit pages. " when trying to edit a page.</ns0:text></ns0:revision></ns0:page></ns0:mediawiki>

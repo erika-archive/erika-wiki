@@ -1,0 +1,186 @@
+<p>The <i>mico32_camera</i> component has some API functions distributed with a drive file <i>MicoCamera.h</i>.
+</p>
+<h2> <span class="mw-headline" id="Macros_in_MicoCamera.h_driver_file"> Macros in <i>MicoCamera.h</i> driver file </span></h2>
+<p>Macro used in <i>micro32_camera's</i> API function:
+</p>
+<ul><li> <i>MICO_CAM_IF_FLAG_MASK</i>
+</li><li> <i>MICO_CAM_ERR_FLAG_MASK</i>
+</li><li> <i>MICO_CAM_START_MASK</i>
+</li><li> <i>MICO_CAM_IFACK_MASK</i>
+</li><li> <i>MICO_CAM_RESET_MASK</i>
+</li><li> <i>MICO_CAM_ENABLE_IRQ_MASK</i>
+</li><li> <i>MICO_CAM_IF_FLAG_CLEAR_MASK</i>
+</li><li> <i>MICO_CAM_SIZE_MASK</i>
+</li></ul>
+<h2> <span class="mw-headline" id="functions_in_MicoCamera.h_drivers_file"> functions in <i>MicoCamera.h</i> drivers file </span></h2>
+<p>This is the <i>micro32_camera's</i> API function list (for more information on flags and registers please refer to <a href="/wiki/index.php?title=Mico32_camera:_Writing_drivers_based_on_mico32_camera" title="Mico32 camera: Writing drivers based on mico32 camera">Mico32_camera: Writing drivers based on mico32_camera</a>):
+</p>
+<ul><li> <i>Mico_camera_write_address(cam, address)</i>
+</li></ul>
+<p>For capture a image from CMOS camera the data must be stored a memory device from a base address. This function set the base address in the internal component register.
+</p>
+<ul><li> <i>Mico_camera_read_address(cam)</i>
+</li></ul>
+<p>It's possible read the register base address with this function.
+</p>
+<ul><li> <i>Mico_camera_read_status_register(cam)</i>
+</li></ul>
+<p>The <i>mico32_camera</i> switches in a finite number of states during its operation. The function returns the current state of component.
+</p>
+<ul><li> <i>Mico_camera_read_IF_flag(cam)</i>
+</li></ul>
+<p>The function return the IF flag value. This function can be useful for waiting the end capture image in polling mode. 
+</p>
+<ul><li> <i>Mico_camera_read_ERR_flag(cam)</i>
+</li></ul>
+<p>During the operation image storage the component write on memory device by wishbone bus. Can happen a error access bus (for example wrong address) or an buffer fifo overflow. In these case the flag ERR is set. The function returns this value flag.    
+</p>
+<ul><li> <i>Mico_camera_start(cam)</i>
+</li></ul>
+<p>After call this function the component wait a new frame image. As it arrives is stored in the memory device (from address set by <i>Mico_camera_write_address(cam, address)</i>).
+</p>
+<ul><li> <i>Mico_camera_clear_IRQ_flag(cam)</i>
+</li></ul>
+<p>The component,  if it properly set, can generate an interrupt after a image capture. In the handler interrupt must be called this function for clear the IRQ flag. 
+</p>
+<ul><li> <i>Mico_camera_reset(cam)</i>
+</li></ul>
+<p>Every time is called this api the component switches in RESET state and reset all its internal registers. After then first vsync signal by camera it cames in the IDLE state and waits the start capture image.
+</p>
+<ul><li> <i>Mico_camera_enable_IRQ(cam)</i>
+</li></ul>
+<p>By default the component works without use of interrupt request. After call this function at end of a image capture an interrupt is generated.
+</p>
+<ul><li> <i>Mico_camera_disable_IRQ(cam)</i>
+</li></ul>
+<p>Disable the interrupt request after than it has been previously activate.
+</p>
+<ul><li> <i>Mico_camera_write_divisor(cam, divisor)</i>
+</li></ul>
+<p>The CMOS camera is a digital logic than needs a source clock to work. The clock is provided by component <i>mico32_camera</i>. The frequency value is set by this api than dived the platform frequency value by (2  / (divisor + 1)). Example with divisor = 3 the platform frequency is divided by 2. Divisor can't be set to zero value.
+</p>
+<ul><li> <i>Mico_camera_read_divisor(cam)</i>
+</li></ul>
+<p>Return the divisor value. 
+</p>
+<ul><li> <i>Mico_camera_frame_terminated(cam)</i>
+</li></ul>
+<p>This function is identical to <i>Mico_camera_read_IF_flag(cam)</i>.
+</p>
+<ul><li> <i>Mico_camera_size_value(cam, value)</i>
+</li></ul>
+<p>This register should be set to the value of image size (in bytes). If we don't want the control image we write 0 (zero) value.
+</p>
+<ul><li> <i>Mico_camera_size_frame_error(cam)</i>
+</li></ul>
+<p>If the image's size in bytes is different from the value register count, this bit is set.
+</p>
+<h2> <span class="mw-headline" id="Code_example_of_the_MicoCamera.h_API_Macros_and_functions"> Code example of the <i>MicoCamera.h</i> API Macros and functions </span></h2>
+<p>This is a simple C code that uses some API contained in the <i>MicoCamera.h</i> file:
+</p>
+<pre>#include &lt;system_conf.h&gt;
+#include "MicoCamera.h"
+
+/* Address were will be stored the data image. */
+#define SDRAM_BASE_ADDRESS IMAGE_DATA_SDRAM
+
+/* Image value. */
+#define IMAGE_WIDTH    640
+#define IMAGE_HEIGHT   480
+#define IMAGE_BYTES_PER_PIXEL	1
+
+/* 
+   mico32_camera instantiation structure, 
+   macro CAMERA_BASE_ADDRESS from system_conf.h file.
+*/
+MicoCamera_t* camera = (MicoCamera_t*)CAMERA_BASE_ADDRESS;
+
+int main(void) {
+
+   /* variable to storege state component. */
+   unsigned long state;
+
+   /* Set the camera by I2c with resolution 640x480 1 byte data. */
+   // ...
+
+   /* Reset the component mico32_camera (recommended) */
+   Mico_camera_reset(camera);
+
+   /* Waiting IDLE state (after reset component is in RESET state */
+   do {
+
+       /* Read component state */
+       state = Mico_camera_read_status_register(camera);
+
+       /* Timeout is a good idea */
+
+   } while(state&nbsp;!= MICO_CAMERA_IDLE);
+
+   /* 
+      With div_value = 3 and f = 50MHz,
+      the mclk will be: (2 * 50) / (3 + 1) = 25MHz
+   */
+   Mico_camera_write_divisor(camera, 3);
+
+   /* 
+      Save the memory address were will be stored the data image in the internal
+      component register.
+   */
+   Mico_camera_write_address(camera, (void*)IMAGE_DATA_SDRAM);
+  
+   /* Start a new image acquisition */
+   Mico_camera_start(camera);	
+
+   /* At end of the image acquisition the component return in the IDLE state */
+   do {
+
+       /* Read component state */
+       state = Mico_camera_read_status_register(camera);
+
+       /* Timeout is a good idea */
+
+   } while(state&nbsp;!= MICO_CAMERA_IDLE);
+
+   /* 
+      The image is stored in the memory device.
+      Now we can put it on the uart port.
+   */
+   send_image((unsigned char*)IMAGE_DATA_SDRAM, IMAGE_WIDTH, IMAGE_HEIGHT);
+
+   return 0;
+}
+
+/* Print on Uart the image data as PGM file. */
+void send_image(volatile unsigned char* pun, unsigned int width, unsigned int height)
+{
+   unsigned i, j;
+
+   /* Print the header of pgm file */ 
+   printf("P2\r\n"
+       "%d&nbsp;%d \r\n"
+       "255\r\n", width, height);
+
+   /* Print out the image data */
+   for (i = 0; i &lt; height; i++) {
+
+       for (j = 0; j &lt; width; j++) {
+
+           printf("%d ", *pun);
+
+           pun += IMAGE_BYTES_PER_PIXEL;
+
+       }
+
+   printf("\r\n");
+
+   }
+
+}
+</pre>
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

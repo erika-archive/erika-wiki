@@ -1,0 +1,37 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/EEtest6</tt>
+
+<tt>examples/s12xs/porting_examples/EEtest7</tt>
+
+<tt>examples/s12xs/porting_examples/EEtest8</tt>
+
+
+=== Description ===
+
+The three tests below tests the following features:
+# StartOs(...) function and TerminateTask() function;
+# BCC1 mode;
+# BCC2 mode;
+# BCC1 mode with a shared resource; 
+
+<tt>examples/s12xs/porting_examples/EEtest6</tt>:
+* tests behavior 1 and 2
+* The goal is to test the start phase of the kernel (StartOs(...)), the activation of a task and its termination procedure.
+* To configure the task set we must change the files <tt>eecfg.h</tt> and <tt>eecfg.c</tt> located inside the Debug folder. 
+* Finally, we created inside the <tt>EEtest6</tt> a C file with a main() function. That function explicitly calls the StartOs(...) function and finishing with a <tt>for(;;)</tt>. Please note that the TerminateTask() function is called inside a function called by the task. The compilation must finish with an executable fully linked.
+
+<tt>examples/s12xs/porting_examples/EEtest7</tt>:
+* tests behavior 3
+* The goal is to create a task with pending activations to test the kernel behaviour in the BCC2 mode. Task2 is executed six times at the beginning.
+
+<tt>examples/s12xs/porting_examples/EEtest8</tt>:
+* tests behavior 4
+* The goal is to activate two tasks that share a resource to test the scheduler and the blocking mechanism. The main function activates the low priority task. The high priority task is activated within the first task and is executed at the end of the low priority task. The rtos continues the execution of the high priority task.
+
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

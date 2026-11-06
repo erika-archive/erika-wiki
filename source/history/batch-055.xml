@@ -1,0 +1,259 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Usb 1b.jpg</title>
+    <id>1400</id>
+    <revision>
+      <id>1425</id>
+      <timestamp>2008-08-19T08:57:14Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 1c.jpg</title>
+    <id>1423</id>
+    <revision>
+      <id>1539</id>
+      <timestamp>2008-09-29T13:10:01Z</timestamp>
+      <contributor>
+        <username>Chris</username>
+        <id>18</id>
+      </contributor>
+      <comment>PC-Flex USB driver installation</comment>
+      <text xml:space="preserve">PC-Flex USB driver installation</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 1d.jpg</title>
+    <id>1424</id>
+    <revision>
+      <id>1540</id>
+      <timestamp>2008-09-29T13:10:34Z</timestamp>
+      <contributor>
+        <username>Chris</username>
+        <id>18</id>
+      </contributor>
+      <comment>PC-Flex USB driver installation</comment>
+      <text xml:space="preserve">PC-Flex USB driver installation</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 1e.jpg</title>
+    <id>1425</id>
+    <revision>
+      <id>1541</id>
+      <timestamp>2008-09-29T13:10:59Z</timestamp>
+      <contributor>
+        <username>Chris</username>
+        <id>18</id>
+      </contributor>
+      <comment>PC-Flex USB driver installation</comment>
+      <text xml:space="preserve">PC-Flex USB driver installation</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 2.jpg</title>
+    <id>1401</id>
+    <revision>
+      <id>1426</id>
+      <timestamp>2008-08-19T08:57:32Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 3.jpg</title>
+    <id>1402</id>
+    <revision>
+      <id>1427</id>
+      <timestamp>2008-08-19T08:57:44Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb 4.jpg</title>
+    <id>1403</id>
+    <revision>
+      <id>1428</id>
+      <timestamp>2008-08-19T08:57:59Z</timestamp>
+      <contributor>
+        <username>Shiva</username>
+        <id>3</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb read.png</title>
+    <id>1552</id>
+    <revision>
+      <id>1824</id>
+      <timestamp>2010-01-07T14:36:59Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb recognition.png</title>
+    <id>1582</id>
+    <revision>
+      <id>1858</id>
+      <timestamp>2010-01-11T10:01:42Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb run.png</title>
+    <id>1584</id>
+    <revision>
+      <id>1861</id>
+      <timestamp>2010-01-11T10:09:09Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usb send.png</title>
+    <id>1551</id>
+    <revision>
+      <id>1823</id>
+      <timestamp>2010-01-07T14:36:38Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usbudp config.png</title>
+    <id>2074</id>
+    <revision>
+      <id>3431</id>
+      <timestamp>2011-09-28T10:27:55Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usbudp receiver.png</title>
+    <id>1549</id>
+    <revision>
+      <id>1821</id>
+      <timestamp>2010-01-07T14:35:42Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3429</id>
+      <timestamp>2011-09-28T10:27:21Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Usbudp receiver.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Usbudp sender.png</title>
+    <id>1550</id>
+    <revision>
+      <id>1822</id>
+      <timestamp>2010-01-07T14:35:58Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3430</id>
+      <timestamp>2011-09-28T10:27:41Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Usbudp sender.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Wdg File Structure.png</title>
+    <id>2453</id>
+    <revision>
+      <id>5338</id>
+      <timestamp>2013-07-18T10:47:24Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Wdg Init Seq Dia.png</title>
+    <id>2454</id>
+    <revision>
+      <id>5339</id>
+      <timestamp>2013-07-18T10:47:41Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

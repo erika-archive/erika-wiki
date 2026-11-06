@@ -1,0 +1,18 @@
+This page gives some short information about the data structures used in the OSEK/VDX implementation.
+
+It is not meant as a complete list; This page is filled up as a reference as the questions come on the Forum.
+
+* EE_th_rnact
+*: contains the remaining activations for a task
+* EE_th_nact
+*: (for FP, EDF, FRSH, not for OO) contains the number of pending activations still to be executed
+* EE_th_status
+*: contains the execution status of the thread (SUSPENDED, RUNNING, WAITING, READY)
+* EE_th_next
+*: next pointer, used to create the ready or stacked queue at runtime
+* EE_th_ready_prio
+*: Priority of the task as specified in the OIL file, implemented as a bitmask
+* EE_th_dispatch_prio
+*: Run-time priority of the task. Can be higher than the ready task due to the implementation of Internal Resources or if the task is non-preemptive
+
+[[Category:ERIKA internals]]

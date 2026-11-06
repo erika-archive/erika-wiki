@@ -1,0 +1,38 @@
+This is a set of wiki page where we documented the effort of porting ERIKA Enterprise to a new microcontroller. The idea is that this documentation will be useful to anyone willing to port the ERIKA Enterprise kernel to a new microcontroller.
+
+==How to==
+
+The work is composed by a set of steps. Each step has a separate wiki page, to document each phase.
+These sample pages refer to the Erika Enterprise porting on a Freescale HCS12X microcontroller 
+using the Cosmic compiler CXS12X.
+
+A set of files to speed up the porting to new microcontrollers has been developed since; you can find some documentation in the page [[Common files for the HAL]].  The files include most of the code required for Monostack, and the resulting architecture of the HAL is simpler than for previously ported architectures.  For an example on how to use them, see the [[Freescale PPC e200 (MPC 56xx)]] or the [[Lattice Mico32]] porting; use them as a reference for your new porting.
+
+Note that the pathnames of the files cited in the following pages are the ones used to compile the files.
+Some of these files do not have yet an OIL file description. 
+In order to let them compile and work, you will have to change the pathnames 
+in the makefile and in the linker scripts.
+
+# Installing the compiler
+# [[Porting ERIKA: writing the makefiles and first compilation]]
+# [[MONOSTACK - writing the monostack part of a CPU layer]]
+## [[Writing a mono-stack application without interrupts]]
+## [[Writing a mono-stack with interrupt not nested]]
+## [[Writing a mono-stack with nested interrupts]]
+## [[Implementing TerminateTask]]
+# [[MULTISTACK - writing the multistack part of a CPU layer]]
+## [[Writing a multi-stack application that runs on a single stack]]
+## [[Writing a multi-stack application that runs on multiple stacks]]
+## [[Writing a multi-stack application that runs on multiple stacks with interrupt not nested]]
+## [[Writing a multi-stack application that runs on multiple stacks with nested interrupts]]
+## [[Writing a multi-stack application that runs on multiple stacks with nested interrupts and separate interrupt stacks]]
+## [[Writing a multi-stack application that runs on multiple stacks with semaphores]]
+# [[Running the MODISTARC regression tests]]
+
+==See also==
+* [[RT-Druid configuration]] - instructions to configure RT-Druid to work with an external repository
+* [[Common files for the HAL]]
+* [[Erika Makefiles]]
+* Pages in the category [[:Category:ERIKA internals|ERIKA internals]]
+
+[[Category:Supported Devices]]

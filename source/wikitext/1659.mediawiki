@@ -1,0 +1,74 @@
+CPU test_application {<br>
+:OS EE {<br>		
+::CFLAGS = "-g2";								//option to produce debugging information<br>
+::ASFLAGS = "";<br>
+::LDFLAGS = "";<br>
+::CPU_DATA = LM32 {<br>
+:::APP_SRC = "main.c";<br>
+:::MULTI_STACK = FALSE;<br>
+:::USESTANDALONEPRINTF = TRUE; // Optional, default is FALSE;<br>
+:::USESMALLC = FALSE; // Optional, defautl is FALSE;<br>
+::};<br>
+::MCU_DATA = LATTICE_PLATFORM {<br>
+:::MODEL = LIBRARY {<br>
+::::PLATFORM_LIB_PATH = "../test_sram_lib"; 	// library (platform-dependent) path<br>
+::::PLATFORM_NAME = "test_base"; 				// platform name (is also the name of the main folder in the library path)<br>
+::::PLATFORM_BLD_CFG = "Release"; 				// Optional, default is ""<br>
+:::};<br>   			
+:::DEVICE = TIMER{<br>
+::::NAME = "timer"; // sub-section to use the timer<br>
+::::OPTIONS = TIMER_IRQ_SUPPORT; // Timer IRQ code will be compiled<br>
+:::};<br>
+:::DEVICE = UART{<br>
+::::NAME = "myuart"; // sub-section to use uart<br>
+::::OPTIONS = UART_IRQ_SUPPORT; // Uart IRQ code will be compiled<br>
+:::};<br>
+:::DEVICE = SPI{<br>
+::::NAME = "myspi"; // sub-section to use spi<br>
+:::};<br>
+:::DEVICE = I2C{<br>
+::::NAME = "myi2c"; // sub-section to use i2c<br>
+:::};<br>
+:::DEVICE = GPIO{<br>
+::::NAME = "mygpio"; // sub-section to use gpio<br>
+::::OPTIONS = GPIO_IRQ_SUPPORT; // GPIO IRQ code will be compiled<br>
+:::};<br>
+::};  	<br>	
+::BOARD_DATA = XP2_CAMERA_BOARD { // section for XP2 camera board<br>
+:::OPTIONS = LEDS; // Use leds driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = TRANSISTORS; // Use transistors driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = SWITCHES; // Use switches driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = LIGHTSENSOR; // Use light sensor driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = RS232; // Use uart specific driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = RS232_IRQ_SUPPORT; // Compile UART IRQ code<br>
+:::OPTIONS = CAMERA; // Use Camera hv7131gp driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = CAMERA_IRQ_SUPPORT; // Compile Camera IRQ code<br>
+:::OPTIONS = RTCLOCK; // Use RT-clcok pcf8583 driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = RTCLOCK_IRQ_SUPPORT; // Compile RT-clock IRQ code<br>
+:::OPTIONS = EXTSPI; // Use SPI specific driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = EXTSPI_IRQ_SUPPORT; // Compile SPI IRQ code<br>
+:::// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+:::OPTIONS = ZIGBEE; // Use Zigbee mrf24j40 driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = ZIGBEE_IRQ_SUPPORT; // Compile Zigbee IRQ code<br>
+:::// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+:::OPTIONS = ETHERNET; // Use Ethernet enc28j60 driver for XP2_CAMERA_BOARD<br>
+:::OPTIONS = ETHERNET_IRQ_SUPPORT; // Compile Ethernet IRQ code<br>
+:::// ATT! ZIGBEE AND ETHERNET OPTIONS ARE MUTUALLY EXCLUSIVE!!!
+:::OPTIONS = ALL_ZIGBEE; // Enable all Zigbee options<br>
+:::OPTIONS = ALL_ETHERNET; // Enable all ethernet options<br>
+::};<br>
+::KERNEL_TYPE = FP; 							// Scheduler choice (i.e. fixed priority scheduler)<br>
+:};<br>
+:ISR Timer { 									// Section for ISR definition <br>
+::CATEGORY = 2; <br>
+::LEVEL = "TIMER_IRQ"; 							// Level is the number specified in the library system_conf.h file <br>
+::HANDLER = "EE_timer_common_handler"; 			// Handler is the name of the driver callback <br>
+:}; <br>	
+:TASK myTask { 									// Standard task definition<br>
+::PRIORITY = 2;<br>
+::STACK = SHARED;<br>
+::SCHEDULE = FULL;<br>
+:};<br>
+};<br>
+
+More information about Mico32-specific features in OIL configuration files can be found in the [[Lattice Mico32]] page.

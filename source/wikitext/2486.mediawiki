@@ -1,0 +1,186 @@
+= ARM Cortex RX support =
+
+The Cortex R4 support includes:
+# support for [http://www.ti.com/ Texas Instruments] compiler toolchain
+# support for single stack configurations
+# ISR Type 1 and Type 2 supported;
+
+* Supported IDEs:
+** [http://www.ti.com/tool/ccstudio Texas Instruments Code Composer Studio] (Cortex R4)
+
+* Mode of operation:
+** ''Mono-stack'': The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+
+
+=== MCUs ===
+
+* The MCUs currently supported are the following:
+** [http://www.ti.com/lsds/ti/microcontrollers_16-bit_32-bit/c2000_performance/safety/tms570/overview.page?DCMP=TMS570&HQS=tms570 Hercules TMS570 MCUs] (Cortex R4)
+
+=== Boards ===
+
+* The boards currently supported are the following:
+** [http://www.keil.com/mcbtms570/ Keil MCBTMS570] (Cortex R4)
+
+= Download and install =
+
+=== RT-Druid and ERIKA Enterprise RTOS ===
+RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+
+http://www.erika-enterprise.com/index.php/download/erika-v2.x.html
+
+=== Toolchain: Code Composer Studio ===
+The toolchain and Debugger can be downloaded from the following web address:
+
+http://processors.wiki.ti.com/index.php/Download_CCS
+
+Note that CCSv6 is recommended.
+To tell ERIKA where to find the compiler, the sysem variable ''CCS_INSTALL_ROOT'' 
+has to be set to the compiler path:
+<code>CCS_INSTALL_ROOT = C:\ti\ccsv6</code>
+
+
+=== Flasher: TI Uniflash ===
+The flashing utility can be downloaded from the following page:
+
+http://processors.wiki.ti.com/index.php/Category:CCS_UniFlash
+It is recommended to use the same installation path as the toolchain (C:\ti\)
+
+
+=== HAL Code Generator: HALCoGen ===
+Currently the whole MCU is configured via a GUI from Texas Instruments.
+
+The software can be downloaded from http://www.ti.com/tool/halcogen .
+
+= Target Configuration and Programming =
+
+ERIKA Enterprise is configured through [[Tutorial: RT-Druid and OIL basics | RT-Druid and an OIL file]]
+
+== CPU ==
+
+<code>CPU_DATA</code> must be set to <code>CORTEX_RX</code>.<br>
+The exact model is specified with the <code>MODEL</code> item ( <code>R4</code> for Cortex R4).<br>
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (supported values are <code>CCS</code> for <code>R4</code>).<br>
+Example of a CPU_DATA section:
+
+  CPU_DATA = CORTEX_RX {
+    MODEL = R4;
+    APP_SRC = "code.c";
+    COMPILER_TYPE = CCS;
+    MULTI_STACK = FALSE;
+  };
+
+== MCU ==
+
+<code>MCU_DATA</code> must be set to <code>TI</code> for Keil MCBTMS570.<br>
+The only item supported is <code>MODEL</code>, which can be either <code>TMS570</code> for <code>TI</code>.<br>
+Example of a MCU_DATA section:
+
+    MCU_DATA = TI {
+      MODEL = TMS570;
+    };
+
+== Interrupt Handling ==
+
+TODO: Add Support of OIL-File Interrupt Handling.
+Currently the Interrupts are handled via the HALCoGen tool. 
+
+== EEOPT ==
+EEOPT is a way to specify configuration flags to the Erika build environment. EEOPTs can be specified as strings in the OS section of the OIL file. Board specific options are: 
+
+    EE_OPT = "__ALLOW_NESTED_IRQ__";    /* Allow nested interrupts                                 */
+    EE_OPT = "__USE_SYSTICK__";         /* Enables Timer                                           */
+    EE_OPT = "__USE_LEDS__";            /* Enables the use of the 6 Onboard LEDS                   */
+    EE_OPT = "__USE_DISPLAY__";         /* Enables the use of the Onboard Display                  */
+    EE_OPT = "__USE_ADC__";             /* Enables the use of the Analog-Digital Converter         */
+    EE_OPT = "__USE_LIN__";             /* Enables the use of the LIN Driver                       */
+    EE_OPT = "__USE_GIO__";             /* Enables the use of the General I/O Driver               */
+    EE_OPT = "__USE_HET__";             /* Enables the use of the High End Timer                   */
+    EE_OPT = "__USE_SPI__";             /* Enables the use of the Serial Peripheral Interface      */
+    EE_OPT = "__USE_SCI__";             /* Enables the use of the Serial Communication Interface   */
+    EE_OPT = "__USE_CAN__";             /* Enables the use of the CAN Interface                    */
+
+= CPU, MCU & BOARD API =
+=== MCU Initialization ===
+To initialise the needed HAL Drivers specified as EE_OPTs, it is necessary to initialize these modules
+by calling: 
+
+:'''void EE_mcu_init(void);'''
+ 
+=== LEDS ===
+Note: EE_OPT = "__USE_LEDS__"; has to be set in the OIL file.
+
+:'''void EE_LED_On(unsigned int num);''' Turn LED (0...5) on.
+:'''void EE_LED_Off(unsigned int num);''' Turn LED (0...5) off.
+:'''void EE_LED_Out(unsigned int value);''' Write out a binary value to the 6 LEDs.
+:'''void EE_LED_Toggle (unsigned int num);''' Toggle LED (0...5).
+
+=== Display ===
+Note: EE_OPT = "__USE_DISPLAY__"; has to be set in the OIL file.
+
+:'''void DISPLAY_Init           (void);'''
+:'''void DISPLAY_WindowMax      (void);'''
+:'''void DISPLAY_PutPixel       (unsigned int x, unsigned int y);'''
+:'''void DISPLAY_SetTextColor   (unsigned short color);'''
+:'''void DISPLAY_SetBackColor   (unsigned short color);'''
+:'''void DISPLAY_Clear          (unsigned short color);'''
+:'''void DISPLAY_DrawChar       (unsigned int x, unsigned int y, unsigned short *c);'''
+:'''void DISPLAY_DisplayChar    (unsigned int ln, unsigned int col, unsigned char  c);'''
+:'''void DISPLAY_DisplayString  (unsigned int ln, unsigned int col, char *s);'''
+:'''void DISPLAY_ClearLn        (unsigned int ln);'''
+:'''void DISPLAY_Bargraph       (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int val);'''
+:'''void DISPLAY_Bitmap         (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned char const *bitmap);'''
+:'''void DISPLAY_Bmp            (unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned char const *bmp);'''
+
+=== Other Interfaces ===
+For other Interfaces, like the ADC, GIO, HET, see the files created by the HALCoGen tool.
+
+They can be found in the <code> $(EE_BASE)/contrib/ti_tms570 </code> folder.
+
+=== Example ===
+<code>
+  void main()
+  {<br>
+  /* Initialize MCU */
+  EE_mcu_init();<br>
+  /* LCD Display Initialization */
+  DISPLAY_Clear(Black);
+  DISPLAY_SetBackColor(Black);
+  DISPLAY_SetTextColor(White);
+  DISPLAY_DisplayString(0, 0, "Hardware: TI TMS570");
+  DISPLAY_SetTextColor(Blue);
+  DISPLAY_DisplayString(1, 0, "Software: Erika RTOS");<br>
+  /* Turn on first LED */
+  EE_LED_On(0);
+  
+  ...
+</code >
+
+= OSEK/VDX Extensions =
+
+This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex RX support.
+
+TODO: Add Resource Management at ISR level
+
+TODO: Add System Timer support
+
+= Flashing =
+The build process creates a folder called '''flasher''' in the Debug folder. 
+To flash the device via the TI Uniflash, simply execute the '''flash.bat'''.
+Currently the path to the Uniflash program is hardcoded to <br>
+<code>C:\ti\uniflashv3\ccs_base\scripting\examples\uniflash\cmdLine\uniflash</code>
+
+TODO: Change flash path according given installation. 
+
+
+= Examples =
+
+* The examples and tests are available in this folders:
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_rx/ti_tms570/porting_examples/ ERIKA SVN: Porting Examples]: TI TMS570 Development Board (Cortex R4) examples.
+
+= See also =
+
+* [[Tutorial: Installing ERIKA and RT-Druid, and compile your first application]]
+* [[Tutorial: RT-Druid and OIL basics]]
+
+[[Category:Supported Devices]]

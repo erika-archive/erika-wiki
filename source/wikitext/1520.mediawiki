@@ -1,0 +1,40 @@
+= How to build a project in RT-DRUID =
+
+This page contains a description of how to install the necessary software to develop an Erika application for a Freescale HCS12 microcontroller.  
+
+RT-Druid/Erika, version 1.5.1:
+* Download the installer from the web site of [http://erika.tuxfamily.org/erika-for-multiple-devices/oldversions.html Erika old versions] and update the software as shown [http://erika.tuxfamily.org/wiki/index.php?title=Tutorial:_Update_ERIKA_and_RT-Druid here].
+
+RT-Druid/Erika, version 1.6.0:
+*Erika Enterprise 1.6.0 can be freely downloaded from [http://erika.tuxfamily.org/erika-for-multiple-devices.html EE_160_Win.zip here].
+*Extract all the files contained in the zip and copy the folder named “eclipse” in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+*To update the software just clicking on the “Help” menu item and selecting “Install New Software”. Then click on “ADD” to add the night builds address for update: "http://download.tuxfamily.org/erika/webdownload/rtdruid_160_nb/"
+
+# In RT-Druid environment, create a new RT-Druid project as shown in the following picture.
+#; [[image:druid.PNG|center]]
+# Select a template from the ''s12xs'' menu.
+#; [[image:task.PNG|center]]
+# Give a name to your project.
+#; [[image:name.PNG|center]]
+#* The new project folder appears in the ''Project Explorer''; 
+#; [[image:oil.PNG|center]]
+#Enter the compiler path in RT-Druid. In the menu at the top, under Windows - Preferences - RT-Druid - Oil - Freescale S12, enter the path where you installed the compiler. Then build the project (right-click on the project name, as shown in the picture below).
+#; [[image:build.PNG|center]]
+#* the compilation starts; 
+#; [[image:progress.PNG|center]]
+#* the executable file appear in the ''Debug'' folder inside the project.
+#; [[image:elf.PNG|center]]
+# Open the RT-debugger.
+#; [[image:hiwave.PNG|center]]
+# From the menu ''File'' choose ''Open Configuration...'';
+#; [[image:conf.PNG|center]]
+#* and load the debugger environment configuration: 
+#; [[image:fullchip.PNG|center]]
+#* Full_Chip_Simulation.ini: for a simple simulation running on the PC
+#* SofTec_HCS12.ini to flash the board. To select the board click on the menu “Component” and select “Set Connection”. 
+# From the menu ''HCS12XS'' click on ''Load...''.
+#; [[image:load.PNG|center]]
+#* and load the executable of your application;
+#; [[image:load_exe.PNG|center]]
+# Then starts the simulation and enjoy!!!.
+#; [[image:start.PNG|center]]

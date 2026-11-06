@@ -1,0 +1,26 @@
+=== Reference test ===
+<tt>examples/s12xs/porting_examples/multistack/EEtest5</tt>
+
+<tt>examples/s12xs/porting_examples/multistack/EEtest6</tt>
+
+=== Description ===
+* The goal of the two tests is to activate two tasks that run on different stacks and use semaphores. To configure the task set we change the files eecfg.h and eecfg.c located inside the Debug folder (the basic structure is inspired to the Microchip PIC30 port) and the makefile. 
+
+
+<tt>examples/s12xs/porting_examples/multistack/EEtest5</tt>
+* The demo is a classical producer/consumer problem implemented with two semaphores P and V. The demo is used to test the following features of ERIKA Enterprise OS:
+** Multistack configuration: The Producer and the Consumer task need a separate stack because they block calling the WaitSem primitive. 
+** Semaphores: ERIKA Enterprise supports counting semaphores. The demo show how to initialize the semaphores, and how to use the main semaphore primitives (PostSem and WaitSem).
+
+
+<tt>examples/s12xs/porting_examples/multistack/EEtest6</tt>
+* The demo can be used to test the internal function: <tt>EE_s12xs_hal_stkchange</tt>. The low priority task Task1 is activated in the main function. Task1 then activates the high priority task Task2. At this point Task1 is preempted (and the stack change inside the <tt>EE_s12xs_hal_ready2stacked</tt>) and Task2 begins to execute. Task2 then is blocked on a semaphore and Task1 is resumed with a call to the internal funtion <tt>EE_s12xs_hal_stkchange</tt>.
+* Please note that this small application shows a particular case where a stack is saved inside the <tt>EE_s12xs_hal_ready2stacked</tt> function and resumed inside the <tt>EE_s12xs_hal_stkchange</tt> function. This can help to better understand the stack change mechanism. 
+ 
+=== Expected output ===
+When everything is done in the right way, with the following commands we can have the executable file:
+* open a Cygwin shell
+* <tt>cd</tt> into the <tt>Debug</tt> directory
+* the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+
+To simulate the application we can use directly the hardware or a "good" software debugger.

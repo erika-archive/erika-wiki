@@ -1,0 +1,53 @@
+==Intro==
+During the porting of Mico32 someone thought that it could be possible to reuse a substantial part of the code of the HAL among many architectures.  The files contained in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common ee/pkg/cpu/common] can be used both as a part of a new porting, by including them, or as a base to derive code specific to a particular architecture.
+
+All the files in <tt>cpu/common</tt> are written in standard C; they should work as they are on almost any platform or compiler.  The should be decoupled enough so that if a porting requires a custom implementation of some parts, the rest could be used with no modification. A new porting should use the common implementation when possible, or an ad-hoc implementation under <tt>cpu/XXX</tt> otherwise.
+ 
+Please do not modify these files to accommodate some quirks of your architecture.  Instead, make a copy of them and create a branch under your <tt>cpu/XXX directory</tt> or whatever.  Implementations that can potentially be useful on many platforms are welcome; e.g., [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_gcc.h ee/pkg/cpu/common/inc/ee_compiler_gcc.h] works only for Gcc, but it should work across all platforms where Gcc is available.
+
+The common layer is used by following portings:
+* [[EnSilica eSi-RISC]]
+* [[Lattice Mico32]]
+* [[Freescale PPC e200 (MPC 56xx)]]
+* [[TI MSP430]]
+* [[Microchip dsPIC]]
+* [[Renesas RX200]]
+* [[ARM Cortex MX]]
+* [[Atmel AVR8]]
+
+==Content==
+
+<tt>cpu/common</tt> contains a practically complete monostack version of Erika without interrupts, with support for the multistack version and interrupts.  There is one context-changing function (instead of the two of previous portings).  Where possible, all parts have been written so that there is one implementation in C for all versions (mono or multistack); this is accomplished through the use of macros or small inline functions that are defined differently depending on the version.  See the inline definition of <tt>EE_hal_ready2stacked() in </tt>[http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_context.h?view=markup ee/pkg/cpu/common/inc/ee_context.h] for an example.
+
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/README.txt?view=markup README.txt] 
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/cfg/cfg.mk?view=markup cfg/cfg.mk] 
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/README.txt?view=markup inc/README.txt] 
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_gcc.h?view=markup inc/ee_compiler_gcc.h] Definitions for the Gnu C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_ccrx.h?view=markup inc/ee_compiler_ccrx.h] Definitions for the Renesas RX C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_ccs.h?view=markup inc/ee_compiler_ccs.h] Definitions for the  Texas Instruments CCSv4 tms470 C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_codewarrior.h?view=markup inc/ee_compiler_codewarrior.h] Definitions for the Freescale Codewarrior C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_diab.h?view=markup inc/ee_compiler_diab.h] Definitions for the Wind River Diab C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_iar.h?view=markup inc/ee_compiler_iar.h] Definitions for the IAR C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_keil.h?view=markup inc/ee_compiler_keil.h] Definitions for the ARM Keil C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_tasking.h?view=markup inc/ee_compiler_tasking.h] Definitions for the TASKING C compiler
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_context.h?view=markup inc/ee_context.h] Definitions related to stack- and context-changing functions
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_hal_structs.h?view=markup inc/ee_hal_structs.h] Common structure declarations
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_irqstub.h?view=markup inc/ee_irqstub.h] Functions possibly useful for IRQ post-stub
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_primitives.h?view=markup inc/ee_primitives.h] Inline functions used in kernel primitives
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_stdint.h?view=markup inc/ee_stdint.h] Definitions of (some) ISO types
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_types.h?view=markup inc/ee_types.h] Definition of Erika types based on <tt>limits.h</tt>
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/src/ee_context.c?view=markup src/ee_context.c] Stack- and context-changing functions
+* [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/src/ee_hal_structs.c?view=markup src/ee_hal_structs.c] Definitions of common structures
+
+==Porting to a new architecture==
+
+See [[Porting ERIKA Enterprise and RT-Druid to a new microcontroller]] for the general instructions.
+
+# Create the architecture-specific directory <tt>ee/pkg/cpu/XXX</tt>
+# Create the files <tt>inc/ee_cpu.h</tt> and <tt>inc/ee_internal.h</tt> in the above directory.  They should include all the files <tt>cpu/common/inc/ee_*.h</tt> suitable for your architecture.  Write any architecture-specific definition or declaration in them.
+# Modify the files <tt>ee/pkg/ee.h</tt> and <tt>ee/pkg/ee_internal.h</tt> to include your newly create files.
+# Modify the file <tt>cpu/common/cfg/cfg.mk</tt> to compile the common C source files suitable for your architecture.
+# Create or modify any additional file you need.
+# Run <tt>make</tt> and enjoy.
+
+[[Category:ERIKA internals]]

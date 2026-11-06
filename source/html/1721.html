@@ -1,0 +1,334 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Note_for_Linux_Users"><span class="tocnumber">2</span> <span class="toctext">Note for Linux Users</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Prerequisites"><span class="tocnumber">3</span> <span class="toctext">Prerequisites</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Installing_MPLAB_X_IDE"><span class="tocnumber">4</span> <span class="toctext">Installing MPLAB X IDE</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Installing_ERIKA_Enterprise_and_RT-Druid_on_Linux"><span class="tocnumber">5</span> <span class="toctext">Installing ERIKA Enterprise and RT-Druid on Linux</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#First_RT-Druid_startup_and_configuration"><span class="tocnumber">6</span> <span class="toctext">First RT-Druid startup and configuration</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Create_and_Compiling_your_first_ERIKA_Enterprise_demo"><span class="tocnumber">7</span> <span class="toctext">Create and Compiling your first ERIKA Enterprise demo</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Running_your_first_ERIKA_Enterprise_demo"><span class="tocnumber">8</span> <span class="toctext">Running your first ERIKA Enterprise demo</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#How_to_use_ERIKA_sources_from_svn"><span class="tocnumber">9</span> <span class="toctext">How to use ERIKA sources from svn</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Eclipse_from_Terminal"><span class="tocnumber">9.1</span> <span class="toctext">Eclipse from Terminal</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Eclipse_from_gnome"><span class="tocnumber">9.2</span> <span class="toctext">Eclipse from gnome</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Eclipse_from_kde"><span class="tocnumber">9.3</span> <span class="toctext">Eclipse from kde</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Notes_from_the_Forum:_ERIKA2_2.8_on_Ubuntu_18"><span class="tocnumber">10</span> <span class="toctext">Notes from the Forum: ERIKA2 2.8 on Ubuntu 18</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>This small tutorial describes the steps needed to download, compile and run a simple application showing the main features of Erika Enterprise and RT-Druid for the Microchip dsPIC DSC platform. However many parts of this tutorial can be easily applied to other architectures.
+</p><p>This tutorial has been tested on a FLEX board produced by Evidence and Embedded Solutions. Moreover, the needed software has been installed and tested on an Ubuntu 10.10 maverick but the installation process should be adapted to almost all other releases.
+</p><p>Even if all the steps needed to run an application will be depicted, a preliminary knowledge on the Microchip MPLAB X IDE and its debug environment should be useful to the reader.
+</p>
+<h1> <span class="mw-headline" id="Note_for_Linux_Users"> Note for Linux Users </span></h1>
+<p>If you are using a Linux distribution please look carefully at the following warnings:
+</p>
+<ol><li> The Evidence package installation path should NOT contain directory name with spaces. e.g. use <tt>~/Evidence</tt>.
+</li><li> The Scilab package installation path should NOT contain directory name with spaces: e.g. use <tt>~/Evidence/scicoslab-4.4b7</tt>.
+</li><li> It is strongly encouraged to adopt real paths instead of using symbolic links and aliases.
+</li><li> Please install all the Microchip compilers into their default directory (<tt>/opt/XXXX</tt>).
+</li></ol>
+<h1> <span class="mw-headline" id="Prerequisites"> Prerequisites </span></h1>
+<p>Before proceeding with the installation process it should be useful to completely update the packages installed in you system to the latest version. To update all the packages open a Terminal window and execute the following commands:
+</p>
+<pre>
+sudo apt-get update
+sudo apt-get upgrade
+</pre>
+<p>To execute the MPLAB X IDE a 32bit JRE have to be installed.
+Before to proceed with the JRE installation you need to check the multiverse repository enabled. You can perform this step from the Ubuntu Software Center and select "Edit -&gt; Software Sources...", after inserting you password you must check the "Software restricetd by copiright or legal issues (multiverse)" option; otherwise you can enable this repository by editing the source.list, to do that in a Terminal window execute:
+</p>
+<pre>
+sudo gedit /etc/apt/sources.list
+</pre>
+<p>Then on the gedit window uncomment the line:
+</p><p>deb <a href="http://archive.canonical.com/ubuntu" class="external free" rel="nofollow">http://archive.canonical.com/ubuntu</a> maverick partner<br />
+</p><p>by removing the "#" character, then save the file and close gedit.
+</p><p><br />
+Finally to install the JRE on a Terminal window insert:
+</p>
+<pre>
+sudo apt-get update
+sudo apt-get install sun-java6-jre sun-java6-plugin sun-java6-fonts
+</pre>
+<p>Please notice that by installing a 64bit JRE RT-Druid will not work properly.
+</p>
+<h1> <span class="mw-headline" id="Installing_MPLAB_X_IDE"> Installing MPLAB X IDE </span></h1>
+<p>To download the the MPLAB X IDE in a Terminal window execute:
+</p>
+<pre>
+cd ~
+
+mkdir mplab_temp
+cd mplab_temp
+
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabx-ide-beta50-linux-32-bit-installer.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc18.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc30.bin
+wget http://ww1.microchip.com/downloads/mplab/X_Beta/mplabc32.bin
+
+
+chmod a+x *.bin
+
+sudo ./mplabx-ide-beta50-linux-32-bit-installer.bin
+sudo ./mplabc32.bin
+sudo ./mplabc30.bin
+sudo ./mplabc18.bin
+</pre>
+<p>Please notice that this step can require few minutes depending on the downloading speed.<br /> 
+You can speedup this process by downloading and installing only the compilers needed by your platform. 
+Please remember to reboot you system after the installation of the last compiler.
+</p><p><br />
+At the end of the installation process either the directory and the bin files can be removed:
+</p>
+<pre>
+cd ~
+rm -r mplab_temp
+</pre>
+<p><br />
+To enable the correct execution of the MPLAB X IDE you have to assign the correct owner to the Desktop shortcut. In a Terminal window insert:
+</p>
+<pre>sudo chown user:user ~/Desktop/MPLAB\ X\ IDE\ beta5.desktop</pre>
+<p>please notice that "user" must be substituted with your username on the Linux host. Moreover, the location of the file depends on the language of your installed OS, e.g. for Italian people the file could be located on <tt> ~/Scrivania/MPLAB\ X\ IDE\ beta5.desktop</tt>.
+</p><p><br />
+Moreover, to enable MPLAB X IDE to connect with the supported programmers you must set the execution flag to the file dorun.sh
+</p>
+<pre>sudo chmod +x /opt/microchip/mplabx/mplab_ide/ide/bin/nativeexecution/dorun.sh</pre>
+<p>For further information on MPLAB X IDE and its supported programmers please visit<br />
+<a href="http://ww1.microchip.com/downloads/mplab/X_Beta" class="external free" rel="nofollow">http://ww1.microchip.com/downloads/mplab/X_Beta</a><br /> 
+and/or download<br />
+<a href="http://ww1.microchip.com/downloads/mplab/X_Beta/Getting_Started_with_MPLAB-X.pdf" class="external free" rel="nofollow">http://ww1.microchip.com/downloads/mplab/X_Beta/Getting_Started_with_MPLAB-X.pdf</a>
+</p>
+<h1> <span class="mw-headline" id="Installing_ERIKA_Enterprise_and_RT-Druid_on_Linux"> Installing ERIKA Enterprise and RT-Druid on Linux </span></h1>
+<p>To download RT-Druid you can select the correct file from the webpage:<br />
+<a href="http://erika.tuxfamily.org/erika-for-multiple-devices.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/erika-for-multiple-devices.html</a><br />
+or simply insert in a Terminal window
+</p>
+<pre>
+cd ~
+mkdir eclipse_temp
+cd eclipse_temp
+
+wget http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Linux.zip
+unzip EE_160_Linux.zip
+mkdir ../Evidence/
+mv eclipse ../Evidence
+</pre>
+<p>Please notice that the download process can require few minutes depending on the downloading speed.
+</p><p>You can now remove the downloaded file by
+</p>
+<pre>
+cd ~
+rm -r eclipse_temp
+</pre>
+<p>To enable a desktop shortcut to the <tt>~/Evidence/eclipse/eclipse</tt> file you can insert in a Terminal window
+</p>
+<pre>
+ln -s ~/Evidence/eclipse/eclipse eclipse
+</pre>
+<h1> <span class="mw-headline" id="First_RT-Druid_startup_and_configuration"> First RT-Druid startup and configuration </span></h1>
+<p>By opening Eclipse you will be prompted with a window asking for the directory containing your workspace.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-workspace.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/59/RT-druid.1.6.0-workspace.png" width="200" height="106" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-workspace.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  select the workspace directory.</div></div></div></div>
+<p>It should be noticed that instead of "user" your username on the linux box will be displayed.
+You can simply click on "Ok" and the directory "workspace" will be created in your home.
+</p><p><br />
+After few seconds you will be prompted with a "Welcome" screen<br />
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0.welcome.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7b/RT-druid.1.6.0.welcome.png" width="200" height="152" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0.welcome.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the Eclipse welcome window.</div></div></div></div>
+<p><br />
+At this point can be useful to check for updates. See <a href="/wiki/index.php?title=Tutorial:_Update_ERIKA_and_RT-Druid" title="Tutorial: Update ERIKA and RT-Druid">Tutorial: Update ERIKA and RT-Druid</a>
+</p><p><br />
+Before to be able to compile you first application you have to select the correct compiler path. As this tutorial is devoted to enable programming a Flex Demo application, the correct compiler for C24 and dsPIC must be selected. Select "Window -&gt; Preferences"<br />
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-preferences.01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/24/RT-druid.1.6.0-preferences.01.png" width="200" height="152" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-preferences.01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows where find the preferences menu.</div></div></div></div>
+<p>On the "preference" window you have to select "RT-Druid -&gt; Oil -&gt; dsPIC" and then insert the path of the C and ASM compilers (/opt/microchip/mplabc30/v3.24/)
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-preferences.02.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/06/RT-druid.1.6.0-preferences.02.png" width="200" height="134" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-preferences.02.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the PIC24, PIC30 and dsPIC compiler.</div></div></div></div>
+<p>You can now close the "Welcome" screen by selecting "Workbench" icon
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-nowelcome.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/52/RT-druid.1.6.0-nowelcome.png" width="200" height="147" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-nowelcome.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how close the "Welcome" screen.</div></div></div></div>then to remove the autobuild you can uncheck "Project -&gt; Build Automatically"
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-noautobuild.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e0/RT-druid.1.6.0-noautobuild.png" width="200" height="153" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-noautobuild.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to disable the auto build option.</div></div></div></div>
+<h1> <span class="mw-headline" id="Create_and_Compiling_your_first_ERIKA_Enterprise_demo"> Create and Compiling your first ERIKA Enterprise demo </span></h1>
+<p>By opening Eclipse you will be now prompted with an empty screen
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-empty.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/60/RT-druid.1.6.0-empty.png" width="200" height="152" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-empty.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows an Ecplise empty screen.</div></div></div></div>
+<p>to create your fist project select "File -&gt; New -&gt; Rt-Druid Oil and C/C++ Project"
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5b/RT-druid.1.6.0-newproject.01.png" width="200" height="152" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to open the "C Project" window.</div></div></div></div>
+<p>then on the "C Project" window, insert the name of you project, e.g. <tt>my_first_project</tt>. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.02.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d5/RT-druid.1.6.0-newproject.02.png" width="200" height="173" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.02.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to assign the project name.</div></div></div></div>
+<p>then click on "Next". After checking "Create a project using one of these template", select "pic30-&gt; FLEX Demo Board -&gt; OO examples -&gt; Task Demo" and click on "Finish".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.03.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/35/RT-druid.1.6.0-newproject.03.png" width="200" height="173" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.03.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select a project template.</div></div></div></div>
+<p><br />
+You will now be prompted with a screen containing all the existing project in the workspace
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.04.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/01/RT-druid.1.6.0-newproject.04.png" width="200" height="147" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.04.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows a new template based project.</div></div></div></div>
+<p>To build the project you can right-click on the project name and select "Build Project" from the context menu
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.05.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/49/RT-druid.1.6.0-newproject.05.png" width="200" height="187" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-druid.1.6.0-newproject.05.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows hot to build a project.</div></div></div></div>
+<p>at the end of the building process Eclipse will signal the creation of the executable file and on the left panel a "Debug" subfolder contining all the files generated will be prompted
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-Druid.1.6.0-newproject.06.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a0/RT-Druid.1.6.0-newproject.06.png" width="200" height="152" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-Druid.1.6.0-newproject.06.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the results of a correct building process.</div></div></div></div>
+<h1> <span class="mw-headline" id="Running_your_first_ERIKA_Enterprise_demo"> Running your first ERIKA Enterprise demo </span></h1>
+<p>MPLAB X IDE is used in this tutorial to run and debug the application on the FLEX DEMO board.
+</p><p><br />
+By opening MPLAB X IDE you will be prompted by a "Welcome" screen
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-welcome.01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3d/Mplabx.beta4-welcome.01.png" width="200" height="139" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-welcome.01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the MPLAB X IDE "Welcome" screen.</div></div></div></div>
+<p>To open a new project select "File -&gt; New Project"
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/28/Mplabx.beta4-newproject.01.png" width="200" height="140" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  open the "New Project" screen.</div></div></div></div>
+<p>in the "New Project" window you have to select "Microchip Embedded" and "Prebuilt (Loadable Image) Project", and click "Next".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.02.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/87/Mplabx.beta4-newproject.02.png" width="200" height="138" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.02.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  chose the project.</div></div></div></div>
+<p>on the "Import Image File" you have to select the file produced by the compiling process previously executed, in this case it is located in <tt> ~/wokspace/my_first_project/Debug_pic30.elf</tt>, by clicking on "Next"
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.03.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/2b/Mplabx.beta4-newproject.03.png" width="200" height="138" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.03.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  select the image file to be imported.</div></div></div></div>
+<p>you joint the "Select Device" window, where you have to select the correct Family and Device to be programmed. For the FLEX Demo board you have to select "DSPIC33" and "dsPIC33FJ256MC710".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.04.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4a/Mplabx.beta4-newproject.04.png" width="200" height="138" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.04.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  select the DEvice and Family to be programmed.</div></div></div></div>
+<p>To retrieve those informations you can open Eclipse, in the main project folder you can open the conf.oil. In this file you have to find the <tt>MODEL</tt> field on the <tt>MCU_DATA</tt> section.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:RT-Druid.1.6.0-PICModel.01.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/5/5c/RT-Druid.1.6.0-PICModel.01.png" width="200" height="154" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:RT-Druid.1.6.0-PICModel.01.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to  find the PIC related informations on the conf.oil file.</div></div></div></div>
+<p>The same information can be retrieved from the board by looking at the installed micro.<br />
+On the "Select Tool" you have to select the programmer you will use lather. 
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.05.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c9/Mplabx.beta4-newproject.05.png" width="200" height="138" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.05.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the programmer.</div></div></div></div>
+<p>Even if we are selecting the ICD3, you have to select the programmer you are equipped with.
+It should be noticed that we have correctly tested the ICD2, ICD3, and PICkit3.<br />
+In the next screen you will be asked for using a link to the loadable image or keeping the original file. As we are using an ELF file, we have to select "Copy files" and clic "Next".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.06.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/ae/Mplabx.beta4-newproject.06.png" width="200" height="138" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.06.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to use a copy of the image file.</div></div></div></div>
+<p>Finally we have to select the project name and folder, in this case we are using the default values, and click on "Next".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.07.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/15/Mplabx.beta4-newproject.07.png" width="200" height="81" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.07.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the project name and folder.</div></div></div></div>
+<p>Please notice that the default "Project Location" and "Project Folder" are in the Debug directory of Eclipse. If you use the default values the MPLAB X IDE will be deleted if you select "Clean Project" in Eclipse.<br />
+Finally bu clicking on "Finish" the project will be created.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.08.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cb/Mplabx.beta4-newproject.08.png" width="200" height="98" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.08.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the summary of the project creation process.</div></div></div></div>
+<p><br />
+The project creation process can take a very long time depending on your PC and loadable image file type. We have experienced more than 20 minutes while loading the cof version of the example proposed in the tutorial with a PC with a 2.8 GHz Pentium IV and 512 MB of RAM, on the other hand HEX and COFF files will need a shorter time to be loaded.
+</p><p><br />
+At the end of the project creation process you can find the pic30 project loaded in the MPLAB X IDE main window.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.09.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/7b/Mplabx.beta4-newproject.09.png" width="200" height="139" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.09.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the pic30 project loaded by MPLAB X IDE.</div></div></div></div>
+<p>To be able to program the board you must connect the programmer to the Linux host and to the board, that have to be powered by an external supply, you can then right click on the pic30 project and select "Properties",
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.10.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/8/87/Mplabx.beta4-newproject.10.png" width="200" height="168" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.10.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the project properties.</div></div></div></div>
+<p>in the "Project Properties" window you can now select the "default" category. On the right side of the window the installed programmer and its serial number will by displayed, you have to select the serial number of the programmer you are using and click on "Ok".
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.11.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/d/d8/Mplabx.beta4-newproject.11.png" width="200" height="142" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.11.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the installed programmer serial number.</div></div></div></div>
+<p><br />
+You have now imported the ELF file inside MPLAB X IDE and select the right programmer; by right clicking on the project and select "Run" in order to program the application on the board
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.12.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/c8/Mplabx.beta4-newproject.12.png" width="200" height="166" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.12.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to select the run command.</div></div></div></div>
+<p><br />
+After few time, depending on your Pc and on the type of the loadable image file type (cof, hex etc.), you will be prompted by a screen reporting the correct execution of the programming process.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.13.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/3f/Mplabx.beta4-newproject.13.png" width="200" height="145" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Mplabx.beta4-newproject.13.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows the end of a successful programming process.</div></div></div></div>
+<h1> <span class="mw-headline" id="How_to_use_ERIKA_sources_from_svn"> How to use ERIKA sources from svn </span></h1>
+<p>While developing an application it should be useful to use the SVN version of ERIKA Enterprise to be aligned to the last version of the OS sources. In this tutorial we will use the the anonymous read only access to the SVN, please refer to <a href="/wiki/index.php?title=ERIKA_Enterprise_and_RT-Druid_SVN_Access" title="ERIKA Enterprise and RT-Druid SVN Access">ERIKA Enterprise and RT-Druid SVN Access</a> for other access type.
+</p><p>If you don't have the svn tool installe din your Linux host you have to select and install the package. Before to proceed sould be usefull to update the pakages in your system to the last version. In a Terminal window insert:
+</p>
+<pre>
+sudo apt-get update
+sudo apt- get upgrade
+
+sudo apt-get install subversion
+</pre>
+<p><br />
+You now need to create a folder to store the ERIKA Enterprise repository; in a Terminal window insert:
+</p>
+<pre>
+cd ~
+mkdir Erika
+cd Erika
+
+svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee ./
+</pre>
+<p><br />
+After few minutes, depending on your Internet connection, you will have the last version of ERIKA Enterprise in the <tt>~/Erika</tt> folder. You can now setup the environmental variables needed to enable Eclipse compiling with an external ERIKA Enterprise version.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Eclipse_from_Terminal"> Eclipse from Terminal </span></h2>
+<p>To enable an Eclipse session launched by a shell to compile with the previously uploaded ERIKA sources you can open the <tt>~/.bashrc</tt> file by inserting a Terminal window
+</p>
+<pre>
+gedit ~/.bashrc
+</pre>
+<p>then, at the end of the file you can put the following lines:
+</p>
+<pre>
+# ERIKA Enteprise location for Eclipse
+export ERIKA_FILES=&quot;$HOME/Erika&quot;
+</pre>
+<p>You can now save the file and close the editor. To try compiling with the new ERIKA sources you can open a new Terminal window and insert
+</p>
+<pre>
+~/Evidence/ecipse/eclipse
+</pre>
+<p>It should be noticed that only the Terminal windows opened after saving the .bashrc file will contain the ERIKA_FILES variable.
+</p><p><br />
+Using an Eclipse session started by a shell enable the user to receive a lot of info on the compiling process and on the actions executed by Eclipse (e.g. by using the -consoleLog parameter). On the other hand many users would like to use a shortcut to start Eclipse.
+</p>
+<h2> <span class="mw-headline" id="Eclipse_from_gnome"> Eclipse from gnome </span></h2>
+<p>To enable an Eclipse started by gnome to compile with the previously downloaded ERIKA sources you can open the <tt>~/.gnomerc</tt> by inserting in a Terminal window
+</p>
+<pre>
+gedit ~/.gnomerc
+</pre>
+<p>and insert at the end of the file the lines
+</p>
+<pre>
+# ERIKA Enteprise location for Eclipse
+export ERIKA_FILES=&quot;$HOME/Erika&quot;
+</pre>
+<p>If the file doesn't exist you can simply create it.
+Before to be able to use the previously downloaded ERIKA sources you have to log out from the current session and start a new session.
+</p>
+<h2> <span class="mw-headline" id="Eclipse_from_kde"> Eclipse from kde </span></h2>
+<p><b>In progress </b>
+</p>
+<h1> <span class="mw-headline" id="Notes_from_the_Forum:_ERIKA2_2.8_on_Ubuntu_18"> Notes from the Forum: ERIKA2 2.8 on Ubuntu 18 </span></h1>
+<p>(Original text from: <a href="http://www.erika-enterprise.com/forum/viewtopic.php?f=4&amp;t=1249&amp;sid=f59ff95f19adb9d478cc4aabbd6e811d" class="external free" rel="nofollow">http://www.erika-enterprise.com/forum/viewtopic.php?f=4&amp;t=1249&amp;sid=f59ff95f19adb9d478cc4aabbd6e811d</a>)
+</p><p>Setting up Erika2 2.8 on Ubuntu 18:
+</p>
+<ol><li> Download JDK 1.7_80 from Oracle
+</li><li> Extract it to a local directory and move it to /usr/lib/jvm:
+<dl><dd>  sudo cp ./jdk1.7.0_80 /usr/lib/jvm
+</dd></dl>
+</li><li> Setup Java alternatives so you can switch between 7 and the system default (normally 11)
+<dl><dd>  sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0_80/bin/java" 1 
+</dd><dd>  sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0_80/bin/javac" 1 
+</dd><dd>  sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0_80/bin/javaws" 1
+</dd></dl>
+</li><li> Select your Java version with:
+<dl><dd>  sudo update-alternatives --config java
+</dd></dl>
+</li><li> Install some pre-requisites
+<dl><dd>  sudo apt-get install build-essential li32ncurses5 lib32z1
+</dd></dl>
+</li><li> Install ARM cross compiler
+<dl><dd>  <a href="https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update" class="external free" rel="nofollow">https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update</a>
+</dd></dl>
+</li><li> Don't forget to set the compiler PATH in Windows/Preferences/RT-Druid/Oil/Cortex
+</li><li> Then I launched eclipse Juno and created a project from one of the demo templates.
+<dl><dd> For task aware debugging in Lauterbach TRACE32, add a new line at line 70 of conf.oil, which reads:
+</dd><dd> /* Enable ORTI debug symbols */
+</dd><dd> ORTI_SECTIONS = ALL;
+</dd></dl>
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 203/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

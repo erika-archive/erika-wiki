@@ -1,0 +1,87 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Prerequisites"><span class="tocnumber">2</span> <span class="toctext">Prerequisites</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Microsoft_Windows"><span class="tocnumber">2.1</span> <span class="toctext">Microsoft Windows</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Linux_.28Debian_based.29"><span class="tocnumber">2.2</span> <span class="toctext">Linux (Debian based)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#MAC_OSX"><span class="tocnumber">2.3</span> <span class="toctext">MAC OSX</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Install_GDB_Hardware_Debugging_in_Eclipse"><span class="tocnumber">3</span> <span class="toctext">Install GDB Hardware Debugging in Eclipse</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Create_a_Debug_Configuration"><span class="tocnumber">4</span> <span class="toctext">Create a Debug Configuration</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Launch_ST-UTIL_from_Eclipse"><span class="tocnumber">5</span> <span class="toctext">Launch ST-UTIL from Eclipse</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Let.27s_start_debugging"><span class="tocnumber">6</span> <span class="toctext">Let's start debugging</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Introduction"> Introduction </span></h1>
+<p>This small tutorial describes the steps needed to configure the integrated Eclipse debugger for the ST DiscoveryF4 platform.
+The ST DiscoveryF4 has an on-board debugger and programmer called ST-LINK/V2 which translates USB commands sent by the host PC into JTAG/SWD commands for the STM32F4 microcontroller.
+</p><p>The following steps have been tested on Microsoft Windows XP and Ubuntu 13.04 using the package ERIKA Enterprise and RT-Druid 2.1.0 (based on Eclipse Juno).
+</p>
+<h1> <span class="mw-headline" id="Prerequisites"> Prerequisites </span></h1>
+<p>Before proceeding with the Eclipse configuration it must be necessary to setup a GDB server for the ST-LINK/V2.
+There exist various alternatives concerning GDB servers for ST-LINK/V2: we consider to use the <a href="https://github.com/texane/stlink" class="external text" rel="nofollow">Texane ST-UTIL</a> since the tool is available under different operating systems and it is very simple to use it.
+</p><p>In the following we report the setup instructions depending on your operating system.
+</p>
+<h3> <span class="mw-headline" id="Microsoft_Windows"> Microsoft Windows </span></h3>
+<p>First of all, you have to download ad install the <a href="http://www.st.com/web/en/catalog/tools/PF258167" class="external text" rel="nofollow">ST-LINK/V2 USB driver</a> and <a href="http://www.st.com/web/en/catalog/tools/PF258168" class="external text" rel="nofollow">STM32 ST-LINK Utility</a>.
+</p><p>At <a href="http://www.emb4fun.de/archive/stlink/index.html" class="external text" rel="nofollow">this page</a> is provided a compiled version of Texane ST-UTIL for Windows, however it is possibile to compile Texane ST-UTIL using an environment like Cygwin.
+</p>
+<h3> <span class="mw-headline" id="Linux_.28Debian_based.29"> Linux (Debian based) </span></h3>
+<p>Please follow <a href="http://startingelectronics.com/tutorials/STM32-microcontrollers/programming-STM32-flash-in-Linux/" class="external text" rel="nofollow">this</a> guide to setup Texane ST-UTIL.
+</p>
+<h3> <span class="mw-headline" id="MAC_OSX"> MAC OSX </span></h3>
+<p>Please follow <a href="http://cu.rious.org/make/getting-stlink-to-work-on-mac-os-x-with-macports/" class="external text" rel="nofollow">this</a> guide to setup Texane ST-UTIL.
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Install_GDB_Hardware_Debugging_in_Eclipse"> Install GDB Hardware Debugging in Eclipse </span></h1>
+<p>Once opened Eclipse, click on <b>Help -&gt; Install new software</b> from the main menu.
+Then select <i>Juno - <a href="http://download.eclipse.org/releases/juno" class="external free" rel="nofollow">http://download.eclipse.org/releases/juno</a></i> from the <b>Work with</b> field and type "<i>gdb hardware</i>" in the search field in order to find the <b>GDB Hardware Debugging</b> package.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:1_-_install_gdb_hw_debug.PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/b1/1_-_install_gdb_hw_debug.PNG" width="200" height="108" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:1_-_install_gdb_hw_debug.PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to install the GDB Hardware Debugging in Eclipse Juno.</div></div></div></div>
+<p>Select the <b>GDB Hardware Debugging</b> package and click Next to install it.
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Create_a_Debug_Configuration"> Create a Debug Configuration </span></h1>
+<p>To connect the Eclipse debugger with the ST-LINK/V2 GDB server it is necessary to create a Debug Configuration.
+Such Debug Configuration has to be stricly linked to a project of the current workspace.
+</p><p>Please execute the following steps: 
+</p>
+<ul><li> To create a new Debug Configuration click on <b>Run -&gt; Debug Configurations</b> from the main menu. Then double-click on <b>GDB Hardware Debugging</b>.
+</li></ul>
+<ul><li> In the <b>C/C++ Application</b> field select the elf file from the Debug folder of your project (the default filename is c_mX.elf).
+</li></ul>
+<ul><li> Select the project to debug in the <b>Project</b> filed.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:3_-_debug_config_(1).PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1f/3_-_debug_config_%281%29.PNG" width="200" height="151" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:3_-_debug_config_(1).PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to configure the eclipse debugger for STM32F4.</div></div></div></div>
+<ul><li> Click on Debugger under the name of the configuration. Specify your path for GDB (not the x86 version, but the ARM version) in the <b>GDB Command</b> field.
+</li></ul>
+<ul><li> Enable the checkbox <b>Use remote target</b> and specify 4242 as <b>Port Number</b> in the Remote target section. This port number is the default listening port for Texane ST-UTIL, you can change it using the <i>-p</i> command-line parameter.
+</li></ul>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:4_-_debug_config_(2).PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f7/4_-_debug_config_%282%29.PNG" width="200" height="151" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:4_-_debug_config_(2).PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to configure the eclipse debugger for STM32F4.</div></div></div></div>
+<ul><li> Click on <b>Apply</b> to store the configuration.
+</li></ul>
+<h1> <span class="mw-headline" id="Launch_ST-UTIL_from_Eclipse"> Launch ST-UTIL from Eclipse </span></h1>
+<p>The ST-UTIL GDB Server can be easily launched from a console but can be comfortable being able to launch it directly from Eclipse.
+</p><p>Click on <b>Run-&gt;External Tools-&gt;External tools configurations</b> from the main menu.
+Then select your path for the ST-UTIL executable in the <b>Location</b> field.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:2_-_external_tool.PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/f/f2/2_-_external_tool.PNG" width="200" height="162" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:2_-_external_tool.PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to configure ST-UTIL as an external tool in Eclipse.</div></div></div></div>
+<p>Now is possibile to launch ST-UTIL from <b>Run-&gt;External Tools</b> in the main menu.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:5_-_launch_st-util.PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e3/5_-_launch_st-util.PNG" width="200" height="75" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:5_-_launch_st-util.PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to launch ST-UTIL as an external tool in Eclipse.</div></div></div></div>
+<h1> <span class="mw-headline" id="Let.27s_start_debugging"> Let's start debugging </span></h1>
+<p>First of all you to launch ST-UTIL as explained in the previous section.
+</p><p>Then click on <b>Run-&gt;Debug configurations</b> from the main menu and select your configuration under GDB Hardware Debugging.
+</p><p>Now you can start to debug by clicking on the <b>Debug</b> button.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:6_-_debug_screenshot.PNG" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6f/6_-_debug_screenshot.PNG" width="200" height="115" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:6_-_debug_screenshot.PNG" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This screenshot shows how to launch ST-UTIL as an external tool in Eclipse.</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 34/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,91 @@
+<p>RT-Druid 2.0 comes with a new textual editor for oil files.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#New_features"><span class="tocnumber">1</span> <span class="toctext">New features</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Content_assist"><span class="tocnumber">1.1</span> <span class="toctext">Content assist</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#On-line_documantation"><span class="tocnumber">1.2</span> <span class="toctext">On-line documantation</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Resolution_of_cross_reference"><span class="tocnumber">1.3</span> <span class="toctext">Resolution of cross reference</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#On-line_validation"><span class="tocnumber">1.4</span> <span class="toctext">On-line validation</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Quick_fixes"><span class="tocnumber">1.5</span> <span class="toctext">Quick fixes</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Fully_customizable_syntax_coloring"><span class="tocnumber">1.6</span> <span class="toctext">Fully customizable syntax coloring</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Support_for_templates"><span class="tocnumber">1.7</span> <span class="toctext">Support for templates</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Limitations"><span class="tocnumber">2</span> <span class="toctext">Limitations</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="New_features"> New features </span></h1>
+<p>New features are: 
+</p>
+<ul><li> Content assist
+</li><li> On-line documantation
+</li><li> Resolution of cross reference
+</li><li> On-line validation
+</li><li> Quick fixes
+</li><li> Fully customizable syntax coloring
+</li><li> Support for templates
+</li></ul>
+<p>Oil files may or may not contain the oil Implementation section. If this section is missing, the default one is used.
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Content_assist"> Content assist </span></h2>
+<p>It is always possible to ask the list of valid values at the current cursor position.
+The default key sequence is <b>crtl-space</b>.
+</p><p>Depending on what is written before current cursor position, the content assist may propose 
+</p>
+<ul><li> a key word, like TASK
+</li><li> one or more attributes for the current element
+</li><li> the value of an attribute. Usually this is available for boolean, enumerators and reference to objects (like tasks)
+</li></ul>
+<p>The set of proposed attributes may be reduced after typing few characters.
+</p>
+<h2> <span class="mw-headline" id="On-line_documantation"> On-line documantation </span></h2>
+<p>In many conditions, will try to show the description and documentation (if available) of elements.
+This usually happens during the content assist selection and moving the mouse over an element.
+</p><p>It is possible to document an element directly through the oil editor, adding a multi line comment <b>/* ... */</b> just before the element or using oil description sintax (i.e. adding <b>: "..."</b> just after the element).
+If an element has an oil description, the multi line comment is ignored even if available.
+</p>
+<h2> <span class="mw-headline" id="Resolution_of_cross_reference"> Resolution of cross reference </span></h2>
+<p>Inside oil CPU sections, there are a lot of references and these references are navigable with <b>crtl+mouse left click</b> if the referred object is in the same file. Examples of references are:
+</p>
+<ul><li> the name of an attribute
+</li><li> the value of a Boolean
+</li><li> the value of an Enum
+</li><li> the value of a reference to an Oil Object (like a task)
+</li></ul>
+<h2> <span class="mw-headline" id="On-line_validation"> On-line validation </span></h2>
+<p>While typing, the editor will try to check if the oil is valid or not.
+Some examples of validation checks are
+</p>
+<ul><li> the syntax is correct
+</li><li> attributes are defined
+</li><li> values of an attribute are valid for that attribute type, considering also restriction if present
+</li></ul>
+<p>"Heavy" checks are not done in this phase, in order to achieve a quicker response.
+</p>
+<h2> <span class="mw-headline" id="Quick_fixes"> Quick fixes </span></h2>
+<p>For some kins of problem, the editor is able to propose quick fixes, i.e. suggest one or more way to solve the problem and perform the select one.
+</p><p>A simple example is to propose the list of valid values (if there are a limited set).
+</p>
+<h2> <span class="mw-headline" id="Fully_customizable_syntax_coloring"> Fully customizable syntax coloring </span></h2>
+<p>The editor comes with a preference page that allow the user to change the color and the font for each type of element in the editor.
+</p>
+<h2> <span class="mw-headline" id="Support_for_templates"> Support for templates </span></h2>
+<p>Using a preference page, it is possible to write your own template and specify where it is available.
+</p>
+<h1> <span class="mw-headline" id="Limitations"> Limitations </span></h1>
+<p>Current editor works only within a single file. This means
+</p>
+<ol><li> it is not possible to follow cross references to object outside the edited file. This usually happens for oil attributes described RT-Druid oil file library.
+</li><li> the editor does not handle inclusion, i.e. <b>#include ".."</b> may cause unexpected errors and references to objects in the included file are not resolved.
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 35/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

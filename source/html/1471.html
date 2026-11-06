@@ -1,0 +1,47 @@
+<h3> <span class="mw-headline" id="Reference_test"> Reference test </span></h3>
+<p><tt>examples/s12xs/porting_examples/EEtest6</tt>
+</p><p><tt>examples/s12xs/porting_examples/EEtest7</tt>
+</p><p><tt>examples/s12xs/porting_examples/EEtest8</tt>
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="Description"> Description </span></h3>
+<p>The three tests below tests the following features:
+</p>
+<ol><li> StartOs(...) function and TerminateTask() function;
+</li><li> BCC1 mode;
+</li><li> BCC2 mode;
+</li><li> BCC1 mode with a shared resource; 
+</li></ol>
+<p><tt>examples/s12xs/porting_examples/EEtest6</tt>:
+</p>
+<ul><li> tests behavior 1 and 2
+</li><li> The goal is to test the start phase of the kernel (StartOs(...)), the activation of a task and its termination procedure.
+</li><li> To configure the task set we must change the files <tt>eecfg.h</tt> and <tt>eecfg.c</tt> located inside the Debug folder. 
+</li><li> Finally, we created inside the <tt>EEtest6</tt> a C file with a main() function. That function explicitly calls the StartOs(...) function and finishing with a <tt>for(;;)</tt>. Please note that the TerminateTask() function is called inside a function called by the task. The compilation must finish with an executable fully linked.
+</li></ul>
+<p><tt>examples/s12xs/porting_examples/EEtest7</tt>:
+</p>
+<ul><li> tests behavior 3
+</li><li> The goal is to create a task with pending activations to test the kernel behaviour in the BCC2 mode. Task2 is executed six times at the beginning.
+</li></ul>
+<p><tt>examples/s12xs/porting_examples/EEtest8</tt>:
+</p>
+<ul><li> tests behavior 4
+</li><li> The goal is to activate two tasks that share a resource to test the scheduler and the blocking mechanism. The main function activates the low priority task. The high priority task is activated within the first task and is executed at the end of the low priority task. The rtos continues the execution of the high priority task.
+</li></ul>
+<h3> <span class="mw-headline" id="Expected_output"> Expected output </span></h3>
+<p>When everything is done in the right way, with the following commands we can have the executable file:
+</p>
+<ul><li> open a Cygwin shell
+</li><li> <tt>cd</tt> into the <tt>Debug</tt> directory
+</li><li> the commands <tt>make clean</tt> and <tt>make all</tt> should work correctly producing an executable inside the <tt>Debug</tt> directory.
+</li></ul>
+<p>To simulate the application we can use directly the hardware or a "good" software debugger.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

@@ -1,0 +1,246 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Spi Init Seq Dia.png</title>
+    <id>2441</id>
+    <revision>
+      <id>5320</id>
+      <timestamp>2013-07-18T09:26:57Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi Mode Trans Seq Dia.png</title>
+    <id>2442</id>
+    <revision>
+      <id>5321</id>
+      <timestamp>2013-07-18T09:27:17Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi SA 1C 1J 1S Seq Dia.png</title>
+    <id>2447</id>
+    <revision>
+      <id>5328</id>
+      <timestamp>2013-07-18T09:33:09Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi SA nC 1J 1S Seq Dia.png</title>
+    <id>2448</id>
+    <revision>
+      <id>5329</id>
+      <timestamp>2013-07-18T09:34:39Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi SA nC nJ 1S Seq Dia.png</title>
+    <id>2449</id>
+    <revision>
+      <id>5330</id>
+      <timestamp>2013-07-18T09:35:40Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi SA nC nJ nS Seq Dia.png</title>
+    <id>2450</id>
+    <revision>
+      <id>5331</id>
+      <timestamp>2013-07-18T09:36:35Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi SS nC nJ 1S Seq Dia.png</title>
+    <id>2452</id>
+    <revision>
+      <id>5334</id>
+      <timestamp>2013-07-18T10:14:59Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi WAR 1C 1J 1S Seq Dia.png</title>
+    <id>2443</id>
+    <revision>
+      <id>5322</id>
+      <timestamp>2013-07-18T09:27:40Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi WAR nC 1J 1S Seq Dia.png</title>
+    <id>2444</id>
+    <revision>
+      <id>5323</id>
+      <timestamp>2013-07-18T09:28:03Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi WAR nC nJ 1S Seq Dia.png</title>
+    <id>2445</id>
+    <revision>
+      <id>5324</id>
+      <timestamp>2013-07-18T09:28:28Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi WAR nC nJ nS Seq Dia.png</title>
+    <id>2446</id>
+    <revision>
+      <id>5326</id>
+      <timestamp>2013-07-18T09:29:07Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Spi WSR nC nJ 1S Seq Dia.png</title>
+    <id>2451</id>
+    <revision>
+      <id>5333</id>
+      <timestamp>2013-07-18T09:38:24Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sram dpm.png</title>
+    <id>2489</id>
+    <revision>
+      <id>5892</id>
+      <timestamp>2014-11-10T13:38:38Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Sram lock.png</title>
+    <id>2490</id>
+    <revision>
+      <id>5893</id>
+      <timestamp>2014-11-10T13:38:59Z</timestamp>
+      <contributor>
+        <username>Francesco</username>
+        <id>491</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Start.PNG</title>
+    <id>1507</id>
+    <revision>
+      <id>1736</id>
+      <timestamp>2009-12-02T16:46:43Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3208</id>
+      <timestamp>2011-08-24T14:24:49Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Start.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Starting minicom.png</title>
+    <id>2232</id>
+    <revision>
+      <id>4354</id>
+      <timestamp>2012-01-19T16:08:19Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

@@ -1,0 +1,19 @@
+The '''RT Data Exchange''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:usbudp_receiver.png]]
+| This block receive data through a UDP protocol. It can be used also to receive data sent by the FLEX-FULL USB port. The internal parameter specifies the number of output lines.
+|-
+| [[image:usbudp_sender.png]]
+| This block send data through a UDP protocol. It can be used also to send data to the FLEX-FULL USB port. The internal parameter specifies the number if input lines.
+|-
+| [[image:usbudp_config.png]]
+| This block configures UDP sockets used to send and receive data. The internal parameters specify IP-address and port for both PC and board.
+|-
+| [[image:roller_gui.png]]
+| This block opens a GUI with rollers. It can be used to tune, in real-time, the parameters of your algorithm during the program execution.

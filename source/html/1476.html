@@ -1,0 +1,47 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#ARM7TDMI_support"><span class="tocnumber">1</span> <span class="toctext">ARM7TDMI support</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#MCUs"><span class="tocnumber">2</span> <span class="toctext">MCUs</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Boards"><span class="tocnumber">3</span> <span class="toctext">Boards</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Available_examples"><span class="tocnumber">4</span> <span class="toctext">Available examples</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="ARM7TDMI_support"> ARM7TDMI support </span></h1>
+<p>ERIKA Enterprise supports ARM7TDMI machines since 2002. The support for RT-Druid has been made public only in 2009 on release 1.5.0.
+</p><p>The ARM7TDMI support includes:
+</p>
+<ul><li> support for GCC and ADS compilers (earlier version have run also on Diab DCC)
+</li><li> support for interworking between ARM and THUMB mode
+</li><li> support for single and multi stack configurations
+</li><li> support for Lauterbach Trace32 (automatic generation of scripts and ORTI files)
+</li><li> FIQ and ISR interrupt supported
+</li></ul>
+<h1> <span class="mw-headline" id="MCUs"> MCUs </span></h1>
+<p>The MCUs supported are currently the following:
+</p>
+<ul><li> Samsung ks32c50100 (an ARM7 @ 50Mhz, with a simple interrupt controller)
+</li><li> ST sta2051 Vespucci (including the code to handle the interrupt controller; support to this architecture thanks to <a href="http://www.cobra-at.com" class="external text" rel="nofollow">Cobra AT</a>)
+</li><li> <a href="http://www-micrel.deis.unibo.it/sitonew/research/mparm.html" class="external text" rel="nofollow">UNIBO MPARM</a> (a cycle-accurate simulator of ARM7TDMI; support to this architecture thanks to the <a href="http://www.predator-project.eu/" class="external text" rel="nofollow">PREDATOR FP7 Project</a>)
+</li></ul>
+<p>In the past, ERIKA supported also the following architectures (which are not supported by RT-Druid)
+</p>
+<ul><li> Triscend A7 (an ARM7TDMI plus FPGA. triscend has been acquired by Xilinx a few years ago)
+</li><li> ST Janus (a dual core on a single chip for automotive. The interrupt controller was similar to the ST sta2051 Vespucci. The porting was done in collaboration with <a href="http://www.magnetimarelli.com" class="external text" rel="nofollow">Magneti Marelli</a>
+</li></ul>
+<h1> <span class="mw-headline" id="Boards"> Boards </span></h1>
+<p>The boards supported are:
+</p>
+<ul><li> ARM Evaluator7T - a low cost ARM evaluation board hosting Samsung ks32c50100
+</li><li> Triscend A7 (see above)
+</li><li> UNIBO MPARM (see above)
+</li></ul>
+<h1> <span class="mw-headline" id="Available_examples"> Available examples </span></h1>
+<p>There are a few examples available for ARM and Evaluator7T available on the SVN, but they have not been inserted into the 1.5.0 examples because the board is no more in production&nbsp;:-(
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 14/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

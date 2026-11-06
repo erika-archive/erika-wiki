@@ -1,0 +1,67 @@
+= Benchmark Purpose =
+
+The purpose of this benchmark is to provide a measure of the performance of Erika Enterprise
+with the following kernel mechanisms:
+
+* ISR1 latency: the time elapsed from the activation of an Interrupt Service Routine of type 1 (ISR1), to the first ISR instruction. 
+* ISR1 exit: the time elapsed from the last instruction of an ISR1 to the subsequent instruction of the interrupted task.
+* ISR2 latency: the time elapsed from the activation of an Interrupt Service Routine of type 2 (ISR2), to the first ISR2 instruction. 
+* ISR2 exit: the time elapsed from the last instruction of an ISR2  to the subsequent instruction of the interrupted task.
+* New task from an ISR2: the time elapsed from the last instruction of an ISR2 to the first instruction of the new task.
+* New task with preemption: the time elapsed from the first instruction necessary to active a new task to the first instruction of the new task.
+* New task without preemption: the time elapsed from the first instruction necessary to active a new task to the last instruction necessary to active the new task.
+* Terminate task (not activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+* Terminate task (activated from an ISR): the time elapsed from the last task instruction to the next instruction of the task preempted by the task just terminated.
+
+= Benchmark Location =
+
+The benchmark project is located in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/benchmark/ examples/cortex_mx/lm4f232xxxx/benchmark/] folder.
+
+The benchmark project folder is organized as follows:
+root directory contains "readme.txt", with all the information you can find in this page, plus the "makefile" and the following subfolders;
+* '''benchmark''': it contains the source files;
+* '''output''': it will contain, after the compilation process, all the files of the project.
+* '''Keil_Debug_BM_Project''': it contains the configuration files for the Keil IDE.
+* '''results''': it contains the file with the benchmark results (the result of test is alredy commited on repository)
+
+= How to Run the Benchmark =
+Follow the instruction below to compile and run the benchmark:
+#Open the cygwin shell and go in the benchmark directory.
+#If you want to compile and run the benchmark with the target board, type the following two commands:
+
+ export Debugger=ICDI
+ make
+
+If you want to compile and execute the benchmark with the simulator provided with the Keil IDE, just type the make command.
+
+After the execution of the benchmark, the obtained results are stored in the file 
+BM_TI_Stellaris_LM4F232H5QD.log. This file can be found in the results folder.
+
+= Bechmark Results Table  =
+
+The result are obtained working with the LM4F232H5QD internal oscillator (clock frequency of 16 MHz). The result are obtained with '''SVN revision number 2366''' corresponding
+to the tag '''osek_ti_kslm4f232'''.
+
+{| border="1" cellpadding="2" cellspacing="0"
+! align="center" | Test Name !! align="center" | Samples !! align="center" | Mean !! align="center" | Minimun !! align="center" | Maximum  
+|-
+| ISR1 Latency || align="center" | 50 || 59 ticks (3.687 usec) || 59 ticks (3.687 usec) || 59 ticks (3.687 usec)
+|-
+| ISR1 exit || align="center" | 50 || 48 ticks (3.000 usec) || 48 ticks (3.000 usec) || 48 ticks (3.000 usec)
+|-
+| ISR2 Latency || align="center" | 50 || 104 ticks (6.500 usec) || 104 ticks (6.500 usec) || 104 ticks (6.500 usec)
+|-
+| ISR2 Exit || align="center" | 50 || 138 ticks (8.625 usec) || 138 ticks (8.625 usec) || 138 ticks (8.625 usec)
+|-
+| New task from ISR || align="center" | 50 || 345 ticks (21.562 usec) || 345 ticks (21.562 usec) || 345 ticks (21.562 usec)
+|-
+| New task with preemption || align="center" | 50 || 314 ticks (19.625 usec) || 314 ticks (19.625 usec) || 314 ticks (19.625 usec)
+|-
+| New task without preemption || align="center" | 50 || 164 ticks (10.250 usec) || 164 ticks (10.250 usec) || 164 ticks (10.250 usec)
+|-
+| Task (not activated from IRQ) exit || align="center" | 50 || 275 ticks (17.187 usec) || 275 ticks (17.187 usec) || 275 ticks (17.187 usec)
+|-
+| Task (activated from IRQ) exit || align="center" | 50 || 689 ticks (43.062 usec) || 689 ticks (43.062 usec) || 689 ticks (43.062 usec)
+|}
+
+[[Category:Benchmarks]]

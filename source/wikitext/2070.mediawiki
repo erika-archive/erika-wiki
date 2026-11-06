@@ -1,0 +1,1 @@
+mico32_camera values in the platform.

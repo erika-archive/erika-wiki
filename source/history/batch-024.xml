@@ -1,0 +1,256 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Easylab serial receive.png</title>
+    <id>2089</id>
+    <revision>
+      <id>3454</id>
+      <timestamp>2011-09-28T11:24:13Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab serial send.png</title>
+    <id>2088</id>
+    <revision>
+      <id>3453</id>
+      <timestamp>2011-09-28T11:24:05Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab supply.png</title>
+    <id>2270</id>
+    <revision>
+      <id>4540</id>
+      <timestamp>2012-01-31T10:49:20Z</timestamp>
+      <contributor>
+        <username>Salva</username>
+        <id>270</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Easylab sysled.png</title>
+    <id>2084</id>
+    <revision>
+      <id>3449</id>
+      <timestamp>2011-09-28T11:23:28Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Eclipse-standard-make-project.png</title>
+    <id>1759</id>
+    <revision>
+      <id>2381</id>
+      <timestamp>2011-02-08T11:51:52Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the button which must be pressed to create a standard C project</comment>
+      <text xml:space="preserve">This screenshot shows the button which must be pressed to create a standard C project</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Eclipse Installation Details Uninstall.png</title>
+    <id>2404</id>
+    <revision>
+      <id>5242</id>
+      <timestamp>2013-07-16T18:10:13Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Eclipse Installation Details Uninstall...</comment>
+      <text xml:space="preserve">Eclipse Installation Details Uninstall...</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Eclipse Uninstall.png</title>
+    <id>2405</id>
+    <revision>
+      <id>5243</id>
+      <timestamp>2013-07-16T18:11:16Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Eclipse Uninstall</comment>
+      <text xml:space="preserve">Eclipse Uninstall</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Eclipse Uninstalling Software.png</title>
+    <id>2406</id>
+    <revision>
+      <id>5244</id>
+      <timestamp>2013-07-16T18:11:43Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Eclipse Uninstalling Software.</comment>
+      <text xml:space="preserve">Eclipse Uninstalling Software.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Eclipse empty screen.png</title>
+    <id>1758</id>
+    <revision>
+      <id>2380</id>
+      <timestamp>2011-02-08T11:34:40Z</timestamp>
+      <contributor>
+        <username>Ryosab81</username>
+        <id>268</id>
+      </contributor>
+      <comment>This screenshot shows the C/C++ button that must be pressed</comment>
+      <text xml:space="preserve">This screenshot shows the C/C++ button that must be pressed</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Ee path.PNG</title>
+    <id>2208</id>
+    <revision>
+      <id>4211</id>
+      <timestamp>2011-12-12T17:26:35Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Elf.PNG</title>
+    <id>1501</id>
+    <revision>
+      <id>1730</id>
+      <timestamp>2009-12-02T16:44:14Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>3204</id>
+      <timestamp>2011-08-24T14:21:39Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Elf.PNG]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configuration File Name.png</title>
+    <id>2371</id>
+    <revision>
+      <id>5178</id>
+      <timestamp>2013-07-16T12:15:42Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Erika Driver Configuration File Name</comment>
+      <text xml:space="preserve">Erika Driver Configuration File Name</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator DIO.png</title>
+    <id>2396</id>
+    <revision>
+      <id>5232</id>
+      <timestamp>2013-07-16T17:46:03Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator DIO.</comment>
+      <text xml:space="preserve">Erika Driver Configurator DIO.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator DIO set.png</title>
+    <id>2397</id>
+    <revision>
+      <id>5233</id>
+      <timestamp>2013-07-16T17:46:52Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator DIO set.</comment>
+      <text xml:space="preserve">Erika Driver Configurator DIO set.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator MCU.png</title>
+    <id>2378</id>
+    <revision>
+      <id>5197</id>
+      <timestamp>2013-07-16T13:34:59Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator MCU.</comment>
+      <text xml:space="preserve">Erika Driver Configurator MCU.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator MCU set.png</title>
+    <id>2379</id>
+    <revision>
+      <id>5203</id>
+      <timestamp>2013-07-16T14:45:06Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator MCU set.</comment>
+      <text xml:space="preserve">Erika Driver Configurator MCU set.</text>
+    </revision>
+  </page>
+</mediawiki>

@@ -1,0 +1,286 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Cg block.png</title>
+    <id>2190</id>
+    <revision>
+      <id>4122</id>
+      <timestamp>2011-11-10T14:55:09Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cg main.png</title>
+    <id>2189</id>
+    <revision>
+      <id>4121</id>
+      <timestamp>2011-11-10T14:54:50Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cg run.png</title>
+    <id>2191</id>
+    <revision>
+      <id>4130</id>
+      <timestamp>2011-11-10T15:01:14Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Clock.png</title>
+    <id>1810</id>
+    <revision>
+      <id>2739</id>
+      <timestamp>2011-02-24T11:22:51Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Clockproperties.png</title>
+    <id>1812</id>
+    <revision>
+      <id>2741</id>
+      <timestamp>2011-02-24T11:23:01Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Codegen0.png</title>
+    <id>2178</id>
+    <revision>
+      <id>4096</id>
+      <timestamp>2011-11-08T09:27:32Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Codegen1.png</title>
+    <id>1818</id>
+    <revision>
+      <id>2747</id>
+      <timestamp>2011-02-24T11:24:05Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4103</id>
+      <timestamp>2011-11-08T09:31:16Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Codegen1.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Codegen2.png</title>
+    <id>1819</id>
+    <revision>
+      <id>2748</id>
+      <timestamp>2011-02-24T11:24:09Z</timestamp>
+      <contributor>
+        <username>Paolo.gai</username>
+        <id>5</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4098</id>
+      <timestamp>2011-11-08T09:28:34Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Codegen2.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4099</id>
+      <timestamp>2011-11-08T09:28:57Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Codegen2.png]]&amp;quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>4102</id>
+      <timestamp>2011-11-08T09:30:21Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &amp;quot;[[File:Codegen2.png]]&amp;quot;: Reverted to version as of 09:28, 8 November 2011</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Codegen3.png</title>
+    <id>2179</id>
+    <revision>
+      <id>4097</id>
+      <timestamp>2011-11-08T09:28:05Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cof ide1.png</title>
+    <id>1589</id>
+    <revision>
+      <id>1876</id>
+      <timestamp>2010-01-11T10:44:00Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+    <revision>
+      <id>1877</id>
+      <timestamp>2010-01-11T10:45:03Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <comment>uploaded a new version of &quot;[[File:Cof ide1.png]]&quot;</comment>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cof ide2.png</title>
+    <id>1590</id>
+    <revision>
+      <id>1878</id>
+      <timestamp>2010-01-11T10:45:53Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cof import.png</title>
+    <id>1576</id>
+    <revision>
+      <id>1852</id>
+      <timestamp>2010-01-11T09:32:06Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cof program.png</title>
+    <id>1577</id>
+    <revision>
+      <id>1853</id>
+      <timestamp>2010-01-11T09:32:48Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Cof release.png</title>
+    <id>1578</id>
+    <revision>
+      <id>1854</id>
+      <timestamp>2010-01-11T09:33:44Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Communication.png</title>
+    <id>2513</id>
+    <revision>
+      <id>5998</id>
+      <timestamp>2015-11-06T10:24:34Z</timestamp>
+      <contributor>
+        <username>Antonio Marcello Catinella</username>
+        <id>500</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+  <page>
+    <title>File:Compilation gateway.png</title>
+    <id>1591</id>
+    <revision>
+      <id>1879</id>
+      <timestamp>2010-01-11T10:47:49Z</timestamp>
+      <contributor>
+        <username>Erikadds</username>
+        <id>7</id>
+      </contributor>
+      <text xml:space="preserve" />
+    </revision>
+  </page>
+</mediawiki>

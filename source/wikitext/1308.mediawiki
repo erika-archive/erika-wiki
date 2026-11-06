@@ -1,0 +1,40 @@
+The '''FLEX Sinks''' palette:
+<br /> <br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+|-
+| [[image:Flex_sinks_flexled.png]]
+| This block controls the FLEX system LED. The LED is on when the input is greater than 0.5.
+|-
+| [[image:Flex_sinks_flexgpout.png]]
+| This block controls an output pin of the FLEX Board. It has an internal parameter which is the ouput pin.
+|-
+| [[image:flex_sinks_flexpwm.png]]
+| This block controls a PWM output of the FLEX Board. The internal parameter specifies the PWM pin (from 1 to 4).
+|-
+| [[image:Flex_sinks_flexlcd.png]]
+| This block controls the LCD which is attached to the first prototype of the Demo Daughter Board (this hardware is no more available, and the block is here for historical usage). If used with the Demo Daughter Board, it controls the LCD of that board.
+|-
+| [[image:Flex_sinks_dmbled.png]]
+| This block controls one of the eight LEDs of the Demo Daughter Board. The internal parameter specifies the LED number.
+|-
+| [[image:Flex_sinks_dmbdigout.png]]
+| This block controls one of the eight digit output pins of the Demo Daughter Board. The internal parameter specifies the pin.
+|-
+| [[image:Flex_sinks_dmbpwmout.png]]
+| This block controls one of the PWM outputs of the Demo Daughter Board. The internal parameter specifies the pin number (from 1 to four).
+|-
+| [[image:Flex_sinks_dmblcd.png]]
+| This block controls the LCD on the Demo Daughter Board.
+|-
+| [[image:Flex_sinks_dmbdac.png]]
+| This block controls one of the two DAC outputs. The internal parameter specifies the DAC channel number. The imput is from 0.0 (0.0 V) to 1.0 (3.0 or 5.0 V depending on the HW configuration)
+|-
+| [[image:Flex_sinks_dmbbuzzer.png]]
+| This block controls the buzzer mounted on the Demo Daughter Board. The input value is the frequency of the buzzer sound, in Hz.
+|-
+|}

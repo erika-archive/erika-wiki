@@ -1,0 +1,373 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Synopsis"><span class="tocnumber">1</span> <span class="toctext">Synopsis</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#File_Structure"><span class="tocnumber">2</span> <span class="toctext">File Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#API_Specification"><span class="tocnumber">3</span> <span class="toctext">API Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Imported_Types"><span class="tocnumber">3.1</span> <span class="toctext">Imported Types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#typedef_uint8_Std_ReturnType"><span class="tocnumber">3.1.1</span> <span class="toctext">typedef uint8 Std_ReturnType</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#struct_Std_VersionInfoType"><span class="tocnumber">3.1.2</span> <span class="toctext">struct Std_VersionInfoType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Types_Defintions"><span class="tocnumber">3.2</span> <span class="toctext">Types Defintions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#struct_Port_ConfigType"><span class="tocnumber">3.2.1</span> <span class="toctext">struct Port_ConfigType</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#typedef_uint_Port_PinType"><span class="tocnumber">3.2.2</span> <span class="toctext">typedef uint Port_PinType</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#enum_Port_PinDirectionType"><span class="tocnumber">3.2.3</span> <span class="toctext">enum Port_PinDirectionType</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#typedef_uint_Port_PinModeType"><span class="tocnumber">3.2.4</span> <span class="toctext">typedef uint Port_PinModeType</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Functions_Definitions"><span class="tocnumber">3.3</span> <span class="toctext">Functions Definitions</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#void_Port_Init.28const_Port_ConfigType_.2AConfigPtr.29"><span class="tocnumber">3.3.1</span> <span class="toctext">void Port_Init(const Port_ConfigType *ConfigPtr)</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#void_Port_SetPinDirection.28Port_PinType_Pin.2C_Port_PinDirectionType_Direction.29"><span class="tocnumber">3.3.2</span> <span class="toctext">void Port_SetPinDirection(Port_PinType Pin, Port_PinDirectionType Direction)</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#void_Port_RefreshPortDirection.28void.29"><span class="tocnumber">3.3.3</span> <span class="toctext">void Port_RefreshPortDirection(void)</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#void_Port_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"><span class="tocnumber">3.3.4</span> <span class="toctext">void Port_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#void_Port_SetPinMode.28Port_PinType_Pin.2C_Port_PinModeType_Mode.29"><span class="tocnumber">3.3.5</span> <span class="toctext">void Port_SetPinMode(Port_PinType Pin, Port_PinModeType Mode)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Usage_Examples"><span class="tocnumber">4</span> <span class="toctext">Usage Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#Overall_Configuration_of_Ports"><span class="tocnumber">4.1</span> <span class="toctext">Overall Configuration of Ports</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Set_the_Direction_of_a_Port_Pin"><span class="tocnumber">4.2</span> <span class="toctext">Set the Direction of a Port Pin</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Refresh_the_Direction_of_all_Port_Pins"><span class="tocnumber">4.3</span> <span class="toctext">Refresh the Direction of all Port Pins</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Change_the_Mode_of_a_Port_Pin"><span class="tocnumber">4.4</span> <span class="toctext">Change the Mode of a Port Pin</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Build"><span class="tocnumber">5</span> <span class="toctext">Build</span></a></li>
+<li class="toclevel-1 tocsection-24"><a href="#Supported_Architectures"><span class="tocnumber">6</span> <span class="toctext">Supported Architectures</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"><span class="tocnumber">6.1</span> <span class="toctext">TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain</span></a>
+<ul>
+<li class="toclevel-3 tocsection-26"><a href="#Driver_Configuration"><span class="tocnumber">6.1.1</span> <span class="toctext">Driver Configuration</span></a>
+<ul>
+<li class="toclevel-4 tocsection-27"><a href="#Configuration_Selection"><span class="tocnumber">6.1.1.1</span> <span class="toctext">Configuration Selection</span></a></li>
+<li class="toclevel-4 tocsection-28"><a href="#API_Selection"><span class="tocnumber">6.1.1.2</span> <span class="toctext">API Selection</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-29"><a href="#Implemetations_Demos"><span class="tocnumber">6.1.2</span> <span class="toctext">Implemetations Demos</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h2> <span class="mw-headline" id="Synopsis"> Synopsis </span></h2>
+<p>The PORT driver provides services for initializing the whole PORT structure of the microcontroller.
+</p><p>Many ports and port pins can be assigned to various functionalities, e.g.
+</p>
+<ul><li> General purpose I/O
+</li><li> ADC
+</li><li> SPI
+</li><li> SCI
+</li><li> PWM
+</li><li> CAN
+</li><li> etc
+</li></ul>
+<p>For this reason, there shall be an overall configuration and initialization of this port structure.
+</p><p>The configuration and mode of these port pins is microcontroller and ECU [Electronic Control Unit] dependent.
+</p><p>This PORT driver module shall complete the overall configuration and initialisation of the port structure which is used in the DIO driver module. Therefore, the DIO driver works on pins and ports which are configured by the PORT driver.
+</p><p>The PORT driver shall be initialised prior to use of the DIO functions. Otherwise DIO functions will exhibit undefined behaviour.
+</p><p>The diagram below identifies the PORT driver functions, and the structure of the PORT driver and DIO driver.
+</p><p><a href="/wiki/index.php?title=File:PORT-DIO.png" class="image"><img alt="PORT-DIO.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e8/PORT-DIO.png" width="667" height="808" /></a>
+</p><p>The PORT Driver module shall allow the configuration of different functionality for each port and port pin, e.g. ADC, SPI, DIO etc.
+</p><p>The configuration of the port (i.e. whole port or single port pin) is microcontroller dependent.
+</p><p>The PORT Driver module shall provide additional configurations for the MCU port/port pins:
+</p>
+<ul><li> Pin direction (input/output).
+</li><li> Pin level initial value.
+</li><li> Pin direction changeable during runtime (yes/no).
+</li><li> Port mode changeable during runtime.
+</li></ul>
+<p>The PORT Driver module shall provide a number of optional configurations for the MCU ports and port pins (if supported by hardware):
+</p>
+<ul><li> Slew rate control.
+</li><li> Activation of internal pull-ups.
+</li><li> Input Thresholds.
+</li><li> Pin driven mode (push-pull / open drain).
+</li><li> Type of Readback support (pin level, output register value).
+</li></ul>
+<p>The PORT Driver module shall not provide the facility to configure pin level inversion. The default value shall be set (i.e. not inverted).
+</p><p><b>Note</b>: The IO Hardware Abstraction layer shall carry out level inversion.
+</p><p>For the port pins configured as changeable using the configuration tool, the PORT driver shall allow the user to change the direction of port pins during runtime. If the MCU port control hardware provides an output latch for setting the output level on a port pin, switching the port pin direction shall not alter the level set in this output latch.
+</p><p>For refreshing of the port on the microcontroller, the PORT driver shall allow the user to refresh the direction of those port pins whose direction is set by configuration and cannot be changed dynamically.
+</p><p>The PORT Driver module shall configure all ports and port pins that are not used (neither as GPIO nor special purpose IO) to be set to a defined state by the PORT Driver module configuration.
+</p><p>The user of the PORT Driver module shall configure the symbolic names of the port pins of the MCU. These symbolic names for the individual port pins (e.g. <i>PORT_A_PIN_0</i>) shall be defined in the configuration tool.
+</p><p>The PORT Driver module shall provide atomic access to all ports and port pins.
+</p><p><b>Note</b>: An atomic access is a non interruptible access to Microcontroller registers by the use of either atomic instructions or the usage of an exclusive area (interrupt disabling for example) provided by Erika Enterprise.
+</p>
+<h2> <span class="mw-headline" id="File_Structure"> File Structure </span></h2>
+<p><a href="/wiki/index.php?title=File:PORT_Driver_File_structure_2.png" class="image"><img alt="PORT Driver File structure 2.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/67/PORT_Driver_File_structure_2.png" width="882" height="431" /></a>
+</p>
+<h2> <span class="mw-headline" id="API_Specification"> API Specification </span></h2>
+<h3> <span class="mw-headline" id="Imported_Types"> Imported Types </span></h3>
+<h4> <span class="mw-headline" id="typedef_uint8_Std_ReturnType"> <i>typedef uint8 Std_ReturnType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Return Type.
+</p><p>This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+</p><p>The <i>Std_ReturnType</i> shall normally be used with value <i>E_OK</i> or <i>E_NOT_OK</i>.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+</p>
+<h4> <span class="mw-headline" id="struct_Std_VersionInfoType"> <i>struct Std_VersionInfoType</i> </span></h4>
+<pre> #include "Std_Types.h"
+</pre>
+<p>Standard Version Informations Type.
+</p><p>This type shall be used to request the version of a AUTOSAR-like module using the <i>&lt;Module Name&gt;_GetVersionInfo()</i> function.
+</p><p><b>Field Documentation:</b>
+</p>
+<pre> <i>uint16 Std_VersionInfoType::moduleID</i>
+</pre>
+<p>	Module Identifier. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_major_version</i>
+</pre>
+<p>	Software Version Major Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_minor_version</i>
+</pre>
+<p>	Software Version Minor Number. 
+</p>
+<pre> <i>uint8 Std_VersionInfoType::sw_patch_version</i>
+</pre>
+<p>	Software Version Patch Number. 
+</p>
+<pre> <i>uint16 Std_VersionInfoType::vendorID</i>
+</pre>
+<p>	Vendor Identifier.
+</p>
+<h3> <span class="mw-headline" id="Types_Defintions"> Types Defintions </span></h3>
+<h4> <span class="mw-headline" id="struct_Port_ConfigType"> <i>struct Port_ConfigType</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>PORT Driver Configuration Parameters.
+</p><p>The type <i>Port_ConfigType</i> is a type for the external data structure containing the initialization data for the PORT Driver. 
+</p><p><b>Note</b>: The user shall use the symbolic names defined in the configuration tool.
+</p><p><b>Note</b>: The configuration of each port pin is MCU specific. Therefore, it is not possible to include a complete list of different configurations in this specification.
+</p><p>A list of possible port configurations for the structure <i>Port_ConfigType</i> is given below:
+</p>
+<ul><li> Pin mode (e.g. DIO, ADC, SPI …) – this port pin configuration is mandatory unless the port pin is configured for DIO.
+</li><li> Pin direction (input, output) – this port pin configuration is mandatory when the port pin is to be used for DIO.
+</li><li> Pin level init value – this port pin configuration is mandatory when the port pin is used for DIO.
+</li><li> Pin direction changeable during runtime (STD_ON/STD_OFF) – this port pinconfiguration is MCU dependent.
+</li><li> Pin mode changeable during runtime (STD_ON/STD_OFF) – configuration is MCU dependent.
+</li></ul>
+<p>Optional parameters (if supported by hardware)
+</p>
+<ul><li> Slew rate control.
+</li><li> Activation of internal pull-ups.
+</li><li> Microcontroller specific port pin properties.
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Port_PinType"> <i>typedef uint Port_PinType</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Data type for the symbolic name of a port pin.
+</p><p>Shall cover all available port pins. The type should be chosen for the specific MCU platform (best performance).
+</p><p>The type <i>Port_PinType</i> shall be used for the symbolic name of a Port Pin.
+</p><p>The type <i>Port_PinType</i> shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i> based on the specific MCU platform.
+</p><p><b>Note</b>: The user shall use the symbolic names provided by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="enum_Port_PinDirectionType"> <i>enum Port_PinDirectionType</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Possible directions of a port pin.
+</p><p>The type <i>Port_PinDirectionType</i>  is a type for defining the direction of a Port Pin.
+</p><p>The type <i>Port_PinDirectionType</i> shall be of enumeration type having range as <i>PORT_PIN_IN</i> and <i>PORT_PIN_OUT</i> . 
+</p><p><b>Enumerator</b>: 
+</p>
+<ul><li> <i>PORT_PIN_IN</i>:  	Sets port pin as input. 
+</li><li> <i>PORT_PIN_OUT</i>:  	Sets port pin as output.
+</li></ul>
+<h4> <span class="mw-headline" id="typedef_uint_Port_PinModeType"> <i>typedef uint Port_PinModeType</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Different port pin modes.
+</p><p>A port pin shall be configurable with a number of port pin modes (type <i>Port_PinModeType</i>).
+</p><p>The type <i>Port_PinModeType</i> shall be used with the function call <i>Port_SetPinMode()</i>.
+</p><p>The type <i>Port_PinModeType</i> shall be <i>uint8</i>, <i>uint16</i> or <i>uint32</i>.
+</p>
+<h3> <span class="mw-headline" id="Functions_Definitions"> Functions Definitions </span></h3>
+<h4> <span class="mw-headline" id="void_Port_Init.28const_Port_ConfigType_.2AConfigPtr.29"> <i>void Port_Init(const Port_ConfigType *ConfigPtr)</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>PORT Driver Initialization.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>ConfigPtr</i>:	Pointer to configuration set 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Initializes the Port Driver module.
+</p><p>Service 0x00
+</p><p>The function <i>Port_Init()</i> shall initialize ALL ports and port pins with the configuration set pointed to by the parameter <i>ConfigPtr</i>.
+</p><p>The Port Driver module’s environment shall call the function <i>Port_Init()</i> first in order to initialize the port for use.
+</p><p>If <i>Port_Init()</i> function is not called first, then no operation can occur on the MCU ports and port pins.
+</p><p>The function <i>Port_Init()</i> shall initialize all configured resources.
+</p><p>The function <i>Port_Init()</i> shall avoid glitches and spikes on the affected port pins.
+</p><p>The Port Driver module’s environment shall call the function <i>Port_Init()</i> after a reset in order to reconfigure the ports and port pins of the MCU.
+</p><p>The function <i>Port_Init()</i> shall initialize all variables used by the PORT driver module to an initial state.
+</p><p>The function <i>Port_Init()</i> shall apply the following rules regarding initialisation of controller registers.
+</p>
+<ul><li> If the hardware allows for only one usage of the register, the driver module implementing that functionality is responsible for initializing the register.
+</li><li> If the register can affect several hardware modules and if it is an I/O register it shall be initialised by this PORT driver.
+</li><li> If the register can affect several hardware modules and if it is not an I/O register, it shall be initialised by the MCU driver.
+</li><li> One-time writable registers that require initialisation directly afterreset shall be initialised by the startup code.
+</li><li> All the other registers not mentioned before, shall be initialised by the start-up code.
+</li></ul>
+<p>The Port Driver module’s environment may also uses the function <i>Port_Init()</i> to initialize the driver software and reinitialize the ports and port pins to another configured state depending on the configuration set passed to this function.
+</p><p><b>Note</b>: In some cases, MCU port control hardware provides an output latch for setting the output level on a port pin that may be used as a DIO port pin.
+</p><p>The function <i>Port_Init()</i> shall set the port pin output latch to a default level (defined during configuration) before setting the port pin direction to output.
+</p><p><b>Example</b>:	On some MCU’s, after a power-on-reset, a DIO configurable port pin will	be configured as an input pin. If the required configuration of the port pin is an output pin, then the function <i>Port_Init()</i> shall ensure that the default level is set before switching the functionality of the port pin from input to output.
+</p><p>The Port Driver module’s environment shall not call the function <i>Port_Init()</i> during a running operation. This shall only apply if there is more than one caller of the PORT module.
+</p><p>Configuration of <i>Port_Init()</i>: All port pins and their functions, and alternate functions shall be configured by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="void_Port_SetPinDirection.28Port_PinType_Pin.2C_Port_PinDirectionType_Direction.29"> <i>void Port_SetPinDirection(Port_PinType Pin, Port_PinDirectionType Direction)</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Port Pin Direction Setting.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Pin</i>:		Port Pin ID number 
+</li><li> <i>Direction</i>:	Port Pin Direction 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Sets the port pin direction.
+</p><p>Service 0x01
+</p><p>The function <i>Port_SetPinDirection()</i> shall set the port pin direction during runtime.
+</p><p>The function <i>Port_SetPinDirection()</i> shall be re-entrant if accessing different pins independent of a port.
+</p><p>The function <i>Port_SetPinDirection()</i> shall only be available to the user if the configuration parameter <i>PortSetPinDirectionApi</i> is set to <i>TRUE</i>. If set to <i>FALSE</i>, the function <i>Port_SetPinDirection()</i> is not available.
+</p><p>Configuration of <i>Port_SetPinDirection()</i>: All ports and port pins shall beconfigured by the configuration tool.
+</p>
+<h4> <span class="mw-headline" id="void_Port_RefreshPortDirection.28void.29"> <i>void Port_RefreshPortDirection(void)</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Port Direction Refresh.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>None</i>. 
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service refreshes the ports direction.
+</p><p>Service 0x02
+</p><p>The function <i>Port_RefreshPortDirection()</i> shall refresh the direction of all configured ports to the configured direction (PortPinDirection).
+</p><p>The function <i>Port_RefreshPortDirection()</i> shall exclude those port pins from refreshing that are configured as ‘pin direction changeable during runtime‘.
+</p><p>The configuration tool shall provide names for each configured port pin.
+</p>
+<h4> <span class="mw-headline" id="void_Port_GetVersionInfo.28Std_VersionInfoType_.2AVersionInfoPtr.29"> <i>void Port_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>PORT Driver version informations retrieval.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>VersionInfoPtr</i>:	Pointer to where to store the version information of this module.
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>This service retrieves the PORT driver version informations.
+</p><p>Service 0x03
+</p><p>The function <i>Port_GetVersionInfo()</i> shall return the version information of the PORT module.
+</p><p>The version information includes:
+</p>
+<ul><li> Module Id
+</li><li> Vendor Id
+</li><li> Vendor specific version numbers
+</li></ul>
+<p>The function <i>Port_GetVersionInfo()</i> shall be configurable On/Off by the configuration parameter <i>PortVersionInfoApi</i>.
+</p><p>If source code for caller and callee of the function <i>Port_GetVersionInfo()</i> is available, the PORT module should realize this function as a macro. The PORT module should define this macro in the module’s header file.
+</p>
+<h4> <span class="mw-headline" id="void_Port_SetPinMode.28Port_PinType_Pin.2C_Port_PinModeType_Mode.29"> <i>void Port_SetPinMode(Port_PinType Pin, Port_PinModeType Mode)</i> </span></h4>
+<pre> #include "Port.h"
+</pre>
+<p>Port Pin Mode Setting.
+</p><p><b>Parameters</b>:
+</p>
+<ul><li> <i>Pin</i>:	Port Pin ID number 
+</li><li> <i>Mode</i>:	New Port Pin mode to be set on port pin
+</li></ul>
+<p><b>Returns</b>:
+</p>
+<ul><li> <i>None</i>.
+</li></ul>
+<p>Sets the port pin mode.
+</p><p>Service 0x04
+</p><p>The function <i>Port_SetPinMode()</i> shall set the port pin mode of the referenced pin during runtime.
+</p><p>The function <i>Port_SetPinMode()</i> shall be re-entrant if accessing different pins, independent of a port.
+</p><p>Configuration of <i>Port_SetPinMode()</i>: All ports and port pins shall be configured by the configuration tool.
+</p>
+<h2> <span class="mw-headline" id="Usage_Examples"> Usage Examples </span></h2>
+<h3> <span class="mw-headline" id="Overall_Configuration_of_Ports"> Overall Configuration of Ports </span></h3>
+<p><a href="/wiki/index.php?title=File:Port_Init_Seq_Dia.png" class="image"><img alt="Port Init Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/44/Port_Init_Seq_Dia.png" width="552" height="347" /></a>
+</p>
+<h3> <span class="mw-headline" id="Set_the_Direction_of_a_Port_Pin"> Set the Direction of a Port Pin </span></h3>
+<p><a href="/wiki/index.php?title=File:Port_SetPinDirection_Seq_dia.png" class="image"><img alt="Port SetPinDirection Seq dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/af/Port_SetPinDirection_Seq_dia.png" width="625" height="349" /></a>
+</p>
+<h3> <span class="mw-headline" id="Refresh_the_Direction_of_all_Port_Pins"> Refresh the Direction of all Port Pins </span></h3>
+<p><a href="/wiki/index.php?title=File:Port_RefreshPortDirection_Seq_Dia.png" class="image"><img alt="Port RefreshPortDirection Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/e/e7/Port_RefreshPortDirection_Seq_Dia.png" width="606" height="370" /></a>
+</p>
+<h3> <span class="mw-headline" id="Change_the_Mode_of_a_Port_Pin"> Change the Mode of a Port Pin </span></h3>
+<p><a href="/wiki/index.php?title=File:Port_SetPinMode_Seq_Dia.png" class="image"><img alt="Port SetPinMode Seq Dia.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/1/1a/Port_SetPinMode_Seq_Dia.png" width="587" height="464" /></a>
+</p>
+<h2> <span class="mw-headline" id="Build"> Build </span></h2>
+<p>To enable AUTOSAR-like PORT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> EE_OPT = "__AS_PORT_DRIVER__";
+</pre>
+<p>The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+</p>
+<pre> CFLAGS = "-I&lt;PATH&gt;";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C header file is stored.
+</p><p>Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+</p>
+<pre> APP_SRC = "&lt;PATH&gt;/Port_Cfg.c";
+</pre>
+<p>Where <code>&lt;PATH&gt;</code> is the absolute or relative directory path which configuration C source file is stored.
+</p>
+<h2> <span class="mw-headline" id="Supported_Architectures"> Supported Architectures </span></h2>
+<h3> <span class="mw-headline" id="TI_Stellaris_LM4F232XXXX_with_ARM_KEIL_uVision_Compiler_Toolchain"> TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain </span></h3>
+<h4> <span class="mw-headline" id="Driver_Configuration"> Driver Configuration </span></h4>
+<p>In order to configure the AUTOSAR-like PORT Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Port" tab-sheet on driver configuration instance file.
+</p><p><a href="/wiki/index.php?title=File:Erika_Driver_Configurator_PORT.png" class="image"><img alt="Erika Driver Configurator PORT.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/4/4b/Erika_Driver_Configurator_PORT.png" width="1280" height="984" /></a>
+</p>
+<h5> <span class="mw-headline" id="Configuration_Selection"> Configuration Selection </span></h5>
+<p>In this section you can add/edit/delete configurations in PORT Driver configuration set:
+</p>
+<ul><li> Each configuration SHALL have an <i>Identifier</i> which must be unique inside the configurations set.
+</li><li> Each configuration, inside the configurations set, has a set of Pin Modes and Port Pins.
+<ul><li> Each Pin mode SHALL have an <i>Identifier</i> which must be unique inside the Pin Modes.
+</li><li> Each Port Pin SHALL have a <i>Name</i> which must be unique inside the Port Pins.
+</li></ul>
+</li></ul>
+<h5> <span class="mw-headline" id="API_Selection"> API Selection </span></h5>
+<p>In this section you can select PORT Driver APIs and features will be included in build process:
+</p>
+<ul><li> <i>Enable error detection API</i>: Development Error Detection features
+</li><li> <i>Enable SetPinDirection</i>: <i>Port_SetPinDirection()</i> API
+</li><li> <i>Enable SetPinMode</i>: <i>Port_SetPinMode()</i> API
+</li><li> <i>Version Info</i>: <i>Port_GetVersionInfo()</i> API
+</li></ul>
+<p><a href="/wiki/index.php?title=File:Erika_Driver_Configurator_PORT_set.png" class="image"><img alt="Erika Driver Configurator PORT set.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/a/a7/Erika_Driver_Configurator_PORT_set.png" width="1280" height="984" /></a>
+</p>
+<h4> <span class="mw-headline" id="Implemetations_Demos"> Implemetations Demos </span></h4>
+<p>Implementation Demos of the AUTOSAR-like PORT Driver can be found at <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as" class="external text" rel="nofollow">examples/cortex_mx/lm4f232xxxx/as</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 114/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

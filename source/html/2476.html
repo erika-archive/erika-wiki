@@ -1,0 +1,543 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Multicore_Autosar_OS_Support"><span class="tocnumber">1</span> <span class="toctext">Multicore Autosar OS Support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Difference_between_the_traditional_RN_implementation_and_the_new_RPC_implementation"><span class="tocnumber">1.1</span> <span class="toctext">Difference between the traditional RN implementation and the new RPC implementation</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#How_to_select_the_traditional_RN_implementation_and_the_new_RPC_implementation"><span class="tocnumber">1.2</span> <span class="toctext">How to select the traditional RN implementation and the new RPC implementation</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#New_Multicore_API"><span class="tocnumber">1.3</span> <span class="toctext">New Multicore API</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#New_Spinlocks_API"><span class="tocnumber">1.4</span> <span class="toctext">New Spinlocks API</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Autosar_Schedule_Tables"><span class="tocnumber">2</span> <span class="toctext">Autosar Schedule Tables</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Schedule_Table_APIs"><span class="tocnumber">2.1</span> <span class="toctext">Schedule Table APIs</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Schedule_Table_OIL_Configuration"><span class="tocnumber">2.2</span> <span class="toctext">Schedule Table OIL Configuration</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Schedule_Table_Synchronization"><span class="tocnumber">2.3</span> <span class="toctext">Schedule Table Synchronization</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Autosar_OSApplication_and_Protection_Support"><span class="tocnumber">3</span> <span class="toctext">Autosar OSApplication and Protection Support</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#OS-Application_API_.26_OIL_Configuration"><span class="tocnumber">3.1</span> <span class="toctext">OS-Application API &amp; OIL Configuration</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Service_Protection"><span class="tocnumber">3.2</span> <span class="toctext">Service Protection</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Memory_Protection"><span class="tocnumber">3.3</span> <span class="toctext">Memory Protection</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#MemMap.h_header_file_Rationale_and_Use"><span class="tocnumber">3.3.1</span> <span class="toctext">MemMap.h header file Rationale and Use</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#TRSUTED_OS-Application_.26_Trusted_Services_.28TRUSTED_FUNCTION.29"><span class="tocnumber">3.3.2</span> <span class="toctext">TRSUTED OS-Application &amp; Trusted Services (TRUSTED_FUNCTION)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#Timing_Protection"><span class="tocnumber">3.4</span> <span class="toctext">Timing Protection</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Stack_Monitoring"><span class="tocnumber">3.5</span> <span class="toctext">Stack Monitoring</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Architetures_that_support_full_AUTOSAR_Features"><span class="tocnumber">4</span> <span class="toctext">Architetures that support full AUTOSAR Features</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Note_on_Autosar_Scalabilty_Classes"><span class="tocnumber">5</span> <span class="toctext">Note on Autosar Scalabilty Classes</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Multicore_Autosar_OS_Support"> Multicore Autosar OS Support </span></h1>
+<p>ERIKA support multicore environments a way before than the first Autosar Multicore OS Release. So it happened that the historical <a href="/wiki/index.php?title=ERIKA_multicore_support" title="ERIKA multicore support">ERIKA multicore support</a> addresses some of the same requiremets of AUTOSAR Multicore OS with a completely different policy.
+</p><p>In detail all the primitives calls on other core, with traditional implementation, called <b>Remote Notifications</b> or <b>RN</b>, are done <b>asynchronously</b> with a fire and forget policy. This approach reduce latency to minimun, but, on the other hand, don't give the opportunity to check for errors in the call site.
+</p><p>Autosar, that take into account a way more code consistency and reliability than efficiency, requires that all the primitives calls on others cores are <b>synchronous</b> giving the opportunity to caller code to correctly handle errors.
+</p><p>To implements Autosar OS requirements a completly new multicore dispatcher have been implemented. This have been called
+<b>ERIKA Autosar RPC</b> (Remote Procedure Call).
+</p>
+<h2> <span class="mw-headline" id="Difference_between_the_traditional_RN_implementation_and_the_new_RPC_implementation"> Difference between the traditional RN implementation and the new RPC implementation </span></h2>
+<p>The <b>RN</b> implementation is the original implementation done in 2002 of the MSRP protocol proposed in the paper
+</p>
+<pre>  Minimizing memory utilization of real-time task sets in single and multi-processor systems-on-a-chip
+  P Gai, G Lipari, M Di Natale
+  Real-Time Systems Symposium, 2001.(RTSS 2001). Proceedings. 22nd IEEE, 73-83
+</pre>
+<p>which included the following features:
+</p>
+<ul><li> ASYNCHRONOUS remote activation of tasks. Activations are queued for later processing. Spin lock time is minimized. Local primitives returns E_OK despite the result of the remote activation (errors must be caught using ErrorHook!)
+</li><li> Queuing spin lock implemented using the algorithm presented in
+</li></ul>
+<pre> G. Graunke and S. Thakkar, Synchronization algorithms for shared memory multiprocessors. IEEE Computer, 23(6):60-69, June 1990
+</pre>
+<ul><li> automatic detection from the OIL file whether resources are global or local. That is, GetResource and ReleaseResource where implementing an additional spin-lock when the resource was global. The idea was that the system allowed migration of tasks from one CPU to another without changing the OS code.
+</li></ul>
+<p>All those points have been partially dropped on some architectures due to some of the requirements of AUTOSAR. In particular, spin-locks have a separate API (so GetResource and ReleaseResource cannot call implicitly a spinlock), and queuing spin-lock is not in the standard and is also quite difficult to implement in an efficient way considering that in some situazion a task can be removed from spinning.
+</p><p>As for the first point, AUTOSAR mandates the fact that priomitives should return the status of the execution of the primitive, ALSO if the execution happens on the remote core. This implies that the remote activations must be SYNCHRONOUS. That is the reason why we created the <b>RPC</b> implementation, which has the following features:
+</p>
+<ul><li> SYNCHRONOUS remote activation of tasks
+</li><li> Normal (no protocol) spin-locks to comply with AUTOSAR
+</li><li> no detection of remote resources, which... does not exist in AUTOSAR
+</li></ul>
+<p>Final note on interprocessor interrupt priorities:
+</p>
+<ul><li> the interprocessor IRQ must be an ISR2
+</li><li> on RN, the interprocessor IRQ can be the LOWEST priority interrupt, as the requests are queued and since the spin lock time is independent of the priority of the IRQ.
+</li><li> on RPC, the spin-lock time highly depends on the interprocessor IRQ RESPONSE TIME, which is affected by its priority. Therefore, the interprocessor Interrupt should have a HIGH priority, and this means that mopre and more IRQs must become ISR2 (remember ISR1 must have highet priority than ISR2), making the implementation more and more inefficient.
+</li></ul>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="How_to_select_the_traditional_RN_implementation_and_the_new_RPC_implementation"> How to select the traditional RN implementation and the new RPC implementation </span></h2>
+<p>Both traditional and the new dispatcher are available for Infineon AURIX and Freescale PowerPC (MPC5777C). You can switch between them in OIL with the REMOTENOTIFICATION oil field.
+</p>
+<pre> REMOTENOTIFICATION = USE_RN;
+</pre>
+<p>Enable traditional <b>Remote Notification</b> dispatcher. It's the default value, so you don't need to write this.
+</p>
+<pre> REMOTENOTIFICATION = USE_RPC;
+</pre>
+<p>Enable the new <b>AUTOSAR Remote Procedure Call</b> dispatcher.
+</p><p>Currently with the new RPC dispatcher you can execute on remote cores all the following primitives:
+</p>
+<ul><li> ActivateTask
+</li><li> ChainTask (Terminate local TASK but can schedule on remote core)
+</li><li> GetTaskState
+</li><li> SetEvent
+</li><li> GetAlarmBase
+</li><li> GetAlarm
+</li><li> SetRelAlarm
+</li><li> SetAbsAlarm
+</li><li> CancelAlarm
+</li><li> GetCounterValue
+</li><li> GetElapsedValue
+</li><li> ShutdownOS ( with new ShutdownAllCores API )
+</li></ul>
+<p>So in addition to TASK and EVENT primitives, the new muticore dispatcher support Counters and Alarms as required by Autosar specifications. Multicore awareness have been added to ShutdownOS to fulfill multicore AUTOSAR shutdown sequence.  
+</p>
+<h2> <span class="mw-headline" id="New_Multicore_API"> New Multicore API </span></h2>
+<p>AUTOSAR expect a master/slaves multicore enviroment that naturally fit AURIX architecture.
+New API to start and stops slave cores specified in AUTOSAR v4.0 rev 3.0 have been added:
+</p>
+<ul><li><b>StartCore</b>: This function starts the core specified by the parameter CoreID. The OUT parameter allows the caller to check whether the operation was successful or not. If a core is started by means of this function <b>StartOS</b> shall be called on the core. It is not supported to call this function after <b>StartOS()</b>.
+</li><li><b>StartNonAutosarCore</b>: The function starts the core specified by the parameter CoreID. It <b>is allowed</b> to call this function after <b>StartOS()</b>. The OUT parameter allows the caller to check whether the operation was successful or not. It is <b>not allowed to call StartOS</b> on cores activated by <b>StartNonAutosarCore</b>.
+</li><li><b>GetNumberOfActivatedCores</b>: returns the number of cores activated by the StartCore function. This function might be a macro
+</li><li><b>GetCoreID</b>: The function returns a unique core identifier.
+</li><li><b>ShutdownAllCores</b>&nbsp;: After this service the OS on all AUTOSAR cores is shut down. Allowed at TASK level and ISR level and also internally by the OS. The function will never return. The function will force other cores into a shutdown.
+</li></ul>
+<h2> <span class="mw-headline" id="New_Spinlocks_API"> New Spinlocks API </span></h2>
+<p>Support for AUTOSAR Spinlock API have been added. OIL implementation have been extended to support Spinlocks configuration.
+</p><p>There's two spinlocks behaviour modes: <b>SINGLE</b> and <b>ORDERED</b>. If <b>SINGLE</b> mode is configured a core get an error if, holding a spinlock, try to get access to another one. If <b>ORDERED</b> mode is configurated the core get this error only if it try to get spinlocks out of the order (see AUTOSAR documentation paragraph 7.9.29 The spinlock mechanism).
+</p><p>To configure spinlocks in <b>SINGLE</b> mode, just don't provide any order:
+</p>
+<pre> SPINLOCK spinlock_1 {  };
+ SPINLOCK spinlock_2 {  };
+ SPINLOCK spinlock_3 {  };
+</pre>
+<p>To configure spinlocks in <b>ORDERED</b> mode provide a <b>complete ordering</b>:
+</p>
+<pre> SPINLOCK spinlock_1 { NEXT_SPINLOCK=spinlock_2; };
+ SPINLOCK spinlock_2 { NEXT_SPINLOCK=spinlock_3; };
+ SPINLOCK spinlock_3 {  };
+</pre>
+<p><br />
+Provided AUTOSAR API to interact with Spinlocks are:
+</p>
+<ul><li><b>GetSpinlock </b>: Tries to occupy a spin-lock variable. If the function returns, either the lock is successfully taken or an error has occurred. The spinlock mechanism is an active polling mechanism. The function does not cause a de-scheduling.
+</li><li><b>ReleaseSpinlock</b>: Releases a spinlock variable that was occupied before. Before terminating a TASK all spinlock variables that have been occupied with GetSpinlock() shall be released. Before calling WaitEVENT all Spinlocks shall be released.
+</li><li><b>TryToGetSpinlock</b>: Has the same functionality as GetSpinlock with the difference that if the spinlock is already occupied by a TASK on a different core the function sets the OUT parameter to TRYTOGETSPINLOCK_NOSUCCESS and returns with E_OK.
+</li></ul>
+<p>Two spinlocks implementation are provided. The <b>trivial</b> one that does not guarentee upper bond wait, but that can implement the try-to-get behaviour. And the <b>queued</b> one that prevent from starvation queuing requests, but cannot implement try-to-get behaviour (TryToGetSpinlock API is mapped into GetSpinlock).
+</p><p>To enable <b>queued spinlocks</b> just add to the OIL:
+</p>
+<pre> SPINLOCKS = QUEUED;
+</pre>
+<p>IMPORTANT: QUEUED spinlocks are not available for Erika on PowerPC.
+</p>
+<h1> <span class="mw-headline" id="Autosar_Schedule_Tables"> Autosar Schedule Tables </span></h1>
+<p>Autosar Specification add to OSEK Alarms, another activities schedulator called Schedule Tables.
+It is possible to implement a statically defined activities schedulator, that activate TASKs and set EVENTs, using an
+OSEK counter and a series of auto started alarms. In the simple case, this can be achieved by specifying that the alarms are not modified once started. Run-time modifications can only be made if relative synchronization between alarms can be
+guaranteed.This typically means modifying the alarms while associated counter tick interrupts are disabled.
+Schedule Tables address the synchronization issue by providing an encapsulation of a statically defined set of expiry points. Each expiry point defines:
+</p>
+<ul><li> One or more actions that must occur when it is processed where an action is the activation of a task or the setting of an event.
+</li><li> An offset in ticks from the start of the schedule table.
+</li></ul>
+<p>Each schedule table has a duration in ticks. The duration is measured from zero and
+defines the modulus of the schedule table.
+</p><p>At runtime, the Operating System module will iterate over the schedule table, processing each expiry point in turn. The iteration is driven by an OSEK counter. It therefore follows that the properties of the counter have an impact on what is possible to configure on the schedule table.
+</p>
+<h2> <span class="mw-headline" id="Schedule_Table_APIs"> Schedule Table APIs </span></h2>
+<p>All the Schedule Table API not related to the schedule table syncronization are implemented (see <a href="/wiki/index.php?title=Erika_AUTOSAR_OS#Schedule_Table_Synchronization" title="Erika AUTOSAR OS">Schedule Table Synchronization</a>).
+</p>
+<ul><li> <b>StartScheduleTableRel( ScheduleTableType ScheduleTableID, TickType Offset )</b>: This service starts the processing of a schedule table at "Offset" relative to the "Now" value on the underlying counter.
+</li></ul>
+<ul><li> <b>StartScheduleTableAbs( ScheduleTableType ScheduleTableID, TickType Start )</b>: This service starts the processing of a schedule table at an absolute value "Start" on the underlying counter.
+</li></ul>
+<ul><li> <b>StopScheduleTable( ScheduleTableType ScheduleTableID )</b>: This service cancels the processing of a schedule table immediately at any point while the schedule table is running.
+</li></ul>
+<ul><li> <b>GetScheduleTableStatus( ScheduleTableType ScheduleTableID, ScheduleTableStatusRefType ScheduleStatus )</b>: This service queries the state of a schedule table (also with respect to synchronization).
+</li></ul>
+<ul><li> <b>NextScheduleTable(ScheduleTableType ScheduleTableID_From, ScheduleTableType ScheduleTableID_To)</b>: This service switches the processing from one schedule table to another schedule table.
+</li></ul>
+<p><b>N.B.</b> The best place to start to understand how schedule tables API works is:
+<i>tricore/infineon_TriBoard-TC2X5_V2.0/Schedule Tables/Schedule Table example</i>
+</p>
+<h2> <span class="mw-headline" id="Schedule_Table_OIL_Configuration"> Schedule Table OIL Configuration </span></h2>
+<p>This is an OIL example to how configure a Schedule Table with OIL
+</p>
+<pre> SCHEDULETABLE SchedTab1 {
+   COUNTER = system_timer;
+   DURATION = 400;
+   REPEATING = FALSE;
+   AUTOSTART = TRUE {
+     TYPE = ABSOLUTE;
+     START_VALUE = 0;
+   };
+   EXPIRE_POINT = ACTION {
+     EXPIRE_VALUE = 100;
+     ACTION = ACTIVATETASK { TASK = Task2; };
+     ACTION = SETEVENT { TASK = Task1; EVENT = ButtonEvent; };
+     SYNC_ADJUSTMENT = FALSE;
+   };
+   EXPIRE_POINT = ACTION {
+     EXPIRE_VALUE = 300;
+     ACTION = SETEVENT { TASK = Task1; EVENT = TimerEvent; };
+     SYNC_ADJUSTMENT = FALSE;
+   };
+   LOCAL_TO_GLOBAL_TIME_SYNCHRONIZATION = FALSE;
+ };
+</pre>
+<p>Following the SCHEDULETABLE field explaination
+</p>
+<ul><li> <b>COUNTER</b>: The Schedule Table <b>driving counter</b>
+</li><li> <b>DURATION</b>: The Schedule Table duration (in counter ticks), MUST be greater or equal to the last EXPIRE_POINT.EXPIRE_VALUE
+</li><li> <b>REPEATING</b>: Flag if the Schedule Table is one shot or have to be restarted when it terminated (after DURATION ticks).
+</li><li> <b>AUTOSTART</b>: Flag if the Schedule Table have to be started automatically during <i>StartOs</i>, in which way <b>TYPE</b>: (ABSOLUTE, RELATIVE) and with wich Start Value of the counter (or Offset if the TYPE is RELATIVE). In ERIKA where, all the counters are software the two autostartig type generate the same result. 
+</li><li> <b>EXPIRE_POINT</b>: <b>List of EXPIRY_POINT</b> that represent the Schedule Table, any of which is composed by an <b>EXPIRE_VALUE</b> in ticks (when the expiry points happens) a <b>list of ACTIONS</b> (<i>equals to ALARMs Actions</i>) and by a flag that enable synchronization not yet supported (SYNC_ADJUSTMENT. Only FALSE value is supported, that is the default so the field can be omitted).
+</li></ul>
+<p><b>LOCAL_TO_GLOBAL_TIME_SYNCHRONIZATION</b>: Flag that enable External Syncronization, not supported yet. (Only FALSE value is supported, that is the default so the field can be omitted).
+</p><p><b>N.B.</b> The best place to start to understand how schedule tables OIL configuration works is:
+<i>tricore/infineon_TriBoard-TC2X5_V2.0/Schedule Tables/Schedule Table example</i>
+</p>
+<h2> <span class="mw-headline" id="Schedule_Table_Synchronization"> Schedule Table Synchronization </span></h2>
+<p>The absolute time at which the Initial Expiry Point on a schedule table is processed is under user control. However, if the schedule table repeats then it is not guaranteed that the absolute count value at which the initial expiry point was first processed is the same count value at which it is subsequently processed. This is because the duration of the schedule table need not be equal to the counter modulus.
+In many cases it may be important that schedule table expiry points are processed at specific absolute values of the underlying counter. This is called synchronization. Typical use-cases include:
+</p>
+<ul><li> Synchronization of expiry points to degrees of angular rotation for motor management
+</li><li> Synchronizing the computation to a global (network) time base.
+</li></ul>
+<p>Note that in AUTOSAR, the Operating System does not provide a global (network) time source because
+</p>
+<ul><li> 1. A global time may not be needed in many cases
+</li><li> 2. Other AUTOSAR modules, most notably FlexRay, provide this independently to the Operating System
+</li><li> 3. If the Operating System is required to synchronize to multiple global (network) time sources (for example when building a gateway between two time-triggered networks) the Operating System cannot be the source of a unique global time. AUTOSAR OS provides support for synchronization in two ways:
+</li></ul>
+<ul><li> 1. Implicit Synchronization – The counter driving the schedule table is the counter with which synchronization is required. This is typically how synchronization with time-triggered networking technologies (e.g. FlexRay, TTP) is achieved – the underlying hardware manages network time synchronization and simply presents time as an output/compare timer interface to the Operating System.
+</li><li> 2. Explicit Synchronization – The schedule table is driven by an Operating System counter which is not the counter with which synchronization is required. The Operating System provides additional functionality to keep schedule table processing driven by the Operating System counter synchronized with the synchronization counter. This is typically how synchronization with periodically broadcast global times works.
+</li></ul>
+<p><b>N.B.</b> Explicity synchronization is not fully supported yet. (<b>SyncScheduleTable</b> have been implemented but not yet tested. <b>StartScheduleTableSynchron</b> and <b>SetScheduleTableAsync</b> are not implemented at all).
+</p>
+<h1> <span class="mw-headline" id="Autosar_OSApplication_and_Protection_Support"> Autosar OSApplication and Protection Support </span></h1>
+<p>AUTOSAR specifications introduce OS-Applications as entities containers (TASKs, ISR2s, COUNTERs, ALARMS, Schedule Tables), that could resemble to processes (without memory virtualization).
+</p><p>The Operating System module is responsible for scheduling the available processing resource between the OS-Applications that share the processor. If OS-Application(s) are used, all TASKs, ISRs, COUNTERs, ALARMs and Schedule tables must belong to an OS-Application. All objects which belong to the same OS-Application have access to each other. The right to access objects from other OS-Applications may be granted during configuration. An event is accessible if the TASK for which the EVENT can be set is accessible. Access means that these Operating System objects are allowed as parameters to API services.
+</p><p>The above are the foundamentals of <a href="/wiki/index.php?title=Erika_AUTOSAR_OS#Service_Protection" title="Erika AUTOSAR OS"> Service Protection</a>.
+</p><p>There are two classes of OS-Application:
+</p>
+<ul><li> 1 <b>Trusted OS-Applications</b>: Are allowed to run with monitoring or protection features disabled at runtime. They may have unrestricted access to memory, the Operating System module’s API, and NEED NOT have their timing behaviour enforced at runtime. They are allowed to run in privileged mode when supported by the processor.
+</li></ul>
+<ul><li> 2 <b>Non-Trusted OS-Applications</b>: Are not allowed to run with monitoring or protection features disabled at runtime. They have restricted access to memory, restricted access to the Operating System module’s API and have their timing behaviour enforced at runtime. They are not allowed to run in privileged mode when supported by the processor.
+</li></ul>
+<p>Operating System module itself is a TRUSTED OS-Application.
+</p><p>The running OS-Application is defined as the OS-Application to which the currently running Task or ISR belongs. In case of a hook routine the Task or ISR which caused the call of the hook routine defines the running OS-Application.
+</p><p>There are services offered by the AUTOSAR OS which give the caller information about the access rights and the membership of objects and memory variables. These services are intended to be used in case of an inter-OS-Application call for checking access rights and arguments.
+</p><p>OS-Applications have a state which defines the scope of accessability of its Operating System objects from other OS-Applications. Each OS-Application is always in one of the following states:
+</p>
+<ul><li> <b>Active and accessible</b> (APPLICATION_ACCESSIBLE): Operating System objects may be accessed from other OS-Applications. This is the default state at startup.
+</li><li> <b>Currently in restart phase</b> (APPLICATION_RESTART): Operating System objects can not be accessed from other OS-Applications. State is valid until the OSApplication calls AllowAccess().
+</li><li> <b>Terminated and not accessible</b> (APPLICATION_TERMINATED): Operating System objects can not be accessed from other OS-Applications. State will not change.
+</li></ul>
+<p>Protection is only possible for Operating System managed objects. This means that:
+</p>
+<ul><li> It is not possible to provide protection during runtime of Category 1 ISRs, because the operating system is not aware of any Category 1 ISRs being invoked. Therefore, if any protection is required, Category 1 ISRs have to be avoided. If Category 1 interrupts AND OS-Applications are used together then all Category 1 ISR must belong to a trusted OS-Application.
+</li><li> It is not possible to provide protection between functions called from the body of the same Task/Category 2 ISR.
+</li></ul>
+<p>Autosar specify four protection features:
+</p>
+<ul><li> <b>Service Protection</b>: Protect the Object Access (TASK, ALARMs, Schedule Table, Resources) between OS-Application, if the permission is not explicitly granted.
+</li><li> <b>Memory Protection</b>: Protect <b>Global Data</b> and <b>Stacks</b> of an OS-Application from possible corruption by Non-Trusted OS-Application.
+</li><li> <b>Stack Monitoring</b>: On processors that do not provide any memory protection hardware it may still be necessary to provide a “best effort with available resources” scheme for detectable classes of memory faults. Stack monitoring will identify where a task or ISR has exceeded a specified stack usage at context switch time.
+</li><li> <b>Timing Protection</b>: A timing fault in a real-time system occurs when a task or interrupt misses its deadline at runtime. Autosar OS supply a mechanism based on budget that let the software understand which TASK or ISR2 is causing a deadline missing
+</li></ul>
+<h2> <span class="mw-headline" id="OS-Application_API_.26_OIL_Configuration"> OS-Application API &amp; OIL Configuration </span></h2>
+<p>The OS-Applications life-cycle is controlled by two APIs <b>TerminateApplication</b> and <b>AllowAccess</b>. TerminateApplication <b>stops</b> OS-Applications' <b>active and ready</b> instances of <b>TASKs and ISR2s</b> and won't schedule them more as long as the application is possibly restarted, plus make all the its objects inaccessible, this means, for example, that won't be possible to read a counter or set an alarm of the given OS-Application.
+</p><p>This is useful to stop a faulty portion of the firmware (this usually can happens automatically when ProtectionHook is configured) or to change the configuration of the application it self in case of, for example, power saving mode.
+</p><p>When <b>TerminateApplication</b> is called with <b>RESTART</b> as restart option just one istance of a pre-configured terminated OS-Application's TASK is activated and schedulated. This and only this TASK can put OS-Application's data in a consitent configuration and then call <b>AllowAccess</b> API to actually Restart the OS-Application.
+</p><p>Following the list of the API that directly interact with OS-Application.
+</p>
+<ul><li><b>TerminateApplication</b>( ApplicationType Application, RestartType RestartOption ): Restart OS-Application "Application", if RestartOption is equal to RESTART, or completly terminate it, if RestartOption is equal to NO_RESTART. Restart an OS-Application is a termination with the automatic schedulation of OIL APPLICATION.RESTARTTASK that can reset OS-Application to a consistent status and call AllowAccess to actually restart the application. So only OS-Application that have OIL APPLICATION.RESTARTTASK field configurated can be effectively restarted.
+</li><li><b>AllowAccess</b>( void ): Can be called only by an OS-Application Restarting TASK and only when the OS-Application is effectively restarting, to reset OS-Application status to accessibile.
+</li></ul>
+<p>The <b>OIL configuartion container</b>:
+</p><p><b>N.B.</b> Remember that if OS-Application are used EVERY SINGLE OBJECT have to belong to an OS-Application, but RESOURCEs, EVENTs and those that impicitly belong to OS, like SYSTEM_TIMER COUNTER.
+</p>
+<pre> APPLICATION App1 {
+   TRUSTED = FALSE;
+   TASK    = App1Task1;
+   TASK    = App1Task2;
+   TASK    = App1Task3;
+   COUNTER = App1Counter1;
+   COUNTER = App1Counter2;
+   ALARM   = App1Alarm1;
+   ALARM   = App1Alarm2;
+   SCHEDULETABLE = App1ScheduleTable;
+   SCHEDULETABLE = App1ScheduleTable;
+   //MEMORY_SIZE = 0x1000;
+   SHARED_STACK_SIZE = 256;
+   IRQ_STACK_SIZE = 256;
+   RESTARTTASK = App1Task3;
+ };
+</pre>
+<ul><li><b>TRUSTED</b>: Flag if the OS-Application is Trusted or not. BE AWARE TO REDUCE TO MINIMUM THE USE OF TRUSTED OS-APPLICATIONS, BECAUSE THEY BYPASS MEMORY PROTECTION (if enabled).
+</li><li><b>TASK</b>: <b>List</b> of all the TASKs that belong to the OS-Application.
+</li><li><b>COUNTER</b>: <b>List</b> of all the COUNTERs that belong to the OS-Application.
+</li><li><b>ALARM</b>: <b>List</b> of all the COUNTERs that belong to the OS-Application.
+</li><li><b>SCHEDULETABLE</b>: <b>List</b> of all the SCHEDULETABLEs that belong to the OS-Application.
+</li><li><b>MEMORY_SIZE</b>: This Parameter is an ERIKA's extension to AUTOSAR. When this parameter is set enable an ASSERTION test in ELF linkin tha assure that the RAM used by the application (DATA + STACKs) is less or equal of MEMORY_SIZE.
+</li><li><b>SHARED_STACK_SIZE</b>: Stack's size for all the OS-Application's TASKs configured to share the stack (Container TASK field STACK = SHARED).
+</li><li><b>IRQ_STACK_SIZE</b>: Stack's size for all the OS-Application's ISR2s.
+</li></ul>
+<h2> <span class="mw-headline" id="Service_Protection"> Service Protection </span></h2>
+<p>As OS-Applications can interact with the Operating System module through services, it is essential that the service calls will not corrupt the Operating System module itself. <b>Service Protection guards against such corruption at runtime</b>.
+</p><p>There are a number of cases to consider with <b>Service Protection:</b>
+</p><p><b>An OS-Application makes an API call</b>
+</p>
+<ul><li><b>(1) with an invalid handle or out of range value.</b>
+</li><li><b>(2) in the wrong context, e.g. calling ActivateTask() in the StartupHook().</b>
+</li><li><b>(3) or fails to make an API call that results in the OSEK OS being left in an undefined state, e.g. it terminates without a ReleaseResource() call</b>
+</li><li><b>(4) that impacts on the behaviour of every other OS-Application in the system, e.g. ShutdownOS()</b>
+</li><li><b>(5) to manipulate Operating System objects that belong to another OS-Application (to which it does not have the necessary permissions), e.g. an OS-Application tries to execute ActivateTask() on a task it does not own.</b>
+</li></ul>
+<p>The OSEK OS already provides some service protection through the status codes returned from service calls and this will provide the basis for service protection. This means that service protection will only apply for the extended status of OSEK OS.
+However, OSEK OS does not cover all the cases outlined above.
+</p><p>The <b>Service Protection</b> sit on top of OS-Application configuration. So Service Protection <b>CANNOT BE ENABLED WITHOUT PROVIDING A FULL OS-Applications CONFIGUARTION</b>
+</p><p>To enable Service Protection the following OIL field can be specified:
+</p>
+<pre> SERVICE_PROTECTION = TRUE;
+</pre>
+<p>With this flag enabled and without accessing rules specified, TASK and ISR2 can access only the objects that belong to its own OS-Application. 
+</p><p>If accessing rules for OBJECTS are explicitly provided (see below) the Service Protection OIL flag is optional.
+</p><p><b>N.B.: Enabling Service protection (explicitly, with OIL SERVICE_PROTECTION flag, or implicitly, providing Objects accessing rules) with OSEK STATUS configured as standard (STATUS=STANDARD) is considered an incongruent configuration according AUTOSAR specification and should be avoided (RT-Druid will complain with a warning).</b>
+</p><p>To explicitly provide access privileges to objects to other OS-Application, accessing fields have to be added to specified objects:
+</p>
+<pre> TASK Task1 {
+   ....
+   ACCESSING_APPLICATION = App2;
+ };
+ 
+ COUNTER Counter2 {
+   ...
+   ACCESSING_APPLICATION = App1;
+   ACCESSING_APPLICATION = App3;
+ };
+ 
+ ALARM Alarm2 {
+   COUNTER = Counter2;
+   ...
+   ACCESSING_APPLICATION = App1;
+   ACCESSING_APPLICATION = App3;
+   ACCESSING_APPLICATION = App4;
+ };
+ 
+ SCHEDULETABLE ScheduleTable2 {
+   COUNTER = CounterSlave2;
+   ... 
+   ACCESSING_APPLICATION = App1;
+   ACCESSING_APPLICATION = App4;
+ };
+</pre>
+<h2> <span class="mw-headline" id="Memory_Protection"> Memory Protection </span></h2>
+<p>Memory protection will only be possible on processors that provide hardware support for memory protection.
+AUTOSAR memory protection scheme is based on the (data, code and stack) sections of the executable program. ERIKA's implementation take AUTOSAR requirements in the following way:
+</p>
+<ul><li><b>Stack:</b> To keep context change still efficient and let the ERIKA's Stack sharing optimizzation still usable. All the stack space is accessible by all the OS-Application's TASK and ISR2 (In particualr ISR2s supports only stack sharing policy, so it's not possible specify a private stack for a ISR2).
+</li><li><b>Data:</b> There is no TASK's or ISR2's private global data space, only OS-Application's globa ldata space is implemented.
+</li><li><b>Code:</b> All the code is Shared. Data protection protect from data structures corruption.
+</li></ul>
+<p>The <b>Memory Protection</b> sit on top of OS-Application configuration. So Memory Protection <b>CANNOT BE ENABLED WITHOUT PROVIDING A FULL OS-Applications CONFIGURATION</b>
+</p><p>To enable Memory Protectionion the following OIL field can be specified:
+</p>
+<pre> MEMORY_PROTECTION = TRUE;
+</pre>
+<p><b>TASKs and and ISR2s of a NON-TRUSTED OS-Application can only access global data that belong to OS-Application global data space.</b>
+</p><p>To locate a variable in the right section, MemMap.h header file feature should be used.
+</p>
+<h3> <span class="mw-headline" id="MemMap.h_header_file_Rationale_and_Use"> MemMap.h header file Rationale and Use </span></h3>
+<p><b>MemMap.h</b> file is the standar AUTOSAR tool to be used to handle the problem to locate data e code of an application in a compiler agnostic way. ERIKA's build chain, Starting from OIL OS-Application's configuration, will generate a <b>MemMap.h</b> that contains.
+</p><p>For each OS-Application are reserved three sections:
+</p>
+<ul><li><b>ee_${APP_NAME}_bss</b>: To locate OS-Application's uninitialized variables.
+</li><li><b>ee_${APP_NAME}_data</b>: To locate OS-Application's initialized variables.
+</li><li><b>ee_${APP_NAME}_text</b>: To locate OS-Application's code (it is a predisposition to Code protection, not effectively used yet).
+</li></ul>
+<p>With parameter substitution of ${APP_NAME} with the real OIL OSAPPLICATION Field Name.
+</p><p>The sum of <b>ee_${APP_NAME}_bss</b> and <b>ee_${APP_NAME}_data</b> section will compose the <b>OS-Application private data space</b>.
+</p><p>To add some variables or code to a OS-Application you have to use the following <i>commands</i> Macro defined right before 
+the MemMap inclusion:
+</p>
+<ul><li><b>APP_${APP_NAME}_START_SEC_VAR_NOINIT/APP_${APP_NAME}_STOP_SEC_VAR_NOINIT</b>
+</li><li><b>APP_${APP_NAME}_START_SEC_DATA/APP_${APP_NAME}_STOP_SEC_DATA</b>
+</li><li><b>APP_${APP_NAME}_START_SEC_CODE/APP_${APP_NAME}_STOP_SEC_CODE</b>
+</li></ul>
+<p>As the following example:
+</p>
+<pre> <b>#define APP_App1_START_SEC_VAR_NOINIT</b>
+ <b>#include "MemMap.h"</b>
+ 
+ EE_UREG app1_noinit1;
+ EE_UREG app1_noinit2;
+ 
+ <b>#define APP_App1_STOP_SEC_VAR_NOINIT</b>
+ <b>#include "MemMap.h"</b>
+</pre>
+<pre> <b>#define APP_App1_START_SEC_VAR_DATA</b>
+ <b>#include "MemMap.h"</b>
+ 
+ EE_UREG app1_data1 = 1U;
+ EE_UREG app1_data2 = 2U;
+ 
+ <b>#define APP_App1_STOP_SEC_VAR_DATA</b>
+ <b>#include "MemMap.h"</b>
+</pre>
+<p>For Communication between OS-Application AUTOSAR introduce <b>IOC</b> (Inter OS-Applications Communication) <b>Mechanism</b>. An experimental support of <b>IOC</b> is provided by ERIKA, but RT-Druid cannot yet configure it, and since the IOC configuration is hard to be done correctly by hand, some special sections are providded that are accessible by ALL OS-Application by default. (It's suggested to reduce at the minimun the data shared between OS-Applications, to not frustrate Memory Protection). These sections are usable with the following MemMap.h <i>commands</i> Macros:
+</p>
+<ul><li><b>API_START_SEC_VAR_NOINIT/API_STOP_SEC_VAR_NOINIT</b>
+</li><li><b>API_START_SEC_DATA/API_STOP_SEC_DATA</b>
+</li></ul>
+<h3> <span class="mw-headline" id="TRSUTED_OS-Application_.26_Trusted_Services_.28TRUSTED_FUNCTION.29"> TRSUTED OS-Application &amp; Trusted Services (TRUSTED_FUNCTION) </span></h3>
+<p>An OS-Appilcation, to bypass it's own bounduaries in a "controlled" way, can invoke a Trusted Function provided by (another) trusted OS-Application. That can require a switch from non-privileged to privileged mode. This is typically achieved by these operations:
+</p>
+<ul><li> (1) Each trusted OS-Application may export services which are callable from other OS-Applications.
+</li><li> (2) During configuration these trusted services must be configured to be called from a non-trusted OS-Application.
+</li><li> (3) The call from the non-trusted OS-Application to the trusted service is using a mechanism (e.g. trap/software interrupt) provided by the Operating System. The service is passed as an identifier that is used to determine, in the trusted environment, if the service can be called.
+</li><li> (4) The Operating System offers services to check if a memory region is write/read/execute accessible from an OS-Application. It also returns information if the memory region is part of the stack space.
+</li></ul>
+<p>This is an example of TRUSTED function interface and OIL Configuration.
+</p><p><b>N.B.</b> If a <b>"Service Interface"</b> will be provided (a <b>Service Interface</b> is a function that wrap the ERIKA's <b>CallTrustedFunction</b> OS API  call), as AUTOSAR coding style dictate; this <b>must be added to the API code section</b> with the use of <b>MemMap.h and the <i>commands</i> API_START_SEC_CODE/API_STOP_SEC_CODE</b>. (The use of the Code API Section it's not optinal because, even though Code protection is not implemented yet, inside the ERIKA's syscall handler, the call site address is checked, against Kernel and API boundaries, before to accept the call).
+</p><p>TRUSTED Service Declaration Header File
+</p>
+<pre> #define APP_App2Trusted_START_SEC_CODE
+ #include "MemMap.h"
+ <b>/* TRUSTED Service */</b>
+ <b>StatusType TRUSTED_TrustedService1 (TrustedFunctionIndexType index, TrustedFunctionParameterRefType ref);</b>
+ #define  APP_App2Trusted_STOP_SEC_CODE
+ #include "MemMap.h"
+ 
+ #define API_START_SEC_CODE
+ #include "MemMap.h"
+ <b>/* User inteface */</b>
+ <b>StatusType CallTrustedService1 ( void );</b>
+ #define API_STOP_SEC_CODE
+ #include "MemMap.h"
+</pre>
+<p>TRUSTED Service Definition File
+</p>
+<pre> <b>/* User inteface */ </b>
+ StatusType CallTrustedService1 ( void )
+ {
+   <b>/* User inteface Implementation */</b>
+   <b>return CallTrustedFunction(EE_ID_TRUSTED_TrustedService1, NULL);</b>
+ }
+ 
+ <b>/* TRUSTED Service Implementation */</b>
+ StatusType TRUSTED_TrustedService1 (TrustedFunctionIndexType index,
+   TrustedFunctionParameterRefType ref)
+ {
+   <b>/* TRUSTED Service Implementation */</b>
+ }
+</pre>
+<p>The OIL to configure a TRUSTED services for an Trusted OS-Application
+</p>
+<pre> APPLICATION App2Trusted {
+   TRUSTED = TRUE { <b>/* &lt;-- OS-Application have to be TRUSTED to have a TRUSTED_FUNCTION</b> */
+     <b>TRUSTED_FUNCTION = TRUE {</b>
+       <b>NAME = "TrustedService1";</b>
+     <b>};</b>
+     TRUSTED_FUNCTION = TRUE {
+       NAME = "TrustedService2";
+     };
+     ...
+   };
+</pre>
+<h2> <span class="mw-headline" id="Timing_Protection"> Timing Protection </span></h2>
+<p>A timing fault in a real-time system occurs when a task or interrupt misses its deadline at runtime.
+AUTOSAR OS does not offer deadline monitoring for timing protection. Deadline monitoring is insufficient to correctly identify the Task/ISR causing a timing fault in an AUTOSAR system. When a deadline is violated this may be due to a timing fault introduced by an unrelated Task/ISR that interferes/blocks for too long. The fault in this case lies with the unrelated Task/ISR and this will propagate through the system until a Task/ISR misses its deadline. The Task/ISR that misses a deadline is therefore not necessarily the Task/ISR that has failed at runtime, it is simply the earliest point that a timing fault is detected.
+</p><p>AUTOSAR use a budget mechanism to locate the violating entity. The following budgets can be configured:
+</p>
+<ul><li> <b>Execution Budget for TASK and ISR2</b>: This is the ammount of time that a TASK/ISR2 can be executing (RUNNING status for a TASK). <b>The budget is paused when a TASK/ISR2 is preempted</b>. The budget is <b>refilled</b> when a <b>TASK/ISR2 terminate</b> or a <b>TASK block on a WaitEvent</b>.
+</li><li> <b>Resource Lock Time</b>: This is the ammount of time that a TASK/ISR2 can lock a specific resource (with the call of <b>GetResource</b>). Can be specified for each resource that a TASK can access.
+</li><li> <b>OS Interrupts Lock Time</b>: This is the ammount of time that a TASK/ISR2 can suspend OS Interrupts (with <b>SupendOSInterrupts</b>).
+</li><li> <b>All Interrupts Lock Time</b>: This is the ammount of time that a TASK/ISR2 can suspend/disable  All Interrupts (with <b>SupendAllInterrupts</b> <b>DisableAllInterrupts</b>).
+</li></ul>
+<p><b>Autosar Timing Protection do NOT use OS-Application configuration but is done on schedulable entities (TASKs and ISR2).</b>
+</p><p>All timings are expressed in <b>Seconds</b>.
+</p><p>An example of <b>timing protection budgets</b> configuration:
+</p>
+<pre> TASK Task1 {
+   ...
+   <b>TIMING_PROTECTION = TRUE {</b>
+     <b>EXECUTIONBUDGET         = 0.0025;</b>
+     <b>MAXALLINTERRUPTLOCKTIME = 0.0001;</b>
+     <b>RESOURCE = RESOURCELOCK {</b>
+       <b>RESOURCELOCKTIME = 0.0002;</b>
+       <b>RESOURCE = RES_SCHEDULER;</b>
+     <b>};</b>
+     <b>RESOURCE = RESOURCELOCK {</b>
+       <b>RESOURCELOCKTIME = 0.0003;</b>
+       <b>RESOURCE = RESOURCE1;</b>
+     <b>};</b>
+   };
+ };
+ 
+ ISR ISR1 {
+   <b>CATEGORY = 2;</b>
+   ...
+   <b>TIMING_PROTECTION = TRUE {</b>
+     <b>EXECUTIONTIME           = 0.0055;</b>
+     <b>MAXALLINTERRUPTLOCKTIME = 0.0001;</b>
+   };
+ };
+</pre>
+<p>Timing Protection, can be configured to protect from too frequents TASKs' activations and ISR2s' preemptions. This mechanism is called <b>inter-arrival</b> time protection.
+</p><p>An example of <b>inter-arrival time protection</b> configuration.
+</p>
+<pre> TASK TaskPrio2 {
+   ...
+   TIMING_PROTECTION = TRUE {
+     <b>TIMEFRAME               = 0.00025;</b>  /* Two Activation of this TASK have to be separated by 250us to be acceptated. (Provided that TASK's number activation is respected) */
+     EXECUTIONBUDGET         = 0.0005;
+     MAXALLINTERRUPTLOCKTIME = 0.0001;
+   };
+ };
+ 
+ ISR Button_ISR2 {
+   CATEGORY = 2;
+   ... 
+   TIMING_PROTECTION = TRUE {
+     <b>TIMEFRAME               = 0.001;</b> /* Two interrupts of this type have to be separated by 1ms to be acceptated */
+     EXECUTIONTIME           = 0.0055;
+     MAXALLINTERRUPTLOCKTIME = 0.0001;
+   };
+ };
+</pre>
+<p><b>N.B.</b> Check following examples:   
+</p>
+<ul><li> tricore/infineon_TriBoard-TC2X5_V2.0/Timing Protection automatic tests/Timing Protection budgets automatic tests
+</li><li> tricore/infineon_TriBoard-TC2X5_V2.0/Timing Protection automatic tests/Timing Protection inter-arrival protection automatic tests
+</li></ul>
+<p>for configuration examples.
+</p>
+<h2> <span class="mw-headline" id="Stack_Monitoring"> Stack Monitoring </span></h2>
+<p>On processors that do not provide any memory protection hardware it may still be necessary to provide a “best effort with available resources” scheme for detectable classes of memory faults. Stack monitoring will identify where a task or ISR has exceeded a specified stack usage at context switch time.
+This may mean that there is considerable time between the system being in error and that fault being detected. Similarly, the error may have been cleared at the point the fault is notified (the stack may be less than the specified size when the context switch occurs).
+Note that if Memory Protection is enabled a stack overflow may cause a memory exception before the stack monitoring is able to detect the fault.
+</p>
+<h1> <span class="mw-headline" id="Architetures_that_support_full_AUTOSAR_Features"> Architetures that support full AUTOSAR Features </span></h1>
+<ul><li> <a href="/wiki/index.php?title=Infineon_Aurix" title="Infineon Aurix">Infineon_Aurix</a>
+</li></ul>
+<h1> <span class="mw-headline" id="Note_on_Autosar_Scalabilty_Classes"> Note on Autosar Scalabilty Classes </span></h1>
+<p><b>ERIKA's kernel now implement all the features specified in Autosar OS specification</b>, but do not support scalability classes yet.
+Autosar Scalability Classes declare subsets of Autosar features and a set of checks that have to be done on configuration to guarantee that the subset is not overflowed. RT-Druid do not implement thsse checks (yet).
+</p><p><b>Instead if a valid configuration is given to RT-Druid it enables all the features needed to support that configuration</b>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 74/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

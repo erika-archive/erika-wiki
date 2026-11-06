@@ -1,0 +1,252 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+  <siteinfo>
+    <sitename>ErikaWiki</sitename>
+    <base>http://erika.tuxfamily.org/wiki/index.php?title=Main_Page</base>
+    <generator>MediaWiki 1.16.4</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">ErikaWiki</namespace>
+      <namespace key="5" case="first-letter">ErikaWiki talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>File:Erika Driver Configurator Main.png</title>
+    <id>2372</id>
+    <revision>
+      <id>5180</id>
+      <timestamp>2013-07-16T12:16:55Z</timestamp>
+      <contributor>
+        <username>Eguidieri</username>
+        <id>485</id>
+      </contributor>
+      <comment>Erika Driver Configurator Main</comment>
+      <text xml:space="preserve">Erika Driver Configurator Main</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator PORT.png</title>
+    <id>2383</id>
+    <revision>
+      <id>5213</id>
+      <timestamp>2013-07-16T16:33:00Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator PORT.</comment>
+      <text xml:space="preserve">Erika Driver Configurator PORT.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Configurator PORT set.png</title>
+    <id>2384</id>
+    <revision>
+      <id>5214</id>
+      <timestamp>2013-07-16T16:34:03Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configurator PORT set.</comment>
+      <text xml:space="preserve">Erika Driver Configurator PORT set.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver Editor Generate Code.png</title>
+    <id>2373</id>
+    <revision>
+      <id>5185</id>
+      <timestamp>2013-07-16T12:48:34Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Editor Generate Code</comment>
+      <text xml:space="preserve">Erika Driver Editor Generate Code</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erika Driver configuration Generated.png</title>
+    <id>2374</id>
+    <revision>
+      <id>5186</id>
+      <timestamp>2013-07-16T12:49:20Z</timestamp>
+      <contributor>
+        <username>Giuseppe Serano</username>
+        <id>487</id>
+      </contributor>
+      <comment>Erika Driver Configuration Generated</comment>
+      <text xml:space="preserve">Erika Driver Configuration Generated</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial build automatically.png</title>
+    <id>1643</id>
+    <revision>
+      <id>2022</id>
+      <timestamp>2010-06-26T12:26:31Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Deselect the ''Build Automatically'' flag in the ''Project'' menu.</comment>
+      <text xml:space="preserve">Deselect the ''Build Automatically'' flag in the ''Project'' menu.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial build project.png</title>
+    <id>1647</id>
+    <revision>
+      <id>2026</id>
+      <timestamp>2010-06-26T12:27:53Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>We are now able to build the project.</comment>
+      <text xml:space="preserve">We are now able to build the project.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial cof image.png</title>
+    <id>1650</id>
+    <revision>
+      <id>2029</id>
+      <timestamp>2010-06-26T12:28:51Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>The output file is ready to be programmed on the target board.</comment>
+      <text xml:space="preserve">The output file is ready to be programmed on the target board.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial compiling.png</title>
+    <id>1648</id>
+    <revision>
+      <id>2027</id>
+      <timestamp>2010-06-26T12:28:19Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>The compilation process.</comment>
+      <text xml:space="preserve">The compilation process.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial explorer16running.jpg</title>
+    <id>1656</id>
+    <revision>
+      <id>2037</id>
+      <timestamp>2010-06-26T12:42:14Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>The Explorer 16 board with the running demo program.</comment>
+      <text xml:space="preserve">The Explorer 16 board with the running demo program.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial installer dir.png</title>
+    <id>1638</id>
+    <revision>
+      <id>2017</id>
+      <timestamp>2010-06-26T12:23:49Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>This screenshot shows the preferred destination dir for installing ERIKA Enterprise.</comment>
+      <text xml:space="preserve">This screenshot shows the preferred destination dir for installing ERIKA Enterprise.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial installer options.png</title>
+    <id>1636</id>
+    <revision>
+      <id>2015</id>
+      <timestamp>2010-06-26T10:30:13Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>This screenshot shows the dialog box with the available install packages.</comment>
+      <text xml:space="preserve">This screenshot shows the dialog box with the available install packages.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mplab1.png</title>
+    <id>1651</id>
+    <revision>
+      <id>2030</id>
+      <timestamp>2010-06-26T12:29:05Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>The Microchip MPLAB IDE.</comment>
+      <text xml:space="preserve">The Microchip MPLAB IDE.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mplab2.png</title>
+    <id>1652</id>
+    <revision>
+      <id>2031</id>
+      <timestamp>2010-06-26T12:29:23Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Choose ''Import...'' from the ''File'' menu to import the coff file produced in Eclipse.</comment>
+      <text xml:space="preserve">Choose ''Import...'' from the ''File'' menu to import the coff file produced in Eclipse.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mplab3.png</title>
+    <id>1653</id>
+    <revision>
+      <id>2032</id>
+      <timestamp>2010-06-26T12:29:40Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Select the COFF file you want to import.</comment>
+      <text xml:space="preserve">Select the COFF file you want to import.</text>
+    </revision>
+  </page>
+  <page>
+    <title>File:Erikatutorial mplab4.png</title>
+    <id>1654</id>
+    <revision>
+      <id>2033</id>
+      <timestamp>2010-06-26T12:29:54Z</timestamp>
+      <contributor>
+        <username>Pj</username>
+        <id>4</id>
+      </contributor>
+      <comment>Debug symbols are correctly recognized.</comment>
+      <text xml:space="preserve">Debug symbols are correctly recognized.</text>
+    </revision>
+  </page>
+</mediawiki>

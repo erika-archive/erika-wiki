@@ -1,0 +1,17 @@
+# Conference publications related to ERIKA and RT-Druid
+
+- Synchronizing Sampling and Actuation in the Absence of Global Time in Networked Control Systems In 15th IEEE International Conference on Emerging Techonologies and Factory Automation (ETFA10), Bilbao, Spain, September 2010. Authors: Pau Martí, Antonio Camacho, Manel Velasco, Pere Marés and Josep M. Fuertes.
+
+- Embedding Kalman Techniques in the One-Shot Task Model when Non-uniform Samples Are Corrupted by Noise. In 18th Mediterranean Conference on Control and Automation (MED2010), Marrakech, Morocco, June 2010. Authors: Camilo Lozoya, Julio Romero, Pau Martí, Manel Velasco, Josep M. Fuertes.
+
+- Self-Triggered Networked Control Systems: an Experimental Case Study In IEEE 2010 International Conference on Industrial Technology (ICIT2010), Valparaiso, Chile, March 2010. Authors: Antonio Camacho, Pau Martí, Manel Velasco, Camilo Lozoya, Ricard Villà, Josep M. Fuertes, Eulàlia Griful.
+
+---
+
+## Archive provenance
+
+- [Original page](http://erika.tuxfamily.org/wiki/index.php?title=Conference_publications_related_to_ERIKA_and_RT-Druid) · [Archived source revision 2065](http://erika.tuxfamily.org/wiki/index.php?oldid=2065)
+- Last source edit: 2010-10-17T17:17:59Z. Source retrieved on 2026-11-06; Markdown conversion completed on 2026-11-07.
+- Original contributors recorded in exported history: Paolo.gai.
+- [Original MediaWiki source](../source/wikitext/1667.mediawiki) · [Original editing history](../source/history/batch-003.xml)
+- [Attribution and licensing notice](../NOTICE.md). Original file-specific notices, where present, remain applicable.

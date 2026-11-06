@@ -1,0 +1,56 @@
+<h2> <span class="mw-headline" id="Intro">Intro</span></h2>
+<p>During the porting of Mico32 someone thought that it could be possible to reuse a substantial part of the code of the HAL among many architectures.  The files contained in <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common" class="external text" rel="nofollow">ee/pkg/cpu/common</a> can be used both as a part of a new porting, by including them, or as a base to derive code specific to a particular architecture.
+</p><p>All the files in <tt>cpu/common</tt> are written in standard C; they should work as they are on almost any platform or compiler.  The should be decoupled enough so that if a porting requires a custom implementation of some parts, the rest could be used with no modification. A new porting should use the common implementation when possible, or an ad-hoc implementation under <tt>cpu/XXX</tt> otherwise.
+</p><p>Please do not modify these files to accommodate some quirks of your architecture.  Instead, make a copy of them and create a branch under your <tt>cpu/XXX directory</tt> or whatever.  Implementations that can potentially be useful on many platforms are welcome; e.g., <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_gcc.h" class="external text" rel="nofollow">ee/pkg/cpu/common/inc/ee_compiler_gcc.h</a> works only for Gcc, but it should work across all platforms where Gcc is available.
+</p><p>The common layer is used by following portings:
+</p>
+<ul><li> <a href="/wiki/index.php?title=EnSilica_eSi-RISC" title="EnSilica eSi-RISC">EnSilica eSi-RISC</a>
+</li><li> <a href="/wiki/index.php?title=Lattice_Mico32" title="Lattice Mico32">Lattice Mico32</a>
+</li><li> <a href="/wiki/index.php?title=Freescale_PPC_e200_(MPC_56xx)" title="Freescale PPC e200 (MPC 56xx)">Freescale PPC e200 (MPC 56xx)</a>
+</li><li> <a href="/wiki/index.php?title=TI_MSP430" title="TI MSP430">TI MSP430</a>
+</li><li> <a href="/wiki/index.php?title=Microchip_dsPIC" title="Microchip dsPIC">Microchip dsPIC</a>
+</li><li> <a href="/wiki/index.php?title=Renesas_RX200" title="Renesas RX200" class="mw-redirect">Renesas RX200</a>
+</li><li> <a href="/wiki/index.php?title=ARM_Cortex_MX" title="ARM Cortex MX">ARM Cortex MX</a>
+</li><li> <a href="/wiki/index.php?title=Atmel_AVR8" title="Atmel AVR8">Atmel AVR8</a>
+</li></ul>
+<h2> <span class="mw-headline" id="Content">Content</span></h2>
+<p><tt>cpu/common</tt> contains a practically complete monostack version of Erika without interrupts, with support for the multistack version and interrupts.  There is one context-changing function (instead of the two of previous portings).  Where possible, all parts have been written so that there is one implementation in C for all versions (mono or multistack); this is accomplished through the use of macros or small inline functions that are defined differently depending on the version.  See the inline definition of <tt>EE_hal_ready2stacked() in </tt><a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_context.h?view=markup" class="external text" rel="nofollow">ee/pkg/cpu/common/inc/ee_context.h</a> for an example.
+</p>
+<ul><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/README.txt?view=markup" class="external text" rel="nofollow">README.txt</a> 
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/cfg/cfg.mk?view=markup" class="external text" rel="nofollow">cfg/cfg.mk</a> 
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/README.txt?view=markup" class="external text" rel="nofollow">inc/README.txt</a> 
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_gcc.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_gcc.h</a> Definitions for the Gnu C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_ccrx.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_ccrx.h</a> Definitions for the Renesas RX C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_ccs.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_ccs.h</a> Definitions for the  Texas Instruments CCSv4 tms470 C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_codewarrior.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_codewarrior.h</a> Definitions for the Freescale Codewarrior C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_diab.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_diab.h</a> Definitions for the Wind River Diab C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_iar.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_iar.h</a> Definitions for the IAR C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_keil.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_keil.h</a> Definitions for the ARM Keil C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_compiler_tasking.h?view=markup" class="external text" rel="nofollow">inc/ee_compiler_tasking.h</a> Definitions for the TASKING C compiler
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_context.h?view=markup" class="external text" rel="nofollow">inc/ee_context.h</a> Definitions related to stack- and context-changing functions
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_hal_structs.h?view=markup" class="external text" rel="nofollow">inc/ee_hal_structs.h</a> Common structure declarations
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_irqstub.h?view=markup" class="external text" rel="nofollow">inc/ee_irqstub.h</a> Functions possibly useful for IRQ post-stub
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_primitives.h?view=markup" class="external text" rel="nofollow">inc/ee_primitives.h</a> Inline functions used in kernel primitives
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_stdint.h?view=markup" class="external text" rel="nofollow">inc/ee_stdint.h</a> Definitions of (some) ISO types
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/inc/ee_types.h?view=markup" class="external text" rel="nofollow">inc/ee_types.h</a> Definition of Erika types based on <tt>limits.h</tt>
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/src/ee_context.c?view=markup" class="external text" rel="nofollow">src/ee_context.c</a> Stack- and context-changing functions
+</li><li> <a href="http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/cpu/common/src/ee_hal_structs.c?view=markup" class="external text" rel="nofollow">src/ee_hal_structs.c</a> Definitions of common structures
+</li></ul>
+<h2> <span class="mw-headline" id="Porting_to_a_new_architecture">Porting to a new architecture</span></h2>
+<p>See <a href="/wiki/index.php?title=Porting_ERIKA_Enterprise_and_RT-Druid_to_a_new_microcontroller" title="Porting ERIKA Enterprise and RT-Druid to a new microcontroller">Porting ERIKA Enterprise and RT-Druid to a new microcontroller</a> for the general instructions.
+</p>
+<ol><li> Create the architecture-specific directory <tt>ee/pkg/cpu/XXX</tt>
+</li><li> Create the files <tt>inc/ee_cpu.h</tt> and <tt>inc/ee_internal.h</tt> in the above directory.  They should include all the files <tt>cpu/common/inc/ee_*.h</tt> suitable for your architecture.  Write any architecture-specific definition or declaration in them.
+</li><li> Modify the files <tt>ee/pkg/ee.h</tt> and <tt>ee/pkg/ee_internal.h</tt> to include your newly create files.
+</li><li> Modify the file <tt>cpu/common/cfg/cfg.mk</tt> to compile the common C source files suitable for your architecture.
+</li><li> Create or modify any additional file you need.
+</li><li> Run <tt>make</tt> and enjoy.
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 10/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

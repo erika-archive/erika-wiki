@@ -1,0 +1,65 @@
+<h1> <span class="mw-headline" id="Description"> Description </span></h1>
+<p>The FLEX Demo Board is a FLEX Daughter Board, targeted specifically for educational institutions e.g. Schools and Universities.
+The FLEX Demo Board fits directly on FLEX Full / FLEX Light Base Board and it adds-on a lot of most commonly used features that are used for carrying out prototyping and laboratory experiments.
+</p><p>The features hosted on FLEX Demo Board are:
+</p>
+<ul><li> 2 DAC outputs (12 bit resolution)
+</li><li> 3-axis accelerometer (selectable range from 1.5g to 6g)
+</li><li> Direct support for quadrature encoder
+</li><li> Set of 4 Push buttons
+</li><li> Set of 8 LEDs
+</li><li> LCD (16 characters x 2 lines)
+</li><li> Buzzer
+</li><li> Potentiometer
+</li><li> Thermal sensor
+</li><li> Light sensor
+</li><li> InfraRed receiver and transmitter
+</li><li> ZigBee connector
+</li><li> Socket for Multibus serial modules (one of FLEX103, FLEX104, FLEX105, and FLEX108)
+</li><li> USB wiring for FLEX Full Base Board
+</li></ul>
+<p>Moreover, the FLEX Demo Board is fully supported by Scilab/Scicos code generator, where specific blocks are available to directly control the main peripherals. Hence, applications can be entirely generated without writing any C code.
+</p><p><a href="http://www.evidence.eu.com/content/view/263/273/" class="external text" rel="nofollow">FLEX Demo Daughter Board product page</a>
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="FAQ"> FAQ </span></h1>
+<ul><li> How can I connect a standard DB9 serial cable to the MORS3 connector on the demo board? Is there anywhere I can purchase this cable already made?
+</li></ul>
+<p>We usually solder a DB9 connector ourselves. 
+The pins to be soldered are:
+</p><p>MORS3_PIN5 -&gt; DB9_PIN5    (GROUND, BLACK WIRE).
+</p><p>MORS3_PIN3 -&gt; DB9_PIN3    (TX_RS232, BLUE WIRE).
+</p><p>MORS3_PIN2 -&gt; DB9_PIN2    (RX_RS232, WHITE WIRE).
+</p><p><br />
+The images below show how to connect a DB9 connector. Please, note that you need the RS232 module. We can send you a solded connector (You'll pay just the shipping).
+</p><p><a href="/wiki/index.php?title=File:Db9_1.png" class="image"><img alt="Db9 1.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/c/cc/Db9_1.png" width="520" height="390" /></a>
+<a href="/wiki/index.php?title=File:Db9_2.png" class="image"><img alt="Db9 2.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/3/39/Db9_2.png" width="520" height="390" /></a>
+</p>
+<ul><li> Is there an exposed pin on the DemoBoard that can be used as an ADC input to the microcontroller?
+</li></ul>
+<p>Yes, on CON8 connector. There are: RB3/AN3, RB4/AN4, RB5/AN5, RC4/AN19, RE8/AN20, RE9/AN21 which are programmable as ADC inputs. Furthermore, the CON8 connector has the following pins: RD7/OC8, RD2/OC3, RE0/PWM1L, RE1/PWM1H, RE2/PWM2L, RE3/PWM2H, RE4/PWM3L, RE5/PWM3H, RE6/PWM4L, RE7/PWM4H which are programmable as PWM outputs or general purpose digital IO pins. The image below shows all the con8 connector pins.
+</p><p><a href="/wiki/index.php?title=File:Con8_demo.png" class="image"><img alt="Con8 demo.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/9/9d/Con8_demo.png" width="520" height="390" /></a>
+</p><p><br />
+</p>
+<ul><li> Is there an exposed pin on the DemoBoard that can be used as an external interrupt to the microcontroller?
+</li></ul>
+<p>Yes, on CON8 connector. There are RE8/INT1 and RE9/INT2. Look the previous image.
+</p>
+<ul><li> Can I use USB communication without FLEX DEMO daughter board?
+</li></ul>
+<p>Yes. The demo board provide correct SPI connection between the PIC18 and the dsPIC. If you are not using the demo board you can set-up manually a SPI connection. For safety considerations it is STRONGLY recommended to use the same voltage for both dsPIC and PIC18, 3.3V. In the following figure you can be see SPI connections and jumpers setttings.
+</p><p><a href="/wiki/index.php?title=File:Scheme.png" class="image"><img alt="Scheme.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/7/79/Scheme.png" width="649" height="379" /></a>
+<a href="/wiki/index.php?title=File:Links.png" class="image"><img alt="Links.png" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/6/6e/Links.png" width="533" height="398" /></a>
+</p><p>In the USB applications note the PIC18 is only a transceiver since it receives messages from the host PC through a USB connection and forwards these messages to the dsPIC through a SPI connection. The PIC18 has a full speed USB 2.0 interface that allows to easily implement USB connection with host computers. The PIC18 can be only a device. We used the code furnished by Microchip to implement the HID behaviour of the PIC18.
+</p><p>You can have PIC18 firmware for USB applications downloading the scicoslab pack:
+<a href="http://erika.tuxfamily.org/scilabscicos.html" class="external free" rel="nofollow">http://erika.tuxfamily.org/scilabscicos.html</a>
+</p><p>Application reference:
+<a href="http://erika.tuxfamily.org/wiki/index.php?title=USB_communication_using_FLEX_FULL_Demo_Board_and_the_Scilab/Scicos_code_generator" class="external free" rel="nofollow">http://erika.tuxfamily.org/wiki/index.php?title=USB_communication_using_FLEX_FULL_Demo_Board_and_the_Scilab/Scicos_code_generator</a>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 6/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

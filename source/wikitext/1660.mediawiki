@@ -1,0 +1,7 @@
+== Reference test moved? ==
+
+The reference test appears to have moved to:
+<code>
+examples/s12xs/porting_examples'''/monostack'''/EEtest0
+</code>
+--[[User:Steve|Steve]] 09:42, 1 September 2010 (UTC)

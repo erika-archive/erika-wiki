@@ -1,0 +1,168 @@
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Known_Issues"><span class="tocnumber">1</span> <span class="toctext">Known Issues</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#FLEX_Boards"><span class="tocnumber">1.1</span> <span class="toctext">FLEX Boards</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Schematics_on_the_CD-ROM"><span class="tocnumber">1.1.1</span> <span class="toctext">Schematics on the CD-ROM</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-4"><a href="#ERIKA_Enterprise_and_documentation_updates"><span class="tocnumber">1.2</span> <span class="toctext">ERIKA Enterprise and documentation updates</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#ERIKA_Enterprise_for_Microchip_dsPIC_.28R.29_DSC_family"><span class="tocnumber">1.3</span> <span class="toctext">ERIKA Enterprise for Microchip dsPIC (R) DSC family</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Known_issues_of_Erika_Enterprise_Basic_1.4.2.1"><span class="tocnumber">1.3.1</span> <span class="toctext">Known issues of Erika Enterprise Basic 1.4.2.1</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Known_issues_on_updating_from_Erika_Enterprise_Basic_1.4.1_to_1.4.2x"><span class="tocnumber">1.3.2</span> <span class="toctext">Known issues on updating from Erika Enterprise Basic 1.4.1 to 1.4.2x</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Known_issues_of_Scicos_Pack_v3"><span class="tocnumber">1.3.3</span> <span class="toctext">Known issues of Scicos Pack v3</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Known_issues_of_Erika_Enterprise_Basic_1.4.1"><span class="tocnumber">1.3.4</span> <span class="toctext">Known issues of Erika Enterprise Basic 1.4.1</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Known_issues_of_Erika_Enterprise_Basic_1.4.0"><span class="tocnumber">1.3.5</span> <span class="toctext">Known issues of Erika Enterprise Basic 1.4.0</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Known_issues_of_Erika_Enterprise_Basic_1.4.0_RC2"><span class="tocnumber">1.3.6</span> <span class="toctext">Known issues of Erika Enterprise Basic 1.4.0 RC2</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h1> <span class="mw-headline" id="Known_Issues"> Known Issues </span></h1>
+<p>This page reports useful information about Evidence's products.
+</p><p>Note: If your issue is not covered on this page, please take a look 
+at the Evidence Forum send a mail to info@evidence.eu.com  
+</p>
+<h2> <span class="mw-headline" id="FLEX_Boards"> FLEX Boards </span></h2>
+<h3> <span class="mw-headline" id="Schematics_on_the_CD-ROM"> Schematics on the CD-ROM </span></h3>
+<ul><li> The Flex Full board schematics included in the CD-ROM has a wrong PIC18 model written on it.
+<dl><dd> The PIC18 mounted on the Flex Full boards is the PIC18F2550 which has the same pinout 
+</dd><dd> of the one cited on the schematics, with in addition an SPI which can be used for 
+</dd><dd> fast data transfer between the dsPIC and the PIC18.
+</dd></dl>
+</li></ul>
+<p><br />
+</p>
+<ul><li> The Flex Full oscillators have the following frequencies:
+<ul><li> dsPIC
+<dl><dd> main oscillator X2 @ 4 MHz. Please look at the EDF settings 
+</dd><dd> in the PIC30 manual to get two examples on how to program the clock.
+</dd><dd> real-time clock oscillator XT1 @ 32.768KHz. You can use this to get the real-time clock.
+</dd></dl>
+</li><li> PIC18
+<dl><dd> main oscillator X1 @ 20Mhz 
+</dd></dl>
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="ERIKA_Enterprise_and_documentation_updates"> ERIKA Enterprise and documentation updates </span></h2>
+<p>Please check if newer version of the <a href="http://www.evidence.eu.com/content/view/191/350/" class="external text" rel="nofollow">ERIKA Enterprise/FLEX documentation</a>
+are available for download on the Evidence web pages!
+</p><p><br /> 
+</p>
+<h2> <span class="mw-headline" id="ERIKA_Enterprise_for_Microchip_dsPIC_.28R.29_DSC_family"> ERIKA Enterprise for Microchip dsPIC (R) DSC family  </span></h2>
+<h3> <span class="mw-headline" id="Known_issues_of_Erika_Enterprise_Basic_1.4.2.1"> Known issues of Erika Enterprise Basic 1.4.2.1 </span></h3>
+<ul><li> <b>Problem</b>: Interrupts are not enabled in proper time at the end of a task, and the EDF example does not work properly.
+<dl><dd> <b>Solution</b>: Please download this zipped patch, and overwrite with the extracted content the folders ee/ and examples/ under the Evidence tree
+</dd></dl>
+</li></ul>
+<h3> <span class="mw-headline" id="Known_issues_on_updating_from_Erika_Enterprise_Basic_1.4.1_to_1.4.2x"> Known issues on updating from Erika Enterprise Basic 1.4.1 to 1.4.2x </span></h3>
+<ul><li> <b>Problem</b>: Got plenty of error messages like "Error: unknown pseudo-op: `.4byte' " and "Error: unknown pseudo-op: `.2byte' "
+<dl><dd> <b>Solution</b>: Review the RT-Druid global preferences configuration (Window-&gt; Preferences). Be sure to have the EE gcc disabled (in RT-Druid-&gt; Oil-&gt; PIC30).
+</dd></dl>
+</li></ul>
+<ul><li> <b>Problem</b>: I'm getting an error like "gcc: no such file or directory"
+<dl><dd> <b>Solution</b>: ERIKA 1.4.2 installs also the gcc-core Cygwin package, which was not present in the previous installation. To compile using the Microchip compiler, you need to have the cygwin gcc-core package installed.
+</dd><dd> There are two ways to fix this (choose the one you like the most):
+<ul><li> Before installing ERIKA Enterprise remove the Cygwin installation (simply delete all the directory c:\cygwin); or...
+</li><li> Download (<a href="http://cygwin.com/setup.exe" class="external free" rel="nofollow">http://cygwin.com/setup.exe</a>), specify 'Install from Internet', and choose the gcc-core package which is in the 'Devel' category. 
+</li></ul>
+</dd></dl>
+</li></ul>
+<p><br /> 
+</p>
+<h3> <span class="mw-headline" id="Known_issues_of_Scicos_Pack_v3"> Known issues of Scicos Pack v3 </span></h3>
+<ul><li> <b>Problem</b>: I am not able to see the dsPIC Palettes, and Scicos is giving up with an error.
+<dl><dd> <b>Solution</b>: Please download and install the Scicos Pack v4
+</dd></dl>
+</li></ul>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="Known_issues_of_Erika_Enterprise_Basic_1.4.1"> Known issues of Erika Enterprise Basic 1.4.1 </span></h3>
+<ul><li> <b>Problem</b>: The DSPICDEM demo does not compile, and I am getting the following error:
+<dl><dd><dl><dd> [...]
+</dd><dd> CPP   eecfg.c
+</dd><dd> In file included from c:/Evidence/ee/pkg/ee.h:127,
+</dd><dd>                  from eecfg.c:9:
+</dd><dd> c:/Evidence/ee/pkg/mcu/microchip_dspic/inc/ee_mcu.h: In function `EE_time_init':
+</dd><dd> c:/Evidence/ee/pkg/mcu/microchip_dspic/inc/ee_mcu.h:69: error: `T8CON' undeclared (first&nbsp;: use in this function)
+</dd><dd> [...]
+</dd></dl>
+</dd><dd> <b>Reason</b>: Basically, with the insertion of EDF in EE 1.4.1, the timer code using TMR8 is always compiled, generating a warning when using an MCU without TMR8. The bug went through the final distribution because the demo was the only one missing in the automatic regression test we performed when releasing a product.
+</dd><dd> <b>Solution</b>:
+</dd><dd> <a href="http://www.evidence.eu.com/download/known_issues/EE141_TMR8_issue.zip" class="external text" rel="nofollow">Download this patch</a> , and then please replace the following files:
+<ul><li> &lt;EvidenceInstallDirectory&gt;\ee\pkg\mcu\microchip_dspic\inc\ee_mcu.h
+</li><li> &lt;EvidenceInstallDirectory&gt;\ee\pkg\mcu\microchip_dspic\inc\ee_mcuregs.h
+</li></ul>
+</dd><dd> with the ones provided in the ZIP file.
+</dd></dl>
+</li></ul>
+<p><br />
+</p>
+<ul><li> <b>Problem</b>: The ELF file produced by the compilation cannot be loaded in MPLABIDE
+<dl><dd> <b>Solution</b>: <a href="http://www.evidence.eu.com/component/option,com_fireboard/Itemid,262/func,view/id,4/catid,3/" class="external text" rel="nofollow">(see the post in the Forum! )</a>
+</dd><dd>
+</dd><dd> In some cases (at least) the Scilab/Scicos code generation Toolchain does not produce a valid ELF file.
+</dd><dd>
+</dd><dd> It happened to us when using the C30 Student Edition 3.0x with expired license. Hence, the generated ELF file fails when loaded by MPLAB. The strange thing is that the file has been generated only using Microchip provided executables... Maybe it's a bug in MPLAB IDE?
+</dd><dd>
+</dd><dd> There is in any case a workaround:
+</dd><dd>
+</dd><dd> Just change the following line
+<dl><dd> preference_pic30__use_evidence_compiler_4_compile = false
+</dd></dl>
+</dd><dd> to
+<dl><dd> preference_pic30__use_evidence_compiler_4_compile = true
+</dd></dl>
+</dd><dd> in the /bin/rtd_config.properties files.
+</dd><dd>
+</dd><dd> The change simply skips the usage of the C30 compiler from Microchip, and instead uses
+</dd><dd> the compiler we provide (a C30 2.01 recompiled from Microchip sources available 
+</dd><dd> on the web).
+</dd><dd>
+</dd><dd> The executable file produced in this case is loaded correctly by MPLABIDE.
+</dd></dl>
+</li></ul>
+<p><br /> 
+</p><p><br />
+</p>
+<h3> <span class="mw-headline" id="Known_issues_of_Erika_Enterprise_Basic_1.4.0"> Known issues of Erika Enterprise Basic 1.4.0 </span></h3>
+<ul><li> <b>Problem</b>: I am using Microchip C30 version 3.0.x with EEB 1.4.0
+<dl><dd> <b>Solution</b>: Update EEB to version 1.4.1 . Unfortunately, the C30 compiler version 1.4.1 is not compatible with version 2.0.x. In particular, EEB 1.4.0 does not compile with the C30 compiler 3.0.x, because it is based on gcc 4 which is not backward compatible with gcc 3.3.
+</dd></dl>
+</li></ul>
+<ul><li> <b>Problem</b>: I am not able to use the standalone version of RT-Druid.
+<dl><dd> <b>Solution</b>: Please update EEB to version 1.4.1.
+</dd></dl>
+</li></ul>
+<p><br /> 
+</p><p><br /> 
+</p>
+<h3> <span class="mw-headline" id="Known_issues_of_Erika_Enterprise_Basic_1.4.0_RC2"> Known issues of Erika Enterprise Basic 1.4.0 RC2 </span></h3>
+<ul><li> <b>Problem</b>: RT-Druid workspaces can not be created using path names containing blank spaces.
+<dl><dd> <b>Solution</b>: Do not choose a path name containing blank spaces for the RT-Druid workspace.
+</dd></dl>
+</li></ul>
+<ul><li> <b>Problem</b>: The Evidence install directory path name can not contain any blank space.
+<dl><dd> <b>Solution</b>: Do not choose a path name containing blank spaces for the Evidence install directory.
+</dd></dl>
+</li></ul>
+<ul><li> <b>Problem</b>: RT-Druid does not find the compiler.
+<dl><dd> <b>Solution</b>: The initial configuration of RT-Druid needs to manually specify the compiler path name. Go to the Windows/Preferences menu of Eclipse. The option to set the compiler path name is RT-Druid/Oil/PIC30 Configurator.
+</dd></dl>
+</li></ul>
+<ul><li> <b>Problem</b>: Code compilation is slow.
+<dl><dd> <b>Solution</b>: Next version, 1.4.0 RC3, will include a completely remade makefile structure with faster compilation.
+</dd></dl>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 42/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

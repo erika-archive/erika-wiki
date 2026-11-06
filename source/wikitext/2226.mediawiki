@@ -1,0 +1,400 @@
+= ARM Cortex MX support =
+
+ERIKA Enterprise supports ARM Cortex MX microcontrollers. 
+The support for RT-Druid is now available.<br>
+
+The Cortex M0 support includes: 
+# support for [http://www.iar.com/ IAR] and [http://www.keil.com/ ARM KEIL] compiler toolchains;
+# support for single and multi stack configurations;
+# ISR Type 1 and Type 2 supported;
+# support for [http://www.arm.com/community/partners/display_product/rw/ProductId/2653/ IAR J-Link] and [http://www.keil.com/ulink2/ ARM KEIL ULINK2] Debuggers.
+
+The Cortex M4 support includes:
+# support for [http://www.ti.com/ Texas Instruments] and [http://www.keil.com/ ARM KEIL] compiler toolchains;
+# support for single and multi stack configurations;
+# ISR Type 1 and Type 2 supported;
+# support for [http://www.ti.com/tool/stellaris_icdi_drivers Texas Instruments Stellaris ICDI] and [http://www.keil.com/ulink2/ ARM KEIL ULINK2] Debuggers.
+
+* Supported IDEs:
+** [http://www.iar.com/en/Products/IAR-Embedded-Workbench/ IAR Embedded Workbench] (Cortex M0)
+** [http://www.ti.com/tool/ccstudio Texas Instruments Code Composer Studio] (Cortex M4)
+** [http://www.keil.com/uvision/ ARM KEIL uVision] (Cortex M0 and Cortex M4)
+
+* Mode of operation:
+** ''Mono-stack'': The Monostack configuration of the ERIKA Kernel models the fact that all tasks and ISRs in the system share the same stack.
+** ''Multi-stack'': Every task can have its private stack, or it can share it with other tasks.
+
+=== MCUs ===
+
+* The MCUs currently supported are the following:
+** [http://www.nxp.com/products/microcontrollers/cortex_m0/lpc1200/ NXP LPCXpresso LPC12xx] (Cortex M0)
+** [http://www.ti.com/product/lm4f232h5qd Texas Instruments Stellaris LM4F232xxxx] (Cortex M4)
+** [http://www.st.com/internet/mcu/subclass/1521.jsp STMicroelectronics STM32F4xx] (Cortex M4)
+
+=== Boards ===
+
+* The boards currently supported are the following:
+** [http://www.nxp.com/demoboard/OM13008.html NXP LPCXpresso LPC1227 Demo Board] (Cortex M0)
+** [http://www.ti.com/tool/ek-lm4f232 Texas Instruments Stellaris LM4F232H5QD Evaluation Board] (Cortex M4)
+** [http://www.st.com/internet/evalboard/product/252419.jsp STMicroelectronics STM32F4DISCOVERY Evaluation Board] (Cortex M4)
+
+* List of functions:
+** Currently the [http://www.nxp.com/demoboard/OM13008.html NXP LPCXpresso LPC1227 Demo Board] (Cortex M0) is supported through the CMSIS Library.
+** Currently the [http://www.ti.com/tool/ek-lm4f232 Texas Instruments Stellaris LM4F232H5QD Evaluation Board] (Cortex M4) is supported through StellarisWare Libraries or AUTOSAR "Like" Drivers Library.
+** Currently the [http://www.st.com/internet/evalboard/product/252419.jsp STMicroelectronics STM32F4DISCOVERY Evaluation Board] (Cortex M4) is supported through the SPD Library.
+
+= Download and install =
+
+RT-Druid and ERIKA Enterprise RTOS can be freely downloaded from the following web address:
+* http://erika.tuxfamily.org/drupal/download.html
+
+Once downloaded, extract all the files contained in it and copy the folder named ''eclipse'' in your preferred directory on your PC (a recommended path is: C:\Evidence\).
+Now, launch the program by double-clicking on the executable ''eclipse.exe''inside the ''C:\Evidence\eclipse'' folder and choose the path of your workspace.
+The workspace is the default working directory in which the projects will be created. 
+
+If you want to download only a selected revision of the kernel, open the Cygwin shell and get an anonymous SVN checkout typing this command:
+  svn co svn://svn.tuxfamily.org/svnroot/erika/erikae/repos/ee/trunk/ee -r number_of_revision
+
+Note: 
+Cygwin can be downloaded from this web site: http://www.cygwin.com/. To use SVN, the Cygwin SVN package must to be installed using the Cygwin Setup utility.
+
+The Cortex MX plug-in for Eclipse is part of the official distribution of RT-Druid.
+* The procedure to update Erika and RT-Druid plugins is described at [[Tutorial: Update ERIKA and RT-Druid]].
+
+= Target Configuration and Programming =
+
+ERIKA Enterprise is configured through [[Tutorial: RT-Druid and OIL basics | RT-Druid and an OIL file]]
+
+== Compiler Path ==
+
+It is possible to choose the path of the compiler in three different ways:
+
+* environment var:
+** IAR compiler toolchain: the IAR_CCDIR variable is able to override the path compiler set in RT-Druid during the build progress.
+** Texas Instruments compiler toolchain: CCS_INSTALL_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+** ARM KEIL compiler toolchain: ARM_ROOT variable is able to override the path compiler set in RT-Druid during the build progress.
+* configuration file:
+** see [[RT-Druid configuration#Compiler paths]]
+* gui:
+**inside eclipse preferences, it is possible to set the paths of above compilers.
+
+== Compiler Legacy ==
+
+Limited to Texas Instruments (Cortex-M4) and ARM KEIL (Cortex-M0 and Cortex-M4) compiler toolchains, it's possible to select the legacy support by followings <code>EE_OPT</code>s in the <code>OS</code> object of the OSEK/VDX configuration OIL file.
+
+* Texas Instruments CCSv4 4.2.4.00033 TMS470 Code Composer Tools 4.9.0 and older:
+  EE_OPT = "__CCS_4_2_4_00033_OLDER__";
+* Texas Instruments CCSv4 4.2.4.00005 TMS470 Code Composer Tools 4.9.3:
+  EE_OPT = "__CCS_4_2_5_00005_TMS470_4_9_3__";
+* ARM KEIL uVision 4.53.00 and older:
+  EE_OPT = "__KEIL_4_54_OLDER__";
+
+== CPU ==
+
+<code>CPU_DATA</code> must be set to <code>CORTEX_MX</code>.<br>
+The exact model is specified with the <code>MODEL</code> item (supported values are <code>M0</code> for Cortex M0 and <code>M4</code> for Cortex M4).<br>
+The compiler is specificed with the <code>COMPILER_TYPE</code> item (supported values are <code>IAR</code> and <code>KEIL</code> for <code>M0</code> model and <code>CCS</code> and <code>KEIL</code> for <code>M4</code>).<br>
+Example of a CPU_DATA section:
+
+  CPU_DATA = CORTEX_MX {
+    MODEL = M4;
+    APP_SRC = "code.c";
+    COMPILER_TYPE = KEIL;
+    MULTI_STACK = TRUE {
+      IRQ_STACK = TRUE {
+        SYS_SIZE=512;
+      };
+    };
+  };
+
+== MCU ==
+
+<code>MCU_DATA</code> must be set to <code>LPCXPRESSO</code> for NXP LPCXpresso LPC12xx, to <code>STM32</code> for STMicroelectronics STM32F4xx or to <code>STELLARIS</code> for Texas Instruments Stellaris LM4F232xxxx.<br>
+The only item supported is <code>MODEL</code>, which can be either <code>LPC12xx</code> for <code>LPCXPRESSO</code>, <code>STM32F4xx</code> for <code>STM32</code> or <code>LM4F232xxxx</code> for <code>STELLARIS</code>.<br>
+Example of a MCU_DATA section:
+
+  MCU_DATA = STELLARIS {
+    MODEL = LM4F232xxxx;
+  };
+
+== Interrupt Handling ==
+
+Interrupts in ERIKA are handled in different manner between NXP LPCXpresso LPC12xx MCU (Cortex M0) and Texas Instruments Stellaris LM4F232xxxx or STMicroelectronics STM32F4xx MCUs (Cortex M4).
+
+=== NXP LPCXpresso LPC12xx MCU (Cortex M0) ===
+
+NXP LPC12xx MCU is configured to have a fixed Interrupt Vector Table specified in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/nxp_lpcxpresso_lpc12xx/src/iar/startup_LPC12xx.s pkg/mcu/nxp_lpcxpresso_lpc12xx/src/iar/startup_LPC12xx.s] assembly file. Each entry has a fixed symbol that must be the parameter of <code>ISR1()</code> or <code>ISR2()</code> ISR signature.
+
+This scheme of ISR handling can be changed by rewriting the startup_LPC12xx.s changing the Interrupt Vector Table.
+
+=== Texas Instruments Stellaris LM4F232xxxx and STMicroelectronics STM32F4xx MCUs (Cortex M4 )===
+
+Texas Instruments Stellaris LM4F232xxxx and STMicroelectronics STM32F4xx MCUs (Cortex M4) are configured to have a flexible Interrupt Vector Table specified in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s] and in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/st_stm32_stm32f4xx/src/startup_stm32f4xx_keil.s pkg/mcu/st_stm32_stm32f4xx/src/startup_stm42f4xx_keil.s] for ARM KEIL compiler toolchain and in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_vtable_ccs.c pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_vtable_ccs.c] for Texas Instruments compiler toolchain. Each entry is specified by the following macro:
+
+  EE_<ARCH>_<ENTRY>_ISR
+
+Where <code><ARCH></code> is the architecture depended identifier (E.g. <code>CORTEX_MX</code>), and <code><ENTRY></code> is the fixed Interrupt Vector Table Entry identifier (E.g. <code>GPIO_A</code>).
+
+To define each ISR an <code>ISR</code> object is needed to be added in the <code>CPU</code> object of the OSEK/VDX configuration:
+
+  ISR <SYMBOL> {
+    CATEGORY = <ISR_TYPE>;
+    ENTRY = "<ENTRY>";
+  };
+
+Where <code><ISR_TYPE></code> is the type of the ISR (1 or 2), <code><SYMBOL></code> is the symbol that must be the parameter of <code>ISR<ISR_TYPE>()</code> ISR signature, and <code><ENTRY></code> is the fixed Interrupt Vector Table Entry identifier.
+
+= OSEK/VDX Extensions =
+
+This Section contains information about the OSEK/VDX Extensions (or optional features) that have been implemented for the ARM Cortex MX support. All of these features are not yet implemented in Cortex M0 (NXP LPCXpresso LPC12xx MCU) porting of ERIKA Enterprise.
+
+== Resource Managament at ISR level ==
+
+This feauture is automatically enabled by RT-Druid during the configuration generation step. To specify that a Resource is used by both a Task and a ISR you need to add that respource to the corrisponding ISR object as follows:
+
+  TASK Task1 {
+    ...
+    RESOURCE = "ResourceA";
+  };
+  
+  ISR <SYMBOL> {
+    PRIORITY = <PRIORITY_LEVEL>;
+    CATEGORY = <ISR_TYPE>;
+    ENTRY = "<ENTRY>";
+    RESOURCE = "ResourceA";
+  };
+  
+  RESOURCE ResourceA { RESOURCEPROPERTY = STANDARD; };
+
+== System Timer ==
+
+The OSEK/VDX standard provides support for a '''System Counter''' (a counter that is automatically linked to hardware timers). The System Timer is used to give a coherent timing reference across the entire application.
+
+In ERIKA Enterprise, this special counter has been named '''System Timer'''. To use it, you need to set a specific attribute in a Counter definition. Please note that only one counter can be the System Timer.
+
+A Counter which is not a System Counter must be incremented manually using the primitive IncrementCounter.
+
+The following is an example OIL definition for a System Counter:
+
+  CPU_DATA = CORTEX_MX {
+    CPU_CLOCK = 16.0;
+    ...
+  };
+  
+   COUNTER SystemTimer {
+    MINCYCLE = 1;
+    MAXALLOWEDVALUE = 2147483647;
+    TICKSPERBASE = 1;
+    TYPE = HARDWARE {
+      DEVICE = "SYSTICK";
+      SYSTEM_TIMER = TRUE;
+    };
+    SECONDSPERTICK = 0.001;
+  };
+
+The meaning of the various attributes is as follows:
+* CPU_DATA/CPU_CLOCK is used to declare the clock frequency (in MHZ)
+* COUNTER/TYPE must be set to "HARDWARE", and SYSTEM_TIMER must be set to true.
+* COUNTER/TYPE/DEVICE must be a valid device that can be used for a system timer. Currently, for Cortex ARM MX only "SYSTICK" is a valid device for system timer. 
+* SECONDSPERTICK is used to declare the wanted time duration of one hardware tick in seconds.
+
+The System Timer can be attached to ALARMs as usual, as in the following example:
+
+  ALARM AlarmExample {
+    COUNTER = SystemTimer;
+    ACTION  = ACTIVATETASK{
+       TASK = TaskExample;
+    };
+  };
+
+= Libraries =
+
+* The software libraries currently supported are:
+** [http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php Cortex Microcontroller Software Interface Standard (CMSIS) Version 2.1]. NPX LPCXpresso LPC1227 Demo Board (Cortex M0) ONLY
+** [http://www.ti.com/tool/sw-lm3s Texas Instruments StellarisWare Libraries Revision 8028]. Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) ONLY
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/contrib/st/STM32F4xx_StdPeriph_Driver/Release_Notes.html STM32F4xx Standard Peripherals Library Drivers (SPD) Version 1.0.0]. STMicroelectronics STM32F4DISCOVERY Evaluation Board (Cortex M4) ONLY
+
+== CMSIS OIL file configuration ==
+
+To enable CMSIS Library for NPX LPCXpresso LPC1227 demo board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__ADD_LIBS__";
+  LIB = ENABLE { NAME = "CMSIS"; };
+  EE_OPT = "__USE_LPC12XX_CMSIS_V2__";
+
+It's possible to include all library functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_CMSIS_ALL__";
+
+It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_CMSIS_SYSCTRL__";
+  EE_OPT = "__USE_CMSIS_GPIO__";
+  EE_OPT = "__USE_CMSIS_IOCON__";
+  ...
+
+== SPD OIL file configuration ==
+
+To enable SPD Libraries for STMicroelectronics STM32F4DISCOVERY Evaluation board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__ADD_LIBS__";
+  LIB = ENABLE { NAME = "CMSIS"; };
+  LIB = ENABLE { NAME = "EVAL"; };
+  LIB = ENABLE { NAME = "SPD"; };
+  EE_OPT = "__USE_STM32F4XX_CMSIS__";
+  EE_OPT = "__USE_STM32F4XX_EVAL__";
+  EE_OPT = "__USE_STM32F4XX_SPD__";
+
+It's possible to include all libraries functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_SPD_ALL__";
+
+It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_SPD_ADC__";
+  EE_OPT = "__USE_SPD_SPI__";
+  EE_OPT = "__USE_SPD_TIM__";
+  ...
+
+== StellarisWare OIL file configuration ==
+
+To enable StellarisWare Libraries for Texas Instruments Stellaris LM4F232H5QD Evaluation Board, the following code is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__ADD_LIBS__";
+  LIB = ENABLE { NAME = "STELLARISWARE"; };
+  EE_OPT = "__STELLARISWARE_EK_LM4F232__";
+  EE_OPT = "__STELLARISWARE_DRIVER_LIB__";
+  EE_OPT = "__STELLARISWARE_GRAPHICS_LIB__";
+
+It's possible to include all libraries functions by <code>EE_OPT</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_STELLARISWARE_ALL__";
+
+It's possibile to include ONLY selected library modules functions by <code>EE_OPT</code> attributes in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__USE_STELLARISWARE_ADC__";
+  EE_OPT = "__USE_STELLARISWARE_SSI__";
+  EE_OPT = "__USE_STELLARISWARE_TIMER__";
+  ...
+
+= AUTOSAR "Like" Drivers =
+
+Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) is supported through AUTOSAR "Like" Drivers too. Documentation can be found at [[Stellaris AUTOSAR Drivers]].
+
+= Examples =
+
+* The examples and tests are available in this folders:
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lpc12xx examples/cortex_mx/lpc12xx]: NXP LPCXpresso LPC1227 Demo Board (Cortex M0) examples.
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx  examples/cortex_mx/lm4f232xxxx]: Texas Instruments Stellaris LM4F232H5QD Evaluation Board (Cortex M4) examples.
+** [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/STM32F4xx  examples/cortex_mx/STM32F4xx]: STMicroelectronics STM32F4DISCOVERY Evaluation Board (Cortex M4) examples.
+
+Inside lm4f232xxxx examples folder you can find a [[Erika Benchmark|benchmark project]] too.
+
+= KEIL uVision and RT-Druid Eclipse =
+
+=== MDK-ARM Plug-in Configuration ===
+
+KEIL uVision sopport an Eclipse plu-in called MDK-ARM Plug-in.<br>
+The MDK-ARM Plug-in components have the default installation path C:\Keil\Eclipse.<br>
+No additional software is required. However, the MDK-ARM Plug-in must be configured for the Eclipse environment. 
+
+* Launch Eclipse and define a workspace (default workspace can be accepted). 
+[[File:workspace.png|center|thumb|650px|Eclipse Workspace Selection Dialog.]]
+* Open the menu Help - Install New Software.
+[[File:software.png|center|thumb|1100px|Eclipse New Software Installation.]]
+* Click Add...
+[[File:add.png|center|thumb|800px|Eclipse Software Repository Install Dialog.]]
+* Click Local...
+[[File:local.png|center|thumb|500px|Eclipse Local Software Repository Selection Dialog.]]
+* Select Disco locale (C:) -> Keil -> Eclipse and Click OK.
+[[File:folder.png|center|thumb|800px|Eclipse Local Software Repository Folder Selection Dialog.]]
+* Fill "Name:" (Keil MDK-ARM) and Click OK.
+[[File:name.png|center|thumb|500px|Eclipse Local Software Repository Selection Dialog.]]
+* Enable "Keil MDK-ARM", Disable "Contact all update sites during install to find required software" and Click Next.
+[[File:next.png|center|thumb|800px|Eclipse Software Repository Install Dialog.]]
+* On the next screen, Click Finish.
+[[File:finish.png|center|thumb|800px|Eclipse Software Installation Details Dialog.]]
+* And finally Click Restart Now.
+[[File:restart.png|center|thumb|600px|Eclipse Software Installation Details Dialog.]]
+* On a successful installation, Eclipse displays a menu µVision and µVision icons in the toolbar.
+[[File:install.png|center|thumb|1100px|Eclipse New Software Installation.]]
+
+To Debug an application see "MDK-ARM Plugin for Eclipse" in Keil uVision Help.
+
+=== Building stand-alone libee.a using RT-Druid Eclipse ===
+
+* Launch Eclipse and define a workspace (default workspace can be accepted).
+[[File:Workspace_Launcher.png|center|thumb|650px|Eclipse Workspace Selection Dialog.]]
+* Open the menu File - New - RT-Druid Oil and C/C++ Project.
+[[File:RT-Druid_Oil_Project.png|center|thumb|800px|RT-Druid Oil and C/C++ Project Menu Selection.]]
+* Fill "Project name:" (EEApp) and Click Finish.
+[[File:C_Project.png|center|thumb|750px|C Project Setting-up.]]
+* Write conf.oil file with <code>EE_OPT = "__NO_APP__"</code> attibute in <code>OS</code> object and <b>NO</b> <code>APP_SRC</code> attibutes in <code>CPU_DATA</code> object.
+* conf.oil file used here can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/EElib0/conf.oil examples/cortex_mx/lm4f232xxxx/EElib0/conf.oil]
+[[File:EEApp_conf_oil.png|center|thumb|800px|Application Oil file writing.]]
+* Open the menu Project, check that "Build Automatically" is not selected and press "Build Project".
+[[File:EEApp_build_project.png|center|thumb|800px|Application Building.]]
+* Finally stand-alone libee.a is built in Debug directory.
+[[File:EEApp_build_finished.png|center|thumb|800px|Application Build Finished.]]
+
+=== Building ERIKA based application using KEIL uVision ===
+
+To build an ERIKA based application using KEIL uVision, it needs that a stand-alone libee.a was built previously. See [[ARM Cortex MX#Building stand-alone libee.a using RT-Druid Eclipse]] above.
+
+* Launch Keil uVision.
+[[File:Keil.png|center|thumb|1000px|Keil uVision Main Window.]]
+* Open the menu Project - New uVision Project...
+[[File:Keil_New_project.png|center|thumb|1000px|Keil uVision New Project Selection.]]
+* Select project folder, fill "File name:" (KEEApp) then Click Save.
+[[File:KEEApp.png|center|thumb|750px|Keil uVision New Project Creation.]]
+* Select Device (Texas Instruments LM4F232H5DQ) and Click OK.
+[[File:KEEApp_LM4F232H5QD.png|center|thumb|850px|Keil uVision Device Selection.]]
+* In the next dialog click No because Erika provides its own startup code.
+[[File:KEEApp_Startup_s.png|center|thumb|450px|Keil uVision Device Selection.]]
+* Rename the target (TI Stellaris LM4F232H5QD) and sources group (EE).
+[[File:KEEApp_Renamed.png|center|thumb|1000px|Keil uVision Device Selection.]]
+* Right Click on source group EE and select "Add Files to Group 'EE'".
+* Select libee.a built previously, Click Add and then Close.
+[[File:KEEApp_Add_Files_Group_EE.png|center|thumb|750px|Keil uVision "Add Files to Group 'EE'".]]
+* Click on added libee.a.
+* Open the menu Project - Options for File 'libee.a'...
+[[File:KEEApp_Options_for_File_libee_a.png|center|thumb|1000px|Keil uVision "Options for File 'libee.a'...".]]
+* Change "File Type:" from "Assembly language file" to "Library file" and Click OK.
+[[File:KEEApp_libee_a_library.png|center|thumb|850px|Keil uVision "Options for File 'libee.a'...".]]
+* Right Click on "TI Stellaris LM4F232H5QD" target and select "Add Group...".
+* Rename the added group to "src".
+* Add in the group 'src' the startup assembly file for TI Stellaris LM4F232H5QD provided with Erika Enterprise [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s pkg/mcu/ti_stellaris_lm4f232xxxx/src/ee_startup_keil.s]
+[[File:KEEApp_ee_startup_keil_s.png|center|thumb|1000px|Keil uVision Startup File.]]
+* Add in the gourp 'src' the application source file (E.g. main.c).
+* main.c file used here can be found in [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/EElib0/main.c examples/cortex_mx/lm4f232xxxx/EElib0/main.c]
+[[File:KEEApp_main.png|center|thumb|1000px|Keil uVision Application Source File.]]
+* Right Click on "TI Stellaris LM4F232H5QD" target and select "Options for Target 'TI Stellaris LM4F232H5QD'..."
+* In the Target tab change "Floating Point Hardware:" from "Use FPU" to "Not Used".
+[[File:KEEApp_Option_No_FPU.png|center|thumb|850px|Keil uVision Taget Setup.]]
+* In the C/C++ tab Click "Include Paths" button "...".
+[[File:KEEApp_Options_C_tab.png|center|thumb|850px|Keil uVision C/C++ Setup.]]
+* Adds Erika Enterprise and eecfg include paths for the application and click OK.
+[[File:KEEApp_compiler_inludes.png|center|thumb|650px|Keil uVision Include Path Folder Setup.]]
+* In the Asm tab adds Erika Enterprise and eecfg include paths for the application (see above) and adds "--cpreproc" in "Misc Controls" input box.
+[[File:KEEApp_asm.png|center|thumb|850px|Keil uVision Assembly Setup.]]
+* In the Linker tab adds "--entry EE_cortex_mx_default_reset_ISR --first EE_cortex_mx_vtable" in "Misc Controls" input box.
+[[File:KEEApp_link.png|center|thumb|850px|Keil uVision Linker Setup.]]
+* Open the menu Project - Build target
+[[File:KEEApp_build.png|center|thumb|1000px|Keil uVision Build Target.]]
+* Open the menu Debug - Start/Stop Debug Session
+[[File:KEEApp_debug.png|center|thumb|1000px|Keil uVision Debug Session.]]
+
+= Benchmarks =
+
+We run a limited set of benchmarks for the kernel, which are available at the page [[Erika Enterprise Benchmark for Cortex M4]]. Other benchmarks are available on the [[:Category:Benchmarks]].
+
+= See also =
+
+* [[Tutorial: Installing ERIKA and RT-Druid, and compile your first application]]
+* [[Tutorial: RT-Druid and OIL basics]]
+* [http://ics.nxp.com/lpcxpresso/ NXP Semiconductor - Microcontrollers (LPCXpresso) - Web site]
+* [http://www.ti.com/tool/ek-lm4f232?DCMP=cortexm4f&HQS=ek-lm4f232 Texas Instruments - Stellaris LM4F232 USB+CAN Evaluation Kits - Web site]
+* [http://www.iar.com/ IAR Systems Web site]
+* [http://www.keil.com/ Keil Embedded Development Tools Web site]
+
+[[Category:Supported Devices]]

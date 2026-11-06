@@ -1,0 +1,24 @@
+<p>Now we are going to create a Cal project using the FPG-EYE's System Actor. Our System Actors are not yet included in the Cal development tool. This requires manual editing of some files.
+</p>
+<h2> <span class="mw-headline" id="Cal_project_without_System_Actors"> Cal project without System Actors </span></h2>
+<p>First step we have to create a Cal network without FPG-EYE's System actors. But the network must have the inputs/outputs external ports.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_project.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/0/00/Cal_project.png" width="200" height="86" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_project.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Cal project without FPG-EYE's System Actors</div></div></div></div>
+<p><br />
+</p>
+<h2> <span class="mw-headline" id="Wrapper_Cal_project_with_System_Actors"> Wrapper Cal project with System Actors </span></h2>
+<p>Now we have to create a vhdl file wapper. In this wrapper we must put the Cal network and the FPG-EYE's System Actors.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_project_wrapper.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/b/bf/Cal_project_wrapper.png" width="200" height="110" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_project_wrapper.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Cal project with wrapper and FPG-EYE's System Actors</div></div></div></div>
+<p>In the wrapper we can add other component. For example in the example3 and example8, we have added a module <tt>Pll</tt> and
+a module <tt>Reset</tt>.
+</p>
+<div class="center"><div class="thumb tnone"><div class="thumbinner" style="width:202px;"><a href="/wiki/index.php?title=File:Cal_project_wrapper_pll_rst.png" class="image"><img alt="" src="http://download.tuxfamily.org/erika/webdownload/wiki-images/images/2/2c/Cal_project_wrapper_pll_rst.png" width="200" height="142" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/index.php?title=File:Cal_project_wrapper_pll_rst.png" class="internal" title="Enlarge"><img src="/wiki/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>Wrapper with a <tt>Pll</tt> and <tt>Reset</tt> modules.</div></div></div></div>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 7/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->

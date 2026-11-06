@@ -1,0 +1,40 @@
+The '''Easylab''' palette:
+<br /><br />
+
+{| class="wikitable"
+|-
+! Symbol
+! Description
+|-
+| [[image:easylab_adc.png]]
+| This block controls the 4 analog pins of the Easylab board. The internal parameter specifies the pin.
+|-
+| [[image:easylab_buzzer.png]]
+| This block controls the Buzzer of the Easylab board. No internal parameters.
+|-
+| [[image:easylab_sysled.png]]
+| This block controls the Microstick led. No internal parameters.
+|-
+| [[image:easylab_input.png]]
+| This block controls the digital input pins of the Easylab board. The internal parameter specifies the pin.
+|-
+| [[image:easylab_output.png]]
+| This block controls the digital output pins of the Easylab board. The internal parameter specifies the pin.
+|-
+| [[image:easylab_leds.png]]
+| This block controls the leds of the Easylab board. The internal parameters specify the threshold and the led.
+|-
+| [[image:easylab_serial_send.png]]
+| This block controls data sending through the serial interface. The internal parameter specifies the baudrate of the UART controller.
+|-
+| [[image:easylab_serial_receive.png]]
+| This block controls data reception through the serial interface. The internal parameter specifies the baudrate of the UART controller.
+|-
+| [[image:easylab_pwm.png]]
+| This block controls the 4 PWM pins of the Easylab board. The internal parameters specify the PWM signal frequency and the pin.
+|-
+| [[image:easylab_cpuload_pwm.png]]
+| This block measures the CPU load and controls the selected PWM output pin of the Easylab board. The internal parameters specify the PWM signal frequency and the pin.
+|-
+| [[image:easylab_cpuload_gpout.png]]
+| This block measures the CPU load and controls the selected digital output pin of the Easylab board. The internal parameter specifies the pin.

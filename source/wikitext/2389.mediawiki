@@ -1,0 +1,466 @@
+== Synopsis ==
+
+The DIO abstracts the access to the microcontroller's hardware pins. Furthermore, it allows the grouping of those pins.
+
+The DIO Driver provides services for reading and writing to/from
+* DIO Channels (Pins)
+* DIO Ports
+* DIO Channel Groups
+
+The behaviour of those services is synchronous.
+
+This module works on pins and ports which are configured by the PORT driver for this purpose. For this reason, there is no configuration and initialization of this port structure in the DIO Driver.
+
+Many ports and port pins are assigned by the PORT Driver Module to various functionalities as for example:
+* General purpose I/O
+* ADC
+* SPI
+* PWM
+* etc
+
+The Dio module shall not provide APIs for overall configuration and initialization of the port structure which is used in the Dio module. These actions are done by the PORT Driver Module.
+
+The Dio module shall adapt its configuration and usage to the microcontroller and ECU.
+
+The Dio module’s user shall only use the Dio functions after the Port Driver has been initialized. Otherwise the Dio module will exhibit undefined behavior.
+
+The diagram below identifies the DIO Driver functions, and the structure of the PORT Driver and DIO Driver.
+
+[[File:DIO-PORT.png]]
+
+The Dio module shall not buffer data when providing read and write services.
+
+The Dio module’s read and write services shall ensure for all services, that the data is consistent (Interruptible read-modify-write sequences are not allowed).
+
+Values used by the DIO Driver for the software level of Channels are either ''STD_HIGH'' or ''STD_LOW''.
+
+A general-purpose digital IO pin represents a DIO channel.
+
+The Port module shall configure a DIO channel as input or output.
+
+In the DIO Driver, it shall be possible to group several DIO channels by hardware (typically controlled by one hardware register) to represent a DIO port.
+
+'''Note''': The single DIO channel levels inside a DIO port represent a bit in the DIO port value, depending on their position inside the port.
+
+A channel group is a formal logical combination of several adjoining DIO channels within a DIO port.
+
+[[File:DIO_Channel_Group.png]]
+
+The DIO Driver provides the following services:
+* The Dio driver shall define functions to modify the levels of output channels individually, for a port or for a channel group.
+* The Dio driver shall define functions to read the level of input and output channels individually, for a port or for a channel group.
+
+[[File:DIO_services.png]]
+
+All read and write functions of the Dio module shall be re-entrant.
+
+'''Reason''': The DIO Driver may be accessed by different upper layer handlers or drivers. These upper layer modules may access the driver concurrently.
+
+The configuration process for Dio module shall provide symbolic names for each configured DIO channel, port and group.
+
+The Dio module shall publish the symbolic names which have been created during the configuration process in the file ''Dio_Cfg.h''.
+
+Initialization of the hardware is done by the PORT Driver.
+
+The Dio module shall not provide an interface for initialization of the hardware. The Port Driver performs this.
+
+The PORT driver shall provide the reconfiguration of the port pin direction during runtime.
+
+The DIO Driver provides services to transfer data to the microcontroller's pins
+
+The Dio module’s write functions shall work on input and output channels.
+
+If a Dio write function is used on an input channel, it shall have no effect on the physical output level.
+
+If supported by hardware, the Dio module shall set/clear the output data latch of an input channel so that the required level is output from the pin when the port driver configures the pin as a DIO output pin.
+
+The Dio module’s read functions shall work on input and output channels.
+
+If the microcontroller supports the direct read-back of a pin value, the Dio module’s read functions shall provide the real pin level, when they are used on a channel which is configured as an output channel.
+
+If the microcontroller does not support the direct read-back of a pin value, the Dio module’s read functions shall provide the value of the output register, when they are used on a channel which is configured as an output channel.
+
+== File Structure ==
+
+[[File:DIO_Driver_File_structure.png]]
+
+== API Specification ==
+
+=== Imported Types ===
+
+==== ''typedef uint8 Std_ReturnType'' ====
+
+  #include "Std_Types.h"
+
+Standard Return Type.
+
+This type can be used as standard API return type which is shared between AUTOSAR-like modules.
+
+The ''Std_ReturnType'' shall normally be used with value ''E_OK'' or ''E_NOT_OK''.
+If those return values are not sufficient user specific values can be defined by using the 6 least specific bits.
+
+==== ''struct Std_VersionInfoType'' ====
+
+  #include "Std_Types.h"
+
+Standard Version Informations Type.
+
+This type shall be used to request the version of a AUTOSAR-like module using the ''<Module Name>_GetVersionInfo()'' function.
+
+'''Field Documentation:'''
+
+  ''uint16 Std_VersionInfoType::moduleID''
+	Module Identifier. 
+
+  ''uint8 Std_VersionInfoType::sw_major_version''
+	Software Version Major Number. 
+
+  ''uint8 Std_VersionInfoType::sw_minor_version''
+	Software Version Minor Number. 
+
+  ''uint8 Std_VersionInfoType::sw_patch_version''
+	Software Version Patch Number. 
+
+  ''uint16 Std_VersionInfoType::vendorID''
+	Vendor Identifier.
+
+=== Types Defintions ===
+
+==== ''struct Dio_ConfigType'' ====
+
+  #include "Dio.h"
+
+DIO Driver Configuration Parameters.
+
+The type ''Dio_ConfigType'' is a type for the external data structure containing the initialization data for the DIO Driver.
+
+This structure contains all configurable parameters of the DIO driver. A pointer to this structure is passed to the DIO driver initialization function for configuration.
+
+'''Note''': The user shall use the symbolic names defined in the configuration tool.
+
+'''Note''': The configuration of each Dio Channel MCU specific. Therefore, it is not possible to include a complete list of different configurations in this specification.
+
+==== ''typedef uint Dio_ChannelType'' ====
+
+  #include "Dio.h"
+
+Data type for the symbolic name of a Dio Channel and shall cover all available DIO channels.
+
+Parameters of type ''Dio_ChannelType'' contain the numeric ID of a DIO channel.
+
+The mapping of the ID is implementation specific but not configurable.
+
+For parameter values of type ''Dio_ChannelType'', the Dio’s user shall use the symbolic names provided by the configuration description.
+
+==== ''typedef uint Dio_PortType'' ====
+
+  #include "Dio.h"
+
+Data type for the symbolic name of a Dio Port and shall cover all available DIO ports.
+
+Parameters of type ''Dio_PortType'' contain the numeric ID of a DIO port.
+
+The mapping of ID is implementation specific but not configurable.
+
+For parameter values of type ''Dio_PortType'', the user shall use the symbolic names provided by the configuration description.
+
+==== ''struct Dio_ChannelGroupType'' ====
+
+  #include "Dio.h"
+
+Type for the definition of a channel group, which consists of several adjoining channels within a port.
+
+For parameter values of type ''Dio_ChannelGroupType'', the user shall use the symbolic names provided by the configuration description.
+
+'''Field Documentation''':
+
+* ''uint32 Dio_ChannelGroupType::mask'':
+	This element mask which defines the positions of the channel group. 
+
+* ''uint8 Dio_ChannelGroupType::offset'':
+	This element shall be the position of the Channel Group on the port, counted from the LSB. 
+
+* ''Dio_PortType Dio_ChannelGroupType::port'':
+	This shall be the port on which the Channel group is defined. 
+
+==== ''typedef uint8 Dio_LevelType'' ====
+
+  #include "Dio.h"
+
+Data type for the for the possible levels that a DIO channel can have (input or output).
+
+'''Range''':
+* ''STD_LOW'': 	 		Physical state 0V
+* ''STD_HIGH'':			Physical state 5V or 3.3V
+
+==== ''typedef uint8 Dio_PortLevelType'' ====
+
+  #include "Dio.h"
+
+Data type for the value of a DIO port.
+
+'''Note''':	If the μC owns ports of different port widths (e.g. 4, 8,16...Bit) ''Dio_PortLevelType'' inherits the size of the largest port.
+
+=== Functions Definitions ===
+
+==== ''Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId)'' ====
+
+  #include "Dio.h"
+
+Channel Read.
+
+'''Parameters''':
+* ''ChannelId'':	ID of DIO Channel 
+
+'''Returns''':
+* ''STD_HIGH'' :	The physical level of the corresponding Pin is ''STD_HIGH'' 
+* ''STD_LOW'' :	The physical level of the corresponding Pin is ''STD_LOW'' 
+
+Returns the value of the specified DIO channel.
+
+Service 0x00
+
+The ''Dio_ReadChannel()'' function shall return the value of the specified DIO channel.
+
+==== ''void Dio_WriteChannel(Dio_ChannelType ChannelId,	Dio_LevelType Level)'' ====
+
+  #include "Dio.h"
+
+Channel Write.
+
+'''Parameters''':
+* ''ChannelId'':	ID of DIO Channel 
+* ''Level'':	Value to be written
+
+'''Returns''':
+* ''None''.
+
+Service 0x01
+
+Service to set a level of a channel.
+
+If the specified channel is configured as an output channel, the ''Dio_WriteChannel()'' function shall set the specified Level for the specified channel.
+
+If the specified channel is configured as an input channel, the ''Dio_WriteChannel()'' function shall have no influence on the physical output.
+
+If the specified channel is configured as an input channel, the ''Dio_WriteChannel()'' function shall have no influence on the result of the next Read-Service.
+
+==== ''Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId)'' ====
+
+  #include "Dio.h"
+
+Port Read.
+
+'''Parameters''':
+* ''PortId'':	ID of DIO Port
+
+'''Returns''':
+* Level of all channels of that port.
+
+Returns the level of all channels of that port.
+
+Service 0x02
+
+The ''Dio_ReadPort()'' function shall return the level of all channels of that port.
+
+When reading a port which is smaller than the ''Dio_PortType'' using the ''Dio_ReadPort()'' function, the function shall set the bits corresponding to undefined port pins to ''0''.
+
+==== ''void Dio_WritePort(Dio_PortType PortId, Dio_PortLevelType Level)'' ====
+
+  #include "Dio.h"
+
+Port Write.
+
+'''Parameters''':
+* ''PortId'':	ID of DIO Port
+* ''Level'':	Value to be written
+
+'''Returns''':
+* ''None''.
+
+Service 0x03
+
+Service to set a value of a port.
+
+The ''Dio_WritePort()'' function shall set the specified value for the specified port.
+
+When the ''Dio_WritePort()'' function is called, DIO Channels that are configured as input shall remain unchanged.
+
+When writing a port which is smaller than the Dio_PortType using the ''Dio_WritePort()'' function, the function shall ignore the MSB.
+
+The ''Dio_WritePort()'' function shall have no effect on channels within this port which are configured as input channels.
+
+==== ''Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr)'' ====
+
+  #include "Dio.h"
+
+Channel Group Read.
+
+'''Parameters''':
+* ''ChannelGroupIdPtr'':	Pointer to Channel Group
+
+'''Returns''':
+* Level of a subset of the adjoining bits of a port (channel group).
+
+This Service reads a subset of the adjoining bits of a port.
+
+Service 0x04
+
+The ''Dio_ReadChannelGroup()'' function shall read a subset of the adjoining bits of a port (channel group).
+
+The ''Dio_ReadChannelGroup()'' function shall do the masking of the channel group.
+
+The ''Dio_ReadChannelGroup()'' function shall do the shifting so that the values read by the function are aligned to the LSB.
+
+==== ''void Dio_WriteChannelGroup(const Dio_ChannelGroupType *ChannelGroupIdPtr, Dio_PortLevelType Level)'' ====
+
+  #include "Dio.h"
+
+Channel Group Write.
+
+'''Parameters''':
+* ''ChannelGroupIdPtr'':	Pointer to Channel Group
+* ''Level'':			Value to be written
+
+'''Returns''':
+* ''None''.
+
+Service 0x05
+
+Service to set a subset of the adjoining bits of a port to a specified level.
+
+The ''Dio_WriteChannelGroup()'' function shall set a subset of the adjoining bits of a port (channel group) to a specified level.
+
+The ''Dio_WriteChannelGroup()'' shall not change the remaining channels of the port and channels which are configured as input.
+
+The ''Dio_WriteChannelGroup()'' function shall do the masking of the channel group.
+
+The function ''Dio_WriteChannelGroup()'' shall do the shifting so that the values written by the function are aligned to the LSB.
+
+==== ''void Dio_Init(const Dio_ConfigType *ConfigPtr)'' ====
+
+  #include "Dio.h"
+
+DIO Driver Initialization.
+
+'''Parameters''':
+* ''ConfigPtr'':	Pointer to configuration set 
+
+'''Returns''':
+* ''None''.
+
+Initializes the DIO Driver module.
+
+Service 0x10
+
+The ''Dio_Init()'' function shall initialize all global variables of the DIO module.
+
+==== ''Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId)'' ====
+
+  #include "Dio.h"
+
+Channel Flip.
+
+'''Parameters''':
+* ''ChannelId'':	ID of DIO Channel 
+
+'''Returns''':
+* ''STD_HIGH'':		The physical level of the corresponding Pin is ''STD_HIGH'' 
+* ''STD_LOW'':		The physical level of the corresponding Pin is ''STD_LOW''
+
+Service to flip (change from 1 to 0 or from 0 to 1) the level of a channel and return the level of the channel after flip.
+
+Service 0x11
+
+If the specified channel is configured as an output channel, the ''Dio_FlipChannel()'' function shall read level of the channel and invert it, then write the inverted level to the channel. The return value shall be the inverted level of the specified channel.
+
+If the specified channel is configured as an input channel, the ''Dio_FlipChannel()'' function shall have no influence on the physical output. The return value shall be the level of the specified channel.
+
+If the specified channel is configured as an input channel, the ''Dio_FlipChannel()'' function shall have no influence on the result of the next Read-Service.
+
+==== ''void Dio_GetVersionInfo(Std_VersionInfoType *VersionInfoPtr)'' ====
+
+  #include "Dio.h"
+
+DIO Driver version informations retrieval.
+
+'''Parameters''':
+* ''VersionInfoPtr'':	Pointer to where to store the version information of this module.
+
+'''Returns''':
+* ''None''.
+
+This service retrieves the DIO driver version informations.
+
+Service 0x12
+
+The function ''Dio_GetVersionInfo()'' shall return the version information of the DIO module.
+
+The version information includes:
+* Module Id
+* Vendor Id
+* Vendor specific version numbers
+
+The function ''Dio_GetVersionInfo()'' shall be configurable On/Off by the configuration parameter ''DioVersionInfoApi''.
+
+If source code for caller and callee of the function ''Dio_GetVersionInfo()'' is available, the PORT module should realize this function as a macro. The DIO module should define this macro in the module’s header file.
+
+== Usage Examples ==
+
+=== Read a value from a DIO Channel ===
+
+[[File:Dio_Read_1.png]]
+
+=== Write a value to a DIO Channel ===
+
+[[File:Dio_Write_1.png]]
+
+== Build ==
+
+To enable AUTOSAR-like DIO Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, the following <code>EE_OPT</code> attribute is needed in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  EE_OPT = "__AS_DIO_DRIVER__";
+
+The configuration C header file inclusion is done by <code>CFLAGS</code> attribute in the <code>OS</code> object of the OSEK/VDX configuration:
+
+  CFLAGS = "-I<PATH>";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C header file is stored.
+
+Instead the configurations C source file is added to the compilation process by <code>APP_SRC</code> attribute in the <code>CPU_DATA</code> object of the OSEK/VDX configuration:
+
+  APP_SRC = "<PATH>/Dio_Cfg.c";
+
+Where <code><PATH></code> is the absolute or relative directory path which configuration C source file is stored.
+
+== Supported Architectures ==
+
+=== TI Stellaris LM4F232XXXX with ARM KEIL uVision Compiler Toolchain ===
+
+==== Driver Configuration ====
+
+In order to configure the AUTOSAR-like DIO Driver for Texas Instruments Stellaris LM4F232xxxx with ARM KEIL uVision Compiler Toolchain, you have to select the "Dio" tab-sheet on driver configuration instance file.
+
+[[File:Erika_Driver_Configurator_DIO.png]]
+
+===== Configuration Selection =====
+
+In this section you can add/edit/delete configurations in DIO Driver configuration set:
+* Each configuration SHALL have an ''Identifier'' which must be unique inside the configurations set.
+* Each configuration, inside the configurations set, has a set of Ports.
+** Each Port SHALL have a ''Name'' which must be unique inside the Ports.
+** Each Port has a set of Channels and/or Channels Groups.
+*** Each Channel SHALL have a ''Name'' which must be unique inside a Port.
+*** Each Channel Group SHALL have a ''Name'' which must be unique inside a Port.
+
+===== API Selection =====
+
+In this section you can select DIO Driver APIs and features will be included in build process:
+* ''Flip Channel Service'': ''Dio_FlipChannel()'' API
+* ''Version Info'': ''Dio_GetVersionInfo()'' API
+
+[[File:Erika_Driver_Configurator_DIO_set.png]]
+
+==== Implemetations Demos ====
+
+Implementation Demos of the AUTOSAR-like DIO Driver can be found at [http://svn.tuxfamily.org/viewvc.cgi/erika_erikae/repos/ee/trunk/ee/examples/cortex_mx/lm4f232xxxx/as  examples/cortex_mx/lm4f232xxxx/as]
