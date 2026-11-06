@@ -4,6 +4,8 @@ A Markdown preservation copy of the original ERIKA Enterprise and RT-Druid Wiki,
 
 **[Read the Wiki main page →](docs/Main_Page.md)**
 
+**[Browse the searchable documentation website](https://erika-archive.github.io/erika-wiki/)**
+
 ## Browse the archive
 
 - [All articles and reference pages](INDEX.md)
