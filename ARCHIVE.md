@@ -6,17 +6,17 @@ This unofficial archive preserves selected public ErikaWiki documentation and it
 
 | Material | Preserved |
 |---|---:|
-| Articles | 206 |
+| Articles | 204 |
 | Uploaded-file description pages | 690 |
 | Categories | 6 |
 | Help and project reference pages | 4 |
 | Discussion pages | 4 |
-| Total page records | 910 |
-| Original editing-history revisions | 4423 |
+| Total page records | 908 |
+| Original editing-history revisions | 4420 |
 | Current original uploaded resources | 690 |
 | Additional linked images, PDFs and example archives | 33 |
 
-The 25 unrelated gift-card/generator spam pages were excluded at the archive owner's request. Their titles and original page IDs are preserved in [the exclusion inventory](metadata/excluded-spam-pages.json); their spam content is not imported. Personal account/profile namespaces and MediaWiki interface-message namespaces are outside the documentation scope. The [complete selected-page inventory](metadata/page-inventory.json) identifies every included page.
+The 27 unrelated gift-card/generator spam pages were excluded at the archive owner's request. Their titles and original page IDs are preserved in [the exclusion inventory](metadata/excluded-spam-pages.json); their spam content is not imported. Personal account/profile namespaces and MediaWiki interface-message namespaces are outside the documentation scope. The [complete selected-page inventory](metadata/page-inventory.json) identifies every included page.
 
 ## Reading and source material
 
@@ -53,4 +53,4 @@ It is referenced from the Freescale S12 article. Its original URL is retained an
 
 Validation checks selected-page coverage, source/history checksums, all original-upload checksums, local page/image links, heading anchors, and original preformatted code blocks. Machine-readable results are stored in `metadata/verification.json`.
 
-Final validation passed: 910 page records; 690 original uploads; 33 additional resources; 7641 local page/image/section-link checks; 1402 image references; 718 original code blocks. There are no broken local links, missing section anchors, remote embedded images, or conversion-validation errors.
+Final validation passed: 908 page records; 690 original uploads; 33 additional resources; 7633 local page/image/section-link checks; 1402 image references; 718 original code blocks. There are no broken local links, missing section anchors, remote embedded images, or conversion-validation errors.

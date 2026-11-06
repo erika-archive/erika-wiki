@@ -12,7 +12,7 @@ A Markdown preservation copy of the original ERIKA Enterprise and RT-Druid Wiki,
 - [Supported devices](categories/Category_Supported_Devices--1975.md)
 - [RT-Druid](categories/Category_RT-Druid--2304.md)
 
-The archive contains **206 articles** and **910 page records in total**, including resource descriptions, categories, help and discussions. Images use local repository files, and links between archived pages point to Markdown files.
+The archive contains **204 articles** and **908 page records in total**, including resource descriptions, categories, help and discussions. Images use local repository files, and links between archived pages point to Markdown files.
 
 ## Source, attribution and licensing
 

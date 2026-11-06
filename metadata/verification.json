@@ -1,16 +1,16 @@
 {
-  "selected_pages": 910,
-  "markdown_page_records": 910,
-  "article_pages": 206,
+  "selected_pages": 908,
+  "markdown_page_records": 908,
+  "article_pages": 204,
   "namespace_counts": {
-    "0": 206,
+    "0": 204,
     "1": 4,
     "4": 3,
     "6": 690,
     "12": 1,
     "14": 6
   },
-  "history_revisions": 4423,
+  "history_revisions": 4420,
   "history_exports": 57,
   "verified_original_uploads": 690,
   "verified_linked_resources": 33,
@@ -26,11 +26,11 @@
       "error": "http://download.tuxfamily.org/erika/webdownload/eeb_gpl/EE_160_Win.zip: HTTP Error 404: Not Found"
     }
   ],
-  "local_link_checks": 7641,
+  "local_link_checks": 7633,
   "embedded_image_references": 1402,
   "verified_source_code_blocks": 718,
   "remote_embedded_images": [],
   "fragment_errors": [],
   "errors": [],
-  "spam_pages_excluded": 25
+  "spam_pages_excluded": 27
 }
